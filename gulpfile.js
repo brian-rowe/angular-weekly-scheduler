@@ -143,8 +143,7 @@ gulp.task('copyTestFiles', function () {
     ],
     {
         cwd: 'node_modules'
-    })
-    .pipe(concat('testVendorScripts.js'));
+    });
 
     let indexPage = gulp.src('app/index.html').pipe(gulp.dest(testFolder));
 

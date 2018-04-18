@@ -6,7 +6,7 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
     localeServiceProvider.configure({
       doys: {'es-es': 4},
       lang: {'es-es': {month: 'Mes', weekNb: 'número de la semana', addNew: 'Añadir'}},
-      localeLocationPattern: '/vendor/angular-i18n/angular-locale_{{locale}}.js'
+      localeLocationPattern: '/angular-locale_{{locale}}.js'
     });
   }])
 
