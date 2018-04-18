@@ -6,10 +6,10 @@ angular.module('weeklySchedulerI18N')
     var defaultConfig = {
       doys: {'de-de': 4, 'en-gb': 4, 'en-us': 6, 'fr-fr': 4},
       lang: {
-        'de-de': {month: 'Monat', weekNb: 'Wochenummer', addNew: 'Hinzufügen'},
-        'en-gb': {month: 'Month', weekNb: 'Week #', addNew: 'Add'},
-        'en-us': {month: 'Month', weekNb: 'Week #', addNew: 'Add'},
-        'fr-fr': {month: 'Mois', weekNb: 'N° de semaine', addNew: 'Ajouter'}
+        'de-de': {weekNb: 'Wochenummer', addNew: 'Hinzufügen'},
+        'en-gb': {weekNb: 'Week #', addNew: 'Add'},
+        'en-us': {weekNb: 'Week #', addNew: 'Add'},
+        'fr-fr': {weekNb: 'N° de semaine', addNew: 'Ajouter'}
       }
     };
 
