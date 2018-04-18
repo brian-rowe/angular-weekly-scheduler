@@ -133,19 +133,25 @@ gulp.task('copyTestFiles', function () {
     let vendorJavascript = gulp.src([
         'angular/angular.js',
         'angular-animate/angular-animate.js',
-        'angular-i18n/angular-locale_en-us.js',
-        'angular-i18n/angular-locale_en-gb.js',
-        'angular-i18n/angular-locale_fr-fr.js',
-        'angular-i18n/angular-locale_de-de.js',
-        'angular-i18n/angular-locale_es-es.js',
+
         'angular-dynamic-locale/dist/tmhDynamicLocale.js',
         'moment/moment.js'
     ],
     {
         cwd: 'node_modules'
-    });
+    })
+    .pipe(concat('testVendorScripts.js'));
 
-    let indexPage = gulp.src('app/index.html').pipe(gulp.dest(testFolder));
+    // Locale files need to be separate
+    let vendorLocales = gulp.src([
+        'angular-i18n/angular-locale_en-us.js',
+        'angular-i18n/angular-locale_en-gb.js',
+        'angular-i18n/angular-locale_fr-fr.js',
+        'angular-i18n/angular-locale_de-de.js',
+        'angular-i18n/angular-locale_es-es.js' 
+    ], { cwd: 'node_modules' });
+
+    let indexPage = gulp.src('app/index.html');
 
     let casJavascript = gulp.src([compiledJavascriptPath])
         .pipe(concat('testScripts.js'))
@@ -156,5 +162,5 @@ gulp.task('copyTestFiles', function () {
     ])
     .pipe(concat('testStyles.css'))
 
-    return merge([vendorJavascript, indexPage, casJavascript, styles]).pipe(gulp.dest(testFolder));
+    return merge([vendorJavascript, vendorLocales, indexPage, casJavascript, styles]).pipe(gulp.dest(testFolder));
 });
