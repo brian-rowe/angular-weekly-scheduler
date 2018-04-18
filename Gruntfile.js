@@ -40,7 +40,7 @@
         },
         html: {
           files: [
-            '<%= yeoman.app %>/**/views/*.html'
+            '<%= yeoman.app %>/**/*.html'
           ],
           tasks: ['newer:html2js']
         },
@@ -60,8 +60,8 @@
       concat: {
         js: {
           src: [
-            '<%= yeoman.app %>/ng-weekly-scheduler/js/module.js',
-            '<%= yeoman.app %>/ng-weekly-scheduler/js/**/*.js'
+            '<%= yeoman.app %>/ng-weekly-scheduler/module.js',
+            '<%= yeoman.app %>/ng-weekly-scheduler/**/*.js'
           ],
           dest: '<%= yeoman.dist %>/js/ng-weekly-scheduler.js',
           options: {
@@ -174,8 +174,8 @@
           }
         },
         templates: {
-          src: ['<%= yeoman.app %>/ng-weekly-scheduler/views/**/*.html'],
-          dest: '<%= yeoman.app %>/ng-weekly-scheduler/js/views/templates.js'
+          src: ['<%= yeoman.app %>/ng-weekly-scheduler/**/*.html'],
+          dest: '<%= yeoman.app %>/ng-weekly-scheduler/templates.js'
         }
       },
 

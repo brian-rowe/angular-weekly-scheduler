@@ -4,7 +4,7 @@ angular.module('weeklyScheduler')
     return {
       restrict: 'E',
       require: ['^weeklyScheduler', 'ngModel'],
-      templateUrl: 'ng-weekly-scheduler/views/weekly-slot.html',
+      templateUrl: 'ng-weekly-scheduler/weekly-slot/weekly-slot.html',
       link: function (scope, element, attrs, ctrls) {
         var schedulerCtrl = ctrls[0], ngModelCtrl = ctrls[1];
         var conf = schedulerCtrl.config;

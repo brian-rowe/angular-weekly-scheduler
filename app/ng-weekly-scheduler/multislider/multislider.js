@@ -16,7 +16,7 @@ angular.module('weeklyScheduler')
     return {
       restrict: 'E',
       require: '^weeklyScheduler',
-      templateUrl: 'ng-weekly-scheduler/views/multi-slider.html',
+      templateUrl: 'ng-weekly-scheduler/multislider/multislider.html',
       link: function (scope, element, attrs, schedulerCtrl) {
         var conf = schedulerCtrl.config;
 

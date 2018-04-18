@@ -41,7 +41,7 @@ angular.module('weeklyScheduler')
       restrict: 'E',
       require: 'weeklyScheduler',
       transclude: true,
-      templateUrl: 'ng-weekly-scheduler/views/weekly-scheduler.html',
+      templateUrl: 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html',
       controller: ['$injector', function ($injector) {
         // Try to get the i18n service
         var name = 'weeklySchedulerLocaleService';
