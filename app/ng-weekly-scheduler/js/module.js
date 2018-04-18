@@ -1,6 +1,5 @@
 angular.module('weeklyScheduler', ['ngWeeklySchedulerTemplates']);
 
-/* jshint -W098 */
 var GRID_TEMPLATE = angular.element('<div class="grid-item"></div>');
 var CLICK_ON_A_CELL = 'clickOnACell';
 
@@ -70,4 +69,3 @@ function zoomInACell(el, event, data) {
     el.scrollLeft = scheduleAreaWidthPx * (percentWidthFromBeginning / 100) - gutterSize;
   }
 }
-/* jshint +W098 */
