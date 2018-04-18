@@ -1,0 +1,6 @@
+{
+    "rules": {
+        "eofline": true,
+        "quotemark": [true, "single"]
+    }
+}
