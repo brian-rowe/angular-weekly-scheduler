@@ -131,7 +131,7 @@ gulp.task("server", function () {
 
 gulp.task('copyTestFiles', function () {
     let vendorJavascript = gulp.src([
-        'angular/angular*.js',
+        'angular/angular.js',
         'angular-animate/angular-animate.js',
         'angular-i18n/angular-locale_en-us.js',
         'angular-i18n/angular-locale_en-gb.js',
