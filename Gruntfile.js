@@ -29,14 +29,14 @@
       watch: {
         js: {
           files: ['<%= yeoman.app %>/**/*.js'],
-          tasks: ['newer:concat:js', 'newer:jshint:all'],
+          tasks: ['newer:concat:js'],
           options: {
             livereload: '<%= connect.options.livereload %>'
           }
         },
         jsTest: {
           files: ['<%= yeoman.test %>/spec/{,*/}*.js'],
-          tasks: ['newer:jshint:test', 'karma']
+          tasks: ['karma']
         },
         html: {
           files: [
@@ -112,26 +112,6 @@
             },
             base: '<%= yeoman.dist %>'
           }
-        }
-      },
-
-      // Make sure code styles are up to par and there are no obvious mistakes
-      jshint: {
-        options: {
-          jshintrc: '.jshintrc',
-          reporter: require('jshint-stylish')
-        },
-        all: {
-          src: [
-            'Gruntfile.js',
-            '<%= yeoman.app %>/**/*.js'
-          ]
-        },
-        test: {
-          options: {
-            jshintrc: '.jshintrc'
-          },
-          src: ['<%= yeoman.test %>/{,*/}*.js']
         }
       },
 
@@ -216,7 +196,6 @@
       grunt.task.run([
         'clean',
         'html2js',
-        'jshint:all',
         'concat',
         'connect:livereload',
         'watch'
@@ -226,7 +205,6 @@
     grunt.registerTask('test', [
       'html2js',
       'concat',
-      'jshint',
       'connect:test',
       'karma'
     ]);
@@ -239,7 +217,6 @@
     ]);
 
     grunt.registerTask('default', [
-      'newer:jshint',
       'test',
       'build'
     ]);
