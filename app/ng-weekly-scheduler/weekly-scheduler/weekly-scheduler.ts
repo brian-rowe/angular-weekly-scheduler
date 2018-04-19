@@ -43,11 +43,6 @@ angular.module('weeklyScheduler')
   .controller(WeeklySchedulerController.$name, WeeklySchedulerController)
   .directive('weeklyScheduler', ['$parse', 'weeklySchedulerTimeService', '$log', function ($parse, timeService, $log) {
 
-    var defaultOptions = {
-      monoSchedule: false,
-      selector: '.schedule-area-container'
-    };
-
     /**
      * Configure the scheduler.
      * @param schedules
@@ -84,12 +79,12 @@ angular.module('weeklyScheduler')
       templateUrl: 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html',
       controller: WeeklySchedulerController.$name,
       controllerAs: WeeklySchedulerController.$controllerAs,
-      link: function (scope, element, attrs, schedulerCtrl) {
+      link: function (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) {
         var optionsFn = $parse(attrs.options),
-          options = angular.extend(defaultOptions, optionsFn(scope) || {});
+          options = angular.extend(schedulerCtrl.defaultOptions, optionsFn(scope) || {});
 
         // Get the schedule container element
-        var el = element[0].querySelector(defaultOptions.selector);
+        var el = element[0].querySelector(schedulerCtrl.defaultOptions.selector);
 
         function onModelChange(items) {
           // Check items are present
