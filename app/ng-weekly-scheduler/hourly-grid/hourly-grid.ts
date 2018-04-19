@@ -26,10 +26,12 @@ class HourlyGridDirective implements angular.IDirective {
   
         for (i = 0; i < tickcount; i++) {
           var child = gridItemEl.clone();
-        //   if (angular.isUndefined(attrs.noText)) {
-        //     this.handleClickEvent(child, tickcount, i, scope);
-        //     child.text(now.add(i && 1, 'week').week());
-        //   }
+
+          if (angular.isUndefined(attrs.noText)) {
+            this.handleClickEvent(child, tickcount, i, scope);
+            //child.text(i % 12);
+          }
+
           element.append(child);
         }
     }
@@ -39,7 +41,7 @@ class HourlyGridDirective implements angular.IDirective {
             this.doGrid(scope, element, attrs, schedulerCtrl.config);
         }
 
-        schedulerCtrl.$modelChangeListeners.push(function (newModel) {
+        schedulerCtrl.$modelChangeListeners.push((newModel) => {
             this.doGrid(scope, element, attrs, newModel);
         });
     }
