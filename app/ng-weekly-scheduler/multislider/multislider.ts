@@ -1,17 +1,5 @@
 angular.module('weeklyScheduler')
 
-  .filter('byIndex', [function () {
-    return function (input, index) {
-      var ret = [];
-      angular.forEach(input, function (el) {
-        if (el.index === index) {
-          ret.push(el);
-        }
-      });
-      return ret;
-    };
-  }])
-
   .directive('multiSlider', ['weeklySchedulerTimeService', function (timeService) {
     return {
       restrict: 'E',
