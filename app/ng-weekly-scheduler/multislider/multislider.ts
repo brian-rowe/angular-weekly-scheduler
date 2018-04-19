@@ -17,13 +17,13 @@ class MultiSliderDirective implements angular.IDirective {
     var defaultNewScheduleSize = parseInt(attrs.size) || 8;
 
     var valToPixel = function (val) {
-      var percent = val / (conf.nbWeeks);
+      var percent = val / (conf.nbHours);
       return Math.floor(percent * element[0].clientWidth + 0.5);
     };
 
     var pixelToVal = function (pixel) {
       var percent = pixel / element[0].clientWidth;
-      return Math.floor(percent * (conf.nbWeeks) + 0.5);
+      return Math.floor(percent * (conf.nbHours) + 0.5);
     };
 
     var addSlot = (start, end) => {
