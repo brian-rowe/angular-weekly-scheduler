@@ -3,7 +3,7 @@ angular.module('weeklySchedulerI18N', ['tmh.dynamicLocale']);
 angular.module('weeklySchedulerI18N')
   .provider('weeklySchedulerLocaleService', ['tmhDynamicLocaleProvider', function (tmhDynamicLocaleProvider) {
 
-    var defaultConfig = {
+    var defaultConfig: any /* TODO type */ = {
       doys: {'de-de': 4, 'en-gb': 4, 'en-us': 6, 'fr-fr': 4},
       lang: {
         'de-de': {weekNb: 'Wochenummer', addNew: 'Hinzufügen'},
