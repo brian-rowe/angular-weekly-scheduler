@@ -4,8 +4,8 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
 
   .config(['weeklySchedulerLocaleServiceProvider', function (localeServiceProvider) {
     localeServiceProvider.configure({
-      doys: {'es-es': 4},
-      lang: {'es-es': {weekNb: 'número de la semana', addNew: 'Añadir'}},
+      doys: { 'es-es': 4 },
+      lang: { 'es-es': { weekNb: 'número de la semana', addNew: 'Añadir' } },
       localeLocationPattern: '/angular-locale_{{locale}}.js'
     });
   }])
@@ -15,29 +15,26 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
 
       $scope.model = {
         locale: localeService.$locale.id,
-        options: {/*monoSchedule: true*/},
+        options: {/*monoSchedule: true*/ },
         items: [{
           label: 'Item 1',
           editable: false,
           schedules: [
-            {start: moment('2015-12-27').toDate(), end: moment('2016-01-02').toDate()}
+            { start: moment('2015-12-27').toDate(), end: moment('2016-01-02').toDate() }
           ]
-        }]
-      };
-
-      $timeout(function () {
-        $scope.model.items = $scope.model.items.concat([{
+        },
+        {
           label: 'Item 2',
           schedules: [
-            {start: moment('2015-12-25').toDate(), end: moment('2016-01-01').toDate()}
+            { start: moment('2015-12-25').toDate(), end: moment('2016-01-01').toDate() }
           ]
         }, {
           label: 'Item 3',
           schedules: [
-            {start: moment('2015-12-26').toDate(), end: moment('2015-12-31').toDate()}
+            { start: moment('2015-12-26').toDate(), end: moment('2015-12-31').toDate() }
           ]
-        }]);
-      }, 1000);
+        }]
+      };
 
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
         $log.debug('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
