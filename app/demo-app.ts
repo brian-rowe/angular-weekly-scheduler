@@ -18,22 +18,22 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
         options: {/*monoSchedule: true*/ },
         items: [{
           label: 'Item 1',
-          editable: false,
+          //editable: false,
           schedules: [
             { start: moment('2015-12-27').startOf('day').toDate(), end: moment('2015-12-27').endOf('day').toDate() }
           ]
-        },
-        {
-          label: 'Item 2',
-          schedules: [
-            { start: moment('2015-12-27').startOf('day').add(5, 'hours').toDate(), end: moment('2015-12-27').endOf('day').add(-5, 'hours').toDate() }
-          ]
-        }, {
-          label: 'Item 3',
-          schedules: [
-            { start: moment('2015-12-27').startOf('day').add(2, 'hours').toDate(), end: moment('2015-12-27').endOf('day').add(-2, 'hours').toDate() }
-          ]
         }]
+        // {
+        //   label: 'Item 2',
+        //   schedules: [
+        //     { start: moment('2015-12-27').startOf('day').add(5, 'hours').toDate(), end: moment('2015-12-27').endOf('day').add(-5, 'hours').toDate() }
+        //   ]
+        // }, {
+        //   label: 'Item 3',
+        //   schedules: [
+        //     { start: moment('2015-12-27').startOf('day').add(2, 'hours').toDate(), end: moment('2015-12-27').endOf('day').add(-2, 'hours').toDate() }
+        //   ]
+        // }]
       };
 
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
