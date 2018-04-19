@@ -14,7 +14,7 @@ class MultiSliderDirective implements angular.IDirective {
     var conf = schedulerCtrl.config;
 
     // The default scheduler block size when adding a new item
-    var defaultNewScheduleSize = parseInt(attrs.size) || 8;
+    var defaultNewScheduleSize = (parseInt(attrs.size) || 1);
 
     var valToPixel = function (val) {
       var percent = val / (conf.nbHours);
@@ -28,17 +28,14 @@ class MultiSliderDirective implements angular.IDirective {
 
     var addSlot = (start, end) => {
       start = start >= 0 ? start : 0;
-      end = end <= conf.nbHours ? end : conf.nbHours;
-
-      var startDate = this.timeService.addHour(conf.minDate, start);
-      var endDate = this.timeService.addHour(conf.minDate, end);
+      end = end <= conf.nbHours * 60 ? end : conf.nbHours * 60;
 
       scope.$apply(function () {
         var item = scope.item;
         if (!item.schedules) {
           item.schedules = [];
         }
-        item.schedules.push({start: startDate.toDate(), end: endDate.toDate()});
+        item.schedules.push({start: start, end: end});
       });
     };
 
@@ -61,10 +58,11 @@ class MultiSliderDirective implements angular.IDirective {
       if (!element.attr('no-add')) {
         var elOffX = element[0].getBoundingClientRect().left;
         var pixelOnClick = event.pageX - elOffX;
-        var valOnClick = pixelToVal(pixelOnClick);
+        var valOnClick = pixelToVal(pixelOnClick) * 60;
+        var span = defaultNewScheduleSize * 60;
 
         var start = Math.round(valOnClick - defaultNewScheduleSize / 2);
-        var end = start + defaultNewScheduleSize;
+        var end = start + span;
 
         addSlot(start, end);
       }
