@@ -13,9 +13,16 @@ class WeeklySchedulerController implements angular.IController {
   ) {
   }
 
+  public config: any; /* TODO type */
+  public items: any[]; /* TODO type */
+
   public defaultOptions: any /* TODO type */ = {
     monoSchedule: false,
     selector: '.schedule-area-container'
+  };
+
+  public on: {
+    change: (itemIndex, scheduleIndex, scheduleValue) => Function;
   };
 
   public $modelChangeListeners: Function[]; /* TODO type */

@@ -36,7 +36,7 @@ angular.module('weeklyScheduler')
     return {
       restrict: 'E',
       require: '^weeklyScheduler',
-      link: function (scope, element, attrs, schedulerCtrl) {
+      link: function (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) {
         if (schedulerCtrl.config) {
           doGrid(scope, element, attrs, schedulerCtrl.config);
         }
