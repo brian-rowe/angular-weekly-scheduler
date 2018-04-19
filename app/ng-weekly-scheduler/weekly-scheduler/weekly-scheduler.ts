@@ -149,7 +149,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
       return this.timeService.compare(slot.start, 'isBefore', minDate);
     }, now) : now).startOf('week');
 
-    var result = angular.extend(options, { minDate: minDate, nbHours: 168 });
+    var result = angular.extend(options, { minDate: minDate, nbHours: 24 });
     // Log configuration
     this.$log.debug('Weekly Scheduler configuration:', result);
 
