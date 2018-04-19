@@ -26,7 +26,7 @@ class MultiSliderDirective implements angular.IDirective {
       return Math.floor(percent * (conf.nbWeeks) + 0.5);
     };
 
-    var addSlot = function (start, end) {
+    var addSlot = (start, end) => {
       start = start >= 0 ? start : 0;
       end = end <= conf.nbWeeks ? end : conf.nbWeeks;
 
