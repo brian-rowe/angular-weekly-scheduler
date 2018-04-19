@@ -1,16 +1,10 @@
 angular.module('weeklyScheduler')
   .service('weeklySchedulerTimeService', [function () {
 
-    var MONTH = 'month';
     var WEEK = 'week';
     var DAY = 'day';
 
     return {
-      const: {
-        MONTH: MONTH,
-        WEEK: WEEK,
-        FORMAT: 'YYYY-MM-DD'
-      },
       compare: function (date, method, lastMin) {
         if (date) {
           var dateAsMoment;
