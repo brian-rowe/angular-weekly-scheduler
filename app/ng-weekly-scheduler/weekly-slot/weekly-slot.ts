@@ -11,7 +11,9 @@ class WeeklySlotDirective implements angular.IDirective {
   templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';
 
   link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ctrls) => {
-    var schedulerCtrl = ctrls[0], ngModelCtrl = ctrls[1];
+    var schedulerCtrl: WeeklySchedulerController = ctrls[0],
+        ngModelCtrl: angular.INgModelController = ctrls[1];
+
     var conf = schedulerCtrl.config;
     var index = scope.$parent.$index;
     var containerEl = element.parent();
