@@ -17,7 +17,7 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
         locale: localeService.$locale.id,
         options: {/*monoSchedule: true*/ },
         items: [{
-          label: 'Item 1',
+          label: 'Monday',
           //editable: false,
           schedules: [
             { start: 300, end: 1140 }

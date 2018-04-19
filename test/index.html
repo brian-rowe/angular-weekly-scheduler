@@ -66,12 +66,8 @@
                       on-change="demo.doSomething"
                       on-delete="demo.doSomething"
                       options="model.options">
-      <div class="srow">{{::$index + 1}}. {{item.label}}</div>
+      <div class="srow">{{item.label}}</div>
     </weekly-scheduler>
-
-    <div class="pull-right">
-      <button class="btn btn-success" role="button" ng-click="model.items.push({label: 'New Item'})">Add new item</button>
-    </div>
 
     <h2 id="run" class="page-header">2. Run @ Home</h2>
 
