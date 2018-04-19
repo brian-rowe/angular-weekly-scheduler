@@ -5,12 +5,12 @@ class HourlyGridDirective implements angular.IDirective {
     require = '^weeklyScheduler';
 
     private handleClickEvent(child, nbHours, idx, scope) {
-        // child.bind('click', function () {
-        //   scope.$broadcast(CLICK_ON_A_CELL, {
-        //     nbElements: nbHours,
-        //     idx: idx
-        //   });
-        // });
+        child.bind('click', function () {
+          scope.$broadcast(CLICK_ON_A_CELL, {
+            nbElements: nbHours,
+            idx: idx
+          });
+        });
     }
 
     private doGrid(scope, element, attrs, model) {
