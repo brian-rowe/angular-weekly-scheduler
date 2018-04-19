@@ -1,5 +1,4 @@
 angular.module('weeklyScheduler')
-
   .directive('multiSlider', ['weeklySchedulerTimeService', function (timeService) {
     return {
       restrict: 'E',

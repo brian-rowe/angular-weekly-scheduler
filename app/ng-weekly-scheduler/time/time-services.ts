@@ -61,4 +61,3 @@ angular.module('weeklyScheduler')
       }
     };
   }]);
-  
