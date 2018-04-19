@@ -19,7 +19,6 @@ class HourlyGridDirective implements angular.IDirective {
         var tickcount = model.nbHours;
         var ticksize = 100 / tickcount;
         var gridItemEl = GRID_TEMPLATE.css({width: ticksize + '%'});
-        var now = model.minDate.clone().startOf('week');
   
         // Clean element
         element.empty();
