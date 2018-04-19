@@ -1,6 +1,46 @@
+class WeeklySchedulerController implements angular.IController {
+  static $controllerAs = 'schedulerCtrl';
+  static $name = 'weeklySchedulerController';
+
+  static $inject = [
+    '$injector',
+    '$log'
+  ];
+
+  constructor(
+    private $injector: angular.auto.IInjectorService,
+    private $log: angular.ILogService
+  ) {
+  }
+
+  public defaultOptions: any /* TODO type */ = {
+    monoSchedule: false,
+    selector: '.schedule-area-container'
+  };
+
+  public $modelChangeListeners: Function[]; /* TODO type */
+
+  $onInit() {
+   // Try to get the i18n service
+   var name = 'weeklySchedulerLocaleService';
+
+   if (this.$injector.has(name)) {
+     this.$log.info('The I18N service has successfully been initialized!');
+
+     var localeService: any = this.$injector.get(name); /* TODO type */
+     this.defaultOptions.labels = localeService.getLang();
+   } else {
+     this.$log.info('No I18N found for this module, check the ng module [weeklySchedulerI18N] if you need i18n.');
+   }
+
+   // Will hang our model change listeners
+   this.$modelChangeListeners = []; 
+  }
+}
+
 /* global mouseScroll, CLICK_ON_A_CELL, zoomInACell */
 angular.module('weeklyScheduler')
-
+  .controller(WeeklySchedulerController.$name, WeeklySchedulerController)
   .directive('weeklyScheduler', ['$parse', 'weeklySchedulerTimeService', '$log', function ($parse, timeService, $log) {
 
     var defaultOptions = {
@@ -42,21 +82,8 @@ angular.module('weeklyScheduler')
       require: 'weeklyScheduler',
       transclude: true,
       templateUrl: 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html',
-      controller: ['$injector', function ($injector) {
-        // Try to get the i18n service
-        var name = 'weeklySchedulerLocaleService';
-        if ($injector.has(name)) {
-          $log.info('The I18N service has successfully been initialized!');
-          var localeService = $injector.get(name);
-          defaultOptions.labels = localeService.getLang();
-        } else {
-          $log.info('No I18N found for this module, check the ng module [weeklySchedulerI18N] if you need i18n.');
-        }
-
-        // Will hang our model change listeners
-        this.$modelChangeListeners = [];
-      }],
-      controllerAs: 'schedulerCtrl',
+      controller: WeeklySchedulerController.$name,
+      controllerAs: WeeklySchedulerController.$controllerAs,
       link: function (scope, element, attrs, schedulerCtrl) {
         var optionsFn = $parse(attrs.options),
           options = angular.extend(defaultOptions, optionsFn(scope) || {});
