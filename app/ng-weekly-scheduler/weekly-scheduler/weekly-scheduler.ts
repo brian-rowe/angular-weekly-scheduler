@@ -154,10 +154,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
       return this.timeService.compare(slot.end, 'isAfter', maxDate);
     }, minDate) : now).clone().add(1, 'day').endOf('day');
 
-    // Calculate nb of weeks covered by minDate => maxDate
-    var nbWeeks = 1;
-
-    var result = angular.extend(options, { minDate: minDate, maxDate: maxDate, nbWeeks: nbWeeks, nbHours: nbWeeks * 168 });
+    var result = angular.extend(options, { minDate: minDate, maxDate: maxDate, nbWeeks: 1, nbHours: 168 });
     // Log configuration
     this.$log.debug('Weekly Scheduler configuration:', result);
 
