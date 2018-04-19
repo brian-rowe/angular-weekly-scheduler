@@ -16,24 +16,51 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
       $scope.model = {
         locale: localeService.$locale.id,
         options: {/*monoSchedule: true*/ },
-        items: [{
-          label: 'Monday',
-          //editable: false,
-          schedules: [
-            { start: 300, end: 1140 }
-          ]
-        }]
-        // {
-        //   label: 'Item 2',
-        //   schedules: [
-        //     { start: moment('2015-12-27').startOf('day').add(5, 'hours').toDate(), end: moment('2015-12-27').endOf('day').add(-5, 'hours').toDate() }
-        //   ]
-        // }, {
-        //   label: 'Item 3',
-        //   schedules: [
-        //     { start: moment('2015-12-27').startOf('day').add(2, 'hours').toDate(), end: moment('2015-12-27').endOf('day').add(-2, 'hours').toDate() }
-        //   ]
-        // }]
+        items: [
+          {
+            label: 'Sun',
+            //editable: false,
+            schedules: [
+            ]
+          },
+          {
+            label: 'Mon',
+            //editable: false,
+            schedules: [
+              { start: 300, end: 1140 }
+            ]
+          },
+          {
+            label: 'Tue',
+            schedules: [
+              { start: 0, end: 240 },
+              { start: 300, end: 360 }
+            ]
+          },
+          {
+            label: 'Wed',
+            schedules: [
+              { start: 120, end: 720 }
+            ]
+          },
+          {
+            label: 'Thur',
+            schedules: [
+              { start: 300, end: 1140 }
+            ]
+          },
+          {
+            label: 'Fri',
+            schedules: [
+              { start: 720, end: 780 }
+            ]
+          },
+          {
+            label: 'Sat',
+            schedules: [
+            ]
+          }
+        ]
       };
 
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
