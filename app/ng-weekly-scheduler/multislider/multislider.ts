@@ -28,10 +28,10 @@ class MultiSliderDirective implements angular.IDirective {
 
     var addSlot = (start, end) => {
       start = start >= 0 ? start : 0;
-      end = end <= conf.nbWeeks ? end : conf.nbWeeks;
+      end = end <= conf.nbHours ? end : conf.nbHours;
 
-      var startDate = this.timeService.addWeek(conf.minDate, start);
-      var endDate = this.timeService.addWeek(conf.minDate, end);
+      var startDate = this.timeService.addHour(conf.minDate, start);
+      var endDate = this.timeService.addHour(conf.minDate, end);
 
       scope.$apply(function () {
         var item = scope.item;

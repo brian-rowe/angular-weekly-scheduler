@@ -3,6 +3,10 @@ class WeeklySchedulerTimeService {
 
   private WEEK = 'week';
 
+  public addHour(moment, nbHour) {
+    return moment.clone().add(nbHour, 'hour');
+  }
+
   public addWeek(moment, nbWeek) {
     return moment.clone().add(nbWeek, this.WEEK);
   }
