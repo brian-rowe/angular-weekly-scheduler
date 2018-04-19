@@ -113,7 +113,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
       });
 
       schedulerCtrl.on = {
-        change: function (itemIndex, scheduleIndex, scheduleValue) {
+        change: (itemIndex, scheduleIndex, scheduleValue) => {
           var onChangeFunction = this.$parse(attrs.onChange)(scope);
           if (angular.isFunction(onChangeFunction)) {
             return onChangeFunction(itemIndex, scheduleIndex, scheduleValue);
