@@ -2,13 +2,10 @@ class WeeklySchedulerTimeService {
   static $name = 'weeklySchedulerTimeService';
 
   private WEEK = 'week';
+  private HOUR = 'hour';
 
   public addHour(moment, nbHour) {
     return moment.clone().add(nbHour, 'hour');
-  }
-
-  public addWeek(moment, nbWeek) {
-    return moment.clone().add(nbWeek, this.WEEK);
   }
 
   public compare(date, method, lastMin) {
@@ -25,8 +22,8 @@ class WeeklySchedulerTimeService {
     }
   }
 
-  public weekPreciseDiff(start, end) {
-    return end.clone().diff(start.clone(), this.WEEK, true);
+  public hourPreciseDiff(start, end) {
+    return end.clone().diff(start.clone(), this.HOUR, true);
   }
 }
 

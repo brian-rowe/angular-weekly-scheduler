@@ -22,7 +22,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
     var pixelToVal = function (pixel) {
       var percent = pixel / containerEl[0].clientWidth;
-      return Math.floor(percent * conf.nbWeeks + 0.5);
+      return Math.floor(percent * conf.nbHours + 0.5);
     };
 
     var mergeOverlaps = function () {
@@ -131,7 +131,7 @@ class WeeklySlotDirective implements angular.IDirective {
         } else {
           var newEnd = Math.round(valuesOnDragStart.end + delta);
 
-          if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= conf.nbWeeks) {
+          if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= conf.nbHours) {
             ngModelCtrl.$setViewValue({
               start: ui.start,
               end: newEnd
@@ -149,7 +149,7 @@ class WeeklySlotDirective implements angular.IDirective {
         var newStart = Math.round(valuesOnDragStart.start + delta);
         var newEnd = Math.round(newStart + duration);
 
-        if (ui.start !== newStart && newStart >= 0 && newEnd <= conf.nbWeeks) {
+        if (ui.start !== newStart && newStart >= 0 && newEnd <= conf.nbHours) {
           ngModelCtrl.$setViewValue({
             start: newStart,
             end: newEnd
@@ -164,8 +164,8 @@ class WeeklySlotDirective implements angular.IDirective {
 
     //// UI -> model ////////////////////////////////////
     ngModelCtrl.$parsers.push((ui) => {
-      ngModelCtrl.$modelValue.start = this.timeService.addWeek(conf.minDate, ui.start).toDate();
-      ngModelCtrl.$modelValue.end = this.timeService.addWeek(conf.minDate, ui.end).toDate();
+      ngModelCtrl.$modelValue.start = this.timeService.addHour(conf.minDate, ui.start).toDate();
+      ngModelCtrl.$modelValue.end = this.timeService.addHour(conf.minDate, ui.end).toDate();
       //$log.debug('PARSER :', ngModelCtrl.$modelValue.$$hashKey, index, scope.$index, ngModelCtrl.$modelValue);
       schedulerCtrl.on.change(index, scope.$index, ngModelCtrl.$modelValue);
       return ngModelCtrl.$modelValue;
@@ -174,8 +174,8 @@ class WeeklySlotDirective implements angular.IDirective {
     //// model -> UI ////////////////////////////////////
     ngModelCtrl.$formatters.push((model) => {
       var ui = {
-        start: this.timeService.weekPreciseDiff(conf.minDate, moment(model.start)),
-        end: this.timeService.weekPreciseDiff(conf.minDate, moment(model.end))
+        start: this.timeService.hourPreciseDiff(conf.minDate, moment(model.start)),
+        end: this.timeService.hourPreciseDiff(conf.minDate, moment(model.end))
       };
       //$log.debug('FORMATTER :', index, scope.$index, ui);
       return ui;
@@ -184,8 +184,8 @@ class WeeklySlotDirective implements angular.IDirective {
     ngModelCtrl.$render = function () {
       var ui = ngModelCtrl.$viewValue;
       var css = {
-        left: ui.start / conf.nbWeeks * 100 + '%',
-        width: (ui.end - ui.start) / conf.nbWeeks * 100 + '%'
+        left: ui.start / conf.nbHours* 100 + '%',
+        width: (ui.end - ui.start) / conf.nbHours * 100 + '%'
       };
 
       //$log.debug('RENDER :', index, scope.$index, css);
