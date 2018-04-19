@@ -141,7 +141,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
    * @param options
    * @returns {{minDate: *, maxDate: *, nbWeeks: *}}
    */
-  private config(schedules, options) {
+  private config(schedules: any[], options) {
     var now = moment();
 
     // Calculate min date of all scheduled events
@@ -152,7 +152,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
     // Calculate max date of all scheduled events
     var maxDate = (schedules ? schedules.reduce((maxDate, slot) => {
       return this.timeService.compare(slot.end, 'isAfter', maxDate);
-    }, now) : now).clone().add(1, 'day').endOf('day');
+    }, minDate) : now).clone().add(1, 'day').endOf('day');
 
     // Calculate nb of weeks covered by minDate => maxDate
     var nbWeeks = this.timeService.weekDiff(minDate, maxDate);
