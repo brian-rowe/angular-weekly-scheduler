@@ -20,7 +20,7 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
           label: 'Item 1',
           //editable: false,
           schedules: [
-            { start: moment('2015-12-27').startOf('day').add(5, 'hours').toDate(), end: moment('2015-12-27').endOf('day').add(-5, 'hours').toDate() }
+            { start: 300, end: 1140 }
           ]
         }]
         // {

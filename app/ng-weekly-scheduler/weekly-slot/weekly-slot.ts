@@ -174,8 +174,8 @@ class WeeklySlotDirective implements angular.IDirective {
     //// model -> UI ////////////////////////////////////
     ngModelCtrl.$formatters.push((model) => {
       var ui = {
-        start: this.timeService.hourPreciseDiff(conf.minDate, moment(model.start)),
-        end: this.timeService.hourPreciseDiff(conf.minDate, moment(model.end))
+        start: model.start,
+        end: model.end
       };
       //$log.debug('FORMATTER :', index, scope.$index, ui);
       return ui;
@@ -183,9 +183,11 @@ class WeeklySlotDirective implements angular.IDirective {
 
     ngModelCtrl.$render = function () {
       var ui = ngModelCtrl.$viewValue;
+      var minutes = conf.nbHours * 60;
+
       var css = {
-        left: ui.start / conf.nbHours* 100 + '%',
-        width: (ui.end - ui.start) / conf.nbHours * 100 + '%'
+        left: ui.start / minutes * 100 + '%',
+        width: (ui.end - ui.start) / minutes * 100 + '%'
       };
 
       //$log.debug('RENDER :', index, scope.$index, css);
