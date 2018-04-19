@@ -29,7 +29,11 @@ class HourlyGridDirective implements angular.IDirective {
 
           if (angular.isUndefined(attrs.noText)) {
             this.handleClickEvent(child, tickcount, i, scope);
-            //child.text(i % 12);
+
+            let currentHour = i % 12;
+            let meridiem = i >= 12 ? 'pm' : 'am';
+
+            child.text(`${currentHour || '12'}${meridiem}`);
           }
 
           element.append(child);
