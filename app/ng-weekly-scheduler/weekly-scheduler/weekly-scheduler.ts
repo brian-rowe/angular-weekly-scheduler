@@ -94,9 +94,6 @@ class WeeklySchedulerDirective implements angular.IDirective {
           );
         }, []), options);
 
-        // Then resize schedule area knowing the number of weeks in scope
-        el.firstChild.style.width = schedulerCtrl.config.nbWeeks / 53 * 200 + '%';
-
         // Finally, run the sub directives listeners
         schedulerCtrl.$modelChangeListeners.forEach(function (listener) {
           listener(schedulerCtrl.config);
