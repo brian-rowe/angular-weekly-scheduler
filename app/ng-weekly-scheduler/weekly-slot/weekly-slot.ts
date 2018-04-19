@@ -2,7 +2,7 @@ class WeeklySlotDirective implements angular.IDirective {
   static $name = 'weeklySlot';
 
   constructor(
-    private timeService
+    private timeService: WeeklySchedulerTimeService
   ) {
   }
 

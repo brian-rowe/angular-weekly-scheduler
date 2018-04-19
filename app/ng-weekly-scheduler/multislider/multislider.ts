@@ -6,7 +6,7 @@ class MultiSliderDirective implements angular.IDirective {
   templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
 
   constructor(
-    private timeService
+    private timeService: WeeklySchedulerTimeService
   ) {
   }
 

@@ -51,7 +51,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
   constructor(
     private $log: angular.ILogService,
     private $parse: angular.IParseService,
-    private timeService
+    private timeService: WeeklySchedulerTimeService
   ) {
   }
 
