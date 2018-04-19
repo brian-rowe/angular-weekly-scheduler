@@ -1,4 +1,4 @@
-/* global GRID_TEMPLATE, CLICK_ON_A_CELL */
+/* global GRID_TEMPLATE */
 angular.module('weeklyScheduler')
   .directive('weeklyGrid', [function () {
 

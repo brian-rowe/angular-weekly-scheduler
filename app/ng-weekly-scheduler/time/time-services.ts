@@ -24,10 +24,6 @@ class WeeklySchedulerTimeService {
   public weekPreciseDiff(start, end) {
     return end.clone().diff(start.clone(), this.WEEK, true);
   }
-
-  public weekDiff(start, end) {
-    return end.clone().endOf(this.WEEK).diff(start.clone().startOf(this.WEEK), this.WEEK) + 1;
-  }
 }
 
 angular.module('weeklyScheduler')
