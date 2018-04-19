@@ -135,7 +135,8 @@ gulp.task('copyTestFiles', function () {
         'angular-mocks/angular-mocks.js',
         'angular-animate/angular-animate.js',
         'angular-dynamic-locale/dist/tmhDynamicLocale.js',
-        'moment/moment.js'
+        'moment/moment.js',
+        'moment-duration-format/lib/moment-duration-format.js'
     ],
     {
         cwd: 'node_modules'
