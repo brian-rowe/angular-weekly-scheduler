@@ -174,8 +174,8 @@ class WeeklySlotDirective implements angular.IDirective {
     //// model -> UI ////////////////////////////////////
     ngModelCtrl.$formatters.push((model) => {
       var ui = {
-        start: this.timeService.weekPreciseDiff(conf.minDate, moment(model.start), true),
-        end: this.timeService.weekPreciseDiff(conf.minDate, moment(model.end), true)
+        start: this.timeService.weekPreciseDiff(conf.minDate, moment(model.start)),
+        end: this.timeService.weekPreciseDiff(conf.minDate, moment(model.end))
       };
       //$log.debug('FORMATTER :', index, scope.$index, ui);
       return ui;
