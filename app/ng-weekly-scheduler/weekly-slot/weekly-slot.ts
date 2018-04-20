@@ -17,7 +17,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
     var pixelToVal = function (pixel) {
       var percent = pixel / containerEl[0].clientWidth;
-      return Math.floor(percent * conf.nbHours + 0.5);
+      return Math.floor(percent * conf.nbHours + 0.5) * conf.interval;
     };
 
     var mergeOverlaps = function () {
@@ -111,7 +111,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
       scope.resize = function (d) {
         var ui = ngModelCtrl.$viewValue;
-        var delta = pixelToVal(d) * conf.interval;
+        var delta = pixelToVal(d);
 
         if (resizeDirectionIsStart) {
           var newStart = Math.round(valuesOnDragStart.start + delta);
@@ -138,7 +138,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
       scope.drag = function (d) {
         var ui = ngModelCtrl.$viewValue;
-        var delta = pixelToVal(d) * conf.interval;
+        var delta = pixelToVal(d);
         var duration = valuesOnDragStart.end - valuesOnDragStart.start;
 
         var newStart = Math.round(valuesOnDragStart.start + delta);
