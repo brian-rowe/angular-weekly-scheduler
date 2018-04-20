@@ -14,10 +14,10 @@ class HourlyGridDirective implements angular.IDirective {
         });
     }
 
-    private doGrid(scope, element, attrs, model) {
+    private doGrid(scope, element, attrs, config: IWeeklySchedulerConfig) {
         var i;
         // Calculate hour width distribution
-        var tickcount = model.nbHours;
+        var tickcount = config.nbHours;
         var ticksize = 100 / tickcount;
         var gridItemEl = GRID_TEMPLATE.css({width: ticksize + '%'});
   
@@ -45,8 +45,8 @@ class HourlyGridDirective implements angular.IDirective {
             this.doGrid(scope, element, attrs, schedulerCtrl.config);
         }
 
-        schedulerCtrl.$modelChangeListeners.push((newModel) => {
-            this.doGrid(scope, element, attrs, newModel);
+        schedulerCtrl.$modelChangeListeners.push((newConfig) => {
+            this.doGrid(scope, element, attrs, newConfig);
         });
     }
 
