@@ -1,6 +1,8 @@
 <div class="labels">
   <div class="srow text-right"></div>
-  <div class="schedule-animate" ng-repeat="item in schedulerCtrl.items" inject></div>
+  <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items">
+    {{ item.label }}
+  </div>
 </div>
 
 <div class="schedule-area-container">
