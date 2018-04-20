@@ -117,23 +117,27 @@ multi-slider {
         opacity: 0.1;
       }
     }
+
+    &.disable {
+      .handle {
+        cursor: not-allowed;
+      }
+    }
+
+    .handle {
+      &.left:hover, &.right:hover {
+        opacity: 0.3;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+      }
+    }
   }
-}
-
-multi-slider weekly-slot.disable .handle {
-  cursor: not-allowed;
-}
-
-multi-slider weekly-slot .handle.left:hover, multi-slider weekly-slot .handle.right:hover {
-  opacity: 0.3;
-}
-
-multi-slider weekly-slot .handle.left {
-  left: 0;
-}
-
-multi-slider weekly-slot .handle.right {
-  right: 0;
 }
 
 multi-slider weekly-slot:not(.disable) .remove {
