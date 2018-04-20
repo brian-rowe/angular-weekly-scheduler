@@ -80,18 +80,23 @@ class WeeklySchedulerDirective implements angular.IDirective {
 
         // Keep track of our model (use it in template)
         schedulerCtrl.items = items;
-
-        // First calculate configuration
-        schedulerCtrl.config = self.config(items.reduce((result, item) => {
+        
+        // If in multiSlider mode, ensure a schedule array is present on each item
+        // Else only use first element of schedule array
+        items.forEach((item) => {
           var schedules = item.schedules;
 
-          return result.concat(schedules && schedules.length ?
-            // If in multiSlider mode, ensure a schedule array is present on each item
-            // Else only use first element of schedule array
-            (options.monoSchedule ? item.schedules = [schedules[0]] : schedules) :
-            item.schedules = []
-          );
-        }, []), options);
+          if (schedules && schedules.length) {
+            if (options.monoSchedule) {
+              item.schedules = [schedules[0]];
+            }
+          } else {
+            item.schedules = [];
+          }
+        });
+
+        // Calculate configuration
+        schedulerCtrl.config = self.config(options);
 
         // Finally, run the sub directives listeners
         schedulerCtrl.$modelChangeListeners.forEach(function (listener) {
@@ -136,11 +141,10 @@ class WeeklySchedulerDirective implements angular.IDirective {
 
   /**
    * Configure the scheduler.
-   * @param schedules
    * @param options
    * @returns {{maxValue: *, nbHours: *, nbIntervals: *}}
    */
-  private config(schedules: any[], options): IWeeklySchedulerConfig {
+  private config(options): IWeeklySchedulerConfig {
     var interval = options.interval || 15; // minutes
     var hoursInDay = 24;
     var minutesInDay = hoursInDay * 60;
