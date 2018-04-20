@@ -46,9 +46,10 @@ class MultiSliderDirective implements angular.IDirective {
     element.on('mousemove', function (e) {
       var elOffX = getElementOffsetX(element);
       var left = e.pageX - elOffX - hoverElementWidth / 2;
+      var snapped = valToPixel(pixelToVal(left));
 
       hoverElement.css({
-        left: left + 'px'
+        left: snapped + 'px'
       });
     });
 
