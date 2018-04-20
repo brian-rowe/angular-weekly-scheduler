@@ -21,6 +21,12 @@ class WeeklySlotDirective implements angular.IDirective {
       return Math.floor(percent * (conf.nbIntervals) + 0.5) * conf.interval;
     };
 
+    var removeSchedule = function(schedule) {
+      var schedules = scope.item.schedules;
+
+      schedules.splice(schedules.indexOf(schedule), 1);
+    }
+
     var mergeOverlaps = function () {
       var schedule = scope.schedule;
       var schedules = scope.item.schedules;
@@ -28,22 +34,22 @@ class WeeklySlotDirective implements angular.IDirective {
         if (el !== schedule) {
           // model is inside another slot
           if (el.end >= schedule.end && el.start <= schedule.start) {
-            schedules.splice(schedules.indexOf(el), 1);
+            removeSchedule(el);
             schedule.end = el.end;
             schedule.start = el.start;
           }
           // model completely covers another slot
           else if (schedule.end >= el.end && schedule.start <= el.start) {
-            schedules.splice(schedules.indexOf(el), 1);
+            removeSchedule(el);
           }
           // another slot's end is inside current model
           else if (el.end >= schedule.start && el.end <= schedule.end) {
-            schedules.splice(schedules.indexOf(el), 1);
+            removeSchedule(el);
             schedule.start = el.start;
           }
           // another slot's start is inside current model
           else if (el.start >= schedule.start && el.start <= schedule.end) {
-            schedules.splice(schedules.indexOf(el), 1);
+            removeSchedule(el);
             schedule.end = el.end;
           }
         }
