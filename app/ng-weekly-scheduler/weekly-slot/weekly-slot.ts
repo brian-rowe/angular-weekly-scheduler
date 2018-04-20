@@ -63,7 +63,6 @@ class WeeklySlotDirective implements angular.IDirective {
       containerEl.removeClass('dragging');
       containerEl.removeClass('slot-hover');
       removeSchedule(scope.schedule);
-      containerEl.find('weekly-slot').remove();
       scope.$apply();
     };
 
