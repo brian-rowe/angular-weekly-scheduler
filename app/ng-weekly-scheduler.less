@@ -137,41 +137,47 @@ multi-slider {
         right: 0;
       }
     }
+
+    &:not(.disable) {
+      .remove {
+        display: none;
+        cursor: pointer;
+        float: right;
+        margin-right: -30px;
+        width: 25px;
+        background: red;
+        border-radius: 20%;
+        opacity: 0.5;
+        transform: translateY(-100%);
+
+        &:before {
+          position: absolute;
+          content: "";
+          left: -5px;
+          width: 10px;
+          height: 25px;
+        }
+      }
+    }
+
+    &:hover {
+      .remove {
+        display: block;
+      }
+    }
+
+    .remove {
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      z-index: 10;
+      background: #5ab57a;
+      color: #fff;
+    }
   }
-}
-
-multi-slider weekly-slot:not(.disable) .remove {
-  display: none;
-  cursor: pointer;
-  float: right;
-  margin-right: -30px;
-  width: 25px;
-  background: red;
-  border-radius: 20%;
-  opacity: 0.5;
-  transform: translateY(-100%);
-}
-
-multi-slider weekly-slot:not(.disable) .remove:before {
-  position: absolute;
-  content: "";
-  left: -5px;
-  width: 10px;
-  height: 25px;
-}
-
-multi-slider weekly-slot:hover .remove {
-  display: block;
-}
-
-multi-slider weekly-slot .remove:hover {
-  opacity: 1;
-}
-
-multi-slider weekly-slot.active {
-  z-index: 10;
-  background: #5ab57a;
-  color: #fff;
 }
 
 .grid-container {
