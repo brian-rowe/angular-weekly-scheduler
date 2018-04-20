@@ -13,7 +13,7 @@ class WeeklySchedulerController implements angular.IController {
   ) {
   }
 
-  public config: any; /* TODO type */
+  public config: IWeeklySchedulerConfig;
   public items: any[]; /* TODO type */
 
   public defaultOptions: any /* TODO type */ = {
@@ -140,7 +140,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
    * @param options
    * @returns {{maxValue: *, nbHours: *, nbIntervals: *}}
    */
-  private config(schedules: any[], options) {
+  private config(schedules: any[], options): IWeeklySchedulerConfig {
     var interval = options.interval || 15; // minutes
     var hoursInDay = 24;
     var minutesInDay = hoursInDay * 60;
