@@ -152,7 +152,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
     var minutesInDay = hoursInDay * 60;
     var intervalCount = minutesInDay / interval;
 
-    var result = angular.extend(options, { interval: interval, maxValue: minutesInDay, nbHours: hoursInDay, nbIntervals: intervalCount });
+    var result = angular.extend(options, { interval: interval, maxValue: minutesInDay, nbHours: hoursInDay, intervalCount: intervalCount });
     // Log configuration
     this.$log.debug('Weekly Scheduler configuration:', result);
 
