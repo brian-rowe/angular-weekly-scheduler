@@ -45,6 +45,7 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
           },
           {
             label: 'Thur',
+            editable: false,
             schedules: [
               { start: 300, end: 1140 }
             ]

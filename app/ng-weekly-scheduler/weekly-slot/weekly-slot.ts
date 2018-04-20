@@ -56,21 +56,6 @@ class WeeklySlotDirective implements angular.IDirective {
       });
     };
 
-    /**
-     * Delete on right click on slot
-     */
-    var deleteSelf = function () {
-      containerEl.removeClass('dragging');
-      containerEl.removeClass('slot-hover');
-      removeSchedule(scope.schedule);
-      scope.$apply();
-    };
-
-    element.find('span').on('click', function (e) {
-      e.preventDefault();
-      deleteSelf();
-    });
-
     element.on('mouseover', function () {
       containerEl.addClass('slot-hover');
     });
@@ -81,6 +66,15 @@ class WeeklySlotDirective implements angular.IDirective {
 
 
     if (scope.item.editable !== false) {
+      /**
+       * Delete on right click on slot
+       */
+      scope.deleteSelf = function () {
+        containerEl.removeClass('dragging');
+        containerEl.removeClass('slot-hover');
+        removeSchedule(scope.schedule);
+      };
+
       scope.startResizeStart = function () {
         resizeDirectionIsStart = true;
         scope.startDrag();
