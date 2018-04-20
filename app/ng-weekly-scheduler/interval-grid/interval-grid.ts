@@ -4,17 +4,16 @@ class IntervalGridDirective implements angular.IDirective {
     restrict = 'E';
     require = '^weeklyScheduler';
 
-    private doGrid(scope, element, attrs, model) {
-        var i;
+    private doGrid(scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, config: IWeeklySchedulerConfig) {
         // Calculate interval width distribution
-        var tickcount = model.nbIntervals;
+        var tickcount = config.nbIntervals;
         var ticksize = 100 / tickcount;
         var gridItemEl = GRID_TEMPLATE.css({width: ticksize + '%'});
 
         // Clean element
         element.empty();
   
-        for (i = 0; i < tickcount; i++) {
+        for (let i = 0; i < tickcount; i++) {
           var child = gridItemEl.clone();
 
           element.append(child);
@@ -26,8 +25,8 @@ class IntervalGridDirective implements angular.IDirective {
             this.doGrid(scope, element, attrs, schedulerCtrl.config);
         }
 
-        schedulerCtrl.$modelChangeListeners.push((newModel) => {
-            this.doGrid(scope, element, attrs, newModel);
+        schedulerCtrl.$modelChangeListeners.push((newConfig) => {
+            this.doGrid(scope, element, attrs, newConfig);
         });
     }
 
