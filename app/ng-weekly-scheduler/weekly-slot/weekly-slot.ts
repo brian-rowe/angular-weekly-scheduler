@@ -18,7 +18,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
     var pixelToVal = function (pixel) {
       var percent = pixel / containerEl[0].clientWidth;
-      return Math.floor(percent * (conf.nbIntervals) + 0.5) * conf.interval;
+      return Math.floor(percent * (conf.intervalCount) + 0.5) * conf.interval;
     };
 
     var removeSchedule = function(schedule) {

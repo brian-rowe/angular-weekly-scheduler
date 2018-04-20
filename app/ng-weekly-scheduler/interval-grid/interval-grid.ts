@@ -7,7 +7,7 @@ class IntervalGridDirective implements angular.IDirective {
 
     private doGrid(scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, config: IWeeklySchedulerConfig) {
         // Calculate interval width distribution
-        var tickcount = config.nbIntervals;
+        var tickcount = config.intervalCount;
         var ticksize = 100 / tickcount;
         var gridItemEl = GRID_TEMPLATE.css({width: ticksize + '%'});
 

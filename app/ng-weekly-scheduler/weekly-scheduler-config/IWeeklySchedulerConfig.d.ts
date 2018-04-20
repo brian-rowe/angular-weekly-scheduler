@@ -3,5 +3,5 @@ interface IWeeklySchedulerConfig {
     labels: any; /* TODO type */
     maxValue: number;
     nbHours: number;
-    nbIntervals: number;
+    intervalCount: number;
 }
