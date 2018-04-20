@@ -167,16 +167,6 @@ class WeeklySlotDirective implements angular.IDirective {
       return ngModelCtrl.$modelValue;
     });
 
-    //// model -> UI ////////////////////////////////////
-    ngModelCtrl.$formatters.push((model) => {
-      var ui = {
-        start: model.start,
-        end: model.end
-      };
-      //$log.debug('FORMATTER :', index, scope.$index, ui);
-      return ui;
-    });
-
     ngModelCtrl.$render = function () {
       var ui = ngModelCtrl.$viewValue;
       var minutes = conf.maxValue;
