@@ -164,8 +164,8 @@ class WeeklySlotDirective implements angular.IDirective {
 
     //// UI -> model ////////////////////////////////////
     ngModelCtrl.$parsers.push((ui) => {
-      ngModelCtrl.$modelValue.start = this.timeService.addHour(conf.minDate, ui.start).toDate();
-      ngModelCtrl.$modelValue.end = this.timeService.addHour(conf.minDate, ui.end).toDate();
+      ngModelCtrl.$modelValue.start = ui.start;
+      ngModelCtrl.$modelValue.end = ui.end;
       //$log.debug('PARSER :', ngModelCtrl.$modelValue.$$hashKey, index, scope.$index, ngModelCtrl.$modelValue);
       schedulerCtrl.on.change(index, scope.$index, ngModelCtrl.$modelValue);
       return ngModelCtrl.$modelValue;
