@@ -92,32 +92,32 @@ multi-slider {
   &.dragging .ghost {
     display: none;
   }
-}
 
-multi-slider weekly-slot {
-  -webkit-transition: background 0.1s ease-in;
-  cursor: all-scroll;
-  min-width: 10px !important;
-  background: #4eb8d5;
-}
+  weekly-slot {
+    -webkit-transition: background 0.1s ease-in;
+    cursor: all-scroll;
+    min-width: 10px !important;
+    background: #4eb8d5;
 
-multi-slider weekly-slot.disable {
-  cursor: not-allowed;
-  color: #666;
-  background: #c0c0c0;
-}
+    &.disable {
+      cursor: not-allowed;
+      color: #666;
+      background: #c0c0c0;
+    }
 
-multi-slider weekly-slot .handle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
+    .handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
 
-multi-slider weekly-slot .handle.left, multi-slider weekly-slot .handle.right {
-  width: 10px;
-  background: #000;
-  cursor: col-resize;
-  opacity: 0.1;
+      &.left, &.right {
+        width: 10px;
+        background: #000;
+        cursor: col-resize;
+        opacity: 0.1;
+      }
+    }
+  }
 }
 
 multi-slider weekly-slot.disable .handle {
