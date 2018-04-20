@@ -18,7 +18,7 @@ class MultiSliderDirective implements angular.IDirective {
 
     var pixelToVal = function (pixel) {
       var percent = pixel / element[0].clientWidth;
-      return Math.floor(percent * (conf.nbHours) + 0.5);
+      return Math.floor(percent * (conf.nbIntervals) + 0.5) * conf.interval;
     };
 
     var addSlot = (start, end) => {
@@ -53,7 +53,7 @@ class MultiSliderDirective implements angular.IDirective {
       if (!element.attr('no-add')) {
         var elOffX = element[0].getBoundingClientRect().left;
         var pixelOnClick = event.pageX - elOffX;
-        var valOnClick = pixelToVal(pixelOnClick) * 60;
+        var valOnClick = pixelToVal(pixelOnClick);
         var span = defaultNewScheduleSize * 60;
 
         var start = Math.round(valOnClick - defaultNewScheduleSize / 2);
