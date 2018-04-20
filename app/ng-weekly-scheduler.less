@@ -58,36 +58,40 @@ multi-slider {
   display: block;
   height: 35px;
   overflow: hidden;
-}
 
-multi-slider .slot {
-  position: absolute;
-  top: 5px;
-  bottom: 5px;
-  border-radius: 3px;
-  text-align: center;
-  white-space: nowrap;
-  line-height: 25px;
-  color: #fff;
-}
+  .slot {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    border-radius: 3px;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 25px;
+    color: #fff;
+  }
 
-multi-slider .ghost {
-  background: #5ab57a;
-  opacity: 0.6;
-  display: none;
-  cursor: pointer;
-}
+  .ghost {
+    background: #5ab57a;
+    opacity: 0.6;
+    display: none;
+    cursor: pointer;
+  }
 
-multi-slider:hover .ghost {
-  display: block;
-}
+  &:hover {
+    .ghost {
+      display: block;
+    }
+  }
 
-multi-slider.slot-hover .ghost {
-  display: none;
-}
+  &.slot-hover {
+    .ghost {
+      display: none;
+    }
+  }
 
-multi-slider.dragging .ghost {
-  display: none;
+  &.dragging .ghost {
+    display: none;
+  }
 }
 
 multi-slider weekly-slot {
