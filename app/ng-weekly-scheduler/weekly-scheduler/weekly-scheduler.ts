@@ -138,12 +138,14 @@ class WeeklySchedulerDirective implements angular.IDirective {
    * Configure the scheduler.
    * @param schedules
    * @param options
-   * @returns {{minDate: *, nbHours: *}}
+   * @returns {{minDate: *, nbHours: *, nbIntervals: *}}
    */
   private config(schedules: any[], options) {
-    var now = moment();
+    var interval = options.interval || 15; // minutes
+    var hours = 24;
+    var nbIntervals = (hours * 60) / interval;
 
-    var result = angular.extend(options, { minDate: 0, nbHours: 24 });
+    var result = angular.extend(options, { minDate: 0, nbHours: hours, nbIntervals: nbIntervals });
     // Log configuration
     this.$log.debug('Weekly Scheduler configuration:', result);
 
