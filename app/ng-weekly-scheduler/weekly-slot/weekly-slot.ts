@@ -116,7 +116,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
       scope.resize = function (d) {
         var ui = ngModelCtrl.$viewValue;
-        var delta = pixelToVal(d);
+        var delta = pixelToVal(d) * 60;
 
         if (resizeDirectionIsStart) {
           var newStart = Math.round(valuesOnDragStart.start + delta);
