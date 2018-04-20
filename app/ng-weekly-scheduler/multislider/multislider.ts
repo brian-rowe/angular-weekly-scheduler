@@ -34,6 +34,8 @@ class MultiSliderDirective implements angular.IDirective {
       });
     };
 
+    var getElementOffsetX = (elem) => elem[0].getBoundingClientRect().left;
+
     var hoverElement = angular.element(element.find('div')[0]);
     var hoverElementWidth = valToPixel(defaultNewScheduleSize);
 
@@ -42,7 +44,7 @@ class MultiSliderDirective implements angular.IDirective {
     });
 
     element.on('mousemove', function (e) {
-      var elOffX = element[0].getBoundingClientRect().left;
+      var elOffX = getElementOffsetX(element);
 
       hoverElement.css({
         left: e.pageX - elOffX - hoverElementWidth / 2 + 'px'
@@ -51,8 +53,8 @@ class MultiSliderDirective implements angular.IDirective {
 
     hoverElement.on('click', function (event) {
       if (!element.attr('no-add')) {
-        var elOffX = element[0].getBoundingClientRect().left;
-        var hoverElOffX = hoverElement[0].getBoundingClientRect().left - elOffX;
+        var elOffX = getElementOffsetX(element);
+        var hoverElOffX = getElementOffsetX(hoverElement) - elOffX;
         var valOnClick = pixelToVal(hoverElOffX);
         var span = defaultNewScheduleSize * 60;
 
