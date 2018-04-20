@@ -23,7 +23,7 @@ class MultiSliderDirective implements angular.IDirective {
 
     var addSlot = (start, end) => {
       start = start >= 0 ? start : 0;
-      end = end <= conf.nbIntervals * conf.interval ? end : conf.nbIntervals * conf.interval;
+      end = end <= conf.maxValue ? end : conf.maxValue;
 
       scope.$apply(function () {
         var item = scope.item;

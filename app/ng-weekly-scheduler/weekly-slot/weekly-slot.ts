@@ -126,7 +126,7 @@ class WeeklySlotDirective implements angular.IDirective {
         } else {
           var newEnd = Math.round(valuesOnDragStart.end + delta);
 
-          if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= conf.nbIntervals * conf.interval) {
+          if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= conf.maxValue) {
             ngModelCtrl.$setViewValue({
               start: ui.start,
               end: newEnd
@@ -144,7 +144,7 @@ class WeeklySlotDirective implements angular.IDirective {
         var newStart = Math.round(valuesOnDragStart.start + delta);
         var newEnd = Math.round(newStart + duration);
 
-        if (ui.start !== newStart && newStart >= 0 && newEnd <= conf.nbIntervals * conf.interval) {
+        if (ui.start !== newStart && newStart >= 0 && newEnd <= conf.maxValue) {
           ngModelCtrl.$setViewValue({
             start: newStart,
             end: newEnd
@@ -178,7 +178,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
     ngModelCtrl.$render = function () {
       var ui = ngModelCtrl.$viewValue;
-      var minutes = conf.nbIntervals * conf.interval;
+      var minutes = conf.maxValue;
 
       var css = {
         left: ui.start / minutes * 100 + '%',
