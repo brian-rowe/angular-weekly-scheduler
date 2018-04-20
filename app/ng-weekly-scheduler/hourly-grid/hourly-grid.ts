@@ -1,3 +1,4 @@
+/** @internal */
 class HourlyGridDirective implements angular.IDirective {
     static $name = 'hourlyGrid';
 

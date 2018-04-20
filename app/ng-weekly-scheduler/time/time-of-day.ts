@@ -1,3 +1,4 @@
+/** @internal */
 class TimeOfDayFilter {
     static $name = 'timeOfDay';
 

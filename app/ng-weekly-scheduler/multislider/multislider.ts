@@ -1,3 +1,4 @@
+/** @internal */
 class MultiSliderDirective implements angular.IDirective {
   static $name = 'multiSlider';
 

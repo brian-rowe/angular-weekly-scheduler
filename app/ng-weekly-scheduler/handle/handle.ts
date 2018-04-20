@@ -1,3 +1,4 @@
+/** @internal */
 class HandleDirective implements angular.IDirective {
   static $name = 'handle';
   restrict = 'A';

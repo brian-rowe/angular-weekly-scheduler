@@ -1,3 +1,4 @@
+/** @internal */
 class WeeklySlotDirective implements angular.IDirective {
   static $name = 'weeklySlot';
 

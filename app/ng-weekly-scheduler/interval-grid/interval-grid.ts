@@ -1,3 +1,4 @@
+/** @internal */
 class IntervalGridDirective implements angular.IDirective {
     static $name = 'intervalGrid';
 

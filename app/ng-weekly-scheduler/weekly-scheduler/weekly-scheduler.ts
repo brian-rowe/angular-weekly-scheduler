@@ -1,3 +1,4 @@
+/** @internal */
 class WeeklySchedulerController implements angular.IController {
   static $controllerAs = 'schedulerCtrl';
   static $name = 'weeklySchedulerController';
@@ -45,6 +46,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 }
 
+/** @internal */
 class WeeklySchedulerDirective implements angular.IDirective {
   static $name = 'weeklyScheduler';
 
