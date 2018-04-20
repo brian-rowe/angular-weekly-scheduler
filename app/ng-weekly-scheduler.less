@@ -1,3 +1,5 @@
+@handleWidth: 10px;
+
 .scheduler {
   background: #fff;
   border: 1px solid #ccc;
@@ -52,7 +54,6 @@
   }
 }
 
-/*------------------------------------------------------------- Multi-slider */
 multi-slider {
   position: relative;
   display: block;
@@ -96,7 +97,7 @@ multi-slider {
   weekly-slot {
     -webkit-transition: background 0.1s ease-in;
     cursor: all-scroll;
-    min-width: 10px !important;
+    min-width: @handleWidth !important;
     background: #4eb8d5;
 
     &.disable {
@@ -111,7 +112,7 @@ multi-slider {
       bottom: 0;
 
       &.left, &.right {
-        width: 10px;
+        width: @handleWidth;
         background: #000;
         cursor: col-resize;
         opacity: 0.1;

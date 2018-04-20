@@ -52,8 +52,8 @@ class MultiSliderDirective implements angular.IDirective {
     hoverElement.on('click', function (event) {
       if (!element.attr('no-add')) {
         var elOffX = element[0].getBoundingClientRect().left;
-        var pixelOnClick = event.pageX - elOffX;
-        var valOnClick = pixelToVal(pixelOnClick);
+        var hoverElOffX = hoverElement[0].getBoundingClientRect().left - elOffX;
+        var valOnClick = pixelToVal(hoverElOffX);
         var span = defaultNewScheduleSize * 60;
 
         var start = Math.round(valOnClick - defaultNewScheduleSize / 2);
