@@ -178,7 +178,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
     ngModelCtrl.$render = function () {
       var ui = ngModelCtrl.$viewValue;
-      var minutes = conf.nbHours * 60;
+      var minutes = conf.nbIntervals * conf.interval;
 
       var css = {
         left: ui.start / minutes * 100 + '%',
