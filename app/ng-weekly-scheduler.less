@@ -1,59 +1,55 @@
-/*---------------------------------------------------------------- Scheduler */
 .scheduler {
-  display: block;
   background: #fff;
   border: 1px solid #ccc;
+  display: block;
   margin-bottom: 10px;
-}
 
-.scheduler::after {
-  content: "";
-  display: block;
-  clear: both;
-}
+  &::after {
+    content: "";
+    display: block;
+    clear: both; 
+  }
 
-.scheduler .labels, .scheduler .schedule-area-container {
-  display: block;
-  float: left;
-}
+  .labels {
+    border-right: 1px solid #ddd;
+    display: block;
+    float: left;
+    width: 10%;
 
-.scheduler .labels {
-  width: 10%;
-  color: #666;
-  border-right: 1px solid #ddd;
-}
+    .srow {
+      border-bottom: 1px solid #ddd;
+      padding: 0 5px;
+    }
+  }
 
-.scheduler .labels .srow {
-  padding: 0 5px;
-  border-bottom: 1px solid #ddd;
-}
+  .schedule-area-container {
+    display: block;
+    float: left;
+    width: 90%;
+  }
 
-.scheduler .schedule-area-container {
-  width: 90%;
-}
+  .srow {
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+  }
 
-.scheduler .srow {
-  position: relative;
-  height: 35px;
-  line-height: 35px;
-}
+  .timestamps {
+    .grid-container {
+      div {
+        border-right: 1px solid #eee;
+        cursor: pointer;
 
-.scheduler .timestamps {
-  color: #aaa;
-  position: relative;
-}
+        &:hover {
+          background-color: #f0f0f0; 
+        }
 
-.scheduler .timestamps .grid-container div {
-  border-right: 1px solid #eee;
-  cursor: pointer;
-}
-
-.scheduler .timestamps .grid-container div:hover {
-  background-color: #f0f0f0;
-}
-
-.scheduler .timestamps .grid-container div:last-child {
-  border-right: none;
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
 }
 
 /*------------------------------------------------------------- Multi-slider */
