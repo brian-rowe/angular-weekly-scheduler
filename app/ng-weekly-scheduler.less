@@ -172,31 +172,35 @@ multi-slider weekly-slot.active {
   top: 0;
   bottom: 0;
   border-bottom: 1px solid #ddd;
+
+  div {
+    float: left;
+    height: 34px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  &.striped div:nth-child(even) {
+    background: #fafafa;
+  }
 }
 
-.grid-container div {
-  float: left;
-  height: 34px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.grid-container.striped div:nth-child(even) {
-  background: #fafafa;
-}
-
-.github-fork-ribbon:after {
-  line-height: 1em;
+.github-fork-ribbon {
+  &:after {
+    line-height: 1em;
+  }
 }
 
 /*--------------------------------------------------------------- Animations */
 .schedule-animate {
   transition: opacity 200ms ease-out;
-}
-.schedule-animate.ng-enter, .schedule-animate.ng-hide-remove {
-  opacity: 0;
-}
-.schedule-animate.ng-leave, .schedule-animate.ng-hide-add {
-  display: none;
-  opacity: 1;
+
+  &.ng-enter, &.ng-hide-remove {
+    opacity: 0;
+  }
+
+  &.ng-leave, &.ng-hide-add {
+    display: none;
+    opacity: 1;
+  }
 }
