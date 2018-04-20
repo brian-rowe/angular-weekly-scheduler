@@ -1,6 +1,4 @@
-interface IWeeklySchedulerConfig {
-    interval: number;
-    labels: any; /* TODO type */
+interface IWeeklySchedulerConfig extends IWeeklySchedulerOptions {
     maxValue: number;
     hourCount: number;
     intervalCount: number;
