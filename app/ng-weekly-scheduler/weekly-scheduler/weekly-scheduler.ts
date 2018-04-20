@@ -144,7 +144,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
   /**
    * Configure the scheduler.
    * @param options
-   * @returns {{maxValue: *, nbHours: *, intervalCount: *}}
+   * @returns {{maxValue: *, hourCount: *, intervalCount: *}}
    */
   private config(options): IWeeklySchedulerConfig {
     var interval = options.interval || 15; // minutes
@@ -152,7 +152,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
     var minutesInDay = hoursInDay * 60;
     var intervalCount = minutesInDay / interval;
 
-    var result = angular.extend(options, { interval: interval, maxValue: minutesInDay, nbHours: hoursInDay, intervalCount: intervalCount });
+    var result = angular.extend(options, { interval: interval, maxValue: minutesInDay, hourCount: hoursInDay, intervalCount: intervalCount });
     // Log configuration
     this.$log.debug('Weekly Scheduler configuration:', result);
 

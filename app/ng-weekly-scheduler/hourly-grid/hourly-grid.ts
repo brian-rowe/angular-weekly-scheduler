@@ -5,10 +5,10 @@ class HourlyGridDirective implements angular.IDirective {
     restrict = 'E';
     require = '^weeklyScheduler';
 
-    private handleClickEvent(child, nbHours, idx, scope) {
+    private handleClickEvent(child, hourCount, idx, scope) {
         child.bind('click', function () {
           scope.$broadcast(CLICK_ON_A_CELL, {
-            nbElements: nbHours,
+            nbElements: hourCount,
             idx: idx
           });
         });
@@ -17,7 +17,7 @@ class HourlyGridDirective implements angular.IDirective {
     private doGrid(scope, element, attrs, config: IWeeklySchedulerConfig) {
         var i;
         // Calculate hour width distribution
-        var tickcount = config.nbHours;
+        var tickcount = config.hourCount;
         var ticksize = 100 / tickcount;
         var gridItemEl = GRID_TEMPLATE.css({width: ticksize + '%'});
   
