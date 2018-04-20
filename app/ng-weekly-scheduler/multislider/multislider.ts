@@ -8,12 +8,12 @@ class MultiSliderDirective implements angular.IDirective {
   link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, schedulerCtrl: WeeklySchedulerController) => {
     var conf = schedulerCtrl.config;
 
-    // The default scheduler block size when adding a new item (in intervals)
-    var defaultNewScheduleSize = (parseInt(attrs.size, 10) || 4);
+    // The default scheduler block size when adding a new item (in minutes)
+    var defaultNewScheduleSize = (parseInt(attrs.size, 10) || 60);
 
     var valToPixel = function (val) {
-      var percent = val / conf.nbIntervals;
-      return Math.floor(percent * element[0].clientWidth + 0.5);
+      var percent = val / conf.nbIntervals / conf.interval;
+      return Math.floor(percent * element[0].clientWidth + 0.5);;
     };
 
     var pixelToVal = function (pixel) {
@@ -56,10 +56,9 @@ class MultiSliderDirective implements angular.IDirective {
       if (!element.attr('no-add')) {
         var elOffX = getElementOffsetX(element);
         var hoverElOffX = getElementOffsetX(hoverElement) - elOffX;
-        var start = pixelToVal(hoverElOffX);
         
-        var span = defaultNewScheduleSize * conf.interval;
-        var end = start + span;
+        var start = pixelToVal(hoverElOffX);
+        var end = start + defaultNewScheduleSize;
 
         addSlot(start, end);
       }
