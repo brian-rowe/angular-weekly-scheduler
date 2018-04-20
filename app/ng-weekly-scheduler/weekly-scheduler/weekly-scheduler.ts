@@ -50,8 +50,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
 
   constructor(
     private $log: angular.ILogService,
-    private $parse: angular.IParseService,
-    private timeService: WeeklySchedulerTimeService
+    private $parse: angular.IParseService
   ) {
   }
 
@@ -152,12 +151,11 @@ class WeeklySchedulerDirective implements angular.IDirective {
   }
 
   static Factory() {
-    let directive = ($log, $parse, timeService) => new WeeklySchedulerDirective($log, $parse, timeService);
+    let directive = ($log, $parse) => new WeeklySchedulerDirective($log, $parse);
 
     directive.$inject = [
       '$log',
-      '$parse',
-      'weeklySchedulerTimeService'
+      '$parse'
     ];
 
     return directive;

@@ -1,11 +1,6 @@
 class WeeklySlotDirective implements angular.IDirective {
   static $name = 'weeklySlot';
 
-  constructor(
-    private timeService: WeeklySchedulerTimeService
-  ) {
-  }
-
   restrict = 'E';
   require = ['^weeklyScheduler', 'ngModel'];
   templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';
@@ -201,9 +196,7 @@ class WeeklySlotDirective implements angular.IDirective {
   }
 
   static Factory() {
-    let directive = (timeService) => new WeeklySlotDirective(timeService);
-
-    directive.$inject = ['weeklySchedulerTimeService'];
+    let directive = () => new WeeklySlotDirective();
 
     return directive;
   }

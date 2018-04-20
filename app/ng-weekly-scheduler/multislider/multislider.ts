@@ -5,11 +5,6 @@ class MultiSliderDirective implements angular.IDirective {
   require = '^weeklyScheduler';
   templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
 
-  constructor(
-    private timeService: WeeklySchedulerTimeService
-  ) {
-  }
-
   link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, schedulerCtrl) => {
     var conf = schedulerCtrl.config;
 
@@ -70,11 +65,7 @@ class MultiSliderDirective implements angular.IDirective {
   }
 
   static Factory() {
-    let directive = (timeService) => new MultiSliderDirective(timeService);
-
-    directive.$inject = [
-      'weeklySchedulerTimeService'
-    ];
+    let directive = () => new MultiSliderDirective();
 
     return directive;
   }
