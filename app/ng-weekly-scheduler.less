@@ -177,11 +177,12 @@ multi-slider {
         opacity: 0.5;
         transform: translateY(-100%);
 
+        /** This pseudo-element is present to prevent the user from seeing the 'Add' slot when moving the mouse from a weekly-slot to its own 'remove' button */
         &:before {
           position: absolute;
           content: "";
-          left: -5px;
-          width: 10px;
+          left: -@offset;
+          width: @offset * 2;
           height: @lineHeight;
         }
       }
