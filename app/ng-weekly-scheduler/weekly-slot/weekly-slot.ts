@@ -56,6 +56,11 @@ class WeeklySlotDirective implements angular.IDirective {
       });
     };
 
+    var updateSelf = (update: IWeeklySchedulerRange<number>) => {
+      ngModelCtrl.$setViewValue(update);
+      ngModelCtrl.$render();
+    }
+
     element.on('mouseover', function () {
       containerEl.addClass('slot-hover');
     });
@@ -117,21 +122,19 @@ class WeeklySlotDirective implements angular.IDirective {
           var newStart = Math.round(valuesOnDragStart.start + delta);
 
           if (ui.start !== newStart && newStart <= ui.end - 1 && newStart >= 0) {
-            ngModelCtrl.$setViewValue({
+            updateSelf({
               start: newStart,
               end: ui.end
             });
-            ngModelCtrl.$render();
           }
         } else {
           var newEnd = Math.round(valuesOnDragStart.end + delta);
 
           if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= conf.maxValue) {
-            ngModelCtrl.$setViewValue({
+            updateSelf({
               start: ui.start,
               end: newEnd
             });
-            ngModelCtrl.$render();
           }
         }
       };
@@ -145,11 +148,10 @@ class WeeklySlotDirective implements angular.IDirective {
         var newEnd = Math.round(newStart + duration);
 
         if (ui.start !== newStart && newStart >= 0 && newEnd <= conf.maxValue) {
-          ngModelCtrl.$setViewValue({
+          updateSelf({
             start: newStart,
             end: newEnd
-          });
-          ngModelCtrl.$render();
+          })
         }
       };
     }
