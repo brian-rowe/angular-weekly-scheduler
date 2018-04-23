@@ -56,7 +56,7 @@ class WeeklySchedulerController implements angular.IController {
     var minutesInDay = hoursInDay * 60;
     var intervalCount = minutesInDay / interval;
 
-    var result: IWeeklySchedulerConfig = angular.extend(options, { interval: interval, maxValue: minutesInDay, hourCount: hoursInDay, intervalCount: intervalCount });
+    var result: IWeeklySchedulerConfig = angular.extend(this.defaultOptions, { interval: interval, maxValue: minutesInDay, hourCount: hoursInDay, intervalCount: intervalCount });
 
     return result;
   }
