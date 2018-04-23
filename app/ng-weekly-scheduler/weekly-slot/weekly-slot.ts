@@ -122,7 +122,6 @@ class WeeklySlotDirective implements angular.IDirective {
         containerEl.removeClass('dragging');
 
         mergeOverlaps();
-        scope.$apply();
       };
 
       scope.resize = function (d) {
