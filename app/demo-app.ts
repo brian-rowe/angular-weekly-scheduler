@@ -65,7 +65,7 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
       };
 
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
-        $log.debug('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
+        console.log('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
       };
 
       this.onLocaleChange = function () {
