@@ -51,21 +51,27 @@ class WeeklySchedulerDirective implements angular.IDirective {
   static $name = 'weeklyScheduler';
 
   constructor(
-    private $log: angular.ILogService,
-    private $parse: angular.IParseService
+    private $log: angular.ILogService
   ) {
   }
 
-  restrict = 'E';
-  require = 'weeklyScheduler';
-  transclude = true;
-  templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
   controller = WeeklySchedulerController.$name;
   controllerAs = WeeklySchedulerController.$controllerAs;
 
+  restrict = 'E';
+  require = 'weeklyScheduler';
+
+  scope = {
+    items: '=',
+    options: '=',
+    onChange: '&'
+  };
+
+  transclude = true;
+  templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
+
   link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
-    var optionsFn = this.$parse(attrs.options),
-      options = angular.extend(schedulerCtrl.defaultOptions, optionsFn(scope) || {});
+    let options = angular.extend(schedulerCtrl.defaultOptions, scope.options || {});
 
     // Get the schedule container element
     var el = element[0].querySelector(schedulerCtrl.defaultOptions.selector);
@@ -117,9 +123,8 @@ class WeeklySchedulerDirective implements angular.IDirective {
 
       schedulerCtrl.on = {
         change: (itemIndex, scheduleIndex, scheduleValue) => {
-          var onChangeFunction = this.$parse(attrs.onChange)(scope);
-          if (angular.isFunction(onChangeFunction)) {
-            return onChangeFunction(itemIndex, scheduleIndex, scheduleValue);
+          if (angular.isFunction(scope.onChange)) {
+            return scope.onChange(itemIndex, scheduleIndex, scheduleValue);
           }
         }
       };
@@ -127,7 +132,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
       /**
        * Watch the model items
        */
-      scope.$watchCollection(attrs.items, onModelChange);
+      scope.$watchCollection(() => scope.items, onModelChange);
 
       /**
        * Listen to $locale change (brought by external module weeklySchedulerI18N)
@@ -136,7 +141,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
         if (schedulerCtrl.config) {
           schedulerCtrl.config.labels = labels;
         }
-        onModelChange(angular.copy(this.$parse(attrs.items)(scope), []));
+        onModelChange(angular.copy(scope.items, []));
       });
     }
   }
@@ -159,11 +164,10 @@ class WeeklySchedulerDirective implements angular.IDirective {
   }
 
   static Factory() {
-    let directive = ($log, $parse) => new WeeklySchedulerDirective($log, $parse);
+    let directive = ($log) => new WeeklySchedulerDirective($log);
 
     directive.$inject = [
-      '$log',
-      '$parse'
+      '$log'
     ];
 
     return directive;
