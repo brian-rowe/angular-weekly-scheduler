@@ -7,6 +7,8 @@ class WeeklySlotDirective implements angular.IDirective {
 
   scope = {
     schedule: '=ngModel',
+    itemIndex: '<',
+    scheduleIndex: '<',
     item: '='
   };
 
@@ -17,7 +19,6 @@ class WeeklySlotDirective implements angular.IDirective {
         ngModelCtrl: angular.INgModelController = ctrls[1];
 
     var conf = schedulerCtrl.config;
-    var index = scope.$parent.$index;
     var containerEl = element.parent();
     var resizeDirectionIsStart = true;
     var valuesOnDragStart = {start: scope.schedule.start, end: scope.schedule.end};
@@ -168,7 +169,7 @@ class WeeklySlotDirective implements angular.IDirective {
     ngModelCtrl.$parsers.push((ui) => {
       ngModelCtrl.$modelValue.start = ui.start;
       ngModelCtrl.$modelValue.end = ui.end;
-      schedulerCtrl.onChange({ itemIndex: index, scheduleIndex: scope.$index, scheduleValue: ngModelCtrl.$modelValue });
+      schedulerCtrl.onChange({ itemIndex: scope.itemIndex, scheduleIndex: scope.scheduleIndex, scheduleValue: ngModelCtrl.$modelValue });
       return ngModelCtrl.$modelValue;
     });
 

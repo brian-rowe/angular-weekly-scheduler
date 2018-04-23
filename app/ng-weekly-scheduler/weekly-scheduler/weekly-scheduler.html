@@ -14,7 +14,7 @@
 
     <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items">
       <interval-grid class="grid-container striped" no-text></interval-grid>
-      <multi-slider config="schedulerCtrl.config" item="item" index="{{$index}}"></multi-slider>
+      <multi-slider config="schedulerCtrl.config" item="item" index="$index"></multi-slider>
     </div>
   </div>
 </schedule-area-container>
