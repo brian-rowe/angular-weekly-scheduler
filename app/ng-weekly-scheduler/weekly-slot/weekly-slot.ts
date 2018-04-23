@@ -103,7 +103,10 @@ class WeeklySlotDirective implements angular.IDirective {
         containerEl.addClass('dragging');
         containerEl.attr('no-add', 'true');
 
-        valuesOnDragStart = {start: ngModelCtrl.$viewValue.start, end: ngModelCtrl.$viewValue.end};
+        valuesOnDragStart = {
+          start: scope.schedule.start,
+          end: scope.schedule.end 
+        };
       };
 
       scope.endDrag = function () {
