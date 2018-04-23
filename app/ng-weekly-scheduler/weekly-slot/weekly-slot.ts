@@ -124,7 +124,7 @@ class WeeklySlotDirective implements angular.IDirective {
       };
 
       scope.resize = function (d) {
-        var ui = ngModelCtrl.$viewValue;
+        var ui = scope.schedule;
         var delta = pixelToVal(d);
 
         if (resizeDirectionIsStart) {
@@ -149,7 +149,7 @@ class WeeklySlotDirective implements angular.IDirective {
       };
 
       scope.drag = function (d) {
-        var ui = ngModelCtrl.$viewValue;
+        var ui = scope.schedule;
         var delta = pixelToVal(d);
         var duration = valuesOnDragStart.end - valuesOnDragStart.start;
 
