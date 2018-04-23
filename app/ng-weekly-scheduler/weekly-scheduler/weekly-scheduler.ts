@@ -21,7 +21,6 @@ class WeeklySchedulerController implements angular.IController {
 
   public defaultOptions: IWeeklySchedulerOptions = {
     monoSchedule: false,
-    selector: '.schedule-area-container'
   };
 
   public $modelChangeListeners: ((config: IWeeklySchedulerConfig) => void)[];
