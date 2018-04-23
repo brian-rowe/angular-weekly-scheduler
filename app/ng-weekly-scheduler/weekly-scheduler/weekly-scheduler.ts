@@ -100,35 +100,22 @@ class WeeklySchedulerController implements angular.IController {
 }
 
 /** @internal */
-class WeeklySchedulerDirective implements angular.IDirective {
+class WeeklySchedulerComponent implements angular.IComponentOptions {
   static $name = 'weeklyScheduler';
 
-  bindToController = true;
-  controller = WeeklySchedulerController.$name;
-  controllerAs = WeeklySchedulerController.$controllerAs;
-
-  restrict = 'E';
-  require = 'weeklyScheduler';
-
-  scope = {
+  bindings = {
     items: '=',
     options: '=',
     onChange: '&'
   };
+  
+  controller = WeeklySchedulerController.$name;
+  controllerAs = WeeklySchedulerController.$controllerAs;
 
   transclude = true;
   templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
-
-  link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, schedulerCtrl: WeeklySchedulerController) => {
-  }
-
-  static Factory() {
-    let directive = () => new WeeklySchedulerDirective();
-
-    return directive;
-  }
 }
 
 angular.module('weeklyScheduler')
   .controller(WeeklySchedulerController.$name, WeeklySchedulerController)
-  .directive(WeeklySchedulerDirective.$name, WeeklySchedulerDirective.Factory());
+  .component(WeeklySchedulerComponent.$name, new WeeklySchedulerComponent());
