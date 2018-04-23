@@ -4,13 +4,11 @@ class WeeklySchedulerController implements angular.IController {
   static $name = 'weeklySchedulerController';
 
   static $inject = [
-    '$injector',
-    '$log'
+    'weeklySchedulerLocaleService'
   ];
 
   constructor(
-    private $injector: angular.auto.IInjectorService,
-    private $log: angular.ILogService
+    private localeService: any  /* TODO type */
   ) {
   }
 
@@ -29,17 +27,7 @@ class WeeklySchedulerController implements angular.IController {
   public $modelChangeListeners: ((config: IWeeklySchedulerConfig) => void)[];
 
   $onInit() {
-    // Try to get the i18n service
-    var name = 'weeklySchedulerLocaleService';
-
-    if (this.$injector.has(name)) {
-      this.$log.info('The I18N service has successfully been initialized!');
-
-      var localeService: any = this.$injector.get(name); /* TODO type */
-      this.defaultOptions.labels = localeService.getLang();
-    } else {
-      this.$log.info('No I18N found for this module, check the ng module [weeklySchedulerI18N] if you need i18n.');
-    }
+    this.defaultOptions.labels = this.localeService.getLang();
 
     // Will hang our model change listeners
     this.$modelChangeListeners = [];
