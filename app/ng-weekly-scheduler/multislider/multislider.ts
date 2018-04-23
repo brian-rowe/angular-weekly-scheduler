@@ -26,13 +26,13 @@ class MultiSliderDirective implements angular.IDirective {
       start = start >= 0 ? start : 0;
       end = end <= conf.maxValue ? end : conf.maxValue;
 
-      scope.$apply(function () {
-        var item = scope.item;
-        if (!item.schedules) {
-          item.schedules = [];
-        }
-        item.schedules.push({start: start, end: end});
-      });
+      var item = scope.item;
+
+      if (!item.schedules) {
+        item.schedules = [];
+      }
+
+      item.schedules.push({start: start, end: end});
     };
 
     var getElementOffsetX = (elem) => elem[0].getBoundingClientRect().left;
@@ -54,7 +54,7 @@ class MultiSliderDirective implements angular.IDirective {
       });
     });
 
-    hoverElement.on('click', function (event) {
+    scope.onHoverElementClick = function(event) {
       if (!element.attr('no-add')) {
         var elOffX = getElementOffsetX(element);
         var hoverElOffX = getElementOffsetX(hoverElement) - elOffX;
@@ -64,7 +64,7 @@ class MultiSliderDirective implements angular.IDirective {
 
         addSlot(start, end);
       }
-    });
+    }
 
     scope.onWeeklySlotMouseOver = function() {
       element.addClass('slot-hover');
