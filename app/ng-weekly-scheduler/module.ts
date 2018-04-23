@@ -1,8 +1,6 @@
 angular.module('weeklyScheduler', ['ngWeeklySchedulerTemplates']);
 
 var GRID_TEMPLATE = angular.element('<div class="grid-item"></div>');
-var CLICK_ON_A_CELL = 'clickOnACell';
-
 var isCtrl;
 
 function ctrlCheck(e) {

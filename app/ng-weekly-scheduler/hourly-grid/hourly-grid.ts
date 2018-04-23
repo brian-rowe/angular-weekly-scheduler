@@ -7,7 +7,7 @@ class HourlyGridDirective implements angular.IDirective {
 
     private handleClickEvent(child, hourCount, idx, scope) {
         child.bind('click', function () {
-          scope.$broadcast(CLICK_ON_A_CELL, {
+          scope.$broadcast(WeeklySchedulerEvents.CLICK_ON_A_CELL, {
             nbElements: hourCount,
             idx: idx
           });

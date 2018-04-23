@@ -111,7 +111,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
       // Install mouse scrolling event listener for H scrolling
       mouseScroll(el, 20);
 
-      scope.$on(CLICK_ON_A_CELL, function (e, data) {
+      scope.$on(WeeklySchedulerEvents.CLICK_ON_A_CELL, function (e, data) {
         zoomInACell(el, e, data);
       });
 
@@ -170,7 +170,6 @@ class WeeklySchedulerDirective implements angular.IDirective {
   }
 }
 
-/* global mouseScroll, CLICK_ON_A_CELL, zoomInACell */
 angular.module('weeklyScheduler')
   .controller(WeeklySchedulerController.$name, WeeklySchedulerController)
   .directive(WeeklySchedulerDirective.$name, WeeklySchedulerDirective.Factory());
