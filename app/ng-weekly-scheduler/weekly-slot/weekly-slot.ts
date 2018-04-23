@@ -35,8 +35,11 @@ class WeeklySlotDirective implements angular.IDirective {
           // model is inside another slot
           if (el.end >= schedule.end && el.start <= schedule.start) {
             removeSchedule(el);
-            schedule.end = el.end;
-            schedule.start = el.start;
+
+            updateSelf({
+              start: el.start,
+              end: el.end
+            });
           }
           // model completely covers another slot
           else if (schedule.end >= el.end && schedule.start <= el.start) {
@@ -45,12 +48,20 @@ class WeeklySlotDirective implements angular.IDirective {
           // another slot's end is inside current model
           else if (el.end >= schedule.start && el.end <= schedule.end) {
             removeSchedule(el);
-            schedule.start = el.start;
+
+            updateSelf({
+              start: el.start,
+              end: schedule.end
+            });
           }
           // another slot's start is inside current model
           else if (el.start >= schedule.start && el.start <= schedule.end) {
             removeSchedule(el);
-            schedule.end = el.end;
+
+            updateSelf({
+              start: schedule.start,
+              end: el.end
+            });
           }
         }
       });
