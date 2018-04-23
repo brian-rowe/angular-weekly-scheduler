@@ -2,12 +2,17 @@
 class MultiSliderDirective implements angular.IDirective {
   static $name = 'multiSlider';
 
+  scope = {
+    config: '<',
+    item: '='
+  }
+
   restrict = 'E';
   require = '^weeklyScheduler';
   templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
 
-  link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, schedulerCtrl: WeeklySchedulerController) => {
-    var conf = schedulerCtrl.config;
+  link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes) => {
+    var conf = scope.config;
 
     // The default scheduler block size when adding a new item (in minutes)
     var defaultNewScheduleSize = (parseInt(attrs.size, 10) || 60);
