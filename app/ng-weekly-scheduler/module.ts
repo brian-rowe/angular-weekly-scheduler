@@ -57,7 +57,7 @@ function zoomInACell(el, event, data) {
   var scheduleAreaWidthPx = nbElements * boxWidth;
   var scheduleAreaWidthPercent = (scheduleAreaWidthPx / containerWidth) * 100;
 
-  el.firstChild.style.width = scheduleAreaWidthPercent + '%';
+  el.querySelector('.schedule-area').style.width = scheduleAreaWidthPercent + '%';
 
   if (percentWidthFromBeginning === undefined) {
     // All cells of a line have the same size

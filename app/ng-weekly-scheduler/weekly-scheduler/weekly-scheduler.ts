@@ -120,19 +120,6 @@ class WeeklySchedulerDirective implements angular.IDirective {
   templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
 
   link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, schedulerCtrl: WeeklySchedulerController) => {
-    let options = angular.extend(schedulerCtrl.defaultOptions, scope.options || {});
-
-    // Get the schedule container element
-    var scheduleContainer = element[0].querySelector(schedulerCtrl.defaultOptions.selector);
-
-    if (scheduleContainer) {
-      // Install mouse scrolling event listener for H scrolling
-      mouseScroll(scheduleContainer, 20);
-
-      scope.$on(WeeklySchedulerEvents.CLICK_ON_A_CELL, function (e, data) {
-        zoomInACell(scheduleContainer, e, data);
-      });
-    }
   }
 
   static Factory() {
