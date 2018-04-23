@@ -15,7 +15,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   public config: IWeeklySchedulerConfig;
-  public items: any[]; /* TODO type */
+  public items: IWeeklySchedulerItem<number>[];
 
   public defaultOptions: IWeeklySchedulerOptions = {
     monoSchedule: false,
@@ -26,7 +26,7 @@ class WeeklySchedulerController implements angular.IController {
     change: (itemIndex, scheduleIndex, scheduleValue) => Function;
   };
 
-  public $modelChangeListeners: Function[]; /* TODO type */
+  public $modelChangeListeners: ((config: IWeeklySchedulerConfig) => void)[];
 
   $onInit() {
     // Try to get the i18n service
