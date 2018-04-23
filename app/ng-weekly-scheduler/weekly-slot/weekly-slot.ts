@@ -76,6 +76,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
     var updateSelf = (update: IWeeklySchedulerRange<number>) => {
       ngModelCtrl.$setViewValue(update);
+      schedulerCtrl.onChange({ itemIndex: scope.itemIndex, scheduleIndex: scope.scheduleIndex, scheduleValue: ngModelCtrl.$modelValue });
     }
 
     scope.canRemove = () => !angular.isDefined(scope.item.editable) || scope.item.editable;
@@ -172,7 +173,7 @@ class WeeklySlotDirective implements angular.IDirective {
     ngModelCtrl.$parsers.push((ui) => {
       ngModelCtrl.$modelValue.start = ui.start;
       ngModelCtrl.$modelValue.end = ui.end;
-      schedulerCtrl.onChange({ itemIndex: scope.itemIndex, scheduleIndex: scope.scheduleIndex, scheduleValue: ngModelCtrl.$modelValue });
+      
       return ngModelCtrl.$modelValue;
     });
 
