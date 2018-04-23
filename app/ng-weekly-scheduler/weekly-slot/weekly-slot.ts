@@ -71,6 +71,8 @@ class WeeklySlotDirective implements angular.IDirective {
       ngModelCtrl.$setViewValue(update);
     }
 
+    scope.canRemove = () => !angular.isDefined(scope.item.editable) || scope.item.editable;
+
     if (scope.item.editable !== false) {
       scope.deleteSelf = function () {
         containerEl.removeClass('dragging');
