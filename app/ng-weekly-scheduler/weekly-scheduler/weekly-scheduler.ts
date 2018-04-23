@@ -70,7 +70,7 @@ class WeeklySchedulerDirective implements angular.IDirective {
   transclude = true;
   templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
 
-  link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
+  link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, schedulerCtrl: WeeklySchedulerController) => {
     let options = angular.extend(schedulerCtrl.defaultOptions, scope.options || {});
 
     // Get the schedule container element
