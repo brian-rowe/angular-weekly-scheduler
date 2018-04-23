@@ -7,4 +7,8 @@
              ng-model-options="{ updateOn: 'default blur' }"
              ng-mouseleave="onWeeklySlotMouseLeave()"
              ng-mouseover="onWeeklySlotMouseOver()"
+             ng-style="{
+                left: getSlotLeft(schedule),
+                width: getSlotWidth(schedule) 
+             }"
 ></weekly-slot>

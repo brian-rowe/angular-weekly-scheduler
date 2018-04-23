@@ -54,6 +54,14 @@ class MultiSliderDirective implements angular.IDirective {
       });
     });
 
+    scope.getSlotLeft = function(schedule: IWeeklySchedulerRange<number>) {
+      return schedule.start / conf.maxValue * 100 + '%';
+    }
+
+    scope.getSlotWidth = function(schedule: IWeeklySchedulerRange<number>) {
+      return (schedule.end - schedule.start) / conf.maxValue * 100 + '%';
+    }
+
     scope.onHoverElementClick = function(event) {
       if (!element.attr('no-add')) {
         var elOffX = getElementOffsetX(element);

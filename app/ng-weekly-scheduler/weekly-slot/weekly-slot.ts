@@ -69,7 +69,7 @@ class WeeklySlotDirective implements angular.IDirective {
 
     var updateSelf = (update: IWeeklySchedulerRange<number>) => {
       ngModelCtrl.$setViewValue(update);
-      ngModelCtrl.$render();
+      //ngModelCtrl.$render();
     }
 
     if (scope.item.editable !== false) {
@@ -164,18 +164,6 @@ class WeeklySlotDirective implements angular.IDirective {
       schedulerCtrl.on.change(index, scope.$index, ngModelCtrl.$modelValue);
       return ngModelCtrl.$modelValue;
     });
-
-    ngModelCtrl.$render = function () {
-      var ui = ngModelCtrl.$viewValue;
-      var minutes = conf.maxValue;
-
-      var css = {
-        left: ui.start / minutes * 100 + '%',
-        width: (ui.end - ui.start) / minutes * 100 + '%'
-      };
-
-      element.css(css);
-    };
 
     scope.$on('weeklySchedulerLocaleChanged', function () {
       // Simple change object reference so that ngModel triggers formatting & rendering
