@@ -77,6 +77,7 @@ multi-slider {
   @offset: 5px;
   @topOffset: @offset;
   @bottomOffset: @offset;
+  @lineHeight: @rowHeight - @topOffset - @bottomOffset;
 
   position: relative;
   display: block;
@@ -90,7 +91,7 @@ multi-slider {
     border-radius: 3px;
     text-align: center;
     white-space: nowrap;
-    line-height: @rowHeight - @topOffset - @bottomOffset;
+    line-height: @lineHeight;
     color: #fff;
   }
 
@@ -164,11 +165,13 @@ multi-slider {
 
     &:not(.disable) {
       .remove {
+        @removeWidth: @lineHeight;
+
         display: none;
         cursor: pointer;
         float: right;
-        margin-right: -30px;
-        width: 25px;
+        margin-right: -(@removeWidth + @offset);
+        width: @removeWidth;
         background: red;
         border-radius: 20%;
         opacity: 0.5;
@@ -179,7 +182,7 @@ multi-slider {
           content: "";
           left: -5px;
           width: 10px;
-          height: 25px;
+          height: @lineHeight;
         }
       }
     }
