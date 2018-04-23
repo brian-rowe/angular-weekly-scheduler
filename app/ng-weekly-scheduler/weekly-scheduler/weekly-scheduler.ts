@@ -50,11 +50,6 @@ class WeeklySchedulerController implements angular.IController {
 class WeeklySchedulerDirective implements angular.IDirective {
   static $name = 'weeklyScheduler';
 
-  constructor(
-    private $log: angular.ILogService
-  ) {
-  }
-
   controller = WeeklySchedulerController.$name;
   controllerAs = WeeklySchedulerController.$controllerAs;
 
@@ -161,18 +156,11 @@ class WeeklySchedulerDirective implements angular.IDirective {
 
     var result: IWeeklySchedulerConfig = angular.extend(options, { interval: interval, maxValue: minutesInDay, hourCount: hoursInDay, intervalCount: intervalCount });
 
-    // Log configuration
-    this.$log.debug('Weekly Scheduler configuration:', result);
-
     return result;
   }
 
   static Factory() {
-    let directive = ($log) => new WeeklySchedulerDirective($log);
-
-    directive.$inject = [
-      '$log'
-    ];
+    let directive = () => new WeeklySchedulerDirective();
 
     return directive;
   }
