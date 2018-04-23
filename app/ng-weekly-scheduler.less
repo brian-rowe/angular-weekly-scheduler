@@ -1,4 +1,5 @@
 @handleWidth: 10px;
+@rowHeight: 28px;
 
 .scheduler {
   background: #fff;
@@ -16,7 +17,7 @@
     border-right: 1px solid #ddd;
     display: block;
     float: left;
-    width: 10%;
+    text-align: center;
 
     .srow {
       border-bottom: 1px solid #ddd;
@@ -27,14 +28,12 @@
   .schedule-area-container {
     display: block;
     overflow-x: auto;
-    float: left;
-    width: 90%;
   }
 
   .srow {
     position: relative;
-    height: 35px;
-    line-height: 35px;
+    height: @rowHeight;
+    line-height: @rowHeight;
   }
 
   .timestamps {
@@ -56,19 +55,23 @@
 }
 
 multi-slider {
+  @offset: 5px;
+  @topOffset: @offset;
+  @bottomOffset: @offset;
+
   position: relative;
   display: block;
-  height: 35px;
+  height: @rowHeight;
   overflow: hidden;
 
   .slot {
     position: absolute;
-    top: 5px;
-    bottom: 5px;
+    top: @topOffset;
+    bottom: @bottomOffset;
     border-radius: 3px;
     text-align: center;
     white-space: nowrap;
-    line-height: 25px;
+    line-height: @rowHeight - @topOffset - @bottomOffset;
     color: #fff;
   }
 
@@ -191,7 +194,7 @@ multi-slider {
 
   div {
     float: left;
-    height: 34px;
+    height: @rowHeight - 1;
     overflow: hidden;
     text-align: center;
   }
