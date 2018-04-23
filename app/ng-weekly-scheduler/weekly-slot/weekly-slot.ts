@@ -69,7 +69,6 @@ class WeeklySlotDirective implements angular.IDirective {
 
     var updateSelf = (update: IWeeklySchedulerRange<number>) => {
       ngModelCtrl.$setViewValue(update);
-      //ngModelCtrl.$render();
     }
 
     if (scope.item.editable !== false) {
