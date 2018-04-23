@@ -72,15 +72,6 @@ class WeeklySlotDirective implements angular.IDirective {
       ngModelCtrl.$render();
     }
 
-    element.on('mouseover', function () {
-      containerEl.addClass('slot-hover');
-    });
-
-    element.on('mouseleave', function () {
-      containerEl.removeClass('slot-hover');
-    });
-
-
     if (scope.item.editable !== false) {
       /**
        * Delete on right click on slot

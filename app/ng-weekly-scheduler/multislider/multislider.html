@@ -4,4 +4,7 @@
              ng-class="{disable: item.editable === false}"
              ng-repeat="schedule in item.schedules"
              ng-model="schedule"
-             ng-model-options="{ updateOn: 'default blur' }"></weekly-slot>
+             ng-model-options="{ updateOn: 'default blur' }"
+             ng-mouseleave="onWeeklySlotMouseLeave()"
+             ng-mouseover="onWeeklySlotMouseOver()"
+></weekly-slot>

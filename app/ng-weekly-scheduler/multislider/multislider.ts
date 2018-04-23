@@ -65,6 +65,14 @@ class MultiSliderDirective implements angular.IDirective {
         addSlot(start, end);
       }
     });
+
+    scope.onWeeklySlotMouseOver = function() {
+      element.addClass('slot-hover');
+    }
+
+    scope.onWeeklySlotMouseLeave = function() {
+      element.removeClass('slot-hover');
+    }
   }
 
   static Factory() {
