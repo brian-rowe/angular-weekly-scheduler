@@ -73,9 +73,6 @@ class WeeklySlotDirective implements angular.IDirective {
     }
 
     if (scope.item.editable !== false) {
-      /**
-       * Delete on right click on slot
-       */
       scope.deleteSelf = function () {
         containerEl.removeClass('dragging');
         containerEl.removeClass('slot-hover');
@@ -164,7 +161,6 @@ class WeeklySlotDirective implements angular.IDirective {
     ngModelCtrl.$parsers.push((ui) => {
       ngModelCtrl.$modelValue.start = ui.start;
       ngModelCtrl.$modelValue.end = ui.end;
-      //$log.debug('PARSER :', ngModelCtrl.$modelValue.$$hashKey, index, scope.$index, ngModelCtrl.$modelValue);
       schedulerCtrl.on.change(index, scope.$index, ngModelCtrl.$modelValue);
       return ngModelCtrl.$modelValue;
     });
@@ -178,7 +174,6 @@ class WeeklySlotDirective implements angular.IDirective {
         width: (ui.end - ui.start) / minutes * 100 + '%'
       };
 
-      //$log.debug('RENDER :', index, scope.$index, css);
       element.css(css);
     };
 
