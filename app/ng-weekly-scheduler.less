@@ -1,5 +1,11 @@
 @handleWidth: 10px;
+@headerRowHeight: 15px;
+@rightBorder: 1px solid #ddd;
 @rowHeight: 28px;
+
+.weekly-schedule-border {
+  border-right: @rightBorder;
+}
 
 .scheduler {
   background: #fff;
@@ -14,13 +20,13 @@
   }
 
   .labels {
-    border-right: 1px solid #ddd;
+    .weekly-schedule-border;
     display: block;
     float: left;
     text-align: center;
 
     .srow {
-      border-bottom: 1px solid #ddd;
+      .weekly-schedule-border;
       padding: 0 5px;
     }
   }
@@ -37,10 +43,19 @@
   }
 
   .timestamps {
+    height: @headerRowHeight;
+    font-size: 0.6em;
+    font-weight: bold;
+    text-transform: uppercase;
+
     .grid-container {
       div {
-        border-right: 1px solid #eee;
+        .weekly-schedule-border;
         cursor: pointer;
+        height: @headerRowHeight;
+        line-height: @headerRowHeight;
+        padding-left: 2px;
+        text-align: left;
 
         &:hover {
           background-color: #f0f0f0; 
