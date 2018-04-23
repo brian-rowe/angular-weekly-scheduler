@@ -1,14 +1,15 @@
 <div class="slot ghost" ng-click="onHoverElementClick()" ng-show="item.editable !== false && (!schedulerCtrl.config.monoSchedule || !item.schedules.length)">{{schedulerCtrl.config.labels.addNew || 'Add New'}}</div>
 
 <weekly-slot class="slot"
-             ng-class="{disable: item.editable === false}"
-             ng-repeat="schedule in item.schedules"
+             item="multiSliderCtrl.item"
+             ng-class="{disable: multiSliderCtrl.item.editable === false}"
+             ng-repeat="schedule in multiSliderCtrl.item.schedules"
              ng-model="schedule"
              ng-model-options="{ updateOn: 'default blur' }"
-             ng-mouseleave="onWeeklySlotMouseLeave()"
-             ng-mouseover="onWeeklySlotMouseOver()"
+             ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
+             ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
              ng-style="{
-                left: getSlotLeft(schedule),
-                width: getSlotWidth(schedule) 
+                left: multiSliderCtrl.getSlotLeft(schedule),
+                width: multiSliderCtrl.getSlotWidth(schedule) 
              }"
 ></weekly-slot>

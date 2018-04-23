@@ -4,6 +4,12 @@ class WeeklySlotDirective implements angular.IDirective {
 
   restrict = 'E';
   require = ['^weeklyScheduler', 'ngModel'];
+
+  scope = {
+    schedule: '=ngModel',
+    item: '='
+  };
+
   templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';
 
   link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ctrls) => {
