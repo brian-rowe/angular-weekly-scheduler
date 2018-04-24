@@ -19,7 +19,7 @@ function mouseScroll(el, delta) {
     e.stopPropagation();
 
     if (isCtrl) {
-      var style = el.firstChild.style, currentWidth = parseInt(style.width);
+      var style = el.querySelector('.schedule-area').style, currentWidth = parseInt(style.width);
       if ((e.wheelDelta || e.detail) > 0) {
         style.width = (currentWidth + 2 * delta) + '%';
       } else {
