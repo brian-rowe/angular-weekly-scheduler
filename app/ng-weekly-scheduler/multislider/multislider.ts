@@ -17,27 +17,17 @@ class MultiSliderController implements angular.IComponentController {
 
   public element: Element;
   public config: IWeeklySchedulerConfig;
-  public defaultNewScheduleSize: number = 60; // minutes
   public item: IWeeklySchedulerItem<number>;
-  public size?: number;
-
-  $onInit() {
-    if (this.size) {
-      this.defaultNewScheduleSize = this.size;
-    }
-  }
+  public size: number = 60; // minutes
 
   $postLink() {
     this.$hoverElement = angular.element(this.$element.find('div')[0]);
-    let hoverElementWidth = this.valToPixel(this.defaultNewScheduleSize);
 
-    this.$hoverElement.css({
-      width: `${hoverElementWidth}px`
-    });
+    this.setHoverElementWidth();
 
     this.$element.on('mousemove', (e) => {
       var elOffX = this.getElementOffsetX(this.$element);
-      var left = e.pageX - elOffX - hoverElementWidth / 2;
+      var left = e.pageX - elOffX - this.$hoverElement[0].clientWidth / 2;
       var snapped = this.valToPixel(this.pixelToVal(left));
 
       this.$hoverElement.css({
@@ -85,7 +75,7 @@ class MultiSliderController implements angular.IComponentController {
       var hoverElOffX = this.getElementOffsetX(this.$hoverElement) - elOffX;
       
       var start = this.pixelToVal(hoverElOffX);
-      var end = start + this.defaultNewScheduleSize;
+      var end = start + this.size;
 
       this.addSlot(start, end);
     }
@@ -97,6 +87,14 @@ class MultiSliderController implements angular.IComponentController {
 
   private onWeeklySlotMouseLeave() {
     this.$element.removeClass('slot-hover');
+  }
+
+  private setHoverElementWidth() {
+    let width = this.valToPixel(this.size);
+
+    this.$hoverElement.css({
+      width: `${width}px`
+    });
   }
 
   public valToPixel(val: number) {
