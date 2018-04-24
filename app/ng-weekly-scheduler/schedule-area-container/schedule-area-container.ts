@@ -21,8 +21,6 @@ class ScheduleAreaContainerController implements angular.IComponentController {
 
         this.$scope.$on(WeeklySchedulerEvents.CLICK_ON_A_CELL, (e, data) => {
             this.zoomService.zoomInACell(element, e, data);
-
-            this.$scope.$broadcast(WeeklySchedulerEvents.ZOOMED_IN);
         });
     }
 }

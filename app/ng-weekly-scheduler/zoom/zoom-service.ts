@@ -1,6 +1,13 @@
 class ZoomService {
     static $name = 'zoomService';
 
+    static $inject = ['$rootScope'];
+
+    private constructor(
+        private $rootScope: angular.IRootScopeService
+    ) {
+    }
+
     public zoomInACell(element: any, event: angular.IAngularEvent, data: any) {
         let elementCount = data.nbElements;
         let i = data.idx;
@@ -30,6 +37,8 @@ class ZoomService {
           // Sizes of cells in a line could different (especially the first one)
           element.scrollLeft = scheduleAreaWidthPx * (percentWidthFromBeginning / 100) - gutterSize;
         }
+
+        this.$rootScope.$broadcast(WeeklySchedulerEvents.ZOOMED_IN);
     }
 }
 
