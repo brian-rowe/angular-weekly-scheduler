@@ -1,9 +1,34 @@
+class WeeklySlotController implements angular.IController {
+  static $name = 'weeklySlotController';
+  static $controllerAs = 'weeklySlotCtrl';
+
+  static $inject = [
+    '$element',
+    '$scope'
+  ];
+
+  private item: IWeeklySchedulerItem<number>;
+  private itemIndex: number;
+
+  private schedule: IWeeklySchedulerRange<number>;
+  private scheduleIndex: number;
+
+  constructor(
+    private $element: angular.IAugmentedJQuery,
+    private $scope: angular.IScope
+  ) {
+  }
+}
+
 /** @internal */
 class WeeklySlotDirective implements angular.IDirective {
   static $name = 'weeklySlot';
 
+  controller = WeeklySlotController.$name;
+  controllerAs = WeeklySlotController.$controllerAs;
+
   restrict = 'E';
-  require = ['^weeklyScheduler', 'ngModel'];
+  require = ['^weeklyScheduler', 'ngModel', 'weeklySlot'];
 
   scope = {
     schedule: '=ngModel',
@@ -16,7 +41,8 @@ class WeeklySlotDirective implements angular.IDirective {
 
   link = (scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ctrls) => {
     var schedulerCtrl: WeeklySchedulerController = ctrls[0],
-        ngModelCtrl: angular.INgModelController = ctrls[1];
+        ngModelCtrl: angular.INgModelController = ctrls[1],
+        weeklySlotCtrl: WeeklySlotController = ctrls[2];
 
     var conf = schedulerCtrl.config;
     var containerEl = element.parent();
@@ -192,4 +218,5 @@ class WeeklySlotDirective implements angular.IDirective {
 
 angular
   .module('weeklyScheduler')
+  .controller(WeeklySlotController.$name, WeeklySlotController)
   .directive(WeeklySlotDirective.$name, WeeklySlotDirective.Factory());
