@@ -1,6 +1,6 @@
-<div title="{{schedule.start | timeOfDay}} - {{schedule.end | timeOfDay}}">
-  <div class="handle left" ondrag="resize" ondragstart="startResizeStart" ondragstop="endDrag" handle></div>
-  <div ondrag="drag" ondragstart="startDrag" ondragstop="endDrag" handle>{{schedule.start | timeOfDay}} - {{schedule.end | timeOfDay}}</div>
-  <div class="handle right" ondrag="resize" ondragstart="startResizeEnd" ondragstop="endDrag" handle></div>
-  <div class="remove" ng-click="deleteSelf()" ng-if="::canRemove()"><span class="glyphicon glyphicon-remove"></span></div>
+<div title="{{weeklySlotCtrl.schedule.start | timeOfDay}} - {{weeklySlotCtrl.schedule.end | timeOfDay}}">
+  <div class="handle left" ondrag="weeklySlotCtrl.resize" ondragstart="weeklySlotCtrl.startResizeStart" ondragstop="weeklySlotCtrl.endDrag" handle></div>
+  <div ondrag="drag" ondragstart="weeklySlotCtrl.startDrag" ondragstop="weeklySlotCtrl.endDrag" handle>{{schedule.start | timeOfDay}} - {{schedule.end | timeOfDay}}</div>
+  <div class="handle right" ondrag="weeklySlotCtrl.resize" ondragstart="weeklySlotCtrl.startResizeEnd" ondragstop="weeklySlotCtrl.endDrag" handle></div>
+  <div class="remove" ng-click="weeklySlotCtrl.deleteSelf()" ng-if="::weeklySlotCtrl.canRemove()"><span class="glyphicon glyphicon-remove"></span></div>
 </div>
