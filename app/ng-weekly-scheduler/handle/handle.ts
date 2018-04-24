@@ -4,9 +4,9 @@ class HandleDirective implements angular.IDirective {
   restrict = 'A';
 
   scope = {
-    ondrag: '=',
-    ondragstop: '=',
-    ondragstart: '='
+    ondrag: '&',
+    ondragstop: '&',
+    ondragstart: '&'
   };
 
   link = (scope, element: angular.IAugmentedJQuery) => {
@@ -22,15 +22,16 @@ class HandleDirective implements angular.IDirective {
       $document.on('mousemove', mousemove);
       $document.on('mouseup', mouseup);
 
-      if (scope.ondragstart) {
+      if (angular.isFunction(scope.ondragstart)) {
         scope.ondragstart();
       }
     });
 
     function mousemove(event) {
       var delta = event.pageX - x;
-      if (scope.ondrag) {
-        scope.ondrag(delta);
+
+      if (angular.isFunction(scope.ondrag)) {
+        scope.ondrag({ delta: delta });
       }
     }
 
@@ -38,7 +39,7 @@ class HandleDirective implements angular.IDirective {
       $document.unbind('mousemove', mousemove);
       $document.unbind('mouseup', mouseup);
 
-      if (scope.ondragstop) {
+      if (angular.isFunction(scope.ondragstop)) {
         scope.ondragstop();
       }
     }

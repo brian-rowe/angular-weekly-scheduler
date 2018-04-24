@@ -185,7 +185,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startResizeEnd() {
-    this.resizeDirectionIsStart = true;
+    this.resizeDirectionIsStart = false;
     this.startDrag();
   }
 
