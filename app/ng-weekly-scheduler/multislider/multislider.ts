@@ -4,11 +4,13 @@ class MultiSliderController implements angular.IComponentController {
   static $controllerAs = 'multiSliderCtrl';
 
   static $inject = [
-    '$element'
+    '$element',
+    '$scope'
   ];
 
   constructor(
-    private $element: angular.IAugmentedJQuery
+    private $element: angular.IAugmentedJQuery,
+    private $scope: angular.IScope
   ) {
     this.element = this.$element[0];
   }
@@ -19,6 +21,12 @@ class MultiSliderController implements angular.IComponentController {
   public config: IWeeklySchedulerConfig;
   public item: IWeeklySchedulerItem<number>;
   public size: number = 60; // minutes
+
+  $onInit() {
+    this.$scope.$on(WeeklySchedulerEvents.ZOOMED_IN, () => {
+      this.setHoverElementWidth();
+    });
+  }
 
   $postLink() {
     this.$hoverElement = angular.element(this.$element.find('div')[0]);
