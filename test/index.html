@@ -3,34 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Angularjs weekly scheduler demo</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="testStyles.css">
 </head>
 <body class="container-fluid" ng-app="demoApp">
-
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">dijit</a>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#demo">Demo <span class="sr-only">(current)</span></a></li>
-        <li><a href="#run">Run @ Home</a></li>
-        <li><a href="#install">Install</a></li>
-        <li><a href="#features">Features</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
 <div class="row" ng-controller="DemoController as demo">
   <div class="col-xs-10 col-xs-offset-1">
@@ -52,7 +27,7 @@
 
     <div>
       <code>$scope.model</code>
-      <pre ng-bind="model | json" style="max-height: 200px;"></pre>
+      <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
     </div>
 
     <weekly-scheduler class="scheduler"
