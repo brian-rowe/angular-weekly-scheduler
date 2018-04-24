@@ -4,12 +4,14 @@ class ScheduleAreaContainerController implements angular.IComponentController {
     static $inject = [
         '$element',
         '$scope',
+        'scrollService',
         'zoomService'
     ];
 
     constructor(
         private $element: angular.IAugmentedJQuery,
         private $scope: angular.IScope,
+        private scrollService: ScrollService,
         private zoomService: ZoomService
     ) {
     }
@@ -17,7 +19,7 @@ class ScheduleAreaContainerController implements angular.IComponentController {
     $postLink() {
         let element = this.$element[0]; // grab plain js, not jqlite
 
-        mouseScroll(element, 20);
+        this.scrollService.hijackScroll(element, 20);
 
         this.$scope.$on(WeeklySchedulerEvents.CLICK_ON_A_CELL, (e, data) => {
             this.zoomService.zoomInACell(element, e, data);
