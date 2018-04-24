@@ -149,12 +149,18 @@ multi-slider {
       }
     }
 
+    .middle {
+      overflow: hidden;
+      padding: 0 (@handleWidth * 1.5);
+      text-overflow: ellipsis;
+    }
+
     .handle {
       &.left:hover, &.right:hover {
         opacity: 0.3;
       }
 
-      .left {
+      &.left {
         left: 0;
       }
 
