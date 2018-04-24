@@ -3,12 +3,14 @@ class ScheduleAreaContainerController implements angular.IComponentController {
 
     static $inject = [
         '$element',
-        '$scope'
+        '$scope',
+        'zoomService'
     ];
 
     constructor(
         private $element: angular.IAugmentedJQuery,
-        private $scope: angular.IScope
+        private $scope: angular.IScope,
+        private zoomService: ZoomService
     ) {
     }
 
@@ -18,7 +20,7 @@ class ScheduleAreaContainerController implements angular.IComponentController {
         mouseScroll(element, 20);
 
         this.$scope.$on(WeeklySchedulerEvents.CLICK_ON_A_CELL, (e, data) => {
-            zoomInACell(element, e, data);
+            this.zoomService.zoomInACell(element, e, data);
 
             this.$scope.$broadcast(WeeklySchedulerEvents.ZOOMED_IN);
         });
