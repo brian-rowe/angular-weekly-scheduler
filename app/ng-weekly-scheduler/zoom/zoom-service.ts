@@ -10,9 +10,17 @@ class ZoomService {
 
     private selector: string = '.schedule-area';
 
+    private broadcastZoomedInEvent() {
+        this.$rootScope.$broadcast(WeeklySchedulerEvents.ZOOMED_IN);
+    }
+
+    private broadcastZoomedOutEvent() {
+        this.$rootScope.$broadcast(WeeklySchedulerEvents.ZOOMED_OUT);
+    }
+
     public resetZoom(element: any) {
         element.querySelector(this.selector).style.width = '100%';
-        this.$rootScope.$broadcast(WeeklySchedulerEvents.ZOOMED_OUT);
+        this.broadcastZoomedOutEvent();
     }
 
     public zoomInACell(element: any, event: angular.IAngularEvent, data: any) {
@@ -45,7 +53,7 @@ class ZoomService {
           element.scrollLeft = scheduleAreaWidthPx * (percentWidthFromBeginning / 100) - gutterSize;
         }
 
-        this.$rootScope.$broadcast(WeeklySchedulerEvents.ZOOMED_IN);
+        this.broadcastZoomedInEvent();
     }
 }
 
