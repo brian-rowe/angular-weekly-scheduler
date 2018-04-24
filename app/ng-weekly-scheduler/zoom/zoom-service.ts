@@ -8,6 +8,13 @@ class ZoomService {
     ) {
     }
 
+    private selector: string = '.schedule-area';
+
+    public resetZoom(element: any) {
+        element.querySelector(this.selector).style.width = '100%';
+        this.$rootScope.$broadcast(WeeklySchedulerEvents.ZOOMED_OUT);
+    }
+
     public zoomInACell(element: any, event: angular.IAngularEvent, data: any) {
         let elementCount = data.nbElements;
         let i = data.idx;
@@ -28,7 +35,7 @@ class ZoomService {
         var scheduleAreaWidthPx = elementCount * boxWidth;
         var scheduleAreaWidthPercent = (scheduleAreaWidthPx / containerWidth) * 100;
 
-        element.querySelector('.schedule-area').style.width = scheduleAreaWidthPercent + '%';
+        element.querySelector(this.selector).style.width = scheduleAreaWidthPercent + '%';
 
         if (percentWidthFromBeginning === undefined) {
           // All cells of a line have the same size

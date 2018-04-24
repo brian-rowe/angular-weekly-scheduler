@@ -26,6 +26,10 @@ class MultiSliderController implements angular.IComponentController {
     this.$scope.$on(WeeklySchedulerEvents.ZOOMED_IN, () => {
       this.setHoverElementWidth();
     });
+
+    this.$scope.$on(WeeklySchedulerEvents.ZOOMED_OUT, () => {
+      this.setHoverElementWidth();
+    })
   }
 
   $postLink() {
