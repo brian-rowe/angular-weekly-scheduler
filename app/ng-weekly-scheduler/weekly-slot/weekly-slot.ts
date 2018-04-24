@@ -45,7 +45,7 @@ class WeeklySlotController implements angular.IComponentController {
       return this.ngModelCtrl.$modelValue;
     });
 
-    this.$scope.$on('weeklySchedulerLocaleChanged', () => {
+    this.$scope.$on(WeeklySchedulerEvents.LOCALE_CHANGED, () => {
       // Simple change object reference so that ngModel triggers formatting & rendering
       this.schedule = angular.copy(this.schedule);
     });

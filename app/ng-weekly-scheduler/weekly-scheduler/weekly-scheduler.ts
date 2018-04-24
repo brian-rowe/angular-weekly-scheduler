@@ -39,7 +39,7 @@ class WeeklySchedulerController implements angular.IController {
     /**
      * Listen to $locale change (brought by external module weeklySchedulerI18N)
      */
-    this.$scope.$on('weeklySchedulerLocaleChanged', function (e, labels) {
+    this.$scope.$on(WeeklySchedulerEvents.LOCALE_CHANGED, function (e, labels) {
       if (this.config) {
         this.config.labels = labels;
       }
