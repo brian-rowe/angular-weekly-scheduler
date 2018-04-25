@@ -9,7 +9,9 @@
 
 .scheduler {
   background: #fff;
-  border: @border;
+  border-left: @border;
+  border-right: @border;
+  border-top: @border;
   display: block;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 10px;
@@ -35,10 +37,6 @@
     position: relative;
     height: @rowHeight;
     line-height: @rowHeight;
-
-    &:last-child {
-      border-bottom: none;
-    }
   }
 
   .timestamps {
