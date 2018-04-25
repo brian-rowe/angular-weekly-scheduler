@@ -4,18 +4,20 @@ angular.module('weeklySchedulerI18N')
   .provider('weeklySchedulerLocaleService', ['tmhDynamicLocaleProvider', function (tmhDynamicLocaleProvider) {
 
     var defaultConfig: any /* TODO type */ = {
-      doys: {'de-de': 4, 'en-gb': 4, 'en-us': 6, 'fr-fr': 4},
+      doys: { 'de-de': 4, 'en-gb': 4, 'en-us': 6, 'fr-fr': 4 },
       lang: {
-        'de-de': {addNew: 'Hinzufügen'},
-        'en-gb': {addNew: 'Add'},
-        'en-us': {addNew: 'Add', meridiem: (hours) => {
-          if (hours > 11) {
-            return 'p';
-          } else  {
-            return 'a';
+        'de-de': { addNew: 'Hinzufügen' },
+        'en-gb': { addNew: 'Add' },
+        'en-us': {
+          addNew: 'Add', meridiem: (hours) => {
+            if (hours > 11) {
+              return 'P';
+            } else {
+              return 'A';
+            }
           }
-        }},
-        'fr-fr': {addNew: 'Ajouter'}
+        },
+        'fr-fr': { addNew: 'Ajouter' }
       }
     };
 
@@ -47,7 +49,7 @@ angular.module('weeklySchedulerI18N')
 
       // We just need few moment local information
       function getMomentLocale(key) {
-        return {
+        let locale: any = {
           id: key,
           locale: {
             week: {
@@ -57,6 +59,14 @@ angular.module('weeklySchedulerI18N')
             }
           }
         };
+
+        let meridiem = defaultConfig.lang[key].meridiem;
+
+        if (angular.isFunction(meridiem)) {
+          locale.locale.meridiem = meridiem;
+        }
+
+        return locale;
       }
 
       $rootScope.$on('$localeChangeSuccess', function () {
