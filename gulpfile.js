@@ -136,7 +136,15 @@ gulp.task('start', function () {
     return runSequence('server', 'watchCSS');
 });
 
-gulp.task('copyTestFiles', function () {
+gulp.task('copyTestCSS', function() {
+    return gulp.src([
+        "dist/ng-weekly-scheduler.css"
+    ])
+    .pipe(concat('testStyles.css'))
+    .pipe(gulp.dest(testFolder));
+});
+
+gulp.task('copyTestFiles', ['copyTestCSS'], function () {
     let vendorJavascript = gulp.src([
         'angular/angular.js',
         'angular-mocks/angular-mocks.js',
@@ -165,14 +173,11 @@ gulp.task('copyTestFiles', function () {
         .pipe(concat('testScripts.js'))
         .pipe(gulp.dest(testFolder));
 
-    let styles = gulp.src([
-        "dist/ng-weekly-scheduler.css"
-    ])
-    .pipe(concat('testStyles.css'))
+    
 
-    return merge([vendorJavascript, vendorLocales, indexPage, casJavascript, styles]).pipe(gulp.dest(testFolder));
+    return merge([vendorJavascript, vendorLocales, indexPage, casJavascript]).pipe(gulp.dest(testFolder));
 });
 
 gulp.task('watchCSS', function() {
-    gulp.watch(lessGlob, function() { runSequence('buildCSS', 'copyTestFiles'); });
+    gulp.watch(lessGlob, function() { runSequence('buildCSS', 'copyTestCSS'); });
 });
