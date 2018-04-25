@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Angularjs weekly scheduler demo</title>
   <link rel="stylesheet" href="testStyles.css">
 </head>
+
 <body class="container-fluid" ng-app="demoApp">
 
-<div class="row" ng-controller="DemoController as demo">
-  <div class="col-xs-10 col-xs-offset-1">
-
+  <div class="row" ng-controller="DemoController as demo">
     <h1>Angularjs weekly scheduler</h1>
 
     <h2 id="demo" class="page-header">1. Demo</h2>
@@ -30,11 +30,8 @@
       <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
     </div>
 
-    <weekly-scheduler class="scheduler"
-                      items="model.items"
-                      on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)"
-                      on-delete="demo.doSomething()"
-                      options="model.options">
+    <weekly-scheduler class="scheduler" items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)"
+      on-delete="demo.doSomething()" options="model.options">
     </weekly-scheduler>
 
     <h2 id="run" class="page-header">2. Run @ Home</h2>
@@ -46,15 +43,21 @@ git clone https://github.com/brian-rowe/angular-weekly-scheduler.git && cd angul
 npm install
 </pre>
 
-    <p>Then run <code>gulp server</code></p>
+    <p>Then run
+      <code>gulp server</code>
+    </p>
 
     <h2 id="install" class="page-header">3. Install</h2>
 
-    <p><code>bower install --save angular-weekly-scheduler</code></p>
+    <p>
+      <code>bower install --save angular-weekly-scheduler</code>
+    </p>
 
     <p>or</p>
 
-    <p><code>npm install --save angular-weekly-scheduler</code></p>
+    <p>
+      <code>npm install --save angular-weekly-scheduler</code>
+    </p>
 
     <p>Add the scripts and css to your index.html. The angular-locale_xx-xx.js file is your locale file</p>
 
@@ -79,19 +82,26 @@ npm install
 
     <h3>Keyboard shortcuts</h3>
     <ul>
-      <li>Use <kbd>mouse wheel</kbd> on schedule to scroll left and right</li>
-      <li>Use <kbd>ctrl + mouse wheel</kbd> to zoom in and out the schedule</li>
+      <li>Use
+        <kbd>mouse wheel</kbd> on schedule to scroll left and right</li>
+      <li>Use
+        <kbd>ctrl + mouse wheel</kbd> to zoom in and out the schedule</li>
     </ul>
 
     <hr>
 
     <h3>Schedules</h3>
     <div class="alert alert-info alert-dismissible fade in" role="alert">
-      This directive uses <a href="http://momentjs.com/"><strong>MomentJS</strong></a> to position items and calculate localized calendar weeks.
+      This directive uses
+      <a href="http://momentjs.com/">
+        <strong>MomentJS</strong>
+      </a> to position items and calculate localized calendar weeks.
     </div>
     <p>Drag the time bar start, end and body to quickly change your schedule period.</p>
-    <p>You can set an <code>editable</code> variable on each item, that will be used to disable item edition if <code>false</code>.
-    <pre>
+    <p>You can set an
+      <code>editable</code> variable on each item, that will be used to disable item edition if
+      <code>false</code>.
+      <pre>
 "items": [{
   "label": "Item 1",
   "editable": false,
@@ -102,27 +112,36 @@ npm install
     }
   ]
 }, ...]</pre>
-    <hr>
+      <hr>
 
-    <h3>Transclusion</h3>
-    <p>This directive is using <code>ng-transclude</code> so that everything in <code>&lt;weekly-scheduler&gt;</code>
-      element will be treated as the labelling object of one item.</p>
+      <h3>Transclusion</h3>
+      <p>This directive is using
+        <code>ng-transclude</code> so that everything in
+        <code>&lt;weekly-scheduler&gt;</code> element will be treated as the labelling object of one item.</p>
 
-    <pre>&lt;div class="srow"&gt;\{\{::$index + 1\}\}. \{\{ item.label \}\}&lt;/div&gt;</pre>
+      <pre>&lt;div class="srow"&gt;\{\{::$index + 1\}\}. \{\{ item.label \}\}&lt;/div&gt;</pre>
 
-    <p>On transcluded item label, the scope contains <code>item</code> attribute name containing each item model and regular <code>ng-repeat</code> scope attributes</p>
+      <p>On transcluded item label, the scope contains
+        <code>item</code> attribute name containing each item model and regular
+        <code>ng-repeat</code> scope attributes</p>
 
-    <h3>Internationalisation (i18n)</h3>
-    <p>I18N uses <a href="https://github.com/lgalfaso/angular-dynamic-locale">dynamic angular <code>$locale</code> change</a>.</p>
-    <p>An i18n module named <code>weeklySchedulerI18N</code> is optionally registered when using the core module :</p>
+      <h3>Internationalisation (i18n)</h3>
+      <p>I18N uses
+        <a href="https://github.com/lgalfaso/angular-dynamic-locale">dynamic angular
+          <code>$locale</code> change</a>.</p>
+      <p>An i18n module named
+        <code>weeklySchedulerI18N</code> is optionally registered when using the core module :</p>
 
-    <pre>angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])</pre>
+      <pre>angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])</pre>
 
-    <p>If present, core directive will retrieve current <code>$locale</code> and use it to translate labelling elements.</p>
+      <p>If present, core directive will retrieve current
+        <code>$locale</code> and use it to translate labelling elements.</p>
 
-    <p>You can add more <code>$locale</code> translation using provider <code>weeklySchedulerLocaleServiceProvider</code>:</p>
+      <p>You can add more
+        <code>$locale</code> translation using provider
+        <code>weeklySchedulerLocaleServiceProvider</code>:</p>
 
-    <pre>
+      <pre>
 angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])
   .config(['weeklySchedulerLocaleServiceProvider', function (localeServiceProvider) {
     localeServiceProvider.configure({
@@ -132,21 +151,23 @@ angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])
     });
   }])</pre>
 
-    <h3>Animation</h3>
-    <p>
-      You can add animation to the weekly scheduler directive easily by importing angular module <code>ngAnimate</code>.
-      <br>Your application could for instance use :
-    </p>
+      <h3>Animation</h3>
+      <p>
+        You can add animation to the weekly scheduler directive easily by importing angular module
+        <code>ngAnimate</code>.
+        <br>Your application could for instance use :
+      </p>
 
-    <pre>angular.module('demoApp', ['ngAnimate', 'weeklyScheduler'])</pre>
+      <pre>angular.module('demoApp', ['ngAnimate', 'weeklyScheduler'])</pre>
 
-    <p>Don't forget to add the angular-animate javascript file to your Single Page App <code>index.html</code>.</p>
+      <p>Don't forget to add the angular-animate javascript file to your Single Page App
+        <code>index.html</code>.</p>
 
-    <pre>&lt;script src="/vendor/angular-animate/angular-animate.js"&gt;&lt;/script&gt;</pre>
+      <pre>&lt;script src="/vendor/angular-animate/angular-animate.js"&gt;&lt;/script&gt;</pre>
 
-    <p>Styling can be changed to whatever you like. This is an example of fading-in items entering the DOM :</p>
+      <p>Styling can be changed to whatever you like. This is an example of fading-in items entering the DOM :</p>
 
-    <pre>.schedule-animate {
+      <pre>.schedule-animate {
   transition: opacity 200ms ease-out;
 }
 .schedule-animate.ng-enter, .schedule-animate.ng-hide-remove {
@@ -157,12 +178,12 @@ angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])
   opacity: 1;
 }</pre>
 
-    <p>You should see your scheduler items fading in!</p>
+      <p>You should see your scheduler items fading in!</p>
   </div>
-</div>
 
-<script src="testVendorScripts.js"></script>
-<script src="testScripts.js"></script>
+  <script src="testVendorScripts.js"></script>
+  <script src="testScripts.js"></script>
 
 </body>
+
 </html>
