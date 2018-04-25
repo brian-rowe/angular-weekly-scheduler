@@ -8,8 +8,7 @@ class IntervalGridDirective implements angular.IDirective {
     private doGrid(scope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, config: IWeeklySchedulerConfig) {
         // Calculate interval width distribution
         var tickcount = config.intervalCount;
-        var ticksize = 100 / tickcount;
-        var gridItemEl = GRID_TEMPLATE.clone().css({width: ticksize + '%'});
+        var gridItemEl = GRID_TEMPLATE.clone();
 
         // Clean element
         element.empty();
@@ -20,6 +19,9 @@ class IntervalGridDirective implements angular.IDirective {
           if (this.shouldAddBorder(i, tickcount, config)) {
               child.addClass('weekly-schedule-border');
           }
+
+          // necessary so the table styles calculate a width
+          child.html('&nbsp;');
 
           element.append(child);
         }

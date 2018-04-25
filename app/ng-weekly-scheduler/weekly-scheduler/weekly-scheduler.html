@@ -12,8 +12,8 @@
       <hourly-grid></hourly-grid>
     </div>
 
-    <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items">
-      <interval-grid class="grid-container striped" no-text></interval-grid>
+    <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items">
+      <hourly-grid no-text></hourly-grid>
       <multi-slider config="schedulerCtrl.config" item="item" index="$index"></multi-slider>
     </div>
   </div>

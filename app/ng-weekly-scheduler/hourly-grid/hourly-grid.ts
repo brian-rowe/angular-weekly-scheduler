@@ -18,7 +18,7 @@ class HourlyGridDirective implements angular.IDirective {
         var i;
         // Calculate hour width distribution
         var tickcount = config.hourCount;
-        var gridItemEl = GRID_TEMPLATE.clone(); //.css({width: ticksize + '%'});
+        var gridItemEl = GRID_TEMPLATE.clone();
   
         // Clean element
         element.empty();

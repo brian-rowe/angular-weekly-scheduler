@@ -44,6 +44,17 @@
     line-height: @rowHeight;
   }
 
+  .calendar {
+    display: table;
+    table-layout: fixed;
+    position: relative;
+    width: 100%;
+  }
+
+  .striped div:nth-child(even) {
+    background: #fafafa;
+  }
+
   .timestamps {
     display: table;
     font-size: 0.6em;
@@ -81,7 +92,16 @@ hourly-grid {
   div {
     border-right: @border;
     display: table-cell;
+    height: 100%;
     padding: 0 @offset;
+  }
+}
+
+interval-grid {
+  display: table-row;
+
+  div {
+    display: table-cell;
   }
 }
 
@@ -90,9 +110,7 @@ multi-slider {
   @bottomOffset: @offset;
   @lineHeight: @rowHeight - @topOffset - @bottomOffset;
 
-  position: relative;
-  display: block;
-  height: @rowHeight;
+  display: inline;
   overflow: hidden;
 
   .slot {
@@ -237,10 +255,6 @@ multi-slider {
     height: 100%;
     overflow: hidden;
     text-align: center;
-  }
-
-  &.striped div:nth-child(even) {
-    background: #fafafa;
   }
 }
 
