@@ -24,11 +24,11 @@ class MultiSliderController implements angular.IComponentController {
 
   $onInit() {
     this.$scope.$on(WeeklySchedulerEvents.ZOOMED_IN, () => {
-      this.setHoverElementWidth();
+      this.resize();
     });
 
     this.$scope.$on(WeeklySchedulerEvents.ZOOMED_OUT, () => {
-      this.setHoverElementWidth();
+      this.resize();
     })
   }
 
@@ -113,6 +113,10 @@ class MultiSliderController implements angular.IComponentController {
 
   private onWeeklySlotMouseLeave() {
     this.$element.removeClass('slot-hover');
+  }
+
+  private resize() {
+    this.setHoverElementWidth();
   }
 
   private setHoverElementWidth() {
