@@ -42,11 +42,9 @@ class MultiSliderController implements angular.IComponentController {
       var left = e.pageX - elOffX - this.$hoverElement[0].clientWidth / 2;
 
       var val = this.pixelToVal(left);
-      var underlyingInterval: HTMLElement = this.$element.parent()[0].querySelector(`[rel='${val}']`);
-      var snapped = underlyingInterval.offsetLeft;
 
       this.$hoverElement.css({
-        left: snapped + 'px'
+        left: this.getUnderlyingIntervalOffsetLeft(val) 
       });
     });
   }
@@ -77,11 +75,20 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private getSlotLeft(schedule: IWeeklySchedulerRange<number>) {
-    return schedule.start / this.config.maxValue * 100 + '%';
+    return this.getUnderlyingIntervalOffsetLeft(schedule.start);
   }
   
   private getSlotWidth(schedule: IWeeklySchedulerRange<number>) {
     return (schedule.end - schedule.start) / this.config.maxValue * 100 + '%';
+  }
+
+  private getUnderlyingInterval(val: number): HTMLElement {
+    // Slightly hacky but does the job. TODO ?
+    return this.$element.parent()[0].querySelector(`[rel='${val}']`);
+  }
+
+  private getUnderlyingIntervalOffsetLeft(val: number): string {
+    return this.getUnderlyingInterval(val).offsetLeft + 'px';
   }
 
   private onHoverElementClick(event) {
