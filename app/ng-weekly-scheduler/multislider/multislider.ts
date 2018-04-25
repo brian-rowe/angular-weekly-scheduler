@@ -23,6 +23,10 @@ class MultiSliderController implements angular.IComponentController {
   public size: number = 60; // minutes
 
   $onInit() {
+    this.$scope.$on(WeeklySchedulerEvents.RESIZED, () => {
+      this.resize();
+    });
+
     this.$scope.$on(WeeklySchedulerEvents.ZOOMED_IN, () => {
       this.resize();
     });
