@@ -55,6 +55,22 @@ class ZoomService {
 
         this.broadcastZoomedInEvent();
     }
+
+    public zoomByScroll(element: any, event: WheelEvent, delta: number) {
+        let style = element.querySelector('.schedule-area').style;
+        let currentWidth = parseInt(style.width, 10);
+
+        if ((event.wheelDelta || event.detail) > 0) {
+            style.width = (currentWidth + 2 * delta) + '%';
+
+            this.broadcastZoomedInEvent();
+        } else {
+            let width = currentWidth - 2 * delta;
+            style.width = (width > 100 ? width : 100) + '%';
+
+            this.broadcastZoomedOutEvent();
+        }
+    }
 }
 
 angular
