@@ -47,8 +47,7 @@ gulp.task("devbuild", function () {
         "buildTemplateCache",
         "concat",
         "copyTestFiles",
-        "minify",
-        "cleanDist"
+        "minify"
     );
 });
 
@@ -117,12 +116,6 @@ gulp.task("incrementVersion", function () {
     });
 
     return increment.task();
-});
-
-gulp.task("cleanDist", function () {
-    return gulp
-        .src(templateModulePath)
-        .pipe(clean());
 });
 
 gulp.task("server", function () {
