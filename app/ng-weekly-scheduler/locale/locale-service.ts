@@ -8,7 +8,13 @@ angular.module('weeklySchedulerI18N')
       lang: {
         'de-de': {addNew: 'Hinzufügen'},
         'en-gb': {addNew: 'Add'},
-        'en-us': {addNew: 'Add'},
+        'en-us': {addNew: 'Add', meridiem: (hours) => {
+          if (hours > 11) {
+            return 'p';
+          } else  {
+            return 'a';
+          }
+        }},
         'fr-fr': {addNew: 'Ajouter'}
       }
     };

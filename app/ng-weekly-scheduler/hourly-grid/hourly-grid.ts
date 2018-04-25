@@ -30,7 +30,7 @@ class HourlyGridDirective implements angular.IDirective {
             this.handleClickEvent(child, tickcount, i, scope);
 
             let currentHour = i % 12;
-            let meridiem = i >= 12 ? 'pm' : 'am';
+            let meridiem = i >= 12 ? 'p' : 'a';
 
             child.text(`${currentHour || '12'}${meridiem}`);
           } else {
