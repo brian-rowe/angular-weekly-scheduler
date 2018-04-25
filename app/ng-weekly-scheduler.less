@@ -65,23 +65,11 @@
     text-transform: uppercase;
     width: 100%;
 
-    .grid-container {
-      div {
-        .weekly-schedule-border;
-        cursor: pointer;
-        height: @headerRowHeight;
-        line-height: @headerRowHeight;
-        padding-left: 2px;
-        text-align: left;
-
-        &:hover {
-          background-color: #f0f0f0; 
-        }
-
-        &:last-child {
-          border-right: none;
-        }
-      }
+    div {
+      border-width: 2px;
+      overflow: hidden;
+      padding: 0 5px;
+      text-overflow: clip;
     }
   }
 }
@@ -91,9 +79,9 @@ hourly-grid {
 
   div {
     border-right: @border;
+    box-sizing: border-box;
     display: table-cell;
     height: 100%;
-    padding: 0 @offset;
   }
 }
 

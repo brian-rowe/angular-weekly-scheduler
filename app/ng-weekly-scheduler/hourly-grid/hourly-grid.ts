@@ -33,6 +33,20 @@ class HourlyGridDirective implements angular.IDirective {
             let meridiem = i >= 12 ? 'pm' : 'am';
 
             child.text(`${currentHour || '12'}${meridiem}`);
+          } else {
+            // no-text ones will get striped intervals
+            child.addClass('striped');
+            
+            let numIntervalsInTick = 60 / config.interval;
+            let intervalPercentage = 100 / numIntervalsInTick;
+
+            for (let j = 0; j < numIntervalsInTick; j++) {
+                let grandChild = GRID_TEMPLATE.clone();
+                grandChild.css('display', 'block');
+                grandChild.css('float', 'left');
+                grandChild.css('width', intervalPercentage + '%');
+                child.append(grandChild);
+            }
           }
 
           element.append(child);
