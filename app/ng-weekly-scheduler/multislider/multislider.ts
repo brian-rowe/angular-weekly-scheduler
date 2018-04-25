@@ -41,7 +41,9 @@ class MultiSliderController implements angular.IComponentController {
       var elOffX = this.getElementOffsetX(this.$element);
       var left = e.pageX - elOffX - this.$hoverElement[0].clientWidth / 2;
 
-      var snapped = this.valToPixel(this.pixelToVal(left));
+      var val = this.pixelToVal(left);
+      var underlyingInterval: HTMLElement = this.$element.parent()[0].querySelector(`[rel='${val}']`);
+      var snapped = underlyingInterval.offsetLeft;
 
       this.$hoverElement.css({
         left: snapped + 'px'

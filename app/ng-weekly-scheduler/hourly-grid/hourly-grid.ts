@@ -42,6 +42,7 @@ class HourlyGridDirective implements angular.IDirective {
 
             for (let j = 0; j < numIntervalsInTick; j++) {
                 let grandChild = GRID_TEMPLATE.clone();
+                grandChild.attr('rel', ((i * numIntervalsInTick) + j) * config.interval);
                 grandChild.addClass('interval');
                 grandChild.css('width', intervalPercentage + '%');
                 child.append(grandChild);
