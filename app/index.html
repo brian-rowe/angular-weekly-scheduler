@@ -10,7 +10,7 @@
 <body class="container-fluid" ng-app="demoApp">
 
   <div class="row" ng-controller="DemoController as demo">
-    <h1>Angularjs weekly scheduler</h1>
+    <!-- <h1>Angularjs weekly scheduler</h1>
 
     <h2 id="demo" class="page-header">1. Demo</h2>
 
@@ -28,12 +28,12 @@
     <div>
       <code>$scope.model</code>
       <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
-    </div>
+    </div> -->
 
     <weekly-scheduler class="scheduler" items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)"
       on-delete="demo.doSomething()" options="model.options">
     </weekly-scheduler>
-
+<!-- 
     <h2 id="run" class="page-header">2. Run @ Home</h2>
 
     <p>Run the demo @home with few steps (prerequisite git & node V0.10+ & npm installed):</p>
@@ -179,7 +179,7 @@ angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])
 }</pre>
 
       <p>You should see your scheduler items fading in!</p>
-  </div>
+  </div> -->
 
   <script src="testVendorScripts.js"></script>
   <script src="testScripts.js"></script>
