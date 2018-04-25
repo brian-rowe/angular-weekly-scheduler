@@ -23,8 +23,11 @@ var compiledJavascriptPath = distFolder + '/' + compiledJavascriptFilename;
 
 var lessGlob = 'app/**/*.less';
 
+var templateGlob = 'app/**/*.html';
 var templateModuleFilename = 'templates.js';
 var templateModulePath = distFolder + '/' + templateModuleFilename;
+
+var typescriptGlob = 'app/**/*.ts';
 
 gulp.task("default", ["build"]);
 
@@ -41,7 +44,7 @@ gulp.task("devbuild", function () {
         "clean",
         "buildCSS",
         "buildJS",
-        "copyHtml",
+        "buildTemplateCache",
         "concat",
         "copyTestFiles",
         "minify",
@@ -68,9 +71,9 @@ gulp.task("buildJS", function () {
     ]);
 });
 
-gulp.task("copyHtml", function () {
+gulp.task("buildTemplateCache", function () {
     return gulp
-        .src("./app/**/*.html")
+        .src(templateGlob)
         .pipe(sort())
         .pipe(htmlmin({
             collapseWhitespace: true,
@@ -133,18 +136,24 @@ gulp.task("server", function () {
 });
 
 gulp.task('start', function () {
-    return runSequence('server', 'watchCSS');
+    return runSequence('server', ['watchCSS', 'watchTS', 'watchTemplates']);
 });
 
-gulp.task('copyTestCSS', function() {
+gulp.task('copyTestCSS', function () {
     return gulp.src([
         "dist/ng-weekly-scheduler.css"
     ])
-    .pipe(concat('testStyles.css'))
-    .pipe(gulp.dest(testFolder));
+        .pipe(concat('testStyles.css'))
+        .pipe(gulp.dest(testFolder));
 });
 
-gulp.task('copyTestFiles', ['copyTestCSS'], function () {
+gulp.task('copyTestJS', function () {
+    return gulp.src([compiledJavascriptPath])
+        .pipe(concat('testScripts.js'))
+        .pipe(gulp.dest(testFolder));
+});
+
+gulp.task('copyTestFiles', ['copyTestCSS', 'copyTestJS'], function () {
     let vendorJavascript = gulp.src([
         'angular/angular.js',
         'angular-mocks/angular-mocks.js',
@@ -153,10 +162,10 @@ gulp.task('copyTestFiles', ['copyTestCSS'], function () {
         'moment/moment.js',
         'moment-duration-format/lib/moment-duration-format.js'
     ],
-    {
-        cwd: 'node_modules'
-    })
-    .pipe(concat('testVendorScripts.js'));
+        {
+            cwd: 'node_modules'
+        })
+        .pipe(concat('testVendorScripts.js'));
 
     // Locale files need to be separate
     let vendorLocales = gulp.src([
@@ -164,20 +173,22 @@ gulp.task('copyTestFiles', ['copyTestCSS'], function () {
         'angular-i18n/angular-locale_en-gb.js',
         'angular-i18n/angular-locale_fr-fr.js',
         'angular-i18n/angular-locale_de-de.js',
-        'angular-i18n/angular-locale_es-es.js' 
+        'angular-i18n/angular-locale_es-es.js'
     ], { cwd: 'node_modules' });
 
     let indexPage = gulp.src('app/index.html');
 
-    let casJavascript = gulp.src([compiledJavascriptPath])
-        .pipe(concat('testScripts.js'))
-        .pipe(gulp.dest(testFolder));
-
-    
-
-    return merge([vendorJavascript, vendorLocales, indexPage, casJavascript]).pipe(gulp.dest(testFolder));
+    return merge([vendorJavascript, vendorLocales, indexPage]).pipe(gulp.dest(testFolder));
 });
 
-gulp.task('watchCSS', function() {
-    gulp.watch(lessGlob, function() { runSequence('buildCSS', 'copyTestCSS'); });
+gulp.task('watchCSS', function () {
+    gulp.watch(lessGlob, function () { runSequence('buildCSS', 'copyTestCSS'); });
+});
+
+gulp.task('watchTS', function () {
+    gulp.watch(typescriptGlob, function () { runSequence('buildJS', 'concat', 'copyTestJS'); });
+});
+
+gulp.task('watchTemplates', function () {
+    gulp.watch(templateGlob, function () { runSequence('buildTemplateCache', 'concat', 'copyTestJS'); });
 });

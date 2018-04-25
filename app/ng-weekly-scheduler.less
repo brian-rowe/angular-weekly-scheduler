@@ -21,7 +21,11 @@
     display: block;
     float: left;
     text-align: center;
-
+    
+    .dummy {
+      height: @headerRowHeight;
+    }
+    
     .srow {
       padding: 0 5px;
     }
@@ -40,15 +44,20 @@
   }
 
   .timestamps {
-    height: @headerRowHeight;
+    display: table;
     font-size: 0.6em;
     font-weight: bold;
+    table-layout: fixed;
     text-transform: uppercase;
+    width: 100%;
 
     .grid-container {
+      display: table-row-group;
+
       div {
         .weekly-schedule-border;
         cursor: pointer;
+        display: table-cell;
         height: @headerRowHeight;
         line-height: @headerRowHeight;
         padding-left: 2px;
