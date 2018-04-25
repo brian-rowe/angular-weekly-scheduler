@@ -79,7 +79,7 @@ class MultiSliderController implements angular.IComponentController {
   }
   
   private getSlotWidth(schedule: IWeeklySchedulerRange<number>) {
-    return (schedule.end - schedule.start) / this.config.maxValue * 100 + '%';
+    return this.valToPixel(schedule.end - schedule.start) + 'px';
   }
 
   private getUnderlyingInterval(val: number): HTMLElement {
