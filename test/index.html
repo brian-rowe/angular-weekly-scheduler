@@ -10,7 +10,7 @@
 <body class="container-fluid" ng-app="demoApp">
 
   <div class="row" ng-controller="DemoController as demo">
-    <!-- <h1>Angularjs weekly scheduler</h1>
+    <h1>Angularjs weekly scheduler</h1>
 
     <h2 id="demo" class="page-header">1. Demo</h2>
 
@@ -28,7 +28,7 @@
     <div>
       <code>$scope.model</code>
       <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
-    </div> -->
+    </div>
 
     <weekly-scheduler class="scheduler" items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)"
       on-delete="demo.doSomething()" options="model.options">
