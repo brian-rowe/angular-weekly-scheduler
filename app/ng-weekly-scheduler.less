@@ -98,8 +98,10 @@ multi-slider {
   @bottomOffset: @offset;
   @lineHeight: @rowHeight - @topOffset - @bottomOffset;
 
-  display: table-row;
-  overflow: hidden;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  width: 100%;
 
   .slot {
     position: absolute;
