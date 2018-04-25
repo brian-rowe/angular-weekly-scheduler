@@ -9,7 +9,7 @@ class IntervalGridDirective implements angular.IDirective {
         // Calculate interval width distribution
         var tickcount = config.intervalCount;
         var ticksize = 100 / tickcount;
-        var gridItemEl = GRID_TEMPLATE.css({width: ticksize + '%'});
+        var gridItemEl = GRID_TEMPLATE.clone().css({width: ticksize + '%'});
 
         // Clean element
         element.empty();
