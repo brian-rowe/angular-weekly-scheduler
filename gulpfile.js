@@ -12,6 +12,7 @@ var gulp = require("gulp"),
     ts = require("gulp-typescript"),
     minify = require("gulp-minify"),
     increment = require("gulp-increment-version"),
+    watch = require("gulp-watch"),
     webserver = require("gulp-webserver");
 
 var distFolder = 'dist';
@@ -19,6 +20,8 @@ var testFolder = 'test';
 
 var compiledJavascriptFilename = 'ng-weekly-scheduler.js';
 var compiledJavascriptPath = distFolder + '/' + compiledJavascriptFilename;
+
+var lessGlob = 'app/**/*.less';
 
 var templateModuleFilename = 'templates.js';
 var templateModulePath = distFolder + '/' + templateModuleFilename;
@@ -99,7 +102,7 @@ gulp.task("minify", function () {
 });
 
 gulp.task("buildCSS", function () {
-    return gulp.src('app/**/*.less')
+    return gulp.src(lessGlob)
         .pipe(less())
         .pipe(cleanCSS())
         .pipe(gulp.dest(distFolder))
@@ -127,6 +130,10 @@ gulp.task("server", function () {
             livereload: true,
             open: true
         }));
+});
+
+gulp.task('start', function () {
+    return runSequence('server', 'watchCSS');
 });
 
 gulp.task('copyTestFiles', function () {
@@ -164,4 +171,8 @@ gulp.task('copyTestFiles', function () {
     .pipe(concat('testStyles.css'))
 
     return merge([vendorJavascript, vendorLocales, indexPage, casJavascript, styles]).pipe(gulp.dest(testFolder));
+});
+
+gulp.task('watchCSS', function() {
+    gulp.watch(lessGlob, function() { runSequence('buildCSS', 'copyTestFiles'); });
 });

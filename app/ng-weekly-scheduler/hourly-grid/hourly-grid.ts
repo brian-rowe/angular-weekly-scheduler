@@ -23,7 +23,7 @@ class HourlyGridDirective implements angular.IDirective {
   
         // Clean element
         element.empty();
-  
+
         for (i = 0; i < tickcount; i++) {
           var child = gridItemEl.clone();
 
