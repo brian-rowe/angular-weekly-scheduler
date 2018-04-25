@@ -117,6 +117,12 @@ class MultiSliderController implements angular.IComponentController {
 
   private resize() {
     this.setHoverElementWidth();
+
+    /* Since we have changed the width of the element via plain js +
+     * the ng-styles for the individual slots are computed in this controller,
+     * we must call $apply() manually so they will all update their positions to match the zoom level
+     */
+    this.$scope.$apply();
   }
 
   private setHoverElementWidth() {
