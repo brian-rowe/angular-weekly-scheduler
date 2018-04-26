@@ -1,5 +1,5 @@
-import * as moment from 'moment';
+import * as _moment from 'moment';
 
 export as namespace moment;
 
-export = moment;
+export = _moment;
