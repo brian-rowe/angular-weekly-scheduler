@@ -11,7 +11,7 @@
              ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
              ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
              ng-style="{
-                 left: multiSliderCtrl.getSlotLeft(schedule),
+                 left: multiSliderCtrl.getSlotLeft(schedule.start),
                  right: multiSliderCtrl.getSlotRight(schedule.end) 
              }"
              schedule-index="$index"
