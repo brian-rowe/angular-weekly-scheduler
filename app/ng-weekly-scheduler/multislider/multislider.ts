@@ -155,11 +155,6 @@ class MultiSliderController implements angular.IComponentController {
     this.$scope.$apply();
   }
 
-  public valToPixel(val: number) {
-    let percent = val / this.config.intervalCount / this.config.interval;
-    return Math.floor(percent * this.element.clientWidth + 0.5);
-  }
-
   public pixelToVal(pixel: number) {
     var percent = pixel / this.element.clientWidth;
     return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
