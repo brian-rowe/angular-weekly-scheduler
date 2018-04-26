@@ -15,17 +15,6 @@
     <h2 id="demo" class="page-header">1. Demo</h2>
 
     <div>
-      <label for="language">Choose your language:</label>
-      <select id="language" ng-model="model.locale" ng-change="demo.onLocaleChange()">
-        <option value="en-us" selected>us</option>
-        <option value="en-gb" selected>gb</option>
-        <option value="fr-fr">fr</option>
-        <option value="de-de">de</option>
-        <option value="es-es">es (lang customized in demo)</option>
-      </select>
-    </div>
-
-    <div>
       <code>$scope.model</code>
       <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
     </div>
@@ -59,16 +48,15 @@ npm install
       <code>npm install --save angular-weekly-scheduler</code>
     </p>
 
-    <p>Add the scripts and css to your index.html. The angular-locale_xx-xx.js file is your locale file</p>
+    <p>Add the scripts and css to your index.html.</p>
 
     <pre>
 &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"&gt;
 &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.10/angular.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.4.10/angular-locale_xx-xx.js"&gt;&lt;/script&gt;
 &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"&gt;&lt;/script&gt;
 
 &lt;!-- The library to replace with your local copy of ng-weekly-scheduler --&gt;
-&lt;script src="https://github.com/fmaturel/angular-weekly-scheduler/blob/master/dist/js/ng-weekly-scheduler.js"&gt;&lt;/script&gt;</pre>
+&lt;script src="https://github.com/brian-rowe/angular-weekly-scheduler/blob/master/dist/js/ng-weekly-scheduler.js"&gt;&lt;/script&gt;</pre>
 
     <p>Add dependency to timeline your angular module: weeklyScheduler.</p>
 
@@ -124,32 +112,6 @@ npm install
       <p>On transcluded item label, the scope contains
         <code>item</code> attribute name containing each item model and regular
         <code>ng-repeat</code> scope attributes</p>
-
-      <h3>Internationalisation (i18n)</h3>
-      <p>I18N uses
-        <a href="https://github.com/lgalfaso/angular-dynamic-locale">dynamic angular
-          <code>$locale</code> change</a>.</p>
-      <p>An i18n module named
-        <code>weeklySchedulerI18N</code> is optionally registered when using the core module :</p>
-
-      <pre>angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])</pre>
-
-      <p>If present, core directive will retrieve current
-        <code>$locale</code> and use it to translate labelling elements.</p>
-
-      <p>You can add more
-        <code>$locale</code> translation using provider
-        <code>weeklySchedulerLocaleServiceProvider</code>:</p>
-
-      <pre>
-angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])
-  .config(['weeklySchedulerLocaleServiceProvider', function (localeServiceProvider) {
-    localeServiceProvider.configure({
-      doys: {'es-es': 4},
-      lang: {'es-es': {}},
-      localeLocationPattern: '/vendor/angular-i18n/angular-locale_{{locale}}.js'
-    });
-  }])</pre>
 
       <h3>Animation</h3>
       <p>
