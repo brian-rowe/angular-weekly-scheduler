@@ -1,3 +1,4 @@
+/** @internal */
 class ResizeService {
     static $name = 'resizeService';
 

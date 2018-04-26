@@ -1,3 +1,4 @@
+/** @internal */
 class ScheduleAreaContainerController implements angular.IComponentController {
     static $name = 'scheduleAreaContainerController';
 
@@ -27,6 +28,7 @@ class ScheduleAreaContainerController implements angular.IComponentController {
     }
 }
 
+/** @internal */
 class ScheduleAreaContainerComponent implements angular.IComponentOptions {
     static $name = 'scheduleAreaContainer';
 

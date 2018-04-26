@@ -1,3 +1,4 @@
+/** @internal */
 class ScrollService {
     static $name = 'scrollService';
 

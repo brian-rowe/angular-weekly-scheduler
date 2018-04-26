@@ -1,3 +1,4 @@
+/** @internal */
 class ZoomService {
     static $name = 'zoomService';
 

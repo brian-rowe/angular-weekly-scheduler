@@ -1,3 +1,4 @@
+/** @internal */
 class WeeklySlotController implements angular.IComponentController {
   static $name = 'weeklySlotController';
   static $controllerAs = 'weeklySlotCtrl';
