@@ -1,5 +1,3 @@
-declare var moment;
-
 angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'])
 
   .config(['weeklySchedulerLocaleServiceProvider', function (localeServiceProvider) {
