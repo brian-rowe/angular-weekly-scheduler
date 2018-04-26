@@ -1,4 +1,4 @@
-angular.module('demoApp', ['ngAnimate', 'weeklyScheduler'])
+angular.module('demoApp', ['weeklyScheduler'])
   .controller('DemoController', ['$scope', '$timeout', '$log',
     function ($scope, $timeout, $log) {
 
