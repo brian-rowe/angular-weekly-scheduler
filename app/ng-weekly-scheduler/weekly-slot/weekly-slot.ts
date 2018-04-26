@@ -190,7 +190,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public updateSelf(update: IWeeklySchedulerRange<number>) {
-    this.ngModelCtrl.$setViewValue(update);
+    this.schedule.start = update.start;
+    this.schedule.end = update.end;
+
+    this.ngModelCtrl.$setViewValue(this.schedule);
 
     this.schedulerCtrl.onChange({
       itemIndex: this.itemIndex,
