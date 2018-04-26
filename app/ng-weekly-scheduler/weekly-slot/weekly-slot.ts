@@ -38,13 +38,6 @@ class WeeklySlotController implements angular.IComponentController {
 
     this.mergeOverlaps();
 
-    this.ngModelCtrl.$parsers.push((ui) => {
-      this.ngModelCtrl.$modelValue.start = ui.start;
-      this.ngModelCtrl.$modelValue.end = ui.end;
-
-      return this.ngModelCtrl.$modelValue;
-    });
-
     this.$scope.$on(WeeklySchedulerEvents.LOCALE_CHANGED, () => {
       // Simple change object reference so that ngModel triggers formatting & rendering
       this.schedule = angular.copy(this.schedule);
