@@ -6,10 +6,10 @@ angular.module('weeklySchedulerI18N')
     var defaultConfig: any /* TODO type */ = {
       doys: { 'de-de': 4, 'en-gb': 4, 'en-us': 6, 'fr-fr': 4 },
       lang: {
-        'de-de': { addNew: 'Hinzufügen' },
-        'en-gb': { addNew: 'Add' },
+        'de-de': { },
+        'en-gb': { },
         'en-us': {
-          addNew: 'Add', meridiem: (hours) => {
+          meridiem: (hours) => {
             if (hours > 11) {
               return 'P';
             } else {
@@ -17,7 +17,7 @@ angular.module('weeklySchedulerI18N')
             }
           }
         },
-        'fr-fr': { addNew: 'Ajouter' }
+        'fr-fr': { }
       }
     };
 

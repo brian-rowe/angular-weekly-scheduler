@@ -5,7 +5,7 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'
   .config(['weeklySchedulerLocaleServiceProvider', function (localeServiceProvider) {
     localeServiceProvider.configure({
       doys: { 'es-es': 4 },
-      lang: { 'es-es': { addNew: 'Añadir' } },
+      lang: { 'es-es': { } },
       localeLocationPattern: '/angular-locale_{{locale}}.js'
     });
   }])
