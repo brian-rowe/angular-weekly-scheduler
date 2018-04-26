@@ -83,7 +83,10 @@ class MultiSliderController implements angular.IComponentController {
   private compensateForBorder(elem: HTMLElement, val: number) {
     let borderWidth = this.$window.getComputedStyle(elem).getPropertyValue('border-right');
 
-    return elem.offsetLeft - parseInt(borderWidth, 10);
+    // There are double borders at the beginnings and ends of hours, so we don't need to worry about it
+    let onHour = val % 60 === 0;
+
+    return onHour ? elem.offsetLeft : elem.offsetLeft - parseInt(borderWidth, 10);
   }
 
   private getSlotLeft(schedule: IWeeklySchedulerRange<number>) {
