@@ -56,11 +56,4 @@ angular.module('demoApp', ['ngAnimate', 'weeklyScheduler'])
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
         console.log('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
       };
-
-      this.onLocaleChange = function () {
-        $log.debug('The locale is changing to', $scope.model.locale);
-        localeService.set($scope.model.locale).then(function ($locale) {
-          $log.debug('The locale changed to', $locale.id);
-        });
-      };
     }]);
