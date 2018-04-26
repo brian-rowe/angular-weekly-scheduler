@@ -5,12 +5,14 @@ class MultiSliderController implements angular.IComponentController {
 
   static $inject = [
     '$element',
-    '$scope'
+    '$scope',
+    '$window'
   ];
 
   constructor(
     private $element: angular.IAugmentedJQuery,
-    private $scope: angular.IScope
+    private $scope: angular.IScope,
+    private $window: angular.IWindowService
   ) {
     this.element = this.$element[0];
   }
@@ -78,6 +80,12 @@ class MultiSliderController implements angular.IComponentController {
     return elem[0].getBoundingClientRect().left;
   }
 
+  private compensateForBorder(elem: HTMLElement, val: number) {
+    let borderWidth = this.$window.getComputedStyle(elem).getPropertyValue('border-right');
+
+    return elem.offsetLeft - parseInt(borderWidth, 10);
+  }
+
   private getSlotLeft(schedule: IWeeklySchedulerRange<number>) {
     return this.getUnderlyingIntervalOffsetLeft(schedule.start);
   }
@@ -103,7 +111,9 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private getUnderlyingIntervalOffsetLeft(val: number): string {
-    return this.getUnderlyingInterval(val).offsetLeft + 'px';
+    var intervalElement: HTMLElement = this.getUnderlyingInterval(val);
+
+    return this.compensateForBorder(intervalElement, val) + 'px';
   }
 
   private onHoverElementClick(event) {
