@@ -4,13 +4,11 @@ class WeeklySchedulerController implements angular.IController {
   static $name = 'weeklySchedulerController';
 
   static $inject = [
-    '$scope',
-    'weeklySchedulerLocaleService'
+    '$scope'
   ];
 
   constructor(
-    private $scope: angular.IScope,
-    private localeService: any  /* TODO type */
+    private $scope: angular.IScope
   ) {
   }
 
@@ -26,8 +24,6 @@ class WeeklySchedulerController implements angular.IController {
   public $modelChangeListeners: ((config: IWeeklySchedulerConfig) => void)[];
 
   $onInit() {
-    this.defaultOptions.labels = this.localeService.getLang();
-
     // Will hang our model change listeners
     this.$modelChangeListeners = [];
 
@@ -35,16 +31,6 @@ class WeeklySchedulerController implements angular.IController {
      * Watch the model items
      */
     this.$scope.$watchCollection(() => this.items, (newItems) => this.onModelChange(newItems));
-
-    /**
-     * Listen to $locale change (brought by external module weeklySchedulerI18N)
-     */
-    this.$scope.$on(WeeklySchedulerEvents.LOCALE_CHANGED, (e, labels) => {
-      if (this.config) {
-        this.config.labels = labels;
-      }
-      this.onModelChange(angular.copy(this.items, []));
-    });
   }
 
   /**

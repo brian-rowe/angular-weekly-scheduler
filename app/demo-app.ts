@@ -1,18 +1,8 @@
-angular.module('demoApp', ['ngAnimate', 'weeklyScheduler', 'weeklySchedulerI18N'])
-
-  .config(['weeklySchedulerLocaleServiceProvider', function (localeServiceProvider) {
-    localeServiceProvider.configure({
-      doys: { 'es-es': 4 },
-      lang: { 'es-es': { } },
-      localeLocationPattern: '/angular-locale_{{locale}}.js'
-    });
-  }])
-
-  .controller('DemoController', ['$scope', '$timeout', 'weeklySchedulerLocaleService', '$log',
-    function ($scope, $timeout, localeService, $log) {
+angular.module('demoApp', ['ngAnimate', 'weeklyScheduler'])
+  .controller('DemoController', ['$scope', '$timeout', '$log',
+    function ($scope, $timeout, $log) {
 
       $scope.model = {
-        locale: localeService.$locale.id,
         options: {/*monoSchedule: true*/ },
         items: [
           {

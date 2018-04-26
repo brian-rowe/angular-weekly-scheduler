@@ -125,32 +125,6 @@ npm install
         <code>item</code> attribute name containing each item model and regular
         <code>ng-repeat</code> scope attributes</p>
 
-      <h3>Internationalisation (i18n)</h3>
-      <p>I18N uses
-        <a href="https://github.com/lgalfaso/angular-dynamic-locale">dynamic angular
-          <code>$locale</code> change</a>.</p>
-      <p>An i18n module named
-        <code>weeklySchedulerI18N</code> is optionally registered when using the core module :</p>
-
-      <pre>angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])</pre>
-
-      <p>If present, core directive will retrieve current
-        <code>$locale</code> and use it to translate labelling elements.</p>
-
-      <p>You can add more
-        <code>$locale</code> translation using provider
-        <code>weeklySchedulerLocaleServiceProvider</code>:</p>
-
-      <pre>
-angular.module('demoApp', ['weeklyScheduler', 'weeklySchedulerI18N'])
-  .config(['weeklySchedulerLocaleServiceProvider', function (localeServiceProvider) {
-    localeServiceProvider.configure({
-      doys: {'es-es': 4},
-      lang: {'es-es': {}},
-      localeLocationPattern: '/vendor/angular-i18n/angular-locale_{{locale}}.js'
-    });
-  }])</pre>
-
       <h3>Animation</h3>
       <p>
         You can add animation to the weekly scheduler directive easily by importing angular module
