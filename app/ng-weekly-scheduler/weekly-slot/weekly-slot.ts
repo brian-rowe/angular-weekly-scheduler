@@ -198,7 +198,7 @@ class WeeklySlotController implements angular.IComponentController {
     this.schedulerCtrl.onChange({
       itemIndex: this.itemIndex,
       scheduleIndex: this.scheduleIndex,
-      scheduleValue: this.ngModelCtrl.$modelValue
+      scheduleValue: this.schedule
     });
   }
 }
