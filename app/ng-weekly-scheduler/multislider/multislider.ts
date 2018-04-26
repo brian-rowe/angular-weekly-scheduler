@@ -41,8 +41,6 @@ class MultiSliderController implements angular.IComponentController {
   $postLink() {
     this.$hoverElement = angular.element(this.$element.find('div')[0]);
 
-    this.setHoverElementWidth();
-
     this.$element.on('mousemove', (e) => {
       var elOffX = this.getElementOffsetX(this.$element);
       var left = e.pageX - elOffX - this.$hoverElement[0].clientWidth / 2;
@@ -50,7 +48,8 @@ class MultiSliderController implements angular.IComponentController {
       var val = this.pixelToVal(left);
 
       this.$hoverElement.css({
-        left: this.getUnderlyingIntervalOffsetLeft(val) 
+        left: this.getUnderlyingIntervalOffsetLeft(val),
+        right: this.getSlotRight(val + this.size)
       });
     });
   }
@@ -106,8 +105,17 @@ class MultiSliderController implements angular.IComponentController {
   
   private getUnderlyingInterval(val: number): HTMLElement {
     // Slightly hacky but does the job. TODO ?
+
+    // There is no interval to the left of the leftmost interval, so return that instead
     if (val < 0) {
       val = 0;
+    }
+
+    // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
+    let rightmost = this.config.maxValue - this.config.interval;
+
+    if (val > rightmost) {
+      val = rightmost;
     }
 
     return this.$element.parent()[0].querySelector(`[rel='${val}']`);
@@ -140,21 +148,11 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private resize() {
-    this.setHoverElementWidth();
-
     /* Since we have changed the width of the element via plain js +
      * the ng-styles for the individual slots are computed in this controller,
      * we must call $apply() manually so they will all update their positions to match the zoom level
      */
     this.$scope.$apply();
-  }
-
-  private setHoverElementWidth() {
-    let width = this.valToPixel(this.size);
-
-    this.$hoverElement.css({
-      width: `${width}px`
-    });
   }
 
   public valToPixel(val: number) {
