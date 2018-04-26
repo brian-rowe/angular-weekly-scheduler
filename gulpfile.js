@@ -15,19 +15,20 @@ var gulp = require("gulp"),
     watch = require("gulp-watch"),
     webserver = require("gulp-webserver");
 
+var srcFolder = 'app';
 var distFolder = 'dist';
 var testFolder = 'test';
 
 var compiledJavascriptFilename = 'ng-weekly-scheduler.js';
 var compiledJavascriptPath = distFolder + '/' + compiledJavascriptFilename;
 
-var lessGlob = 'app/**/*.less';
+var lessGlob = srcFolder + '/**/*.less';
 
-var templateGlob = 'app/**/*.html';
+var templateGlob = srcFolder + '/**/*.html';
 var templateModuleFilename = 'templates.js';
 var templateModulePath = distFolder + '/' + templateModuleFilename;
 
-var typescriptGlob = 'app/**/*.ts';
+var typescriptGlob = srcFolder + '/**/*.ts';
 
 gulp.task("default", ["build"]);
 
@@ -169,7 +170,7 @@ gulp.task('copyTestFiles', ['copyTestCSS', 'copyTestJS'], function () {
         'angular-i18n/angular-locale_es-es.js'
     ], { cwd: 'node_modules' });
 
-    let indexPage = gulp.src('app/index.html');
+    let indexPage = gulp.src(srcFolder + '/index.html');
 
     return merge([vendorJavascript, vendorLocales, indexPage]).pipe(gulp.dest(testFolder));
 });
