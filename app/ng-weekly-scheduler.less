@@ -3,6 +3,7 @@
 @headerRowHeight: 15px;
 @offset: 5px;
 @rowHeight: 28px;
+@stripeColor: #f6f6f6;
 
 .weekly-schedule-border {
   border-right: @border;
@@ -52,7 +53,7 @@
   }
 
   .striped div:nth-child(even) {
-    background: #fafafa;
+    background: @stripeColor;
   }
 
   .timestamps {
@@ -70,6 +71,11 @@
       overflow: hidden;
       padding: 0 5px;
       text-overflow: clip;
+
+      &:hover {
+        background-color: @stripeColor;
+        cursor: pointer;
+      }
     }
   }
 }
