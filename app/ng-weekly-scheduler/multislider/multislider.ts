@@ -94,7 +94,7 @@ class MultiSliderController implements angular.IComponentController {
     // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
     let underlyingInterval = this.getUnderlyingInterval(schedule.end - this.config.interval);
 
-    let offsetRight = underlyingInterval.offsetLeft + underlyingInterval.offsetWidth;
+    let offsetRight = this.compensateForBorder(underlyingInterval, schedule.end) + underlyingInterval.offsetWidth;
     let containerLeft = this.getElementOffsetX(this.$element)
     let containerRight = this.$element[0].getBoundingClientRect().right;
 
