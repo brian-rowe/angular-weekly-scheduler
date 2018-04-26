@@ -1,4 +1,4 @@
 interface IWeeklySchedulerRange<T> {
-    start: T;
-    end: T;
+    start: number;
+    end: number;
 }

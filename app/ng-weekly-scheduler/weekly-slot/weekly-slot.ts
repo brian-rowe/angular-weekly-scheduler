@@ -14,15 +14,15 @@ class WeeklySlotController implements angular.IComponentController {
   private $containerEl: angular.IAugmentedJQuery;
   private config: IWeeklySchedulerConfig;
 
-  private item: IWeeklySchedulerItem<number>;
+  private item: IWeeklySchedulerItem<any>;
   private itemIndex: number;
 
   private resizeDirectionIsStart: boolean = true;
 
-  private schedule: IWeeklySchedulerRange<number>;
+  private schedule: IWeeklySchedulerRange<any>;
   private scheduleIndex: number;
 
-  private valuesOnDragStart: IWeeklySchedulerRange<number>;
+  private valuesOnDragStart: IWeeklySchedulerRange<any>;
 
   constructor(
     private $element: angular.IAugmentedJQuery,
@@ -130,7 +130,7 @@ class WeeklySlotController implements angular.IComponentController {
     return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
   }
 
-  public removeSchedule(schedule: IWeeklySchedulerRange<number>) {
+  public removeSchedule(schedule: IWeeklySchedulerRange<any>) {
     let schedules = this.item.schedules;
 
     schedules.splice(schedules.indexOf(schedule), 1);
@@ -183,7 +183,7 @@ class WeeklySlotController implements angular.IComponentController {
     this.startDrag();
   }
 
-  public updateSelf(update: IWeeklySchedulerRange<number>) {
+  public updateSelf(update: IWeeklySchedulerRange<any>) {
     this.schedule.start = update.start;
     this.schedule.end = update.end;
 

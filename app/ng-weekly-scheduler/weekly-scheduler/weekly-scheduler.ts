@@ -17,7 +17,7 @@ class WeeklySchedulerController implements angular.IController {
   public config: IWeeklySchedulerConfig;
   public items: IWeeklySchedulerItem<number>[];
   public options: IWeeklySchedulerOptions;
-  public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<number> }) => void;
+  public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<any> }) => void;
 
   public defaultOptions: IWeeklySchedulerOptions = {
     monoSchedule: false,
