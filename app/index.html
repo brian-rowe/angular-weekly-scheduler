@@ -19,9 +19,11 @@
       <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
     </div>
 
-    <weekly-scheduler items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)"
-      on-delete="demo.doSomething()" options="model.options">
-    </weekly-scheduler>
+    <weekly-scheduler items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)" on-delete="demo.doSomething()" options="model.options"></weekly-scheduler>
+
+    <div class="dark">
+      <weekly-scheduler items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)" on-delete="demo.doSomething()" options="model.options"></weekly-scheduler>
+    </div>
 
     <h2 id="run" class="page-header">2. Run @ Home</h2>
 
