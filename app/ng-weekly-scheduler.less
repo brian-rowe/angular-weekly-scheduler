@@ -4,9 +4,10 @@
 @rowHeight: 28px;
 
 @backgroundColor: #fff;
+@darkBackgroundColor: #1c1c1c;
 
 @borderColor: #ddd;
-@darkBorderColor: #fff;
+@darkBorderColor: #777;
 
 @borderStyle: solid;
 @borderWidth: 1px;
@@ -17,13 +18,28 @@
 @border: @borderWidth @borderStyle @borderColor;
 @darkBorder: @borderWidth @borderStyle @darkBorderColor;
 
-.applyTheme(@backgroundColor, @borderColor) {
+.applyTheme(@backgroundColor, @borderColor, @stripeColor, @textColor) {
   @border: @borderWidth @borderStyle @borderColor;
 
   background: @backgroundColor;
   border-left: @border;
   border-right: @border;
   border-top: @border;
+  color: @textColor;
+
+  hourly-grid {
+    div {
+      border-right: @border;
+    }
+  }
+
+  .striped div:nth-child(even) {
+    background-color: @stripeColor;
+  }
+  
+  .srow {
+    border-bottom: @border;
+  }
 }
 
 .weekly-schedule-border {
@@ -31,19 +47,14 @@
 }
 
 weekly-scheduler {
-  .applyTheme(@backgroundColor, @borderColor);
+  .applyTheme(@backgroundColor, @borderColor, @stripeColor, @darkBackgroundColor);
   display: block;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 10px;
 
   /* The dark class will be applied by a client on the outside of this component */
   .dark & {
-    .applyTheme(@backgroundColor, @darkBorderColor);
-
-    .labels, .timestamps {
-      background-color: #1c1c1c;
-      color: @backgroundColor;
-    }
+    .applyTheme(@darkBackgroundColor, @darkBorderColor, @darkStripeColor, @backgroundColor);
   }
 
   .labels {
@@ -67,7 +78,6 @@ weekly-scheduler {
   }
 
   .srow {
-    border-bottom: @border;
     position: relative;
     height: @rowHeight;
     line-height: @rowHeight;
@@ -78,10 +88,6 @@ weekly-scheduler {
     table-layout: fixed;
     position: relative;
     width: 100%;
-  }
-
-  .striped div:nth-child(even) {
-    background: @stripeColor;
   }
 
   .timestamps {
@@ -112,7 +118,6 @@ hourly-grid {
   display: table-row;
 
   div {
-    border-right: @border;
     box-sizing: border-box;
     display: table-cell;
     height: 100%;
