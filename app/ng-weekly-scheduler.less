@@ -1,16 +1,29 @@
-@border: 1px solid #ddd;
 @handleWidth: 10px;
 @headerRowHeight: 15px;
 @offset: 5px;
 @rowHeight: 28px;
+
+@backgroundColor: #fff;
+@darkBackgroundColor: #000;
+
+@borderColor: #ddd;
+@darkBorderColor: #444;
+
+@borderStyle: solid;
+@borderWidth: 1px;
+
 @stripeColor: #f6f6f6;
+@darkStripeColor: #333;
+
+@border: @borderWidth @borderStyle @borderColor;
+@darkBorder: @borderWidth @borderStyle @darkBorderColor;
 
 .weekly-schedule-border {
   border-right: @border;
 }
 
 weekly-scheduler {
-  background: #fff;
+  background: @backgroundColor;
   border-left: @border;
   border-right: @border;
   border-top: @border;
@@ -18,9 +31,11 @@ weekly-scheduler {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 10px;
 
+  /* The dark class will be applied by a client on the outside of this component */
   .dark & {
     .labels, .timestamps {
       background-color: #1c1c1c;
+      color: @backgroundColor;
     }
   }
 
