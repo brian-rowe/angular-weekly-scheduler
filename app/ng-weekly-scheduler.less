@@ -4,10 +4,9 @@
 @rowHeight: 28px;
 
 @backgroundColor: #fff;
-@darkBackgroundColor: #000;
 
 @borderColor: #ddd;
-@darkBorderColor: #444;
+@darkBorderColor: #fff;
 
 @borderStyle: solid;
 @borderWidth: 1px;
@@ -18,21 +17,29 @@
 @border: @borderWidth @borderStyle @borderColor;
 @darkBorder: @borderWidth @borderStyle @darkBorderColor;
 
+.applyTheme(@backgroundColor, @borderColor) {
+  @border: @borderWidth @borderStyle @borderColor;
+
+  background: @backgroundColor;
+  border-left: @border;
+  border-right: @border;
+  border-top: @border;
+}
+
 .weekly-schedule-border {
   border-right: @border;
 }
 
 weekly-scheduler {
-  background: @backgroundColor;
-  border-left: @border;
-  border-right: @border;
-  border-top: @border;
+  .applyTheme(@backgroundColor, @borderColor);
   display: block;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 10px;
 
   /* The dark class will be applied by a client on the outside of this component */
   .dark & {
+    .applyTheme(@backgroundColor, @darkBorderColor);
+
     .labels, .timestamps {
       background-color: #1c1c1c;
       color: @backgroundColor;
@@ -165,7 +172,7 @@ multi-slider {
     -webkit-transition: background 0.1s ease-in;
     cursor: all-scroll;
     min-width: @handleWidth !important;
-    background: #4eb8d5;
+    background: #2e81e1;
 
     &.disable {
       cursor: not-allowed;
