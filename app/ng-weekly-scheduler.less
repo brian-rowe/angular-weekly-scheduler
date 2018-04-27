@@ -33,6 +33,10 @@
     }
   }
 
+  .labels {
+    border-right: @border;
+  }
+
   .striped div:nth-child(even) {
     background-color: @stripeColor;
   }
@@ -52,10 +56,6 @@
   }
 }
 
-.weekly-schedule-border {
-  border-right: @border;
-}
-
 weekly-scheduler {
   .applyTheme(@backgroundColor, @borderColor, @stripeColor, @darkBackgroundColor);
   display: block;
@@ -68,7 +68,6 @@ weekly-scheduler {
   }
 
   .labels {
-    .weekly-schedule-border;
     display: block;
     float: left;
     text-align: center;
