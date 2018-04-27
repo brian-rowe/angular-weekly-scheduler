@@ -40,6 +40,16 @@
   .srow {
     border-bottom: @border;
   }
+
+  .timestamps {
+    div {
+      border-width: 2px;
+
+      &:hover {
+        background-color: @stripeColor;
+      }
+    }
+  }
 }
 
 .weekly-schedule-border {
@@ -101,13 +111,11 @@ weekly-scheduler {
     width: 100%;
 
     div {
-      border-width: 2px;
       overflow: hidden;
       padding: 0 5px;
       text-overflow: clip;
 
       &:hover {
-        background-color: @stripeColor;
         cursor: pointer;
       }
     }
