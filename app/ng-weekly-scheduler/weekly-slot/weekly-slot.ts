@@ -128,10 +128,7 @@ class WeeklySlotController implements angular.IComponentController {
   public removeSchedule(schedule: IWeeklySchedulerRange<any>) {
     let schedules = this.item.schedules;
 
-    // While explicitly setting this.item.schedules is not necessary for the schedule to be removed,
-    // some clients may need to hook into the setter in order to be able to correctly update the source model
-    // this should be covered by tests -- TODO
-    this.item.schedules = schedules.splice(schedules.indexOf(schedule), 1);
+    schedules.splice(schedules.indexOf(schedule), 1);
   }
 
   public resize(pixel: number) {
