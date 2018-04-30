@@ -24,12 +24,7 @@ class WeeklySchedulerController implements angular.IController {
     monoSchedule: false
   };
 
-  public $modelChangeListeners: ((config: IWeeklySchedulerConfig) => void)[];
-
   $onInit() {
-    // Will hang our model change listeners
-    this.$modelChangeListeners = [];
-
     /**
      * Watch the model items
      */
@@ -84,11 +79,6 @@ class WeeklySchedulerController implements angular.IController {
 
       // Calculate configuration
       this.config = this.configure(this.options);
-
-      // Finally, run the sub directives listeners
-      this.$modelChangeListeners.forEach((listener) => {
-        listener(this.config);
-      });
     }
   }
 }

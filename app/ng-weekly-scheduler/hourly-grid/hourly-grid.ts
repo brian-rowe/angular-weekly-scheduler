@@ -59,10 +59,6 @@ class HourlyGridDirective implements angular.IDirective {
         if (schedulerCtrl.config) {
             this.doGrid(scope, element, attrs, schedulerCtrl.config);
         }
-
-        schedulerCtrl.$modelChangeListeners.push((newConfig) => {
-            this.doGrid(scope, element, attrs, newConfig);
-        });
     }
 
     static Factory() {
