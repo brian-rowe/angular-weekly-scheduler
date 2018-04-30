@@ -19,12 +19,14 @@ class MultiSliderController implements angular.IComponentController {
 
   private $hoverElement: angular.IAugmentedJQuery;
   private schedulerCtrl: WeeklySchedulerController;
+  
+  public isDragging: boolean = false;
 
   public element: Element;
   public config: IWeeklySchedulerConfig;
   public item: IWeeklySchedulerItem<number>;
   public size: number = 60; // minutes
-
+  
   $onInit() {
     this.$scope.$on(WeeklySchedulerEvents.RESIZED, () => {
       this.resize();

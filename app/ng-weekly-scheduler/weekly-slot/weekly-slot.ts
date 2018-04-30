@@ -46,7 +46,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public deleteSelf() {
-    this.$containerEl.removeClass('dragging');
+    this.multisliderCtrl.isDragging = false;
     this.$containerEl.removeClass('slot-hover');
 
     this.removeSchedule(this.schedule);
@@ -82,8 +82,10 @@ class WeeklySlotController implements angular.IComponentController {
       this.$containerEl.removeAttr('no-add');
     }, 500);
 
-    this.$scope.$apply(() => this.schedule.isActive = false);
-    this.$containerEl.removeClass('dragging');
+    this.$scope.$apply(() => {
+      this.multisliderCtrl.isDragging = false;
+      this.schedule.isActive = false
+    });
 
     this.mergeOverlaps();
   }
@@ -161,9 +163,11 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    this.$scope.$apply(() => this.schedule.isActive = true);
+    this.$scope.$apply(() => {
+      this.schedule.isActive = true;
+      this.multisliderCtrl.isDragging = true;
+    });
 
-    this.$containerEl.addClass('dragging');
     this.$containerEl.attr('no-add', 'true');
 
     this.valuesOnDragStart = {
