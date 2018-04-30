@@ -19,8 +19,16 @@ class ZoomService {
         this.$rootScope.$broadcast(WeeklySchedulerEvents.ZOOMED_OUT);
     }
 
+    private getCurrentZoomWidth(element: any): number {
+        return parseInt(element.querySelector(this.selector).style.width, 10);
+    }
+
+    private setZoomWidth(element: any, width: string): void {
+        element.querySelector(this.selector).style.width = width;
+    }
+
     public resetZoom(element: any) {
-        element.querySelector(this.selector).style.width = '100%';
+        this.setZoomWidth(element, '100%');
         this.broadcastZoomedOutEvent();
     }
 
@@ -45,7 +53,7 @@ class ZoomService {
         var scheduleAreaWidthPx = elementCount * boxWidth;
         var scheduleAreaWidthPercent = (scheduleAreaWidthPx / containerWidth) * 100;
 
-        element.querySelector(this.selector).style.width = scheduleAreaWidthPercent + '%';
+        this.setZoomWidth(element, scheduleAreaWidthPercent + '%');
 
         if (percentWidthFromBeginning === undefined) {
           // All cells of a line have the same size
@@ -59,17 +67,14 @@ class ZoomService {
     }
 
     public zoomByScroll(element: any, event: WheelEvent, delta: number) {
-        let style = element.querySelector(this.selector).style;
-        let currentWidth = parseInt(style.width, 10);
+        let currentWidth = this.getCurrentZoomWidth(element);
 
         if ((event.wheelDelta || event.detail) > 0) {
-            style.width = (currentWidth + 2 * delta) + '%';
-
+            this.setZoomWidth(element, (currentWidth + 2 * delta) + '%');
             this.broadcastZoomedInEvent();
         } else {
             let width = currentWidth - 2 * delta;
-            style.width = (width > 100 ? width : 100) + '%';
-
+            this.setZoomWidth(element, (width > 100 ? width : 100) + '%');
             this.broadcastZoomedOutEvent();
         }
     }
