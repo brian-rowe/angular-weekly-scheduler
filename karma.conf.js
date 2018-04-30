@@ -1,8 +1,6 @@
 module.exports = function (config) {
   config.set({
 
-    basePath: '../',
-
     files: [
       'test/testVendorScripts.js',
       'dist/ng-weekly-scheduler.js',
