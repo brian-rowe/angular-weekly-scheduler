@@ -9,7 +9,7 @@ class TimeOfDayFilter {
             let meridiem = hours > 11 ? 'P' : 'A';
 
             if (remainingMinutes.length == 1) {
-                remainingMinutes += '0';
+                remainingMinutes = '0' + remainingMinutes;
             }
 
             return `${hours % 12 || 12}:${remainingMinutes}${meridiem}`;

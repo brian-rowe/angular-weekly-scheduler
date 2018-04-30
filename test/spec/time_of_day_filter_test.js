@@ -21,6 +21,8 @@ describe('time of day filter', function() {
     describe('should display times correctly', function() {
         var testCases = [
             [0, '12:00A'],
+            [1, '12:01A'],
+            [375, '6:15A'],
             [720, '12:00P'],
             [900, '3:00P'],
             [1439, '11:59P']
