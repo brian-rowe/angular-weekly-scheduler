@@ -25,6 +25,8 @@ class WeeklySchedulerController implements angular.IController {
   };
 
   $onInit() {
+    this.config = this.configure(this.options);
+
     /**
      * Watch the model items
      */
@@ -76,9 +78,6 @@ class WeeklySchedulerController implements angular.IController {
           item.schedules = [];
         }
       });
-
-      // Calculate configuration
-      this.config = this.configure(this.options);
     }
   }
 }
