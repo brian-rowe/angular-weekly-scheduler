@@ -58,7 +58,7 @@ class ZoomService {
     }
 
     public zoomByScroll(element: any, event: WheelEvent, delta: number) {
-        let style = element.querySelector('.schedule-area').style;
+        let style = element.querySelector(this.selector).style;
         let currentWidth = parseInt(style.width, 10);
 
         if ((event.wheelDelta || event.detail) > 0) {
