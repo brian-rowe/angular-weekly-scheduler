@@ -36,12 +36,6 @@ class ZoomService {
         let elementCount = data.nbElements;
         let i = data.idx;
 
-        // percentWidthFromBeginning is used when the first element of the grid is not full
-        // For instance, in the example below `feb 17` is not full
-        // feb 17          march 17
-        //       |    
-        let percentWidthFromBeginning = data.percentWidthFromBeginning;
-
         let containerWidth = element.offsetWidth;
 
         let boxesToDisplay = 5;
@@ -55,13 +49,8 @@ class ZoomService {
 
         this.setZoomWidth(element, scheduleAreaWidthPercent + '%');
 
-        if (percentWidthFromBeginning === undefined) {
-          // All cells of a line have the same size
-          element.scrollLeft = i * boxWidth - gutterSize;
-        } else {
-          // Sizes of cells in a line could different (especially the first one)
-          element.scrollLeft = scheduleAreaWidthPx * (percentWidthFromBeginning / 100) - gutterSize;
-        }
+        // All cells of a line have the same size
+        element.scrollLeft = i * boxWidth - gutterSize;
 
         this.broadcastZoomedInEvent();
     }
