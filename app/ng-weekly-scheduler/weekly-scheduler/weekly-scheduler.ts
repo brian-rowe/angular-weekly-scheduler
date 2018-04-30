@@ -21,7 +21,7 @@ class WeeklySchedulerController implements angular.IController {
   public onDelete: () => void;
 
   public defaultOptions: IWeeklySchedulerOptions = {
-    monoSchedule: false,
+    monoSchedule: false
   };
 
   public $modelChangeListeners: ((config: IWeeklySchedulerConfig) => void)[];
