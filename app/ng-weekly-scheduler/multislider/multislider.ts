@@ -174,7 +174,7 @@ class MultiSliderComponent implements angular.IComponentOptions {
   controller = MultiSliderController.$name;
   controllerAs = MultiSliderController.$controllerAs;
 
-  require: {
+  require = {
     schedulerCtrl: '^weeklyScheduler'
   };
 
