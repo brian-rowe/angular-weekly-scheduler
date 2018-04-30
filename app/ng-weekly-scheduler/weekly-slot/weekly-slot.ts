@@ -50,6 +50,12 @@ class WeeklySlotController implements angular.IComponentController {
     this.removeSchedule(this.schedule);
   }
 
+  public editSelf() {
+    if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
+      this.schedulerCtrl.config.editSlot(this.schedule);
+    }
+  }
+
   public drag(pixel: number) {
     let ui = this.schedule;
     let delta = this.pixelToVal(pixel);

@@ -3,7 +3,11 @@ angular.module('demoApp', ['weeklyScheduler'])
     function ($scope, $timeout, $log) {
 
       $scope.model = {
-        options: {/*monoSchedule: true*/ },
+        options: {
+          editSlot: function() {
+            alert('Editing slot');
+          }
+        },
         items: [
           {
             label: 'Sun',
