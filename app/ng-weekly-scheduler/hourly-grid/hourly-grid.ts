@@ -17,7 +17,6 @@ class HourlyGridDirective implements angular.IDirective {
     }
 
     private doGrid(scope, element, attrs, config: IWeeklySchedulerConfig) {
-        var i;
         // Calculate hour width distribution
         var tickcount = config.hourCount;
         var gridItemEl = this.GRID_TEMPLATE.clone();
@@ -25,7 +24,7 @@ class HourlyGridDirective implements angular.IDirective {
         // Clean element
         element.empty();
 
-        for (i = 0; i < tickcount; i++) {
+        for (let i = 0; i < tickcount; i++) {
           var child = gridItemEl.clone();
 
           if (angular.isUndefined(attrs.noText)) {
