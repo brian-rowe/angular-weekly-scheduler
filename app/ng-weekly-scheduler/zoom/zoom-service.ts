@@ -36,11 +36,11 @@ class ZoomService {
 
         let containerWidth = element.offsetWidth;
 
-        // Leave enough room for n full boxes
-        let boxWidth = containerWidth / 5;
+        let boxesToDisplay = 5;
+        let boxWidth = containerWidth / boxesToDisplay;
 
-        // Scroll over n full boxes
-        let gutterSize = boxWidth * 2;
+        let boxesToSkip = 2;
+        let gutterSize = boxWidth * boxesToSkip;
 
         var scheduleAreaWidthPx = elementCount * boxWidth;
         var scheduleAreaWidthPercent = (scheduleAreaWidthPx / containerWidth) * 100;
