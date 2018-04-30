@@ -18,6 +18,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private $hoverElement: angular.IAugmentedJQuery;
+  private schedulerCtrl: WeeklySchedulerController;
 
   public element: Element;
   public config: IWeeklySchedulerConfig;
@@ -73,6 +74,8 @@ class MultiSliderController implements angular.IComponentController {
       start: start,
       end: end
     });
+
+    this.schedulerCtrl.onAdd();
   }
 
   public getElementOffsetX(elem: angular.IAugmentedJQuery) {
@@ -170,6 +173,10 @@ class MultiSliderComponent implements angular.IComponentOptions {
 
   controller = MultiSliderController.$name;
   controllerAs = MultiSliderController.$controllerAs;
+
+  require: {
+    schedulerCtrl: '^weeklyScheduler'
+  };
 
   templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
 }
