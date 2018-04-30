@@ -15,7 +15,9 @@ class WeeklySchedulerController implements angular.IController {
   public config: IWeeklySchedulerConfig;
   public items: IWeeklySchedulerItem<number>[];
   public options: IWeeklySchedulerOptions;
+
   public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<any> }) => void;
+  public onDelete: () => void;
 
   public defaultOptions: IWeeklySchedulerOptions = {
     monoSchedule: false,
@@ -97,7 +99,8 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
   bindings = {
     items: '=',
     options: '=',
-    onChange: '&'
+    onChange: '&',
+    onDelete: '&'
   };
   
   controller = WeeklySchedulerController.$name;

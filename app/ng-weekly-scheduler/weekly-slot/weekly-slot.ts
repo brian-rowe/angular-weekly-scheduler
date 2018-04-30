@@ -47,7 +47,9 @@ class WeeklySlotController implements angular.IComponentController {
   public deleteSelf() {
     this.$containerEl.removeClass('dragging');
     this.$containerEl.removeClass('slot-hover');
+
     this.removeSchedule(this.schedule);
+    this.schedulerCtrl.onDelete();
   }
 
   public editSelf() {
