@@ -76,13 +76,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
-    // this prevents user from accidentally
-    // adding new slot after resizing or dragging
-    setTimeout(() => {
-      this.$containerEl.removeAttr('no-add');
-    }, 500);
-
     this.$scope.$apply(() => {
+      // this prevents user from accidentally
+      // adding new slot after resizing or dragging
+      this.multisliderCtrl.canAdd = true;
       this.multisliderCtrl.isDragging = false;
       this.schedule.isActive = false
     });
@@ -166,9 +163,8 @@ class WeeklySlotController implements angular.IComponentController {
     this.$scope.$apply(() => {
       this.schedule.isActive = true;
       this.multisliderCtrl.isDragging = true;
+      this.multisliderCtrl.canAdd = false;
     });
-
-    this.$containerEl.attr('no-add', 'true');
 
     this.valuesOnDragStart = {
       start: this.schedule.start,

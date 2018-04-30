@@ -20,6 +20,7 @@ class MultiSliderController implements angular.IComponentController {
   private $hoverElement: angular.IAugmentedJQuery;
   private schedulerCtrl: WeeklySchedulerController;
   
+  public canAdd: boolean = true;
   public isDragging: boolean = false;
 
   public element: Element;
@@ -129,7 +130,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private onHoverElementClick(event) {
-    if (!this.$element.attr('no-add')) {
+    if (this.canAdd) {
       var elOffX = this.getElementOffsetX(this.$element);
       var hoverElOffX = this.getElementOffsetX(this.$hoverElement) - elOffX;
       
