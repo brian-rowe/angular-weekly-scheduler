@@ -12,7 +12,6 @@ class WeeklySlotController implements angular.IComponentController {
   private ngModelCtrl: angular.INgModelController;
   private schedulerCtrl: WeeklySchedulerController;
 
-  private $containerEl: angular.IAugmentedJQuery;
   private config: IWeeklySchedulerConfig;
 
   private item: IWeeklySchedulerItem<any>;
@@ -29,7 +28,6 @@ class WeeklySlotController implements angular.IComponentController {
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope
   ) {
-    this.$containerEl = this.$element.parent();
   }
 
   $onInit() {
