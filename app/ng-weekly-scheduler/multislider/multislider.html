@@ -4,7 +4,7 @@
              config="multiSliderCtrl.config"
              item="multiSliderCtrl.item"
              item-index="multiSliderCtrl.index"
-             ng-class="{disable: multiSliderCtrl.item.editable === false}"
+             ng-class="{active: schedule.isActive, disable: multiSliderCtrl.item.editable === false}"
              ng-repeat="schedule in multiSliderCtrl.item.schedules"
              ng-model="schedule"
              ng-model-options="{ updateOn: 'default blur' }"

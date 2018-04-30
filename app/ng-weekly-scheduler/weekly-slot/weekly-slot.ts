@@ -82,7 +82,7 @@ class WeeklySlotController implements angular.IComponentController {
       this.$containerEl.removeAttr('no-add');
     }, 500);
 
-    this.$element.removeClass('active');
+    this.$scope.$apply(() => this.schedule.isActive = false);
     this.$containerEl.removeClass('dragging');
 
     this.mergeOverlaps();
@@ -161,7 +161,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    this.$element.addClass('active');
+    this.$scope.$apply(() => this.schedule.isActive = true);
 
     this.$containerEl.addClass('dragging');
     this.$containerEl.attr('no-add', 'true');
