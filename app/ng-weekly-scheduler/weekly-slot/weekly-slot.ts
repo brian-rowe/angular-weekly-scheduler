@@ -84,12 +84,12 @@ class WeeklySlotController implements angular.IComponentController {
     let duration = this.valuesOnDragStart.end - this.valuesOnDragStart.start;
 
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
-    let newEnd = this.adjustEnd(Math.round(newStart + duration));
+    let newEnd = Math.round(newStart + duration);
 
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
       this.updateSelf({
         start: newStart,
-        end: newEnd
+        end: this.adjustEnd(newEnd)
       });
     }
   }
@@ -182,7 +182,7 @@ class WeeklySlotController implements angular.IComponentController {
       if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= this.config.maxValue) {
         this.updateSelf({
           start: ui.start,
-          end: newEnd
+          end: this.adjustEnd(newEnd)
         });
       }
     }
