@@ -25,7 +25,8 @@ describe('time of day filter', function() {
             [375, '6:15A'],
             [720, '12:00P'],
             [900, '3:00P'],
-            [1439, '11:59P']
+            [1439, '11:59P'],
+            [1440, '12:00A']
         ];
 
         testCases.forEach(function(testCase) {

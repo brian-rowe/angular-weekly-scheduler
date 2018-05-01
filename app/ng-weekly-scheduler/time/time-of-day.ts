@@ -6,13 +6,15 @@ class TimeOfDayFilter {
         return function(minutes: number): string {
             let hours = Math.floor(minutes / 60);
             let remainingMinutes = (minutes - (hours * 60)).toString();
-            let meridiem = hours > 11 ? 'P' : 'A';
+            let meridiem = hours > 11 && hours < 24 ? 'P' : 'A';
 
             if (remainingMinutes.length == 1) {
                 remainingMinutes = '0' + remainingMinutes;
             }
 
-            return `${hours % 12 || 12}:${remainingMinutes}${meridiem}`;
+            let displayHours = hours % 12 || 12;
+
+            return `${displayHours}:${remainingMinutes}${meridiem}`;
         }
     }
 }
