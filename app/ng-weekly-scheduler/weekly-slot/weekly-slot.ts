@@ -62,6 +62,12 @@ class WeeklySlotController implements angular.IComponentController {
     }
   }
 
+  private getOverlapState(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): OverlapState {
+    let overlapState = this.overlapService.getOverlapState(current.start, this.adjustEndForView(current.end), other.start, this.adjustEndForView(other.end));
+
+    return overlapState;
+  }
+
   public canEdit() {
     let isEditable = !angular.isDefined(this.item.editable) || this.item.editable;
     let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
@@ -136,15 +142,10 @@ class WeeklySlotController implements angular.IComponentController {
 
     schedules.forEach((el) => {
       if (el !== schedule) {
-        let currentStart = schedule.start;
-        let currentEnd = this.adjustEndForView(schedule.end);
         let currentVal = schedule.value;
-
-        let otherStart = el.start;
-        let otherEnd = this.adjustEndForView(el.end);
         let otherVal = el.value;
 
-        let overlapState = this.overlapService.getOverlapState(currentStart, currentEnd, otherStart, otherEnd);
+        let overlapState = this.getOverlapState(schedule, el);
 
         switch(overlapState) {
           case OverlapState.CurrentIsInsideOther: {
