@@ -50,7 +50,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public editSelf() {
-    if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
+    if (angular.isFunction(this.schedulerCtrl.config.editSlot) && !this.schedule.isActive && !this.multisliderCtrl.isDragging) {
       this.schedulerCtrl.config.editSlot(this.schedule);
     }
   }
