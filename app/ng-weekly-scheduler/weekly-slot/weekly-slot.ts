@@ -5,7 +5,8 @@ class WeeklySlotController implements angular.IComponentController {
 
   static $inject = [
     '$scope',
-    '$timeout'
+    '$timeout',
+    'overlapService'
   ];
 
   private multisliderCtrl: MultiSliderController;
@@ -26,7 +27,8 @@ class WeeklySlotController implements angular.IComponentController {
 
   constructor(
     private $scope: angular.IScope,
-    private $timeout: angular.ITimeoutService
+    private $timeout: angular.ITimeoutService,
+    private overlapService: OverlapService
   ) {
   }
 
@@ -142,42 +144,52 @@ class WeeklySlotController implements angular.IComponentController {
         let otherEnd = this.adjustEndForView(el.end);
         let otherVal = el.value;
 
-        let valuesMatch = currentVal === otherVal;
+        let overlapState = this.overlapService.getOverlapState(currentStart, currentEnd, otherStart, otherEnd);
 
-        let currentIsInsideOther = otherEnd >= currentEnd && otherStart <= currentStart;
-        let currentCoversOther = currentEnd >= otherEnd && currentStart <= otherStart;
-        let otherEndIsInsideCurrent = otherEnd >= currentStart && otherEnd <= currentEnd;
-        let otherStartIsInsideCurrent = otherStart >= currentStart && otherStart <= currentEnd;
+        switch(overlapState) {
+          case OverlapState.CurrentIsInsideOther: {
+            this.removeSchedule(el);
 
-        if (currentIsInsideOther) {
-          this.removeSchedule(el);
+            this.updateSelf({
+              start: el.start,
+              end: el.end,
+              value: el.value
+            });
+            
+            break;
+          }
 
-          this.updateSelf({
-            start: el.start,
-            end: el.end,
-            value: el.value
-          });
-        }
-        else if (currentCoversOther) {
-          this.removeSchedule(el);
-        }
-        else if (otherEndIsInsideCurrent) {
-          this.removeSchedule(el);
+          case OverlapState.CurrentCoversOther: {
+            this.removeSchedule(el);
+            break;
+          }
 
-          this.updateSelf({
-            start: el.start,
-            end: schedule.end,
-            value: el.value
-          });
-        }
-        else if (otherStartIsInsideCurrent) {
-          this.removeSchedule(el);
+          case OverlapState.OtherEndIsInsideCurrent: {
+            this.removeSchedule(el);
 
-          this.updateSelf({
-            start: schedule.start,
-            end: el.end,
-            value: el.value
-          });
+            this.updateSelf({
+              start: el.start,
+              end: schedule.end,
+              value: el.value
+            });
+
+            break;
+          }
+
+          case OverlapState.OtherStartIsInsideCurrent: {
+            this.removeSchedule(el);
+
+            this.updateSelf({
+              start: schedule.start,
+              end: el.end,
+              value: el.value
+            });
+            
+            break;
+          }
+
+          default:
+            break;
         }
       }
     });
