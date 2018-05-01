@@ -31,20 +31,32 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   $onInit() {
-    this.valuesOnDragStart = {
-      start: this.schedule.start,
-      end: this.schedule.end
-    };
+    this.valuesOnDragStart = this.getDragStartValues();
 
     this.mergeOverlaps();
   }
 
-  private adjustEnd(end: number) {
+  private adjustEndForModel(end: number) {
     if (end === this.config.maxValue) {
       end = 0;
     }
 
     return end;
+  }
+
+  private adjustEndForView(end: number) {
+    if (end === 0) {
+      end = this.config.maxValue;
+    }
+
+    return end;
+  }
+
+  private getDragStartValues() {
+    return {
+      start: this.schedule.start,
+      end: this.adjustEndForView(this.schedule.end)
+    }
   }
 
   public canEdit() {
@@ -189,17 +201,12 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    // isDragging shouldn't be set to true until the first "ondrag" event fires
-
     this.$scope.$apply(() => {
       this.schedule.isActive = true;
       this.multisliderCtrl.canAdd = false;
     });
 
-    this.valuesOnDragStart = {
-      start: this.schedule.start,
-      end: this.schedule.end
-    };
+    this.valuesOnDragStart = this.getDragStartValues();
   }
 
   public startResizeStart() {
@@ -214,7 +221,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   public updateSelf(update: IWeeklySchedulerRange<any>) {
     this.schedule.start = update.start;
-    this.schedule.end = this.adjustEnd(update.end);
+    this.schedule.end = this.adjustEndForModel(update.end);
 
     this.ngModelCtrl.$setViewValue(this.schedule);
 
