@@ -142,8 +142,14 @@ class WeeklySlotController implements angular.IComponentController {
         let otherEnd = this.adjustEndForView(el.end);
         let otherVal = el.value;
 
-        // model is inside another slot
-        if (otherEnd >= currentEnd && otherStart <= currentStart) {
+        let valuesMatch = currentVal === otherVal;
+
+        let currentIsInsideOther = otherEnd >= currentEnd && otherStart <= currentStart;
+        let currentCoversOther = currentEnd >= otherEnd && currentStart <= otherStart;
+        let otherEndIsInsideCurrent = otherEnd >= currentStart && otherEnd <= currentEnd;
+        let otherStartIsInsideCurrent = otherStart >= currentStart && otherStart <= currentEnd;
+
+        if (currentIsInsideOther) {
           this.removeSchedule(el);
 
           this.updateSelf({
@@ -152,12 +158,10 @@ class WeeklySlotController implements angular.IComponentController {
             value: el.value
           });
         }
-        // model completely covers another slot
-        else if (currentEnd >= otherEnd && currentStart <= otherStart) {
+        else if (currentCoversOther) {
           this.removeSchedule(el);
         }
-        // another slot's end is inside current model
-        else if (otherEnd >= currentStart && otherEnd <= currentEnd) {
+        else if (otherEndIsInsideCurrent) {
           this.removeSchedule(el);
 
           this.updateSelf({
@@ -166,8 +170,7 @@ class WeeklySlotController implements angular.IComponentController {
             value: el.value
           });
         }
-        // another slot's start is inside current model
-        else if (otherStart >= currentStart && otherStart <= currentEnd) {
+        else if (otherStartIsInsideCurrent) {
           this.removeSchedule(el);
 
           this.updateSelf({
