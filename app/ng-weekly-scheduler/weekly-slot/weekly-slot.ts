@@ -68,6 +68,40 @@ class WeeklySlotController implements angular.IComponentController {
     return overlapState;
   }
 
+  private handleCurrentCoversOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
+    this.removeSchedule(other);
+  }
+
+  private handleCurrentIsInsideOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
+    this.removeSchedule(other);
+
+    this.updateSelf({
+      start: other.start,
+      end: other.end,
+      value: other.value
+    });
+  }
+
+  private handleOtherEndIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) {
+    this.removeSchedule(other);
+
+    this.updateSelf({
+      start: other.start,
+      end: current.end,
+      value: other.value
+    });
+  }
+
+  private handleOtherStartIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) {
+    this.removeSchedule(other);
+
+    this.updateSelf({
+      start: current.start,
+      end: other.end,
+      value: other.value
+    });
+  }
+
   public canEdit() {
     let isEditable = !angular.isDefined(this.item.editable) || this.item.editable;
     let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
@@ -149,43 +183,22 @@ class WeeklySlotController implements angular.IComponentController {
 
         switch(overlapState) {
           case OverlapState.CurrentIsInsideOther: {
-            this.removeSchedule(el);
-
-            this.updateSelf({
-              start: el.start,
-              end: el.end,
-              value: el.value
-            });
-            
+            this.handleCurrentIsInsideOther(schedule, el);
             break;
           }
 
           case OverlapState.CurrentCoversOther: {
-            this.removeSchedule(el);
+            this.handleCurrentCoversOther(schedule, el);
             break;
           }
 
           case OverlapState.OtherEndIsInsideCurrent: {
-            this.removeSchedule(el);
-
-            this.updateSelf({
-              start: el.start,
-              end: schedule.end,
-              value: el.value
-            });
-
+            this.handleOtherEndIsInsideCurrent(schedule, el);
             break;
           }
 
           case OverlapState.OtherStartIsInsideCurrent: {
-            this.removeSchedule(el);
-
-            this.updateSelf({
-              start: schedule.start,
-              end: el.end,
-              value: el.value
-            });
-            
+            this.handleOtherStartIsInsideCurrent(schedule, el);
             break;
           }
 
