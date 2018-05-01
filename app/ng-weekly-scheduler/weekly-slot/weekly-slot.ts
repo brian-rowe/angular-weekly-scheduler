@@ -89,7 +89,7 @@ class WeeklySlotController implements angular.IComponentController {
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
       this.updateSelf({
         start: newStart,
-        end: this.adjustEnd(newEnd)
+        end: newEnd
       });
     }
   }
@@ -182,7 +182,7 @@ class WeeklySlotController implements angular.IComponentController {
       if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= this.config.maxValue) {
         this.updateSelf({
           start: ui.start,
-          end: this.adjustEnd(newEnd)
+          end: newEnd
         });
       }
     }
@@ -214,7 +214,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   public updateSelf(update: IWeeklySchedulerRange<any>) {
     this.schedule.start = update.start;
-    this.schedule.end = update.end;
+    this.schedule.end = this.adjustEnd(update.end);
 
     this.ngModelCtrl.$setViewValue(this.schedule);
 
