@@ -55,7 +55,8 @@ class WeeklySlotController implements angular.IComponentController {
   private getDragStartValues() {
     return {
       start: this.schedule.start,
-      end: this.adjustEndForView(this.schedule.end)
+      end: this.adjustEndForView(this.schedule.end),
+      value: this.schedule.value
     }
   }
 
@@ -101,7 +102,8 @@ class WeeklySlotController implements angular.IComponentController {
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
       this.updateSelf({
         start: newStart,
-        end: newEnd
+        end: newEnd,
+        value: ui.value
       });
     }
   }
@@ -144,7 +146,8 @@ class WeeklySlotController implements angular.IComponentController {
 
           this.updateSelf({
             start: el.start,
-            end: el.end
+            end: el.end,
+            value: el.value
           });
         }
         // model completely covers another slot
@@ -157,7 +160,8 @@ class WeeklySlotController implements angular.IComponentController {
 
           this.updateSelf({
             start: el.start,
-            end: schedule.end
+            end: schedule.end,
+            value: el.value
           });
         }
         // another slot's start is inside current model
@@ -166,7 +170,8 @@ class WeeklySlotController implements angular.IComponentController {
 
           this.updateSelf({
             start: schedule.start,
-            end: el.end
+            end: el.end,
+            value: el.value
           });
         }
       }
@@ -191,7 +196,8 @@ class WeeklySlotController implements angular.IComponentController {
       if (ui.start !== newStart && newStart <= ui.end - 1 && newStart >= 0) {
         this.updateSelf({
           start: newStart,
-          end: ui.end
+          end: ui.end,
+          value: ui.value
         });
       }
     } else {
@@ -200,7 +206,8 @@ class WeeklySlotController implements angular.IComponentController {
       if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= this.config.maxValue) {
         this.updateSelf({
           start: ui.start,
-          end: newEnd
+          end: newEnd,
+          value: ui.value
         });
       }
     }

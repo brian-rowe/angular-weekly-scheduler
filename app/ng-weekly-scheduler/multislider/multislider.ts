@@ -76,7 +76,8 @@ class MultiSliderController implements angular.IComponentController {
 
     item.schedules.push({
       start: start,
-      end: end
+      end: end,
+      value: item.defaultValue
     });
 
     this.schedulerCtrl.onAdd();

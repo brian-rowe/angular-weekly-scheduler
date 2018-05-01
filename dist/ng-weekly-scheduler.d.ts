@@ -1,4 +1,5 @@
 interface IWeeklySchedulerItem<T> {
+    defaultValue: T;
     label: string;
     editable?: boolean;
     schedules: IWeeklySchedulerRange<T>[];
@@ -13,4 +14,5 @@ interface IWeeklySchedulerRange<T> {
     $isActive?: boolean;
     start: number;
     end: number;
+    value: T;
 }
