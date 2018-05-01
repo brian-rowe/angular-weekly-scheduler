@@ -62,7 +62,7 @@ class WeeklySlotController implements angular.IComponentController {
   public canEdit() {
     let isEditable = !angular.isDefined(this.item.editable) || this.item.editable;
     let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
-    let isNotActive = !this.schedule.isActive;
+    let isNotActive = !this.schedule.$isActive;
     let isNotDragging = !this.multisliderCtrl.isDragging;
 
     return isEditable && hasEditFunction && isNotActive && isNotDragging;
@@ -112,7 +112,7 @@ class WeeklySlotController implements angular.IComponentController {
       // this prevents user from accidentally
       // adding new slot after resizing or dragging
       this.multisliderCtrl.canAdd = true;
-      this.schedule.isActive = false;
+      this.schedule.$isActive = false;
     });
     
     /**
@@ -208,7 +208,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   public startDrag() {
     this.$scope.$apply(() => {
-      this.schedule.isActive = true;
+      this.schedule.$isActive = true;
       this.multisliderCtrl.canAdd = false;
     });
 
