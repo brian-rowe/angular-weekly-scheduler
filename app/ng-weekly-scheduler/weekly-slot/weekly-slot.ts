@@ -133,7 +133,7 @@ class WeeklySlotController implements angular.IComponentController {
     schedules.forEach((el) => {
       if (el !== schedule) {
         let currentStart = schedule.start;
-        let currentEnd = schedule.end; 
+        let currentEnd = this.adjustEndForView(schedule.end);
 
         let otherStart = el.start;
         let otherEnd = this.adjustEndForView(el.end);
