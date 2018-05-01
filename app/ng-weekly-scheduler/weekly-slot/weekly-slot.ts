@@ -4,7 +4,8 @@ class WeeklySlotController implements angular.IComponentController {
   static $controllerAs = 'weeklySlotCtrl';
 
   static $inject = [
-    '$scope'
+    '$scope',
+    '$timeout'
   ];
 
   private multisliderCtrl: MultiSliderController;
@@ -24,7 +25,8 @@ class WeeklySlotController implements angular.IComponentController {
   private valuesOnDragStart: IWeeklySchedulerRange<any>;
 
   constructor(
-    private $scope: angular.IScope
+    private $scope: angular.IScope,
+    private $timeout: angular.ITimeoutService
   ) {
   }
 
@@ -67,6 +69,8 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public drag(pixel: number) {
+    this.multisliderCtrl.isDragging = true;
+
     let ui = this.schedule;
     let delta = this.multisliderCtrl.pixelToVal(pixel);
     let duration = this.valuesOnDragStart.end - this.valuesOnDragStart.start;
@@ -83,13 +87,21 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
+    
     this.$scope.$apply(() => {
       // this prevents user from accidentally
       // adding new slot after resizing or dragging
       this.multisliderCtrl.canAdd = true;
-      this.multisliderCtrl.isDragging = false;
       this.schedule.isActive = false;
     });
+    
+    /**
+     * When ending a drag there needs to be a small delay before setting isDragging back to false.
+     * This is so that the ng-click event will not fire
+     */
+    this.$timeout(() => {
+      this.multisliderCtrl.isDragging = false;
+    }, 200);
 
     this.mergeOverlaps();
   }
@@ -142,6 +154,8 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public resize(pixel: number) {
+    this.multisliderCtrl.isDragging = true;
+    
     let ui = this.schedule;
     let delta = this.multisliderCtrl.pixelToVal(pixel);
 
@@ -167,9 +181,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
+    // isDragging shouldn't be set to true until the first "ondrag" event fires
+
     this.$scope.$apply(() => {
       this.schedule.isActive = true;
-      this.multisliderCtrl.isDragging = true;
       this.multisliderCtrl.canAdd = false;
     });
 
