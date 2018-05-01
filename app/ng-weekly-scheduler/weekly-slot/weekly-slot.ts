@@ -136,9 +136,11 @@ class WeeklySlotController implements angular.IComponentController {
       if (el !== schedule) {
         let currentStart = schedule.start;
         let currentEnd = this.adjustEndForView(schedule.end);
+        let currentVal = schedule.value;
 
         let otherStart = el.start;
         let otherEnd = this.adjustEndForView(el.end);
+        let otherVal = el.value;
 
         // model is inside another slot
         if (otherEnd >= currentEnd && otherStart <= currentStart) {
