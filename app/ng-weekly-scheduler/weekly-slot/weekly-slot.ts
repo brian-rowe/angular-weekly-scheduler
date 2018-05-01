@@ -39,6 +39,14 @@ class WeeklySlotController implements angular.IComponentController {
     this.mergeOverlaps();
   }
 
+  private adjustEnd(end: number) {
+    if (end === this.config.maxValue) {
+      end = 0;
+    }
+
+    return end;
+  }
+
   public canEdit() {
     let isEditable = !angular.isDefined(this.item.editable) || this.item.editable;
     let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
@@ -76,7 +84,7 @@ class WeeklySlotController implements angular.IComponentController {
     let duration = this.valuesOnDragStart.end - this.valuesOnDragStart.start;
 
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
-    let newEnd = Math.round(newStart + duration);
+    let newEnd = this.adjustEnd(Math.round(newStart + duration));
 
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
       this.updateSelf({
