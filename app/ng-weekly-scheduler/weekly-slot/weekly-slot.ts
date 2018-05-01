@@ -37,8 +37,19 @@ class WeeklySlotController implements angular.IComponentController {
     this.mergeOverlaps();
   }
 
+  public canEdit() {
+    let isEditable = !angular.isDefined(this.item.editable) || this.item.editable;
+    let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
+    let isNotActive = !this.schedule.isActive;
+    let isNotDragging = !this.multisliderCtrl.isDragging;
+
+    return isEditable && hasEditFunction && isNotActive && isNotDragging;
+  }
+
   public canRemove() {
-    return !angular.isDefined(this.item.editable) || this.item.editable;
+    let isRemovable = !angular.isDefined(this.item.editable) || this.item.editable;
+
+    return isRemovable;
   }
 
   public deleteSelf() {
@@ -50,9 +61,9 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public editSelf() {
-    if (angular.isFunction(this.schedulerCtrl.config.editSlot) && !this.schedule.isActive && !this.multisliderCtrl.isDragging) {
-      this.schedulerCtrl.config.editSlot(this.schedule);
-    }
+    if (this.canEdit()) {
+        this.schedulerCtrl.config.editSlot(this.schedule);
+      }
   }
 
   public drag(pixel: number) {
@@ -77,7 +88,7 @@ class WeeklySlotController implements angular.IComponentController {
       // adding new slot after resizing or dragging
       this.multisliderCtrl.canAdd = true;
       this.multisliderCtrl.isDragging = false;
-      this.schedule.isActive = false
+      this.schedule.isActive = false;
     });
 
     this.mergeOverlaps();
