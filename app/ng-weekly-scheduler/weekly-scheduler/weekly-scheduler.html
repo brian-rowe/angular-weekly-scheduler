@@ -1,20 +1,26 @@
-<div class="labels">
-  <div class="srow dummy"></div>
-  <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items">
-    {{ item.label }}
+<div ng-if="!schedulerCtrl.hasInvalidSchedule">
+  <div class="labels">
+    <div class="srow dummy"></div>
+    <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items">
+      {{ item.label }}
+    </div>
   </div>
+
+  <schedule-area-container>
+    <div class="schedule-area">
+
+      <div class="srow timestamps">
+        <hourly-grid></hourly-grid>
+      </div>
+
+      <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items">
+        <hourly-grid no-text></hourly-grid>
+        <multi-slider config="schedulerCtrl.config" item="item" index="$index"></multi-slider>
+      </div>
+    </div>
+  </schedule-area-container>
 </div>
 
-<schedule-area-container>
-  <div class="schedule-area">
-
-    <div class="srow timestamps">
-      <hourly-grid></hourly-grid>
-    </div>
-
-    <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items">
-      <hourly-grid no-text></hourly-grid>
-      <multi-slider config="schedulerCtrl.config" item="item" index="$index"></multi-slider>
-    </div>
-  </div>
-</schedule-area-container>
+<div class="srow" ng-if="schedulerCtrl.hasInvalidSchedule">
+  One or more of the schedules is invalid! Please contact service.
+</div>
