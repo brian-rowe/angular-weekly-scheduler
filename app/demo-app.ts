@@ -45,8 +45,9 @@ angular.module('demoApp', ['weeklyScheduler'])
           // },
           {
             label: 'Fri',
+            defaultValue: false,
             schedules: [
-              { start: 60, end: 105, value: false },
+              { start: 75, end: 120, value: false },
               { start: 0, end: 60, value: false }
             ]
           },
