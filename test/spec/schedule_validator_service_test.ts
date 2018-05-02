@@ -1,7 +1,7 @@
 describe('schedule validator service', function () {
     var $service;
 
-    beforeEach(module('demoApp'));
+    beforeEach(angular.mock.module('demoApp'));
 
     beforeEach(inject(function(_scheduleValidatorService_) {
         $service = _scheduleValidatorService_;

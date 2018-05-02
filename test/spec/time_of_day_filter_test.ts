@@ -1,7 +1,7 @@
 describe('time of day filter', function() {
     var timeOfDayFilter;
 
-    beforeEach(module('demoApp'));
+    beforeEach(angular.mock.module('demoApp'));
 
     beforeEach(inject(function(_timeOfDayFilter_) {
         timeOfDayFilter = _timeOfDayFilter_;
