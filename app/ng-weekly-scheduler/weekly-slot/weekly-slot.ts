@@ -222,7 +222,6 @@ class WeeklySlotController implements angular.IComponentController {
 
   public updateSelf(update: IWeeklySchedulerRange<any>) {
     this.updateSchedule({ schedule: this.schedule, update: update });
-    this.$scope.$apply();
   }
 }
 
