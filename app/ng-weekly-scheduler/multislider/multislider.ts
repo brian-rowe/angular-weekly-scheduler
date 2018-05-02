@@ -243,13 +243,17 @@ class MultiSliderController implements angular.IComponentController {
   private handleOtherEndIsCurrentStart(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
       this.handleOtherEndIsInsideCurrent(current, other);
+    } else {
+      // DO NOTHING, this is okay if the values don't match
     }
   }
 
   private handleOtherStartIsCurrentEnd(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
       this.handleOtherStartIsInsideCurrent(current, other);
-    } 
+    } else { 
+      // DO NOTHING, this is okay if the values don't match
+    }
   }
 
   public mergeOverlaps(schedule: IWeeklySchedulerRange<any>) {
