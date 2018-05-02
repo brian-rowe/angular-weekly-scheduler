@@ -225,6 +225,12 @@ class MultiSliderController implements angular.IComponentController {
         end: other.end,
         value: other.value
       });
+    } else {
+      this.updateSchedule(other, {
+        start: current.end,
+        end: other.end,
+        value: other.value
+      })
     }
   }
 
