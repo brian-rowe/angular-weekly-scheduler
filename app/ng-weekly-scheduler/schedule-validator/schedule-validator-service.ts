@@ -22,7 +22,7 @@ class ScheduleValidatorService {
                 }
             }
 
-            return false;
+            return true;
         }
     }
 }
