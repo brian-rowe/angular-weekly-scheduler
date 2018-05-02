@@ -42,8 +42,6 @@ class WeeklySlotController implements angular.IComponentController {
 
   $onInit() {
     this.valuesOnDragStart = this.getDragStartValues();
-
-    this.mergeOverlaps();
   }
 
   private adjustEndForView(end: number) {
