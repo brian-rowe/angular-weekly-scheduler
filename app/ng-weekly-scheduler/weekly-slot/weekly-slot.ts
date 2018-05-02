@@ -10,13 +10,12 @@ class WeeklySlotController implements angular.IComponentController {
   ];
 
   private multisliderCtrl: MultiSliderController;
-  private schedulerCtrl: WeeklySchedulerController;
 
   private config: IWeeklySchedulerConfig;
 
   private item: IWeeklySchedulerItem<any>;
 
-  private editSchedule(options: { schedule: IWeeklySchedulerRange<any> }) => void;
+  private editSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
   private updateSchedule: (options: { schedule: IWeeklySchedulerRange<any>, update: IWeeklySchedulerRange<any>}) => void;
   private removeSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
 
@@ -244,8 +243,7 @@ class WeeklySlotComponent implements angular.IComponentOptions {
   controllerAs = WeeklySlotController.$controllerAs;
 
   require = {
-    multisliderCtrl: '^multiSlider',
-    schedulerCtrl: '^weeklyScheduler'
+    multisliderCtrl: '^multiSlider'
   };
 
   templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';
