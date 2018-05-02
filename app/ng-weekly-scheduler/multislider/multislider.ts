@@ -96,6 +96,18 @@ class MultiSliderController implements angular.IComponentController {
     return end;
   }
 
+  /**
+   * Determine if the schedule is able to be edited
+   */
+  private canEdit(schedule: IWeeklySchedulerRange<any>) {
+    let isEditable = !angular.isDefined(this.item.editable) || this.item.editable;
+    let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
+    let isNotActive = !schedule.$isActive;
+    let isNotDragging = !this.isDragging;
+
+    return isEditable && hasEditFunction && isNotActive && isNotDragging;
+  }
+
   private compensateForBorder(elem: HTMLElement, val: number) {
     let borderWidth = this.$window.getComputedStyle(elem).getPropertyValue('border-right');
 
@@ -103,6 +115,15 @@ class MultiSliderController implements angular.IComponentController {
     let onHour = val % 60 === 0;
 
     return onHour ? elem.offsetLeft : elem.offsetLeft - parseInt(borderWidth, 10);
+  }
+
+  /**
+   * Perform an external action to bring up an editor for a schedule
+   */
+  private editSchedule(schedule: IWeeklySchedulerRange<any>) {
+    if (this.canEdit(schedule)) {
+      this.schedulerCtrl.config.editSlot(schedule);
+    }
   }
 
   private getSlotLeft(start: number) {
@@ -165,7 +186,13 @@ class MultiSliderController implements angular.IComponentController {
     this.isHoveringSlot = false;
   }
 
+  /**
+   * Actually remove the schedule from both the screen and the model
+   */
   private removeSchedule(schedule: IWeeklySchedulerRange<any>) {
+    this.isDragging = false;
+    this.isHoveringSlot = false;
+
     let schedules = this.item.schedules;
 
     schedules.splice(schedules.indexOf(schedule), 1);
@@ -181,6 +208,9 @@ class MultiSliderController implements angular.IComponentController {
     this.$scope.$apply();
   }
 
+  /**
+   * Commit new values to the schedule
+   */
   private updateSchedule(schedule: IWeeklySchedulerRange<any>, update: IWeeklySchedulerRange<any>) {
     schedule.start = update.start;
     schedule.end = this.adjustEndForModel(update.end);

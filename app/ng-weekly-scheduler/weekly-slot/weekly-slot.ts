@@ -16,6 +16,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   private item: IWeeklySchedulerItem<any>;
 
+  private editSchedule(options: { schedule: IWeeklySchedulerRange<any> }) => void;
   private updateSchedule: (options: { schedule: IWeeklySchedulerRange<any>, update: IWeeklySchedulerRange<any>}) => void;
   private removeSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
 
@@ -102,15 +103,6 @@ class WeeklySlotController implements angular.IComponentController {
     });
   }
 
-  public canEdit() {
-    let isEditable = !angular.isDefined(this.item.editable) || this.item.editable;
-    let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
-    let isNotActive = !this.schedule.$isActive;
-    let isNotDragging = !this.multisliderCtrl.isDragging;
-
-    return isEditable && hasEditFunction && isNotActive && isNotDragging;
-  }
-
   public canRemove() {
     let isRemovable = !angular.isDefined(this.item.editable) || this.item.editable;
 
@@ -122,9 +114,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public editSelf() {
-    if (this.canEdit()) {
-        this.schedulerCtrl.config.editSlot(this.schedule);
-      }
+    this.editSchedule({ schedule: this.schedule });
   }
 
   public drag(pixel: number) {
@@ -244,6 +234,7 @@ class WeeklySlotComponent implements angular.IComponentOptions {
   bindings = {
     config: '<',
     schedule: '=ngModel',
+    editSchedule: '&',
     removeSchedule: '&',
     updateSchedule: '&',
     item: '='
