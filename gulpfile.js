@@ -156,23 +156,14 @@ gulp.task('copyTestFiles', ['copyTestCSS', 'copyTestJS'], function () {
         'moment/moment.js',
         'moment-duration-format/lib/moment-duration-format.js'
     ],
-        {
-            cwd: 'node_modules'
-        })
-        .pipe(concat('testVendorScripts.js'));
-
-    // Locale files need to be separate
-    let vendorLocales = gulp.src([
-        'angular-i18n/angular-locale_en-us.js',
-        'angular-i18n/angular-locale_en-gb.js',
-        'angular-i18n/angular-locale_fr-fr.js',
-        'angular-i18n/angular-locale_de-de.js',
-        'angular-i18n/angular-locale_es-es.js'
-    ], { cwd: 'node_modules' });
+    {
+        cwd: 'node_modules'
+    })
+    .pipe(concat('testVendorScripts.js'));
 
     let indexPage = gulp.src(srcFolder + '/index.html');
 
-    return merge([vendorJavascript, vendorLocales, indexPage]).pipe(gulp.dest(testFolder));
+    return merge([vendorJavascript, indexPage]).pipe(gulp.dest(testFolder));
 });
 
 gulp.task('watchCSS', function () {
