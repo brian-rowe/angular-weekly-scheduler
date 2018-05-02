@@ -43,17 +43,17 @@ angular.module('demoApp', ['weeklyScheduler'])
           //     { start: 300, end: 1140 }
           //   ]
           // },
-          {
-            label: 'Fri',
-            schedules: [
-              { start: 60, end: 105, value: false },
-              { start: 0, end: 60, value: false }
-            ]
-          },
+          // {
+          //   label: 'Fri',
+          //   schedules: [
+          //     { start: 60, end: 105, value: false },
+          //     { start: 0, end: 60, value: false }
+          //   ]
+          // },
           {
             label: 'Sat',
             schedules: [
-              { start: 45, end: 105, value: false },
+              { start: 60, end: 105, value: false },
               { start: 0, end: 60, value: true }
             ]
           }
