@@ -186,37 +186,45 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private handleCurrentCoversOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    if (this.valuesMatch(current, other)) {
+      this.removeSchedule(other);
+    }
   }
 
   private handleCurrentIsInsideOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    if (this.valuesMatch(current, other)) {
+      this.removeSchedule(other);
 
-    this.updateSchedule(current, {
-        start: other.start,
-        end: other.end,
-        value: other.value
-    });
+      this.updateSchedule(current, {
+          start: other.start,
+          end: other.end,
+          value: other.value
+      });
+    }
   }
 
   private handleOtherEndIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    if (this.valuesMatch(current, other)) {
+      this.removeSchedule(other);
 
-    this.updateSchedule(current, {
-      start: other.start,
-      end: current.end,
-      value: other.value
-    });
+      this.updateSchedule(current, {
+        start: other.start,
+        end: current.end,
+        value: other.value
+      });
+    }
   }
 
   private handleOtherStartIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    if (this.valuesMatch(current, other)) {
+      this.removeSchedule(other);
 
-    this.updateSchedule(current, {
-      start: current.start,
-      end: other.end,
-      value: other.value
-    });
+      this.updateSchedule(current, {
+        start: current.start,
+        end: other.end,
+        value: other.value
+      });
+    }
   }
 
   public mergeOverlaps(schedule: IWeeklySchedulerRange<any>) {
@@ -286,6 +294,10 @@ class MultiSliderController implements angular.IComponentController {
       scheduleIndex: schedule.$index,
       scheduleValue: schedule
     });
+  }
+
+  private valuesMatch(schedule: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) {
+    return schedule.value === other.value;
   }
 
   public adjustEndForView(end: number) {
