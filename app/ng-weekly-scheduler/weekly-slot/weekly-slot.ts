@@ -161,9 +161,6 @@ class WeeklySlotController implements angular.IComponentController {
 
     schedules.forEach((el) => {
       if (el !== schedule) {
-        let currentVal = schedule.value;
-        let otherVal = el.value;
-
         let overlapState = this.getOverlapState(schedule, el);
         let overlapHandler = this.overlapHandlers[overlapState];
 
