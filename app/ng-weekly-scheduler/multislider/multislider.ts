@@ -87,6 +87,14 @@ class MultiSliderController implements angular.IComponentController {
     return elem[0].getBoundingClientRect().left;
   }
 
+  private adjustEndForModel(end: number) {
+    if (end === this.config.maxValue) {
+      end = 0;
+    }
+
+    return end;
+  }
+
   private compensateForBorder(elem: HTMLElement, val: number) {
     let borderWidth = this.$window.getComputedStyle(elem).getPropertyValue('border-right');
 
@@ -168,6 +176,11 @@ class MultiSliderController implements angular.IComponentController {
      * we must call $apply() manually so they will all update their positions to match the zoom level
      */
     this.$scope.$apply();
+  }
+
+  private updateSchedule(schedule: IWeeklySchedulerRange<any>, update: IWeeklySchedulerRange<any>) {
+    schedule.start = update.start;
+    schedule.end = this.adjustEndForModel(update.end);
   }
 
   public pixelToVal(pixel: number) {

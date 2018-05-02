@@ -18,6 +18,7 @@ class WeeklySlotController implements angular.IComponentController {
   private item: IWeeklySchedulerItem<any>;
   private itemIndex: number;
 
+  private updateSchedule: (options: { schedule: IWeeklySchedulerRange<any>, update: IWeeklySchedulerRange<any>}) => void;
   private removeSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
 
   private resizeDirectionIsStart: boolean = true;
@@ -46,14 +47,6 @@ class WeeklySlotController implements angular.IComponentController {
     this.valuesOnDragStart = this.getDragStartValues();
 
     this.mergeOverlaps();
-  }
-
-  private adjustEndForModel(end: number) {
-    if (end === this.config.maxValue) {
-      end = 0;
-    }
-
-    return end;
   }
 
   private adjustEndForView(end: number) {
@@ -246,8 +239,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public updateSelf(update: IWeeklySchedulerRange<any>) {
-    this.schedule.start = update.start;
-    this.schedule.end = this.adjustEndForModel(update.end);
+    this.updateSchedule({ schedule: this.schedule, update: update });
 
     this.ngModelCtrl.$setViewValue(this.schedule);
 
@@ -273,6 +265,7 @@ class WeeklySlotComponent implements angular.IComponentOptions {
     itemIndex: '<',
     removeSchedule: '&',
     scheduleIndex: '<',
+    updateSchedule: '&',
     item: '='
   };
 
