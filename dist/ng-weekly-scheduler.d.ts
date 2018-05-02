@@ -1,10 +1,3 @@
-declare class ScheduleValidatorService {
-    private overlapService;
-    static $name: string;
-    static $inject: string[];
-    private constructor();
-    areSchedulesValid(item: IWeeklySchedulerItem<any>): boolean;
-}
 interface IWeeklySchedulerItem<T> {
     defaultValue: T;
     label: string;

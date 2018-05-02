@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "@types/angular": "^1.6.43",
+    "@types/angular-mocks": "^1.5.11",
+    "@types/jasmine": "^2.8.6",
     "angular-mocks": "^1.6.10",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.2.0",
@@ -31,6 +33,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.4",
+    "karma-typescript": "^3.0.12",
     "merge2": "^1.2.1",
     "run-sequence": "^2.2.1",
     "typescript": "^2.8.1"

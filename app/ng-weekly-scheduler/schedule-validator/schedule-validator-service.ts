@@ -1,3 +1,4 @@
+/** @internal */
 class ScheduleValidatorService {
     static $name = 'scheduleValidatorService';
 
