@@ -48,7 +48,7 @@ describe('schedule validator service', function () {
             it('with different values as valid', function() {
                 let item = getTestItem([
                     { start: 0, end: 60, value: true },
-                    { start: 60, end: 120, value: true }
+                    { start: 60, end: 120, value: false }
                 ]);
     
                 expect($service.areSchedulesValid(item)).toBeTruthy();
