@@ -31,6 +31,14 @@ describe('overlap service', () => {
             it('OtherStartIsInsideCurrent when left edge of other item overlaps right edge of current item', () => {
                 expect($service.getOverlapState(0, 30, 15, 45)).toBe(OverlapState.OtherStartIsInsideCurrent);
             });
+
+            it('OtherEndIsCurrentStart when right edge of other item IS left edge of current item', () => {
+                expect($service.getOverlapState(30, 45, 0, 30)).toBe(OverlapState.OtherEndIsCurrentStart);
+            });
+
+            it('OtherStartIsCurrentEnd when left edge of other item IS right edge of current item', () => {
+                expect($service.getOverlapState(0, 30, 30, 45)).toBe(OverlapState.OtherStartIsCurrentEnd);
+            });
         });
     });
 });

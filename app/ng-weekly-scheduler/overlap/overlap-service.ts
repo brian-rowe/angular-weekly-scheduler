@@ -11,12 +11,20 @@ class OverlapService {
             return OverlapState.CurrentCoversOther;
         }
 
-        if (otherEnd >= currentStart && otherEnd <= currentEnd) {
+        if (otherEnd > currentStart && otherEnd <= currentEnd) {
             return OverlapState.OtherEndIsInsideCurrent;
         }
 
-        if (otherStart >= currentStart && otherStart <= currentEnd) {
+        if (otherStart >= currentStart && otherStart < currentEnd) {
             return OverlapState.OtherStartIsInsideCurrent;
+        }
+
+        if (otherEnd === currentStart && otherEnd <= currentEnd) {
+            return OverlapState.OtherEndIsCurrentStart;
+        }
+
+        if (otherStart === currentEnd && otherStart <= currentEnd) {
+            return OverlapState.OtherStartIsCurrentEnd;
         }
 
         return OverlapState.NoOverlap;

@@ -3,5 +3,8 @@ declare const enum OverlapState {
     CurrentIsInsideOther,
     CurrentCoversOther,
     OtherEndIsInsideCurrent,
-    OtherStartIsInsideCurrent
+    OtherStartIsInsideCurrent,
+
+    OtherEndIsCurrentStart,
+    OtherStartIsCurrentEnd
 }
