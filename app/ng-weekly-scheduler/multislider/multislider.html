@@ -3,7 +3,7 @@
 <weekly-slot class="slot"
              config="multiSliderCtrl.config"
              item="multiSliderCtrl.item"
-             ng-class="{active: schedule.$isActive, disable: multiSliderCtrl.item.editable === false}"
+             ng-class="[schedule.$class, {active: schedule.$isActive, disable: multiSliderCtrl.item.editable === false}]"
              ng-repeat="schedule in multiSliderCtrl.item.schedules"
              ng-model="schedule"
              ng-init="schedule.$index = $index"
