@@ -18,6 +18,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private $hoverElement: angular.IAugmentedJQuery;
+  private index: number;
   private schedulerCtrl: WeeklySchedulerController;
   
   public canAdd: boolean = true;
@@ -181,6 +182,12 @@ class MultiSliderController implements angular.IComponentController {
   private updateSchedule(schedule: IWeeklySchedulerRange<any>, update: IWeeklySchedulerRange<any>) {
     schedule.start = update.start;
     schedule.end = this.adjustEndForModel(update.end);
+
+    this.schedulerCtrl.onChange({
+      itemIndex: this.index,
+      scheduleIndex: schedule.$index,
+      scheduleValue: schedule
+    })
   }
 
   public pixelToVal(pixel: number) {

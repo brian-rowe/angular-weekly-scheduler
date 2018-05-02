@@ -3,10 +3,10 @@
 <weekly-slot class="slot"
              config="multiSliderCtrl.config"
              item="multiSliderCtrl.item"
-             item-index="multiSliderCtrl.index"
              ng-class="{active: schedule.$isActive, disable: multiSliderCtrl.item.editable === false}"
              ng-repeat="schedule in multiSliderCtrl.item.schedules"
              ng-model="schedule"
+             ng-init="schedule.$index = $index"
              ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
              ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
              ng-style="{
@@ -15,5 +15,4 @@
              }"
              remove-schedule="multiSliderCtrl.removeSchedule(schedule)"
              update-schedule="multiSliderCtrl.updateSchedule(schedule, update)"
-             schedule-index="$index"
 ></weekly-slot>
