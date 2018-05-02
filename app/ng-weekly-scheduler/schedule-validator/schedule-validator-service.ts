@@ -17,7 +17,9 @@ class ScheduleValidatorService {
                 let currentSchedule = item.schedules[i];
                 let nextSchedule = item.schedules[i + 1];
 
-                if (this.overlapService.getOverlapState(currentSchedule.start, currentSchedule.end || 1440, nextSchedule.start, nextSchedule.end || 1440) !== OverlapState.NoOverlap) { // TODO FIX HARDCODING
+                let valuesMatch: boolean = currentSchedule.value === nextSchedule.value;
+
+                if (!valuesMatch && this.overlapService.getOverlapState(currentSchedule.start, currentSchedule.end || 1440, nextSchedule.start, nextSchedule.end || 1440) !== OverlapState.NoOverlap) { // TODO FIX HARDCODING
                     return false;
                 }
             }
