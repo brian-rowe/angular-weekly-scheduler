@@ -33,6 +33,14 @@
     }
   }
 
+  multi-slider {
+    weekly-slot {
+      &.active {
+        box-shadow: 0px 0px 2px 2px @textColor;
+      }
+    }
+  }
+
   .labels {
     border-right: @border;
   }
@@ -261,8 +269,8 @@ multi-slider {
     }
 
     &.active {
+      font-weight: bolder;
       z-index: 10;
-      background: #5ab57a;
     }
   }
 }
