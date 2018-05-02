@@ -28,7 +28,8 @@ class MultiSliderController implements angular.IComponentController {
     [OverlapState.CurrentCoversOther]: (current, other) => this.handleCurrentCoversOther(current, other),
     [OverlapState.OtherEndIsInsideCurrent]: (current, other) => this.handleOtherEndIsInsideCurrent(current, other),
     [OverlapState.OtherStartIsInsideCurrent]: (current, other) => this.handleOtherStartIsInsideCurrent(current, other),
-    [OverlapState.OtherEndIsCurrentStart]: (current, other) => this.handleOtherEndIsCurrentStart(current, other)
+    [OverlapState.OtherEndIsCurrentStart]: (current, other) => this.handleOtherEndIsCurrentStart(current, other),
+    [OverlapState.OtherStartIsCurrentEnd]: (current, other) => this.handleOtherStartIsCurrentEnd(current, other)
   };
 
   private schedulerCtrl: WeeklySchedulerController;
@@ -187,13 +188,13 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private handleCurrentCoversOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
-      this.removeSchedule(other);
-    }
+    // Here, it doesn't matter if the values match -- the covering slot can always "eat" the other one
+    this.removeSchedule(other);
   }
 
   private handleCurrentIsInsideOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
+      // Remove 'other' & make current expand to fit the other slot -- this could be done the other way around, by removing current and keeping other...
       this.removeSchedule(other);
 
       this.updateSchedule(current, {
