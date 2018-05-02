@@ -1,5 +1,7 @@
+/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/schedule-validator-service.ts" />
+
 describe('schedule validator service', function () {
-    var $service;
+    var $service: ScheduleValidatorService;
 
     beforeEach(angular.mock.module('demoApp'));
 
