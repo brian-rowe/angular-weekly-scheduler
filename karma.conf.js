@@ -4,8 +4,7 @@ module.exports = function (config) {
     files: [
       'test/testVendorScripts.js',
       'dist/ng-weekly-scheduler.js',
-      'test/spec/**/*.ts',
-      'test/spec/**/*.js'
+      'test/spec/**/*.ts'
     ],
 
     autoWatch: true,
