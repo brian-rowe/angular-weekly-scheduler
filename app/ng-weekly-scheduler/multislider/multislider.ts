@@ -169,6 +169,8 @@ class MultiSliderController implements angular.IComponentController {
     let schedules = this.item.schedules;
 
     schedules.splice(schedules.indexOf(schedule), 1);
+
+    this.schedulerCtrl.onDelete();
   }
 
   private resize() {
