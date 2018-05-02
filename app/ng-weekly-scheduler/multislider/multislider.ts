@@ -194,7 +194,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private handleCurrentIsInsideOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
-      // Remove 'other' & make current expand to fit the other slot -- this could be done the other way around, by removing current and keeping other...
+      // Remove 'other' & make current expand to fit the other slot
       this.removeSchedule(other);
 
       this.updateSchedule(current, {
@@ -202,6 +202,9 @@ class MultiSliderController implements angular.IComponentController {
           end: other.end,
           value: other.value
       });
+    } else {
+      // Just remove 'current'
+      this.removeSchedule(current);
     }
   }
 
