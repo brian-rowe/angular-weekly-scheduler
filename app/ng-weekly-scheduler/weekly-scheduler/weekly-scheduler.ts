@@ -5,12 +5,12 @@ class WeeklySchedulerController implements angular.IController {
 
   static $inject = [
     '$scope',
-    'overlapService'
+    'scheduleValidatorService'
   ];
 
   constructor(
     private $scope: angular.IScope,
-    private overlapService: OverlapService
+    private scheduleValidatorService: ScheduleValidatorService
   ) {
   }
 
@@ -29,7 +29,7 @@ class WeeklySchedulerController implements angular.IController {
   };
 
   $onInit() {
-    this.hasInvalidSchedule = !this.checkScheduleValidity();
+    this.hasInvalidSchedule = this.checkScheduleValidity();
     this.config = this.configure(this.options);
 
     /**
@@ -39,26 +39,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private checkScheduleValidity() {
-    for (let itemKey in this.items) {
-      let currentItem = this.items[itemKey];
-      let scheduleCount = currentItem.schedules.length;
-
-      if (scheduleCount) {
-        // Compare two at a time until the end
-        for (let i = 0; i < scheduleCount - 1; i++) {
-          let currentSchedule = currentItem.schedules[i];
-          let nextSchedule = currentItem.schedules[i+1];
-
-          if (this.overlapService.getOverlapState(currentSchedule.start, currentSchedule.end || this.config.maxValue, nextSchedule.start, nextSchedule.end || this.config.maxValue) !== OverlapState.NoOverlap) {
-            return false;
-          }
-        }
-
-        return false;
-      }
-    }
-
-    return true;
+    return this.items.some(item => !this.scheduleValidatorService.areSchedulesValid(item));
   }
 
   /**
