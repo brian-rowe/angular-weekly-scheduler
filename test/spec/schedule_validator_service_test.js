@@ -17,13 +17,62 @@ describe('schedule validator service', function () {
     }
 
     describe('should validate', function() {
-        it('non-touching schedules as valid', function () {
-            let item = getTestItem([
-                { start: 0, end: 60, value: true },
-                { start: 75, end: 120, value: true }
-            ]);
+        describe('non-touching schedules', function () {
+            it('with the same value as valid', function() {
+                let item = getTestItem([
+                    { start: 0, end: 60, value: true },
+                    { start: 75, end: 120, value: true }
+                ]);
+    
+                expect($service.areSchedulesValid(item)).toBeTruthy();
+            });
 
-            expect($service.areSchedulesValid(item)).toBeTruthy();
+            it('with different values as valid', function() {
+                let item = getTestItem([
+                    { start: 0, end: 60, value: true },
+                    { start: 75, end: 120, value: false }
+                ]);
+            });
+        });
+
+        describe('touching schedules', function () {
+            it('with the same value as valid', function() {
+                let item = getTestItem([
+                    { start: 0, end: 60, value: true },
+                    { start: 60, end: 120, value: true }
+                ]);
+    
+                expect($service.areSchedulesValid(item)).toBeTruthy();
+            });
+
+            it('with different values as valid', function() {
+                let item = getTestItem([
+                    { start: 0, end: 60, value: true },
+                    { start: 60, end: 120, value: true }
+                ]);
+    
+                expect($service.areSchedulesValid(item)).toBeTruthy();
+            });
+        });
+
+        describe('overlapping schedules', function() {
+            it('with the same value as valid', function() {
+                let item = getTestItem([
+                    { start: 0, end: 60, value: true },
+                    { start: 45, end: 120, value: true }
+                ]);
+
+                expect($service.areSchedulesValid(item)).toBeTruthy();
+            });
+
+            it ('with different values as invalid', function() {
+                let item = getTestItem([
+                    { start: 0, end: 60, value: true },
+                    { start: 45, end: 120, value: false }
+                ]);
+
+                expect($service.areSchedulesValid(item)).toBeFalsy();
+            });
         });
     });
 });
