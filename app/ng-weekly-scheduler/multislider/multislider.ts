@@ -28,7 +28,7 @@ class MultiSliderController implements angular.IComponentController {
     [OverlapState.CurrentCoversOther]: (current, other) => this.handleCurrentCoversOther(current, other),
     [OverlapState.OtherEndIsInsideCurrent]: (current, other) => this.handleOtherEndIsInsideCurrent(current, other),
     [OverlapState.OtherStartIsInsideCurrent]: (current, other) => this.handleOtherStartIsInsideCurrent(current, other),
-    [OverlapState.OtherEndIsCurrentStart]: (current, other) => this.handleOtherEndIsCurrentStart(current, other);
+    [OverlapState.OtherEndIsCurrentStart]: (current, other) => this.handleOtherEndIsCurrentStart(current, other)
   };
 
   private schedulerCtrl: WeeklySchedulerController;
@@ -230,14 +230,14 @@ class MultiSliderController implements angular.IComponentController {
 
   private handleOtherEndIsCurrentStart(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
-    } else {
+      this.handleOtherEndIsInsideCurrent(current, other);
     }
   }
 
   private handleOtherStartIsCurrentEnd(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
-    } else {
-    }
+      this.handleOtherStartIsInsideCurrent(current, other);
+    } 
   }
 
   public mergeOverlaps(schedule: IWeeklySchedulerRange<any>) {
