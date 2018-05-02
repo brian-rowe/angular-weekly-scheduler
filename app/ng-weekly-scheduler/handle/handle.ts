@@ -23,7 +23,7 @@ class HandleDirective implements angular.IDirective {
       $document.on('mouseup', mouseup);
 
       if (angular.isFunction(scope.ondragstart)) {
-        scope.ondragstart();
+        scope.$apply(scope.ondragstart());
       }
     });
 
@@ -31,7 +31,7 @@ class HandleDirective implements angular.IDirective {
       var delta = event.pageX - x;
 
       if (angular.isFunction(scope.ondrag)) {
-        scope.ondrag({ delta: delta });
+        scope.$apply(scope.ondrag({ delta: delta }));
       }
     }
 
@@ -40,7 +40,7 @@ class HandleDirective implements angular.IDirective {
       $document.unbind('mouseup', mouseup);
 
       if (angular.isFunction(scope.ondragstop)) {
-        scope.ondragstop();
+        scope.$apply(scope.ondragstop());
       }
     }
   }

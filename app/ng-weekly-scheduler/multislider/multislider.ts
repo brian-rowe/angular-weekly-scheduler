@@ -220,8 +220,6 @@ class MultiSliderController implements angular.IComponentController {
       scheduleIndex: schedule.$index,
       scheduleValue: schedule
     });
-
-    this.$scope.$apply();
   }
 
   public pixelToVal(pixel: number) {
