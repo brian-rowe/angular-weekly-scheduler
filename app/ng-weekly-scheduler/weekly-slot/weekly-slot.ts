@@ -18,6 +18,8 @@ class WeeklySlotController implements angular.IComponentController {
   private item: IWeeklySchedulerItem<any>;
   private itemIndex: number;
 
+  private removeSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
+
   private resizeDirectionIsStart: boolean = true;
 
   private schedule: IWeeklySchedulerRange<any>;
@@ -77,11 +79,11 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   private handleCurrentCoversOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    this.removeSchedule({ schedule: other });
   }
 
   private handleCurrentIsInsideOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    this.removeSchedule({ schedule: other });
 
     this.updateSelf({
       start: other.start,
@@ -91,7 +93,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   private handleOtherEndIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    this.removeSchedule({ schedule: other });
 
     this.updateSelf({
       start: other.start,
@@ -101,7 +103,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   private handleOtherStartIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule(other);
+    this.removeSchedule({ schedule: other });
 
     this.updateSelf({
       start: current.start,
@@ -129,7 +131,7 @@ class WeeklySlotController implements angular.IComponentController {
     this.multisliderCtrl.isDragging = false;
     this.multisliderCtrl.isHoveringSlot = false;
 
-    this.removeSchedule(this.schedule);
+    this.removeSchedule({ schedule: this.schedule });
     this.schedulerCtrl.onDelete();
   }
 
@@ -193,12 +195,6 @@ class WeeklySlotController implements angular.IComponentController {
         overlapHandler(schedule, el);
       }
     });
-  }
-
-  public removeSchedule(schedule: IWeeklySchedulerRange<any>) {
-    let schedules = this.item.schedules;
-
-    schedules.splice(schedules.indexOf(schedule), 1);
   }
 
   public resize(pixel: number) {
@@ -275,6 +271,7 @@ class WeeklySlotComponent implements angular.IComponentOptions {
     config: '<',
     schedule: '=ngModel',
     itemIndex: '<',
+    removeSchedule: '&',
     scheduleIndex: '<',
     item: '='
   };

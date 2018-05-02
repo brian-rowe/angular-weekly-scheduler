@@ -156,6 +156,12 @@ class MultiSliderController implements angular.IComponentController {
     this.isHoveringSlot = false;
   }
 
+  private removeSchedule(schedule: IWeeklySchedulerRange<any>) {
+    let schedules = this.item.schedules;
+
+    schedules.splice(schedules.indexOf(schedule), 1);
+  }
+
   private resize() {
     /* Since we have changed the width of the element via plain js +
      * the ng-styles for the individual slots are computed in this controller,
