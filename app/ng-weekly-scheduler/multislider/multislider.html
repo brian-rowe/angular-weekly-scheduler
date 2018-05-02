@@ -7,7 +7,6 @@
              ng-class="{active: schedule.$isActive, disable: multiSliderCtrl.item.editable === false}"
              ng-repeat="schedule in multiSliderCtrl.item.schedules"
              ng-model="schedule"
-             ng-model-options="{ updateOn: 'default blur' }"
              ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
              ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
              ng-style="{
