@@ -25,14 +25,6 @@ class WeeklySlotController implements angular.IComponentController {
 
   private valuesOnDragStart: IWeeklySchedulerRange<any>;
 
-  private overlapHandlers: { [key: number]: (current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) => void; } = {
-    [OverlapState.NoOverlap]: () => {},
-    [OverlapState.CurrentIsInsideOther]: (current, other) => this.handleCurrentIsInsideOther(current, other),
-    [OverlapState.CurrentCoversOther]: (current, other) => this.handleCurrentCoversOther(current, other),
-    [OverlapState.OtherEndIsInsideCurrent]: (current, other) => this.handleOtherEndIsInsideCurrent(current, other),
-    [OverlapState.OtherStartIsInsideCurrent]: (current, other) => this.handleOtherStartIsInsideCurrent(current, other)
-  };
-
   constructor(
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
@@ -42,64 +34,14 @@ class WeeklySlotController implements angular.IComponentController {
 
   $onInit() {
     this.valuesOnDragStart = this.getDragStartValues();
-
-    this.mergeOverlaps();
-  }
-
-  private adjustEndForView(end: number) {
-    if (end === 0) {
-      end = this.config.maxValue;
-    }
-
-    return end;
   }
 
   private getDragStartValues() {
     return {
       start: this.schedule.start,
-      end: this.adjustEndForView(this.schedule.end),
+      end: this.multisliderCtrl.adjustEndForView(this.schedule.end),
       value: this.schedule.value
     }
-  }
-
-  private getOverlapState(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): OverlapState {
-    let overlapState = this.overlapService.getOverlapState(current.start, this.adjustEndForView(current.end), other.start, this.adjustEndForView(other.end));
-
-    return overlapState;
-  }
-
-  private handleCurrentCoversOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule({ schedule: other });
-  }
-
-  private handleCurrentIsInsideOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule({ schedule: other });
-
-    this.updateSelf({
-      start: other.start,
-      end: other.end,
-      value: other.value
-    });
-  }
-
-  private handleOtherEndIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule({ schedule: other });
-
-    this.updateSelf({
-      start: other.start,
-      end: current.end,
-      value: other.value
-    });
-  }
-
-  private handleOtherStartIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
-    this.removeSchedule({ schedule: other });
-
-    this.updateSelf({
-      start: current.start,
-      end: other.end,
-      value: other.value
-    });
   }
 
   public canRemove() {
@@ -152,21 +94,7 @@ class WeeklySlotController implements angular.IComponentController {
       this.multisliderCtrl.isDragging = false;
     }, 200);
 
-    this.mergeOverlaps();
-  }
-
-  public mergeOverlaps() {
-    let schedule = this.schedule;
-    let schedules = this.item.schedules;
-
-    schedules.forEach((el) => {
-      if (el !== schedule) {
-        let overlapState = this.getOverlapState(schedule, el);
-        let overlapHandler = this.overlapHandlers[overlapState];
-
-        overlapHandler(schedule, el);
-      }
-    });
+    this.multisliderCtrl.mergeOverlaps(this.schedule);
   }
 
   public resize(pixel: number) {

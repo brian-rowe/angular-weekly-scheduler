@@ -6,19 +6,30 @@ class MultiSliderController implements angular.IComponentController {
   static $inject = [
     '$element',
     '$scope',
-    '$window'
+    '$window',
+    'overlapService'
   ];
 
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
-    private $window: angular.IWindowService
+    private $window: angular.IWindowService,
+    private overlapService: OverlapService
   ) {
     this.element = this.$element[0];
   }
 
   private $hoverElement: angular.IAugmentedJQuery;
   private index: number;
+
+  private overlapHandlers: { [key: number]: (current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) => void; } = {
+    [OverlapState.NoOverlap]: () => {},
+    [OverlapState.CurrentIsInsideOther]: (current, other) => this.handleCurrentIsInsideOther(current, other),
+    [OverlapState.CurrentCoversOther]: (current, other) => this.handleCurrentCoversOther(current, other),
+    [OverlapState.OtherEndIsInsideCurrent]: (current, other) => this.handleOtherEndIsInsideCurrent(current, other),
+    [OverlapState.OtherStartIsInsideCurrent]: (current, other) => this.handleOtherStartIsInsideCurrent(current, other)
+  };
+
   private schedulerCtrl: WeeklySchedulerController;
   
   public canAdd: boolean = true;
@@ -31,6 +42,8 @@ class MultiSliderController implements angular.IComponentController {
   public size: number = 60; // minutes
   
   $onInit() {
+    this.item.schedules.forEach(s => this.mergeOverlaps(s));
+
     this.$scope.$on(WeeklySchedulerEvents.RESIZED, () => {
       this.resize();
     });
@@ -126,6 +139,12 @@ class MultiSliderController implements angular.IComponentController {
     }
   }
 
+  private getOverlapState(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): OverlapState {
+    let overlapState = this.overlapService.getOverlapState(current.start, this.adjustEndForView(current.end), other.start, this.adjustEndForView(other.end));
+
+    return overlapState;
+  }
+
   private getSlotLeft(start: number) {
     let underlyingInterval: HTMLElement = this.getUnderlyingInterval(start);
 
@@ -164,6 +183,53 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     return this.$element.parent()[0].querySelector(`[rel='${val}']`);
+  }
+
+  private handleCurrentCoversOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
+    this.removeSchedule(other);
+  }
+
+  private handleCurrentIsInsideOther(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
+    this.removeSchedule(other);
+
+    this.updateSchedule(current, {
+        start: other.start,
+        end: other.end,
+        value: other.value
+    });
+  }
+
+  private handleOtherEndIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
+    this.removeSchedule(other);
+
+    this.updateSchedule(current, {
+      start: other.start,
+      end: current.end,
+      value: other.value
+    });
+  }
+
+  private handleOtherStartIsInsideCurrent(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
+    this.removeSchedule(other);
+
+    this.updateSchedule(current, {
+      start: current.start,
+      end: other.end,
+      value: other.value
+    });
+  }
+
+  public mergeOverlaps(schedule: IWeeklySchedulerRange<any>) {
+    let schedules = this.item.schedules;
+
+    schedules.forEach((el => {
+      if (el !== schedule) {
+        let overlapState = this.getOverlapState(schedule, el);
+        let overlapHandler = this.overlapHandlers[overlapState];
+
+        overlapHandler(schedule, el);
+      }
+    }));
   }
 
   private onHoverElementClick(event) {
@@ -220,6 +286,14 @@ class MultiSliderController implements angular.IComponentController {
       scheduleIndex: schedule.$index,
       scheduleValue: schedule
     });
+  }
+
+  public adjustEndForView(end: number) {
+    if (end === 0) {
+      end = this.config.maxValue;
+    }
+
+    return end;
   }
 
   public pixelToVal(pixel: number) {
