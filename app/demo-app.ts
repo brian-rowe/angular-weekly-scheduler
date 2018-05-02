@@ -53,7 +53,7 @@ angular.module('demoApp', ['weeklyScheduler'])
           {
             label: 'Sat',
             schedules: [
-              { start: 60, end: 105, value: false },
+              { start: 45, end: 105, value: false },
               { start: 0, end: 60, value: true }
             ]
           }
