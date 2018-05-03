@@ -19,7 +19,7 @@ class ScheduleValidatorService {
                 let nextSchedule = item.schedules[i + 1];
 
                 let valuesMatch: boolean = currentSchedule.value === nextSchedule.value;
-                let overlapState = this.overlapService.getOverlapState(currentSchedule.start, currentSchedule.end || 1440, nextSchedule.start, nextSchedule.end || 1440);
+                let overlapState = this.overlapService.getOverlapState(currentSchedule.start, currentSchedule.end || config.maxValue, nextSchedule.start, nextSchedule.end || config.maxValue);
 
                 if (!valuesMatch) {
                     return [OverlapState.NoOverlap, OverlapState.OtherStartIsCurrentEnd, OverlapState.OtherEndIsCurrentStart].indexOf(overlapState) > -1;
