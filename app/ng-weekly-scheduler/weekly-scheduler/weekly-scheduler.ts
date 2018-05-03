@@ -5,14 +5,12 @@ class WeeklySchedulerController implements angular.IController {
 
   static $inject = [
     '$scope',
-    'scheduleValidatorService',
-    'totalHoursService'
+    'scheduleValidatorService'
   ];
 
   constructor(
     private $scope: angular.IScope,
-    private scheduleValidatorService: ScheduleValidatorService,
-    private totalHoursService: TotalHoursService
+    private scheduleValidatorService: ScheduleValidatorService
   ) {
   }
 
@@ -49,7 +47,7 @@ class WeeklySchedulerController implements angular.IController {
    */
   private configure(options: IWeeklySchedulerOptions): IWeeklySchedulerConfig {
     var interval = options.interval || 15; // minutes
-    var hoursInDay = this.totalHoursService.totalHours;
+    var hoursInDay = 24;
     var minutesInDay = hoursInDay * 60;
     var intervalCount = minutesInDay / interval;
 

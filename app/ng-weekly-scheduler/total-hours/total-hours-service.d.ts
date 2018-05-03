@@ -1,3 +1,0 @@
-interface TotalHoursService {
-    totalHours: number;
-}

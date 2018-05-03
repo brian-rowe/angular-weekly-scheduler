@@ -1,9 +1,3 @@
-declare class TotalHoursServiceProvider implements angular.IServiceProvider {
-    static $name: string;
-    private totalHours;
-    setTotalHours(newVal: number): void;
-    $get(): TotalHoursService;
-}
 interface IWeeklySchedulerItem<T> {
     defaultValue: T;
     label: string;
