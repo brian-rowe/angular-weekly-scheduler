@@ -29,8 +29,8 @@ class WeeklySchedulerController implements angular.IController {
   };
 
   $onInit() {
-    this.hasInvalidSchedule = this.checkScheduleValidity();
     this.config = this.configure(this.options);
+    this.hasInvalidSchedule = this.checkScheduleValidity();
 
     /**
      * Watch the model items
