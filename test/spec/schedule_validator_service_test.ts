@@ -41,7 +41,7 @@ describe('schedule validator service', function () {
                     { start: 75, end: 120, value: true } 
                 ]);
 
-                let config = angular.extend(testConfig, { fullCalendar: true });
+                let config = angular.extend(angular.copy(testConfig), { fullCalendar: true });
 
                 expect($service.areSchedulesValid(item, config)).toBeFalsy();
             });
@@ -63,7 +63,7 @@ describe('schedule validator service', function () {
                     { start: 720, end: 1440, value: true } 
                 ]);
 
-                let config = angular.extend(testConfig, { fullCalendar: true });
+                let config = angular.extend(angular.copy(testConfig), { fullCalendar: true });
 
                 expect($service.areSchedulesValid(item, config)).toBeTruthy();
             });
@@ -75,7 +75,7 @@ describe('schedule validator service', function () {
                     { start: 0, end: 60, value: true },
                     { start: 75, end: 120, value: true }
                 ]);
-    
+
                 expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
             });
 
