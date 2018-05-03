@@ -9,6 +9,12 @@ describe('schedule validator service', function () {
         $service = _scheduleValidatorService_;
     }));
 
+    var testConfig = {
+        maxValue: 1440,
+        hourCount: 24,
+        intervalCount: 1440 / 15
+    }
+
     function getTestItem(schedules) {
         return {
             defaultValue: true,
@@ -26,7 +32,7 @@ describe('schedule validator service', function () {
                     { start: 75, end: 120, value: true }
                 ]);
     
-                expect($service.areSchedulesValid(item)).toBeTruthy();
+                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
             });
 
             it('with different values as valid', function() {
@@ -44,7 +50,7 @@ describe('schedule validator service', function () {
                     { start: 60, end: 120, value: true }
                 ]);
     
-                expect($service.areSchedulesValid(item)).toBeTruthy();
+                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
             });
 
             it('with different values as valid', function() {
@@ -53,7 +59,7 @@ describe('schedule validator service', function () {
                     { start: 60, end: 120, value: false }
                 ]);
     
-                expect($service.areSchedulesValid(item)).toBeTruthy();
+                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
             });
         });
 
@@ -64,7 +70,7 @@ describe('schedule validator service', function () {
                     { start: 45, end: 120, value: true }
                 ]);
 
-                expect($service.areSchedulesValid(item)).toBeTruthy();
+                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
             });
 
             it ('with different values as invalid', function() {
@@ -73,7 +79,7 @@ describe('schedule validator service', function () {
                     { start: 45, end: 120, value: false }
                 ]);
 
-                expect($service.areSchedulesValid(item)).toBeFalsy();
+                expect($service.areSchedulesValid(item, testConfig)).toBeFalsy();
             });
         });
     });

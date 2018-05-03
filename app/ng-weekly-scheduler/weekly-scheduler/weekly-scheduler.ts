@@ -39,7 +39,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private checkScheduleValidity() {
-    return this.items.some(item => !this.scheduleValidatorService.areSchedulesValid(item));
+    return this.items.some(item => !this.scheduleValidatorService.areSchedulesValid(item, this.config));
   }
 
   /**
