@@ -155,9 +155,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private getSlotRight(end: number) {
     // An end of 0 should display allll the way to the right, up to the edge
-    if (end === 0) {
-      end = this.config.maxValue;
-    }
+    end = this.adjustEndForView(end);
 
     // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
     let underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
