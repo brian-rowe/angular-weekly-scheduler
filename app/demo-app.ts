@@ -6,7 +6,8 @@ angular.module('demoApp', ['weeklyScheduler'])
         options: {
           editSlot: function() {
             alert('Editing slot');
-          }
+          },
+          fullCalendar: true
         },
         items: [
           // {
@@ -43,19 +44,19 @@ angular.module('demoApp', ['weeklyScheduler'])
           //     { start: 300, end: 1140 }
           //   ]
           // },
-          {
-            label: 'Fri',
-            defaultValue: false,
-            schedules: [
-              { start: 75, end: 120, value: false },
-              { start: 0, end: 60, value: false }
-            ]
-          },
+          // {
+          //   label: 'Fri',
+          //   defaultValue: false,
+          //   schedules: [
+          //     { start: 75, end: 120, value: false },
+          //     { start: 0, end: 60, value: false }
+          //   ]
+          // },
           {
             label: 'Sat',
             schedules: [
-              { start: 60, end: 105, value: false },
-              { start: 0, end: 60, value: true }
+              { start: 0, end: 60, value: false },
+              { start: 60, end: 1440, value: true }
             ]
           }
         ]

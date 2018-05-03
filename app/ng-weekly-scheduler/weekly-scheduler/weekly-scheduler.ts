@@ -53,6 +53,7 @@ class WeeklySchedulerController implements angular.IController {
 
     var result: IWeeklySchedulerConfig = angular.extend(this.defaultOptions, {
       editSlot: options.editSlot,
+      fullCalendar: options.fullCalendar,
       interval: interval,
       maxValue: minutesInDay,
       hourCount: hoursInDay,
