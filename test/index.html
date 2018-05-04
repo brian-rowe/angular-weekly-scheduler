@@ -104,17 +104,6 @@ npm install
 }, ...]</pre>
       <hr>
 
-      <h3>Transclusion</h3>
-      <p>This directive is using
-        <code>ng-transclude</code> so that everything in
-        <code>&lt;weekly-scheduler&gt;</code> element will be treated as the labelling object of one item.</p>
-
-      <pre>&lt;div class="srow"&gt;\{\{::$index + 1\}\}. \{\{ item.label \}\}&lt;/div&gt;</pre>
-
-      <p>On transcluded item label, the scope contains
-        <code>item</code> attribute name containing each item model and regular
-        <code>ng-repeat</code> scope attributes</p>
-
       <h3>Animation</h3>
       <p>
         You can add animation to the weekly scheduler directive easily by importing angular module
