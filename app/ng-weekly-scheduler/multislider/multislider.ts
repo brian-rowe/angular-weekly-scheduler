@@ -44,8 +44,6 @@ class MultiSliderController implements angular.IComponentController {
   public size: number = 60; // minutes
   
   $onInit() {
-    this.item.schedules.forEach(s => this.mergeOverlaps(s));
-
     this.$scope.$on(WeeklySchedulerEvents.RESIZED, () => {
       this.resize();
     });
