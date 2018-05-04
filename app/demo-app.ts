@@ -54,7 +54,7 @@ angular.module('demoApp', ['weeklyScheduler'])
           // },
           {
             label: 'Sat',
-            schedules: JSON.parse('[{"value":1,"day":0,"end":255,"start":0},{"value":0,"day":0,"end":330,"start":255},{"value":0,"day":0,"end":360,"start":330},{"value":1,"day":0,"end":420,"start":360},{"value":1,"day":0,"end":435,"start":420},{"value":1,"day":0,"end":480,"start":435},{"value":0,"day":0,"end":1305,"start":480},{"value":0,"day":0,"end":1365,"start":1305},{"value":0,"day":0,"end":1425,"start":1365},{"value":2,"day":0,"end":0,"start":1425}]');
+            schedules: JSON.parse('[{"value":1,"day":0,"end":255,"start":0},{"value":0,"day":0,"end":330,"start":255},{"value":0,"day":0,"end":360,"start":330},{"value":1,"day":0,"end":420,"start":360},{"value":1,"day":0,"end":435,"start":420},{"value":1,"day":0,"end":480,"start":435},{"value":0,"day":0,"end":1305,"start":480},{"value":0,"day":0,"end":1365,"start":1305},{"value":0,"day":0,"end":1425,"start":1365},{"value":2,"day":0,"end":0,"start":1425}]')
           }
         ]
       };
