@@ -105,8 +105,11 @@ class WeeklySlotController implements angular.IComponentController {
 
     if (this.resizeDirectionIsStart) {
       let newStart = Math.round(this.valuesOnDragStart.start + delta);
+      let startChanged = ui.start !== newStart;
+      let newStartBeforeOrAtEnd = newStart <= this.multisliderCtrl.adjustEndForView(ui.end) - 1;
+      let newStartAfterOrAtStart = newStart >= 0;
 
-      if (ui.start !== newStart && newStart <= ui.end - 1 && newStart >= 0) {
+      if (startChanged && newStartBeforeOrAtEnd && newStartAfterOrAtStart) {
         this.updateSelf({
           start: newStart,
           end: ui.end,
@@ -117,6 +120,8 @@ class WeeklySlotController implements angular.IComponentController {
       let newEnd = Math.round(this.valuesOnDragStart.end + delta);
 
       if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= this.config.maxValue) {
+
+
         this.updateSelf({
           start: ui.start,
           end: newEnd,
