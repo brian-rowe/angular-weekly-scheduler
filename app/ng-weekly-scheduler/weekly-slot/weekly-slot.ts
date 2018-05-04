@@ -104,31 +104,39 @@ class WeeklySlotController implements angular.IComponentController {
     let delta = this.multisliderCtrl.pixelToVal(pixel);
 
     if (this.resizeDirectionIsStart) {
-      let newStart = Math.round(this.valuesOnDragStart.start + delta);
-      let startChanged = ui.start !== newStart;
-      let newStartBeforeOrAtEnd = newStart <= this.multisliderCtrl.adjustEndForView(ui.end) - 1;
-      let newStartAfterOrAtStart = newStart >= 0;
-
-      if (startChanged && newStartBeforeOrAtEnd && newStartAfterOrAtStart) {
-        this.updateSelf({
-          start: newStart,
-          end: ui.end,
-          value: ui.value
-        });
-      }
+      this.resizeStart(ui, delta);
     } else {
-      let newEnd = Math.round(this.valuesOnDragStart.end + delta);
-      let endChanged = ui.end !== newEnd;
-      let newEndBeforeOrAtEnd = newEnd <= this.config.maxValue;
-      let newEndAfterOrAtStart = newEnd >= ui.start + 1;
+      this.resizeEnd(ui, delta);
+    }
+  }
 
-      if (endChanged && newEndAfterOrAtStart && newEndBeforeOrAtEnd) {
-        this.updateSelf({
-          start: ui.start,
-          end: newEnd,
-          value: ui.value
-        });
-      }
+  public resizeStart(schedule: IWeeklySchedulerRange<any>, delta: number) {
+    let newStart = Math.round(this.valuesOnDragStart.start + delta);
+    let startChanged = schedule.start !== newStart;
+    let newStartBeforeOrAtEnd = newStart <= this.multisliderCtrl.adjustEndForView(schedule.end) - 1;
+    let newStartAfterOrAtStart = newStart >= 0;
+
+    if (startChanged && newStartBeforeOrAtEnd && newStartAfterOrAtStart) {
+      this.updateSelf({
+        start: newStart,
+        end: schedule.end,
+        value: schedule.value
+      });
+    } 
+  }
+
+  public resizeEnd(schedule: IWeeklySchedulerRange<any>, delta: number) {
+    let newEnd = Math.round(this.valuesOnDragStart.end + delta);
+    let endChanged = schedule.end !== newEnd;
+    let newEndBeforeOrAtEnd = newEnd <= this.config.maxValue;
+    let newEndAfterOrAtStart = newEnd >= schedule.start + 1;
+
+    if (endChanged && newEndAfterOrAtStart && newEndBeforeOrAtEnd) {
+      this.updateSelf({
+        start: schedule.start,
+        end: newEnd,
+        value: schedule.value
+      });
     }
   }
 
