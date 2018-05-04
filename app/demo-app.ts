@@ -54,38 +54,7 @@ angular.module('demoApp', ['weeklyScheduler'])
           // },
           {
             label: 'Sat',
-            schedules: [
-              {
-                value: 1,
-                day: 0,
-                end: 255,
-                start: 0
-              },
-              {
-                value: 0,
-                day: 0,
-                end: 360,
-                start: 255
-              },
-              {
-                value: 1,
-                day: 0,
-                end: 480,
-                start: 360
-              },
-              {
-                value: 0,
-                day: 0,
-                end: 1425,
-                start: 480
-              },
-              {
-                value: 2,
-                day: 0,
-                end: 0,
-                start: 1425
-              }
-            ] 
+            schedules: JSON.parse('[{"$class":"rangevalue1","start":0,"end":255,"value":1},{"$class":"rangevalue0","start":255,"end":360,"value":0},{"$class":"rangevalue1","start":360,"end":480,"value":1},{"$class":"rangevalue0","start":480,"end":1425,"value":0},{"$class":"rangevalue2","start":1425,"end":0,"value":2}]');
           }
         ]
       };
