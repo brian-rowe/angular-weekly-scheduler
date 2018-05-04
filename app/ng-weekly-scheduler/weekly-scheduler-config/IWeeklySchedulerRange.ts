@@ -2,8 +2,6 @@ interface IWeeklySchedulerRange<T> {
     /** A css class to apply */
     $class?: string;
 
-    $index?: number;
-
     /** This will indicate whether the item is currently considered active to the UI */
     $isActive?: boolean;
 

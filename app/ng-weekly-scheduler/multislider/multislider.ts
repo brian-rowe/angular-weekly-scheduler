@@ -209,8 +209,11 @@ class MultiSliderController implements angular.IComponentController {
   private handleNoOverlap(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) {
     // Most of the time we won't want to do ANYTHING if there is no overlap, however...
     if (this.config.fullCalendar) {
+      let currentIndex = this.item.schedules.indexOf(current);
+      let otherIndex = this.item.schedules.indexOf(other);
+
       // Do nothing if the items aren't consecutive
-      if (Math.abs(current.$index - other.$index) !== 1) {
+      if (Math.abs(currentIndex - otherIndex) !== 1) {
         return;
       }
 
@@ -350,7 +353,7 @@ class MultiSliderController implements angular.IComponentController {
 
     this.schedulerCtrl.onChange({
       itemIndex: this.index,
-      scheduleIndex: schedule.$index,
+      scheduleIndex: this.item.schedules.indexOf(schedule),
       scheduleValue: schedule
     });
   }
