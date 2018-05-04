@@ -30,7 +30,7 @@ class WeeklySchedulerController implements angular.IController {
 
   $onInit() {
     this.config = this.configure(this.options);
-    this.hasInvalidSchedule = this.checkScheduleValidity();
+    this.updateScheduleValidity();
 
     /**
      * Watch the model items
@@ -89,6 +89,10 @@ class WeeklySchedulerController implements angular.IController {
         }
       });
     }
+  }
+
+  public updateScheduleValidity() {
+    this.hasInvalidSchedule = this.checkScheduleValidity();
   }
 }
 
