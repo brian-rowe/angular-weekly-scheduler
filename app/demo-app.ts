@@ -59,36 +59,31 @@ angular.module('demoApp', ['weeklyScheduler'])
                 value: 1,
                 day: 0,
                 end: 255,
-                start: 0,
-                $index: 0
+                start: 0
               },
               {
                 value: 0,
                 day: 0,
                 end: 360,
-                start: 255,
-                $index: 1
+                start: 255
               },
               {
                 value: 1,
                 day: 0,
                 end: 480,
-                start: 360,
-                $index: 2
+                start: 360
               },
               {
                 value: 0,
                 day: 0,
                 end: 1425,
-                start: 480,
-                $index: 3
+                start: 480
               },
               {
                 value: 2,
                 day: 0,
                 end: 0,
-                start: 1425,
-                $index: 4
+                start: 1425
               }
             ] 
           }
