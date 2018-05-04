@@ -1,5 +1,5 @@
 # angular-weekly-scheduler
-A weekly scheduler for angularjs
+A weekly scheduler for angularjs -- WORK IN PROGRESS, NOT PRODUCTION READY
 
 ## Run @ Home
 Run the demo @home with few steps (prerequisite git & node V0.10+ & npm installed):
