@@ -118,10 +118,11 @@ class WeeklySlotController implements angular.IComponentController {
       }
     } else {
       let newEnd = Math.round(this.valuesOnDragStart.end + delta);
+      let endChanged = ui.end !== newEnd;
+      let newEndBeforeOrAtEnd = newEnd <= this.config.maxValue;
+      let newEndAfterOrAtStart = newEnd >= ui.start + 1;
 
-      if (ui.end !== newEnd && newEnd >= ui.start + 1 && newEnd <= this.config.maxValue) {
-
-
+      if (endChanged && newEndAfterOrAtStart && newEndBeforeOrAtEnd) {
         this.updateSelf({
           start: ui.start,
           end: newEnd,
