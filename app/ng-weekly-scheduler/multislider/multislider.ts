@@ -208,8 +208,12 @@ class MultiSliderController implements angular.IComponentController {
 
   private handleNoOverlap(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) {
     // Most of the time we won't want to do ANYTHING if there is no overlap, however...
-
     if (this.config.fullCalendar) {
+      // Do nothing if the items aren't consecutive
+      if (Math.abs(current.$index - other.$index) !== 1) {
+        return;
+      }
+
       // With a fullCalendar, if two items are touching and the start of the one on the right moves to the right, leaving a gap, the end of the left one should expand to fill the space
       if (this.adjustEndForView(current.end) > other.start) {
         this.updateSchedule(other, {
