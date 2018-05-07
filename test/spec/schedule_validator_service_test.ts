@@ -76,6 +76,8 @@ describe('schedule validator service', function () {
                     { start: 0, end: 60, value: true },
                     { start: 75, end: 120, value: false }
                 ]);
+                
+                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
             });
         });
 
