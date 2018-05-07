@@ -132,30 +132,48 @@ describe('schedule validator service', function () {
             let maxTimeSlotConfig = angular.extend(angular.copy(testConfig), { maxTimeSlot: 60 });
 
             it('as valid when they do not exceed the maxTimeSlot length', () => {
-                let item = getTestItem([
+                let singleItem = getTestItem([
+                    { start: 0, end: 45, value: true }
+                ]);
+
+                expect($service.areSchedulesValid(singleItem, maxTimeSlotConfig)).toBeTruthy(); 
+
+                let doubleItem = getTestItem([
                     { start: 0, end: 45, value: true },
                     { start: 60, end: 105, value: false }
                 ]);
 
-                expect($service.areSchedulesValid(item, maxTimeSlotConfig)).toBeTruthy();
+                expect($service.areSchedulesValid(doubleItem, maxTimeSlotConfig)).toBeTruthy();
             });
 
             it('as valid when they are exactly the maxTimeSlot length', () => {
-                let item = getTestItem([
+                let singleItem = getTestItem([
+                    { start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: true }
+                ]);
+
+                expect($service.areSchedulesValid(singleItem, maxTimeSlotConfig)).toBeTruthy();
+
+                let doubleItem = getTestItem([
                     { start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: true },
                     { start: maxTimeSlotConfig.maxTimeSlot, end: maxTimeSlotConfig.maxTimeSlot + maxTimeSlotConfig.maxTimeSlot, value: false }
                 ]);
 
-                expect($service.areSchedulesValid(item, maxTimeSlotConfig)).toBeTruthy();
+                expect($service.areSchedulesValid(doubleItem, maxTimeSlotConfig)).toBeTruthy();
             });
 
             it('as invalid when they do exceed the maxTimeSlot length', function () {
-                let item = getTestItem([
+                let singleItem = getTestItem([
+                    { start: 0, end: 75, value: true }
+                ]);
+
+                expect($service.areSchedulesValid(singleItem, maxTimeSlotConfig)).toBeFalsy();
+
+                let doubleItem = getTestItem([
                     { start: 0, end: 75, value: true },
                     { start: 90, end: 180, value: false }
                 ]);
 
-                expect($service.areSchedulesValid(item, maxTimeSlotConfig)).toBeFalsy();
+                expect($service.areSchedulesValid(doubleItem, maxTimeSlotConfig)).toBeFalsy();
             });
         });
     });
