@@ -4,17 +4,20 @@ class WeeklySchedulerController implements angular.IController {
   static $name = 'weeklySchedulerController';
 
   static $inject = [
+    '$element',
     '$scope',
     'scheduleValidatorService'
   ];
 
   constructor(
+    private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
     private scheduleValidatorService: ScheduleValidatorService
   ) {
   }
 
   public hasInvalidSchedule: boolean;
+  public hoverClass: string;
 
   public config: IWeeklySchedulerConfig;
   public items: IWeeklySchedulerItem<number>[];
@@ -36,6 +39,8 @@ class WeeklySchedulerController implements angular.IController {
      * Watch the model items
      */
     this.$scope.$watchCollection(() => this.items, (newItems) => this.onModelChange(newItems));
+
+    this.watchHoverClass();
   }
 
   private checkScheduleValidity() {
@@ -91,6 +96,19 @@ class WeeklySchedulerController implements angular.IController {
     }
   }
 
+  private watchHoverClass() {
+    const pulseClass = 'pulse';
+    const pulseSelector = `.${pulseClass}`;
+
+    this.$scope.$watch(() => this.hoverClass, () => {
+      this.$element.find(pulseSelector).removeClass(pulseClass);
+
+      if (this.hoverClass) {
+        this.$element.find(`.${this.hoverClass}`).addClass(pulseClass);
+      }
+    });
+  }
+
   public updateScheduleValidity() {
     this.hasInvalidSchedule = this.checkScheduleValidity();
   }
@@ -101,13 +119,14 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
   static $name = 'weeklyScheduler';
 
   bindings = {
+    hoverClass: '<',
     items: '=',
     options: '=',
     onAdd: '&',
     onChange: '&',
     onDelete: '&'
   };
-  
+
   controller = WeeklySchedulerController.$name;
   controllerAs = WeeklySchedulerController.$controllerAs;
 
