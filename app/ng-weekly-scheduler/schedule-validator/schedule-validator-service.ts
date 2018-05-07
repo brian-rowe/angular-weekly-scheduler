@@ -15,6 +15,10 @@ class ScheduleValidatorService {
         let result = true;
 
         if (len) {
+            if (config.maxTimeSlot && item.schedules.some((s) => s.end - s.start > config.maxTimeSlot)) {
+                return false;
+            }
+
             // Compare two at a time until the end
             for (let i = 0; i < len - 1; i++) {
                 let currentSchedule = item.schedules[i];
@@ -30,10 +34,6 @@ class ScheduleValidatorService {
                 // When this option is true we should enforce that there are no gaps in the schedules
                 if (config.fullCalendar) {
                     result = nextSchedule.start === currentSchedule.end;
-                }
-
-                if (config.maxTimeSlot) {
-                    result = currentSchedule.end - currentSchedule.start <= config.maxTimeSlot;
                 }
             }
         }
