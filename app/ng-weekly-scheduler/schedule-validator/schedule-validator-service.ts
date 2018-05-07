@@ -28,12 +28,12 @@ class ScheduleValidatorService {
                 let overlapState = this.overlapService.getOverlapState(currentSchedule.start, currentSchedule.end || config.maxValue, nextSchedule.start, nextSchedule.end || config.maxValue);
 
                 if (!valuesMatch) {
-                    result = [OverlapState.NoOverlap, OverlapState.OtherStartIsCurrentEnd, OverlapState.OtherEndIsCurrentStart].indexOf(overlapState) > -1;
+                    result = result && [OverlapState.NoOverlap, OverlapState.OtherStartIsCurrentEnd, OverlapState.OtherEndIsCurrentStart].indexOf(overlapState) > -1;
                 }
 
                 // When this option is true we should enforce that there are no gaps in the schedules
                 if (config.fullCalendar) {
-                    result = nextSchedule.start === currentSchedule.end;
+                    result = result && nextSchedule.start === currentSchedule.end;
                 }
             }
         }
