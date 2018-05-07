@@ -27,47 +27,37 @@ describe('schedule validator service', function () {
 
     describe('should validate', function () {
         describe('calendars with gaps', () => {
-            it('as valid when fullCalendar is false', function () {
-                let item = getTestItem([
-                    { start: 0, end: 60, value: true },
-                    { start: 75, end: 120, value: true }
-                ]);
+            let itemWithGaps = getTestItem([
+                { start: 0, end: 60, value: true },
+                { start: 75, end: 120, value: true },
+                { start: 120, end: 1395, value: true }
+            ]);
 
-                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
+            it('as valid when fullCalendar is false', function () {
+                expect($service.areSchedulesValid(itemWithGaps, testConfig)).toBeTruthy();
             });
 
             it('as invalid when fullCalendar is true', function () {
-                let item = getTestItem([
-                    { start: 0, end: 60, value: true },
-                    { start: 75, end: 120, value: true },
-                    { start: 120, end: 1395, value: true }
-                ]);
-
                 let config = angular.extend(angular.copy(testConfig), { fullCalendar: true });
 
-                expect($service.areSchedulesValid(item, config)).toBeFalsy();
+                expect($service.areSchedulesValid(itemWithGaps, config)).toBeFalsy();
             });
         });
 
         describe('calendars without gaps', () => {
-            it('as valid when fullCalendar is false', function () {
-                let item = getTestItem([
-                    { start: 0, end: 720, value: true },
-                    { start: 720, end: 1440, value: true }
-                ]);
+            let itemWithoutGaps = getTestItem([
+                { start: 0, end: 720, value: true },
+                { start: 720, end: 1440, value: true }
+            ]);
 
-                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
+            it('as valid when fullCalendar is false', function () {
+                expect($service.areSchedulesValid(itemWithoutGaps, testConfig)).toBeTruthy();
             });
 
             it('as valid when fullCalendar is true', function () {
-                let item = getTestItem([
-                    { start: 0, end: 720, value: true },
-                    { start: 720, end: 1440, value: true }
-                ]);
-
                 let config = angular.extend(angular.copy(testConfig), { fullCalendar: true });
 
-                expect($service.areSchedulesValid(item, config)).toBeTruthy();
+                expect($service.areSchedulesValid(itemWithoutGaps, config)).toBeTruthy();
             });
         });
 
@@ -76,7 +66,7 @@ describe('schedule validator service', function () {
                 let item = getTestItem([
                     { start: 0, end: 60, value: true },
                     { start: 75, end: 120, value: true }
-                ]);
+                ]); 
 
                 expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
             });
