@@ -34,6 +34,11 @@ class WeeklySlotController implements angular.IComponentController {
 
   $onInit() {
     this.valuesOnDragStart = this.getDragStartValues();
+
+    // This is for editing the schedules via custom controls by the client
+    this.$scope.$watch(() => this.schedule, (newSchedule, oldSchedule) => {
+      this.multisliderCtrl.mergeOverlaps(newSchedule);
+    });
   }
 
   private getDragStartValues() {
