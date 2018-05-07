@@ -62,17 +62,19 @@ class MultiSliderController implements angular.IComponentController {
   $postLink() {
     this.$hoverElement = angular.element(this.$element.find('div')[0]);
 
-    this.$element.on('mousemove', (e) => {
-      var elOffX = this.getElementOffsetX(this.$element);
-      var left = e.pageX - elOffX - this.$hoverElement[0].clientWidth / 2;
+    if (angular.isElement(this.$hoverElement)) {
+      this.$element.on('mousemove', (e) => {
+        var elOffX = this.getElementOffsetX(this.$element);
+        var left = e.pageX - elOffX - this.$hoverElement[0].clientWidth / 2;
 
-      var val = this.pixelToVal(left);
+        var val = this.pixelToVal(left);
 
-      this.$hoverElement.css({
-        left: this.getSlotLeft(val),
-        right: this.getSlotRight(val + this.size)
+        this.$hoverElement.css({
+          left: this.getSlotLeft(val),
+          right: this.getSlotRight(val + this.size)
+        });
       });
-    });
+    }
   }
 
   public addSlot(start: number, end: number) {
