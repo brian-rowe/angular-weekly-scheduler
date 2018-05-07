@@ -2,9 +2,13 @@
 class ScheduleValidatorService {
     static $name = 'scheduleValidatorService';
 
-    static $inject = ['overlapService']
+    static $inject = [
+        'maxTimeSlotValidatorService',
+        'overlapService'
+    ]
 
     private constructor(
+        private maxTimeSlotValidatorService: MaxTimeSlotValidatorService,
         private overlapService: OverlapService
     ) {
     }
@@ -15,7 +19,7 @@ class ScheduleValidatorService {
         let result = true;
 
         if (len) {
-            if (!this.validateMaxTimeSlot(item.schedules, config.maxTimeSlot)) {
+            if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {
                 return false;
             }
 
@@ -39,14 +43,6 @@ class ScheduleValidatorService {
         }
 
         return result;
-    }
-
-    private validateMaxTimeSlot(schedules: IWeeklySchedulerRange<any>[], maxTimeSlot: number) {
-        if (!maxTimeSlot) {
-            return true;
-        }
-
-        return !schedules.some(s => s.end - s.start > maxTimeSlot);
     }
 }
 
