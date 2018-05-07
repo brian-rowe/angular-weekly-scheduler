@@ -26,41 +26,6 @@ describe('schedule validator service', function () {
     }
 
     describe('should validate', function () {
-        describe('calendars with gaps', () => {
-            let itemWithGaps = getTestItem([
-                { start: 0, end: 60, value: true },
-                { start: 75, end: 120, value: true },
-                { start: 120, end: 1395, value: true }
-            ]);
-
-            it('as valid when fullCalendar is false', function () {
-                expect($service.areSchedulesValid(itemWithGaps, testConfig)).toBeTruthy();
-            });
-
-            it('as invalid when fullCalendar is true', function () {
-                let config = angular.extend(angular.copy(testConfig), { fullCalendar: true });
-
-                expect($service.areSchedulesValid(itemWithGaps, config)).toBeFalsy();
-            });
-        });
-
-        describe('calendars without gaps', () => {
-            let itemWithoutGaps = getTestItem([
-                { start: 0, end: 720, value: true },
-                { start: 720, end: 1440, value: true }
-            ]);
-
-            it('as valid when fullCalendar is false', function () {
-                expect($service.areSchedulesValid(itemWithoutGaps, testConfig)).toBeTruthy();
-            });
-
-            it('as valid when fullCalendar is true', function () {
-                let config = angular.extend(angular.copy(testConfig), { fullCalendar: true });
-
-                expect($service.areSchedulesValid(itemWithoutGaps, config)).toBeTruthy();
-            });
-        });
-
         describe('non-touching schedules', function () {
             it('with the same value as valid', function () {
                 let item = getTestItem([
@@ -118,55 +83,6 @@ describe('schedule validator service', function () {
                 ]);
 
                 expect($service.areSchedulesValid(item, testConfig)).toBeFalsy();
-            });
-        });
-
-        describe('schedules with maxTimeSlot', function () {
-            let maxTimeSlotConfig = angular.extend(angular.copy(testConfig), { maxTimeSlot: 60 });
-
-            it('as valid when they do not exceed the maxTimeSlot length', () => {
-                let singleItem = getTestItem([
-                    { start: 0, end: 45, value: true }
-                ]);
-
-                expect($service.areSchedulesValid(singleItem, maxTimeSlotConfig)).toBeTruthy(); 
-
-                let doubleItem = getTestItem([
-                    { start: 0, end: 45, value: true },
-                    { start: 60, end: 105, value: false }
-                ]);
-
-                expect($service.areSchedulesValid(doubleItem, maxTimeSlotConfig)).toBeTruthy();
-            });
-
-            it('as valid when they are exactly the maxTimeSlot length', () => {
-                let singleItem = getTestItem([
-                    { start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: true }
-                ]);
-
-                expect($service.areSchedulesValid(singleItem, maxTimeSlotConfig)).toBeTruthy();
-
-                let doubleItem = getTestItem([
-                    { start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: true },
-                    { start: maxTimeSlotConfig.maxTimeSlot, end: maxTimeSlotConfig.maxTimeSlot + maxTimeSlotConfig.maxTimeSlot, value: false }
-                ]);
-
-                expect($service.areSchedulesValid(doubleItem, maxTimeSlotConfig)).toBeTruthy();
-            });
-
-            it('as invalid when they do exceed the maxTimeSlot length', function () {
-                let singleItem = getTestItem([
-                    { start: 0, end: 75, value: true }
-                ]);
-
-                expect($service.areSchedulesValid(singleItem, maxTimeSlotConfig)).toBeFalsy();
-
-                let doubleItem = getTestItem([
-                    { start: 0, end: 75, value: true },
-                    { start: 90, end: 180, value: false }
-                ]);
-
-                expect($service.areSchedulesValid(doubleItem, maxTimeSlotConfig)).toBeFalsy();
             });
         });
     });

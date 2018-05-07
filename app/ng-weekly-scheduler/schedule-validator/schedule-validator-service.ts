@@ -3,11 +3,13 @@ class ScheduleValidatorService {
     static $name = 'scheduleValidatorService';
 
     static $inject = [
+        'fullCalendarValidatorService',
         'maxTimeSlotValidatorService',
         'overlapService'
     ]
 
     private constructor(
+        private fullCalendarValidatorService: FullCalendarValidatorService,
         private maxTimeSlotValidatorService: MaxTimeSlotValidatorService,
         private overlapService: OverlapService
     ) {
@@ -23,6 +25,10 @@ class ScheduleValidatorService {
                 return false;
             }
 
+            if (!this.fullCalendarValidatorService.validate(item.schedules, config.fullCalendar)) {
+                return false;
+            }
+
             // Compare two at a time until the end
             for (let i = 0; i < len - 1; i++) {
                 let currentSchedule = item.schedules[i];
@@ -33,11 +39,6 @@ class ScheduleValidatorService {
 
                 if (!valuesMatch) {
                     result = result && [OverlapState.NoOverlap, OverlapState.OtherStartIsCurrentEnd, OverlapState.OtherEndIsCurrentStart].indexOf(overlapState) > -1;
-                }
-
-                // When this option is true we should enforce that there are no gaps in the schedules
-                if (config.fullCalendar) {
-                    result = result && nextSchedule.start === currentSchedule.end;
                 }
             }
         }
