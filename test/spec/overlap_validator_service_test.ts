@@ -1,13 +1,13 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/schedule-validator-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/overlap-validator-service.ts" />
 /// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerConfig.d.ts" />
 
-describe('schedule validator service', function () {
-    var $service: ScheduleValidatorService;
+describe('overlap validator service', function () {
+    var $service: OverlapValidatorService;
 
-    beforeEach(angular.mock.module('demoApp'));
+    beforeEach(angular.mock.module('weeklyScheduler'));
 
-    beforeEach(inject(function (_scheduleValidatorService_) {
-        $service = _scheduleValidatorService_;
+    beforeEach(inject(function (_overlapValidatorService_) {
+        $service = _overlapValidatorService_;
     }));
 
     var testConfig: IWeeklySchedulerConfig = {
@@ -26,63 +26,65 @@ describe('schedule validator service', function () {
     }
 
     describe('should validate', function () {
+        let maxValue = 24 * 60;
+
         describe('non-touching schedules', function () {
             it('with the same value as valid', function () {
-                let item = getTestItem([
+                let item = [
                     { start: 0, end: 60, value: true },
                     { start: 75, end: 120, value: true }
-                ]); 
+                ]; 
 
-                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
+                expect($service.validate(item, maxValue)).toBeTruthy();
             });
 
             it('with different values as valid', function () {
-                let item = getTestItem([
+                let item = [
                     { start: 0, end: 60, value: true },
                     { start: 75, end: 120, value: false }
-                ]);
+                ];
                 
-                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
+                expect($service.validate(item, maxValue)).toBeTruthy();
             });
         });
 
         describe('touching schedules', function () {
             it('with the same value as valid', function () {
-                let item = getTestItem([
+                let item = [
                     { start: 0, end: 60, value: true },
                     { start: 60, end: 120, value: true }
-                ]);
+                ];
 
-                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
+                expect($service.validate(item, maxValue)).toBeTruthy();
             });
 
             it('with different values as valid', function () {
-                let item = getTestItem([
+                let item = [
                     { start: 0, end: 60, value: true },
                     { start: 60, end: 120, value: false }
-                ]);
+                ];
 
-                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
+                expect($service.validate(item, maxValue)).toBeTruthy();
             });
         });
 
         describe('overlapping schedules', function () {
             it('with the same value as valid', function () {
-                let item = getTestItem([
+                let item = [
                     { start: 0, end: 60, value: true },
                     { start: 45, end: 120, value: true }
-                ]);
+                ];
 
-                expect($service.areSchedulesValid(item, testConfig)).toBeTruthy();
+                expect($service.validate(item, maxValue)).toBeTruthy();
             });
 
             it('with different values as invalid', function () {
-                let item = getTestItem([
+                let item = [
                     { start: 0, end: 60, value: true },
                     { start: 45, end: 120, value: false }
-                ]);
+                ];
 
-                expect($service.areSchedulesValid(item, testConfig)).toBeFalsy();
+                expect($service.validate(item, maxValue)).toBeFalsy();
             });
         });
     });
