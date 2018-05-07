@@ -3,7 +3,11 @@
 <weekly-slot class="slot"
              config="multiSliderCtrl.config"
              item="multiSliderCtrl.item"
-             ng-class="[schedule.$class, {active: schedule.$isActive, disable: multiSliderCtrl.item.editable === false}]"
+             ng-class="[schedule.$class, {
+                 active: schedule.$isActive,
+                 disable: multiSliderCtrl.item.editable === false,
+                 pending: schedule.$isEditing
+             }]"
              ng-repeat="schedule in multiSliderCtrl.item.schedules"
              ng-model="schedule"
              ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
