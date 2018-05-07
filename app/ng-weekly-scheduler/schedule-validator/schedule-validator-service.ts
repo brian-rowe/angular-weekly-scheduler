@@ -31,6 +31,10 @@ class ScheduleValidatorService {
                 if (config.fullCalendar) {
                     result = nextSchedule.start === currentSchedule.end;
                 }
+
+                if (config.maxTimeSlot) {
+                    result = currentSchedule.end - currentSchedule.start <= config.maxTimeSlot;
+                }
             }
         }
 
