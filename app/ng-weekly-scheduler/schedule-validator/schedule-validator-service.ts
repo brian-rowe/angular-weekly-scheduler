@@ -5,45 +5,30 @@ class ScheduleValidatorService {
     static $inject = [
         'fullCalendarValidatorService',
         'maxTimeSlotValidatorService',
-        'overlapService'
+        'overlapValidatorService'
     ]
 
     private constructor(
         private fullCalendarValidatorService: FullCalendarValidatorService,
         private maxTimeSlotValidatorService: MaxTimeSlotValidatorService,
-        private overlapService: OverlapService
+        private overlapValidatorService: OverlapValidatorService
     ) {
     }
 
     public areSchedulesValid(item: IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig): boolean {
-        let len = item.schedules.length;
-
-        let result = true;
-
-        if (len) {
-            if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {
-                return false;
-            }
-
-            if (!this.fullCalendarValidatorService.validate(item.schedules, config.fullCalendar)) {
-                return false;
-            }
-
-            // Compare two at a time until the end
-            for (let i = 0; i < len - 1; i++) {
-                let currentSchedule = item.schedules[i];
-                let nextSchedule = item.schedules[i + 1];
-
-                let valuesMatch: boolean = currentSchedule.value === nextSchedule.value;
-                let overlapState = this.overlapService.getOverlapState(currentSchedule.start, currentSchedule.end || config.maxValue, nextSchedule.start, nextSchedule.end || config.maxValue);
-
-                if (!valuesMatch) {
-                    result = result && [OverlapState.NoOverlap, OverlapState.OtherStartIsCurrentEnd, OverlapState.OtherEndIsCurrentStart].indexOf(overlapState) > -1;
-                }
-            }
+        if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {
+            return false;
         }
 
-        return result;
+        if (!this.fullCalendarValidatorService.validate(item.schedules, config.fullCalendar)) {
+            return false;
+        }
+
+        if (!this.overlapValidatorService.validate(item.schedules, config.maxValue)) {
+            return false;
+        }
+
+        return true;
     }
 }
 
