@@ -39,7 +39,8 @@ describe('schedule validator service', function () {
             it('as invalid when fullCalendar is true', function () {
                 let item = getTestItem([
                     { start: 0, end: 60, value: true },
-                    { start: 75, end: 120, value: true }
+                    { start: 75, end: 120, value: true },
+                    { start: 120, end: 1395, value: true }
                 ]);
 
                 let config = angular.extend(angular.copy(testConfig), { fullCalendar: true });
