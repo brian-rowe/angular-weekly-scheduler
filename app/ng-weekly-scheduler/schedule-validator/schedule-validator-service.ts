@@ -15,7 +15,7 @@ class ScheduleValidatorService {
         let result = true;
 
         if (len) {
-            if (config.maxTimeSlot && item.schedules.some((s) => s.end - s.start > config.maxTimeSlot)) {
+            if (!this.validateMaxTimeSlot(item.schedules, config.maxTimeSlot)) {
                 return false;
             }
 
@@ -39,6 +39,14 @@ class ScheduleValidatorService {
         }
 
         return result;
+    }
+
+    private validateMaxTimeSlot(schedules: IWeeklySchedulerRange<any>[], maxTimeSlot: number) {
+        if (!maxTimeSlot) {
+            return true;
+        }
+
+        return !schedules.some(s => s.end - s.start > maxTimeSlot);
     }
 }
 
