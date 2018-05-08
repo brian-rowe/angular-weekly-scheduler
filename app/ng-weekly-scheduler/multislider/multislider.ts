@@ -44,7 +44,7 @@ class MultiSliderController implements angular.IComponentController {
   public size: number = 60; // minutes
   
   $onInit() {
-    this.item.schedules.forEach(s => this.mergeOverlaps(s));
+    this.mergeAllOverlaps();
 
     this.$scope.$on(WeeklySchedulerEvents.RESIZED, () => {
       this.resize();
@@ -291,6 +291,10 @@ class MultiSliderController implements angular.IComponentController {
     } else { 
       // DO NOTHING, this is okay if the values don't match
     }
+  }
+
+  public mergeAllOverlaps() {
+    this.item.schedules.forEach(s => this.mergeOverlaps(s));
   }
 
   public mergeOverlaps(schedule: IWeeklySchedulerRange<any>) {
