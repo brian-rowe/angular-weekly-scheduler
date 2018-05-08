@@ -363,10 +363,13 @@ class MultiSliderController implements angular.IComponentController {
     schedule.start = update.start;
     schedule.end = this.adjustEndForModel(update.end);
 
+    this.schedulerCtrl.updateScheduleValidity();
+
     this.schedulerCtrl.onChange({
       itemIndex: this.index,
       scheduleIndex: this.item.schedules.indexOf(schedule),
-      scheduleValue: schedule
+      scheduleValue: schedule,
+      isSchedulerValid: this.schedulerCtrl.hasInvalidSchedule
     });
   }
 

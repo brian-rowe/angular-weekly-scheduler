@@ -59,7 +59,7 @@ angular.module('demoApp', ['weeklyScheduler'])
         ]
       };
 
-      this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
+      this.doSomething = function (itemIndex, scheduleIndex, scheduleValue, isSchedulerValid) {
         console.log('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
       };
     }]);
