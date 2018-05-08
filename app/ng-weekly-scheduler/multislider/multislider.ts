@@ -92,13 +92,21 @@ class MultiSliderController implements angular.IComponentController {
       item.schedules = [];
     }
 
-    item.schedules.push({
+    let schedule = {
       start: start,
       end: end,
       value: item.defaultValue
-    });
+    };
 
-    this.schedulerCtrl.onAdd();
+    if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
+      this.schedulerCtrl.config.editSlot(schedule).then((editedSchedule) => {
+        item.schedules.push(editedSchedule);
+      });
+    } else {
+      item.schedules.push(schedule);
+  
+      this.schedulerCtrl.onAdd();
+    }
   }
 
   public getElementOffsetX(elem: angular.IAugmentedJQuery) {
