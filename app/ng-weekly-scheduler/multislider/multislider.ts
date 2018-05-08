@@ -140,7 +140,7 @@ class MultiSliderController implements angular.IComponentController {
   private editSchedule(schedule: IWeeklySchedulerRange<any>) {
     if (this.canEdit(schedule)) {
       this.schedulerCtrl.config.editSlot(schedule).then((newSchedule) => {
-        this.mergeOverlaps(newSchedule);
+        this.merge(newSchedule);
       });
     }
   }
@@ -293,11 +293,11 @@ class MultiSliderController implements angular.IComponentController {
     }
   }
 
-  public mergeAllOverlaps() {
+  private mergeAllOverlaps() {
     this.item.schedules.forEach(s => this.mergeOverlaps(s));
   }
 
-  public mergeOverlaps(schedule: IWeeklySchedulerRange<any>) {
+  private mergeOverlaps(schedule: IWeeklySchedulerRange<any>) {
     let schedules = this.item.schedules;
 
     schedules.forEach((el => {
@@ -376,6 +376,12 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     return end;
+  }
+
+  public merge(schedule: IWeeklySchedulerRange<any>) {
+    // We consider the schedule we were working with to be the most important, so handle its overlaps first.
+    this.mergeOverlaps(schedule);
+    this.mergeAllOverlaps();
   }
 
   public pixelToVal(pixel: number) {

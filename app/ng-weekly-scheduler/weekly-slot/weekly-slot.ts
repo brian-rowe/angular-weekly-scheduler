@@ -94,8 +94,7 @@ class WeeklySlotController implements angular.IComponentController {
       this.multisliderCtrl.isDragging = false;
     }, 200);
 
-    this.multisliderCtrl.mergeOverlaps(this.schedule);
-    this.multisliderCtrl.mergeAllOverlaps();
+    this.multisliderCtrl.merge(this.schedule);
   }
 
   public resize(pixel: number) {
