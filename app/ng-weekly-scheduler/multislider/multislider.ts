@@ -139,8 +139,12 @@ class MultiSliderController implements angular.IComponentController {
    */
   private editSchedule(schedule: IWeeklySchedulerRange<any>) {
     if (this.canEdit(schedule)) {
+      schedule.$isEditing = true;
+
       this.schedulerCtrl.config.editSlot(schedule).then((newSchedule) => {
         this.merge(newSchedule);
+      }).finally(() => {
+        schedule.$isEditing = false;
       });
     }
   }
