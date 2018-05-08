@@ -1,6 +1,6 @@
 interface IWeeklySchedulerOptions {
     /** A function to call when an item is clicked in order to bring up an editor for it */
-    editSlot?: (schedule: IWeeklySchedulerRange<any>) => void;
+    editSlot?: (schedule: IWeeklySchedulerRange<any>) => angular.IPromise<IWeeklySchedulerRange<any>>;
 
     /** If this is true, ALL slots in the calendar must be filled in order for it to be valid */
     fullCalendar?: boolean;
