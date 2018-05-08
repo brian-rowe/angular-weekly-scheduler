@@ -23,7 +23,7 @@ class FullCalendarValidatorService {
             }
 
             // Validate that the last item lands at maxValue
-            if (i === len - 1 && next.end !== config.maxValue) {
+            if (i === len - 1 && (next.end || config.maxValue) !== config.maxValue) {
                 return false;
             }
 

@@ -24,6 +24,17 @@ describe('full calendar validator service', function () {
             maxValue: 1440
         };
 
+        describe('calendars with schedules that have endTime=0', () => {
+            it('as if the endTime was maxValue', () => {
+                let zeroEnd = [
+                    { start: 0, end: 720, value: true },
+                    { start: 720, end: 0, value: false }
+                ]
+
+                expect($service.validate(zeroEnd, fullCalendarConfig)).toBeTruthy();
+            });
+        });
+
         describe('calendars whose items do not begin at the start', () => {
             let offStartNoGaps = [
                 { start: 30, end: 60, value: true },
