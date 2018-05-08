@@ -20,7 +20,7 @@ class ScheduleValidatorService {
             return false;
         }
 
-        if (!this.fullCalendarValidatorService.validate(item.schedules, config.fullCalendar)) {
+        if (!this.fullCalendarValidatorService.validate(item.schedules, config)) {
             return false;
         }
 

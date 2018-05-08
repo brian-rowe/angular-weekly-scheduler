@@ -2,8 +2,8 @@
 class FullCalendarValidatorService {
     static $name = 'fullCalendarValidatorService';
 
-    public validate(schedules: IWeeklySchedulerRange<any>[], fullCalendar: boolean) {
-        if (!fullCalendar) {
+    public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig): boolean {
+        if (!config.fullCalendar) {
             return true;
         }
 
@@ -23,7 +23,7 @@ class FullCalendarValidatorService {
             }
 
             // Validate that the last item lands at maxValue
-            if (i === len - 1 && next.end !== 1440) { // TODO
+            if (i === len - 1 && next.end !== config.maxValue) {
                 return false;
             }
 
