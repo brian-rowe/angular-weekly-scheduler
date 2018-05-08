@@ -24,7 +24,7 @@ class WeeklySchedulerController implements angular.IController {
   public options: IWeeklySchedulerOptions;
 
   public onAdd: () => void;
-  public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<any>, isSchedulerValid: boolean }) => void;
+  public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<any> }) => void;
   public onDelete: () => void;
 
   public defaultOptions: IWeeklySchedulerOptions = {
