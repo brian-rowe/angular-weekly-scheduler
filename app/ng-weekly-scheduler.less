@@ -235,43 +235,6 @@ multi-slider {
       }
     }
 
-    &:not(.disable) {
-      .remove {
-        @removeWidth: @lineHeight;
-
-        display: none;
-        cursor: pointer;
-        float: right;
-        margin-right: -(@removeWidth + @offset);
-        width: @removeWidth;
-        background: red;
-        border-radius: 20%;
-        opacity: 0.5;
-        transform: translateY(-100%);
-
-        /** This pseudo-element is present to prevent the user from seeing the 'Add' slot when moving the mouse from a weekly-slot to its own 'remove' button */
-        &:before {
-          position: absolute;
-          content: "";
-          left: -@offset;
-          width: @offset * 2;
-          height: @lineHeight;
-        }
-      }
-    }
-
-    &:hover {
-      .remove {
-        display: block;
-      }
-    }
-
-    .remove {
-      &:hover {
-        opacity: 1;
-      }
-    }
-
     &.active {
       font-weight: bolder;
       z-index: 10;

@@ -44,12 +44,6 @@ class WeeklySlotController implements angular.IComponentController {
     }
   }
 
-  public canRemove() {
-    let isRemovable = !angular.isDefined(this.item.editable) || this.item.editable;
-
-    return isRemovable;
-  }
-
   public deleteSelf() {
     this.removeSchedule({ schedule: this.schedule });
   }
