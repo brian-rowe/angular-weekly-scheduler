@@ -5,7 +5,7 @@ angular.module('demoApp', ['weeklyScheduler'])
       $scope.model = {
         options: {
           editSlot: function() {
-            alert('Editing slot');
+            return $timeout(() => true, 500);
           },
           fullCalendar: true
         },
