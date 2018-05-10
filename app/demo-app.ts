@@ -7,6 +7,8 @@ angular.module('demoApp', ['weeklyScheduler'])
       $scope.model = {
         options: {
           editSlot: function(schedule) {
+            schedule.end += 15;
+
             return $timeout(() => schedule, 400);
           }
         },
@@ -58,6 +60,7 @@ angular.module('demoApp', ['weeklyScheduler'])
             label: 'Sat',
             schedules: [
               { start: 720, end: 900, value: false }
+              { start: 930, end: 960, value: false }
             ]
           }
         ]
