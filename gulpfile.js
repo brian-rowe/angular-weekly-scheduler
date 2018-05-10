@@ -62,7 +62,7 @@ gulp.task("buildJS", function () {
     var tsProject = ts.createProject("tsconfig.json");
 
     var tsResult = tsProject.src()
-        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.init({ largeFile: true }))
         .pipe(tsProject());
 
     return merge([

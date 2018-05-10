@@ -47,7 +47,6 @@ describe('full calendar validator service', function () {
             });
 
             it('as invalid when fullCalendar is true', () => {
-                debugger
                 expect($service.validate(offStartNoGaps, fullCalendarConfig)).toBeFalsy();
             });
         });
