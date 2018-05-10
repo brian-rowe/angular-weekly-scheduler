@@ -37,6 +37,20 @@ class WeeklySlotController implements angular.IComponentController {
     this.valuesOnDragStart = this.getDragStartValues();
   }
 
+  /**
+   * We want to cancel the drag operation if the user is just clicking on the item or has started dragging without waiting for the drag to "activate"
+   * However, we should give them a small tolerance before considering them to have started dragging early, as it is very easy to accidentally move a few pixels.
+   */
+  private cancelDragIfThresholdExceeded(pixel: number) {
+    if (pixel > 3) {
+      this.cancelDrag();
+    }
+  }
+
+  private cancelDrag() {
+    this.$timeout.cancel(this.startDragTimeout);
+  }
+
   private getDragStartValues() {
     return {
       start: this.schedule.start,
@@ -55,6 +69,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   public drag(pixel: number) {
     if (!this.schedule.$isActive) {
+      this.cancelDragIfThresholdExceeded(pixel);
       return;
     }
 
@@ -77,7 +92,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
-    this.$timeout.cancel(this.startDragTimeout);
+    this.cancelDrag();
     
     this.$timeout(() => {
       // this prevents user from accidentally
@@ -94,6 +109,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   public resize(pixel: number) {
     if (!this.schedule.$isActive) {
+      this.cancelDragIfThresholdExceeded(pixel);
       return;
     }
 
