@@ -79,18 +79,13 @@ class WeeklySlotController implements angular.IComponentController {
   public endDrag() {
     this.$timeout.cancel(this.startDragTimeout);
     
-    this.$scope.$apply(() => {
+    this.$timeout(() => {
       // this prevents user from accidentally
       // adding new slot after resizing or dragging
       this.multisliderCtrl.canAdd = true;
+
+      // this prevents ng-click from accidentally firing after resizing or dragging
       this.schedule.$isActive = false;
-    });
-    
-    /**
-     * When ending a drag there needs to be a small delay before setting isDragging back to false.
-     * This is so that the ng-click event will not fire
-     */
-    this.$timeout(() => {
       this.multisliderCtrl.isDragging = false;
     }, 200).then(() => {
       this.multisliderCtrl.merge(this.schedule);
