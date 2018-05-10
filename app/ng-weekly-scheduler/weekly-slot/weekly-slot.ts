@@ -86,9 +86,9 @@ class WeeklySlotController implements angular.IComponentController {
      */
     this.$timeout(() => {
       this.multisliderCtrl.isDragging = false;
-    }, 200);
-
-    this.multisliderCtrl.merge(this.schedule);
+    }, 200).then(() => {
+      this.multisliderCtrl.merge(this.schedule);
+    });
   }
 
   public resize(pixel: number) {
