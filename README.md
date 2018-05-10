@@ -7,7 +7,7 @@ Run the demo @home with few steps (prerequisite git & node V0.10+ & npm installe
 ```
  git clone https://github.com/brian-rowe/angular-weekly-scheduler.git && cd angular-weekly-scheduler
  npm install
- npm install -g grunt-cli
+ npm install -g gulp-cli
 ```
 
 Then run
