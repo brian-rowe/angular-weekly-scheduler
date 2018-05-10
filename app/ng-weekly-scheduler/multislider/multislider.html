@@ -1,13 +1,13 @@
 <div class="slot ghost" ng-click="multiSliderCtrl.onHoverElementClick()" ng-show="multiSliderCtrl.item.editable !== false && (!multiSliderCtrl.config.monoSchedule || !multiSliderCtrl.item.schedules.length) && !multiSliderCtrl.isDragging && !multiSliderCtrl.isHoveringSlot">+</div>
 
-<weekly-slot class="slot"
+<weekly-slot class="slot {{ schedule.$class }}"
              config="multiSliderCtrl.config"
              item="multiSliderCtrl.item"
-             ng-class="[schedule.$class, {
+             ng-class="{
                  active: schedule.$isActive,
                  disable: multiSliderCtrl.item.editable === false,
                  pending: schedule.$isEditing
-             }]"
+             }"
              ng-repeat="schedule in multiSliderCtrl.item.schedules"
              ng-model="schedule"
              ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
