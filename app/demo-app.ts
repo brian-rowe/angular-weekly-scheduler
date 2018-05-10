@@ -47,19 +47,19 @@ angular.module('demoApp', ['weeklyScheduler'])
           //     { start: 300, end: 1140 }
           //   ]
           // },
-          // {
-          //   label: 'Fri',
-          //   defaultValue: false,
-          //   schedules: [
-          //     { start: 75, end: 120, value: false },
-          //     { start: 0, end: 60, value: false }
-          //   ]
-          // },
+          {
+            label: 'Fri',
+            defaultValue: false,
+            schedules: [
+              { start: 720, end: 900, value: false },
+              { start: 915, end: 960, value: false }
+            ]
+          },
           {
             defaultValue: false,
             label: 'Sat',
             schedules: [
-              { start: 720, end: 900, value: false }
+              { start: 720, end: 900, value: false },
               { start: 930, end: 960, value: false }
             ]
           }

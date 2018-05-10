@@ -159,7 +159,16 @@ class MultiSliderController implements angular.IComponentController {
           this.removeSchedule(schedule);
         }
         else {
-           this.merge(newSchedule);
+          let premergeSchedule = angular.copy(newSchedule);
+
+          this.merge(newSchedule);
+           
+          // If merging mutated the schedule further, then updateSchedule would have already been called
+          // This is so that edits that don't trigger merges still trigger onChange,
+          // but don't trigger it twice
+          if (angular.equals(premergeSchedule, newSchedule)) {
+            this.updateSchedule(schedule, newSchedule);
+          }
         }
       }).finally(() => {
         schedule.$isEditing = false;
@@ -363,7 +372,7 @@ class MultiSliderController implements angular.IComponentController {
 
     schedules.splice(schedules.indexOf(schedule), 1);
 
-    this.schedulerCtrl.onDelete();
+    //this.schedulerCtrl.onDelete();
   }
 
   private resize() {
