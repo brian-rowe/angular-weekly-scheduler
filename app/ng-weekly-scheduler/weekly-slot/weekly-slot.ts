@@ -23,6 +23,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   private schedule: IWeeklySchedulerRange<any>;
 
+  private startDragTimeout: angular.IPromise<void>;
   private valuesOnDragStart: IWeeklySchedulerRange<any>;
 
   constructor(
@@ -53,6 +54,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public drag(pixel: number) {
+    if (!this.schedule.$isActive) {
+      return;
+    }
+
     this.multisliderCtrl.isDragging = true;
 
     let ui = this.schedule;
@@ -72,6 +77,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
+    this.$timeout.cancel(this.startDragTimeout);
     
     this.$scope.$apply(() => {
       // this prevents user from accidentally
@@ -92,6 +98,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public resize(pixel: number) {
+    if (!this.schedule.$isActive) {
+      return;
+    }
+
     this.multisliderCtrl.isDragging = true;
     
     let ui = this.schedule;
@@ -135,10 +145,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    this.$scope.$apply(() => {
+    this.startDragTimeout = this.$timeout(() => {
       this.schedule.$isActive = true;
       this.multisliderCtrl.canAdd = false;
-    });
+    }, 500);
 
     this.valuesOnDragStart = this.getDragStartValues();
   }
