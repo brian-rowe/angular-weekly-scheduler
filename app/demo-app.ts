@@ -6,8 +6,8 @@ angular.module('demoApp', ['weeklyScheduler'])
 
       $scope.model = {
         options: {
-          editSlot: function() {
-            return $timeout(() => true, 400);
+          editSlot: function(schedule) {
+            return $timeout(() => schedule, 400);
           }
         },
         items: [
