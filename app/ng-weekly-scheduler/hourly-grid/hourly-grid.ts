@@ -24,6 +24,9 @@ class HourlyGridDirective implements angular.IDirective {
         // Clean element
         element.empty();
 
+        // Stripe it by hour
+        element.addClass('striped');
+
         for (let i = 0; i < tickcount; i++) {
           var child = gridItemEl.clone();
 
@@ -35,9 +38,6 @@ class HourlyGridDirective implements angular.IDirective {
 
             child.text(`${currentHour || '12'}${meridiem}`);
           } else {
-            // no-text ones will get striped intervals
-            child.addClass('striped');
-            
             let numIntervalsInTick = 60 / config.interval;
             let intervalPercentage = 100 / numIntervalsInTick;
 
