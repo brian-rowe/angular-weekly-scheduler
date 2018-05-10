@@ -97,7 +97,7 @@ class WeeklySlotController implements angular.IComponentController {
     if (!this.schedule.$isActive) {
       return;
     }
-    
+
     this.$timeout(() => {
       // this prevents user from accidentally
       // adding new slot after resizing or dragging
