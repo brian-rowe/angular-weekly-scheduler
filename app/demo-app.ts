@@ -54,6 +54,7 @@ angular.module('demoApp', ['weeklyScheduler'])
           //   ]
           // },
           {
+            defaultValue: false,
             label: 'Sat',
             schedules: [
               { start: 720, end: 900, value: false }
