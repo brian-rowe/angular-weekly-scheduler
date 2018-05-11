@@ -36,7 +36,7 @@ class WeeklySchedulerController implements angular.IController {
   $onInit() {
     this.config = this.configure(this.options);
     this.updateScheduleValidity();
-    this.fillItems(this.items);
+    this.items = this.fillItems(this.items);
 
     /**
      * Watch the model items
@@ -97,7 +97,7 @@ class WeeklySchedulerController implements angular.IController {
       }
     });
 
-    this.items = angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
+    return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
   }
 
   private onModelChange(items: IInternalWeeklySchedulerItem<any>[]) {
@@ -110,7 +110,7 @@ class WeeklySchedulerController implements angular.IController {
       }
 
       // Keep track of our model (use it in template)
-      this.items = items;
+      this.items = this.fillItems(items);
 
       // If in multiSlider mode, ensure a schedule array is present on each item
       // Else only use first element of schedule array
