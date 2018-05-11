@@ -56,6 +56,10 @@ class WeeklySchedulerController implements angular.IController {
   $onInit() {
     this.config = this.configure(this.options);
     this.items = this.fillItems(this.buildItemsFromAdapter());
+    
+    // keep a reference on the adapter so we can pull it out later
+    this.adapter.items = this.items;
+
     this.updateScheduleValidity();
 
     this.previousItems = this.items;
@@ -77,9 +81,6 @@ class WeeklySchedulerController implements angular.IController {
       }
     }
     
-    // keep a reference on the adapter so we can pull it out later
-    this.adapter.items = result;
-
     return result;
   }
 
