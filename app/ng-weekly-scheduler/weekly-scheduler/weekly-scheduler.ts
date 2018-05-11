@@ -55,9 +55,9 @@ class WeeklySchedulerController implements angular.IController {
 
   $onInit() {
     this.config = this.configure(this.options);
-    this.updateScheduleValidity();
-
     this.items = this.fillItems(this.buildItemsFromAdapter());
+    this.updateScheduleValidity();
+    
     let test = this.buildItemsFromAdapter();
 
     this.previousItems = this.items;
