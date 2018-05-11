@@ -7,8 +7,8 @@
  class GroupService {
     static $name = 'groupService';
 
-    groupSchedules(schedules: IWeeklySchedulerItem<any>[]): { [key: number]: IWeeklySchedulerItem<any>[] }  {
-        let seed: { [key: number]: IWeeklySchedulerItem<any>[] } = {};
+    groupSchedules(schedules: IWeeklySchedulerRange<any>[]): { [key: number]: IWeeklySchedulerRange<any>[] }  {
+        let seed: { [key: number]: IWeeklySchedulerRange<any>[] } = {};
 
         let result = schedules.reduce((reducer, currentSchedule, index, array) => {
             let key = currentSchedule.day;

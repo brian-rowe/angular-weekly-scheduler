@@ -6,6 +6,7 @@ class WeeklySchedulerController implements angular.IController {
   static $inject = [
     '$element',
     '$scope',
+    'groupService',
     'dayMap',
     'scheduleValidatorService'
   ];
@@ -13,12 +14,14 @@ class WeeklySchedulerController implements angular.IController {
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
+    private groupService: GroupService,
     private dayMap: { [key: number]: string },
     private scheduleValidatorService: ScheduleValidatorService
   ) {
   }
 
   private adapter: IWeeklySchedulerAdapter<any, any>;
+  private rangeAdapter: IWeeklySchedulerRangeAdapter<any, any>;
 
   /* We need to modify the items that are being watched inside the watcher, so we'll have to cancel and readd the watcher to prevent infdig */
   private itemsWatcherCanceller: () => void;
@@ -53,10 +56,30 @@ class WeeklySchedulerController implements angular.IController {
   $onInit() {
     this.config = this.configure(this.options);
     this.updateScheduleValidity();
+
     this.items = this.fillItems(this.items);
+    let test = this.buildItemsFromAdapter();
+
     this.previousItems = this.items;
 
+    this.buildItemsFromAdapter();
+
     this.watchHoverClass();
+  }
+
+  private buildItemsFromAdapter() {
+    let result;
+    
+    if (this.adapter && this.rangeAdapter) {
+      let schedules = this.rangeAdapter.adapt(this.adapter.initialData);
+      let groupedSchedules = this.groupService.groupSchedules(schedules);
+
+      for (let key in groupedSchedules) {
+        result.push(this.createItem(parseInt(key, 10), groupedSchedules[key]));
+      }
+    }
+
+    return result;
   }
 
   private checkScheduleValidity() {

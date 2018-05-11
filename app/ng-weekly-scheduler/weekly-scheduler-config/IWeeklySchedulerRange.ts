@@ -11,6 +11,9 @@ interface IWeeklySchedulerRange<T> {
     /** This will indicate whether the item is currently being edited by the user */
     $isEditing?: boolean;
 
+    /** Not strictly necessary but makes things a whooole lot easier */
+    day: Days;
+
     start: number;
     end: number;
 
