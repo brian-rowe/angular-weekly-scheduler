@@ -1,4 +1,4 @@
 interface IWeeklySchedulerModel<T> {
-    options: IWeeklySchedulerOptions;
+    options: IWeeklySchedulerOptions<T>;
     items: IWeeklySchedulerItem<T>[];
 }

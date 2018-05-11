@@ -15,7 +15,7 @@ class ScheduleValidatorService {
     ) {
     }
 
-    public areSchedulesValid(item: IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig): boolean {
+    public areSchedulesValid(item: IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): boolean {
         if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {
             return false;
         }

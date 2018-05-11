@@ -2,7 +2,7 @@
 class FullCalendarValidatorService {
     static $name = 'fullCalendarValidatorService';
 
-    public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig): boolean {
+    public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (!config.fullCalendar) {
             return true;
         }

@@ -14,9 +14,11 @@ interface IWeeklySchedulerItem<T> {
     editable?: boolean;
     schedules: IWeeklySchedulerRange<T>[];
 }
-interface IWeeklySchedulerOptions {
+interface IWeeklySchedulerOptions<T> {
+    /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
+    createItem: (day: Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
     /** A function to call when an item is clicked in order to bring up an editor for it */
-    editSlot?: (schedule: IWeeklySchedulerRange<any>) => angular.IPromise<IWeeklySchedulerRange<any>>;
+    editSlot?: (schedule: IWeeklySchedulerRange<T>) => angular.IPromise<IWeeklySchedulerRange<T>>;
     /** If this is true, ALL slots in the calendar must be filled in order for it to be valid */
     fullCalendar?: boolean;
     /** If this is defined, a time slot will not be able to be more than this many minutes long */

@@ -16,7 +16,7 @@ class HourlyGridDirective implements angular.IDirective {
         });
     }
 
-    private doGrid(scope, element, attrs, config: IWeeklySchedulerConfig) {
+    private doGrid(scope, element, attrs, config: IWeeklySchedulerConfig<any>) {
         // Calculate hour width distribution
         var tickcount = config.hourCount;
         var gridItemEl = this.GRID_TEMPLATE.clone();

@@ -6,6 +6,12 @@ angular.module('demoApp', ['weeklyScheduler'])
 
       $scope.model = {
         options: {
+          createItem: (day, schedules) => {
+            return {
+              day: day,
+              schedules: schedules
+            }
+          },
           editSlot: function(schedule) {
             schedule.end += 15;
 

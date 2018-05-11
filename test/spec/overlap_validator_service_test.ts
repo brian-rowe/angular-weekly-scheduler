@@ -10,7 +10,10 @@ describe('overlap validator service', function () {
         $service = _overlapValidatorService_;
     }));
 
-    var testConfig: IWeeklySchedulerConfig = {
+    var testConfig = {
+        createItem: (day, schedules) => {
+            return { defaultValue: 0, day: day, schedules: schedules }
+        },
         maxValue: 1440,
         hourCount: 24,
         intervalCount: 1440 / 15

@@ -11,8 +11,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   private multisliderCtrl: MultiSliderController;
 
-  private config: IWeeklySchedulerConfig;
-
+  private config: IWeeklySchedulerConfig<any>;
   private item: IWeeklySchedulerItem<any>;
 
   private editSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;

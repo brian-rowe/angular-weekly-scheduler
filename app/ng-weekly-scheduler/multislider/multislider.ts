@@ -39,8 +39,8 @@ class MultiSliderController implements angular.IComponentController {
   public isHoveringSlot: boolean = false;
 
   public element: Element;
-  public config: IWeeklySchedulerConfig;
-  public item: IWeeklySchedulerItem<number>;
+  public config: IWeeklySchedulerConfig<any>;
+  public item: IWeeklySchedulerItem<any>;
   public size: number = 60; // minutes
   
   $onInit() {

@@ -24,16 +24,17 @@ class WeeklySchedulerController implements angular.IController {
   public hasInvalidSchedule: boolean;
   public hoverClass: string;
 
-  public config: IWeeklySchedulerConfig;
+  public config: IWeeklySchedulerConfig<any>
   public items: IInternalWeeklySchedulerItem<number>[];
   public previousItems: IInternalWeeklySchedulerItem<number>[];
-  public options: IWeeklySchedulerOptions;
+  public options: IWeeklySchedulerOptions<any>;
 
   public onAdd: () => void;
   public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<any> }) => void;
   public onDelete: () => void;
 
-  public defaultOptions: IWeeklySchedulerOptions = {
+  public defaultOptions: IWeeklySchedulerOptions<any> = {
+    createItem: (day, schedules) => { return { defaultValue: '', day: day, schedules: schedules } },
     monoSchedule: false
   };
 
@@ -60,13 +61,13 @@ class WeeklySchedulerController implements angular.IController {
   /**
    * Configure the scheduler.
    */
-  private configure(options: IWeeklySchedulerOptions): IWeeklySchedulerConfig {
+  private configure(options: IWeeklySchedulerOptions<any>): IWeeklySchedulerConfig<any> {
     var interval = options.interval || 15; // minutes
     var hoursInDay = 24;
     var minutesInDay = hoursInDay * 60;
     var intervalCount = minutesInDay / interval;
 
-    var result: IWeeklySchedulerConfig = angular.extend(this.defaultOptions, {
+    var result: IWeeklySchedulerConfig<any> = angular.extend(this.defaultOptions, {
       editSlot: options.editSlot,
       fullCalendar: options.fullCalendar,
       interval: interval,
