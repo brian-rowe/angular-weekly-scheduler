@@ -52,6 +52,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   private getDragStartValues() {
     return {
+      day: this.schedule.day,
       start: this.schedule.start,
       end: this.multisliderCtrl.adjustEndForView(this.schedule.end),
       value: this.schedule.value
@@ -83,6 +84,7 @@ class WeeklySlotController implements angular.IComponentController {
 
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
       this.updateSelf({
+        day: ui.day,
         start: newStart,
         end: newEnd,
         value: ui.value
@@ -136,6 +138,7 @@ class WeeklySlotController implements angular.IComponentController {
 
     if (startChanged && newStartBeforeOrAtEnd && newStartAfterOrAtStart) {
       this.updateSelf({
+        day: schedule.day,
         start: newStart,
         end: schedule.end,
         value: schedule.value
@@ -151,6 +154,7 @@ class WeeklySlotController implements angular.IComponentController {
 
     if (endChanged && newEndAfterOrAtStart && newEndBeforeOrAtEnd) {
       this.updateSelf({
+        day: schedule.day,
         start: schedule.start,
         end: newEnd,
         value: schedule.value

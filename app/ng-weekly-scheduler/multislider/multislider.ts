@@ -93,6 +93,7 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     let schedule = {
+      day: this.item.day,
       start: start,
       end: end,
       value: this.config.defaultValue 
@@ -231,6 +232,7 @@ class MultiSliderController implements angular.IComponentController {
       this.removeSchedule(other);
 
       this.updateSchedule(current, {
+          day: other.day,
           start: other.start,
           end: other.end,
           value: other.value
@@ -255,6 +257,7 @@ class MultiSliderController implements angular.IComponentController {
       // With a fullCalendar, if two items are touching and the start of the one on the right moves to the right, leaving a gap, the end of the left one should expand to fill the space
       if (this.adjustEndForView(current.end) > other.start) {
         this.updateSchedule(other, {
+          day: other.day,
           start: other.start,
           end: current.start,
           value: other.value
@@ -264,6 +267,7 @@ class MultiSliderController implements angular.IComponentController {
       // Same if two items are touching & the end of the one on the left moves to the left, leaving a gap
       if (this.adjustEndForView(current.end) < other.start) {
         this.updateSchedule(other, {
+          day: other.day,
           start: current.end,
           end: other.end,
           value: other.value
@@ -277,12 +281,14 @@ class MultiSliderController implements angular.IComponentController {
       this.removeSchedule(other);
 
       this.updateSchedule(current, {
+        day: current.day,
         start: other.start,
         end: current.end,
         value: other.value
       });
     } else {
       this.updateSchedule(other, {
+        day: other.day,
         start: other.start,
         end: current.start,
         value: current.value
@@ -295,12 +301,14 @@ class MultiSliderController implements angular.IComponentController {
       this.removeSchedule(other);
 
       this.updateSchedule(current, {
+        day: current.day,
         start: current.start,
         end: other.end,
         value: other.value
       });
     } else {
       this.updateSchedule(other, {
+        day: other.day,
         start: current.end,
         end: other.end,
         value: other.value

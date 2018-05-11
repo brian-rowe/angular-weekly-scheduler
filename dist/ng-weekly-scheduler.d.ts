@@ -6,8 +6,8 @@
  */
 declare class GroupService {
     static $name: string;
-    groupSchedules(schedules: IWeeklySchedulerItem<any>[]): {
-        [key: number]: IWeeklySchedulerItem<any>[];
+    groupSchedules(schedules: IWeeklySchedulerRange<any>[]): {
+        [key: number]: IWeeklySchedulerRange<any>[];
     };
 }
 declare const enum Days {
@@ -59,6 +59,8 @@ interface IWeeklySchedulerRange<T> {
     $isDeleting?: boolean;
     /** This will indicate whether the item is currently being edited by the user */
     $isEditing?: boolean;
+    /** Not strictly necessary but makes things a whooole lot easier */
+    day: Days;
     start: number;
     end: number;
     value: T;
