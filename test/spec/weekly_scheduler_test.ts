@@ -14,7 +14,8 @@ describe('weekly scheduler', () => {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
-        $element = $compile('<weekly-scheduler items="[]" options="{}">')($scope);
+        ($scope as any).items = [];
+        $element = $compile('<weekly-scheduler items="items" options="{}">')($scope);
         element = $element[0];
         $controller = _$componentController_('weeklyScheduler', { $element: $element, $scope: $scope }, { items: [], options: {} });
         $controller.$onInit();
