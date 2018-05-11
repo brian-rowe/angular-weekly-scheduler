@@ -73,12 +73,12 @@ class WeeklySchedulerController implements angular.IController {
       for (let key in groupedSchedules) {
         let item = this.createItem(parseInt(key, 10), groupedSchedules[key]);
 
-        // keep a reference on the adapter so we can pull it out later
-        this.adapter.items.push(item);
-
         result.push(item);
       }
     }
+    
+    // keep a reference on the adapter so we can pull it out later
+    this.adapter.items = result;
 
     return result;
   }
