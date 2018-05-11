@@ -85,7 +85,7 @@ class WeeklySchedulerController implements angular.IController {
 
     let builder: IWeeklySchedulerItem<any> = this.config.createItem(day, schedules);
 
-    result = angular.extend(builder, { label: day });
+    result = angular.extend(builder, { label: this.dayMap[day] });
 
     return result;
   }
