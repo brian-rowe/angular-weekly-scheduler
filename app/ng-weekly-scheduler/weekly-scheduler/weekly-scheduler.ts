@@ -40,9 +40,10 @@ class WeeklySchedulerController implements angular.IController {
   };
 
   $doCheck() {
-    if(!angular.equals(this.items, this.previousItems)) {
+    if(this.items !== this.previousItems) {
+      console.log('hit');
       this.items = this.fillItems(this.items);
-      this.previousItems = angular.copy(this.items);
+      this.previousItems = this.items;
     }
   }
 
@@ -50,7 +51,7 @@ class WeeklySchedulerController implements angular.IController {
     this.config = this.configure(this.options);
     this.updateScheduleValidity();
     this.items = this.fillItems(this.items);
-    this.previousItems = angular.copy(this.items);
+    this.previousItems = this.items;
 
     this.watchHoverClass();
   }
