@@ -14,10 +14,23 @@ describe('weekly scheduler', () => {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+
         ($scope as any).items = [];
-        $element = $compile('<weekly-scheduler items="items" options="{}">')($scope);
+
+        let options = {
+            createItem: (day, schedules) => {
+                return {
+                    day: day,
+                    schedules: schedules
+                };
+            }
+        };
+
+        ($scope as any).options = angular.copy(options);
+        
+        $element = $compile('<weekly-scheduler items="items" options="options">')($scope);
         element = $element[0];
-        $controller = _$componentController_('weeklyScheduler', { $element: $element, $scope: $scope }, { items: [], options: {} });
+        $controller = _$componentController_('weeklyScheduler', { $element: $element, $scope: $scope }, { items: [], options: angular.copy(options) });
         $controller.$onInit();
         $scope.$digest();
     }));
