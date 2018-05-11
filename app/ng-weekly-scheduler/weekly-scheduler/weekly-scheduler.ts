@@ -57,7 +57,7 @@ class WeeklySchedulerController implements angular.IController {
     this.config = this.configure(this.options);
     this.updateScheduleValidity();
 
-    this.items = this.fillItems(this.items);
+    this.items = this.fillItems(this.buildItemsFromAdapter());
     let test = this.buildItemsFromAdapter();
 
     this.previousItems = this.items;
@@ -167,7 +167,6 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
   bindings = {
     adapter: '<',
     hoverClass: '<',
-    items: '=',
     options: '=',
     onAdd: '&',
     onChange: '&',
