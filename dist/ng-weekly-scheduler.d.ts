@@ -19,6 +19,15 @@ declare const enum Days {
     Saturday = 5,
     Sunday = 6,
 }
+/**
+ * Implement this on a client and then pass it in to the component.
+ * T = external custom type
+ */
+interface IWeeklySchedulerAdapter<T> {
+    /** Transform the data held within the component to the format you need it outside of the component. */
+    getSnapshot(): T[];
+    initialData: T[];
+}
 interface IWeeklySchedulerItem<T> {
     day: Days;
     editable?: boolean;

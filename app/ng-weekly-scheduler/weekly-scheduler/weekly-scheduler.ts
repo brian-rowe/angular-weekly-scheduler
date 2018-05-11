@@ -18,6 +18,8 @@ class WeeklySchedulerController implements angular.IController {
   ) {
   }
 
+  private adapter: IWeeklySchedulerAdapter<any>;
+
   /* We need to modify the items that are being watched inside the watcher, so we'll have to cancel and readd the watcher to prevent infdig */
   private itemsWatcherCanceller: () => void;
 
@@ -140,6 +142,7 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
   static $name = 'weeklyScheduler';
 
   bindings = {
+    adapter: '<',
     hoverClass: '<',
     items: '=',
     options: '=',
