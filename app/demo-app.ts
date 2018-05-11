@@ -55,7 +55,9 @@ angular.module('demoApp', ['weeklyScheduler'])
           // },
           {
             day: Days.Saturday,
-            schedules: JSON.parse('[{"$class":"rangevalue1","start":0,"end":255,"value":1},{"$class":"rangevalue0","start":255,"end":360,"value":0},{"$class":"rangevalue1","start":360,"end":480,"value":1},{"$class":"rangevalue0","start":480,"end":1425,"value":0},{"$class":"rangevalue2","start":1425,"end":0,"value":2}]')
+            schedules: [
+              { start: 300, end: 900 }
+            ]
           }
         ] as IWeeklySchedulerItem<any>[]
       };
