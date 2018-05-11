@@ -68,7 +68,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private buildItemsFromAdapter() {
-    let result;
+    let result = [];
     
     if (this.adapter && this.rangeAdapter) {
       let schedules = this.rangeAdapter.adapt(this.adapter.initialData);
