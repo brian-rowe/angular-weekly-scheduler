@@ -6,12 +6,14 @@ class WeeklySchedulerController implements angular.IController {
   static $inject = [
     '$element',
     '$scope',
+    'dayMap',
     'scheduleValidatorService'
   ];
 
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
+    private dayMap: { [key: number]: string },
     private scheduleValidatorService: ScheduleValidatorService
   ) {
   }
@@ -20,7 +22,7 @@ class WeeklySchedulerController implements angular.IController {
   public hoverClass: string;
 
   public config: IWeeklySchedulerConfig;
-  public items: IWeeklySchedulerItem<number>[];
+  public items: IInternalWeeklySchedulerItem<number>[];
   public options: IWeeklySchedulerOptions;
 
   public onAdd: () => void;
@@ -34,6 +36,7 @@ class WeeklySchedulerController implements angular.IController {
   $onInit() {
     this.config = this.configure(this.options);
     this.updateScheduleValidity();
+    this.fillItems(this.items);
 
     /**
      * Watch the model items
@@ -68,7 +71,28 @@ class WeeklySchedulerController implements angular.IController {
     return result;
   }
 
-  private onModelChange(items: IWeeklySchedulerItem<number>[]) {
+  /**
+   * The scheduler should always show all days, even if it was not passed any schedules for that day
+   */
+  private fillItems(items: IInternalWeeklySchedulerItem<any>[]) {
+    angular.forEach(this.dayMap, (day: string, key) => {
+      let item: IInternalWeeklySchedulerItem<any> = items[key];
+
+      if (!item) {
+        items[key] = {
+          defaultValue: items.filter(x => x.defaultValue).map(x => x.defaultValue)[0], // grab first defaultValue, they should all be the same -- this shouldn't be defined per item, TODO!
+          day: key,
+          label: day,
+          schedules: []
+        };
+      } else {
+        // If the item DID exist just set the label
+        item.label = day;
+      }
+    });
+  }
+
+  private onModelChange(items: IInternalWeeklySchedulerItem<any>[]) {
     // Check items are present
     if (items) {
 
