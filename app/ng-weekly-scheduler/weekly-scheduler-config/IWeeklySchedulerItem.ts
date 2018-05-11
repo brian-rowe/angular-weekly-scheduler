@@ -1,5 +1,4 @@
 interface IWeeklySchedulerItem<T> {
-    defaultValue: T;
     day: Days;
     editable?: boolean;
     schedules: IWeeklySchedulerRange<T>[];

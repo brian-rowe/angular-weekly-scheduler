@@ -11,11 +11,12 @@ describe('full calendar validator service', function () {
 
     describe('should validate', function () {
         let createItem = (day, schedules) => {
-            return { defaultValue: '', day: day, schedules: schedules }
+            return { day: day, schedules: schedules }
         };
 
         let fullCalendarConfig = {
             createItem: createItem,
+            defaultValue: '',
             fullCalendar: true,
             hourCount: 24,
             intervalCount: 96,
@@ -24,6 +25,7 @@ describe('full calendar validator service', function () {
 
         let nonFullCalendarConfig = {
             createItem: createItem,
+            defaultValue: '',
             fullCalendar: false,
             hourCount: 24,
             intervalCount: 96,

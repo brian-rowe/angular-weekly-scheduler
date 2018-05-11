@@ -34,7 +34,8 @@ class WeeklySchedulerController implements angular.IController {
   public onDelete: () => void;
 
   public defaultOptions: IWeeklySchedulerOptions<any> = {
-    createItem: (day, schedules) => { return { defaultValue: '', day: day, schedules: schedules } },
+    createItem: (day, schedules) => { return { day: day, schedules: schedules } },
+    defaultValue: null,
     monoSchedule: false
   };
 

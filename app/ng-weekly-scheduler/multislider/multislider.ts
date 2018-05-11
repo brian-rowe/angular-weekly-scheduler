@@ -95,7 +95,7 @@ class MultiSliderController implements angular.IComponentController {
     let schedule = {
       start: start,
       end: end,
-      value: item.defaultValue
+      value: this.config.defaultValue 
     };
 
     if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
