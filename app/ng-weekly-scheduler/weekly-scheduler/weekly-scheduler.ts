@@ -57,7 +57,7 @@ class WeeklySchedulerController implements angular.IController {
     this.config = this.configure(this.options);
     this.items = this.fillItems(this.buildItemsFromAdapter());
     this.updateScheduleValidity();
-    
+
     let test = this.buildItemsFromAdapter();
 
     this.previousItems = this.items;
@@ -75,7 +75,12 @@ class WeeklySchedulerController implements angular.IController {
       let groupedSchedules = this.groupService.groupSchedules(schedules);
 
       for (let key in groupedSchedules) {
-        result.push(this.createItem(parseInt(key, 10), groupedSchedules[key]));
+        let item = this.createItem(parseInt(key, 10), groupedSchedules[key]);
+
+        // keep a reference on the adapter so we can pull it out later
+        this.adapter.items.push(item);
+
+        result.push(item);
       }
     }
 
