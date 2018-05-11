@@ -44,16 +44,6 @@ class WeeklySchedulerController implements angular.IController {
     this.watchHoverClass();
   }
 
-  private addItemsWatcher() {
-    this.itemsWatcherCanceller = this.$scope.$watchCollection(() => this.items, (newItems) => this.onModelChange(newItems));
-  }
-
-  private cancelItemsWatcher() {
-    if (angular.isFunction(this.itemsWatcherCanceller)) {
-      this.itemsWatcherCanceller();
-    }
-  }
-
   private checkScheduleValidity() {
     return this.items.some(item => !this.scheduleValidatorService.areSchedulesValid(item, this.config));
   }
@@ -106,36 +96,6 @@ class WeeklySchedulerController implements angular.IController {
     });
 
     return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
-  }
-
-  private onModelChange(items: IInternalWeeklySchedulerItem<any>[]) {
-    // Check items are present
-    if (items) {
-
-      // Check items are in an Array
-      if (!angular.isArray(items)) {
-        throw 'You should use weekly-scheduler directive with an Array of items';
-      }
-
-      this.cancelItemsWatcher();
-      // Keep track of our model (use it in template)
-      this.items = this.fillItems(items);
-      this.addItemsWatcher();
-
-      // If in multiSlider mode, ensure a schedule array is present on each item
-      // Else only use first element of schedule array
-      items.forEach((item) => {
-        var schedules = item.schedules;
-
-        if (schedules && schedules.length) {
-          if (this.options.monoSchedule) {
-            item.schedules = [schedules[0]];
-          }
-        } else {
-          item.schedules = [];
-        }
-      });
-    }
   }
 
   private watchHoverClass() {
