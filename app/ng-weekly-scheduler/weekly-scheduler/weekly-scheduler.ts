@@ -75,21 +75,28 @@ class WeeklySchedulerController implements angular.IController {
    * The scheduler should always show all days, even if it was not passed any schedules for that day
    */
   private fillItems(items: IInternalWeeklySchedulerItem<any>[]) {
-    angular.forEach(this.dayMap, (day: string, key) => {
-      let item: IInternalWeeklySchedulerItem<any> = items[key];
+    let result: IInternalWeeklySchedulerItem<any>[] = [];
+
+    angular.forEach(this.dayMap, (day: string, key: string) => {
+      let filteredItems = items.filter(item => item.day === parseInt(key, 10));
+      let item: IInternalWeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
 
       if (!item) {
-        items[key] = {
+        result.push({
           defaultValue: items.filter(x => x.defaultValue).map(x => x.defaultValue)[0], // grab first defaultValue, they should all be the same -- this shouldn't be defined per item, TODO!
-          day: key,
+          day: parseInt(key, 10),
           label: day,
           schedules: []
-        };
+        });
       } else {
         // If the item DID exist just set the label
         item.label = day;
+
+        result.push(item);
       }
     });
+
+    this.items = angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
   }
 
   private onModelChange(items: IInternalWeeklySchedulerItem<any>[]) {
