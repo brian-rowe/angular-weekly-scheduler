@@ -2,12 +2,15 @@ angular.module('demoApp', ['weeklyScheduler'])
   .controller('DemoController', ['$scope', '$timeout', '$log',
     function ($scope, $timeout, $log) {
 
+      $scope.isDirty = false;
+
       $scope.model = {
         options: {
-          editSlot: function() {
-            return $timeout(() => true, 500);
-          },
-          fullCalendar: true
+          editSlot: function(schedule) {
+            schedule.end += 15;
+
+            return $timeout(() => schedule, 400);
+          }
         },
         items: [
           // {
@@ -44,14 +47,6 @@ angular.module('demoApp', ['weeklyScheduler'])
           //     { start: 300, end: 1140 }
           //   ]
           // },
-          // {
-          //   label: 'Fri',
-          //   defaultValue: false,
-          //   schedules: [
-          //     { start: 75, end: 120, value: false },
-          //     { start: 0, end: 60, value: false }
-          //   ]
-          // },
           {
             day: Days.Saturday,
             schedules: JSON.parse('[{"$class":"rangevalue1","start":0,"end":255,"value":1},{"$class":"rangevalue0","start":255,"end":360,"value":0},{"$class":"rangevalue1","start":360,"end":480,"value":1},{"$class":"rangevalue0","start":480,"end":1425,"value":0},{"$class":"rangevalue2","start":1425,"end":0,"value":2}]')
@@ -60,6 +55,8 @@ angular.module('demoApp', ['weeklyScheduler'])
       };
 
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
+        $scope.isDirty = true;
+
         console.log('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
       };
     }]);

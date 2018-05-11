@@ -19,7 +19,6 @@ describe('overlap validator service', function () {
     function getTestItem(schedules) {
         return {
             defaultValue: true,
-            label: 'test',
             editable: true,
             schedules: schedules
         }

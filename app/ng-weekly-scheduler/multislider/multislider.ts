@@ -100,13 +100,18 @@ class MultiSliderController implements angular.IComponentController {
 
     if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
       this.schedulerCtrl.config.editSlot(schedule).then((editedSchedule) => {
-        item.schedules.push(editedSchedule);
+        this.addScheduleToItem(editedSchedule);
       });
     } else {
-      item.schedules.push(schedule);
-  
-      this.schedulerCtrl.onAdd();
+      this.addScheduleToItem(schedule);
     }
+  }
+
+  private addScheduleToItem(schedule: IWeeklySchedulerRange<any>) {
+    this.item.schedules.push(schedule);
+    this.merge(schedule);
+
+    this.schedulerCtrl.onAdd();
   }
 
   public getElementOffsetX(elem: angular.IAugmentedJQuery) {
@@ -154,7 +159,16 @@ class MultiSliderController implements angular.IComponentController {
           this.removeSchedule(schedule);
         }
         else {
-           this.merge(newSchedule);
+          let premergeSchedule = angular.copy(newSchedule);
+
+          this.merge(newSchedule);
+           
+          // If merging mutated the schedule further, then updateSchedule would have already been called
+          // This is so that edits that don't trigger merges still trigger onChange,
+          // but edits that do trigger merges don't trigger it twice
+          if (angular.equals(premergeSchedule, newSchedule)) {
+            this.updateSchedule(schedule, newSchedule);
+          }
         }
       }).finally(() => {
         schedule.$isEditing = false;
@@ -358,7 +372,7 @@ class MultiSliderController implements angular.IComponentController {
 
     schedules.splice(schedules.indexOf(schedule), 1);
 
-    this.schedulerCtrl.onDelete();
+    //this.schedulerCtrl.onDelete();
   }
 
   private resize() {

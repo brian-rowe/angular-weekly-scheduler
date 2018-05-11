@@ -23,6 +23,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   private schedule: IWeeklySchedulerRange<any>;
 
+  private startDragTimeout: angular.IPromise<void>;
   private valuesOnDragStart: IWeeklySchedulerRange<any>;
 
   constructor(
@@ -34,6 +35,20 @@ class WeeklySlotController implements angular.IComponentController {
 
   $onInit() {
     this.valuesOnDragStart = this.getDragStartValues();
+  }
+
+  /**
+   * We want to cancel the drag operation if the user is just clicking on the item or has started dragging without waiting for the drag to "activate"
+   * However, we should give them a small tolerance before considering them to have started dragging early, as it is very easy to accidentally move a few pixels.
+   */
+  private cancelDragIfThresholdExceeded(pixel: number) {
+    if (pixel > 3) {
+      this.cancelDrag();
+    }
+  }
+
+  private cancelDrag() {
+    this.$timeout.cancel(this.startDragTimeout);
   }
 
   private getDragStartValues() {
@@ -53,6 +68,11 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public drag(pixel: number) {
+    if (!this.schedule.$isActive) {
+      this.cancelDragIfThresholdExceeded(pixel);
+      return;
+    }
+
     this.multisliderCtrl.isDragging = true;
 
     let ui = this.schedule;
@@ -72,19 +92,19 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
-    
-    this.$scope.$apply(() => {
+    this.cancelDrag();
+
+    if (!this.schedule.$isActive) {
+      return;
+    }
+
+    this.$timeout(() => {
       // this prevents user from accidentally
       // adding new slot after resizing or dragging
       this.multisliderCtrl.canAdd = true;
+
+      // this prevents ng-click from accidentally firing after resizing or dragging
       this.schedule.$isActive = false;
-    });
-    
-    /**
-     * When ending a drag there needs to be a small delay before setting isDragging back to false.
-     * This is so that the ng-click event will not fire
-     */
-    this.$timeout(() => {
       this.multisliderCtrl.isDragging = false;
     }, 200).then(() => {
       this.multisliderCtrl.merge(this.schedule);
@@ -92,6 +112,11 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public resize(pixel: number) {
+    if (!this.schedule.$isActive) {
+      this.cancelDragIfThresholdExceeded(pixel);
+      return;
+    }
+
     this.multisliderCtrl.isDragging = true;
     
     let ui = this.schedule;
@@ -135,10 +160,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    this.$scope.$apply(() => {
+    this.startDragTimeout = this.$timeout(() => {
       this.schedule.$isActive = true;
       this.multisliderCtrl.canAdd = false;
-    });
+    }, 500);
 
     this.valuesOnDragStart = this.getDragStartValues();
   }
