@@ -79,12 +79,10 @@ class WeeklySchedulerController implements angular.IController {
     return result;
   }
 
-  private createItem(day: string, schedules: IWeeklySchedulerRange<any>[]) {
-    let dayVal = parseInt(day, 10);
-
+  private createItem(day: number, schedules: IWeeklySchedulerRange<any>[]) {
     let result: IInternalWeeklySchedulerItem<any>;
 
-    let builder: IWeeklySchedulerItem<any> = this.config.createItem(dayVal, schedules);
+    let builder: IWeeklySchedulerItem<any> = this.config.createItem(day, schedules);
 
     result = angular.extend(builder, { label: day });
 
@@ -103,7 +101,7 @@ class WeeklySchedulerController implements angular.IController {
       let item: IInternalWeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
 
       if (!item) {
-        result.push(this.createItem(day, []));
+        result.push(this.createItem(key, []));
       } else {
         // If the item DID exist just set the label
         item.label = day;
