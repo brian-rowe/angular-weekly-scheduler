@@ -18,6 +18,9 @@ class WeeklySchedulerController implements angular.IController {
   ) {
   }
 
+  /* We need to modify the items that are being watched inside the watcher, so we'll have to cancel and readd the watcher to prevent infdig */
+  private itemsWatcherCanceller: () => void;
+
   public hasInvalidSchedule: boolean;
   public hoverClass: string;
 
@@ -38,12 +41,17 @@ class WeeklySchedulerController implements angular.IController {
     this.updateScheduleValidity();
     this.items = this.fillItems(this.items);
 
-    /**
-     * Watch the model items
-     */
-    this.$scope.$watchCollection(() => this.items, (newItems) => this.onModelChange(newItems));
-
     this.watchHoverClass();
+  }
+
+  private addItemsWatcher() {
+    this.itemsWatcherCanceller = this.$scope.$watchCollection(() => this.items, (newItems) => this.onModelChange(newItems));
+  }
+
+  private cancelItemsWatcher() {
+    if (angular.isFunction(this.itemsWatcherCanceller)) {
+      this.itemsWatcherCanceller();
+    }
   }
 
   private checkScheduleValidity() {
@@ -109,8 +117,10 @@ class WeeklySchedulerController implements angular.IController {
         throw 'You should use weekly-scheduler directive with an Array of items';
       }
 
+      this.cancelItemsWatcher();
       // Keep track of our model (use it in template)
       this.items = this.fillItems(items);
+      this.addItemsWatcher();
 
       // If in multiSlider mode, ensure a schedule array is present on each item
       // Else only use first element of schedule array
