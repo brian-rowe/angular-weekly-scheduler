@@ -79,6 +79,18 @@ class WeeklySchedulerController implements angular.IController {
     return result;
   }
 
+  private createItem(day: string, schedules: IWeeklySchedulerRange<any>[]) {
+    let dayVal = parseInt(day, 10);
+
+    let result: IInternalWeeklySchedulerItem<any>;
+
+    let builder: IWeeklySchedulerItem<any> = this.config.createItem(dayVal, schedules);
+
+    result = angular.extend(builder, { label: day });
+
+    return result;
+  }
+
   /**
    * The scheduler should always show all days, even if it was not passed any schedules for that day
    */
@@ -91,12 +103,7 @@ class WeeklySchedulerController implements angular.IController {
       let item: IInternalWeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
 
       if (!item) {
-        result.push({
-          defaultValue: items.filter(x => x.defaultValue).map(x => x.defaultValue)[0], // grab first defaultValue, they should all be the same -- this shouldn't be defined per item, TODO!
-          day: key,
-          label: day,
-          schedules: []
-        });
+        result.push(this.createItem(day, []));
       } else {
         // If the item DID exist just set the label
         item.label = day;
