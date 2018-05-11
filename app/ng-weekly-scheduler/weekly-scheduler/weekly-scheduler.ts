@@ -77,14 +77,15 @@ class WeeklySchedulerController implements angular.IController {
   private fillItems(items: IInternalWeeklySchedulerItem<any>[]) {
     let result: IInternalWeeklySchedulerItem<any>[] = [];
 
-    angular.forEach(this.dayMap, (day: string, key: string) => {
-      let filteredItems = items.filter(item => item.day === parseInt(key, 10));
+    angular.forEach(this.dayMap, (day: string, stringKey: string) => {
+      let key = parseInt(stringKey, 10);
+      let filteredItems = items.filter(item => item.day === key);
       let item: IInternalWeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
 
       if (!item) {
         result.push({
           defaultValue: items.filter(x => x.defaultValue).map(x => x.defaultValue)[0], // grab first defaultValue, they should all be the same -- this shouldn't be defined per item, TODO!
-          day: parseInt(key, 10),
+          day: key,
           label: day,
           schedules: []
         });
