@@ -27,8 +27,8 @@ class WeeklySchedulerController implements angular.IController {
   public hoverClass: string;
 
   public config: IWeeklySchedulerConfig<any>
-  public items: IInternalWeeklySchedulerItem<number>[];
-  public previousItems: IInternalWeeklySchedulerItem<number>[];
+  public items: IInternalWeeklySchedulerItem<any>[];
+  public previousItems: IInternalWeeklySchedulerItem<any>[];
   public options: IWeeklySchedulerOptions<any>;
 
   public onAdd: () => void;
@@ -148,7 +148,8 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
     options: '=',
     onAdd: '&',
     onChange: '&',
-    onDelete: '&'
+    onDelete: '&',
+    rangeAdapter: '<',
   };
 
   controller = WeeklySchedulerController.$name;
