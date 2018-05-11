@@ -68,6 +68,7 @@ class WeeklySchedulerController implements angular.IController {
     var intervalCount = minutesInDay / interval;
 
     var result: IWeeklySchedulerConfig<any> = angular.extend(this.defaultOptions, {
+      createItem: options.createItem,
       editSlot: options.editSlot,
       fullCalendar: options.fullCalendar,
       interval: interval,
