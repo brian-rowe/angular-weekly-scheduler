@@ -40,8 +40,9 @@ class WeeklySchedulerController implements angular.IController {
   };
 
   $doCheck() {
+    // Check for reference equality, not object equality.
+    // This should only rerun if the whole set of items is replaced on the client.
     if(this.items !== this.previousItems) {
-      console.log('hit');
       this.items = this.fillItems(this.items);
       this.previousItems = this.items;
     }
