@@ -26,6 +26,7 @@ class WeeklySchedulerController implements angular.IController {
 
   public config: IWeeklySchedulerConfig;
   public items: IInternalWeeklySchedulerItem<number>[];
+  public previousItems: IInternalWeeklySchedulerItem<number>[];
   public options: IWeeklySchedulerOptions;
 
   public onAdd: () => void;
@@ -36,10 +37,18 @@ class WeeklySchedulerController implements angular.IController {
     monoSchedule: false
   };
 
+  $doCheck() {
+    if(!angular.equals(this.items, this.previousItems)) {
+      this.items = this.fillItems(this.items);
+      this.previousItems = angular.copy(this.items);
+    }
+  }
+
   $onInit() {
     this.config = this.configure(this.options);
     this.updateScheduleValidity();
     this.items = this.fillItems(this.items);
+    this.previousItems = angular.copy(this.items);
 
     this.watchHoverClass();
   }
