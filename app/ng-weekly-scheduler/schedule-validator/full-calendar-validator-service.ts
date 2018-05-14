@@ -9,21 +9,29 @@ class FullCalendarValidatorService {
 
         // When this option is true we should enforce that there are no gaps in the schedules
 
-        // Compare two at a time until the end;
-        let len = schedules.length - 1;
+        // If there was only one item we should check that it spans the whole range
+        let len = schedules.length;
+
+        if (len === 1) {
+            let schedule = schedules[0];
+            return this.validateStartAtMinValue(schedule.start) && this.validateEndAtMaxValue(schedule.end, config);
+        }
+
+        // If more, compare two at a time until the end
+        let loopLen = len - 1;
         let result = true;
 
-        for (let i = 0; i < len; i++) {
+        for (let i = 0; i < loopLen; i++) {
             let current = schedules[i];
             let next = schedules[i + 1];
             
             // Validate that the first item lands at 0
-            if (i === 0 && current.start !== 0) {
+            if (i === 0 && !this.validateStartAtMinValue(current.start)) {
                 return false;
             }
 
             // Validate that the last item lands at maxValue
-            if (i === len - 1 && (next.end || config.maxValue) !== config.maxValue) {
+            if (i === loopLen - 1 && !this.validateEndAtMaxValue(next.end, config)) {
                 return false;
             }
 
@@ -31,6 +39,14 @@ class FullCalendarValidatorService {
         }
 
         return result;
+    }
+
+    private validateStartAtMinValue(start: number) {
+        return start === 0;
+    }
+
+    private validateEndAtMaxValue(end: number, config: IWeeklySchedulerConfig<any>) {
+        return (end || config.maxValue) === config.maxValue;
     }
 }
 
