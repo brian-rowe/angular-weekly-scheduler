@@ -12,55 +12,22 @@ angular.module('demoApp', ['weeklyScheduler'])
               schedules: schedules
             }
           },
-          editSlot: function(schedule) {
+          editSlot: function (schedule) {
             schedule.end += 15;
 
             return $timeout(() => schedule, 400);
           }
-        },
-        items: [
-          // {
-          //   label: 'Sun',
-          //   //editable: false,
-          //   schedules: [
-          //     { start: 315, end: 375 }
-          //   ]
-          // },
-          // {
-          //   label: 'Mon',
-          //   //editable: false,
-          //   schedules: [
-          //     { start: 300, end: 1140 }
-          //   ]
-          // },
-          // {
-          //   label: 'Tue',
-          //   schedules: [
-          //     { start: 0, end: 240 },
-          //     { start: 300, end: 360 }
-          //   ]
-          // },
-          // {
-          //   label: 'Wed',
-          //   schedules: [
-          //     { start: 120, end: 720 }
-          //   ]
-          // },
-          // {
-          //   label: 'Thur',
-          //   editable: false,
-          //   schedules: [
-          //     { start: 300, end: 1140 }
-          //   ]
-          // },
-          {
-            day: Days.Saturday,
-            schedules: [
-              { start: 300, end: 900 }
-            ]
-          }
-        ] as IWeeklySchedulerItem<any>[]
+        }
       };
+
+      $scope.adapter = new DemoAdapter([{
+        day: Days.Saturday,
+        start: 300,
+        end: 900,
+        value: true
+      }]);
+
+      $scope.rangeAdapter = new DemoRangeAdapter();
 
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
         $scope.isDirty = true;
@@ -68,3 +35,24 @@ angular.module('demoApp', ['weeklyScheduler'])
         console.log('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
       };
     }]);
+
+/** The data is already in an acceptable format for the demo so just pass it through */
+class DemoAdapter implements IWeeklySchedulerAdapter<IWeeklySchedulerRange<boolean>, boolean> {
+  public items: IWeeklySchedulerItem<boolean>[] = [];
+
+  constructor(
+    public initialData: IWeeklySchedulerRange<boolean>[],
+  ) {
+  }
+
+  public getSnapshot() {
+    return Array.prototype.concat.apply([], this.items.map(item => item.schedules.map(schedule => schedule)));
+  }
+}
+
+/** Same here */
+class DemoRangeAdapter implements IWeeklySchedulerRangeAdapter<IWeeklySchedulerRange<boolean>, boolean> {
+  public adapt(range) {
+    return range;
+  }
+}
