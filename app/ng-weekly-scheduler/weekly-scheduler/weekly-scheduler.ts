@@ -148,7 +148,11 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private resetZoom() {
-    this.$scope.$broadcast(WeeklySchedulerEvents.ZOOM_RESET);
+    this.$scope.$broadcast(WeeklySchedulerEvents.RESET_ZOOM);
+  }
+
+  private zoomIn() {
+    this.$scope.$broadcast(WeeklySchedulerEvents.ZOOM_IN);
   }
 
   private rollback() {

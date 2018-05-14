@@ -21,13 +21,19 @@ class ScheduleAreaContainerController implements angular.IComponentController {
         let element = this.$element[0]; // grab plain js, not jqlite
 
         this.scrollService.hijackScroll(element, 20);
+        this.zoomService.resetZoom(element);
+
 
         this.$scope.$on(WeeklySchedulerEvents.CLICK_ON_A_CELL, (e, data) => {
             this.zoomService.zoomInACell(element, e, data);
         });
 
-        this.$scope.$on(WeeklySchedulerEvents.ZOOM_RESET, (e) => {
+        this.$scope.$on(WeeklySchedulerEvents.RESET_ZOOM, (e) => {
             this.zoomService.resetZoom(element);
+        });
+
+        this.$scope.$on(WeeklySchedulerEvents.ZOOM_IN, (e) => {
+            this.zoomService.zoomIn(element);
         });
     }
 }

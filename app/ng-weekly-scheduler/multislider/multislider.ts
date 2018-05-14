@@ -45,18 +45,6 @@ class MultiSliderController implements angular.IComponentController {
   
   $onInit() {
     this.mergeAllOverlaps();
-
-    this.$scope.$on(WeeklySchedulerEvents.RESIZED, () => {
-      this.resize();
-    });
-
-    this.$scope.$on(WeeklySchedulerEvents.ZOOMED_IN, () => {
-      this.resize();
-    });
-
-    this.$scope.$on(WeeklySchedulerEvents.ZOOMED_OUT, () => {
-      this.resize();
-    })
   }
 
   $postLink() {
@@ -381,14 +369,6 @@ class MultiSliderController implements angular.IComponentController {
     schedules.splice(schedules.indexOf(schedule), 1);
 
     //this.schedulerCtrl.onDelete();
-  }
-
-  private resize() {
-    /* Since we have changed the width of the element via plain js +
-     * the ng-styles for the individual slots are computed in this controller,
-     * we must call $apply() manually so they will all update their positions to match the zoom level
-     */
-    this.$scope.$apply();
   }
 
   /**

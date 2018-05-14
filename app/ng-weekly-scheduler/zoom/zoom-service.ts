@@ -35,6 +35,19 @@ class ZoomService {
         this.setZoomWidth(element, '100%');
         this.broadcastZoomedOutEvent();
     }
+    
+    public zoomIn(element: any) {
+        // get current zoom level from zoomed element as a percentage
+        let zoom = this.getZoomElement(element).style.width;
+        
+        // parse to integer & double
+        let level = parseInt(zoom, 10) * 2;
+
+        // Convert back to percentage
+        this.setZoomWidth(element, level + '%');
+
+        this.broadcastZoomedInEvent();
+    }
 
     public zoomInACell(element: any, event: angular.IAngularEvent, data: any) {
         let elementCount = data.nbElements;
