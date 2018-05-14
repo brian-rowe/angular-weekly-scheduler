@@ -163,7 +163,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private save() {
-    return this.config.saveScheduler();
+    return this.config.saveScheduler().then(() => this.dirty = false);
   }
 
   private watchAdapter() {
