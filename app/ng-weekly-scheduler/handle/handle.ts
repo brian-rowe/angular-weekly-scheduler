@@ -18,10 +18,11 @@ class HandleDirective implements angular.IDirective {
     let mouseupEvent: string = 'mouseup touchend';
 
     element.on(mousedownEvent, (event) => {
+      x = getPageX(event);;
+
       // Prevent default dragging of selected content
       event.preventDefault();
 
-      x = getPageX(event);;
 
       $document.on(mousemoveEvent, mousemove);
       $document.on(mouseupEvent, mouseup);
@@ -32,10 +33,9 @@ class HandleDirective implements angular.IDirective {
     });
 
     function getPageX(event) {
-      return getTouches(event)[0].clientX;
+      return event.pageX || getTouches(event)[0].pageX;
     }
 
-    /** Handles both mouse & touch. */
     function getTouches(event: any): any { // todo
       if (event.originalEvent) {
         if (event.originalEvent.touches && event.originalEvent.touches.length) {
@@ -53,7 +53,7 @@ class HandleDirective implements angular.IDirective {
     }
 
     function mousemove(event) {
-      let pageX = this.getPageX(event);
+      let pageX = getPageX(event);
       var delta = pageX - x;
 
       if (angular.isFunction(scope.ondrag)) {
