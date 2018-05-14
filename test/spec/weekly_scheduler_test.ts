@@ -1,3 +1,4 @@
+/// <reference path="../../app/demo-app.ts" />
 /// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.ts" />
 
 describe('weekly scheduler', () => {
@@ -26,11 +27,16 @@ describe('weekly scheduler', () => {
             }
         };
 
+        let adapter = new DemoAdapter([]);
+        let rangeAdapter = new DemoRangeAdapter();
+
+        ($scope as any).adapter = angular.copy(adapter);
+        ($scope as any).rangeAdapter = angular.copy(rangeAdapter);
         ($scope as any).options = angular.copy(options);
         
-        $element = $compile('<weekly-scheduler items="items" options="options">')($scope);
+        $element = $compile('<weekly-scheduler adapter="adapter" range-adapter="rangeAdapter" options="options">')($scope);
         element = $element[0];
-        $controller = _$componentController_('weeklyScheduler', { $element: $element, $scope: $scope }, { items: [], options: angular.copy(options) });
+        $controller = _$componentController_('weeklyScheduler', { $element: $element, $scope: $scope }, { adapter: angular.copy(adapter), rangeAdapter: angular.copy(rangeAdapter), options: angular.copy(options) });
         $controller.$onInit();
         $scope.$digest();
     }));

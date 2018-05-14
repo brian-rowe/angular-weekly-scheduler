@@ -1,15 +1,4 @@
 /// <reference types="angular" />
-/** The data is already in an acceptable format for the demo so just pass it through */
-declare class DemoAdapter implements IWeeklySchedulerAdapter<IWeeklySchedulerRange<boolean>, boolean> {
-    initialData: IWeeklySchedulerRange<boolean>[];
-    items: IWeeklySchedulerItem<boolean>[];
-    constructor(initialData: IWeeklySchedulerRange<boolean>[]);
-    getSnapshot(): any;
-}
-/** Same here */
-declare class DemoRangeAdapter implements IWeeklySchedulerRangeAdapter<IWeeklySchedulerRange<boolean>, boolean> {
-    adapt(range: any): any;
-}
 declare const enum Days {
     Monday = 0,
     Tuesday = 1,

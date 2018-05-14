@@ -33,8 +33,8 @@ describe('overlap validator service', function () {
         describe('non-touching schedules', function () {
             it('with the same value as valid', function () {
                 let item = [
-                    { start: 0, end: 60, value: true },
-                    { start: 75, end: 120, value: true }
+                    { day: 0, start: 0, end: 60, value: true },
+                    { day: 0, start: 75, end: 120, value: true }
                 ]; 
 
                 expect($service.validate(item, maxValue)).toBeTruthy();
@@ -42,8 +42,8 @@ describe('overlap validator service', function () {
 
             it('with different values as valid', function () {
                 let item = [
-                    { start: 0, end: 60, value: true },
-                    { start: 75, end: 120, value: false }
+                    { day: 0, start: 0, end: 60, value: true },
+                    { day: 0, start: 75, end: 120, value: false }
                 ];
                 
                 expect($service.validate(item, maxValue)).toBeTruthy();
@@ -53,8 +53,8 @@ describe('overlap validator service', function () {
         describe('touching schedules', function () {
             it('with the same value as valid', function () {
                 let item = [
-                    { start: 0, end: 60, value: true },
-                    { start: 60, end: 120, value: true }
+                    { day: 0, start: 0, end: 60, value: true },
+                    { day: 0, start: 60, end: 120, value: true }
                 ];
 
                 expect($service.validate(item, maxValue)).toBeTruthy();
@@ -62,8 +62,8 @@ describe('overlap validator service', function () {
 
             it('with different values as valid', function () {
                 let item = [
-                    { start: 0, end: 60, value: true },
-                    { start: 60, end: 120, value: false }
+                    { day: 0, start: 0, end: 60, value: true },
+                    { day: 0, start: 60, end: 120, value: false }
                 ];
 
                 expect($service.validate(item, maxValue)).toBeTruthy();
@@ -73,8 +73,8 @@ describe('overlap validator service', function () {
         describe('overlapping schedules', function () {
             it('with the same value as valid', function () {
                 let item = [
-                    { start: 0, end: 60, value: true },
-                    { start: 45, end: 120, value: true }
+                    { day: 0, start: 0, end: 60, value: true },
+                    { day: 0, start: 45, end: 120, value: true }
                 ];
 
                 expect($service.validate(item, maxValue)).toBeTruthy();
@@ -82,8 +82,8 @@ describe('overlap validator service', function () {
 
             it('with different values as invalid', function () {
                 let item = [
-                    { start: 0, end: 60, value: true },
-                    { start: 45, end: 120, value: false }
+                    { day: 0, start: 0, end: 60, value: true },
+                    { day: 0, start: 45, end: 120, value: false }
                 ];
 
                 expect($service.validate(item, maxValue)).toBeFalsy();

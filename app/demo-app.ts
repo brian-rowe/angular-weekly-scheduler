@@ -17,7 +17,8 @@ angular.module('demoApp', ['weeklyScheduler'])
             schedule.end += 15;
 
             return $timeout(() => schedule, 400);
-          }
+          },
+          fullCalendar: true
         }
       };
 
@@ -38,6 +39,7 @@ angular.module('demoApp', ['weeklyScheduler'])
     }]);
 
 /** The data is already in an acceptable format for the demo so just pass it through */
+/** @internal */
 class DemoAdapter implements IWeeklySchedulerAdapter<IWeeklySchedulerRange<boolean>, boolean> {
   public items: IWeeklySchedulerItem<boolean>[] = [];
 
@@ -52,6 +54,7 @@ class DemoAdapter implements IWeeklySchedulerAdapter<IWeeklySchedulerRange<boole
 }
 
 /** Same here */
+/** @internal */
 class DemoRangeAdapter implements IWeeklySchedulerRangeAdapter<IWeeklySchedulerRange<boolean>, boolean> {
   public adapt(range) {
     return range;

@@ -1,11 +1,13 @@
 /// <reference path="../../app/ng-weekly-scheduler/schedule-validator/full-calendar-validator-service.ts" />
 
 describe('full calendar validator service', function () {
+    var $q: angular.IQService;
     var $service: FullCalendarValidatorService;
 
     beforeEach(angular.mock.module('weeklyScheduler'));
 
-    beforeEach(inject(function (_fullCalendarValidatorService_) {
+    beforeEach(inject(function (_$q_, _fullCalendarValidatorService_) {
+        $q = _$q_,
         $service = _fullCalendarValidatorService_;
     }));
 
@@ -20,7 +22,8 @@ describe('full calendar validator service', function () {
             fullCalendar: true,
             hourCount: 24,
             intervalCount: 96,
-            maxValue: 1440
+            maxValue: 1440,
+            saveScheduler: () => $q.when(true)
         };
 
         let nonFullCalendarConfig = {
@@ -29,14 +32,15 @@ describe('full calendar validator service', function () {
             fullCalendar: false,
             hourCount: 24,
             intervalCount: 96,
-            maxValue: 1440
+            maxValue: 1440,
+            saveScheduler: () => $q.when(true)
         };
 
         describe('calendars with schedules that have endTime=0', () => {
             it('as if the endTime was maxValue', () => {
                 let zeroEnd = [
-                    { start: 0, end: 720, value: true },
-                    { start: 720, end: 0, value: false }
+                    { day: 1, start: 0, end: 720, value: true },
+                    { day: 1, start: 720, end: 0, value: false }
                 ]
 
                 expect($service.validate(zeroEnd, fullCalendarConfig)).toBeTruthy();
@@ -45,9 +49,9 @@ describe('full calendar validator service', function () {
 
         describe('calendars whose items do not begin at the start', () => {
             let offStartNoGaps = [
-                { start: 30, end: 60, value: true },
-                { start: 60, end: 720, value: true },
-                { start: 720, end: 1440, value: true }
+                { day: 2, start: 30, end: 60, value: true },
+                { day: 2, start: 60, end: 720, value: true },
+                { day: 2, start: 720, end: 1440, value: true }
             ]; 
 
             it('as valid when fullCalendar is false', () => {
@@ -61,9 +65,9 @@ describe('full calendar validator service', function () {
 
         describe('calendars whose items do not end at the end', () => {
             let offEndNoGaps = [
-                { start: 0, end: 60, value: true },
-                { start: 60, end: 720, value: true },
-                { start: 720, end: 1395, value: true }
+                { day: 3, start: 0, end: 60, value: true },
+                { day: 3, start: 60, end: 720, value: true },
+                { day: 3, start: 720, end: 1395, value: true }
             ]; 
 
             it('as valid when fullCalendar is false', () => {
@@ -78,9 +82,9 @@ describe('full calendar validator service', function () {
 
         describe('calendars with gaps', () => {
             let withGaps = [
-                { start: 0, end: 60, value: true },
-                { start: 75, end: 120, value: true },
-                { start: 120, end: 1440, value: true }
+                { day: 4, start: 0, end: 60, value: true },
+                { day: 4, start: 75, end: 120, value: true },
+                { day: 4, start: 120, end: 1440, value: true }
             ];
 
             it('as valid when fullCalendar is false', function () {
@@ -94,8 +98,8 @@ describe('full calendar validator service', function () {
 
         describe('calendars without gaps', () => {
             let withoutGaps = [
-                { start: 0, end: 720, value: true },
-                { start: 720, end: 1440, value: true }
+                { day: 5, start: 0, end: 720, value: true },
+                { day: 5, start: 720, end: 1440, value: true }
             ];
 
             it('as valid when fullCalendar is false', function () {
@@ -105,6 +109,10 @@ describe('full calendar validator service', function () {
             it('as valid when fullCalendar is true', function () {
                 expect($service.validate(withoutGaps, fullCalendarConfig)).toBeTruthy();
             });
+        });
+
+        describe('calendars with one item that does not span the whole day', () => {
+
         });
     });
 });
