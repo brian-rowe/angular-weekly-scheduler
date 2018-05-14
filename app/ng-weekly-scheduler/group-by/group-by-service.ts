@@ -4,10 +4,11 @@
  * This is used as a substitute for lodash.groupBy to keep the footprint small 
  */
 
- class GroupService {
+/** @internal */
+class GroupService {
     static $name = 'groupService';
 
-    groupSchedules(schedules: IWeeklySchedulerRange<any>[]): { [key: number]: IWeeklySchedulerRange<any>[] }  {
+    groupSchedules(schedules: IWeeklySchedulerRange<any>[]): { [key: number]: IWeeklySchedulerRange<any>[] } {
         let seed: { [key: number]: IWeeklySchedulerRange<any>[] } = {};
 
         let result = schedules.reduce((reducer, currentSchedule, index, array) => {
@@ -24,8 +25,8 @@
 
         return result;
     }
- }
+}
 
- angular
+angular
     .module('weeklyScheduler')
     .service(GroupService.$name, GroupService);
