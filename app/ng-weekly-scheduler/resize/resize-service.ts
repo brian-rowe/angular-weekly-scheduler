@@ -21,7 +21,9 @@ class ResizeService {
         }
 
         this.$window.addEventListener('resize', () => {
-            this.$rootScope.$broadcast(WeeklySchedulerEvents.RESIZED);
+            this.$rootScope.$apply(() => {
+                this.$rootScope.$broadcast(WeeklySchedulerEvents.RESIZED);
+            });
         });
 
         this.initialized = true;
