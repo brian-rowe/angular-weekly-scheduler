@@ -1,4 +1,7 @@
 interface IWeeklySchedulerOptions<T> {
+    /** These classes will be applied directly to the buttons */
+    buttonClasses?: string[];
+
     /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
     createItem: (day: Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
 

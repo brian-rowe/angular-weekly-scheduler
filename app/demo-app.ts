@@ -6,6 +6,7 @@ angular.module('demoApp', ['weeklyScheduler'])
 
       $scope.model = {
         options: {
+          buttonClasses: ['wow!'],
           createItem: (day, schedules) => {
             return {
               day: day,

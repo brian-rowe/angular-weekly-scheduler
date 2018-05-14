@@ -123,7 +123,6 @@ gulp.task("server", function () {
     return gulp
         .src(testFolder)
         .pipe(webserver({
-            host: "0.0.0.0",
             port: "8081",
             livereload: true,
             open: true
