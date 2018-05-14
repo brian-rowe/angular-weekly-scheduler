@@ -107,7 +107,8 @@ class WeeklySchedulerController implements angular.IController {
       interval: interval,
       maxValue: minutesInDay,
       hourCount: hoursInDay,
-      intervalCount: intervalCount
+      intervalCount: intervalCount,
+      saveScheduler: options.saveScheduler
     });
 
     return result;
