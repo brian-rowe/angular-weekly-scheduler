@@ -23,15 +23,11 @@ class WeeklySchedulerController implements angular.IController {
   private adapter: IWeeklySchedulerAdapter<any, any>;
   private rangeAdapter: IWeeklySchedulerRangeAdapter<any, any>;
 
-  /* We need to modify the items that are being watched inside the watcher, so we'll have to cancel and readd the watcher to prevent infdig */
-  private itemsWatcherCanceller: () => void;
-
   public hasInvalidSchedule: boolean;
   public hoverClass: string;
 
   public config: IWeeklySchedulerConfig<any>
   public items: IInternalWeeklySchedulerItem<any>[];
-  public previousItems: IInternalWeeklySchedulerItem<any>[];
   public options: IWeeklySchedulerOptions<any>;
 
   public onAdd: () => void;
@@ -44,32 +40,24 @@ class WeeklySchedulerController implements angular.IController {
     monoSchedule: false
   };
 
-  $doCheck() {
-    // Check for reference equality, not object equality.
-    // This should only rerun if the whole set of items is replaced on the client.
-    if(this.items !== this.previousItems) {
-      this.items = this.fillItems(this.items);
-      this.previousItems = this.items;
-    }
-  }
-
   $onInit() {
     this.config = this.configure(this.options);
+    this.buildItems();
+    this.updateScheduleValidity();
+    this.watchAdapter();
+    this.watchHoverClass();
+  }
+
+  private buildItems() {
     this.items = this.fillItems(this.buildItemsFromAdapter());
-    
+
     // keep a reference on the adapter so we can pull it out later
     this.adapter.items = this.items;
-
-    this.updateScheduleValidity();
-
-    this.previousItems = this.items;
-
-    this.watchHoverClass();
   }
 
   private buildItemsFromAdapter() {
     let result = [];
-    
+
     if (this.adapter && this.rangeAdapter) {
       let schedules = this.rangeAdapter.adapt(this.adapter.initialData);
       let groupedSchedules = this.groupService.groupSchedules(schedules);
@@ -80,7 +68,7 @@ class WeeklySchedulerController implements angular.IController {
         result.push(item);
       }
     }
-    
+
     return result;
   }
 
@@ -142,6 +130,14 @@ class WeeklySchedulerController implements angular.IController {
     });
 
     return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
+  }
+
+  private watchAdapter() {
+    this.$scope.$watch(() => {
+      return this.adapter;
+    }, () => {
+      this.buildItems();
+    }, true);
   }
 
   private watchHoverClass() {
