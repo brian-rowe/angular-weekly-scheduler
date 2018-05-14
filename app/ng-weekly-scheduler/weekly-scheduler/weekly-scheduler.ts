@@ -27,6 +27,9 @@ class WeeklySchedulerController implements angular.IController {
   private adapter: IWeeklySchedulerAdapter<any, any>;
   private rangeAdapter: IWeeklySchedulerRangeAdapter<any, any>;
 
+  /** should be true if the scheduler has been interacted with */
+  public dirty: boolean;
+  
   public hasInvalidSchedule: boolean;
   public hoverClass: string;
 
@@ -34,9 +37,7 @@ class WeeklySchedulerController implements angular.IController {
   public items: IInternalWeeklySchedulerItem<any>[];
   public options: IWeeklySchedulerOptions<any>;
 
-  public onAdd: () => void;
   public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<any> }) => void;
-  public onDelete: () => void;
 
   public defaultOptions: IWeeklySchedulerOptions<any> = {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
@@ -158,6 +159,7 @@ class WeeklySchedulerController implements angular.IController {
 
   private rollback() {
     this.buildItems(this._originalItems);
+    this.dirty = false;
   }
 
   private save() {
@@ -198,23 +200,14 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
     adapter: '<',
     hoverClass: '<',
     options: '=',
-    onAdd: '&',
     onChange: '&',
-    onDelete: '&',
     rangeAdapter: '<',
   };
 
   controller = WeeklySchedulerController.$name;
   controllerAs = WeeklySchedulerController.$controllerAs;
 
-  // Buttons are transcludable in case you have your own universal button component. Do not attach ng-clicks or other click functions to them.
-
-  transclude = {
-    resetButton: '?resetButton',
-    saveButton: '?saveButton',
-    zoomInButton: '?zoomInButton',
-    zoomOutButton: '?zoomOutButton'
-  };
+  transclude = true;
 
   templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
 }

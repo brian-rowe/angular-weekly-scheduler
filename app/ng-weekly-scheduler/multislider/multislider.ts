@@ -96,11 +96,15 @@ class MultiSliderController implements angular.IComponentController {
     }
   }
 
+  public setDirty() {
+    this.schedulerCtrl.dirty = true;
+  }
+
   private addScheduleToItem(schedule: IWeeklySchedulerRange<any>) {
     this.item.schedules.push(schedule);
     this.merge(schedule);
 
-    this.schedulerCtrl.onAdd();
+    this.setDirty();
   }
 
   public getElementOffsetX(elem: angular.IAugmentedJQuery) {
@@ -160,6 +164,7 @@ class MultiSliderController implements angular.IComponentController {
           }
         }
       }).finally(() => {
+        this.setDirty();
         schedule.$isEditing = false;
       });
     }
@@ -368,7 +373,7 @@ class MultiSliderController implements angular.IComponentController {
 
     schedules.splice(schedules.indexOf(schedule), 1);
 
-    //this.schedulerCtrl.onDelete();
+    this.setDirty();
   }
 
   /**
