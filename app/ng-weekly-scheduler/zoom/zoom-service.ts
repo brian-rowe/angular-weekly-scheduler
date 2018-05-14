@@ -23,8 +23,12 @@ class ZoomService {
         return parseInt(element.querySelector(this.selector).style.width, 10);
     }
 
+    private getZoomElement(container: any) {
+        return container.querySelector(this.selector);
+    }
+
     private setZoomWidth(element: any, width: string): void {
-        element.querySelector(this.selector).style.width = width;
+       this.getZoomElement(element).style.width = width;
     }
 
     public resetZoom(element: any) {

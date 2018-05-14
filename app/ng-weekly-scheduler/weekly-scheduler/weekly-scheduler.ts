@@ -147,6 +147,10 @@ class WeeklySchedulerController implements angular.IController {
     return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
   }
 
+  private resetZoom() {
+    this.$scope.$broadcast(WeeklySchedulerEvents.ZOOM_RESET);
+  }
+
   private rollback() {
     this.buildItems(this._originalItems);
   }
