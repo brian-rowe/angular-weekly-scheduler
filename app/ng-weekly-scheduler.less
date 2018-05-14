@@ -92,6 +92,11 @@ weekly-scheduler {
   schedule-area-container {
     display: block;
     overflow-x: auto;
+
+    /** Practical effect of "start zoomed if the screen is below this width" */
+    .schedule-area {
+      min-width: 600px;
+    }
   }
 
   .srow {
@@ -119,7 +124,7 @@ weekly-scheduler {
 
     div {
       overflow: hidden;
-      padding: 0 5px;
+      padding-left: 2px;
       text-overflow: clip;
 
       &:hover {
