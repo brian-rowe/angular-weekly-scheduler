@@ -196,7 +196,6 @@ multi-slider {
   weekly-slot {
     -webkit-transition: background 0.1s ease-in;
     cursor: all-scroll;
-    min-width: @handleWidth !important;
     background: #2e81e1;
     user-select: none;
 
@@ -216,6 +215,7 @@ multi-slider {
       bottom: 0;
 
       &.left, &.right {
+        min-width: 1px;
         width: @handleWidth;
         background: #000;
         cursor: col-resize;
@@ -231,6 +231,7 @@ multi-slider {
 
     .middle {
       overflow: hidden;
+      padding-left: 4px;
       font-family: monospace;
       font-size: x-small;
       text-overflow: ellipsis;
