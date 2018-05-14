@@ -18,7 +18,7 @@ class HandleDirective implements angular.IDirective {
     let mouseupEvent: string = 'mouseup touchend';
 
     element.on(mousedownEvent, (event) => {
-      x = getPageX(event);;
+      x = getPageX(event);
 
       // Prevent default dragging of selected content
       event.preventDefault();
