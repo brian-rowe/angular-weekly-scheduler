@@ -137,7 +137,7 @@ class WeeklySchedulerController implements angular.IController {
       return this.adapter;
     }, () => {
       this.buildItems();
-    }, true);
+    });
   }
 
   private watchHoverClass() {
