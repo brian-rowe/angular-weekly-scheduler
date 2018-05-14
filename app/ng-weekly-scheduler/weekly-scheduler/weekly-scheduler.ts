@@ -5,6 +5,7 @@ class WeeklySchedulerController implements angular.IController {
 
   static $inject = [
     '$element',
+    '$q',
     '$scope',
     'groupService',
     'dayMap',
@@ -13,6 +14,7 @@ class WeeklySchedulerController implements angular.IController {
 
   constructor(
     private $element: angular.IAugmentedJQuery,
+    private $q: angular.IQService,
     private $scope: angular.IScope,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
@@ -38,6 +40,10 @@ class WeeklySchedulerController implements angular.IController {
 
   public defaultOptions: IWeeklySchedulerOptions<any> = {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
+    saveScheduler: () => {
+      console.log('saved');
+      return this.$q.when();
+    },
     defaultValue: null,
     monoSchedule: false
   };
@@ -143,6 +149,10 @@ class WeeklySchedulerController implements angular.IController {
 
   private rollback() {
     this.buildItems(this._originalItems);
+  }
+
+  private save() {
+    return this.config.saveScheduler();
   }
 
   private watchAdapter() {

@@ -49,6 +49,8 @@ interface IWeeklySchedulerOptions<T> {
     monoSchedule?: boolean;
     /** The number of minutes each division of the calendar should be -- values will snap to this */
     interval?: number;
+    /** A function to call wen the save button is clicked */
+    saveScheduler: () => angular.IPromise<any>;
 }
 interface IWeeklySchedulerRange<T> {
     /** A css class to apply */
