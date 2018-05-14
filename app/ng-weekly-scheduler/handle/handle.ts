@@ -12,15 +12,19 @@ class HandleDirective implements angular.IDirective {
   link = (scope, element: angular.IAugmentedJQuery) => {
     var $document = this.$document;
     var x = 0;
+
+    let mousedownEvent: string = 'mousedown touchstart';
+    let mousemoveEvent: string = 'mousemove touchmove';
+    let mouseupEvent: string = 'mouseup touchend';
     
-    element.on('mousedown', (event) => {
+    element.on(mousedownEvent, (event) => {
       // Prevent default dragging of selected content
       event.preventDefault();
 
       x = event.pageX;
 
-      $document.on('mousemove', mousemove);
-      $document.on('mouseup', mouseup);
+      $document.on(mousemoveEvent, mousemove);
+      $document.on(mouseupEvent, mouseup);
 
       if (angular.isFunction(scope.ondragstart)) {
         scope.$apply(scope.ondragstart());
@@ -36,8 +40,8 @@ class HandleDirective implements angular.IDirective {
     }
 
     function mouseup() {
-      $document.unbind('mousemove', mousemove);
-      $document.unbind('mouseup', mouseup);
+      $document.unbind(mousemoveEvent, mousemove);
+      $document.unbind(mouseupEvent, mouseup);
 
       if (angular.isFunction(scope.ondragstop)) {
         scope.$apply(scope.ondragstop());
