@@ -19,6 +19,13 @@
       </div>
     </div>
   </schedule-area-container>
+
+  <div class="srow buttons">
+    <div ng-click="schedulerCtrl.rollback()" ng-transclude="resetButton"><button type="button">Reset</button></div> 
+    <div ng-transclude="saveButton"><button type="button">Save</button></div> 
+    <div ng-transclude="zoomOutButton"><button type="button">Zoom Out</button></div> 
+    <div ng-transclude="zoomInButton"><button type="button">Zoom In</button></div> 
+  </div>
 </div>
 
 <div class="srow" ng-if="schedulerCtrl.hasInvalidSchedule">

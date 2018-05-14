@@ -20,6 +20,8 @@ class WeeklySchedulerController implements angular.IController {
   ) {
   }
 
+  private _originalItems: IInternalWeeklySchedulerItem<any>[];
+
   private adapter: IWeeklySchedulerAdapter<any, any>;
   private rangeAdapter: IWeeklySchedulerRangeAdapter<any, any>;
 
@@ -42,20 +44,27 @@ class WeeklySchedulerController implements angular.IController {
 
   $onInit() {
     this.config = this.configure(this.options);
-    this.buildItems();
+    this.buildItemsFromAdapter();
     this.updateScheduleValidity();
     this.watchAdapter();
     this.watchHoverClass();
   }
 
-  private buildItems() {
-    this.items = this.fillItems(this.buildItemsFromAdapter());
+  private buildItems(items: IInternalWeeklySchedulerItem<any>[]) {
+    this.items = this.fillItems(items);
 
     // keep a reference on the adapter so we can pull it out later
     this.adapter.items = this.items;
+
+    // keep a copy of the items in case we need to rollback
+    this._originalItems = angular.copy(this.items);
   }
 
   private buildItemsFromAdapter() {
+    return this.buildItems(this.getItemsFromAdapter());
+  }
+
+  private getItemsFromAdapter() {
     let result = [];
 
     if (this.adapter && this.rangeAdapter) {
@@ -132,11 +141,15 @@ class WeeklySchedulerController implements angular.IController {
     return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
   }
 
+  private rollback() {
+    this.buildItems(this._originalItems);
+  }
+
   private watchAdapter() {
     this.$scope.$watch(() => {
       return this.adapter;
     }, () => {
-      this.buildItems();
+      this.buildItemsFromAdapter();
     });
   }
 
@@ -175,7 +188,15 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
   controller = WeeklySchedulerController.$name;
   controllerAs = WeeklySchedulerController.$controllerAs;
 
-  transclude = true;
+  // Buttons are transcludable in case you have your own universal button component. Do not attach ng-clicks or other click functions to them.
+
+  transclude = {
+    resetButton: '?resetButton',
+    saveButton: '?saveButton',
+    zoomInButton: '?zoomInButton',
+    zoomOutButton: '?zoomOutButton'
+  };
+
   templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
 }
 
