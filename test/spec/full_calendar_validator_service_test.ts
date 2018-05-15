@@ -136,5 +136,16 @@ describe('full calendar validator service', function () {
                 expect($service.validate(item, fullCalendarConfig)).toBeFalsy();
             });
         });
+
+        describe('calendars that come in out of order', () => {
+            it('as valid if they would be valid in order', () => {
+                let item = [
+                    { day: 0, start: 720, end: 1440, value: true },
+                    { day: 0, start: 0, end: 720, value: false }
+                ]
+
+                expect($service.validate(item, fullCalendarConfig)).toBeTruthy();
+            });
+        })
     });
 });
