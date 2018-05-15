@@ -1,7 +1,7 @@
 <div ng-if="!schedulerCtrl.startedWithInvalidSchedule">
   <div class="labels">
     <div class="srow dummy"></div>
-    <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items">
+    <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
       {{ item.label }}
     </div>
   </div>
@@ -13,7 +13,7 @@
         <br-hourly-grid></br-hourly-grid>
       </div>
 
-      <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items">
+      <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
         <br-hourly-grid no-text></br-hourly-grid>
         <br-multi-slider config="schedulerCtrl.config" item="item" index="$index"></br-multi-slider>
       </div>
