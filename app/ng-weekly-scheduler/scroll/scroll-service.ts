@@ -1,9 +1,9 @@
 /** @internal */
 class ScrollService {
-    static $name = 'scrollService';
+    static $name = 'brWeeklySchedulerScrollService';
 
     static $inject = [
-        'zoomService'
+        'brWeeklySchedulerZoomService'
     ];
 
     private constructor(

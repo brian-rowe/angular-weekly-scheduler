@@ -1,6 +1,6 @@
 /** @internal */
 class FullCalendarValidatorService {
-    static $name = 'fullCalendarValidatorService';
+    static $name = 'brWeeklySchedulerFullCalendarValidatorService';
 
     public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (!config.fullCalendar) {

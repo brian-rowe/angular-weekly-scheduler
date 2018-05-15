@@ -1,15 +1,15 @@
 /** @internal */
 class WeeklySchedulerController implements angular.IController {
   static $controllerAs = 'schedulerCtrl';
-  static $name = 'weeklySchedulerController';
+  static $name = 'brWeeklySchedulerController';
 
   static $inject = [
     '$element',
     '$q',
     '$scope',
-    'groupService',
-    'dayMap',
-    'scheduleValidatorService'
+    'brWeeklySchedulerGroupService',
+    'brWeeklySchedulerDayMap',
+    'brWeeklySchedulerValidationService',
   ];
 
   constructor(
@@ -18,7 +18,7 @@ class WeeklySchedulerController implements angular.IController {
     private $scope: angular.IScope,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
-    private scheduleValidatorService: ScheduleValidatorService
+    private scheduleValidatorService: ScheduleValidationService
   ) {
   }
 

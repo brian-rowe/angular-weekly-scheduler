@@ -1,9 +1,9 @@
 /** @internal */
 class OverlapValidatorService {
-    static $name = 'overlapValidatorService';
+    static $name = 'brWeeklySchedulerOverlapValidatorService';
 
     static $inject = [
-        'overlapService'
+        'brWeeklySchedulerOverlapService'
     ];
     
     private constructor(

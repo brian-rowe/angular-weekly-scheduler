@@ -1,13 +1,13 @@
 /** @internal */
 class MultiSliderController implements angular.IComponentController {
-  static $name = 'multiSliderController';
+  static $name = 'brMultiSliderController';
   static $controllerAs = 'multiSliderCtrl';
 
   static $inject = [
     '$element',
     '$scope',
     '$window',
-    'overlapService'
+    'brWeeklySchedulerOverlapService'
   ];
 
   constructor(
@@ -387,7 +387,7 @@ class MultiSliderController implements angular.IComponentController {
 
 /** @internal */
 class MultiSliderComponent implements angular.IComponentOptions {
-  static $name = 'multiSlider';
+  static $name = 'brMultiSlider';
   
   bindings = {
     config: '<',

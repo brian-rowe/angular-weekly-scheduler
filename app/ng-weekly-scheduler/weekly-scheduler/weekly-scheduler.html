@@ -6,19 +6,19 @@
     </div>
   </div>
 
-  <schedule-area-container>
+  <br-schedule-area-container>
     <div class="schedule-area">
 
       <div class="srow timestamps">
-        <hourly-grid></hourly-grid>
+        <br-hourly-grid></br-hourly-grid>
       </div>
 
       <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items">
-        <hourly-grid no-text></hourly-grid>
-        <multi-slider config="schedulerCtrl.config" item="item" index="$index"></multi-slider>
+        <br-hourly-grid no-text></br-hourly-grid>
+        <br-multi-slider config="schedulerCtrl.config" item="item" index="$index"></br-multi-slider>
       </div>
     </div>
-  </schedule-area-container>
+  </br-schedule-area-container>
 
   <div class="srow buttons">
     <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.rollback()" ng-disabled="!schedulerCtrl.dirty">Reset</button>

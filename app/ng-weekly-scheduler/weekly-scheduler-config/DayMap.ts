@@ -1,7 +1,7 @@
 /** Ahhahhahh! Fighter of the NightMap! */
 /** @internal */
 class DayMap {
-    static $name = 'dayMap';
+    static $name = 'brWeeklySchedulerDayMap';
     
     static value = {
         0: 'Mon',

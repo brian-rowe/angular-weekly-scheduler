@@ -1,6 +1,6 @@
 /** @internal */
 class ZoomService {
-    static $name = 'zoomService';
+    static $name = 'brWeeklySchedulerZoomService';
 
     static $inject = ['$rootScope'];
 

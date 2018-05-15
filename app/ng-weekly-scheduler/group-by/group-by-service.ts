@@ -6,7 +6,7 @@
 
 /** @internal */
 class GroupService {
-    static $name = 'groupService';
+    static $name = 'brWeeklySchedulerGroupService';
 
     groupSchedules(schedules: IWeeklySchedulerRange<any>[]): { [key: number]: IWeeklySchedulerRange<any>[] } {
         let seed: { [key: number]: IWeeklySchedulerRange<any>[] } = {};

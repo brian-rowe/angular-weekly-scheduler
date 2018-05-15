@@ -6,7 +6,7 @@ class WeeklySlotController implements angular.IComponentController {
   static $inject = [
     '$scope',
     '$timeout',
-    'overlapService'
+    'brWeeklySchedulerOverlapService'
   ];
 
   private multisliderCtrl: MultiSliderController;
@@ -189,7 +189,7 @@ class WeeklySlotController implements angular.IComponentController {
 
 /** @internal */
 class WeeklySlotComponent implements angular.IComponentOptions {
-  static $name = 'weeklySlot';
+  static $name = 'brWeeklySlot';
   
   bindings = {
     config: '<',
@@ -204,7 +204,7 @@ class WeeklySlotComponent implements angular.IComponentOptions {
   controllerAs = WeeklySlotController.$controllerAs;
 
   require = {
-    multisliderCtrl: '^multiSlider'
+    multisliderCtrl: '^brMultiSlider'
   };
 
   templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';

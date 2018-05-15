@@ -1,6 +1,6 @@
 /** @internal */
 class MaxTimeSlotValidatorService {
-    static $name = 'maxTimeSlotValidatorService';
+    static $name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
 
     public validate(schedules: IWeeklySchedulerRange<any>[], maxTimeSlot: number): boolean {
         if (!maxTimeSlot) {

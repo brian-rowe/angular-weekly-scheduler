@@ -1,6 +1,6 @@
 /** @internal */
 class HourlyGridDirective implements angular.IDirective {
-    static $name = 'hourlyGrid';
+    static $name = 'brHourlyGrid';
 
     restrict = 'E';
     require = '^brWeeklyScheduler';

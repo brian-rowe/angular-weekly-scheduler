@@ -1,11 +1,11 @@
 /** @internal */
-class ScheduleValidatorService {
-    static $name = 'scheduleValidatorService';
+class ScheduleValidationService {
+    static $name = 'brWeeklySchedulerValidationService';
 
     static $inject = [
-        'fullCalendarValidatorService',
-        'maxTimeSlotValidatorService',
-        'overlapValidatorService'
+        'brWeeklySchedulerFullCalendarValidatorService',
+        'brWeeklySchedulerMaxTimeSlotValidatorService',
+        'brWeeklySchedulerOverlapValidatorService'
     ]
 
     private constructor(
@@ -34,4 +34,4 @@ class ScheduleValidatorService {
 
 angular
     .module('br.weeklyScheduler')
-    .service(ScheduleValidatorService.$name, ScheduleValidatorService);
+    .service(ScheduleValidationService.$name, ScheduleValidationService);

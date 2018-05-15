@@ -1,12 +1,12 @@
 /** @internal */
 class ScheduleAreaContainerController implements angular.IComponentController {
-    static $name = 'scheduleAreaContainerController';
+    static $name = 'brWeeklySchedulerScheduleAreaContainerController';
 
     static $inject = [
         '$element',
         '$scope',
-        'scrollService',
-        'zoomService'
+        'brWeeklySchedulerScrollService',
+        'brWeeklySchedulerZoomService'
     ];
 
     constructor(
@@ -40,7 +40,7 @@ class ScheduleAreaContainerController implements angular.IComponentController {
 
 /** @internal */
 class ScheduleAreaContainerComponent implements angular.IComponentOptions {
-    static $name = 'scheduleAreaContainer';
+    static $name = 'brScheduleAreaContainer';
 
     controller = ScheduleAreaContainerController.$name;
     transclude = true;

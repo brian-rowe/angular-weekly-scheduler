@@ -1,6 +1,6 @@
 /** @internal */
 class TimeOfDayFilter {
-    static $name = 'timeOfDay';
+    static $name = 'brWeeklySchedulerTimeOfDay';
 
     public static Factory() {
         return function(minutes: number): string {

@@ -1,6 +1,6 @@
 /** @internal */
 class OverlapService {
-    static $name = 'overlapService';
+    static $name = 'brWeeklySchedulerOverlapService';
 
     getOverlapState(currentStart, currentEnd, otherStart, otherEnd): OverlapState {
         if (otherEnd >= currentEnd && otherStart <= currentStart) {
