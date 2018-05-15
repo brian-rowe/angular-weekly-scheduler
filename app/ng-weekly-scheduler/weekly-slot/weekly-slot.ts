@@ -96,7 +96,7 @@ class WeeklySlotController implements angular.IComponentController {
     this.cancelDrag();
 
     if (!this.schedule.$isActive) {
-      return;
+      return this.editSelf();
     }
 
     this.$timeout(() => {

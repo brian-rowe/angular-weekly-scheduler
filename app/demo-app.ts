@@ -17,8 +17,7 @@ angular.module('demoApp', ['weeklyScheduler'])
             schedule.end += 15;
 
             return $timeout(() => schedule, 400);
-          },
-          fullCalendar: true
+          }
         }
       };
 
