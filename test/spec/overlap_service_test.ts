@@ -6,8 +6,8 @@ describe('overlap service', () => {
 
     beforeEach(angular.mock.module('demoApp'));
 
-    beforeEach(inject(function(_overlapService_) {
-        $service = _overlapService_;
+    beforeEach(inject(function(_brWeeklySchedulerOverlapService_) {
+        $service = _brWeeklySchedulerOverlapService_;
     }));
 
     describe('getOverlapState', () => {

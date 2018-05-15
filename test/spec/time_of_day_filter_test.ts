@@ -3,8 +3,8 @@ describe('time of day filter', function() {
 
     beforeEach(angular.mock.module('demoApp'));
 
-    beforeEach(inject(function(_timeOfDayFilter_) {
-        timeOfDayFilter = _timeOfDayFilter_;
+    beforeEach(inject(function(_brWeeklySchedulerTimeOfDayFilter_) {
+        timeOfDayFilter = _brWeeklySchedulerTimeOfDayFilter_;
     }));
 
     function testDisplay(value) {

@@ -6,9 +6,9 @@ describe('full calendar validator service', function () {
 
     beforeEach(angular.mock.module('br.weeklyScheduler'));
 
-    beforeEach(inject(function (_$q_, _fullCalendarValidatorService_) {
+    beforeEach(inject(function (_$q_, _brWeeklySchedulerFullCalendarValidatorService_) {
         $q = _$q_,
-        $service = _fullCalendarValidatorService_;
+        $service = _brWeeklySchedulerFullCalendarValidatorService_;
     }));
 
     describe('should validate', function () {

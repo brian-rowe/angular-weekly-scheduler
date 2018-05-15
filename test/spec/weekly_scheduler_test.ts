@@ -34,9 +34,9 @@ describe('weekly scheduler', () => {
         ($scope as any).rangeAdapter = angular.copy(rangeAdapter);
         ($scope as any).options = angular.copy(options);
         
-        $element = $compile('<weekly-scheduler adapter="adapter" range-adapter="rangeAdapter" options="options">')($scope);
+        $element = $compile('<br-weekly-scheduler adapter="adapter" range-adapter="rangeAdapter" options="options"></br-weekly-scheduler>')($scope);
         element = $element[0];
-        $controller = _$componentController_('br.weeklyScheduler', { $element: $element, $scope: $scope }, { adapter: angular.copy(adapter), rangeAdapter: angular.copy(rangeAdapter), options: angular.copy(options) });
+        $controller = _$componentController_('brWeeklyScheduler', { $element: $element, $scope: $scope }, { adapter: angular.copy(adapter), rangeAdapter: angular.copy(rangeAdapter), options: angular.copy(options) });
         $controller.$onInit();
         $scope.$digest();
     }));
