@@ -111,6 +111,18 @@ describe('full calendar validator service', function () {
             });
         });
 
+        describe('calendars with no schedules', () => {
+            let item = [];
+
+            it('as valid when fullCalendar is false', () => {
+                expect($service.validate(item, nonFullCalendarConfig)).toBeTruthy();
+            });
+
+            it('as invalid when fullCalendar is true', () => {
+                expect($service.validate(item, fullCalendarConfig)).toBeFalsy();
+            })
+        });
+
         describe('calendars with one item that does not span the whole day', () => {
             let item = [
                 { day: 6, start: 300, end: 600, value: true }

@@ -17,14 +17,15 @@ angular.module('demoApp', ['weeklyScheduler'])
             schedule.end += 15;
 
             return $timeout(() => schedule, 400);
-          }
+          },
+          fullCalendar: true,
         }
       };
 
       $scope.adapter = new DemoAdapter([{
         day: Days.Saturday,
-        start: 300,
-        end: 900,
+        start: 0,
+        end: 1440,
         value: true
       }]);
 
