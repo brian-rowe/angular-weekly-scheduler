@@ -22,7 +22,7 @@ class ResizeServiceProvider implements IResizeServiceProvider {
         $window: angular.IWindowService
     ): IResizeService {
         return {
-            initialize() {
+            initialize: () => {
                 if (this.serviceInitialized) {
                     return;
                 }
