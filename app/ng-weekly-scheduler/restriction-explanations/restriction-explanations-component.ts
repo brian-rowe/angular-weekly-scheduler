@@ -3,15 +3,21 @@ class RestrictionExplanationsController implements angular.IComponentController 
     static $controllerAs = 'restrictionExplanationsCtrl';
     static $name = 'brWeeklySchedulerRestrictionExplanationsController';
 
+    static $inject = ['$filter'];
+
     private schedulerCtrl: WeeklySchedulerController;
 
     private explanations: string[] = [];
+
+    constructor(private $filter: IWeeklySchedulerFilterService) {
+    }
 
     $onInit() {
         let config = this.schedulerCtrl.config;
 
         if (config.maxTimeSlot) {
-            this.explanations.push(`Max time slot length: ${config.maxTimeSlot}`);
+            let maxTimeSlot = this.$filter('brWeeklySchedulerMinutesAsText')(config.maxTimeSlot);
+            this.explanations.push(`Max time slot length: ${maxTimeSlot}`);
         }
 
         if (config.fullCalendar) {
