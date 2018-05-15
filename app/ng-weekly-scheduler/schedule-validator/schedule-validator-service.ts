@@ -17,24 +17,26 @@ class ScheduleValidationService {
     ) {
     }
 
-    public areSchedulesValid(item: IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): boolean {
+    public getValidationErrors(item: IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): ValidationError[] {
+        let result: ValidationError[] = [];
+
         if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {
-            return false;
+            result.push(ValidationError.MaxTimeSlotViolation);
         }
 
         if (!this.monoScheduleValidatorService.validate(item.schedules, config)) {
-            return false;
+            result.push(ValidationError.FullCalendarViolation);
         }
 
         if (!this.fullCalendarValidatorService.validate(item.schedules, config)) {
-            return false;
+            result.push(ValidationError.FullCalendarViolation);
         }
 
         if (!this.overlapValidatorService.validate(item.schedules, config.maxValue)) {
-            return false;
+            result.push(ValidationError.OverlapViolation);
         }
 
-        return true;
+        return result;
     }
 }
 

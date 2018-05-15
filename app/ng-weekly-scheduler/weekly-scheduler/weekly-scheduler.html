@@ -20,6 +20,8 @@
     </div>
   </br-schedule-area-container>
 
+  <br-restriction-explanations></br-restriction-explanations>
+
   <div class="srow buttons">
     <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.rollback()" ng-disabled="!schedulerCtrl.dirty">Reset</button>
     <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.save()" ng-disabled="!schedulerCtrl.dirty || schedulerCtrl.hasInvalidSchedule()">Save</button>
