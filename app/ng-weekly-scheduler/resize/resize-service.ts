@@ -1,48 +1,53 @@
-/** @internal */
-class ResizeService {
-    static $name = 'resizeService';
+class ResizeServiceProvider implements IResizeServiceProvider {
+    public static $name = 'br.weeklyScheduler.resizeService';
 
-    static $inject = [
-        '$rootScope',
-        '$window'
-    ];
-
-    private initialized: boolean = false;
-
-    private constructor(
-        private $rootScope: angular.IRootScopeService,
-        private $window: angular.IWindowService
-    ) {
+    constructor() {
+        this.$get.$inject = [
+            '$rootScope',
+            '$window'
+        ]
     }
 
-    public initialize(config: IWeeklySchedulerConfig<any>) {
-        if (this.initialized) {
-            return;
-        }
+    private customResizeEvents: string[] = [];
 
-        this.$window.addEventListener('resize', () => {
-            // addEventListener exists outside of angular so we have to $apply the change
-            this.$rootScope.$apply(() => {
-                this.broadcastResizedEvent();
-            });
-        });
+    private serviceInitialized: boolean = false;
 
-        if (config.customResizeEvents) {
-            config.customResizeEvents.forEach((event) => {
-                this.$rootScope.$on(event, () => {
-                    this.broadcastResizedEvent();
-                })
-            })
-        }
-
-        this.initialized = true;
+    public setCustomResizeEvents(events: string[]) {
+        this.customResizeEvents = events;
     }
 
-    private broadcastResizedEvent() {
-        this.$rootScope.$broadcast(WeeklySchedulerEvents.RESIZED);
+    public $get(
+        $rootScope: angular.IRootScopeService,
+        $window: angular.IWindowService
+    ): IResizeService {
+        return {
+            initialize() {
+                if (this.serviceInitialized) {
+                    return;
+                }
+        
+                $window.addEventListener('resize', () => {
+                    // addEventListener exists outside of angular so we have to $apply the change
+                    $rootScope.$apply(() => {
+                        $rootScope.$broadcast(WeeklySchedulerEvents.RESIZED);
+                    });
+                });
+        
+                if (this.customResizeEvents) {
+                    this.customResizeEvents.forEach((event) => {
+                        $rootScope.$on(event, () => {
+                            $rootScope.$broadcast(WeeklySchedulerEvents.RESIZED);
+                        })
+                    })
+                }
+        
+                this.serviceInitialized = true; 
+            }
+        };
     }
 }
 
 angular
     .module('weeklyScheduler')
-    .service(ResizeService.$name, ResizeService);
+    .provider(ResizeServiceProvider.$name, ResizeServiceProvider)
+    .run([ResizeServiceProvider.$name, (resizeService: IResizeService) => resizeService.initialize()]);

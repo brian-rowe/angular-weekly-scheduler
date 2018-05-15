@@ -1,4 +1,12 @@
 /// <reference types="angular" />
+declare class ResizeServiceProvider implements IResizeServiceProvider {
+    static $name: string;
+    constructor();
+    private customResizeEvents;
+    private serviceInitialized;
+    setCustomResizeEvents(events: string[]): void;
+    $get($rootScope: angular.IRootScopeService, $window: angular.IWindowService): IResizeService;
+}
 declare const enum Days {
     Monday = 0,
     Tuesday = 1,
@@ -7,6 +15,9 @@ declare const enum Days {
     Friday = 4,
     Saturday = 5,
     Sunday = 6,
+}
+interface IResizeServiceProvider extends angular.IServiceProvider {
+    setCustomResizeEvents(events: string[]): any;
 }
 /**
  * Implement this on a client and then pass it in to the component.
@@ -26,8 +37,6 @@ interface IWeeklySchedulerItem<T> {
 interface IWeeklySchedulerOptions<T> {
     /** These classes will be applied directly to the buttons */
     buttonClasses?: string[];
-    /** Does your app use custom events that this will need to resize in response to? List them here. */
-    customResizeEvents?: string[];
     /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
     createItem: (day: Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
     /** defaultValue should be assigned per set of options, not per item. Assign null for no default. */

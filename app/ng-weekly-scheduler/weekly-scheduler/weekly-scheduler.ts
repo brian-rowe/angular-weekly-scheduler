@@ -9,7 +9,6 @@ class WeeklySchedulerController implements angular.IController {
     '$scope',
     'groupService',
     'dayMap',
-    'resizeService',
     'scheduleValidatorService'
   ];
 
@@ -19,7 +18,6 @@ class WeeklySchedulerController implements angular.IController {
     private $scope: angular.IScope,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
-    private resizeService: ResizeService,
     private scheduleValidatorService: ScheduleValidatorService
   ) {
   }
@@ -54,7 +52,6 @@ class WeeklySchedulerController implements angular.IController {
 
   $onInit() {
     this.config = this.configure(this.options);
-    this.resizeService.initialize(this.config);
     this.buildItemsFromAdapter();
     this.startedWithInvalidSchedule = this.hasInvalidSchedule();
     this.watchAdapter();
@@ -107,7 +104,6 @@ class WeeklySchedulerController implements angular.IController {
 
     var result: IWeeklySchedulerConfig<any> = angular.extend(this.defaultOptions, {
       buttonClasses: options.buttonClasses,
-      customResizeEvents: options.customResizeEvents,
       createItem: options.createItem,
       editSlot: options.editSlot,
       fullCalendar: options.fullCalendar,

@@ -2,9 +2,6 @@ interface IWeeklySchedulerOptions<T> {
     /** These classes will be applied directly to the buttons */
     buttonClasses?: string[];
     
-    /** Does your app use custom events that this will need to resize in response to? List them here. */
-    customResizeEvents?: string[];
-
     /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
     createItem: (day: Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
 
