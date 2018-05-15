@@ -26,6 +26,9 @@ class FullCalendarValidatorService {
         let loopLen = len - 1;
         let result = true;
 
+        // Sort by start time first
+        let sortedSchedules = schedules.sort((a, b) => a.start > b.start ? 1 : -1);
+
         for (let i = 0; i < loopLen; i++) {
             let current = schedules[i];
             let next = schedules[i + 1];
