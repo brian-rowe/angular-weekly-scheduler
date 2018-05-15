@@ -53,7 +53,7 @@ class WeeklySchedulerController implements angular.IController {
   $onInit() {
     this.config = this.configure(this.options);
     this.buildItemsFromAdapter();
-    this.startedWithInvalidSchedule = this.checkScheduleValidity();
+    this.startedWithInvalidSchedule = this.hasInvalidSchedule();
     this.watchAdapter();
     this.watchHoverClass();
   }
@@ -89,7 +89,7 @@ class WeeklySchedulerController implements angular.IController {
     return result;
   }
 
-  private checkScheduleValidity() {
+  private hasInvalidSchedule() {
     return this.items.some(item => !this.scheduleValidatorService.areSchedulesValid(item, this.config));
   }
 
