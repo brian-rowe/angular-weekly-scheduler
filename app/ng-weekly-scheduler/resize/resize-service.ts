@@ -15,22 +15,34 @@ class ResizeService {
     ) {
     }
 
-    public initialize() {
+    public initialize(config: IWeeklySchedulerConfig<any>) {
         if (this.initialized) {
             return;
         }
 
         this.$window.addEventListener('resize', () => {
+            // addEventListener exists outside of angular so we have to $apply the change
             this.$rootScope.$apply(() => {
-                this.$rootScope.$broadcast(WeeklySchedulerEvents.RESIZED);
+                this.broadcastResizedEvent();
             });
         });
 
+        if (config.customResizeEvents) {
+            config.customResizeEvents.forEach((event) => {
+                this.$rootScope.$on(event, () => {
+                    this.broadcastResizedEvent();
+                })
+            })
+        }
+
         this.initialized = true;
+    }
+
+    private broadcastResizedEvent() {
+        this.$rootScope.$broadcast(WeeklySchedulerEvents.RESIZED);
     }
 }
 
 angular
     .module('weeklyScheduler')
-    .service(ResizeService.$name, ResizeService)
-    .run([ResizeService.$name, (resizeService: ResizeService) => resizeService.initialize()]);
+    .service(ResizeService.$name, ResizeService);

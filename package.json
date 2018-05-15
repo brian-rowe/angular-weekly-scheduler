@@ -1,6 +1,6 @@
 {
   "name": "angular-weekly-scheduler",
-  "version": "0.0.82",
+  "version": "0.0.83",
   "description": "A scheduler using weeks for AngularJS",
   "repository": "https://github.com/fmaturel/angular-weekly-scheduler",
   "license": "MIT",
