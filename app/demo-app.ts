@@ -26,8 +26,14 @@ angular.module('demoApp', ['weeklyScheduler'])
         {
           day: Days.Saturday,
           start: 0,
-          end: 1440,
+          end: 720,
           value: true
+        },
+        {
+          day: Days.Saturday,
+          start: 720,
+          end: 1440,
+          value: false
         },
         {
           day: Days.Sunday,
