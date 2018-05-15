@@ -1,4 +1,4 @@
-<div ng-if="!schedulerCtrl.hasInvalidSchedule">
+<div ng-if="!schedulerCtrl.startedWithInvalidSchedule">
   <div class="labels">
     <div class="srow dummy"></div>
     <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items">
@@ -28,6 +28,6 @@
   </div>
 </div>
 
-<div class="srow" ng-if="schedulerCtrl.hasInvalidSchedule">
+<div class="srow" ng-if="schedulerCtrl.startedWithInvalidSchedule">
   One or more of the schedules is invalid! Please contact service.
 </div>

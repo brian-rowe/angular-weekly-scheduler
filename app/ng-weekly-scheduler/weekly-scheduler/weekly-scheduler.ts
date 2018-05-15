@@ -30,7 +30,8 @@ class WeeklySchedulerController implements angular.IController {
   /** should be true if the scheduler has been interacted with */
   public dirty: boolean;
   
-  public hasInvalidSchedule: boolean;
+  /** should be true if the scheduler was **initialized** with invalid values */
+  public startedWithInvalidSchedule: boolean;
   public hoverClass: string;
 
   public config: IWeeklySchedulerConfig<any>
@@ -52,7 +53,7 @@ class WeeklySchedulerController implements angular.IController {
   $onInit() {
     this.config = this.configure(this.options);
     this.buildItemsFromAdapter();
-    this.updateScheduleValidity();
+    this.startedWithInvalidSchedule = this.checkScheduleValidity();
     this.watchAdapter();
     this.watchHoverClass();
   }
@@ -186,10 +187,6 @@ class WeeklySchedulerController implements angular.IController {
         this.$element.find(`.${this.hoverClass}`).addClass(pulseClass);
       }
     });
-  }
-
-  public updateScheduleValidity() {
-    this.hasInvalidSchedule = this.checkScheduleValidity();
   }
 }
 
