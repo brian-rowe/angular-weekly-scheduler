@@ -18,7 +18,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
             return $timeout(() => schedule, 400);
           },
-          monoSchedule: true,
+          maxTimeSlot: 300,
         }
       };
 
@@ -26,43 +26,43 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         {
           day: Days.Saturday,
           start: 0,
-          end: 720,
+          end: 120,
           value: true
         },
         {
           day: Days.Sunday,
-          start: 0,
-          end: 1440,
+          start: 600,
+          end: 720,
           value: true
         },
         {
           day: Days.Monday,
-          start: 0,
-          end: 1440,
+          start: 720,
+          end: 900,
           value: true
         },
         {
           day: Days.Tuesday,
-          start: 0,
-          end: 1440,
+          start: 60,
+          end: 120,
           value: true
         },
         {
           day: Days.Wednesday,
-          start: 0,
-          end: 1440,
+          start: 30,
+          end: 150,
           value: true
         },
         {
           day: Days.Thursday,
           start: 0,
-          end: 1440,
+          end: 150,
           value: true
         },
         {
           day: Days.Friday,
           start: 0,
-          end: 1440,
+          end: 240,
           value: true
         }
       ]);
