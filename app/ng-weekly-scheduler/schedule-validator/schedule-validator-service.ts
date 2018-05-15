@@ -5,18 +5,24 @@ class ScheduleValidationService {
     static $inject = [
         'brWeeklySchedulerFullCalendarValidatorService',
         'brWeeklySchedulerMaxTimeSlotValidatorService',
+        'brWeeklySchedulerMonoScheduleValidatorService',
         'brWeeklySchedulerOverlapValidatorService'
     ]
 
     private constructor(
         private fullCalendarValidatorService: FullCalendarValidatorService,
         private maxTimeSlotValidatorService: MaxTimeSlotValidatorService,
+        private monoScheduleValidatorService: MonoScheduleValidatorService,
         private overlapValidatorService: OverlapValidatorService
     ) {
     }
 
     public areSchedulesValid(item: IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): boolean {
         if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {
+            return false;
+        }
+
+        if (!this.monoScheduleValidatorService.validate(item.schedules, config)) {
             return false;
         }
 
