@@ -7,11 +7,16 @@ class FullCalendarValidatorService {
             return true;
         }
 
+        
         // When this option is true we should enforce that there are no gaps in the schedules
-
-        // If there was only one item we should check that it spans the whole range
         let len = schedules.length;
 
+        // If there are no schedules, it automatically fails.
+        if (!len) {
+            return false;
+        }
+        
+        // If there was only one item we should check that it spans the whole range
         if (len === 1) {
             let schedule = schedules[0];
             return this.validateStartAtMinValue(schedule.start) && this.validateEndAtMaxValue(schedule.end, config);
