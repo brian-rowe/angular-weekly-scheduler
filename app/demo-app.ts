@@ -18,7 +18,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
             return $timeout(() => schedule, 400);
           },
-          fullCalendar: true,
+          monoSchedule: true,
         }
       };
 
@@ -28,12 +28,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           start: 0,
           end: 720,
           value: true
-        },
-        {
-          day: Days.Saturday,
-          start: 720,
-          end: 1440,
-          value: false
         },
         {
           day: Days.Sunday,
