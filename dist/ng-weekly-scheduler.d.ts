@@ -1,12 +1,4 @@
 /// <reference types="angular" />
-declare class ResizeServiceProvider implements IResizeServiceProvider {
-    static $name: string;
-    constructor();
-    private customResizeEvents;
-    private serviceInitialized;
-    setCustomResizeEvents(events: string[]): void;
-    $get($rootScope: angular.IRootScopeService, $window: angular.IWindowService): IResizeService;
-}
 declare const enum Days {
     Monday = 0,
     Tuesday = 1,
