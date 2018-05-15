@@ -1,3 +1,4 @@
+/** @internal */
 class ResizeServiceProvider implements IResizeServiceProvider {
     public static $name = 'br.weeklyScheduler.resizeService';
 
