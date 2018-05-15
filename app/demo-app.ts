@@ -22,12 +22,50 @@ angular.module('demoApp', ['weeklyScheduler'])
         }
       };
 
-      $scope.adapter = new DemoAdapter([{
-        day: Days.Saturday,
-        start: 0,
-        end: 1440,
-        value: true
-      }]);
+      $scope.adapter = new DemoAdapter([
+        {
+          day: Days.Saturday,
+          start: 0,
+          end: 1440,
+          value: true
+        },
+        {
+          day: Days.Sunday,
+          start: 0,
+          end: 1440,
+          value: true
+        },
+        {
+          day: Days.Monday,
+          start: 0,
+          end: 1440,
+          value: true
+        },
+        {
+          day: Days.Tuesday,
+          start: 0,
+          end: 1440,
+          value: true
+        },
+        {
+          day: Days.Wednesday,
+          start: 0,
+          end: 1440,
+          value: true
+        },
+        {
+          day: Days.Thursday,
+          start: 0,
+          end: 1440,
+          value: true
+        },
+        {
+          day: Days.Friday,
+          start: 0,
+          end: 1440,
+          value: true
+        }
+      ]);
 
       $scope.rangeAdapter = new DemoRangeAdapter();
 
