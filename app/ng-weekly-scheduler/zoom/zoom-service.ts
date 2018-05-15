@@ -87,5 +87,5 @@ class ZoomService {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .service(ZoomService.$name, ZoomService);

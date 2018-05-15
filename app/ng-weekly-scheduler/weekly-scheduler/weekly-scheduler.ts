@@ -192,7 +192,7 @@ class WeeklySchedulerController implements angular.IController {
 
 /** @internal */
 class WeeklySchedulerComponent implements angular.IComponentOptions {
-  static $name = 'weeklyScheduler';
+  static $name = 'brWeeklyScheduler';
 
   bindings = {
     adapter: '<',
@@ -210,6 +210,6 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
   templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
 }
 
-angular.module('weeklyScheduler')
+angular.module('br.weeklyScheduler')
   .controller(WeeklySchedulerController.$name, WeeklySchedulerController)
   .component(WeeklySchedulerComponent.$name, new WeeklySchedulerComponent());

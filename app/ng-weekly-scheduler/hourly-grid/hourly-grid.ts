@@ -3,7 +3,7 @@ class HourlyGridDirective implements angular.IDirective {
     static $name = 'hourlyGrid';
 
     restrict = 'E';
-    require = '^weeklyScheduler';
+    require = '^brWeeklyScheduler';
 
     private GRID_TEMPLATE = angular.element('<div class="grid-item"></div>');
 
@@ -70,5 +70,5 @@ class HourlyGridDirective implements angular.IDirective {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .directive(HourlyGridDirective.$name, HourlyGridDirective.Factory());

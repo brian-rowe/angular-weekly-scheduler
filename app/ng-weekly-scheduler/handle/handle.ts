@@ -85,5 +85,5 @@ class HandleDirective implements angular.IDirective {
   }
 }
 
-angular.module('weeklyScheduler')
+angular.module('br.weeklyScheduler')
   .directive(HandleDirective.$name, HandleDirective.Factory());

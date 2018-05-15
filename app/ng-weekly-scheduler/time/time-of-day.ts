@@ -20,5 +20,5 @@ class TimeOfDayFilter {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .filter(TimeOfDayFilter.$name, [TimeOfDayFilter.Factory]);

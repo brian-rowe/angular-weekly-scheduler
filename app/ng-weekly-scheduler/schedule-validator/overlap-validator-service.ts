@@ -33,5 +33,5 @@ class OverlapValidatorService {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .service(OverlapValidatorService.$name, OverlapValidatorService);

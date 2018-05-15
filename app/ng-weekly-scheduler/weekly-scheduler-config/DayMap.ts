@@ -15,5 +15,5 @@ class DayMap {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .constant(DayMap.$name, DayMap.value);

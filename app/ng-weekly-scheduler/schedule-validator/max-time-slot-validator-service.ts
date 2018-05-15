@@ -12,5 +12,5 @@ class MaxTimeSlotValidatorService {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .service(MaxTimeSlotValidatorService.$name, MaxTimeSlotValidatorService);

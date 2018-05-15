@@ -48,6 +48,6 @@ class ResizeServiceProvider implements IResizeServiceProvider {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .provider(ResizeServiceProvider.$name, ResizeServiceProvider)
     .run([ResizeServiceProvider.$name, (resizeService: IResizeService) => resizeService.initialize()]);

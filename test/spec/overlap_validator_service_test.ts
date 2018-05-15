@@ -4,7 +4,7 @@
 describe('overlap validator service', function () {
     var $service: OverlapValidatorService;
 
-    beforeEach(angular.mock.module('weeklyScheduler'));
+    beforeEach(angular.mock.module('br.weeklyScheduler'));
 
     beforeEach(inject(function (_overlapValidatorService_) {
         $service = _overlapValidatorService_;

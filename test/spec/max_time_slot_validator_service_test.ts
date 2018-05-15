@@ -3,7 +3,7 @@
 describe('max time slot validator service', function () {
     var $service: MaxTimeSlotValidatorService;
 
-    beforeEach(angular.mock.module('weeklyScheduler'));
+    beforeEach(angular.mock.module('br.weeklyScheduler'));
 
     beforeEach(inject(function (_maxTimeSlotValidatorService_) {
         $service = _maxTimeSlotValidatorService_;

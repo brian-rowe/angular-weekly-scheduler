@@ -1,4 +1,4 @@
-angular.module('demoApp', ['weeklyScheduler'])
+angular.module('demoApp', ['br.weeklyScheduler'])
   .controller('DemoController', ['$scope', '$timeout', '$log',
     function ($scope, $timeout, $log) {
 

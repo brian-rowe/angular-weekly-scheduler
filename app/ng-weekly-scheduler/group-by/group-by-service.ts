@@ -28,5 +28,5 @@ class GroupService {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .service(GroupService.$name, GroupService);

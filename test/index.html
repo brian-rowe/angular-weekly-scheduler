@@ -13,7 +13,7 @@
         <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
       </div>
 
-      <weekly-scheduler adapter="adapter" items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)" on-delete="demo.doSomething()" options="model.options" range-adapter="rangeAdapter"></weekly-scheduler>
+      <br-weekly-scheduler adapter="adapter" items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)" on-delete="demo.doSomething()" options="model.options" range-adapter="rangeAdapter"></br-weekly-scheduler>
       Dirty: {{ isDirty }}
 
       <script src="testVendorScripts.js"></script>

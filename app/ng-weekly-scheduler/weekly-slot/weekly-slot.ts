@@ -211,6 +211,6 @@ class WeeklySlotComponent implements angular.IComponentOptions {
 }
 
 angular
-  .module('weeklyScheduler')
+  .module('br.weeklyScheduler')
   .controller(WeeklySlotController.$name, WeeklySlotController)
   .component(WeeklySlotComponent.$name, new WeeklySlotComponent());

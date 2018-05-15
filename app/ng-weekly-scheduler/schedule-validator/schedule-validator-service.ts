@@ -33,5 +33,5 @@ class ScheduleValidatorService {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .service(ScheduleValidatorService.$name, ScheduleValidatorService);

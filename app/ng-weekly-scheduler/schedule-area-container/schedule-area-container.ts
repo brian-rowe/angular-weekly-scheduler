@@ -48,6 +48,6 @@ class ScheduleAreaContainerComponent implements angular.IComponentOptions {
     template = `<ng-transclude></ng-transclude>`;
 }
 
-angular.module('weeklyScheduler')
+angular.module('br.weeklyScheduler')
     .controller(ScheduleAreaContainerController.$name, ScheduleAreaContainerController)
     .component(ScheduleAreaContainerComponent.$name, new ScheduleAreaContainerComponent());

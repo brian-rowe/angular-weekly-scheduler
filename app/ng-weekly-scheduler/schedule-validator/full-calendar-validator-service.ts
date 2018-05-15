@@ -59,5 +59,5 @@ class FullCalendarValidatorService {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .service(FullCalendarValidatorService.$name, FullCalendarValidatorService);

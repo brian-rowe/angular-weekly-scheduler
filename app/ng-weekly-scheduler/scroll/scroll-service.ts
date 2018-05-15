@@ -32,5 +32,5 @@ class ScrollService {
 }
 
 angular
-    .module('weeklyScheduler')
+    .module('br.weeklyScheduler')
     .service(ScrollService.$name, ScrollService);
