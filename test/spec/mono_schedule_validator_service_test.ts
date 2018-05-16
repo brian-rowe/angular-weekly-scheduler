@@ -17,7 +17,7 @@ describe('mono schedule validator service', () => {
 
         let monoScheduleConfig = {
             createItem: createItem,
-            defaultValue: '',
+            defaultValue: true,
             hourCount: 24,
             intervalCount: 96,
             maxValue: 1440,
@@ -27,7 +27,7 @@ describe('mono schedule validator service', () => {
 
         let nonMonoScheduleConfig = {
             createItem: createItem,
-            defaultValue: '',
+            defaultValue: true,
             hourCount: 24,
             intervalCount: 96,
             maxValue: 1440,
