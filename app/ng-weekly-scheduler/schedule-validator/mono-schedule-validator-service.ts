@@ -7,8 +7,17 @@ class MonoScheduleValidatorService {
             return true;
         }
 
+        // If a default value is defined, schedules with default values don't count -- one non-default schedule per item.
+        let schedulesToValidate;
+
+        if (angular.isDefined(config.defaultValue)) {
+            schedulesToValidate = schedules.filter(schedule => schedule.value !== config.defaultValue);
+        } else {
+            schedulesToValidate = schedules;
+        }
+
         // only allowed empty or 1 schedule per item
-        return !schedules.length || schedules.length === 1;
+        return !schedulesToValidate.length || schedulesToValidate.length === 1;
     }
 }
 
