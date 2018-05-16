@@ -29,7 +29,10 @@ class WeeklySchedulerController implements angular.IController {
 
   /** should be true if the scheduler has been interacted with */
   public dirty: boolean;
-  
+
+  /** should be true if the scheduler became invalid after being initialized */
+  public invalid: boolean;
+
   /** should be true if the scheduler was **initialized** with invalid values */
   public startedWithInvalidSchedule: boolean;
   public hoverClass: string;
@@ -49,6 +52,16 @@ class WeeklySchedulerController implements angular.IController {
     defaultValue: null,
     monoSchedule: false
   };
+
+  public validationErrors: ValidationError[];
+
+  $doCheck() {
+    let validationErrors = this.getValidationErrors();
+
+    if (validationErrors) {
+      this.validationErrors = validationErrors;
+    }
+  }
 
   $onInit() {
     this.config = this.configure(this.options);
@@ -89,10 +102,14 @@ class WeeklySchedulerController implements angular.IController {
     return result;
   }
 
+  private getValidationErrors() {
+    return Array.prototype.concat.apply([], this.items.map(item => this.scheduleValidatorService.getValidationErrors(item, this.config)));
+  }
+
   private hasInvalidSchedule() {
-    return this.items.some(item => {
-      return this.scheduleValidatorService.getValidationErrors(item, this.config).length > 0
-    });
+    let validationErrors: ValidationError[] = this.getValidationErrors();
+
+    return validationErrors.length > 0;
   }
 
   /**

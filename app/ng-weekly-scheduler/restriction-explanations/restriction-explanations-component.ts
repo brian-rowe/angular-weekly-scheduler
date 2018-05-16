@@ -7,9 +7,22 @@ class RestrictionExplanationsController implements angular.IComponentController 
 
     private schedulerCtrl: WeeklySchedulerController;
 
-    private explanations: string[] = [];
+    private explanations: { [key in ValidationError]?: string } = {};
+    private violations: { [key in ValidationError]?: boolean } = {};
 
-    constructor(private $filter: IWeeklySchedulerFilterService) {
+    constructor(
+        private $filter: IWeeklySchedulerFilterService
+    ) {
+    }
+
+    $doCheck() {
+        let errors = this.schedulerCtrl.validationErrors;
+
+        this.violations = {
+            [ValidationError.FullCalendarViolation]: errors.indexOf(ValidationError.FullCalendarViolation) > -1,
+            [ValidationError.MaxTimeSlotViolation]: errors.indexOf(ValidationError.MaxTimeSlotViolation) > -1,
+            [ValidationError.MonoScheduleViolation]: errors.indexOf(ValidationError.MonoScheduleViolation) > -1
+        };
     }
 
     $onInit() {
@@ -17,15 +30,15 @@ class RestrictionExplanationsController implements angular.IComponentController 
 
         if (config.maxTimeSlot) {
             let maxTimeSlot = this.$filter('brWeeklySchedulerMinutesAsText')(config.maxTimeSlot);
-            this.explanations.push(`Max time slot length: ${maxTimeSlot}`);
+            this.explanations[ValidationError.MaxTimeSlotViolation] = `Max time slot length: ${maxTimeSlot}`;
         }
 
         if (config.fullCalendar) {
-            this.explanations.push('For this calendar, every day must be completely full of schedules.')
+            this.explanations[ValidationError.FullCalendarViolation] = 'For this calendar, every day must be completely full of schedules.';
         }
 
         if (config.monoSchedule) {
-            this.explanations.push('This calendar may only have one time slot per day');
+            this.explanations[ValidationError.MonoScheduleViolation] = 'This calendar may only have one time slot per day';
         }
     }
 }
@@ -42,7 +55,7 @@ class RestrictionExplanationsComponent implements angular.IComponentOptions {
     };
 
     template = `
-        <div class="srow explanations" ng-repeat="explanation in restrictionExplanationsCtrl.explanations">
+        <div class="srow explanations" ng-class="{ violation: restrictionExplanationsCtrl.violations[key] }" ng-repeat="(key, explanation) in restrictionExplanationsCtrl.explanations">
             {{ explanation }}
         </div>
     `;

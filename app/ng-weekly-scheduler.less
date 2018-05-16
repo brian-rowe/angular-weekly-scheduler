@@ -18,6 +18,8 @@
 @border: @borderWidth @borderStyle @borderColor;
 @darkBorder: @borderWidth @borderStyle @darkBorderColor;
 
+@red: rgb(200, 25, 25);
+
 .applyTheme(@backgroundColor, @borderColor, @stripeColor, @textColor) {
   @border: @borderWidth @borderStyle @borderColor;
 
@@ -115,6 +117,10 @@ br-weekly-scheduler {
 
     &.explanations {
       padding-left: @offset;
+
+      &.violation {
+        color: red;
+      }
     }
   }
 
