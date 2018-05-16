@@ -61,17 +61,33 @@ describe('mono schedule validator service', () => {
         });
 
         describe('items with multiple schedules', () => {
-            let item = [
-                { day: 0, start: 300, end: 600, value: true },
-                { day: 0, start: 720, end: 900, value: false }
-            ];
-
             it('as valid when monoSchedule is false', () => {
+                let item = [
+                    { day: 0, start: 300, end: 600, value: true },
+                    { day: 0, start: 720, end: 900, value: false }
+                ];
+
                 expect($service.validate(item, nonMonoScheduleConfig)).toBeTruthy();
             });
 
-            it('as invalid when monoSchedule is true', () => {
-                expect($service.validate(item, monoScheduleConfig)).toBeFalsy();
+            it('as valid when monoSchedule is true but only one of the schedules is non-default', () => {
+                let item = [
+                    { day: 0, start: 300, end: 600, value: true },
+                    { day: 0, start: 720, end: 900, value: false },
+                    { day: 0, start: 915, end: 975, value: true }
+                ];
+
+                expect($service.validate(item, monoScheduleConfig)).toBeTruthy();
+            });
+
+            it('as invalid when monoSchedule is true but multiple schedules are non-default', () => {
+                let item3 = [
+                    { day: 0, start: 300, end: 600, value: true },
+                    { day: 0, start: 720, end: 900, value: false },
+                    { day: 0, start: 915, end: 975, value: false }
+                ]
+                
+                expect($service.validate(item3, monoScheduleConfig)).toBeFalsy();
             });
         });
     });
