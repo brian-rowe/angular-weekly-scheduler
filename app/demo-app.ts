@@ -13,12 +13,14 @@ angular.module('demoApp', ['br.weeklyScheduler'])
               schedules: schedules
             }
           },
+          defaultValue: true,
           editSlot: function (schedule) {
             schedule.end += 15;
 
             return $timeout(() => schedule, 400);
           },
           maxTimeSlot: 300,
+          monoSchedule: true
         }
       };
 
