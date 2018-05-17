@@ -6,6 +6,7 @@ class WeeklySlotController implements angular.IComponentController {
   static $inject = [
     '$scope',
     '$timeout',
+    'brWeeklySchedulerNullEndWidth',
     'brWeeklySchedulerOverlapService'
   ];
 
@@ -28,6 +29,7 @@ class WeeklySlotController implements angular.IComponentController {
   constructor(
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
+    private nullEndWidth: number,
     private overlapService: OverlapService
   ) {
   }
@@ -54,7 +56,7 @@ class WeeklySlotController implements angular.IComponentController {
     return {
       day: this.schedule.day,
       start: this.schedule.start,
-      end: this.multisliderCtrl.adjustEndForView(this.schedule.end),
+      end: this.config.allowNullEnds ? this.multisliderCtrl.adjustEndForView(this.schedule.start + this.nullEndWidth) : this.multisliderCtrl.adjustEndForView(this.schedule.end),
       value: this.schedule.value
     }
   }
