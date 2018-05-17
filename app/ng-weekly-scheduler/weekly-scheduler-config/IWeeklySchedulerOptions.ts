@@ -1,6 +1,6 @@
 namespace br.weeklyScheduler {
     export interface IWeeklySchedulerOptions<T> {
-        // If this is true schedules will be allowed & required to have no set end time */
+        /** If this is true schedules will be allowed & required to have no set end time */
         nullEnds?: boolean;
 
         /** These classes will be applied directly to the buttons */
