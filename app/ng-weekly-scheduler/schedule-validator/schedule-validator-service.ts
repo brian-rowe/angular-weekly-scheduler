@@ -6,6 +6,7 @@ class ScheduleValidationService {
         'brWeeklySchedulerFullCalendarValidatorService',
         'brWeeklySchedulerMaxTimeSlotValidatorService',
         'brWeeklySchedulerMonoScheduleValidatorService',
+        'brWeeklySchedulerNullEndValidatorService',
         'brWeeklySchedulerOverlapValidatorService'
     ]
 
@@ -13,6 +14,7 @@ class ScheduleValidationService {
         private fullCalendarValidatorService: FullCalendarValidatorService,
         private maxTimeSlotValidatorService: MaxTimeSlotValidatorService,
         private monoScheduleValidatorService: MonoScheduleValidatorService,
+        private nullEndScheduleValidatorService: NullEndScheduleValidatorService,
         private overlapValidatorService: OverlapValidatorService
     ) {
     }
@@ -26,6 +28,10 @@ class ScheduleValidationService {
 
         if (!this.monoScheduleValidatorService.validate(item.schedules, config)) {
             result.push(ValidationError.FullCalendarViolation);
+        }
+
+        if (!this.nullEndScheduleValidatorService.validate(item.schedules, config)) {
+            result.push(ValidationError.NullEndViolation);
         }
 
         if (!this.fullCalendarValidatorService.validate(item.schedules, config)) {

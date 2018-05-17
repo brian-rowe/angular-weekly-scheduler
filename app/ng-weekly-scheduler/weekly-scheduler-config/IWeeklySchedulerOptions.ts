@@ -1,4 +1,7 @@
 interface IWeeklySchedulerOptions<T> {
+    // If this is true it'll be okay for a schedule to have no end time -- this must be combined with monoSchedule=true. Default = false */
+    allowNullEnds?: boolean;
+
     /** These classes will be applied directly to the buttons */
     buttonClasses?: string[];
     

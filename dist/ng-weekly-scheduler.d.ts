@@ -1,4 +1,8 @@
 /// <reference types="angular" />
+declare class NullEndScheduleValidatorService {
+    static $name: string;
+    validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean;
+}
 declare const enum Days {
     Monday = 0,
     Tuesday = 1,
@@ -27,6 +31,7 @@ interface IWeeklySchedulerItem<T> {
     schedules: IWeeklySchedulerRange<T>[];
 }
 interface IWeeklySchedulerOptions<T> {
+    allowNullEnds?: boolean;
     /** These classes will be applied directly to the buttons */
     buttonClasses?: string[];
     /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */

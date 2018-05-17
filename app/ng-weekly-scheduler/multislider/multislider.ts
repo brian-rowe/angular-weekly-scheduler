@@ -59,7 +59,7 @@ class MultiSliderController implements angular.IComponentController {
 
         this.$hoverElement.css({
           left: this.getSlotLeft(val),
-          right: this.getSlotRight(val + this.size)
+          right: this.getSlotRight(val, val + this.size)
         });
       });
     }
@@ -182,7 +182,12 @@ class MultiSliderController implements angular.IComponentController {
     return this.compensateForBorder(underlyingInterval, start) + 'px';
   }
 
-  private getSlotRight(end: number) {
+  private getSlotRight(start: number, end: number) {
+    // If there is a null end, place the end of the slot two hours away from the beginning.
+    if (end === null) {
+      end = start + 120;
+    }
+
     // An end of 0 should display allll the way to the right, up to the edge
     end = this.adjustEndForView(end);
 

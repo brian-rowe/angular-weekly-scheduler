@@ -2,6 +2,7 @@
 class MonoScheduleValidatorService {
     static $name = 'brWeeklySchedulerMonoScheduleValidatorService';
 
+    /** Important note -- this does not validate that only one schedule exists per item, but rather that only one NON-DEFAULT schedule exists per item. */
     public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (!config.monoSchedule) {
             return true;
