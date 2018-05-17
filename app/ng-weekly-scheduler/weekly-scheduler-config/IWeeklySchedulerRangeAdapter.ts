@@ -1,4 +1,6 @@
 /** Converts custom model to WeeklySchedulerRange */
-interface IWeeklySchedulerRangeAdapter<TCustom, TRange> {
-    adapt(custom: TCustom[]): IWeeklySchedulerRange<TRange>[];
+namespace br.weeklyScheduler {
+    export interface IWeeklySchedulerRangeAdapter<TCustom, TRange> {
+        adapt(custom: TCustom[]): br.weeklyScheduler.IWeeklySchedulerRange<TRange>[];
+    }
 }

@@ -23,7 +23,7 @@ class TimeRangeController implements angular.IComponentController {
     private hasStart: boolean;
     private hasEnd: boolean;
 
-    private schedule: IWeeklySchedulerRange<any>;
+    private schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 
     $onInit() {
         this.hasStart = angular.isDefined(this.schedule.start);

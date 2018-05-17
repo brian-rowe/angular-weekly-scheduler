@@ -31,37 +31,37 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         //   value: true
         // },
         {
-          day: Days.Sunday,
+          day: br.weeklyScheduler.Days.Sunday,
           start: 600,
           end: null,
           value: true
         },
         {
-          day: Days.Monday,
+          day: br.weeklyScheduler.Days.Monday,
           start: 720,
           end: null,
           value: true
         },
         {
-          day: Days.Tuesday,
+          day: br.weeklyScheduler.Days.Tuesday,
           start: 60,
           end: null,
           value: true
         },
         {
-          day: Days.Wednesday,
+          day: br.weeklyScheduler.Days.Wednesday,
           start: 30,
           end: null,
           value: true
         },
         {
-          day: Days.Thursday,
+          day: br.weeklyScheduler.Days.Thursday,
           start: 0,
           end: null,
           value: true
         },
         {
-          day: Days.Friday,
+          day: br.weeklyScheduler.Days.Friday,
           start: 0,
           end: null,
           value: true
@@ -79,11 +79,11 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
 /** The data is already in an acceptable format for the demo so just pass it through */
 /** @internal */
-class DemoAdapter implements IWeeklySchedulerAdapter<IWeeklySchedulerRange<boolean>, boolean> {
-  public items: IWeeklySchedulerItem<boolean>[] = [];
+class DemoAdapter implements br.weeklyScheduler.IWeeklySchedulerAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
+  public items: br.weeklyScheduler.IWeeklySchedulerItem<boolean>[] = [];
 
   constructor(
-    public initialData: IWeeklySchedulerRange<boolean>[],
+    public initialData: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[],
   ) {
   }
 
@@ -94,7 +94,7 @@ class DemoAdapter implements IWeeklySchedulerAdapter<IWeeklySchedulerRange<boole
 
 /** Same here */
 /** @internal */
-class DemoRangeAdapter implements IWeeklySchedulerRangeAdapter<IWeeklySchedulerRange<boolean>, boolean> {
+class DemoRangeAdapter implements br.weeklyScheduler.IWeeklySchedulerRangeAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
   public adapt(range) {
     return range;
   }

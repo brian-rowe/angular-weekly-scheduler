@@ -1,5 +1,5 @@
 /** @internal */
-class ResizeServiceProvider implements IResizeServiceProvider {
+class ResizeServiceProvider implements br.weeklyScheduler.IResizeServiceProvider {
     public static $name = 'br.weeklyScheduler.resizeService';
 
     constructor() {

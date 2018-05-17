@@ -1,31 +1,33 @@
-interface IWeeklySchedulerOptions<T> {
-    // If this is true it'll be okay for a schedule to have no end time -- this must be combined with monoSchedule=true. Default = false */
-    nullEnds?: boolean;
+namespace br.weeklyScheduler {
+    export interface IWeeklySchedulerOptions<T> {
+        // If this is true schedules will be allowed & required to have no set end time */
+        nullEnds?: boolean;
 
-    /** These classes will be applied directly to the buttons */
-    buttonClasses?: string[];
-    
-    /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
-    createItem: (day: Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
+        /** These classes will be applied directly to the buttons */
+        buttonClasses?: string[];
 
-    /** defaultValue should be assigned per set of options, not per item. Do not assign for no default */
-    defaultValue?: T;
+        /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
+        createItem: (day: br.weeklyScheduler.Days, schedules: IWeeklySchedulerRange<T>[]) => br.weeklyScheduler.IWeeklySchedulerItem<T>;
 
-    /** A function to call when an item is clicked in order to bring up an editor for it */
-    editSlot?: (schedule: IWeeklySchedulerRange<T>) => angular.IPromise<IWeeklySchedulerRange<T>>;
+        /** defaultValue should be assigned per set of options, not per item. Do not assign for no default */
+        defaultValue?: T;
 
-    /** If this is true, ALL slots in the calendar must be filled in order for it to be valid */
-    fullCalendar?: boolean;
+        /** A function to call when an item is clicked in order to bring up an editor for it */
+        editSlot?: (schedule: IWeeklySchedulerRange<T>) => angular.IPromise<IWeeklySchedulerRange<T>>;
 
-    /** If this is defined, a time slot will not be able to be more than this many minutes long */
-    maxTimeSlot?: number;
+        /** If this is true, ALL slots in the calendar must be filled in order for it to be valid */
+        fullCalendar?: boolean;
 
-    /** If this is true, the calendar will enforce that only one schedule per item is allowed */
-    monoSchedule?: boolean;
+        /** If this is defined, a time slot will not be able to be more than this many minutes long */
+        maxTimeSlot?: number;
 
-    /** The number of minutes each division of the calendar should be -- values will snap to this */
-    interval?: number;
+        /** If this is true, the calendar will enforce that only one schedule per item is allowed */
+        monoSchedule?: boolean;
 
-    /** A function to call wen the save button is clicked */
-    saveScheduler: () => angular.IPromise<any>;
+        /** The number of minutes each division of the calendar should be -- values will snap to this */
+        interval?: number;
+
+        /** A function to call wen the save button is clicked */
+        saveScheduler: () => angular.IPromise<any>;
+    }
 }

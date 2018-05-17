@@ -19,7 +19,7 @@ class ScheduleValidationService {
     ) {
     }
 
-    public getValidationErrors(item: IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): ValidationError[] {
+    public getValidationErrors(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): ValidationError[] {
         let result: ValidationError[] = [];
 
         if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {

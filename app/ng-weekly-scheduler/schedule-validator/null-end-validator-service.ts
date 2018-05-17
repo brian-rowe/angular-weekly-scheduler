@@ -2,7 +2,7 @@
 class NullEndScheduleValidatorService {
     static $name = 'brWeeklySchedulerNullEndValidatorService';
 
-    validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (config.nullEnds) {
             return schedules.length <= 1;
         } else {

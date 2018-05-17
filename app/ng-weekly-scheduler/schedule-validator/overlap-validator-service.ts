@@ -11,7 +11,7 @@ class OverlapValidatorService {
     ) {
     }
 
-    public validate(schedules: IWeeklySchedulerRange<any>[], maxValue: number): boolean {
+    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], maxValue: number): boolean {
         // Compare two at a time until the end
         let len = schedules.length;
         let result = true;

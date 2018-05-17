@@ -13,18 +13,18 @@ class WeeklySlotController implements angular.IComponentController {
   private multisliderCtrl: MultiSliderController;
 
   private config: IWeeklySchedulerConfig<any>;
-  private item: IWeeklySchedulerItem<any>;
+  private item: br.weeklyScheduler.IWeeklySchedulerItem<any>;
 
-  private editSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
-  private updateSchedule: (options: { schedule: IWeeklySchedulerRange<any>, update: IWeeklySchedulerRange<any>}) => void;
-  private removeSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
+  private editSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
+  private updateSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>}) => void;
+  private removeSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
 
   private resizeDirectionIsStart: boolean = true;
 
-  private schedule: IWeeklySchedulerRange<any>;
+  private schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 
   private startDragTimeout: angular.IPromise<void>;
-  private valuesOnDragStart: IWeeklySchedulerRange<any>;
+  private valuesOnDragStart: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 
   constructor(
     private $scope: angular.IScope,
@@ -133,7 +133,7 @@ class WeeklySlotController implements angular.IComponentController {
     }
   }
 
-  public resizeStart(schedule: IWeeklySchedulerRange<any>, delta: number) {
+  public resizeStart(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, delta: number) {
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
     let startChanged = schedule.start !== newStart;
     let newStartBeforeOrAtEnd = newStart <= this.multisliderCtrl.adjustEndForView(schedule.end) - 1;
@@ -149,7 +149,7 @@ class WeeklySlotController implements angular.IComponentController {
     } 
   }
 
-  public resizeEnd(schedule: IWeeklySchedulerRange<any>, delta: number) {
+  public resizeEnd(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, delta: number) {
     let newEnd = Math.round(this.valuesOnDragStart.end + delta);
     let endChanged = schedule.end !== newEnd;
     let newEndBeforeOrAtEnd = newEnd <= this.config.maxValue;
@@ -184,7 +184,7 @@ class WeeklySlotController implements angular.IComponentController {
     this.startDrag();
   }
 
-  public updateSelf(update: IWeeklySchedulerRange<any>) {
+  public updateSelf(update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     this.updateSchedule({ schedule: this.schedule, update: update });
   }
 }

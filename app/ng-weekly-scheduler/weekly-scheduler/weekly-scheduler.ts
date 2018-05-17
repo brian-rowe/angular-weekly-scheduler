@@ -24,8 +24,8 @@ class WeeklySchedulerController implements angular.IController {
 
   private _originalItems: IInternalWeeklySchedulerItem<any>[];
 
-  private adapter: IWeeklySchedulerAdapter<any, any>;
-  private rangeAdapter: IWeeklySchedulerRangeAdapter<any, any>;
+  private adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>;
+  private rangeAdapter: br.weeklyScheduler.IWeeklySchedulerRangeAdapter<any, any>;
 
   /** should be true if the scheduler has been interacted with */
   public dirty: boolean;
@@ -39,11 +39,11 @@ class WeeklySchedulerController implements angular.IController {
 
   public config: IWeeklySchedulerConfig<any>
   public items: IInternalWeeklySchedulerItem<any>[];
-  public options: IWeeklySchedulerOptions<any>;
+  public options: br.weeklyScheduler.IWeeklySchedulerOptions<any>;
 
-  public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: IWeeklySchedulerRange<any> }) => void;
+  public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
 
-  public defaultOptions: IWeeklySchedulerOptions<any> = {
+  public defaultOptions: br.weeklyScheduler.IWeeklySchedulerOptions<any> = {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
     saveScheduler: () => {
       console.log('saved');
@@ -115,7 +115,7 @@ class WeeklySchedulerController implements angular.IController {
   /**
    * Configure the scheduler.
    */
-  private configure(options: IWeeklySchedulerOptions<any>): IWeeklySchedulerConfig<any> {
+  private configure(options: br.weeklyScheduler.IWeeklySchedulerOptions<any>): IWeeklySchedulerConfig<any> {
     var interval = options.interval || 15; // minutes
     var hoursInDay = 24;
     var minutesInDay = hoursInDay * 60;
@@ -133,10 +133,10 @@ class WeeklySchedulerController implements angular.IController {
     return result;
   }
 
-  private createItem(day: number, schedules: IWeeklySchedulerRange<any>[]) {
+  private createItem(day: number, schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
     let result: IInternalWeeklySchedulerItem<any>;
 
-    let builder: IWeeklySchedulerItem<any> = this.config.createItem(day, schedules);
+    let builder: br.weeklyScheduler.IWeeklySchedulerItem<any> = this.config.createItem(day, schedules);
 
     result = angular.extend(builder, { label: this.dayMap[day] });
 
