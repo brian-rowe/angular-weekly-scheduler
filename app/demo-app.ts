@@ -28,43 +28,43 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         {
           day: Days.Saturday,
           start: 0,
-          end: 120,
+          end: null,
           value: true
         },
         {
           day: Days.Sunday,
           start: 600,
-          end: 720,
+          end: null,
           value: true
         },
         {
           day: Days.Monday,
           start: 720,
-          end: 900,
+          end: null,
           value: true
         },
         {
           day: Days.Tuesday,
           start: 60,
-          end: 120,
+          end: null,
           value: true
         },
         {
           day: Days.Wednesday,
           start: 30,
-          end: 150,
+          end: null,
           value: true
         },
         {
           day: Days.Thursday,
           start: 0,
-          end: 150,
+          end: null,
           value: true
         },
         {
           day: Days.Friday,
           start: 0,
-          end: 240,
+          end: null,
           value: true
         }
       ]);
