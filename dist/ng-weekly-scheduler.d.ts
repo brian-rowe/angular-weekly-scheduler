@@ -3,6 +3,13 @@ declare class NullEndScheduleValidatorService {
     static $name: string;
     validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean;
 }
+declare class TimeRangeComponent implements angular.IComponentOptions {
+    static $name: string;
+    bindings: {
+        schedule: string;
+    };
+    template: string;
+}
 declare const enum Days {
     Monday = 0,
     Tuesday = 1,
