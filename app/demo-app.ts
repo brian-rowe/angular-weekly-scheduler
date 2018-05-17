@@ -17,8 +17,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           editSlot: function (schedule) {
             return $timeout(() => schedule, 400);
           },
-          monoSchedule: true,
-          saveScheduler: () => $q.when()
+          monoSchedule: true
         }
       };
 
@@ -68,6 +67,21 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       ]);
 
       $scope.rangeAdapter = new DemoRangeAdapter();
+
+      $scope.adapterTwo = new DemoAdapter([
+        {
+          day: br.weeklyScheduler.Days.Friday,
+          start: 0,
+          end: 1440,
+          value: true
+        }
+      ]);
+
+      $scope.rangeAdapterTwo = new DemoRangeAdapter();
+
+      $scope.saveAll = function () {
+        $scope.result = JSON.stringify($scope.adapter.getSnapshot()) + JSON.stringify($scope.adapterTwo.getSnapshot());
+      }
 
       this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
         $scope.isDirty = true;

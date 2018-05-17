@@ -13,10 +13,18 @@
         <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
       </div>
 
-      <br-weekly-scheduler adapter="adapter" items="model.items" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)" on-delete="demo.doSomething()" options="model.options" range-adapter="rangeAdapter"></br-weekly-scheduler>
+      <button ng-click="saveAll()">Save</button>
+
+      <br-weekly-scheduler adapter="adapter" on-change="demo.doSomething(itemIndex, scheduleIndex, scheduleValue)" options="model.options" range-adapter="rangeAdapter"></br-weekly-scheduler>
       <code>Dirty: {{ isDirty }}</code>
 
-      Current adapter state: <pre>{{ adapter | json }}</pre>
+      <hr>
+      
+      <br-weekly-scheduler adapter="adapterTwo" options="model.options" range-adapter="rangeAdapterTwo"></br-weekly-scheduler>
+
+      <hr>
+      
+      Result: {{ result }}
 
       <script src="testVendorScripts.js"></script>
       <script src="testScripts.js"></script>
