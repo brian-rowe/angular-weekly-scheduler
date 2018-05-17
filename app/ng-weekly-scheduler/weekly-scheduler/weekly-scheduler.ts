@@ -45,10 +45,6 @@ class WeeklySchedulerController implements angular.IController {
 
   public defaultOptions: br.weeklyScheduler.IWeeklySchedulerOptions<any> = {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
-    saveScheduler: () => {
-      console.log('saved');
-      return this.$q.when();
-    },
     defaultValue: null,
     monoSchedule: false
   };

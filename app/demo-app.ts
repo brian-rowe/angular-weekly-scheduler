@@ -1,6 +1,6 @@
 angular.module('demoApp', ['br.weeklyScheduler'])
-  .controller('DemoController', ['$scope', '$timeout', '$log',
-    function ($scope, $timeout, $log) {
+  .controller('DemoController', ['$q', '$scope', '$timeout', '$log',
+    function ($q, $scope, $timeout, $log) {
 
       $scope.isDirty = false;
 
@@ -17,7 +17,8 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           editSlot: function (schedule) {
             return $timeout(() => schedule, 400);
           },
-          monoSchedule: true
+          monoSchedule: true,
+          saveScheduler: () => $q.when()
         }
       };
 
