@@ -326,7 +326,7 @@ class MultiSliderController implements angular.IComponentController {
       var hoverElOffX = this.getElementOffsetX(this.$hoverElement) - elOffX;
       
       var start = this.pixelToVal(hoverElOffX);
-      var end = this.config.allowNullEnds ? this.adjustEndForModel(start + this.nullEndWidth) : this.adjustEndForModel(start + this.size);
+      var end = this.config.allowNullEnds ? null : this.adjustEndForModel(start + this.size);
 
       this.addSlot(start, end);
     }
