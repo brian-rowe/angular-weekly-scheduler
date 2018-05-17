@@ -28,7 +28,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       $scope.adapter = new DemoAdapter([
         {
           day: Days.Saturday,
-          start: 0,
+          start: 1380,
           end: null,
           value: true
         },
