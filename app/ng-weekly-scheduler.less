@@ -40,6 +40,14 @@
       &.active {
         box-shadow: 0px 0px 2px 2px @textColor;
       }
+
+      &.nullEnd {
+        background: linear-gradient(to right, currentColor, fade(@backgroundColor, 50%));
+      }
+
+      span {
+        color: @backgroundColor;
+      }
     }
   }
 
@@ -186,7 +194,6 @@ br-multi-slider {
     text-align: center;
     white-space: nowrap;
     line-height: @lineHeight;
-    color: #fff;
 
     &.nullEnd {
       text-align: left;
@@ -210,7 +217,16 @@ br-multi-slider {
   br-weekly-slot {
     -webkit-transition: background 0.1s ease-in;
     cursor: all-scroll;
-    background: #2e81e1;
+
+    /**
+     * We want to set the COLOR on any item we want to have a custom background color for.
+     * This is because the gradient backgrounds for allowNulls rely on currentColor.
+     * The text color within is set using a more specific selector
+     */
+    @bgColor: #2e81e1;
+    background: @bgColor;
+    color: @bgColor;
+
     user-select: none;
 
     &.disable {
