@@ -56,7 +56,7 @@ class WeeklySlotController implements angular.IComponentController {
     return {
       day: this.schedule.day,
       start: this.schedule.start,
-      end: this.config.allowNullEnds ? this.multisliderCtrl.adjustEndForView(this.schedule.start + this.nullEndWidth) : this.multisliderCtrl.adjustEndForView(this.schedule.end),
+      end: this.config.nullEnds ? this.multisliderCtrl.adjustEndForView(this.schedule.start + this.nullEndWidth) : this.multisliderCtrl.adjustEndForView(this.schedule.end),
       value: this.schedule.value
     }
   }
@@ -82,7 +82,7 @@ class WeeklySlotController implements angular.IComponentController {
     let duration = this.valuesOnDragStart.end - this.valuesOnDragStart.start;
 
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
-    let newEnd = this.config.allowNullEnds ? null : Math.round(newStart + duration);
+    let newEnd = this.config.nullEnds ? null : Math.round(newStart + duration);
 
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
       this.updateSelf({

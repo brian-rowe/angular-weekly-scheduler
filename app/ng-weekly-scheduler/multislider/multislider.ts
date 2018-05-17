@@ -61,7 +61,7 @@ class MultiSliderController implements angular.IComponentController {
 
         this.$hoverElement.css({
           left: this.getSlotLeft(val),
-          right: this.config.allowNullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + this.size)
+          right: this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + this.size)
         });
       });
     }
@@ -134,11 +134,11 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   /**
-   * Rather than having to deal with modifying mergeOverlaps to handle allowNullEnds calendars,
-   * just prevent the user from creating additional slots in allowNullEnds calendars unless there are no slots there already.
+   * Rather than having to deal with modifying mergeOverlaps to handle nullEnds calendars,
+   * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
    */
   private canRenderGhost(schedule: IWeeklySchedulerRange<any>) {
-    if (this.config.allowNullEnds) {
+    if (this.config.nullEnds) {
       return this.item.schedules.length === 0;
     }
 
@@ -198,7 +198,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private getSlotRight(start: number, end: number) {
     // If there is a null end, place the end of the slot two hours away from the beginning.
-    if (this.config.allowNullEnds && end === null) {
+    if (this.config.nullEnds && end === null) {
       end = start + this.nullEndWidth;
     }
 
@@ -338,7 +338,7 @@ class MultiSliderController implements angular.IComponentController {
       var hoverElOffX = this.getElementOffsetX(this.$hoverElement) - elOffX;
 
       var start = this.pixelToVal(hoverElOffX);
-      var end = this.config.allowNullEnds ? null : this.adjustEndForModel(start + this.size);
+      var end = this.config.nullEnds ? null : this.adjustEndForModel(start + this.size);
 
       this.addSlot(start, end);
     }

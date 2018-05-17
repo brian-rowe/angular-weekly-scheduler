@@ -41,7 +41,7 @@ class RestrictionExplanationsController implements angular.IComponentController 
             this.explanations[ValidationError.MonoScheduleViolation] = 'This calendar may only have one time slot per day';
         }
 
-        if (config.allowNullEnds) {
+        if (config.nullEnds) {
             this.explanations[ValidationError.NullEndViolation] = 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.';
         }
     }

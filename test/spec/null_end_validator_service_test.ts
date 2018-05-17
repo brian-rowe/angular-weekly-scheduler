@@ -14,8 +14,8 @@ describe('null end validator service', () => {
             return { day: day, schedules: schedules }
         };
 
-        let allowNullEndsConfig = {
-            allowNullEnds: true,
+        let nullEndsConfig = {
+            nullEnds: true,
             createItem: createItem,
             defaultValue: true,
             hourCount: 24,
@@ -26,7 +26,7 @@ describe('null end validator service', () => {
         };
 
         let noNullEndsConfig = {
-            allowNullEnds: false,
+            nullEnds: false,
             createItem: createItem,
             defaultValue: true,
             hourCount: 24,
@@ -39,12 +39,12 @@ describe('null end validator service', () => {
         describe('items with no schedules', () => {
             let item = [];
 
-            it('as valid when allowNullEnds is false', () => {
+            it('as valid when nullEnds is false', () => {
                 expect($service.validate(item, noNullEndsConfig)).toBeTruthy();
             });
 
-            it('as valid when allowNullEnds is true', () => {
-                expect($service.validate(item, allowNullEndsConfig)).toBeTruthy();
+            it('as valid when nullEnds is true', () => {
+                expect($service.validate(item, nullEndsConfig)).toBeTruthy();
             });
         });
 
@@ -53,12 +53,12 @@ describe('null end validator service', () => {
                 { day: 0, start: 300, end: null, value: true }
             ];
 
-            it('as invalid when allowNullEnds is false', () => {
+            it('as invalid when nullEnds is false', () => {
                 expect($service.validate(item, noNullEndsConfig)).toBeFalsy();
             });
 
-            it('as valid when allowNullEnds is true', () => {
-                expect($service.validate(item, allowNullEndsConfig)).toBeTruthy();
+            it('as valid when nullEnds is true', () => {
+                expect($service.validate(item, nullEndsConfig)).toBeTruthy();
             });
         });
 
@@ -68,12 +68,12 @@ describe('null end validator service', () => {
                 { day: 0, start: 600, end: 900, value: false }
             ];
 
-            it('as invalid when allowNullEnds is false', () => {
+            it('as invalid when nullEnds is false', () => {
                 expect($service.validate(item, noNullEndsConfig)).toBeFalsy();
             });
 
-            it('as invalid when allowNullEnds is true', () => {
-                expect($service.validate(item, allowNullEndsConfig)).toBeFalsy();
+            it('as invalid when nullEnds is true', () => {
+                expect($service.validate(item, nullEndsConfig)).toBeFalsy();
             });
         });
 
