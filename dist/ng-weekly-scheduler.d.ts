@@ -1,4 +1,7 @@
 /// <reference types="angular" />
+interface IResizeServiceProvider extends angular.IServiceProvider {
+    setCustomResizeEvents(events: string[]): any;
+}
 declare const enum Days {
     Monday = 0,
     Tuesday = 1,
@@ -7,9 +10,6 @@ declare const enum Days {
     Friday = 4,
     Saturday = 5,
     Sunday = 6,
-}
-interface IResizeServiceProvider extends angular.IServiceProvider {
-    setCustomResizeEvents(events: string[]): any;
 }
 /**
  * Implement this on a client and then pass it in to the component.
