@@ -8,7 +8,17 @@ declare class TimeRangeComponent implements angular.IComponentOptions {
     bindings: {
         schedule: string;
     };
+    controller: string;
+    controllerAs: string;
     template: string;
+}
+declare class TimeRangeController implements angular.IComponentController {
+    static $controllerAs: string;
+    static $name: string;
+    private hasStart;
+    private hasEnd;
+    private schedule;
+    $onInit(): void;
 }
 declare const enum Days {
     Monday = 0,
