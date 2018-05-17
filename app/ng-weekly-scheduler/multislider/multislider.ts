@@ -35,7 +35,7 @@ class MultiSliderController implements angular.IComponentController {
   };
 
   private schedulerCtrl: WeeklySchedulerController;
-  
+
   public canAdd: boolean = true;
   public isDragging: boolean = false;
   public isHoveringSlot: boolean = false;
@@ -86,7 +86,7 @@ class MultiSliderController implements angular.IComponentController {
       day: this.item.day,
       start: start,
       end: end,
-      value: this.config.defaultValue 
+      value: this.config.defaultValue
     };
 
     if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
@@ -133,6 +133,18 @@ class MultiSliderController implements angular.IComponentController {
     return isEditable && hasEditFunction && isNotActive && isNotDragging;
   }
 
+  /**
+   * Rather than having to deal with modifying mergeOverlaps to handle allowNullEnds calendars,
+   * just prevent the user from creating additional slots in allowNullEnds calendars unless there are no slots there already.
+   */
+  private canRenderGhost(schedule: IWeeklySchedulerRange<any>) {
+    if (this.config.allowNullEnds) {
+      return this.item.schedules.length === 0;
+    }
+
+    return true;
+  }
+
   private compensateForBorder(elem: HTMLElement, val: number) {
     let borderWidth = this.$window.getComputedStyle(elem).getPropertyValue('border-right');
 
@@ -157,7 +169,7 @@ class MultiSliderController implements angular.IComponentController {
           let premergeSchedule = angular.copy(newSchedule);
 
           this.merge(newSchedule);
-           
+
           // If merging mutated the schedule further, then updateSchedule would have already been called
           // This is so that edits that don't trigger merges still trigger onChange,
           // but edits that do trigger merges don't trigger it twice
@@ -202,7 +214,7 @@ class MultiSliderController implements angular.IComponentController {
 
     return containerRight - containerLeft - offsetRight + 'px';
   }
-  
+
   private getUnderlyingInterval(val: number): HTMLElement {
     // Slightly hacky but does the job. TODO ?
 
@@ -232,10 +244,10 @@ class MultiSliderController implements angular.IComponentController {
       this.removeSchedule(other);
 
       this.updateSchedule(current, {
-          day: other.day,
-          start: other.start,
-          end: other.end,
-          value: other.value
+        day: other.day,
+        start: other.start,
+        end: other.end,
+        value: other.value
       });
     } else {
       // Just remove 'current'
@@ -298,7 +310,7 @@ class MultiSliderController implements angular.IComponentController {
   private handleOtherStartIsCurrentEnd(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
       this.handleOtherStartIsInsideCurrent(current, other);
-    } else { 
+    } else {
       // DO NOTHING, this is okay if the values don't match
     }
   }
@@ -324,7 +336,7 @@ class MultiSliderController implements angular.IComponentController {
     if (this.canAdd) {
       var elOffX = this.getElementOffsetX(this.$element);
       var hoverElOffX = this.getElementOffsetX(this.$hoverElement) - elOffX;
-      
+
       var start = this.pixelToVal(hoverElOffX);
       var end = this.config.allowNullEnds ? null : this.adjustEndForModel(start + this.size);
 
@@ -395,7 +407,7 @@ class MultiSliderController implements angular.IComponentController {
 /** @internal */
 class MultiSliderComponent implements angular.IComponentOptions {
   static $name = 'brMultiSlider';
-  
+
   bindings = {
     config: '<',
     item: '=',
