@@ -7,6 +7,7 @@ class MultiSliderController implements angular.IComponentController {
     '$element',
     '$scope',
     '$window',
+    'brWeeklySchedulerNullEndWidth',
     'brWeeklySchedulerOverlapService'
   ];
 
@@ -14,6 +15,7 @@ class MultiSliderController implements angular.IComponentController {
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
     private $window: angular.IWindowService,
+    private nullEndWidth: number,
     private overlapService: OverlapService
   ) {
     this.element = this.$element[0];
@@ -43,8 +45,6 @@ class MultiSliderController implements angular.IComponentController {
   public item: IWeeklySchedulerItem<any>;
   public size: number = 60; // minutes
 
-  private _nullEndWidth: number = 120; // minutes
-  
   $onInit() {
     this.mergeAllOverlaps();
   }
@@ -61,7 +61,7 @@ class MultiSliderController implements angular.IComponentController {
 
         this.$hoverElement.css({
           left: this.getSlotLeft(val),
-          right: this.config.allowNullEnds ? this.getSlotRight(val, val + this._nullEndWidth) : this.getSlotRight(val, val + this.size)
+          right: this.config.allowNullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + this.size)
         });
       });
     }
@@ -187,7 +187,7 @@ class MultiSliderController implements angular.IComponentController {
   private getSlotRight(start: number, end: number) {
     // If there is a null end, place the end of the slot two hours away from the beginning.
     if (this.config.allowNullEnds && end === null) {
-      end = start + this._nullEndWidth;
+      end = start + this.nullEndWidth;
     }
 
     // An end of 0 should display allll the way to the right, up to the edge
@@ -326,7 +326,7 @@ class MultiSliderController implements angular.IComponentController {
       var hoverElOffX = this.getElementOffsetX(this.$hoverElement) - elOffX;
       
       var start = this.pixelToVal(hoverElOffX);
-      var end = this.config.allowNullEnds ? this.adjustEndForModel(start + this._nullEndWidth) : this.adjustEndForModel(start + this.size);
+      var end = this.config.allowNullEnds ? this.adjustEndForModel(start + this.nullEndWidth) : this.adjustEndForModel(start + this.size);
 
       this.addSlot(start, end);
     }
