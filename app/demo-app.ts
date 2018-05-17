@@ -24,12 +24,12 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       };
 
       $scope.adapter = new DemoAdapter([
-        {
-          day: Days.Saturday,
-          start: 1380,
-          end: null,
-          value: true
-        },
+        // {
+        //   day: Days.Saturday,
+        //   start: 1380,
+        //   end: null,
+        //   value: true
+        // },
         {
           day: Days.Sunday,
           start: 600,
