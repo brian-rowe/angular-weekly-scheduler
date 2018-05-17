@@ -1,6 +1,9 @@
 # angular-weekly-scheduler
 A weekly scheduler for angularjs -- WORK IN PROGRESS, NOT PRODUCTION READY
 
+This is useful for scheduling events to happen at the same time every day, every week.
+Any overrides must be handled in your software.
+
 ## Run @ Home
 Run the demo @home with few steps (prerequisite git & node V0.10+ & npm installed):
 
@@ -20,25 +23,31 @@ Then run
 
 Add the scripts and css to your index.html.
 
-Add dependency to timeline your angular module: `weeklyScheduler`.
+Add dependency to timeline your angular module: `br.weeklyScheduler`.
 
 Use the directive:
 
-`<weekly-scheduler class="scheduler" ng-model="myScopeModel" options="options"></weekly-scheduler>`
+`<br-weekly-scheduler adapter="myAdapter" range-adapter="myRangeAdapter" options="myOptions"></weekly-scheduler>`
 
 ## Features
 
 This directive displays a weekly item scheduler. You can see, add and modify items easily.
 
+### Adapters
+
+In order to use this you must implement adapters on the exported interfaces "IWeeklySchedulerAdapter" & "IWeeklySchedulerRangeAdapter"
+Basic demo adapters can be found in the demo app.
+This module itself only knows about one data format for the schedules, so you must provide instructions for converting to and from your custom format.
+
 ### Keyboard shortcuts
 
-* Use <kbd>mouse wheel</kbd> on schedule to scroll left and right</li>
-* Use <kbd>ctrl + mouse wheel</kbd> to zoom in and out the schedule</li>
+* Use <kbd>mouse wheel</kbd> on the calendar to scroll left and right</li>
+* Use <kbd>ctrl + mouse wheel</kbd> to zoom in and out of the calendar</li>
 
 ### Schedules
 
 Drag the time bar start, end and body to quickly change your schedule period.
-You can set an `editable` variable on each item, that will be used to disable item edition if `false`.
+You can set an `editable` variable on each item, that will be used to disable editing if `false`.
 ```javascript
 "items": [{
   "label": "Item 1",
@@ -87,4 +96,4 @@ You should see your scheduler items fading in!
 
 Released under the MIT License. See the [LICENSE][license] file for further details.
 
-[license]: https://github.com/fmaturel/angular-weekly-scheduler/blob/master/LICENSE
+[license]: https://github.com/brian-rowe/angular-weekly-scheduler/blob/master/LICENSE
