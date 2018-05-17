@@ -1,25 +1,4 @@
 /// <reference types="angular" />
-declare class NullEndScheduleValidatorService {
-    static $name: string;
-    validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean;
-}
-declare class TimeRangeComponent implements angular.IComponentOptions {
-    static $name: string;
-    bindings: {
-        schedule: string;
-    };
-    controller: string;
-    controllerAs: string;
-    template: string;
-}
-declare class TimeRangeController implements angular.IComponentController {
-    static $controllerAs: string;
-    static $name: string;
-    private hasStart;
-    private hasEnd;
-    private schedule;
-    $onInit(): void;
-}
 declare const enum Days {
     Monday = 0,
     Tuesday = 1,

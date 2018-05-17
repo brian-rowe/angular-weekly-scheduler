@@ -1,3 +1,4 @@
+/** @internal */
 class NullEndScheduleValidatorService {
     static $name = 'brWeeklySchedulerNullEndValidatorService';
 

@@ -1,3 +1,4 @@
+/** @internal */
 class TimeRangeComponent implements angular.IComponentOptions {
     static $name = 'brTimeRange';
 
@@ -14,6 +15,7 @@ class TimeRangeComponent implements angular.IComponentOptions {
     `
 }
 
+/** @internal */
 class TimeRangeController implements angular.IComponentController {
     static $controllerAs = 'timeRangeCtrl';
     static $name = 'brTimeRangeController';
