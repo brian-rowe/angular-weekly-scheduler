@@ -6,7 +6,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
       $scope.model = {
         options: {
-          nullEnds: true,
           buttonClasses: ['wow!'],
           createItem: (day, schedules) => {
             return {
@@ -18,7 +17,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           editSlot: function (schedule) {
             return $timeout(() => schedule, 400);
           },
-          maxTimeSlot: 300,
           monoSchedule: true
         }
       };
@@ -33,37 +31,37 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         {
           day: br.weeklyScheduler.Days.Sunday,
           start: 600,
-          end: null,
+          end: 900,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Monday,
           start: 720,
-          end: null,
+          end: 1020,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Tuesday,
           start: 60,
-          end: null,
+          end: 180,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Wednesday,
           start: 30,
-          end: null,
+          end: 300,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Thursday,
           start: 0,
-          end: null,
+          end: 720,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Friday,
           start: 0,
-          end: null,
+          end: 60,
           value: true
         }
       ]);
