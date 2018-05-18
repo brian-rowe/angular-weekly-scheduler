@@ -2,6 +2,7 @@
 A weekly scheduler for angularjs -- WORK IN PROGRESS, NOT PRODUCTION READY
 
 This is useful for scheduling events to happen at the same time every day, every week.
+This is a common use case for Building Management Systems.
 Any overrides must be handled in your software.
 
 ## Run @ Home
@@ -19,7 +20,7 @@ Then run
 
 ## Install
 
-> npm install --save angular-weekly-scheduler
+> yarn add https://github.com/brian-rowe/angular-weekly-scheduler
 
 Add the scripts and css to your index.html.
 
