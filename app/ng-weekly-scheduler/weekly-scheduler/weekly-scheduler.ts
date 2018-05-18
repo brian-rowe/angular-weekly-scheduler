@@ -45,7 +45,7 @@ class WeeklySchedulerController implements angular.IController {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
     defaultValue: null,
     monoSchedule: false,
-    onChange: () => angular.noop()
+    onChange: (isValid) => angular.noop()
   };
 
   public validationErrors: ValidationError[];
@@ -64,6 +64,12 @@ class WeeklySchedulerController implements angular.IController {
     this.startedWithInvalidSchedule = this.hasInvalidSchedule();
     this.watchAdapter();
     this.watchHoverClass();
+  }
+
+  public hasInvalidSchedule() {
+    let validationErrors: ValidationError[] = this.getValidationErrors();
+
+    return validationErrors.length > 0;
   }
 
   private buildItems(items: IInternalWeeklySchedulerItem<any>[]) {
@@ -99,12 +105,6 @@ class WeeklySchedulerController implements angular.IController {
 
   private getValidationErrors() {
     return Array.prototype.concat.apply([], this.items.map(item => this.scheduleValidatorService.getValidationErrors(item, this.config)));
-  }
-
-  private hasInvalidSchedule() {
-    let validationErrors: ValidationError[] = this.getValidationErrors();
-
-    return validationErrors.length > 0;
   }
 
   /**

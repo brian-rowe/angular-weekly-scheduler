@@ -27,7 +27,7 @@ class ScheduleValidationService {
         }
 
         if (!this.monoScheduleValidatorService.validate(item.schedules, config)) {
-            result.push(ValidationError.FullCalendarViolation);
+            result.push(ValidationError.MonoScheduleViolation);
         }
 
         if (!this.nullEndScheduleValidatorService.validate(item.schedules, config)) {

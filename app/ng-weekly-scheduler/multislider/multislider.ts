@@ -332,6 +332,10 @@ class MultiSliderController implements angular.IComponentController {
     }));
   }
 
+  private onChange() {
+    this.schedulerCtrl.config.onChange(!this.schedulerCtrl.hasInvalidSchedule());
+  }
+
   private onHoverElementClick(event) {
     if (this.canAdd) {
       var elOffX = this.getElementOffsetX(this.$element);
@@ -341,6 +345,8 @@ class MultiSliderController implements angular.IComponentController {
       var end = this.config.nullEnds ? null : this.adjustEndForModel(start + this.size);
 
       this.addSlot(start, end);
+
+      this.onChange();
     }
   }
 
@@ -373,7 +379,7 @@ class MultiSliderController implements angular.IComponentController {
     schedule.start = update.start;
     schedule.end = this.adjustEndForModel(update.end);
 
-    this.schedulerCtrl.config.onChange();
+    this.onChange();
   }
 
   private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {

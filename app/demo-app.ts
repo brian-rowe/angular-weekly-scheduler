@@ -13,13 +13,14 @@ angular.module('demoApp', ['br.weeklyScheduler'])
               schedules: schedules
             }
           },
-          defaultValue: true,
+          //defaultValue: null,
           editSlot: function (schedule) {
             return $timeout(() => schedule, 400);
           },
           monoSchedule: true,
-          onChange: () => {
+          onChange: (isValid) => {
             $scope.isDirty = true;
+            $scope.isValid = isValid;
 
             console.log('The model has changed!');
           }
