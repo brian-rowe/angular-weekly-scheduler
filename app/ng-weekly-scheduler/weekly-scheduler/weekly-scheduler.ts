@@ -41,12 +41,11 @@ class WeeklySchedulerController implements angular.IController {
   public items: IInternalWeeklySchedulerItem<any>[];
   public options: br.weeklyScheduler.IWeeklySchedulerOptions<any>;
 
-  public onChange: (options: { itemIndex: number, scheduleIndex: number, scheduleValue: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
-
   public defaultOptions: br.weeklyScheduler.IWeeklySchedulerOptions<any> = {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
     defaultValue: null,
-    monoSchedule: false
+    monoSchedule: false,
+    onChange: () => angular.noop()
   };
 
   public validationErrors: ValidationError[];
@@ -210,8 +209,7 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
     adapter: '<',
     hoverClass: '<',
     options: '=',
-    onChange: '&',
-    rangeAdapter: '<',
+    rangeAdapter: '<'
   };
 
   controller = WeeklySchedulerController.$name;

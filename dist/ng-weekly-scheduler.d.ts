@@ -52,6 +52,11 @@ declare namespace br.weeklyScheduler {
         maxTimeSlot?: number;
         /** If this is true, the calendar will enforce that only one schedule per item is allowed */
         monoSchedule?: boolean;
+        /**
+         * This function allows access back to the client scope when the scheduler changes. Use it to hook into angular forms
+         * for setting $dirty or updating validation in cases where it is not desirable to save schedules individually.
+         */
+        onChange: () => void;
         /** The number of minutes each division of the calendar should be -- values will snap to this */
         interval?: number;
         /** A function to call wen the save button is clicked. If this is not passed, no save button will be present. */

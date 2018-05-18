@@ -17,7 +17,12 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           editSlot: function (schedule) {
             return $timeout(() => schedule, 400);
           },
-          monoSchedule: true
+          monoSchedule: true,
+          onChange: () => {
+            $scope.isDirty = true;
+
+            console.log('The model has changed!');
+          }
         }
       };
 
@@ -82,12 +87,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       $scope.saveAll = function () {
         $scope.result = JSON.stringify($scope.adapter.getSnapshot()) + JSON.stringify($scope.adapterTwo.getSnapshot());
       }
-
-      this.doSomething = function (itemIndex, scheduleIndex, scheduleValue) {
-        $scope.isDirty = true;
-
-        console.log('The model has changed!', itemIndex, scheduleIndex, scheduleValue);
-      };
     }]);
 
 /** The data is already in an acceptable format for the demo so just pass it through */
