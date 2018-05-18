@@ -5,6 +5,7 @@ class MultiSliderController implements angular.IComponentController {
 
   static $inject = [
     '$element',
+    '$q',
     '$scope',
     '$window',
     'brWeeklySchedulerNullEndWidth',
@@ -13,6 +14,7 @@ class MultiSliderController implements angular.IComponentController {
 
   constructor(
     private $element: angular.IAugmentedJQuery,
+    private $q: angular.IQService,
     private $scope: angular.IScope,
     private $window: angular.IWindowService,
     private nullEndWidth: number,
@@ -67,7 +69,7 @@ class MultiSliderController implements angular.IComponentController {
     }
   }
 
-  public addSlot(start: number, end: number) {
+  public addSlot(start: number, end: number): angular.IPromise<void> {
     if (start < 0) {
       start = 0;
     }
@@ -90,11 +92,11 @@ class MultiSliderController implements angular.IComponentController {
     };
 
     if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
-      this.schedulerCtrl.config.editSlot(schedule).then((editedSchedule) => {
+      return this.schedulerCtrl.config.editSlot(schedule).then((editedSchedule) => {
         this.addScheduleToItem(editedSchedule);
       });
     } else {
-      this.addScheduleToItem(schedule);
+      return this.$q.when(this.addScheduleToItem(schedule));
     }
   }
 
@@ -344,9 +346,9 @@ class MultiSliderController implements angular.IComponentController {
       var start = this.pixelToVal(hoverElOffX);
       var end = this.config.nullEnds ? null : this.adjustEndForModel(start + this.size);
 
-      this.addSlot(start, end);
-
-      this.onChange();
+      this.addSlot(start, end).then(() => {
+        this.onChange();
+      });
     }
   }
 
