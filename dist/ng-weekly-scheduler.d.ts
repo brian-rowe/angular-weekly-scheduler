@@ -20,6 +20,7 @@ declare namespace br.weeklyScheduler {
  */
 declare namespace br.weeklyScheduler {
     interface IWeeklySchedulerAdapter<TCustom, TValue> {
+        customModelToWeeklySchedulerRange(custom: TCustom): br.weeklyScheduler.IWeeklySchedulerRange<TValue>;
         /** Transform the data held within the component to the format you need it outside of the component. */
         getSnapshot(): TCustom[];
         /** This just needs to be defined in the class, we'll set it internally */
@@ -78,11 +79,5 @@ declare namespace br.weeklyScheduler {
         start: number;
         end: number;
         value: T;
-    }
-}
-/** Converts custom model to WeeklySchedulerRange */
-declare namespace br.weeklyScheduler {
-    interface IWeeklySchedulerRangeAdapter<TCustom, TRange> {
-        adapt(custom: TCustom[]): br.weeklyScheduler.IWeeklySchedulerRange<TRange>[];
     }
 }

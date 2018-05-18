@@ -72,8 +72,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         }
       ]);
 
-      $scope.rangeAdapter = new DemoRangeAdapter();
-
       $scope.adapterTwo = new DemoAdapter([
         {
           day: br.weeklyScheduler.Days.Friday,
@@ -82,8 +80,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           value: true
         }
       ]);
-
-      $scope.rangeAdapterTwo = new DemoRangeAdapter();
 
       $scope.saveAll = function () {
         $scope.result = JSON.stringify($scope.adapter.getSnapshot()) + JSON.stringify($scope.adapterTwo.getSnapshot());
@@ -103,12 +99,8 @@ class DemoAdapter implements br.weeklyScheduler.IWeeklySchedulerAdapter<br.weekl
   public getSnapshot() {
     return Array.prototype.concat.apply([], this.items.map(item => item.schedules.map(schedule => schedule)));
   }
-}
 
-/** Same here */
-/** @internal */
-class DemoRangeAdapter implements br.weeklyScheduler.IWeeklySchedulerRangeAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
-  public adapt(range) {
+  public customModelToWeeklySchedulerRange(range) {
     return range;
   }
 }

@@ -3,6 +3,8 @@
  */
 namespace br.weeklyScheduler {
     export interface IWeeklySchedulerAdapter<TCustom, TValue> {
+        customModelToWeeklySchedulerRange(custom: TCustom): br.weeklyScheduler.IWeeklySchedulerRange<TValue>;
+
         /** Transform the data held within the component to the format you need it outside of the component. */
         getSnapshot(): TCustom[];
 

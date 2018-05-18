@@ -25,7 +25,6 @@ class WeeklySchedulerController implements angular.IController {
   private _originalItems: IInternalWeeklySchedulerItem<any>[];
 
   private adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>;
-  private rangeAdapter: br.weeklyScheduler.IWeeklySchedulerRangeAdapter<any, any>;
 
   /** should be true if the scheduler has been interacted with */
   public dirty: boolean;
@@ -88,8 +87,8 @@ class WeeklySchedulerController implements angular.IController {
   private getItemsFromAdapter() {
     let result = [];
 
-    if (this.adapter && this.rangeAdapter) {
-      let schedules = this.rangeAdapter.adapt(this.adapter.initialData);
+    if (this.adapter) {
+      let schedules = this.adapter.initialData.map(data => this.adapter.customModelToWeeklySchedulerRange(data));
       let groupedSchedules = this.groupService.groupSchedules(schedules);
 
       for (let key in groupedSchedules) {
@@ -207,8 +206,7 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
   bindings = {
     adapter: '<',
     hoverClass: '<',
-    options: '=',
-    rangeAdapter: '<'
+    options: '='
   };
 
   controller = WeeklySchedulerController.$name;
