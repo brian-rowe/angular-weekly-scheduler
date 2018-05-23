@@ -20,27 +20,21 @@ class ScheduleValidationService {
     }
 
     public getValidationErrors(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): ValidationError[] {
+        let validators: ValidatorService[] = [
+            this.maxTimeSlotValidatorService,
+            this.monoScheduleValidatorService,
+            this.nullEndScheduleValidatorService,
+            this.fullCalendarValidatorService,
+            this.overlapValidatorService
+        ];
+
         let result: ValidationError[] = [];
 
-        if (!this.maxTimeSlotValidatorService.validate(item.schedules, config)) {
-            result.push(ValidationError.MaxTimeSlotViolation);
-        }
-
-        if (!this.monoScheduleValidatorService.validate(item.schedules, config)) {
-            result.push(ValidationError.MonoScheduleViolation);
-        }
-
-        if (!this.nullEndScheduleValidatorService.validate(item.schedules, config)) {
-            result.push(ValidationError.NullEndViolation);
-        }
-
-        if (!this.fullCalendarValidatorService.validate(item.schedules, config)) {
-            result.push(ValidationError.FullCalendarViolation);
-        }
-
-        if (!this.overlapValidatorService.validate(item.schedules, config)) {
-            result.push(ValidationError.OverlapViolation);
-        }
+        validators.forEach(validator => {
+            if (!validator.validate(item.schedules, config)) {
+                result.push(validator.error);
+            }
+        });
 
         return result;
     }
