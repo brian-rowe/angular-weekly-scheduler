@@ -26,6 +26,42 @@ describe('max time slot validator service', function () {
             saveScheduler: () => $q.when(true)
         };
 
+        describe('schedules with default value', () => {
+            it('as valid when they do not exceed the maxTimeSlot length', () => {
+                let item = [
+                    { day: 0, start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: maxTimeSlotConfig.defaultValue }
+                ];
+
+                expect($service.validate(item, maxTimeSlotConfig)).toBeTruthy();
+            });
+
+            it('as valid when they DO exceed the maxTimeSlotLength', () => {
+                let item = [
+                    { day: 0, start: 0, end: maxTimeSlotConfig.maxTimeSlot * 2, value: maxTimeSlotConfig.defaultValue }
+                ];
+
+                expect($service.validate(item, maxTimeSlotConfig)).toBeTruthy();
+            });
+        });
+
+        describe('schedules with non-default value', () => {
+            it('as valid when they do not exceed the maxTimeSlot length', () => {
+                let item = [
+                    { day: 0, start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: 'blarg' }
+                ];
+
+                expect($service.validate(item, maxTimeSlotConfig)).toBeTruthy();
+            });
+
+            it('as invalid when they do exceed the maxTimeSlotLength', () => {
+                let item = [
+                    { day: 0, start: 0, end: maxTimeSlotConfig.maxTimeSlot * 2, value: 'blarg' }
+                ];
+
+                expect($service.validate(item, maxTimeSlotConfig)).toBeFalsy();
+            }); 
+        });
+
         it('as valid when they do not exceed the maxTimeSlot length', () => {
             let singleSchedule = [
                 { day: 0, start: 0, end: 45, value: true }
