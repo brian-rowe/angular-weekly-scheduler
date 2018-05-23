@@ -1,6 +1,10 @@
 /** @internal */
-class NullEndScheduleValidatorService {
+class NullEndScheduleValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerNullEndValidatorService';
+
+    get error() {
+        return ValidationError.NullEndViolation;
+    }
 
     validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (config.nullEnds) {

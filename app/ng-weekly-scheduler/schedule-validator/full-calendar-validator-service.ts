@@ -1,6 +1,10 @@
 /** @internal */
-class FullCalendarValidatorService {
+class FullCalendarValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerFullCalendarValidatorService';
+
+    get error() {
+        return ValidationError.FullCalendarViolation;
+    }
 
     public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (!config.fullCalendar) {

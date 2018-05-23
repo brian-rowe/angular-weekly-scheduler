@@ -1,5 +1,5 @@
 /** @internal */
-class OverlapValidatorService {
+class OverlapValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerOverlapValidatorService';
 
     static $inject = [
@@ -9,6 +9,10 @@ class OverlapValidatorService {
     private constructor(
         private overlapService: OverlapService
     ) {
+    }
+
+    get error() {
+        return ValidationError.OverlapViolation;
     }
 
     public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {

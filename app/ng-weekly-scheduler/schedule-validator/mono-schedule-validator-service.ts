@@ -1,6 +1,10 @@
 /** @internal */
-class MonoScheduleValidatorService {
+class MonoScheduleValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMonoScheduleValidatorService';
+
+    get error() {
+        return ValidationError.MonoScheduleViolation;
+    }
 
     /** Important note -- this does not validate that only one schedule exists per item, but rather that only one NON-DEFAULT schedule exists per item. */
     public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {

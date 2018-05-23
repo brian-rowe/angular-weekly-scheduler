@@ -1,6 +1,10 @@
 /** @internal */
-class MaxTimeSlotValidatorService {
+class MaxTimeSlotValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
+
+    get error() {
+        return ValidationError.MaxTimeSlotViolation;
+    }
 
     public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         let maxTimeSlot = config.maxTimeSlot;
