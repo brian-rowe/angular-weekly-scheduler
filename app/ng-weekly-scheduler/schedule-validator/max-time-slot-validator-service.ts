@@ -2,7 +2,9 @@
 class MaxTimeSlotValidatorService {
     static $name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
 
-    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], maxTimeSlot: number): boolean {
+    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+        let maxTimeSlot = config.maxTimeSlot;
+
         if (!maxTimeSlot) {
             return true;
         }

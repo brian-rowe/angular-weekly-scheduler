@@ -1,6 +1,7 @@
 /// <reference path="../../app/ng-weekly-scheduler/schedule-validator/max-time-slot-validator-service.ts" />
 
 describe('max time slot validator service', function () {
+    var $q: angular.IQService;
     var $service: MaxTimeSlotValidatorService;
 
     beforeEach(angular.mock.module('br.weeklyScheduler'));
@@ -10,36 +11,48 @@ describe('max time slot validator service', function () {
     }));
 
     describe('should validate', function () {
-        let maxTimeSlot = 60;
+        let createItem = (day, schedules) => {
+            return { day: day, schedules: schedules }
+        };
+
+        let maxTimeSlotConfig = {
+            createItem: createItem,
+            defaultValue: true,
+            fullCalendar: false,
+            hourCount: 24,
+            intervalCount: 96,
+            maxValue: 60,
+            saveScheduler: () => $q.when(true)
+        };
 
         it('as valid when they do not exceed the maxTimeSlot length', () => {
             let singleSchedule = [
                 { day: 0, start: 0, end: 45, value: true }
             ];
 
-            expect($service.validate(singleSchedule, maxTimeSlot)).toBeTruthy(); 
+            expect($service.validate(singleSchedule, maxTimeSlotConfig)).toBeTruthy(); 
 
             let doubleSchedule = [
                 { day: 0, start: 0, end: 45, value: true },
                 { day: 0, start: 60, end: 105, value: false }
             ];
 
-            expect($service.validate(doubleSchedule, maxTimeSlot)).toBeTruthy();
+            expect($service.validate(doubleSchedule, maxTimeSlotConfig)).toBeTruthy();
         });
 
         it('as valid when they are exactly the maxTimeSlot length', () => {
             let singleSchedule = [
-                { day: 1, start: 0, end: maxTimeSlot, value: true }
+                { day: 1, start: 0, end: maxTimeSlotConfig.maxValue, value: true }
             ];
 
-            expect($service.validate(singleSchedule, maxTimeSlot)).toBeTruthy();
+            expect($service.validate(singleSchedule, maxTimeSlotConfig)).toBeTruthy();
 
             let doubleSchedule = [
-                { day: 2, start: 0, end: maxTimeSlot, value: true },
-                { day: 2, start: maxTimeSlot, end: maxTimeSlot * 2, value: false }
+                { day: 2, start: 0, end: maxTimeSlotConfig.maxValue, value: true },
+                { day: 2, start: maxTimeSlotConfig.maxValue, end: maxTimeSlotConfig.maxValue * 2, value: false }
             ];
 
-            expect($service.validate(doubleSchedule, maxTimeSlot)).toBeTruthy();
+            expect($service.validate(doubleSchedule, maxTimeSlotConfig)).toBeTruthy();
         });
 
         it('as invalid when they do exceed the maxTimeSlot length', function () {
@@ -47,14 +60,14 @@ describe('max time slot validator service', function () {
                 { day: 3, start: 0, end: 75, value: true }
             ];
 
-            expect($service.validate(singleSchedule, maxTimeSlot)).toBeFalsy();
+            expect($service.validate(singleSchedule, maxTimeSlotConfig)).toBeFalsy();
 
             let doubleSchedule = [
                 { day: 4, start: 0, end: 75, value: true },
                 { day: 4, start: 90, end: 180, value: false }
             ];
 
-            expect($service.validate(doubleSchedule, maxTimeSlot)).toBeFalsy();
+            expect($service.validate(doubleSchedule, maxTimeSlotConfig)).toBeFalsy();
         });
     });
 });

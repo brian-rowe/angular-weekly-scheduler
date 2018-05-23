@@ -22,7 +22,7 @@ class ScheduleValidationService {
     public getValidationErrors(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): ValidationError[] {
         let result: ValidationError[] = [];
 
-        if (!this.maxTimeSlotValidatorService.validate(item.schedules, config.maxTimeSlot)) {
+        if (!this.maxTimeSlotValidatorService.validate(item.schedules, config)) {
             result.push(ValidationError.MaxTimeSlotViolation);
         }
 
