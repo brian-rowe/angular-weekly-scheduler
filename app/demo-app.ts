@@ -25,7 +25,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
             console.log('The model has changed!');
           }
-        } as br.weeklyScheduler.IWeeklySchedulerOptions<any>;
+        } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
 
       $scope.adapter = new DemoAdapter([
