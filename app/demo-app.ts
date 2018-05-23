@@ -13,10 +13,11 @@ angular.module('demoApp', ['br.weeklyScheduler'])
               schedules: schedules
             }
           },
-          //defaultValue: null,
+          defaultValue: true,
           editSlot: function (schedule) {
             return $timeout(() => schedule, 400);
           },
+          maxTimeSlot: 600,
           monoSchedule: true,
           onChange: (isValid) => {
             $scope.isDirty = true;
@@ -24,8 +25,8 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
             console.log('The model has changed!');
           }
-        }
-      };
+        } as br.weeklyScheduler.IWeeklySchedulerOptions<any>;
+      }
 
       $scope.adapter = new DemoAdapter([
         // {
@@ -59,12 +60,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           value: true
         },
         {
-          day: br.weeklyScheduler.Days.Thursday,
-          start: 0,
-          end: 720,
-          value: true
-        },
-        {
           day: br.weeklyScheduler.Days.Friday,
           start: 0,
           end: 60,
@@ -76,6 +71,12 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         {
           day: br.weeklyScheduler.Days.Friday,
           start: 0,
+          end: 360,
+          value: false
+        },
+        {
+          day: br.weeklyScheduler.Days.Friday,
+          start: 360,
           end: 1440,
           value: true
         }
