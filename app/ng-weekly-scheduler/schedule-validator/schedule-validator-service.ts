@@ -11,11 +11,11 @@ class ScheduleValidationService {
     ]
 
     private constructor(
-        private fullCalendarValidatorService: FullCalendarValidatorService,
-        private maxTimeSlotValidatorService: MaxTimeSlotValidatorService,
-        private monoScheduleValidatorService: MonoScheduleValidatorService,
-        private nullEndScheduleValidatorService: NullEndScheduleValidatorService,
-        private overlapValidatorService: OverlapValidatorService
+        private fullCalendarValidatorService: ValidatorService,
+        private maxTimeSlotValidatorService: ValidatorService,
+        private monoScheduleValidatorService: ValidatorService,
+        private nullEndScheduleValidatorService: ValidatorService,
+        private overlapValidatorService: ValidatorService
     ) {
     }
 
