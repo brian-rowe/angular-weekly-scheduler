@@ -9,7 +9,7 @@ class MaxTimeSlotValidatorService {
             return true;
         }
 
-        return !schedules.some(s => s.end - s.start > maxTimeSlot);
+        return !schedules.some(s => s.value !== config.defaultValue && s.end - s.start > maxTimeSlot);
     }
 }
 
