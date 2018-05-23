@@ -21,7 +21,8 @@ describe('max time slot validator service', function () {
             fullCalendar: false,
             hourCount: 24,
             intervalCount: 96,
-            maxValue: 60,
+            maxTimeSlot: 60,
+            maxValue: 1440,
             saveScheduler: () => $q.when(true)
         };
 
@@ -42,14 +43,14 @@ describe('max time slot validator service', function () {
 
         it('as valid when they are exactly the maxTimeSlot length', () => {
             let singleSchedule = [
-                { day: 1, start: 0, end: maxTimeSlotConfig.maxValue, value: true }
+                { day: 1, start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: true }
             ];
 
             expect($service.validate(singleSchedule, maxTimeSlotConfig)).toBeTruthy();
 
             let doubleSchedule = [
-                { day: 2, start: 0, end: maxTimeSlotConfig.maxValue, value: true },
-                { day: 2, start: maxTimeSlotConfig.maxValue, end: maxTimeSlotConfig.maxValue * 2, value: false }
+                { day: 2, start: 0, end: maxTimeSlotConfig.maxTimeSlot, value: true },
+                { day: 2, start: maxTimeSlotConfig.maxTimeSlot, end: maxTimeSlotConfig.maxTimeSlot * 2, value: false }
             ];
 
             expect($service.validate(doubleSchedule, maxTimeSlotConfig)).toBeTruthy();
