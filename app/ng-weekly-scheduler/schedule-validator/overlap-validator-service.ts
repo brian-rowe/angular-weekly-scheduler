@@ -11,7 +11,7 @@ class OverlapValidatorService {
     ) {
     }
 
-    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], maxValue: number): boolean {
+    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         // Compare two at a time until the end
         let len = schedules.length;
         let result = true;
@@ -23,6 +23,7 @@ class OverlapValidatorService {
             let valuesMatch = current.value === next.value;
 
             if (!valuesMatch) {
+                let maxValue = config.maxValue;
                 let overlapState = this.overlapService.getOverlapState(current.start, current.end || maxValue, next.start, next.end || maxValue);
                 result = result && [OverlapState.NoOverlap, OverlapState.OtherStartIsCurrentEnd, OverlapState.OtherEndIsCurrentStart].indexOf(overlapState) > -1;
             }

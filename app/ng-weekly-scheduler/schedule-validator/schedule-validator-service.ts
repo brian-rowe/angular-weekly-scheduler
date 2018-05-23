@@ -38,7 +38,7 @@ class ScheduleValidationService {
             result.push(ValidationError.FullCalendarViolation);
         }
 
-        if (!this.overlapValidatorService.validate(item.schedules, config.maxValue)) {
+        if (!this.overlapValidatorService.validate(item.schedules, config)) {
             result.push(ValidationError.OverlapViolation);
         }
 

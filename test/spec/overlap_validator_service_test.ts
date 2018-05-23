@@ -28,8 +28,6 @@ describe('overlap validator service', function () {
     }
 
     describe('should validate', function () {
-        let maxValue = 24 * 60;
-
         describe('non-touching schedules', function () {
             it('with the same value as valid', function () {
                 let item = [
@@ -37,7 +35,7 @@ describe('overlap validator service', function () {
                     { day: 0, start: 75, end: 120, value: true }
                 ]; 
 
-                expect($service.validate(item, maxValue)).toBeTruthy();
+                expect($service.validate(item, testConfig)).toBeTruthy();
             });
 
             it('with different values as valid', function () {
@@ -46,7 +44,7 @@ describe('overlap validator service', function () {
                     { day: 0, start: 75, end: 120, value: false }
                 ];
                 
-                expect($service.validate(item, maxValue)).toBeTruthy();
+                expect($service.validate(item, testConfig)).toBeTruthy();
             });
         });
 
@@ -57,7 +55,7 @@ describe('overlap validator service', function () {
                     { day: 0, start: 60, end: 120, value: true }
                 ];
 
-                expect($service.validate(item, maxValue)).toBeTruthy();
+                expect($service.validate(item, testConfig)).toBeTruthy();
             });
 
             it('with different values as valid', function () {
@@ -66,7 +64,7 @@ describe('overlap validator service', function () {
                     { day: 0, start: 60, end: 120, value: false }
                 ];
 
-                expect($service.validate(item, maxValue)).toBeTruthy();
+                expect($service.validate(item, testConfig)).toBeTruthy();
             });
         });
 
@@ -77,7 +75,7 @@ describe('overlap validator service', function () {
                     { day: 0, start: 45, end: 120, value: true }
                 ];
 
-                expect($service.validate(item, maxValue)).toBeTruthy();
+                expect($service.validate(item, testConfig)).toBeTruthy();
             });
 
             it('with different values as invalid', function () {
@@ -86,7 +84,7 @@ describe('overlap validator service', function () {
                     { day: 0, start: 45, end: 120, value: false }
                 ];
 
-                expect($service.validate(item, maxValue)).toBeFalsy();
+                expect($service.validate(item, testConfig)).toBeFalsy();
             });
         });
     });
