@@ -29,6 +29,9 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
 
+      $scope.model2 = angular.copy($scope.model);
+      $scope.model2.options.interval = 15;
+
       $scope.adapter = new DemoAdapter([
         // {
         //   day: Days.Saturday,
