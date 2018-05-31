@@ -147,15 +147,6 @@ class MultiSliderController implements angular.IComponentController {
     return true;
   }
 
-  private compensateForBorder(elem: HTMLElement, val: number) {
-    let borderWidth = this.$window.getComputedStyle(elem).getPropertyValue('border-right');
-
-    // There are double borders at the beginnings and ends of hours, so we don't need to worry about it
-    let onHour = val % 60 === 0;
-
-    return onHour ? elem.offsetLeft : elem.offsetLeft - parseInt(borderWidth, 10);
-  }
-
   /**
    * Perform an external action to bring up an editor for a schedule
    */
@@ -195,7 +186,7 @@ class MultiSliderController implements angular.IComponentController {
   private getSlotLeft(start: number) {
     let underlyingInterval: HTMLElement = this.getUnderlyingInterval(start);
 
-    return this.compensateForBorder(underlyingInterval, start) + 'px';
+    return underlyingInterval.offsetLeft + 'px';
   }
 
   private getSlotRight(start: number, end: number) {
@@ -210,7 +201,7 @@ class MultiSliderController implements angular.IComponentController {
     // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
     let underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
 
-    let offsetRight = this.compensateForBorder(underlyingInterval, end) + underlyingInterval.offsetWidth;
+    let offsetRight = underlyingInterval.offsetLeft + underlyingInterval.offsetWidth;
     let containerLeft = this.getElementOffsetX(this.$element)
     let containerRight = this.$element[0].getBoundingClientRect().right;
 
