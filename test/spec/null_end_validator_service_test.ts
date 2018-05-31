@@ -62,6 +62,20 @@ describe('null end validator service', () => {
             });
         });
 
+        describe('items with 1 schedule with a non-null end', () => {
+            let item = [
+                { day: 0, start: 300, end: 600, value: true }
+            ];
+
+            it ('as valid when nullEnds is false', () => {
+                expect($service.validate(item, noNullEndsConfig)).toBeTruthy();
+            });
+
+            it('as invalid when nullEnds is true', () => {
+                expect($service.validate(item, nullEndsConfig)).toBeFalsy();
+            });
+        });
+
         describe('items with multiple schedules with at least one having a null end', () => {
             let item = [
                 { day: 0, start: 300, end: null, value: true },
