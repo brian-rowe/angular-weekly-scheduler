@@ -8,7 +8,7 @@ class NullEndScheduleValidatorService implements ValidatorService {
 
     validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (config.nullEnds) {
-            return schedules.length <= 1;
+            return schedules.length <= 1 && schedules.every(schedule => schedule.end === null);
         } else {
             return schedules.every(schedule => schedule.end !== null);
         }
