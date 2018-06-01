@@ -23,9 +23,8 @@ class MultiSliderController implements angular.IComponentController {
     this.element = this.$element[0];
   }
 
-  private $hoverElement: angular.IAugmentedJQuery;
   private index: number;
-
+  
   private overlapHandlers: { [key: number]: (current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) => void; } = {
     [OverlapState.NoOverlap]: (current, other) => this.handleNoOverlap(current, other),
     [OverlapState.CurrentIsInsideOther]: (current, other) => this.handleCurrentIsInsideOther(current, other),
@@ -35,8 +34,10 @@ class MultiSliderController implements angular.IComponentController {
     [OverlapState.OtherEndIsCurrentStart]: (current, other) => this.handleOtherEndIsCurrentStart(current, other),
     [OverlapState.OtherStartIsCurrentEnd]: (current, other) => this.handleOtherStartIsCurrentEnd(current, other)
   };
-
+  
   private schedulerCtrl: WeeklySchedulerController;
+  
+  public $hoverElement: angular.IAugmentedJQuery;
 
   public canAdd: boolean = true;
   public isDragging: boolean = false;
@@ -52,8 +53,6 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   $postLink() {
-    this.$hoverElement = angular.element(this.$element.find('div')[0]);
-
     if (this.$hoverElement.length) {
       this.$element.on('mousemove', (e) => {
         var elOffX = this.getElementOffsetX(this.$element);
