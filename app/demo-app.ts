@@ -15,7 +15,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           },
           defaultValue: true,
           editSlot: function (schedule) {
-            return $timeout(() => schedule, 400);
+            return $timeout(() => schedule, 0);
           },
           interval: 1,
           maxTimeSlot: 600,
