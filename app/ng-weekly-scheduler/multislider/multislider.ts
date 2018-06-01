@@ -46,7 +46,6 @@ class MultiSliderController implements angular.IComponentController {
   public element: Element;
   public config: IWeeklySchedulerConfig<any>;
   public item: br.weeklyScheduler.IWeeklySchedulerItem<any>;
-  public size: number = 60; // minutes
 
   $onInit() {
     this.mergeAllOverlaps();
@@ -54,15 +53,32 @@ class MultiSliderController implements angular.IComponentController {
 
   $postLink() {
     if (this.$hoverElement.length) {
-      this.$element.on('mousemove', (e) => {
-        var elOffX = this.getElementOffsetX(this.$element);
-        var left = e.pageX - elOffX - this.$hoverElement[0].clientWidth / 2;
+      this.element.addEventListener('mousemove', (e: MouseEvent) => {
+        const primary = 1;
+        const defaultSize = 60;
 
-        var val = this.pixelToVal(left);
+        // must use 'buttons' not 'button'
+        let isDragging = e.buttons === primary;
+
+        let elementOffsetX = this.getElementOffsetX(this.$element);
+        let left = e.pageX - elementOffsetX - this.$hoverElement[0].clientWidth / 2;
+
+        let val = this.pixelToVal(left);
+
+        let updatedLeft;
+        let updatedRight;
+
+        if (isDragging) {
+          updatedLeft = this.$hoverElement.css('left');
+          updatedRight = this.getSlotRight(val, this.pixelToVal(e.pageX));
+        } else {
+          updatedLeft = this.getSlotLeft(val);
+          updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
+        }
 
         this.$hoverElement.css({
-          left: this.getSlotLeft(val),
-          right: this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + this.size)
+          left: updatedLeft,
+          right: updatedRight
         });
       });
     }
