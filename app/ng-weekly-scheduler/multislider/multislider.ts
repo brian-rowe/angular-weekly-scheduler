@@ -159,6 +159,18 @@ class MultiSliderController implements angular.IComponentController {
       return this.item.schedules.length === 0;
     }
 
+    if (angular.isDefined(this.item.editable) && !this.item.editable) {
+      return false;
+    }
+
+    if (this.isDragging) {
+      return false;
+    }
+
+    if (this.isHoveringSlot) {
+      return false
+    }
+
     return true;
   }
 
