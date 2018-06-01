@@ -1,4 +1,10 @@
 /// <reference types="angular" />
+declare class GhostSlotComponent implements angular.IComponentOptions {
+    static $name: string;
+    controller: string;
+    controllerAs: string;
+    template: string;
+}
 declare namespace br.weeklyScheduler {
     interface IResizeServiceProvider extends angular.IServiceProvider {
         setCustomResizeEvents(events: string[]): any;
