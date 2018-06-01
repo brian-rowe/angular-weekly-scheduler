@@ -40,6 +40,7 @@ class MultiSliderController implements angular.IComponentController {
   public $hoverElement: angular.IAugmentedJQuery;
 
   public canAdd: boolean = true;
+  public isAdding: boolean = false;
   public isDragging: boolean = false;
   public isHoveringSlot: boolean = false;
 
@@ -160,6 +161,10 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     if (angular.isDefined(this.item.editable) && !this.item.editable) {
+      return false;
+    }
+
+    if (this.isAdding) {
       return false;
     }
 
@@ -365,8 +370,11 @@ class MultiSliderController implements angular.IComponentController {
       let width = this.pixelToVal(this.$hoverElement[0].clientWidth);
       let end = this.config.nullEnds ? null : this.adjustEndForModel(start + width);
 
+      this.isAdding = true;
+
       this.addSlot(start, end).then(() => {
         this.onChange();
+        this.isAdding = false;
       });
     }
   }
