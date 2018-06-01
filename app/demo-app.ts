@@ -82,7 +82,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           day: br.weeklyScheduler.Days.Friday,
           start: 360,
           end: 1440,
-          value: true
+          value: false
         }
       ]);
 

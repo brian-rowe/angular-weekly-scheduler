@@ -1,4 +1,3 @@
-@handleWidth: 5%;
 @headerRowHeight: 15px;
 @offset: 5px;
 @rowHeight: 28px;
@@ -195,6 +194,11 @@ br-multi-slider {
     &.nullEnd {
       text-align: left;
     }
+
+    .slotWrapper {
+      display: flex;
+      height: 100%;
+    }
   }
 
   .ghost {
@@ -218,9 +222,6 @@ br-multi-slider {
   }
 
   br-weekly-slot {
-    -webkit-transition: background 0.1s ease-in;
-    cursor: all-scroll;
-
     /**
      * We want to set the COLOR on any item we want to have a custom background color for.
      * This is because the gradient backgrounds for allowNulls rely on currentColor.
@@ -243,16 +244,13 @@ br-multi-slider {
     }
 
     .handle {
-      position: absolute;
-      top: 0;
-      bottom: 0;
+      display: inline-block;
+      flex-grow: 1;
 
       &.left, &.right {
+        cursor: e-resize;
         min-width: 4px;
-        width: @handleWidth;
-        background: #000;
-        cursor: col-resize;
-        opacity: 0.4;
+        height: 100%;
       }
     }
 
@@ -263,6 +261,8 @@ br-multi-slider {
     }
 
     .middle {
+      cursor: all-scroll;
+      display: inline-block;
       padding: 0 4px;
       font-family: monospace;
       font-size: x-small;
@@ -270,15 +270,16 @@ br-multi-slider {
 
     .handle {
       &.left:hover, &.right:hover {
+        background-color: #000;
         opacity: 0.3;
       }
 
       &.left {
-        left: 0;
+        float: left;
       }
 
       &.right {
-        right: 0;
+        float: right;
       }
     }
 
