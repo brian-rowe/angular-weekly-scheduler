@@ -4,6 +4,7 @@ class GhostSlotController implements angular.IComponentController {
     static $controllerAs = 'ghostSlotCtrl';
 }
 
+/** @internal */
 class GhostSlotComponent implements angular.IComponentOptions {
     static $name = 'brGhostSlot';
 
