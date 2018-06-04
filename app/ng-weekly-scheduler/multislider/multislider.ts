@@ -93,7 +93,7 @@ class MultiSliderController implements angular.IComponentController {
 
     // Sanity check -- don't add a slot with an end before the start
     if (end <= start) {
-      return;
+      return this.$q.when();
     }
 
     let schedule = {
