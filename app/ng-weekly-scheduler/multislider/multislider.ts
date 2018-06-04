@@ -91,6 +91,11 @@ class MultiSliderController implements angular.IComponentController {
       item.schedules = [];
     }
 
+    // Sanity check -- don't add a slot with an end before the start
+    if (end <= start) {
+      return;
+    }
+
     let schedule = {
       day: this.item.day,
       start: start,
