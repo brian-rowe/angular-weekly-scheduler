@@ -191,7 +191,7 @@ class MultiSliderController implements angular.IComponentController {
    */
   private getGhostLeftPixel(event: MouseEvent) {
     let elementOffsetX = this.getElementOffsetX(this.$element);
-    let left = event.pageX - elementOffsetX - this.$hoverElement[0].clientWidth / 2;
+    let left = event.pageX - elementOffsetX;
 
     return left;
   }
