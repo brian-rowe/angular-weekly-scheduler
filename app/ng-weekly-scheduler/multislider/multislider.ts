@@ -61,13 +61,9 @@ class MultiSliderController implements angular.IComponentController {
         // must use 'buttons' not 'button'
         let isDragging = e.buttons === primary;
 
-        let elementOffsetX = this.getElementOffsetX(this.$element);
-        let left = e.pageX - elementOffsetX - this.$hoverElement[0].clientWidth / 2;
+        let val = this.getGhostLeftVal(e);
 
-        let val = this.pixelToVal(left);
-
-        if (isDragging) {
-        } else {
+        if (!isDragging) {
           let updatedLeft = this.getSlotLeft(val);
           let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
 
@@ -113,9 +109,7 @@ class MultiSliderController implements angular.IComponentController {
 
   /** Expand ghost while dragging in it */
   public expandGhost(event: MouseEvent) {
-    let elementOffsetX = this.getElementOffsetX(this.$element);
-    let left = event.pageX - elementOffsetX - this.$hoverElement[0].clientWidth / 2;
-    let val = this.pixelToVal(left);
+    let val = this.getGhostLeftVal(event);
 
     this.$hoverElement.css({
       left: this.$hoverElement.css('left'),
@@ -184,6 +178,20 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     return true;
+  }
+
+  /**
+   * The ghost should render with its center over the mouse pointer. This function determines where the left side should be...
+   */
+  private getGhostLeftPixel(event: MouseEvent) {
+    let elementOffsetX = this.getElementOffsetX(this.$element);
+    let left = event.pageX - elementOffsetX - this.$hoverElement[0].clientWidth / 2;
+
+    return left;
+  }
+
+  private getGhostLeftVal(event: MouseEvent) {
+    return this.pixelToVal(this.getGhostLeftPixel(event));
   }
 
   /**
