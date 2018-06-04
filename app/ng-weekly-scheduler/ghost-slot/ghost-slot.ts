@@ -4,15 +4,19 @@ class GhostSlotController implements angular.IComponentController {
     static $controllerAs = 'ghostSlotCtrl';
 
     static $inject = [
-        '$element'
+        '$element',
+        '$timeout'
     ];
 
     constructor(
-        private $element: angular.IAugmentedJQuery
+        private $element: angular.IAugmentedJQuery,
+        private $timeout: angular.ITimeoutService
     ) {
     }
 
+    private isDragging: boolean = false;
     private multiSliderCtrl: MultiSliderController;
+    private dragTimeout: angular.IPromise<void>;
 
     public $postLink() {
         this.$element.addClass('slot');
@@ -20,14 +24,25 @@ class GhostSlotController implements angular.IComponentController {
     }
 
     public drag(event: MouseEvent) {
-        this.multiSliderCtrl.adjustGhost(event);
+        if (this.isDragging) {
+            this.multiSliderCtrl.adjustGhost(event);
+        }
     }
 
     public startDrag() {
-        // Don't do anything
+        // Delay start of drag
+        this.dragTimeout = this.$timeout(() => {
+            this.isDragging = true;
+            this.$element.addClass('active');
+        }, 250);
     }
 
     public stopDrag() {
+        // Cancel timeout if applicable
+        this.$timeout.cancel(this.dragTimeout);
+        this.isDragging = false;
+        this.$element.removeClass('active');
+
         this.multiSliderCtrl.onHoverElementClick();
     }
 }
