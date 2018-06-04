@@ -276,7 +276,9 @@ class MultiSliderController implements angular.IComponentController {
     let containerLeft = this.getElementOffsetX(this.$element)
     let containerRight = this.$element[0].getBoundingClientRect().right;
 
-    return containerRight - containerLeft - offsetRight + 'px';
+    let result = containerRight - containerLeft - offsetRight;
+
+    return result + 'px';
   }
 
   private getUnderlyingInterval(val: number): HTMLElement {
