@@ -352,12 +352,12 @@ class MultiSliderController implements angular.IComponentController {
       let currentSchedule = this.item.schedules[i];
       let nextSchedule = this.item.schedules[i + 1];
 
-      let overlapState = this.getOverlapState(currentSchedule, nextSchedule);
-
       let valuesMatch = currentSchedule.value === nextSchedule.value;
-
+      
       if (valuesMatch) {
-        return true;
+        let overlapState = this.getOverlapState(currentSchedule, nextSchedule);
+
+        return [OverlapState.OtherEndIsCurrentStart, OverlapState.OtherStartIsCurrentEnd].indexOf(overlapState) > -1;
       }
     }
 
