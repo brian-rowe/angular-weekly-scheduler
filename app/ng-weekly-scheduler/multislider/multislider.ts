@@ -66,21 +66,16 @@ class MultiSliderController implements angular.IComponentController {
 
         let val = this.pixelToVal(left);
 
-        let updatedLeft;
-        let updatedRight;
-
         if (isDragging) {
-          updatedLeft = this.$hoverElement.css('left');
-          updatedRight = this.getSlotRight(val, this.pixelToVal(e.pageX));
         } else {
-          updatedLeft = this.getSlotLeft(val);
-          updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
-        }
+          let updatedLeft = this.getSlotLeft(val);
+          let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
 
-        this.$hoverElement.css({
-          left: updatedLeft,
-          right: updatedRight
-        });
+          this.$hoverElement.css({
+            left: updatedLeft,
+            right: updatedRight
+          });
+        }
       });
     }
   }
@@ -114,6 +109,18 @@ class MultiSliderController implements angular.IComponentController {
     } else {
       return this.$q.when(this.addScheduleToItem(schedule));
     }
+  }
+
+  /** Expand ghost while dragging in it */
+  public expandGhost(event: MouseEvent) {
+    let elementOffsetX = this.getElementOffsetX(this.$element);
+    let left = event.pageX - elementOffsetX - this.$hoverElement[0].clientWidth / 2;
+    let val = this.pixelToVal(left);
+
+    this.$hoverElement.css({
+      left: this.$hoverElement.css('left'),
+      right: this.getSlotRight(val, this.pixelToVal(event.pageX))
+    });
   }
 
   public setDirty() {

@@ -18,6 +18,18 @@ class GhostSlotController implements angular.IComponentController {
         this.$element.addClass('slot');
         this.multiSliderCtrl.$hoverElement = this.$element;
     }
+
+    public drag(event: MouseEvent) {
+        this.multiSliderCtrl.expandGhost(event);
+    }
+
+    public startDrag() {
+        // Don't do anything
+    }
+
+    public stopDrag() {
+        // Don't do anything, the ng-click handler should handle this
+    }
 }
 
 /** @internal */
@@ -32,7 +44,13 @@ class GhostSlotComponent implements angular.IComponentOptions {
     };
 
     template = `
+        <div br-handle
+             ondragstart="ghostSlotCtrl.startDrag()"
+             ondrag="ghostSlotCtrl.drag(event)"
+             ondragend="ghostSlotCtrl.stopDrag()"
+        >
         +
+        </div>
     `;
 }
 

@@ -57,7 +57,7 @@ class HandleDirective implements angular.IDirective {
       var delta = pageX - x;
 
       if (angular.isFunction(scope.ondrag)) {
-        scope.$apply(scope.ondrag({ delta: delta }));
+        scope.$apply(scope.ondrag({ delta: delta, event: event }));
       }
     }
 
