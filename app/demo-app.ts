@@ -18,8 +18,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
             return $timeout(() => schedule, 0);
           },
           interval: 1,
-          maxTimeSlot: 600,
-          monoSchedule: true,
           onChange: (isValid) => {
             $scope.isDirty = true;
             $scope.isValid = isValid;
