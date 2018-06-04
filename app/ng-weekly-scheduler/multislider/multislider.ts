@@ -138,6 +138,24 @@ class MultiSliderController implements angular.IComponentController {
     return elem[0].getBoundingClientRect().left;
   }
 
+  public onHoverElementClick() {
+    if (this.canAdd) {
+      let elementOffsetX = this.getElementOffsetX(this.$element);
+      let hoverElementOffsetX = this.getElementOffsetX(this.$hoverElement) - elementOffsetX;
+
+      let start = this.pixelToVal(hoverElementOffsetX);
+      let width = this.pixelToVal(this.$hoverElement[0].clientWidth);
+      let end = this.config.nullEnds ? null : this.adjustEndForModel(start + width);
+
+      this.isAdding = true;
+
+      this.addSlot(start, end).then(() => {
+        this.onChange();
+        this.isAdding = false;
+      });
+    }
+  }
+
   private adjustEndForModel(end: number) {
     if (end === this.config.maxValue) {
       end = 0;
@@ -406,24 +424,6 @@ class MultiSliderController implements angular.IComponentController {
 
   private onChange() {
     this.schedulerCtrl.config.onChange(!this.schedulerCtrl.hasInvalidSchedule());
-  }
-
-  private onHoverElementClick(event) {
-    if (this.canAdd) {
-      let elementOffsetX = this.getElementOffsetX(this.$element);
-      let hoverElementOffsetX = this.getElementOffsetX(this.$hoverElement) - elementOffsetX;
-
-      let start = this.pixelToVal(hoverElementOffsetX);
-      let width = this.pixelToVal(this.$hoverElement[0].clientWidth);
-      let end = this.config.nullEnds ? null : this.adjustEndForModel(start + width);
-
-      this.isAdding = true;
-
-      this.addSlot(start, end).then(() => {
-        this.onChange();
-        this.isAdding = false;
-      });
-    }
   }
 
   private onWeeklySlotMouseOver() {

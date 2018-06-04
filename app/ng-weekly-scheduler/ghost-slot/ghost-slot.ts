@@ -28,7 +28,7 @@ class GhostSlotController implements angular.IComponentController {
     }
 
     public stopDrag() {
-        // Don't do anything, the ng-click handler should handle this
+        this.multiSliderCtrl.onHoverElementClick();
     }
 }
 
@@ -47,7 +47,7 @@ class GhostSlotComponent implements angular.IComponentOptions {
         <div br-handle
              ondragstart="ghostSlotCtrl.startDrag()"
              ondrag="ghostSlotCtrl.drag(event)"
-             ondragend="ghostSlotCtrl.stopDrag()"
+             ondragstop="ghostSlotCtrl.stopDrag()"
         >
         +
         </div>
