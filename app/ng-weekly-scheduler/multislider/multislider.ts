@@ -108,12 +108,18 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   /** Expand ghost while dragging in it */
-  public expandGhost(event: MouseEvent) {
+  public adjustGhost(event: MouseEvent) {
     let val = this.getGhostLeftVal(event);
 
+    // Lock left edge in place
+    let updatedLeft = this.$hoverElement.css('left');
+    
+    // Make right edge adjust to new mouse position
+    let updatedRight = this.getSlotRight(val, this.pixelToVal(event.pageX));
+
     this.$hoverElement.css({
-      left: this.$hoverElement.css('left'),
-      right: this.getSlotRight(val, this.pixelToVal(event.pageX))
+      left: updatedLeft,
+      right: updatedRight
     });
   }
 

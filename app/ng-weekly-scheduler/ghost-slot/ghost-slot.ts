@@ -20,7 +20,7 @@ class GhostSlotController implements angular.IComponentController {
     }
 
     public drag(event: MouseEvent) {
-        this.multiSliderCtrl.expandGhost(event);
+        this.multiSliderCtrl.adjustGhost(event);
     }
 
     public startDrag() {
