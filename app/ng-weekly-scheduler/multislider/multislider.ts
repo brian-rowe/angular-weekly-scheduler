@@ -237,7 +237,12 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private getOverlapState(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): OverlapState {
-    let overlapState = this.overlapService.getOverlapState(current.start, this.adjustEndForView(current.end), other.start, this.adjustEndForView(other.end));
+    let overlapState = this.overlapService.getOverlapState(
+      current.start,
+      this.endAdjusterService.adjustEndForView(this.config, current.end),
+      other.start,
+      this.endAdjusterService.adjustEndForView(this.config, other.end)
+    );
 
     return overlapState;
   }
@@ -255,7 +260,7 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     // An end of 0 should display allll the way to the right, up to the edge
-    end = this.adjustEndForView(end);
+    end = this.endAdjusterService.adjustEndForView(this.config, end);
 
     // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
     let underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
@@ -448,14 +453,6 @@ class MultiSliderController implements angular.IComponentController {
 
   private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     return schedule.value === other.value;
-  }
-
-  public adjustEndForView(end: number) {
-    if (end === 0) {
-      end = this.config.maxValue;
-    }
-
-    return end;
   }
 
   public merge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {

@@ -6,6 +6,7 @@ class WeeklySlotController implements angular.IComponentController {
   static $inject = [
     '$scope',
     '$timeout',
+    'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerNullEndWidth',
     'brWeeklySchedulerOverlapService'
   ];
@@ -29,6 +30,7 @@ class WeeklySlotController implements angular.IComponentController {
   constructor(
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
+    private endAdjusterService: EndAdjusterService,
     private nullEndWidth: number,
     private overlapService: OverlapService
   ) {
@@ -56,7 +58,9 @@ class WeeklySlotController implements angular.IComponentController {
     return {
       day: this.schedule.day,
       start: this.schedule.start,
-      end: this.config.nullEnds ? this.multisliderCtrl.adjustEndForView(this.schedule.start + this.nullEndWidth) : this.multisliderCtrl.adjustEndForView(this.schedule.end),
+      end: this.config.nullEnds ?
+           this.endAdjusterService.adjustEndForView(this.config, this.schedule.start + this.nullEndWidth) :
+           this.endAdjusterService.adjustEndForView(this.config, this.schedule.end),
       value: this.schedule.value
     }
   }
@@ -136,7 +140,7 @@ class WeeklySlotController implements angular.IComponentController {
   public resizeStart(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, delta: number) {
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
     let startChanged = schedule.start !== newStart;
-    let newStartBeforeOrAtEnd = newStart <= this.multisliderCtrl.adjustEndForView(schedule.end) - 1;
+    let newStartBeforeOrAtEnd = newStart <= this.endAdjusterService.adjustEndForView(this.config, schedule.end) - 1;
     let newStartAfterOrAtStart = newStart >= 0;
 
     if (startChanged && newStartBeforeOrAtEnd && newStartAfterOrAtStart) {

@@ -9,6 +9,14 @@ class EndAdjusterService {
 
         return end;
     }
+
+    public adjustEndForView(config: IWeeklySchedulerConfig<any>, end: number) {
+        if (end === 0) {
+            return config.maxValue;
+        }
+
+        return end;
+    }
 }
 
 angular
