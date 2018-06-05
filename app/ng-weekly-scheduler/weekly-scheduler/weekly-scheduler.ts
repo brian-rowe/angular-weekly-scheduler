@@ -33,6 +33,9 @@ class WeeklySchedulerController implements angular.IController {
   /** should be true if the scheduler has been interacted with */
   public dirty: boolean;
 
+  /** should be true if the user is currently holding down the primary mouse button on a slot */
+  public dragging: boolean;
+
   /** should be true if the scheduler became invalid after being initialized */
   public invalid: boolean;
 

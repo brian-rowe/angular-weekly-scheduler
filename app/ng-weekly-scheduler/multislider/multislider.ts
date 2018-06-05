@@ -37,7 +37,6 @@ class MultiSliderController implements angular.IComponentController {
 
   public canAdd: boolean = true;
   public isAdding: boolean = false;
-  public isDragging: boolean = false;
   public isHoveringSlot: boolean = false;
 
   public element: Element;
@@ -409,6 +408,14 @@ class MultiSliderController implements angular.IComponentController {
   public pixelToVal(pixel: number) {
     var percent = pixel / this.element.clientWidth;
     return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
+  }
+
+  get isDragging() {
+    return this.schedulerCtrl.dragging;
+  }
+
+  set isDragging(value: boolean) {
+    this.schedulerCtrl.dragging = value;
   }
 }
 
