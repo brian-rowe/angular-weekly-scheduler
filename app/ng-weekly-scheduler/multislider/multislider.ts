@@ -32,10 +32,6 @@ class MultiSliderController implements angular.IComponentController {
   public config: IWeeklySchedulerConfig<any>;
   public item: WeeklySchedulerItem<any>;
 
-  $onInit() {
-    //this.schedulerCtrl.mergeAllOverlapsForItem(this.item);
-  }
-
   $postLink() {
     if (this.$hoverElement.length) {
       this.element.addEventListener('mousemove', (e: MouseEvent) => {

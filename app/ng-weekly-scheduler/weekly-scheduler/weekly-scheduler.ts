@@ -26,7 +26,7 @@ class WeeklySchedulerController implements angular.IController {
   ) {
   }
 
-  private _originalItems: IInternalWeeklySchedulerItem<any>[];
+  private _originalItems: WeeklySchedulerItem<any>[];
 
   private overlapHandlers: { [key: number]: (item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) => void; } = {
     [OverlapState.NoOverlap]: (item, current, other) => this.handleNoOverlap(item, current, other),
@@ -57,7 +57,7 @@ class WeeklySchedulerController implements angular.IController {
   public hoverClass: string;
 
   public config: IWeeklySchedulerConfig<any>;
-  public items: IInternalWeeklySchedulerItem<any>[];
+  public items: WeeklySchedulerItem<any>[];
   public options: br.weeklyScheduler.IWeeklySchedulerOptions<any>;
 
   public defaultOptions: br.weeklyScheduler.IWeeklySchedulerOptions<any> = {
@@ -131,8 +131,10 @@ class WeeklySchedulerController implements angular.IController {
     this.onChange();
   }
 
-  private buildItems(items: IInternalWeeklySchedulerItem<any>[]) {
+  private buildItems(items: WeeklySchedulerItem<any>[]) {
     this.items = this.fillItems(items);
+
+    this.items.forEach(item => this.mergeAllOverlapsForItem(item));
 
     // keep a reference on the adapter so we can pull it out later
     this.adapter.items = this.items;
@@ -200,13 +202,13 @@ class WeeklySchedulerController implements angular.IController {
   /**
    * The scheduler should always show all days, even if it was not passed any schedules for that day
    */
-  private fillItems(items: IInternalWeeklySchedulerItem<any>[]) {
-    let result: IInternalWeeklySchedulerItem<any>[] = [];
+  private fillItems(items: WeeklySchedulerItem<any>[]) {
+    let result: WeeklySchedulerItem<any>[] = [];
 
     angular.forEach(this.dayMap, (day: string, stringKey: string) => {
       let key = parseInt(stringKey, 10);
       let filteredItems = items.filter(item => item.day === key);
-      let item: IInternalWeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
+      let item: WeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
 
       if (!item) {
         result.push(this.createItem(key, []));
