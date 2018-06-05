@@ -4,7 +4,6 @@ class WeeklySlotController implements angular.IComponentController {
   static $controllerAs = 'weeklySlotCtrl';
 
   static $inject = [
-    '$scope',
     '$timeout',
     'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerNullEndWidth'
@@ -26,7 +25,6 @@ class WeeklySlotController implements angular.IComponentController {
   private valuesOnDragStart: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 
   constructor(
-    private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
     private endAdjusterService: EndAdjusterService,
     private nullEndWidth: number
