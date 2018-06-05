@@ -48,7 +48,19 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     }
 
     public needsOverlapsMerged() {
+        let len = this.schedules.length;
 
+        // Compare two at a time
+        for (let i = 0; i < len - 1; i += 1) {
+            let current = this.schedules[i];
+            let next = this.schedules[i+1];
+
+            if (this.schedulesHaveMatchingValues(current, next)) {
+                let overlapState = this.overlapService.getOverlapState(this.config, current, next);
+
+                return [OverlapState.OtherEndIsCurrentStart, OverlapState.OtherStartIsCurrentEnd].indexOf(overlapState) > -1;
+            }
+        }
     }
 
     public removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
