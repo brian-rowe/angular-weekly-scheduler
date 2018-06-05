@@ -26,6 +26,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         this.label = item.label;
         this.schedules = item.schedules;
     }
+
+    public addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+        this.schedules.push(schedule);
+    }
     
     public removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
         let schedules = this.schedules;
