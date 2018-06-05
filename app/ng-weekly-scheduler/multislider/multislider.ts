@@ -42,7 +42,7 @@ class MultiSliderController implements angular.IComponentController {
 
   public element: Element;
   public config: IWeeklySchedulerConfig<any>;
-  public item: br.weeklyScheduler.IWeeklySchedulerItem<any>;
+  public item: WeeklySchedulerItem<any>;
 
   $onInit() {
     this.mergeAllOverlaps();
@@ -434,9 +434,7 @@ class MultiSliderController implements angular.IComponentController {
     this.isDragging = false;
     this.isHoveringSlot = false;
 
-    let schedules = this.item.schedules;
-
-    schedules.splice(schedules.indexOf(schedule), 1);
+    this.item.removeSchedule(schedule);
 
     this.setDirty();
   }

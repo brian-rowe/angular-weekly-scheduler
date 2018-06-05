@@ -20,9 +20,16 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     label: string;
     schedules: br.weeklyScheduler.IWeeklySchedulerRange<T>[];
 
-    constructor(item: br.weeklyScheduler.IWeeklySchedulerItem<T>) {
+    constructor(item: IInternalWeeklySchedulerItem<T>) {
         this.day = item.day;
         this.editable = item.editable;
+        this.label = item.label;
         this.schedules = item.schedules;
+    }
+    
+    public removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+        let schedules = this.schedules;
+
+        schedules.splice(schedules.indexOf(schedule), 1);
     }
 }
