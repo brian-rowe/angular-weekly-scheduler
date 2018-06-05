@@ -143,7 +143,7 @@ class MultiSliderController implements angular.IComponentController {
       this.isAdding = true;
 
       this.addSlot(start, end).then(() => {
-        this.onChange();
+        this.schedulerCtrl.onChange();
         this.isAdding = false;
       });
     }
@@ -216,11 +216,11 @@ class MultiSliderController implements angular.IComponentController {
 
           this.merge(newSchedule);
 
-          // If merging mutated the schedule further, then updateSchedule would have already been called
+          // If merging mutated the schedule further, then schedulerCtrl.updateSchedule would have already been called
           // This is so that edits that don't trigger merges still trigger onChange,
           // but edits that do trigger merges don't trigger it twice
           if (angular.equals(premergeSchedule, newSchedule)) {
-            this.updateSchedule(schedule, newSchedule);
+            this.schedulerCtrl.updateSchedule(schedule, newSchedule);
           }
         }
       }).finally(() => {
@@ -285,7 +285,7 @@ class MultiSliderController implements angular.IComponentController {
       // Remove 'other' & make current expand to fit the other slot
       this.removeSchedule(other);
 
-      this.updateSchedule(current, {
+      this.schedulerCtrl.updateSchedule(current, {
         day: other.day,
         start: other.start,
         end: other.end,
@@ -305,14 +305,14 @@ class MultiSliderController implements angular.IComponentController {
     if (this.valuesMatch(current, other)) {
       this.removeSchedule(other);
 
-      this.updateSchedule(current, {
+      this.schedulerCtrl.updateSchedule(current, {
         day: current.day,
         start: other.start,
         end: current.end,
         value: other.value
       });
     } else {
-      this.updateSchedule(other, {
+      this.schedulerCtrl.updateSchedule(other, {
         day: other.day,
         start: other.start,
         end: current.start,
@@ -325,14 +325,14 @@ class MultiSliderController implements angular.IComponentController {
     if (this.valuesMatch(current, other)) {
       this.removeSchedule(other);
 
-      this.updateSchedule(current, {
+      this.schedulerCtrl.updateSchedule(current, {
         day: current.day,
         start: current.start,
         end: other.end,
         value: other.value
       });
     } else {
-      this.updateSchedule(other, {
+      this.schedulerCtrl.updateSchedule(other, {
         day: other.day,
         start: current.end,
         end: other.end,
@@ -376,10 +376,6 @@ class MultiSliderController implements angular.IComponentController {
     }));
   }
 
-  private onChange() {
-    this.schedulerCtrl.config.onChange(!this.schedulerCtrl.hasInvalidSchedule());
-  }
-
   private onWeeklySlotMouseOver() {
     this.isHoveringSlot = true;
   }
@@ -398,16 +394,6 @@ class MultiSliderController implements angular.IComponentController {
     this.item.removeSchedule(schedule);
 
     this.setDirty();
-  }
-
-  /**
-   * Commit new values to the schedule
-   */
-  private updateSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    schedule.start = update.start;
-    schedule.end = this.endAdjusterService.adjustEndForModel(this.config, update.end);
-
-    this.onChange();
   }
 
   private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {

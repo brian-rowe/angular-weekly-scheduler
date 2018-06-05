@@ -9,6 +9,7 @@ class WeeklySchedulerController implements angular.IController {
     '$scope',
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
+    'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerOverlapService',
     'brWeeklySchedulerValidationService',
   ];
@@ -19,6 +20,7 @@ class WeeklySchedulerController implements angular.IController {
     private $scope: angular.IScope,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
+    private endAdjusterService: EndAdjusterService,
     private overlapService: OverlapService,
     private scheduleValidatorService: ScheduleValidationService
   ) {
@@ -66,6 +68,20 @@ class WeeklySchedulerController implements angular.IController {
     let validationErrors: ValidationError[] = this.getValidationErrors();
 
     return validationErrors.length > 0;
+  }
+
+  public onChange() {
+    this.config.onChange(!this.hasInvalidSchedule());
+  }
+
+  /**
+   * Commit new values to the schedule
+   */
+  public updateSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    schedule.start = update.start;
+    schedule.end = this.endAdjusterService.adjustEndForModel(this.config, update.end);
+
+    this.onChange();
   }
 
   private buildItems(items: IInternalWeeklySchedulerItem<any>[]) {
