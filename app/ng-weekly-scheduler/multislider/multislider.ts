@@ -81,8 +81,6 @@ class MultiSliderController implements angular.IComponentController {
       end = this.config.maxValue;
     }
 
-    let item = this.item;
-
     // Sanity check -- don't add a slot with an end before the start
     if (end <= start) {
       return this.$q.when();
