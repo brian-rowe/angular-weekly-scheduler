@@ -1,5 +1,9 @@
-<div class="ghost-wrapper" ng-mousedown="multiSliderCtrl.onGhostWrapperMouseDown()" ng-mouseup="multiSliderCtrl.onGhostWrapperMouseUp()" ng-mousemove="multiSliderCtrl.positionGhost($event)">
-    <br-ghost-slot ng-show="multiSliderCtrl.canRenderGhost()"
+<div class="ghost-wrapper" ng-mousedown="multiSliderCtrl.onGhostWrapperMouseDown()" ng-mouseup="multiSliderCtrl.onGhostWrapperMouseUp()" ng-mousemove="multiSliderCtrl.onGhostWrapperMouseMove($event)">
+    <br-ghost-slot class="slot"
+                   ng-show="multiSliderCtrl.canRenderGhost()"
+                   ng-class="{
+                      active: multiSliderCtrl.isDraggingGhost
+                   }"
                    ng-style="multiSliderCtrl.ghostPosition">
         +
     </br-ghost-slot>

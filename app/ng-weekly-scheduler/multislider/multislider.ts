@@ -21,6 +21,7 @@ class MultiSliderController implements angular.IComponentController {
     this.element = this.$element[0];
   }
 
+  private isDraggingGhost: boolean = false;
   private ghostPosition: { left: string, right: string };
   private schedulerCtrl: WeeklySchedulerController;
   
@@ -108,10 +109,22 @@ class MultiSliderController implements angular.IComponentController {
 
   public onGhostWrapperMouseDown() {
     this._renderGhost = true;
+    this.isDraggingGhost = true;
+  }
+
+  public onGhostWrapperMouseMove(event: MouseEvent) {
+    if (this.isDraggingGhost) {
+      this.adjustGhost(event);
+    } else {
+      this.positionGhost(event);
+    }
   }
 
   public onGhostWrapperMouseUp() {
     this._renderGhost = false;
+    this.isDraggingGhost = false;
+
+    this.onHoverElementClick();
   }
 
   public onHoverElementClick() {
