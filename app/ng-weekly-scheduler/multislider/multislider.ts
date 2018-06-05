@@ -6,6 +6,7 @@ class MultiSliderController implements angular.IComponentController {
   static $inject = [
     '$element',
     '$q',
+    'brWeeklySchedulerElementOffsetService',
     'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerNullEndWidth'
   ];
@@ -13,6 +14,7 @@ class MultiSliderController implements angular.IComponentController {
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $q: angular.IQService,
+    private elementOffsetService: ElementOffsetService,
     private endAdjusterService: EndAdjusterService,
     private nullEndWidth: number
   ) {
@@ -109,14 +111,10 @@ class MultiSliderController implements angular.IComponentController {
     this.setDirty();
   }
 
-  public getElementOffsetX(elem: angular.IAugmentedJQuery) {
-    return elem[0].getBoundingClientRect().left;
-  }
-
   public onHoverElementClick() {
     if (this.canAdd) {
-      let elementOffsetX = this.getElementOffsetX(this.$element);
-      let hoverElementOffsetX = this.getElementOffsetX(this.$hoverElement) - elementOffsetX;
+      let elementOffsetX = this.elementOffsetService.left(this.$element);
+      let hoverElementOffsetX = this.elementOffsetService.left(this.$hoverElement) - elementOffsetX;
 
       let start = this.pixelToVal(hoverElementOffsetX);
       let width = this.pixelToVal(this.$hoverElement[0].clientWidth);
@@ -172,7 +170,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private getGhostLeftPixel(event: MouseEvent) {
-    let elementOffsetX = this.getElementOffsetX(this.$element);
+    let elementOffsetX = this.elementOffsetService.left(this.$element);
     let left = event.pageX - elementOffsetX - 4; // give a little tolerance to make sure the mouse pointer is always inside the ghost
 
     return left;
@@ -231,8 +229,8 @@ class MultiSliderController implements angular.IComponentController {
     let underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
 
     let offsetRight = underlyingInterval.offsetLeft + underlyingInterval.offsetWidth;
-    let containerLeft = this.getElementOffsetX(this.$element)
-    let containerRight = this.$element[0].getBoundingClientRect().right;
+    let containerLeft = this.elementOffsetService.left(this.$element)
+    let containerRight = this.elementOffsetService.right(this.$element);
 
     let result = containerRight - containerLeft - offsetRight;
 
