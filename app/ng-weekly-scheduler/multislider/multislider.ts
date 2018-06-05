@@ -207,7 +207,7 @@ class MultiSliderController implements angular.IComponentController {
 
       this.schedulerCtrl.config.editSlot(schedule).then((newSchedule) => {
         if (newSchedule.$isDeleting) {
-          this.removeSchedule(schedule);
+          this.schedulerCtrl.removeScheduleFromItem(this.item, schedule);
         }
         else {
           let premergeSchedule = angular.copy(newSchedule);
@@ -275,13 +275,13 @@ class MultiSliderController implements angular.IComponentController {
 
   private handleCurrentCoversOther(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
     // Here, it doesn't matter if the values match -- the covering slot can always "eat" the other one
-    this.removeSchedule(other);
+    this.schedulerCtrl.removeScheduleFromItem(this.item, other);
   }
 
   private handleCurrentIsInsideOther(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
       // Remove 'other' & make current expand to fit the other slot
-      this.removeSchedule(other);
+      this.schedulerCtrl.removeScheduleFromItem(this.item, other);
 
       this.schedulerCtrl.updateSchedule(current, {
         day: other.day,
@@ -291,7 +291,7 @@ class MultiSliderController implements angular.IComponentController {
       });
     } else {
       // Just remove 'current'
-      this.removeSchedule(current);
+      this.schedulerCtrl.removeScheduleFromItem(this.item, current);
     }
   }
 
@@ -301,7 +301,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private handleOtherEndIsInsideCurrent(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
-      this.removeSchedule(other);
+      this.schedulerCtrl.removeScheduleFromItem(this.item, other);
 
       this.schedulerCtrl.updateSchedule(current, {
         day: current.day,
@@ -321,7 +321,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private handleOtherStartIsInsideCurrent(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
     if (this.valuesMatch(current, other)) {
-      this.removeSchedule(other);
+      this.schedulerCtrl.removeScheduleFromItem(this.item, other);
 
       this.schedulerCtrl.updateSchedule(current, {
         day: current.day,
@@ -380,13 +380,6 @@ class MultiSliderController implements angular.IComponentController {
 
   private onWeeklySlotMouseLeave() {
     this.isHoveringSlot = false;
-  }
-
-  /**
-   * Actually remove the schedule from both the screen and the model
-   */
-  private removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    this.schedulerCtrl.removeScheduleFromItem(this.item, schedule);
   }
 
   private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
