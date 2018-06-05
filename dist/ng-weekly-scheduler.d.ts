@@ -15,10 +15,10 @@ declare namespace br.weeklyScheduler {
         Sunday = 6,
     }
 }
-/**
- * Implement this on a client and then pass it in to the component.
- */
 declare namespace br.weeklyScheduler {
+    /**
+     * Implement this on a client and then pass it in to the component.
+     */
     interface IWeeklySchedulerAdapter<TCustom, TValue> {
         customModelToWeeklySchedulerRange(custom: TCustom): br.weeklyScheduler.IWeeklySchedulerRange<TValue>;
         /** Transform the data held within the component to the format you need it outside of the component. */

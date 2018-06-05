@@ -1,7 +1,7 @@
-/**
- * Implement this on a client and then pass it in to the component.
- */
 namespace br.weeklyScheduler {
+    /**
+     * Implement this on a client and then pass it in to the component.
+     */
     export interface IWeeklySchedulerAdapter<TCustom, TValue> {
         customModelToWeeklySchedulerRange(custom: TCustom): br.weeklyScheduler.IWeeklySchedulerRange<TValue>;
 
