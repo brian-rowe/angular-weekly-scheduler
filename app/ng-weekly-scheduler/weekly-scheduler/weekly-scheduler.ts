@@ -36,7 +36,7 @@ class WeeklySchedulerController implements angular.IController {
   public startedWithInvalidSchedule: boolean;
   public hoverClass: string;
 
-  public config: IWeeklySchedulerConfig<any>
+  public config: IWeeklySchedulerConfig<any>;
   public items: IInternalWeeklySchedulerItem<any>[];
   public options: br.weeklyScheduler.IWeeklySchedulerOptions<any>;
 
@@ -49,11 +49,7 @@ class WeeklySchedulerController implements angular.IController {
   public validationErrors: ValidationError[];
 
   $doCheck() {
-    let validationErrors = this.getValidationErrors();
-
-    if (validationErrors) {
-      this.validationErrors = validationErrors;
-    }
+    this.validationErrors = this.getValidationErrors();
   }
 
   $onInit() {
