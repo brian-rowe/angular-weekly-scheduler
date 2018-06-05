@@ -86,6 +86,12 @@ class WeeklySchedulerController implements angular.IController {
     return validationErrors.length > 0;
   }
 
+  public mergeAllOverlapsForItem(item: WeeklySchedulerItem<any>) {
+    do {
+      item.schedules.forEach(schedule => this.mergeOverlaps(item, schedule));
+    } while (item.needsOverlapsMerged());
+  }
+
   public mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     let schedules = item.schedules;
 

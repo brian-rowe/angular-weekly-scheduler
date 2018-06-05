@@ -264,9 +264,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private mergeAllOverlaps() {
-    do {
-      this.item.schedules.forEach(s => this.mergeOverlaps(this.item, s));
-    } while (this.item.needsOverlapsMerged());
+    this.schedulerCtrl.mergeAllOverlapsForItem(this.item);
   }
 
   private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
