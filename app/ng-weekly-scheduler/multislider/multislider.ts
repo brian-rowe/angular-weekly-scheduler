@@ -7,16 +7,14 @@ class MultiSliderController implements angular.IComponentController {
     '$element',
     '$q',
     'brWeeklySchedulerEndAdjusterService',
-    'brWeeklySchedulerNullEndWidth',
-    'brWeeklySchedulerOverlapService'
+    'brWeeklySchedulerNullEndWidth'
   ];
 
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $q: angular.IQService,
     private endAdjusterService: EndAdjusterService,
-    private nullEndWidth: number,
-    private overlapService: OverlapService
+    private nullEndWidth: number
   ) {
     this.element = this.$element[0];
   }
