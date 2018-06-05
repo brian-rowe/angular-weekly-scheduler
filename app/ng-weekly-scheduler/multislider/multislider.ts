@@ -36,7 +36,7 @@ class MultiSliderController implements angular.IComponentController {
     if (this.$hoverElement.length) {
       this.element.addEventListener('mousemove', (e: MouseEvent) => {
         const primary = 1;
-        const defaultSize = 60;
+        const defaultSize = 15;
 
         // must use 'buttons' not 'button'
         let isDragging = e.buttons === primary;
