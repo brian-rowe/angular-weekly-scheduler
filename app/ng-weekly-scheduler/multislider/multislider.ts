@@ -33,7 +33,7 @@ class MultiSliderController implements angular.IComponentController {
   public item: WeeklySchedulerItem<any>;
 
   $onInit() {
-    this.schedulerCtrl.mergeAllOverlapsForItem(this.item);
+    //this.schedulerCtrl.mergeAllOverlapsForItem(this.item);
   }
 
   $postLink() {
