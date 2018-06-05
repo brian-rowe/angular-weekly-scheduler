@@ -21,8 +21,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           onChange: (isValid) => {
             $scope.isDirty = true;
             $scope.isValid = isValid;
-
-            console.log('The model has changed!');
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
