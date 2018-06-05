@@ -106,6 +106,14 @@ class MultiSliderController implements angular.IComponentController {
     this.setDirty();
   }
 
+  public onGhostWrapperMouseDown() {
+    this._renderGhost = true;
+  }
+
+  public onGhostWrapperMouseUp() {
+    this._renderGhost = false;
+  }
+
   public onHoverElementClick() {
     if (this.canAdd) {
       let elementOffsetX = this.elementOffsetService.left(this.$element);
