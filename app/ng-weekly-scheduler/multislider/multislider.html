@@ -1,25 +1,28 @@
-<br-ghost-slot ng-show="multiSliderCtrl.canRenderGhost()">
-    +
-</br-ghost-slot>
+<div class="ghost-wrapper" ng-mousedown="multiSliderCtrl._renderGhost = true" ng-mouseup="multiSliderCtrl._renderGhost = false" ng-mousemove="multiSliderCtrl.positionGhost($event)">
+    <br-ghost-slot ng-show="multiSliderCtrl.canRenderGhost()"
+                   ng-style="multiSliderCtrl.ghostPosition">
+        +
+    </br-ghost-slot>
 
-<br-weekly-slot class="slot {{ schedule.$class }}"
-             config="multiSliderCtrl.config"
-             item="multiSliderCtrl.item"
-             ng-class="{
-                 active: schedule.$isActive,
-                 disable: multiSliderCtrl.item.editable === false,
-                 nullEnd: schedule.end === null,
-                 pending: schedule.$isEditing
-             }"
-             ng-repeat="schedule in multiSliderCtrl.item.schedules"
-             ng-model="schedule"
-             ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
-             ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
-             ng-style="{
-                 left: multiSliderCtrl.getSlotLeft(schedule.start),
-                 right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end) 
-             }"
-             edit-schedule="multiSliderCtrl.editSchedule(schedule)"
-             remove-schedule="multiSliderCtrl.removeSchedule(schedule)"
-             update-schedule="multiSliderCtrl.schedulerCtrl.updateSchedule(schedule, update)"
-></br-weekly-slot>
+    <br-weekly-slot class="slot {{ schedule.$class }}"
+                config="multiSliderCtrl.config"
+                item="multiSliderCtrl.item"
+                ng-class="{
+                    active: schedule.$isActive,
+                    disable: multiSliderCtrl.item.editable === false,
+                    nullEnd: schedule.end === null,
+                    pending: schedule.$isEditing
+                }"
+                ng-repeat="schedule in multiSliderCtrl.item.schedules"
+                ng-model="schedule"
+                ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
+                ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
+                ng-style="{
+                    left: multiSliderCtrl.getSlotLeft(schedule.start),
+                    right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end) 
+                }"
+                edit-schedule="multiSliderCtrl.editSchedule(schedule)"
+                remove-schedule="multiSliderCtrl.removeSchedule(schedule)"
+                update-schedule="multiSliderCtrl.schedulerCtrl.updateSchedule(schedule, update)"
+    ></br-weekly-slot>
+</div>

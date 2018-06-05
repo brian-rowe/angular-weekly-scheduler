@@ -21,6 +21,7 @@ class MultiSliderController implements angular.IComponentController {
     this.element = this.$element[0];
   }
 
+  private ghostPosition: { left: string, right: string };
   private schedulerCtrl: WeeklySchedulerController;
   
   public $hoverElement: angular.IAugmentedJQuery;
@@ -32,29 +33,7 @@ class MultiSliderController implements angular.IComponentController {
   public config: IWeeklySchedulerConfig<any>;
   public item: WeeklySchedulerItem<any>;
 
-  $postLink() {
-    if (this.$hoverElement && this.$hoverElement.length) {
-      this.element.addEventListener('mousemove', (e: MouseEvent) => {
-        const primary = 1;
-        const defaultSize = 15;
-
-        // must use 'buttons' not 'button'
-        let isDragging = e.buttons === primary;
-
-        let val = this.getGhostLeftVal(e);
-
-        if (!isDragging) {
-          let updatedLeft = this.getSlotLeft(val);
-          let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
-
-          this.$hoverElement.css({
-            left: updatedLeft,
-            right: updatedRight
-          });
-        }
-      });
-    }
-  }
+  private _renderGhost: boolean;
 
   public addSlot(start: number, end: number): angular.IPromise<void> {
     if (start < 0) {
@@ -95,9 +74,25 @@ class MultiSliderController implements angular.IComponentController {
     let updatedRightPx: string = this.getSlotRight(currentLeftVal, updatedRightVal);
     
     // Lock left edge in place, only update right
-    this.$hoverElement.css({
-      right: updatedRightPx
-    });
+    this.ghostPosition.right = updatedRightPx;
+  }
+  
+  /** Move ghost around while not dragging */
+  public positionGhost(e: MouseEvent) {
+    const primary = 1;
+    const defaultSize = 15;
+
+    // must use 'buttons' not 'button'
+    let isDragging = e.buttons === primary;
+
+    let val = this.getGhostLeftVal(e);
+
+    if (!isDragging) {
+      let updatedLeft = this.getSlotLeft(val);
+      let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
+
+      this.ghostPosition = { left : updatedLeft, right: updatedRight };
+    }
   }
 
   public setDirty() {
@@ -166,7 +161,7 @@ class MultiSliderController implements angular.IComponentController {
       return false;
     }
 
-    return true;
+    return this._renderGhost;
   }
 
   private getGhostLeftPixel(event: MouseEvent) {
