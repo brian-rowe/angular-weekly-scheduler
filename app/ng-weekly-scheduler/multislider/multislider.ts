@@ -488,8 +488,7 @@ class MultiSliderComponent implements angular.IComponentOptions {
 
   bindings = {
     config: '<',
-    item: '=',
-    size: '<?'
+    item: '='
   };
 
   controller = MultiSliderController.$name;
