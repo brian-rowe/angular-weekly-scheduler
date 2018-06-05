@@ -6,6 +6,7 @@ class MultiSliderController implements angular.IComponentController {
   static $inject = [
     '$element',
     '$q',
+    'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerNullEndWidth',
     'brWeeklySchedulerOverlapService'
   ];
@@ -13,6 +14,7 @@ class MultiSliderController implements angular.IComponentController {
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $q: angular.IQService,
+    private endAdjusterService: EndAdjusterService,
     private nullEndWidth: number,
     private overlapService: OverlapService
   ) {
@@ -142,7 +144,7 @@ class MultiSliderController implements angular.IComponentController {
 
       let start = this.pixelToVal(hoverElementOffsetX);
       let width = this.pixelToVal(this.$hoverElement[0].clientWidth);
-      let end = this.config.nullEnds ? null : this.adjustEndForModel(start + width);
+      let end = this.config.nullEnds ? null : this.endAdjusterService.adjustEndForModel(this.config, start + width);
 
       this.isAdding = true;
 
@@ -151,14 +153,6 @@ class MultiSliderController implements angular.IComponentController {
         this.isAdding = false;
       });
     }
-  }
-
-  private adjustEndForModel(end: number) {
-    if (end === this.config.maxValue) {
-      end = 0;
-    }
-
-    return end;
   }
 
   /**
@@ -447,7 +441,7 @@ class MultiSliderController implements angular.IComponentController {
    */
   private updateSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     schedule.start = update.start;
-    schedule.end = this.adjustEndForModel(update.end);
+    schedule.end = this.endAdjusterService.adjustEndForModel(this.config, update.end);
 
     this.onChange();
   }
