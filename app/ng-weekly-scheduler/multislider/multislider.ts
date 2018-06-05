@@ -231,12 +231,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private getOverlapState(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): OverlapState {
-    let overlapState = this.overlapService.getOverlapState(
-      current.start,
-      this.endAdjusterService.adjustEndForView(this.config, current.end),
-      other.start,
-      this.endAdjusterService.adjustEndForView(this.config, other.end)
-    );
+    let overlapState = this.overlapService.getOverlapState(this.config, current, other);
 
     return overlapState;
   }
@@ -368,10 +363,7 @@ class MultiSliderController implements angular.IComponentController {
     }
   }
 
-  /**
-   * If the schedules are highly fragmented from the source, the overlaps might not be fully merged the first time.
-   * This function should determine whether additional passes are needed.
-   */
+ 
   private needsOverlapsMerged(): boolean {
     let len = this.item.schedules.length;
     
