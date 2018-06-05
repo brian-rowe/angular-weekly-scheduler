@@ -129,7 +129,7 @@ class WeeklySchedulerController implements angular.IController {
 
     result = angular.extend(builder, { label: this.dayMap[day] });
 
-    return result;
+    return new WeeklySchedulerItem(result);
   }
 
   /**

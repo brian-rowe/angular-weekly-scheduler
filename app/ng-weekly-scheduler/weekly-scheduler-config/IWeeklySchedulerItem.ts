@@ -11,3 +11,18 @@ namespace br.weeklyScheduler {
 interface IInternalWeeklySchedulerItem<T> extends br.weeklyScheduler.IWeeklySchedulerItem<T> {
     label: string;
 }
+
+/** Provides common functionality for an item -- pass it in and the resulting object will allow you to operate on it */
+/** @internal */
+class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
+    day: br.weeklyScheduler.Days;
+    editable: boolean;
+    label: string;
+    schedules: br.weeklyScheduler.IWeeklySchedulerRange<T>[];
+
+    constructor(item: br.weeklyScheduler.IWeeklySchedulerItem<T>) {
+        this.day = item.day;
+        this.editable = item.editable;
+        this.schedules = item.schedules;
+    }
+}
