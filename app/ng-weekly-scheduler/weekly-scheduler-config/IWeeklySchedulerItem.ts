@@ -35,6 +35,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         return this.schedules.length === 0;
     }
 
+    public isEditable() {
+        return !angular.isDefined(this.editable) || this.editable;
+    }
+
     public removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
         let schedules = this.schedules;
 
