@@ -230,12 +230,6 @@ class MultiSliderController implements angular.IComponentController {
     }
   }
 
-  private getOverlapState(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): OverlapState {
-    let overlapState = this.overlapService.getOverlapState(this.config, current, other);
-
-    return overlapState;
-  }
-
   private getSlotLeft(start: number) {
     let underlyingInterval: HTMLElement = this.getUnderlyingInterval(start);
 
@@ -373,7 +367,7 @@ class MultiSliderController implements angular.IComponentController {
       let nextSchedule = this.item.schedules[i + 1];
 
       if (this.valuesMatch(currentSchedule, nextSchedule)) {
-        let overlapState = this.getOverlapState(currentSchedule, nextSchedule);
+        let overlapState = this.overlapService.getOverlapState(this.config, currentSchedule, nextSchedule);
 
         return [OverlapState.OtherEndIsCurrentStart, OverlapState.OtherStartIsCurrentEnd].indexOf(overlapState) > -1;
       }
@@ -393,7 +387,7 @@ class MultiSliderController implements angular.IComponentController {
 
     schedules.forEach((el => {
       if (el !== schedule) {
-        let overlapState = this.getOverlapState(schedule, el);
+        let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
         let overlapHandler = this.overlapHandlers[overlapState];
 
         overlapHandler(schedule, el);
