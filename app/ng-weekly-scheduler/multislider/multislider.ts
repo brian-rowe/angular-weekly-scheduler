@@ -357,29 +357,10 @@ class MultiSliderController implements angular.IComponentController {
     }
   }
 
- 
-  private needsOverlapsMerged(): boolean {
-    let len = this.item.schedules.length;
-    
-    // Compare two at a time
-    for (let i = 0; i < len - 1; i += 1) {
-      let currentSchedule = this.item.schedules[i];
-      let nextSchedule = this.item.schedules[i + 1];
-
-      if (this.valuesMatch(currentSchedule, nextSchedule)) {
-        let overlapState = this.overlapService.getOverlapState(this.config, currentSchedule, nextSchedule);
-
-        return [OverlapState.OtherEndIsCurrentStart, OverlapState.OtherStartIsCurrentEnd].indexOf(overlapState) > -1;
-      }
-    }
-
-    return false;
-  }
-
   private mergeAllOverlaps() {
     do {
       this.item.schedules.forEach(s => this.mergeOverlaps(s));
-    } while (this.needsOverlapsMerged());
+    } while (this.item.needsOverlapsMerged());
   }
 
   private mergeOverlaps(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {

@@ -9,6 +9,7 @@ class WeeklySchedulerController implements angular.IController {
     '$scope',
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
+    'brWeeklySchedulerOverlapService',
     'brWeeklySchedulerValidationService',
   ];
 
@@ -18,6 +19,7 @@ class WeeklySchedulerController implements angular.IController {
     private $scope: angular.IScope,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
+    private overlapService: OverlapService,
     private scheduleValidatorService: ScheduleValidationService
   ) {
   }
@@ -129,7 +131,7 @@ class WeeklySchedulerController implements angular.IController {
 
     result = angular.extend(builder, { label: this.dayMap[day] });
 
-    return new WeeklySchedulerItem(result);
+    return new WeeklySchedulerItem(this.config, result, this.overlapService);
   }
 
   /**

@@ -20,11 +20,19 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     label: string;
     schedules: br.weeklyScheduler.IWeeklySchedulerRange<T>[];
 
-    constructor(item: IInternalWeeklySchedulerItem<T>) {
+    constructor(
+        private config: IWeeklySchedulerConfig<T>,
+        private item: IInternalWeeklySchedulerItem<T>,
+        private overlapService: OverlapService
+    ) {
         this.day = item.day;
         this.editable = item.editable;
         this.label = item.label;
         this.schedules = item.schedules;
+    }
+    
+    private schedulesHaveMatchingValues(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>, other: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+        return schedule.value === other.value;
     }
 
     public addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
@@ -37,6 +45,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
 
     public isEditable() {
         return !angular.isDefined(this.editable) || this.editable;
+    }
+
+    public needsOverlapsMerged() {
+
     }
 
     public removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
