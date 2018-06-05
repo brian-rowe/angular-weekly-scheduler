@@ -199,7 +199,7 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     if (this.isHoveringSlot) {
-      return false
+      return false;
     }
 
     return true;
