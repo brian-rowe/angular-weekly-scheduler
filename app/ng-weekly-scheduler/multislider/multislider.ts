@@ -357,12 +357,12 @@ class MultiSliderController implements angular.IComponentController {
 
   private mergeAllOverlaps() {
     do {
-      this.item.schedules.forEach(s => this.mergeOverlaps(s));
+      this.item.schedules.forEach(s => this.mergeOverlaps(this.item, s));
     } while (this.item.needsOverlapsMerged());
   }
 
-  private mergeOverlaps(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    let schedules = this.item.schedules;
+  private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    let schedules = item.schedules;
 
     schedules.forEach((el => {
       if (el !== schedule) {
@@ -388,7 +388,7 @@ class MultiSliderController implements angular.IComponentController {
 
   public merge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     // We consider the schedule we were working with to be the most important, so handle its overlaps first.
-    this.mergeOverlaps(schedule);
+    this.mergeOverlaps(this.item, schedule);
     this.mergeAllOverlaps();
   }
 
