@@ -173,7 +173,7 @@ class MultiSliderController implements angular.IComponentController {
    */
   private canRenderGhost(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     if (this.config.nullEnds) {
-      return this.item.schedules.length === 0;
+      return this.item.hasNoSchedules();
     }
 
     if (angular.isDefined(this.item.editable) && !this.item.editable) {
