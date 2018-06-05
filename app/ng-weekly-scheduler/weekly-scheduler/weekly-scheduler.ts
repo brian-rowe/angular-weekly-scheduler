@@ -36,6 +36,9 @@ class WeeklySchedulerController implements angular.IController {
   /** should be true if the user is currently holding down the primary mouse button on a slot */
   public dragging: boolean;
 
+  /** should be true if the user is currently holding the mouse pointer over a slot */
+  public hoveringSlot: boolean;
+
   /** should be true if the scheduler became invalid after being initialized */
   public invalid: boolean;
 

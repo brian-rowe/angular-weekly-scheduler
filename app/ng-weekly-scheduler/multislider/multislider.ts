@@ -37,7 +37,6 @@ class MultiSliderController implements angular.IComponentController {
 
   public canAdd: boolean = true;
   public isAdding: boolean = false;
-  public isHoveringSlot: boolean = false;
 
   public element: Element;
   public config: IWeeklySchedulerConfig<any>;
@@ -416,6 +415,14 @@ class MultiSliderController implements angular.IComponentController {
 
   set isDragging(value: boolean) {
     this.schedulerCtrl.dragging = value;
+  }
+
+  get isHoveringSlot() {
+    return this.schedulerCtrl.hoveringSlot;
+  }
+
+  set isHoveringSlot(value: boolean) {
+    this.schedulerCtrl.hoveringSlot = value;
   }
 }
 
