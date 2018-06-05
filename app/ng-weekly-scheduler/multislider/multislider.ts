@@ -6,8 +6,6 @@ class MultiSliderController implements angular.IComponentController {
   static $inject = [
     '$element',
     '$q',
-    '$scope',
-    '$window',
     'brWeeklySchedulerNullEndWidth',
     'brWeeklySchedulerOverlapService'
   ];
@@ -15,8 +13,6 @@ class MultiSliderController implements angular.IComponentController {
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $q: angular.IQService,
-    private $scope: angular.IScope,
-    private $window: angular.IWindowService,
     private nullEndWidth: number,
     private overlapService: OverlapService
   ) {
