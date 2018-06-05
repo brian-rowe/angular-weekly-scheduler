@@ -28,6 +28,16 @@ class WeeklySchedulerController implements angular.IController {
 
   private _originalItems: IInternalWeeklySchedulerItem<any>[];
 
+  private overlapHandlers: { [key: number]: (item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) => void; } = {
+    [OverlapState.NoOverlap]: (item, current, other) => this.handleNoOverlap(item, current, other),
+    [OverlapState.CurrentIsInsideOther]: (item, current, other) => this.handleCurrentIsInsideOther(item, current, other),
+    [OverlapState.CurrentCoversOther]: (item, current, other) => this.handleCurrentCoversOther(item, current, other),
+    [OverlapState.OtherEndIsInsideCurrent]: (item, current, other) => this.handleOtherEndIsInsideCurrent(item, current, other),
+    [OverlapState.OtherStartIsInsideCurrent]: (item, current, other) => this.handleOtherStartIsInsideCurrent(item, current, other),
+    [OverlapState.OtherEndIsCurrentStart]: (item, current, other) => this.handleOtherEndIsCurrentStart(item, current, other),
+    [OverlapState.OtherStartIsCurrentEnd]: (item, current, other) => this.handleOtherStartIsCurrentEnd(item, current, other)
+  };
+
   private adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>;
 
   /** should be true if the scheduler has been interacted with */
@@ -74,6 +84,19 @@ class WeeklySchedulerController implements angular.IController {
     let validationErrors: ValidationError[] = this.getValidationErrors();
 
     return validationErrors.length > 0;
+  }
+
+  public mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    let schedules = item.schedules;
+
+    schedules.forEach((el => {
+      if (el !== schedule) {
+        let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
+        let overlapHandler = this.overlapHandlers[overlapState];
+
+        overlapHandler(item, schedule, el);
+      }
+    }));
   }
 
   public onChange() {
@@ -192,6 +215,92 @@ class WeeklySchedulerController implements angular.IController {
     return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
   }
 
+  // Overlap handlers
+
+  private handleCurrentCoversOther(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
+    // Here, it doesn't matter if the values match -- the covering slot can always "eat" the other one
+    this.removeScheduleFromItem(item, other);
+  }
+
+  private handleCurrentIsInsideOther(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
+    if (this.valuesMatch(current, other)) {
+      // Remove 'other' & make current expand to fit the other slot
+      this.removeScheduleFromItem(item, other);
+
+      this.updateSchedule(current, {
+        day: other.day,
+        start: other.start,
+        end: other.end,
+        value: other.value
+      });
+    } else {
+      // Just remove 'current'
+      this.removeScheduleFromItem(item, current);
+    }
+  }
+
+  private handleNoOverlap(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    // Do nothing
+  }
+
+  private handleOtherEndIsInsideCurrent(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
+    if (this.valuesMatch(current, other)) {
+      this.removeScheduleFromItem(item, other);
+
+      this.updateSchedule(current, {
+        day: current.day,
+        start: other.start,
+        end: current.end,
+        value: other.value
+      });
+    } else {
+      this.updateSchedule(other, {
+        day: other.day,
+        start: other.start,
+        end: current.start,
+        value: current.value
+      });
+    }
+  }
+
+  private handleOtherStartIsInsideCurrent(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
+    if (this.valuesMatch(current, other)) {
+      this.removeScheduleFromItem(item, other);
+
+      this.updateSchedule(current, {
+        day: current.day,
+        start: current.start,
+        end: other.end,
+        value: other.value
+      });
+    } else {
+      this.updateSchedule(other, {
+        day: other.day,
+        start: current.end,
+        end: other.end,
+        value: other.value
+      })
+    }
+  }
+
+  private handleOtherEndIsCurrentStart(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
+    if (this.valuesMatch(current, other)) {
+      this.handleOtherEndIsInsideCurrent(item, current, other);
+    } else {
+      // DO NOTHING, this is okay if the values don't match
+    }
+  }
+
+  private handleOtherStartIsCurrentEnd(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
+    if (this.valuesMatch(current, other)) {
+      this.handleOtherStartIsInsideCurrent(item, current, other);
+    } else {
+      // DO NOTHING, this is okay if the values don't match
+    }
+  }
+
+  // End overlap handlers
+
   private resetZoom() {
     this.$scope.$broadcast(WeeklySchedulerEvents.RESET_ZOOM);
   }
@@ -228,6 +337,10 @@ class WeeklySchedulerController implements angular.IController {
         this.$element.find(`.${this.hoverClass}`).addClass(pulseClass);
       }
     });
+  }
+
+  private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    return schedule.value === other.value;
   }
 }
 

@@ -21,16 +21,6 @@ class MultiSliderController implements angular.IComponentController {
     this.element = this.$element[0];
   }
 
-  private overlapHandlers: { [key: number]: (item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) => void; } = {
-    [OverlapState.NoOverlap]: (item, current, other) => this.handleNoOverlap(item, current, other),
-    [OverlapState.CurrentIsInsideOther]: (item, current, other) => this.handleCurrentIsInsideOther(item, current, other),
-    [OverlapState.CurrentCoversOther]: (item, current, other) => this.handleCurrentCoversOther(item, current, other),
-    [OverlapState.OtherEndIsInsideCurrent]: (item, current, other) => this.handleOtherEndIsInsideCurrent(item, current, other),
-    [OverlapState.OtherStartIsInsideCurrent]: (item, current, other) => this.handleOtherStartIsInsideCurrent(item, current, other),
-    [OverlapState.OtherEndIsCurrentStart]: (item, current, other) => this.handleOtherEndIsCurrentStart(item, current, other),
-    [OverlapState.OtherStartIsCurrentEnd]: (item, current, other) => this.handleOtherStartIsCurrentEnd(item, current, other)
-  };
-  
   private schedulerCtrl: WeeklySchedulerController;
   
   public $hoverElement: angular.IAugmentedJQuery;
@@ -273,88 +263,6 @@ class MultiSliderController implements angular.IComponentController {
     return this.$element.parent()[0].querySelector(`[rel='${val}']`);
   }
 
-  private handleCurrentCoversOther(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    // Here, it doesn't matter if the values match -- the covering slot can always "eat" the other one
-    this.schedulerCtrl.removeScheduleFromItem(item, other);
-  }
-
-  private handleCurrentIsInsideOther(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
-      // Remove 'other' & make current expand to fit the other slot
-      this.schedulerCtrl.removeScheduleFromItem(item, other);
-
-      this.schedulerCtrl.updateSchedule(current, {
-        day: other.day,
-        start: other.start,
-        end: other.end,
-        value: other.value
-      });
-    } else {
-      // Just remove 'current'
-      this.schedulerCtrl.removeScheduleFromItem(item, current);
-    }
-  }
-
-  private handleNoOverlap(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    // Do nothing
-  }
-
-  private handleOtherEndIsInsideCurrent(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
-      this.schedulerCtrl.removeScheduleFromItem(item, other);
-
-      this.schedulerCtrl.updateSchedule(current, {
-        day: current.day,
-        start: other.start,
-        end: current.end,
-        value: other.value
-      });
-    } else {
-      this.schedulerCtrl.updateSchedule(other, {
-        day: other.day,
-        start: other.start,
-        end: current.start,
-        value: current.value
-      });
-    }
-  }
-
-  private handleOtherStartIsInsideCurrent(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
-      this.schedulerCtrl.removeScheduleFromItem(item, other);
-
-      this.schedulerCtrl.updateSchedule(current, {
-        day: current.day,
-        start: current.start,
-        end: other.end,
-        value: other.value
-      });
-    } else {
-      this.schedulerCtrl.updateSchedule(other, {
-        day: other.day,
-        start: current.end,
-        end: other.end,
-        value: other.value
-      })
-    }
-  }
-
-  private handleOtherEndIsCurrentStart(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
-      this.handleOtherEndIsInsideCurrent(item, current, other);
-    } else {
-      // DO NOTHING, this is okay if the values don't match
-    }
-  }
-
-  private handleOtherStartIsCurrentEnd(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
-      this.handleOtherStartIsInsideCurrent(item, current, other);
-    } else {
-      // DO NOTHING, this is okay if the values don't match
-    }
-  }
-
   private mergeAllOverlaps() {
     do {
       this.item.schedules.forEach(s => this.mergeOverlaps(this.item, s));
@@ -362,16 +270,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    let schedules = item.schedules;
-
-    schedules.forEach((el => {
-      if (el !== schedule) {
-        let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
-        let overlapHandler = this.overlapHandlers[overlapState];
-
-        overlapHandler(item, schedule, el);
-      }
-    }));
+    this.schedulerCtrl.mergeOverlaps(item, schedule);
   }
 
   private onWeeklySlotMouseOver() {
@@ -380,10 +279,6 @@ class MultiSliderController implements angular.IComponentController {
 
   private onWeeklySlotMouseLeave() {
     this.isHoveringSlot = false;
-  }
-
-  private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    return schedule.value === other.value;
   }
 
   public merge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
