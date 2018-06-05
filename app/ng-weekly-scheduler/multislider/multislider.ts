@@ -33,7 +33,7 @@ class MultiSliderController implements angular.IComponentController {
   public item: WeeklySchedulerItem<any>;
 
   $onInit() {
-    this.mergeAllOverlaps();
+    this.schedulerCtrl.mergeAllOverlapsForItem(this.item);
   }
 
   $postLink() {
@@ -263,14 +263,6 @@ class MultiSliderController implements angular.IComponentController {
     return this.$element.parent()[0].querySelector(`[rel='${val}']`);
   }
 
-  private mergeAllOverlaps() {
-    this.schedulerCtrl.mergeAllOverlapsForItem(this.item);
-  }
-
-  private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    this.schedulerCtrl.mergeOverlaps(item, schedule);
-  }
-
   private onWeeklySlotMouseOver() {
     this.isHoveringSlot = true;
   }
@@ -281,8 +273,8 @@ class MultiSliderController implements angular.IComponentController {
 
   public merge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     // We consider the schedule we were working with to be the most important, so handle its overlaps first.
-    this.mergeOverlaps(this.item, schedule);
-    this.mergeAllOverlaps();
+    this.schedulerCtrl.mergeOverlaps(this.item, schedule);
+    this.schedulerCtrl.mergeAllOverlapsForItem(this.item);
   }
 
   public pixelToVal(pixel: number) {
