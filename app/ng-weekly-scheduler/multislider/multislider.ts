@@ -23,8 +23,6 @@ class MultiSliderController implements angular.IComponentController {
     this.element = this.$element[0];
   }
 
-  private index: number;
-  
   private overlapHandlers: { [key: number]: (current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) => void; } = {
     [OverlapState.NoOverlap]: (current, other) => this.handleNoOverlap(current, other),
     [OverlapState.CurrentIsInsideOther]: (current, other) => this.handleCurrentIsInsideOther(current, other),
@@ -491,9 +489,8 @@ class MultiSliderComponent implements angular.IComponentOptions {
   bindings = {
     config: '<',
     item: '=',
-    index: '<',
     size: '<?'
-  }
+  };
 
   controller = MultiSliderController.$name;
   controllerAs = MultiSliderController.$controllerAs;
