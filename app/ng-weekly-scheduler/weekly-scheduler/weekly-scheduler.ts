@@ -86,25 +86,6 @@ class WeeklySchedulerController implements angular.IController {
     return validationErrors.length > 0;
   }
 
-  public mergeAllOverlapsForItem(item: WeeklySchedulerItem<any>) {
-    do {
-      item.schedules.forEach(schedule => this.mergeOverlaps(item, schedule));
-    } while (item.needsOverlapsMerged());
-  }
-
-  public mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    let schedules = item.schedules;
-
-    schedules.forEach((el => {
-      if (el !== schedule) {
-        let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
-        let overlapHandler = this.overlapHandlers[overlapState];
-
-        overlapHandler(item, schedule, el);
-      }
-    }));
-  }
-
   public mergeScheduleIntoItem(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     // We consider the schedule we were working with to be the most important, so handle its overlaps first.
     this.mergeOverlaps(item, schedule);
@@ -314,6 +295,25 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   // End overlap handlers
+
+  private mergeAllOverlapsForItem(item: WeeklySchedulerItem<any>) {
+    do {
+      item.schedules.forEach(schedule => this.mergeOverlaps(item, schedule));
+    } while (item.needsOverlapsMerged());
+  }
+
+  private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    let schedules = item.schedules;
+
+    schedules.forEach((el => {
+      if (el !== schedule) {
+        let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
+        let overlapHandler = this.overlapHandlers[overlapState];
+
+        overlapHandler(item, schedule, el);
+      }
+    }));
+  }
 
   private resetZoom() {
     this.$scope.$broadcast(WeeklySchedulerEvents.RESET_ZOOM);
