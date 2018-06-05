@@ -386,12 +386,7 @@ class MultiSliderController implements angular.IComponentController {
    * Actually remove the schedule from both the screen and the model
    */
   private removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    this.isDragging = false;
-    this.isHoveringSlot = false;
-
-    this.item.removeSchedule(schedule);
-
-    this.setDirty();
+    this.schedulerCtrl.removeScheduleFromItem(this.item, schedule);
   }
 
   private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {

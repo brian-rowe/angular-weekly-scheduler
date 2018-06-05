@@ -81,6 +81,18 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   /**
+   * Actually remove the schedule from both the screen and the model
+   */
+  public removeScheduleFromItem(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    this.dragging = false;
+    this.hoveringSlot = false;
+
+    item.removeSchedule(schedule);
+
+    this.dirty = true;
+  }
+
+  /**
    * Commit new values to the schedule
    */
   public updateSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
