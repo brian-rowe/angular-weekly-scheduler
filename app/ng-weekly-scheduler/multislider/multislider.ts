@@ -33,7 +33,7 @@ class MultiSliderController implements angular.IComponentController {
   public item: WeeklySchedulerItem<any>;
 
   $postLink() {
-    if (this.$hoverElement.length) {
+    if (this.$hoverElement && this.$hoverElement.length) {
       this.element.addEventListener('mousemove', (e: MouseEvent) => {
         const primary = 1;
         const defaultSize = 15;
