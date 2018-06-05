@@ -210,12 +210,9 @@ class MultiSliderController implements angular.IComponentController {
     return true;
   }
 
-  /**
-   * The ghost should render with its center over the mouse pointer. This function determines where the left side should be...
-   */
   private getGhostLeftPixel(event: MouseEvent) {
     let elementOffsetX = this.getElementOffsetX(this.$element);
-    let left = event.pageX - elementOffsetX;
+    let left = event.pageX - elementOffsetX - 4; // give a little tolerance to make sure the mouse pointer is always inside the ghost
 
     return left;
   }
