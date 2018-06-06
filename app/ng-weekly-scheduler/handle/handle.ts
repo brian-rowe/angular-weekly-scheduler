@@ -23,6 +23,8 @@ class HandleDirective implements angular.IDirective {
       // Prevent default dragging of selected content
       event.preventDefault();
 
+      // Prevent multiple handlers from being fired if they are nested (only the one you directly interacted with should fire)
+      event.stopPropagation();
 
       $document.on(mousemoveEvent, mousemove);
       $document.on(mouseupEvent, mouseup);
