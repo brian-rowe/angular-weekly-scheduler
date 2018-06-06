@@ -31,8 +31,10 @@ class GhostSlotComponent implements angular.IComponentOptions {
     };
 
     template = `
-        +
+        <ng-transclude></ng-transclude>
     `;
+
+    transclude = true;
 }
 
 

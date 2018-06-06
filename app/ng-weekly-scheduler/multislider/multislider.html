@@ -1,11 +1,11 @@
 <div class="ghost-wrapper" ng-mousedown="multiSliderCtrl.onGhostWrapperMouseDown($event)" ng-mouseup="multiSliderCtrl.onGhostWrapperMouseUp()" ng-mousemove="multiSliderCtrl.onGhostWrapperMouseMove($event)">
     <br-ghost-slot class="slot"
-                   ng-show="multiSliderCtrl.canRenderGhost()"
+                   ng-if="multiSliderCtrl.canRenderGhost()"
                    ng-class="{
                       active: multiSliderCtrl.isDraggingGhost
                    }"
                    ng-style="multiSliderCtrl.ghostPosition">
-        +
+        {{ multiSliderCtrl.ghostPositionLeftValue | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostPositionRightValue | brWeeklySchedulerTimeOfDay }}
     </br-ghost-slot>
 
     <br-weekly-slot class="slot {{ schedule.$class }}"

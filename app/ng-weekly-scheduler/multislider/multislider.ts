@@ -304,6 +304,14 @@ class MultiSliderController implements angular.IComponentController {
   set isHoveringSlot(value: boolean) {
     this.schedulerCtrl.hoveringSlot = value;
   }
+
+  get ghostPositionLeftValue() {
+    return this.pixelToVal(parseInt(this.ghostPosition.left, 10));
+  }
+
+  get ghostPositionRightValue() {
+    return this.pixelToVal(parseInt(this.ghostPosition.left, 10) + this.$hoverElement[0].clientWidth);
+  }
 }
 
 /** @internal */
