@@ -85,17 +85,12 @@ class MultiSliderController implements angular.IComponentController {
     const primary = 1;
     const defaultSize = 15;
 
-    // must use 'buttons' not 'button'
-    let isDragging = e.buttons === primary;
-
     let val = this.getGhostLeftVal(e);
 
-    if (!isDragging) {
-      let updatedLeft = this.getSlotLeft(val);
-      let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
+    let updatedLeft = this.getSlotLeft(val);
+    let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
 
-      this.ghostPosition = { left : updatedLeft, right: updatedRight };
-    }
+    this.ghostPosition = { left : updatedLeft, right: updatedRight };
   }
 
   public setDirty() {
@@ -109,16 +104,15 @@ class MultiSliderController implements angular.IComponentController {
     this.setDirty();
   }
 
-  public onGhostWrapperMouseDown() {
+  public onGhostWrapperMouseDown(event: MouseEvent) {
     this._renderGhost = true;
     this.isDraggingGhost = true;
+    this.positionGhost(event);
   }
 
   public onGhostWrapperMouseMove(event: MouseEvent) {
     if (this.isDraggingGhost) {
       this.adjustGhost(event);
-    } else {
-      this.positionGhost(event);
     }
   }
 
