@@ -4,8 +4,11 @@
                    ng-class="{
                       active: multiSliderCtrl.isDraggingGhost
                    }"
-                   ng-style="multiSliderCtrl.ghostPosition">
-        {{ multiSliderCtrl.ghostPositionLeftValue | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostPositionRightValue | brWeeklySchedulerTimeOfDay }}
+                   ng-style="{
+                      left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.left),
+                      right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.left, multiSliderCtrl.ghostValues.right)
+                   }">
+        {{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}
     </br-ghost-slot>
 
     <br-weekly-slot class="slot {{ schedule.$class }}"
@@ -23,7 +26,7 @@
                 ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
                 ng-style="{
                     left: multiSliderCtrl.getSlotLeft(schedule.start),
-                    right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end) 
+                    right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end)
                 }"
                 edit-schedule="multiSliderCtrl.editSchedule(schedule)"
                 remove-schedule="multiSliderCtrl.removeSchedule(schedule)"

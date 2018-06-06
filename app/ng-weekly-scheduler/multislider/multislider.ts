@@ -22,8 +22,9 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private isDraggingGhost: boolean = false;
-  private ghostPosition: { left: string, right: string };
   private startingGhostValues: { left: number, right: number };
+  private ghostValues: { left: number, right: number };
+
   private schedulerCtrl: WeeklySchedulerController;
   
   public $hoverElement: angular.IAugmentedJQuery;
@@ -73,20 +74,20 @@ class MultiSliderController implements angular.IComponentController {
 
     let existingLeftValue: number = this.startingGhostValues.left;
 
-    let updatedLeftPx: string;
-    let updatedRightPx: string;
+    let updatedLeftValue: number;
+    let updatedRightValue: number;
     
     if (mouseValue < existingLeftValue) { // user is dragging left
-      updatedLeftPx = this.getSlotLeft(mouseValue);
-      updatedRightPx = this.getSlotRight(mouseValue, existingLeftValue);
+      updatedLeftValue = mouseValue;
+      updatedRightValue = existingLeftValue;
     } else { // user is dragging right
-      updatedLeftPx = this.getSlotLeft(existingLeftValue);
-      updatedRightPx = this.getSlotRight(existingLeftValue, mouseValue);
+      updatedLeftValue = existingLeftValue;
+      updatedRightValue = mouseValue;
     }
 
-    this.ghostPosition = {
-      left: updatedLeftPx,
-      right: updatedRightPx
+    this.ghostValues = {
+      left: updatedLeftValue,
+      right: updatedRightValue
     }
   }
   
@@ -94,12 +95,8 @@ class MultiSliderController implements angular.IComponentController {
   public positionGhost(e: MouseEvent) {
     let val = this.getValAtMousePosition(e);
 
-    let updatedLeft = this.getSlotLeft(val);
-    let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + this.config.interval);
-
-    this.ghostPosition = { left : updatedLeft, right: updatedRight };
-
     this.startingGhostValues = { left: val, right: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval };
+    this.ghostValues = angular.copy(this.startingGhostValues);
   }
 
   public setDirty() {
@@ -312,14 +309,6 @@ class MultiSliderController implements angular.IComponentController {
 
   set isHoveringSlot(value: boolean) {
     this.schedulerCtrl.hoveringSlot = value;
-  }
-
-  get ghostPositionLeftValue() {
-    return this.pixelToVal(parseInt(this.ghostPosition.left, 10));
-  }
-
-  get ghostPositionRightValue() {
-    return this.pixelToVal(parseInt(this.ghostPosition.left, 10) + this.$hoverElement[0].clientWidth);
   }
 }
 
