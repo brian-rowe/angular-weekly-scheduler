@@ -23,6 +23,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private isDraggingGhost: boolean = false;
   private ghostPosition: { left: string, right: string };
+  private startingGhostPosition: { left: string, right: string };
   private schedulerCtrl: WeeklySchedulerController;
   
   public $hoverElement: angular.IAugmentedJQuery;
@@ -71,8 +72,7 @@ class MultiSliderController implements angular.IComponentController {
     let mousePosition = this.getMousePosition(event);
     let mouseValue: number = this.getValAtMousePosition(event);
 
-    let existingLeftValue: number = this.pixelToVal(parseInt(this.ghostPosition.left, 10));
-
+    let existingLeftValue: number = this.pixelToVal(parseInt(this.startingGhostPosition.left, 10));
     
     if (mouseValue < existingLeftValue) { // user is dragging left
       let updatedLeftPx: string = this.getSlotLeft(mouseValue);
@@ -95,6 +95,7 @@ class MultiSliderController implements angular.IComponentController {
     let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + this.config.interval);
 
     this.ghostPosition = { left : updatedLeft, right: updatedRight };
+    this.startingGhostPosition = angular.copy(this.ghostPosition);
   }
 
   public setDirty() {
