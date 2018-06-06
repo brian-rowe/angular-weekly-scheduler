@@ -70,7 +70,7 @@ class MultiSliderController implements angular.IComponentController {
   public adjustGhost(event: MouseEvent) {
     let currentLeftVal: number = this.getGhostLeftVal(event);
 
-    let mousePosition = this.getGhostLeftPixel(event);
+    let mousePosition = this.getMousePosition(event);
 
     // Make right edge adjust to new mouse position
     let updatedRightVal: number = this.pixelToVal(mousePosition);
@@ -181,7 +181,7 @@ class MultiSliderController implements angular.IComponentController {
     return this._renderGhost;
   }
 
-  private getGhostLeftPixel(event: MouseEvent) {
+  private getMousePosition(event: MouseEvent) {
     let elementOffsetX = this.elementOffsetService.left(this.$element);
     let left = event.pageX - elementOffsetX;
 
@@ -189,7 +189,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private getGhostLeftVal(event: MouseEvent) {
-    return this.pixelToVal(this.getGhostLeftPixel(event));
+    return this.pixelToVal(this.getMousePosition(event));
   }
 
   /**
