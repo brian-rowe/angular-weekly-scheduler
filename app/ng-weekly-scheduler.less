@@ -30,8 +30,6 @@
 
   br-multi-slider {
     .slot {
-      border-color: @textColor;
-
       &.active {
         box-shadow: 0px 0px 2px 2px @textColor;
       }
@@ -190,11 +188,8 @@ br-multi-slider {
   }
   
   .slot {
-    @borderWidth: 1px;
-    @lineHeight: @rowHeight - @topOffset - @bottomOffset - (@borderWidth * 2);
+    @lineHeight: @rowHeight - @topOffset - @bottomOffset;
     
-    border-width: @borderWidth;
-    border-style: solid;
     font-family: monospace;
     font-size: x-small;
     position: absolute;
