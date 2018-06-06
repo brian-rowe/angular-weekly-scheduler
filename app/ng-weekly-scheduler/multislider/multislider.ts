@@ -73,17 +73,21 @@ class MultiSliderController implements angular.IComponentController {
     let mouseValue: number = this.getValAtMousePosition(event);
 
     let existingLeftValue: number = this.startingGhostValues.left;
+
+    let updatedLeftPx: string;
+    let updatedRightPx: string;
     
     if (mouseValue < existingLeftValue) { // user is dragging left
-      let updatedLeftPx: string = this.getSlotLeft(mouseValue);
-
-      this.ghostPosition.left = updatedLeftPx;
+      updatedLeftPx = this.getSlotLeft(mouseValue);
+      updatedRightPx = this.getSlotRight(mouseValue, existingLeftValue);
     } else { // user is dragging right
-      // Make right edge adjust to new mouse position
-      let updatedRightPx: string = this.getSlotRight(existingLeftValue, mouseValue);
+      updatedLeftPx = this.getSlotLeft(existingLeftValue);
+      updatedRightPx = this.getSlotRight(existingLeftValue, mouseValue);
+    }
 
-      // Lock left edge in place, only update right
-      this.ghostPosition.right = updatedRightPx;
+    this.ghostPosition = {
+      left: updatedLeftPx,
+      right: updatedRightPx
     }
   }
   
