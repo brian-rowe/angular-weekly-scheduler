@@ -68,27 +68,31 @@ class MultiSliderController implements angular.IComponentController {
 
   /** Expand ghost while dragging in it */
   public adjustGhost(event: MouseEvent) {
-    let currentLeftVal: number = this.getValAtMousePosition(event);
-
     let mousePosition = this.getMousePosition(event);
+    let mouseValue: number = this.getValAtMousePosition(event);
 
-    // Make right edge adjust to new mouse position
-    let updatedRightVal: number = this.pixelToVal(mousePosition);
-    let updatedRightPx: string = this.getSlotRight(currentLeftVal, updatedRightVal);
+    let existingLeftValue: number = this.pixelToVal(parseInt(this.ghostPosition.left, 10));
 
-    // Lock left edge in place, only update right
-    this.ghostPosition.right = updatedRightPx;
+    
+    if (mouseValue < existingLeftValue) { // user is dragging left
+      let updatedLeftPx: string = this.getSlotLeft(mouseValue);
+
+      this.ghostPosition.left = updatedLeftPx;
+    } else { // user is dragging right
+      // Make right edge adjust to new mouse position
+      let updatedRightPx: string = this.getSlotRight(existingLeftValue, mouseValue);
+
+      // Lock left edge in place, only update right
+      this.ghostPosition.right = updatedRightPx;
+    }
   }
   
   /** Move ghost around while not dragging */
   public positionGhost(e: MouseEvent) {
-    const primary = 1;
-    const defaultSize = 15;
-
     let val = this.getValAtMousePosition(e);
 
     let updatedLeft = this.getSlotLeft(val);
-    let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + defaultSize);
+    let updatedRight = this.config.nullEnds ? this.getSlotRight(val, val + this.nullEndWidth) : this.getSlotRight(val, val + this.config.interval);
 
     this.ghostPosition = { left : updatedLeft, right: updatedRight };
   }
