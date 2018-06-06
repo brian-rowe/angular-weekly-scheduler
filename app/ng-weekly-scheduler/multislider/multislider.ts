@@ -164,13 +164,14 @@ class MultiSliderController implements angular.IComponentController {
    * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
    */
   private canRenderGhost(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    // This one needs to come first, otherwise isDraggingGhost being set to true would override the protection against addt'l slots in nullEnd calendars
+    if (this.config.nullEnds) {
+      return this.item.hasNoSchedules();
+    }
+
     // If you're already dragging the ghost it should never disappear
     if (this.isDraggingGhost) {
       return true;
-    }
-
-    if (this.config.nullEnds) {
-      return this.item.hasNoSchedules();
     }
 
     if (!this.item.isEditable()) {
