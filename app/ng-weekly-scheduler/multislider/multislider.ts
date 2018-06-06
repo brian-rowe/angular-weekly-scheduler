@@ -70,12 +70,12 @@ class MultiSliderController implements angular.IComponentController {
   public adjustGhost(event: MouseEvent) {
     let currentLeftVal: number = this.getGhostLeftVal(event);
 
+    let mousePosition = event.pageX - this.elementOffsetService.left(this.$element);
+
     // Make right edge adjust to new mouse position
-    let updatedRightVal: number = this.pixelToVal(event.pageX - this.elementOffsetService.left(this.$element));
+    let updatedRightVal: number = this.pixelToVal(mousePosition);
     let updatedRightPx: string = this.getSlotRight(currentLeftVal, updatedRightVal);
 
-    console.log('Current left val: ' + currentLeftVal + '. Updated right val: ' + updatedRightVal + '. Update right px: ' + updatedRightPx);
-    
     // Lock left edge in place, only update right
     this.ghostPosition.right = updatedRightPx;
   }
