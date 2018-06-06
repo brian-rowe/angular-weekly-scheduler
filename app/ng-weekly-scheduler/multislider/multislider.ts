@@ -69,7 +69,6 @@ class MultiSliderController implements angular.IComponentController {
 
   /** Expand ghost while dragging in it */
   public adjustGhost(event: MouseEvent) {
-    let mousePosition = this.getMousePosition(event);
     let mouseValue: number = this.getValAtMousePosition(event);
 
     let existingLeftValue: number = this.startingGhostValues.left;
