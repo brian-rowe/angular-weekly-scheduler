@@ -9,7 +9,10 @@
                       left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.left),
                       right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.left, multiSliderCtrl.ghostValues.right)
                    }">
-        <span class="middle">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>
+        <div class="middle">
+            <span ng-if="!multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>
+            <span ng-if="multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} until</span>
+        </div>
     </br-ghost-slot>
 
     <br-weekly-slot class="slot {{ schedule.$class }}"
