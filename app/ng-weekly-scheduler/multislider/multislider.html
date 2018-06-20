@@ -9,7 +9,7 @@
                       left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.left),
                       right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.left, multiSliderCtrl.ghostValues.right)
                    }">
-        <span>{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>
+        <span class="middle">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>
     </br-ghost-slot>
 
     <br-weekly-slot class="slot {{ schedule.$class }}"
