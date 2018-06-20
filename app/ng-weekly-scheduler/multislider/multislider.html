@@ -2,13 +2,14 @@
     <br-ghost-slot class="slot"
                    ng-if="multiSliderCtrl.canRenderGhost()"
                    ng-class="{
-                      active: multiSliderCtrl.isDraggingGhost
+                      active: multiSliderCtrl.isDraggingGhost,
+                      nullEnd: multiSliderCtrl.config.nullEnds
                    }"
                    ng-style="{
                       left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.left),
                       right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.left, multiSliderCtrl.ghostValues.right)
                    }">
-        {{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}
+        <span>{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>
     </br-ghost-slot>
 
     <br-weekly-slot class="slot {{ schedule.$class }}"

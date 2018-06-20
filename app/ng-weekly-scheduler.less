@@ -211,11 +211,17 @@ br-multi-slider {
   }
 
   br-ghost-slot {
-    background: #5ab57a;
+    @bg: #5ab56a;
+
+    background: @bg;
+    color: @bg;
     opacity: 0.6;
     cursor: pointer;
-    color: #fff;
     user-select: none;
+
+    span {
+      color: #fff;
+    }
   }
 
   br-time-range {
