@@ -48,7 +48,8 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     // Sanity check -- don't add a slot with an end before the start
-    if (end <= start) {
+    // caveat: ok to continue if nullEnds is true and end is null
+    if (end && !this.config.nullEnds && end <= start) {
       return this.$q.when();
     }
 
@@ -128,6 +129,10 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseUp() {
+    if (this.config.nullEnds) {
+      this.canAdd = this.item.hasNoSchedules();
+    }
+
     this._renderGhost = false;
     this.isDraggingGhost = false;
 
@@ -135,10 +140,6 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onHoverElementClick() {
-    if (!this.canRenderGhost()) {
-      return;
-    }
-
     if (this.canAdd) {
       let elementOffsetX = this.elementOffsetService.left(this.$element);
       let hoverElementOffsetX = this.elementOffsetService.left(this.$hoverElement) - elementOffsetX;
@@ -152,6 +153,7 @@ class MultiSliderController implements angular.IComponentController {
       this.addSlot(start, end).then(() => {
         this.schedulerCtrl.onChange();
         this.isAdding = false;
+        this.canAdd = false;
       });
     }
   }
