@@ -130,6 +130,10 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onHoverElementClick() {
+    if (!this.canRenderGhost()) {
+      return;
+    }
+
     if (this.canAdd) {
       let elementOffsetX = this.elementOffsetService.left(this.$element);
       let hoverElementOffsetX = this.elementOffsetService.left(this.$hoverElement) - elementOffsetX;
@@ -163,10 +167,10 @@ class MultiSliderController implements angular.IComponentController {
    * Rather than having to deal with modifying mergeOverlaps to handle nullEnds calendars,
    * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
    */
-  private canRenderGhost(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  private canRenderGhost() {
     // This one needs to come first, otherwise isDraggingGhost being set to true would override the protection against addt'l slots in nullEnd calendars
     if (this.config.nullEnds) {
-      return this.item.hasNoSchedules();
+      return this._renderGhost && this.item.hasNoSchedules();
     }
 
     // If you're already dragging the ghost it should never disappear
