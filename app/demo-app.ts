@@ -28,6 +28,8 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       $scope.model2 = angular.copy($scope.model);
       $scope.model2.options.interval = 15;
 
+      $scope.model.options.nullEnds = true;
+
       $scope.adapter = new DemoAdapter([
         // {
         //   day: Days.Saturday,
@@ -38,31 +40,31 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         {
           day: br.weeklyScheduler.Days.Sunday,
           start: 600,
-          end: 900,
+          end: null,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Monday,
           start: 720,
-          end: 1020,
+          end: null,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Tuesday,
           start: 60,
-          end: 180,
+          end: null,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Wednesday,
           start: 30,
-          end: 300,
+          end: null,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Friday,
           start: 0,
-          end: 60,
+          end: null,
           value: true
         }
       ]);
