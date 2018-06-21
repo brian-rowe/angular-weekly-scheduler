@@ -2,8 +2,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
   .controller('DemoController', ['$q', '$scope', '$timeout', '$log',
     function ($q, $scope, $timeout, $log) {
 
-      $scope.isDirty = false;
-
       $scope.model = {
         options: {
           buttonClasses: ['wow!'],
@@ -19,7 +17,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           },
           interval: 1,
           onChange: (isValid) => {
-            $scope.isDirty = true;
             $scope.isValid = isValid;
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
