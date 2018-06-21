@@ -131,6 +131,8 @@ class MultiSliderController implements angular.IComponentController {
   public onGhostWrapperMouseUp() {
     if (this.config.nullEnds) {
       this.canAdd = this.item.hasNoSchedules();
+    } else {
+      this.canAdd = true;
     }
 
     this._renderGhost = false;
