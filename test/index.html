@@ -21,7 +21,13 @@
 
       <hr>
       
-      <br-weekly-scheduler adapter="adapterTwo" options="model2.options"></br-weekly-scheduler>
+      <div ng-form="test">
+        <br-weekly-scheduler adapter="adapterTwo" options="model2.options"></br-weekly-scheduler>
+      </div>
+
+      Test form:
+      Dirty: {{ test.$dirty }}
+      Valid: {{ test.$valid }}
 
       <hr>
       
