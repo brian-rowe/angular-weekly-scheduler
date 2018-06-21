@@ -101,7 +101,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public setDirty() {
-    this.schedulerCtrl.dirty = true;
+    this.schedulerCtrl.setDirty(true);
   }
 
   private addScheduleToItem(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
