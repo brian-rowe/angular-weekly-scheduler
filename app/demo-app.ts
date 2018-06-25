@@ -8,11 +8,12 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           createItem: (day, schedules) => {
             return {
               day: day,
-              schedules: schedules
+              schedules: schedules,
             }
           },
-          defaultValue: true,
+          defaultValue: false,
           editSlot: function (schedule) {
+            schedule.value = true;
             return $timeout(() => schedule, 0);
           },
           interval: 1,
@@ -23,7 +24,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
       $scope.model2 = angular.copy($scope.model);
       $scope.model2.options.interval = 15;
-      $scope.model2.options.fullCalendar = true;
+      $scope.model2.options.monoSchedule = true;
 
       $scope.model.options.nullEnds = true;
 
@@ -106,7 +107,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         {
           day: br.weeklyScheduler.Days.Saturday,
           start: 0,
-          end: 1380,
+          end: 600,
           value: true
         } 
       ]);
