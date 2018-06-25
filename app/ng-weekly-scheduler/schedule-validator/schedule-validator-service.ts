@@ -24,7 +24,7 @@ class ScheduleValidationService {
             this.maxTimeSlotValidatorService,
             this.monoScheduleValidatorService,
             this.nullEndScheduleValidatorService,
-            this.fullCalendarValidatorService,
+            //this.fullCalendarValidatorService,
             this.overlapValidatorService
         ];
 
