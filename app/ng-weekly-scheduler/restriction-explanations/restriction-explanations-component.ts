@@ -17,9 +17,9 @@ class RestrictionExplanationsController implements angular.IComponentController 
 
     $doCheck() {
         this.violations = {
-            [ValidationError.FullCalendarViolation]: angular.isDefined(this.schedulerCtrl.formController.$error.fullCalendar),
-            [ValidationError.MaxTimeSlotViolation]: angular.isDefined(this.schedulerCtrl.formController.$error.maxTimeSlot),
-            [ValidationError.MonoScheduleViolation]: angular.isDefined(this.schedulerCtrl.formController.$error.monoSchedule),
+            [ValidationError.FullCalendar]: angular.isDefined(this.schedulerCtrl.formController.$error.fullCalendar),
+            [ValidationError.MaxTimeSlot]: angular.isDefined(this.schedulerCtrl.formController.$error.maxTimeSlot),
+            [ValidationError.MonoSchedule]: angular.isDefined(this.schedulerCtrl.formController.$error.monoSchedule),
         };
     }
 
@@ -28,19 +28,19 @@ class RestrictionExplanationsController implements angular.IComponentController 
 
         if (config.maxTimeSlot) {
             let maxTimeSlot = this.$filter('brWeeklySchedulerMinutesAsText')(config.maxTimeSlot);
-            this.explanations[ValidationError.MaxTimeSlotViolation] = `Max time slot length: ${maxTimeSlot}`;
+            this.explanations[ValidationError.MaxTimeSlot] = `Max time slot length: ${maxTimeSlot}`;
         }
 
         if (config.fullCalendar) {
-            this.explanations[ValidationError.FullCalendarViolation] = 'For this calendar, every day must be completely full of schedules.';
+            this.explanations[ValidationError.FullCalendar] = 'For this calendar, every day must be completely full of schedules.';
         }
 
         if (config.monoSchedule) {
-            this.explanations[ValidationError.MonoScheduleViolation] = 'This calendar may only have one time slot per day';
+            this.explanations[ValidationError.MonoSchedule] = 'This calendar may only have one time slot per day';
         }
 
         if (config.nullEnds) {
-            this.explanations[ValidationError.NullEndViolation] = 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.';
+            this.explanations[ValidationError.NullEnd] = 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.';
         }
     }
 }

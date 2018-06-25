@@ -3,7 +3,7 @@ class NullEndScheduleValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerNullEndValidatorService';
 
     get error() {
-        return ValidationError.NullEndViolation;
+        return ValidationError.NullEnd;
     }
 
     validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {

@@ -12,7 +12,7 @@ class OverlapValidatorService implements ValidatorService {
     }
 
     get error() {
-        return ValidationError.OverlapViolation;
+        return ValidationError.Overlap;
     }
 
     public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {

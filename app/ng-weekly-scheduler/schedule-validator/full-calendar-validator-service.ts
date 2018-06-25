@@ -3,7 +3,7 @@ class FullCalendarValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerFullCalendarValidatorService';
 
     get error() {
-        return ValidationError.FullCalendarViolation;
+        return ValidationError.FullCalendar;
     }
 
     public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {

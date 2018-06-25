@@ -1,7 +1,7 @@
 declare const enum ValidationError {
-    MaxTimeSlotViolation = 'maxTimeSlotViolation',
-    MonoScheduleViolation = 'monoScheduleViolation',
-    NullEndViolation = 'nullEndViolation',
-    FullCalendarViolation = 'fullCalendarViolation',
-    OverlapViolation = 'overlapViolation'
+    MaxTimeSlot = 'maxTimeSlot',
+    MonoSchedule = 'monoSchedule',
+    NullEnd = 'nullEnd',
+    FullCalendar = 'fullCalendar',
+    Overlap = 'overlap'
 }

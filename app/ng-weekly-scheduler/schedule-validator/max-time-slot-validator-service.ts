@@ -3,7 +3,7 @@ class MaxTimeSlotValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
 
     get error() {
-        return ValidationError.MaxTimeSlotViolation;
+        return ValidationError.MaxTimeSlot;
     }
 
     public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {

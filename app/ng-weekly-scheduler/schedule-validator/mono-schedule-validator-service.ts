@@ -3,7 +3,7 @@ class MonoScheduleValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMonoScheduleValidatorService';
 
     get error() {
-        return ValidationError.MonoScheduleViolation;
+        return ValidationError.MonoSchedule;
     }
 
     /** Important note -- this does not validate that only one schedule exists per item, but rather that only one NON-DEFAULT schedule exists per item. */
