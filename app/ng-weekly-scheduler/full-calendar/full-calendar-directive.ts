@@ -1,10 +1,15 @@
 class FullCalendarDirective implements angular.IDirective {
     static $name = 'fullCalendar';
 
+    constructor(
+        private validator: FullCalendarValidatorService
+    ) {
+    }
+
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
         if (attrs.fullCalendar) {
-            ngModelCtrl.$validators.fullCalendar = () => {
-                return true;
+            ngModelCtrl.$validators.fullCalendar = (modelValue: IInternalWeeklySchedulerItem<any>) => {
+                return this.validator.validate(modelValue.schedules, (modelValue as any).options); // TODO
             };
         } else {
             // do nothing
@@ -14,9 +19,11 @@ class FullCalendarDirective implements angular.IDirective {
     require = 'ngModel';
 
     static Factory() {
-        let directive = () => {
-            return new FullCalendarDirective();
+        let directive = (validator) => {
+            return new FullCalendarDirective(validator);
         };
+
+        directive.$inject = ['brWeeklySchedulerFullCalendarValidatorService'];
 
         return directive;
     }
