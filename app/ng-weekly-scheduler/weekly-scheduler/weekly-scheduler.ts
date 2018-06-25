@@ -104,8 +104,7 @@ class WeeklySchedulerController implements angular.IController {
     this.hoveringSlot = false;
 
     item.removeSchedule(schedule);
-
-    this.dirty = true;
+    this.setDirty(true);
   }
 
   public setDirty(value: boolean) {
@@ -329,11 +328,11 @@ class WeeklySchedulerController implements angular.IController {
 
   private rollback() {
     this.buildItems(this._originalItems);
-    this.dirty = false;
+    this.setDirty(false);
   }
 
   private save() {
-    return this.config.saveScheduler().then(() => this.dirty = false);
+    return this.config.saveScheduler().then(() => this.setDirty(false));
   }
 
   private watchAdapter() {
