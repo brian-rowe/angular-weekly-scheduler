@@ -16,8 +16,6 @@ class RestrictionExplanationsController implements angular.IComponentController 
     }
 
     $doCheck() {
-        let errors = this.schedulerCtrl.validationErrors;
-
         this.violations = {
             [ValidationError.FullCalendarViolation]: angular.isDefined(this.schedulerCtrl.formController.$error.fullCalendar),
             [ValidationError.MaxTimeSlotViolation]: angular.isDefined(this.schedulerCtrl.formController.$error.maxTimeSlot),
