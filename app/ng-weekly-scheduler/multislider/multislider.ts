@@ -37,10 +37,7 @@ class MultiSliderController implements angular.IComponentController {
   public config: IWeeklySchedulerConfig<any>;
 
   private _renderGhost: boolean;
-
-  get item() {
-    return this.ngModelCtrl.$modelValue || this.ngModelCtrl.$viewValue;
-  }
+  private item: WeeklySchedulerItem<any>;
 
   public addSlot(start: number, end: number): angular.IPromise<void> {
     if (start < 0) {
@@ -328,7 +325,8 @@ class MultiSliderComponent implements angular.IComponentOptions {
   static $name = 'brMultiSlider';
 
   bindings = {
-    config: '<'
+    config: '<',
+    item: '=ngModel'
   };
 
   controller = MultiSliderController.$name;
