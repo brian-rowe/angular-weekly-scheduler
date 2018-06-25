@@ -32,7 +32,7 @@ describe('weekly scheduler', () => {
         ($scope as any).adapter = angular.copy(adapter);
         ($scope as any).options = angular.copy(options);
         
-        $element = $compile('<br-weekly-scheduler adapter="adapter" options="options"></br-weekly-scheduler>')($scope);
+        $element = $compile('<br-weekly-scheduler adapter="adapter" ng-form="test" options="options"></br-weekly-scheduler>')($scope);
         element = $element[0];
         $controller = _$componentController_('brWeeklyScheduler', { $element: $element, $scope: $scope }, { adapter: angular.copy(adapter), options: angular.copy(options) });
         $controller.$onInit();
