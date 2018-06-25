@@ -1,3 +1,4 @@
+/** @internal */
 class NullEndDirective implements angular.IDirective {
     static $name = 'brNullEnd';
 

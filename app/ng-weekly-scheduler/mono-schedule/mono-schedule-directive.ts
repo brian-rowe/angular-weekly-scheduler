@@ -1,3 +1,4 @@
+/** @internal */
 class MonoScheduleDirective implements angular.IDirective {
     static $name = 'brMonoSchedule';
 

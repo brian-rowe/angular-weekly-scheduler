@@ -1,3 +1,4 @@
+/** @internal */
 class FullCalendarDirective implements angular.IDirective {
     static $name = 'brFullCalendar';
 

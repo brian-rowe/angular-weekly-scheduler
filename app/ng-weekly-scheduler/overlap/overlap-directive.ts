@@ -1,3 +1,4 @@
+/** @internal */
 class OverlapDirective implements angular.IDirective {
     static $name = 'brOverlap';
 

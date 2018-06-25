@@ -1,3 +1,4 @@
+/** @internal */
 class MaxTimeSlotDirective implements angular.IDirective {
     static $name = 'brMaxTimeSlot';
 
