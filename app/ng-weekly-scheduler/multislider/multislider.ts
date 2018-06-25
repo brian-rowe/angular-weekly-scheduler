@@ -26,6 +26,7 @@ class MultiSliderController implements angular.IComponentController {
   private ghostValues: { left: number, right: number };
 
   private schedulerCtrl: WeeklySchedulerController;
+  private ngModelCtrl: angular.INgModelController;
   
   public $hoverElement: angular.IAugmentedJQuery;
 
@@ -325,14 +326,15 @@ class MultiSliderComponent implements angular.IComponentOptions {
 
   bindings = {
     config: '<',
-    item: '='
+    item: '=ngModel'
   };
 
   controller = MultiSliderController.$name;
   controllerAs = MultiSliderController.$controllerAs;
 
   require = {
-    schedulerCtrl: '^brWeeklyScheduler'
+    schedulerCtrl: '^brWeeklyScheduler',
+    ngModelCtrl: 'ngModel'
   };
 
   templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
