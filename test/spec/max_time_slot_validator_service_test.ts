@@ -106,5 +106,15 @@ describe('max time slot validator service', function () {
 
             expect($service.validate(doubleSchedule, maxTimeSlotConfig)).toBeFalsy();
         });
+
+        describe('schedules with matching starts and ends', () => {
+            it('as invalid when they exceed the maxTimeSlotLength', () => {
+                let singleSchedule = [
+                    { day: 3, start: 0, end: 0, value: false } 
+                ];
+    
+                expect($service.validate(singleSchedule, maxTimeSlotConfig)).toBeFalsy();
+            });
+        });
     });
 });
