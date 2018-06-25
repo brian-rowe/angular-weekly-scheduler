@@ -2,6 +2,13 @@
 class MaxTimeSlotValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
 
+    static $inject = ['brWeeklySchedulerEndAdjusterService'];
+
+    private constructor(
+        private endAdjusterService: EndAdjusterService
+    ) {
+    }
+
     get error() {
         return ValidationError.MaxTimeSlot;
     }
@@ -13,7 +20,7 @@ class MaxTimeSlotValidatorService implements ValidatorService {
             return true;
         }
 
-        return !schedules.some(s => s.value !== config.defaultValue && s.end - s.start > maxTimeSlot);
+        return !schedules.some(s => s.value !== config.defaultValue && this.endAdjusterService.adjustEndForView(config, s.end) - s.start > maxTimeSlot);
     }
 }
 
