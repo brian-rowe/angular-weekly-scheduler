@@ -15,22 +15,12 @@
 
       <button ng-click="saveAll()">Save</button>
 
-      <br-weekly-scheduler adapter="adapter" options="model.options"></br-weekly-scheduler>
+      <!-- <br-weekly-scheduler adapter="adapter" options="model.options"></br-weekly-scheduler>
       <code>Valid: {{ isValid }}</code>
 
-      <hr>
+      <hr> -->
       
-      <div ng-form="test">
-        <br-weekly-scheduler adapter="adapterTwo" options="model2.options"></br-weekly-scheduler>
-      </div>
-
-      Test form:
-      Dirty: {{ test.$dirty }}
-      Valid: {{ test.$valid }}
-
-      <hr>
-      
-      Result: {{ result }}
+      <br-weekly-scheduler adapter="adapterTwo" ng-form="test" options="model2.options"></br-weekly-scheduler>
 
       <script src="testVendorScripts.js"></script>
       <script src="testScripts.js"></script>

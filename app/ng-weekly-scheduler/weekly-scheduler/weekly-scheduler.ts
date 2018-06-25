@@ -52,6 +52,9 @@ class WeeklySchedulerController implements angular.IController {
   /** should be true if the scheduler became invalid after being initialized */
   public invalid: boolean;
 
+  /** this is required to be part of a form for dirty/valid checks */
+  public formController: angular.IFormController;
+
   /** should be true if the scheduler was **initialized** with invalid values */
   public startedWithInvalidSchedule: boolean;
   public hoverClass: string;
@@ -367,6 +370,10 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
 
   controller = WeeklySchedulerController.$name;
   controllerAs = WeeklySchedulerController.$controllerAs;
+
+  require = {
+    formController: 'form'
+  };
 
   transclude = true;
 
