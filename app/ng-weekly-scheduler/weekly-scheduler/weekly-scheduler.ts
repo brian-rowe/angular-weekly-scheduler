@@ -7,6 +7,7 @@ class WeeklySchedulerController implements angular.IController {
     '$element',
     '$q',
     '$scope',
+    '$timeout',
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
     'brWeeklySchedulerEndAdjusterService',
@@ -18,6 +19,7 @@ class WeeklySchedulerController implements angular.IController {
     private $element: angular.IAugmentedJQuery,
     private $q: angular.IQService,
     private $scope: angular.IScope,
+    private $timeout: angular.ITimeoutService,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
     private endAdjusterService: EndAdjusterService,
@@ -72,15 +74,16 @@ class WeeklySchedulerController implements angular.IController {
   $onInit() {
     this.config = this.configure(this.options);
     this.buildItemsFromAdapter();
-    this.startedWithInvalidSchedule = this.hasInvalidSchedule();
     this.watchAdapter();
     this.watchHoverClass();
   }
 
-  public hasInvalidSchedule() {
-    let validationErrors: ValidationError[] = this.getValidationErrors();
+  $postLink() {
+    this.$timeout(() => this.startedWithInvalidSchedule = this.hasInvalidSchedule());
+  }
 
-    return validationErrors.length > 0;
+  public hasInvalidSchedule() {
+    return this.formController.$invalid;
   }
 
   public mergeScheduleIntoItem(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {

@@ -3,19 +3,16 @@ class ScheduleValidationService {
     static $name = 'brWeeklySchedulerValidationService';
 
     static $inject = [
-        'brWeeklySchedulerNullEndValidatorService',
         'brWeeklySchedulerOverlapValidatorService'
     ]
 
     private constructor(
-        private nullEndScheduleValidatorService: ValidatorService,
         private overlapValidatorService: ValidatorService
     ) {
     }
 
     public getValidationErrors(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): ValidationError[] {
         let validators: ValidatorService[] = [
-            this.nullEndScheduleValidatorService,
             this.overlapValidatorService
         ];
 
