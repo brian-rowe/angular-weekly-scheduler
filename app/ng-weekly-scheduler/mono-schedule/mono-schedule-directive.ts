@@ -1,14 +1,14 @@
-class FullCalendarDirective implements angular.IDirective {
-    static $name = 'brFullCalendar';
+class MonoScheduleDirective implements angular.IDirective {
+    static $name = 'brMonoSchedule';
 
     constructor(
-        private validator: FullCalendarValidatorService
+        private validator: MonoScheduleValidatorService
     ) {
     }
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
-        if (attrs.brFullCalendar) {
-            ngModelCtrl.$validators.fullCalendar = (modelValue: WeeklySchedulerItem<any>) => {
+        if (attrs.brMonoSchedule) {
+            ngModelCtrl.$validators.monoSchedule = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };
 
@@ -22,10 +22,10 @@ class FullCalendarDirective implements angular.IDirective {
 
     static Factory() {
         let directive = (validator) => {
-            return new FullCalendarDirective(validator);
+            return new MonoScheduleDirective(validator);
         };
 
-        directive.$inject = ['brWeeklySchedulerFullCalendarValidatorService'];
+        directive.$inject = ['brWeeklySchedulerMonoScheduleValidatorService'];
 
         return directive;
     }
@@ -33,4 +33,5 @@ class FullCalendarDirective implements angular.IDirective {
 
 angular
     .module('br.weeklyScheduler')
-    .directive(FullCalendarDirective.$name, FullCalendarDirective.Factory());
+    .directive(MonoScheduleDirective.$name, MonoScheduleDirective.Factory());
+

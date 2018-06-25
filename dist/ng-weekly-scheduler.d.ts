@@ -7,6 +7,14 @@ declare class FullCalendarDirective implements angular.IDirective {
     require: string;
     static Factory(): (validator: any) => FullCalendarDirective;
 }
+declare class MonoScheduleDirective implements angular.IDirective {
+    private validator;
+    static $name: string;
+    constructor(validator: MonoScheduleValidatorService);
+    link: (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => void;
+    require: string;
+    static Factory(): (validator: any) => MonoScheduleDirective;
+}
 declare namespace br.weeklyScheduler {
     interface IResizeServiceProvider extends angular.IServiceProvider {
         setCustomResizeEvents(events: string[]): any;

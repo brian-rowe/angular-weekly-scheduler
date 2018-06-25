@@ -21,7 +21,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     schedules: br.weeklyScheduler.IWeeklySchedulerRange<T>[];
 
     constructor(
-        private config: IWeeklySchedulerConfig<T>,
+        public config: IWeeklySchedulerConfig<T>,
         private item: IInternalWeeklySchedulerItem<T>,
         private overlapService: OverlapService
     ) {

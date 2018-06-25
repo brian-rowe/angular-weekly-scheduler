@@ -20,7 +20,7 @@ class RestrictionExplanationsController implements angular.IComponentController 
 
         this.violations = {
             [ValidationError.FullCalendarViolation]: angular.isDefined(this.schedulerCtrl.formController.$error.fullCalendar),
-            [ValidationError.MaxTimeSlotViolation]: errors.indexOf(ValidationError.MaxTimeSlotViolation) > -1,
+            [ValidationError.MaxTimeSlotViolation]: angular.isDefined(this.schedulerCtrl.formController.$error.monoSchedule),
             [ValidationError.MonoScheduleViolation]: errors.indexOf(ValidationError.MonoScheduleViolation) > -1
         };
     }
