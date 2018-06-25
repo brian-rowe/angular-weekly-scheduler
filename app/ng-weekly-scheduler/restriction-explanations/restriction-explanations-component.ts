@@ -15,14 +15,6 @@ class RestrictionExplanationsController implements angular.IComponentController 
     ) {
     }
 
-    $doCheck() {
-        this.violations = {
-            [ValidationError.FullCalendar]: angular.isDefined(this.schedulerCtrl.formController.$error.fullCalendar),
-            [ValidationError.MaxTimeSlot]: angular.isDefined(this.schedulerCtrl.formController.$error.maxTimeSlot),
-            [ValidationError.MonoSchedule]: angular.isDefined(this.schedulerCtrl.formController.$error.monoSchedule),
-        };
-    }
-
     $onInit() {
         let config = this.schedulerCtrl.config;
 
@@ -57,7 +49,7 @@ class RestrictionExplanationsComponent implements angular.IComponentOptions {
     };
 
     template = `
-        <div class="srow explanations" ng-class="{ violation: restrictionExplanationsCtrl.violations[key] }" ng-repeat="(key, explanation) in restrictionExplanationsCtrl.explanations">
+        <div class="srow explanations" ng-class="{ violation: restrictionExplanationsCtrl.schedulerCtrl.formController.$error[key] }" ng-repeat="(key, explanation) in restrictionExplanationsCtrl.explanations">
             {{ explanation }}
         </div>
     `;

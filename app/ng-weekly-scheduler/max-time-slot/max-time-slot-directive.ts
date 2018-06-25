@@ -8,7 +8,7 @@ class MaxTimeSlotDirective implements angular.IDirective {
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
         if (attrs.brMaxTimeSlot) {
-            ngModelCtrl.$validators.maxTimeSlot = (modelValue: WeeklySchedulerItem<any>) => {
+            ngModelCtrl.$validators[ValidationError.MaxTimeSlot] = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };
 
