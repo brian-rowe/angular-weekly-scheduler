@@ -27,7 +27,6 @@ class OverlapValidatorService implements ValidatorService {
             let valuesMatch = current.value === next.value;
 
             if (!valuesMatch) {
-                let maxValue = config.maxValue;
                 let overlapState = this.overlapService.getOverlapState(config, current, next);
                 result = result && [OverlapState.NoOverlap, OverlapState.OtherStartIsCurrentEnd, OverlapState.OtherEndIsCurrentStart].indexOf(overlapState) > -1;
             }

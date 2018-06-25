@@ -11,8 +11,7 @@ class WeeklySchedulerController implements angular.IController {
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
     'brWeeklySchedulerEndAdjusterService',
-    'brWeeklySchedulerOverlapService',
-    'brWeeklySchedulerValidationService',
+    'brWeeklySchedulerOverlapService'
   ];
 
   constructor(
@@ -23,8 +22,7 @@ class WeeklySchedulerController implements angular.IController {
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
     private endAdjusterService: EndAdjusterService,
-    private overlapService: OverlapService,
-    private scheduleValidatorService: ScheduleValidationService
+    private overlapService: OverlapService
   ) {
   }
 
@@ -64,12 +62,6 @@ class WeeklySchedulerController implements angular.IController {
     monoSchedule: false,
     onChange: (isValid) => angular.noop()
   };
-
-  public validationErrors: ValidationError[];
-
-  $doCheck() {
-    this.validationErrors = this.getValidationErrors();
-  }
 
   $onInit() {
     this.config = this.configure(this.options);
@@ -147,10 +139,6 @@ class WeeklySchedulerController implements angular.IController {
     }
 
     return result;
-  }
-
-  private getValidationErrors() {
-    return Array.prototype.concat.apply([], this.items.map(item => this.scheduleValidatorService.getValidationErrors(item, this.config)));
   }
 
   /**

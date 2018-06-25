@@ -31,6 +31,14 @@ declare class NullEndDirective implements angular.IDirective {
     require: string;
     static Factory(): (validator: any) => NullEndDirective;
 }
+declare class OverlapDirective implements angular.IDirective {
+    private validator;
+    static $name: string;
+    constructor(validator: OverlapValidatorService);
+    link: (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => void;
+    require: string;
+    static Factory(): (validator: any) => OverlapDirective;
+}
 declare namespace br.weeklyScheduler {
     interface IResizeServiceProvider extends angular.IServiceProvider {
         setCustomResizeEvents(events: string[]): any;
