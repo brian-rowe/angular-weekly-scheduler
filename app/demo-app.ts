@@ -24,7 +24,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
 
       $scope.model2 = angular.copy($scope.model);
       $scope.model2.options.interval = 15;
-      $scope.model2.options.monoSchedule = true;
+      $scope.model2.options.maxTimeSlot = 900;
 
       $scope.model.options.nullEnds = true;
 
@@ -71,43 +71,43 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         {
           day: br.weeklyScheduler.Days.Sunday,
           start: 0,
-          end: 1440,
+          end: 720,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Monday,
           start: 0,
-          end: 1440,
+          end: 720,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Tuesday,
           start: 0,
-          end: 1440,
+          end: 720,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Wednesday,
           start: 0,
-          end: 1440,
+          end: 720,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Thursday,
           start: 0,
-          end: 1440,
+          end: 720,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Friday,
           start: 0,
-          end: 1440,
+          end: 720,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Saturday,
           start: 0,
-          end: 600,
+          end: 720,
           value: true
         } 
       ]);
