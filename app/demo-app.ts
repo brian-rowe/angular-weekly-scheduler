@@ -17,7 +17,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           },
           interval: 1,
           onChange: (isValid) => {
-            $scope.isValid = isValid;
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
