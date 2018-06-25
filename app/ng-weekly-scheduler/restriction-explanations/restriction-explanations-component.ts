@@ -8,7 +8,6 @@ class RestrictionExplanationsController implements angular.IComponentController 
     private schedulerCtrl: WeeklySchedulerController;
 
     private explanations: { [key in ValidationError]?: string } = {};
-    private violations: { [key in ValidationError]?: boolean } = {};
 
     constructor(
         private $filter: IWeeklySchedulerFilterService
