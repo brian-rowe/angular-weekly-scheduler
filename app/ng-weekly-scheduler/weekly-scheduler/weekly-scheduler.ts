@@ -46,9 +46,6 @@ class WeeklySchedulerController implements angular.IController {
   /** should be true if the user is currently holding the mouse pointer over a slot */
   public hoveringSlot: boolean;
 
-  /** should be true if the scheduler became invalid after being initialized */
-  public invalid: boolean;
-
   /** this is required to be part of a form for dirty/valid checks */
   public formController: angular.IFormController;
 
