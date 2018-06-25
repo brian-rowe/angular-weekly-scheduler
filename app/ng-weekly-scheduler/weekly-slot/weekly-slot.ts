@@ -109,7 +109,6 @@ class WeeklySlotController implements angular.IComponentController {
       this.schedule.$isActive = false;
       this.multisliderCtrl.isDragging = false;
     }, 200).then(() => {
-      this.multisliderCtrl.setDirty();
       this.multisliderCtrl.merge(this.schedule);
     });
   }

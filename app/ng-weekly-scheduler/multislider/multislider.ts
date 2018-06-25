@@ -100,15 +100,9 @@ class MultiSliderController implements angular.IComponentController {
     this.ghostValues = angular.copy(this.startingGhostValues);
   }
 
-  public setDirty() {
-    this.schedulerCtrl.setDirty(true);
-  }
-
   private addScheduleToItem(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     this.item.addSchedule(schedule);
     this.merge(schedule);
-
-    this.setDirty();
   }
 
   public onGhostWrapperMouseDown(event: MouseEvent) {
@@ -241,7 +235,6 @@ class MultiSliderController implements angular.IComponentController {
           }
         }
       }).finally(() => {
-        this.setDirty();
         schedule.$isEditing = false;
       });
     }
