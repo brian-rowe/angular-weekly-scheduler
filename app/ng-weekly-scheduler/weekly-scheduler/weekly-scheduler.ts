@@ -326,6 +326,7 @@ class WeeklySchedulerController implements angular.IController {
 
   private rollback() {
     this.buildItems(this._originalItems);
+    this.formController.$setPristine();
   }
 
   private save() {
