@@ -9,7 +9,7 @@ class MonoScheduleDirective implements angular.IDirective {
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
         if (attrs.brMonoSchedule) {
-            ngModelCtrl.$validators[ValidationError.MonoSchedule] = (modelValue: WeeklySchedulerItem<any>) => {
+            ngModelCtrl.$validators[this.validator.error] = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };
 

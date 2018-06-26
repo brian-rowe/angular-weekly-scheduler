@@ -8,7 +8,7 @@ class NullEndDirective implements angular.IDirective {
     }
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
-        ngModelCtrl.$validators[ValidationError.NullEnd] = (modelValue: WeeklySchedulerItem<any>) => {
+        ngModelCtrl.$validators[this.validator.error] = (modelValue: WeeklySchedulerItem<any>) => {
             return this.validator.validate(modelValue.schedules, modelValue.config);
         };
 
