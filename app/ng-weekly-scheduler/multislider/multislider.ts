@@ -148,6 +148,7 @@ class MultiSliderController implements angular.IComponentController {
       this.isAdding = true;
 
       this.addSlot(start, end).then(() => {
+        this.ngModelCtrl.$setDirty();
         this.schedulerCtrl.onChange();
         this.isAdding = false;
         this.canAdd = false;
