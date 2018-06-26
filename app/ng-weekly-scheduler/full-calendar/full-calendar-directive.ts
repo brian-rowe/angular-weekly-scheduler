@@ -12,10 +12,6 @@ class FullCalendarDirective implements angular.IDirective {
             ngModelCtrl.$validators[this.validator.error] = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };
-
-            scope.$watch(attrs.ngModel, () => {
-                ngModelCtrl.$validate();
-            }, true);
         }
     }
 
