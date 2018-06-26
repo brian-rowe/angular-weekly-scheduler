@@ -1,6 +1,6 @@
 angular.module('demoApp', ['br.weeklyScheduler'])
   .controller('DemoController', ['$q', '$scope', '$timeout', '$log',
-    function ($q, $scope, $timeout, $log) {
+    function ($q: angular.IQService, $scope, $timeout, $log) {
 
       $scope.model = {
         options: {
@@ -14,7 +14,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           defaultValue: false,
           editSlot: function (schedule) {
             schedule.value = true;
-            return $timeout(() => schedule, 0);
+            return $q.reject(schedule);
           },
           interval: 1,
           onChange: (isValid) => {

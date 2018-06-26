@@ -236,6 +236,10 @@ class MultiSliderController implements angular.IComponentController {
             this.schedulerCtrl.updateSchedule(schedule, newSchedule);
           }
         }
+
+        this.ngModelCtrl.$setDirty();
+      }).catch(() => {
+        // do nothing except eat the unhandled rejection error
       }).finally(() => {
         schedule.$isEditing = false;
       });
