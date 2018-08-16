@@ -22,7 +22,6 @@ class WeeklySlotController implements angular.IComponentController {
 
   private schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 
-  private startDragTimeout: angular.IPromise<void>;
   private valuesOnDragStart: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 
   constructor(
@@ -36,20 +35,6 @@ class WeeklySlotController implements angular.IComponentController {
     this.valuesOnDragStart = this.getDragStartValues();
   }
 
-  /**
-   * We want to cancel the drag operation if the user is just clicking on the item or has started dragging without waiting for the drag to "activate"
-   * However, we should give them a small tolerance before considering them to have started dragging early, as it is very easy to accidentally move a few pixels.
-   */
-  private cancelDragIfThresholdExceeded(pixel: number) {
-    if (pixel > 3) {
-      this.cancelDrag();
-    }
-  }
-
-  private cancelDrag() {
-    this.$timeout.cancel(this.startDragTimeout);
-  }
-
   private getDragStartValues() {
     return {
       day: this.schedule.day,
@@ -61,6 +46,11 @@ class WeeklySlotController implements angular.IComponentController {
     }
   }
 
+  private setSlotActive(active: boolean) {
+    this.schedule.$isActive = active;
+    this.multisliderCtrl.canAdd = !active;
+  }
+
   public deleteSelf() {
     this.removeSchedule({ schedule: this.schedule });
   }
@@ -70,11 +60,6 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public drag(pixel: number) {
-    if (!this.schedule.$isActive) {
-      this.cancelDragIfThresholdExceeded(pixel);
-      return;
-    }
-
     this.multisliderCtrl.isDragging = true;
 
     let ui = this.schedule;
@@ -95,19 +80,17 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
-    this.cancelDrag();
+    // Did the user actually move or resize the slot??
+    var changed: boolean = !angular.equals(this.valuesOnDragStart, this.getDragStartValues());
 
-    if (!this.schedule.$isActive) {
+    if (!changed) {
+      this.setSlotActive(false);
+      this.multisliderCtrl.isDragging = false;
       return this.editSelf();
     }
 
     this.$timeout(() => {
-      // this prevents user from accidentally
-      // adding new slot after resizing or dragging
-      this.multisliderCtrl.canAdd = true;
-
-      // this prevents ng-click from accidentally firing after resizing or dragging
-      this.schedule.$isActive = false;
+      this.setSlotActive(false);
       this.multisliderCtrl.isDragging = false;
     }, 200).then(() => {
       this.ngModelCtrl.$setDirty();
@@ -116,11 +99,6 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public resize(pixel: number) {
-    if (!this.schedule.$isActive) {
-      this.cancelDragIfThresholdExceeded(pixel);
-      return;
-    }
-
     this.multisliderCtrl.isDragging = true;
     
     let ui = this.schedule;
@@ -166,11 +144,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    this.startDragTimeout = this.$timeout(() => {
-      this.schedule.$isActive = true;
-      this.multisliderCtrl.canAdd = false;
-    }, 500);
-
+    this.setSlotActive(true);
     this.valuesOnDragStart = this.getDragStartValues();
   }
 
