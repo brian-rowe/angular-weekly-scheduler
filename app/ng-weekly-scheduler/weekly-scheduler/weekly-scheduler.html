@@ -1,4 +1,4 @@
-<div ng-if="!schedulerCtrl.startedWithInvalidSchedule">
+<div ng-if="!schedulerCtrl.invalidMessage">
   <div class="labels">
     <div class="srow dummy"></div>
     <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
@@ -16,14 +16,14 @@
       <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
         <br-hourly-grid no-text></br-hourly-grid>
         <br-multi-slider config="schedulerCtrl.config"
-                         ng-model="item"
-                         ng-model-options="{allowInvalid: true}"
-                         br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
-                         br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
-                         br-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
-                         br-null-end="{{ schedulerCtrl.config.nullEnds }}"
-                         br-overlap
-                         br-revalidate
+                        ng-model="item"
+                        ng-model-options="{allowInvalid: true}"
+                        br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
+                        br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
+                        br-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
+                        br-null-end="{{ schedulerCtrl.config.nullEnds }}"
+                        br-overlap
+                        br-revalidate
         ></br-multi-slider>
       </div>
     </div>
@@ -39,6 +39,6 @@
   </div>
 </div>
 
-<div class="srow" ng-if="schedulerCtrl.startedWithInvalidSchedule">
-  One or more of the schedules is invalid! Please contact service.
+<div class="srow" ng-if="schedulerCtrl.invalidMessage">
+  {{ schedulerCtrl.invalidMessage }}
 </div>

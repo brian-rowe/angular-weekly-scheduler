@@ -36,6 +36,7 @@ describe('weekly scheduler', () => {
         element = $element[0];
         $controller = _$componentController_('brWeeklyScheduler', { $element: $element, $scope: $scope }, { adapter: angular.copy(adapter), options: angular.copy(options) });
         $controller.$onInit();
+        $controller.$postLink();
         $scope.$digest();
     }));
 

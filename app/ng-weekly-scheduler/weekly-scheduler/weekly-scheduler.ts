@@ -46,11 +46,12 @@ class WeeklySchedulerController implements angular.IController {
   /** should be true if the user is currently holding the mouse pointer over a slot */
   public hoveringSlot: boolean;
 
+  public invalidMessage: string = '';
+  public isReady: boolean = false;
+
   /** this is required to be part of a form for dirty/valid checks */
   public formController: angular.IFormController;
 
-  /** should be true if the scheduler was **initialized** with invalid values */
-  public startedWithInvalidSchedule: boolean;
   public hoverClass: string;
 
   public config: IWeeklySchedulerConfig<any>;
@@ -71,7 +72,34 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   $postLink() {
-    this.$timeout(() => this.startedWithInvalidSchedule = this.hasInvalidSchedule());
+    this.$timeout(() => {
+      this.invalidMessage = this.getInvalidMessage();
+      this.isReady = true;
+    });
+  }
+
+  public getConflictingOptions() {
+    if (this.options.fullCalendar && this.options.fillEmptyWithDefault) {
+      return `Options 'fullCalendar' & 'fillEmptyWithDefault' are mutually exclusive.`;
+    }
+
+    if (this.options.fillEmptyWithDefault && !angular.isDefined(this.options.defaultValue)) {
+      return `If using option 'fillEmptyWithDefault', you must also provide 'defaultValue.'`;
+    }
+
+    return '';
+  }
+
+  public getInvalidMessage() {
+    let conflictingOptions = this.getConflictingOptions();
+
+    if (conflictingOptions) {
+      return conflictingOptions;
+    }
+
+    if (this.hasInvalidSchedule()) {
+      return 'One or more of the schedules is invalid! Please contact service.';
+    }
   }
 
   public hasInvalidSchedule() {

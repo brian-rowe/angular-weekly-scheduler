@@ -14,7 +14,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           defaultValue: false,
           editSlot: function (schedule) {
             schedule.value = true;
-            return $q.reject(schedule);
+            return $q.when(schedule);
           },
           interval: 1,
           onChange: (isValid) => {
@@ -23,6 +23,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       }
 
       $scope.model2 = angular.copy($scope.model);
+      $scope.model2.options.fillEmptyWithDefault = true;
       $scope.model2.options.interval = 15;
       $scope.model2.options.maxTimeSlot = 900;
 
