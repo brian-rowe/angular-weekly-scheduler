@@ -45,6 +45,15 @@ class FillEmptyWithDefaultService {
         }
     }
 
+    private getStartSchedule(firstSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return {
+            day: firstSchedule.day,
+            start: 0,
+            end: firstSchedule.start,
+            value: config.defaultValue
+        };
+    }
+
     private getFilledSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>) {
         let len = schedules.length - 1;
         
@@ -52,6 +61,14 @@ class FillEmptyWithDefaultService {
         for (let i = 0; i < len; i++) {
             let currentSchedule = schedules[i];
             let nextSchedule = schedules[i + 1];
+
+            let isFirstLoop = i == 0;
+
+            if (isFirstLoop && currentSchedule.start !== 0) {
+                let startSchedule = this.getStartSchedule(currentSchedule, config);
+
+                schedules.push(startSchedule);
+            }
 
             if (currentSchedule.end !== nextSchedule.start) {
                 let newSchedule = this.getNewSchedule(currentSchedule, nextSchedule, config);

@@ -95,7 +95,8 @@ describe('fillEmptyWithDefault service', () => {
                 ]);
 
                 let expectedResult = [
-                    { day: 0, start: 0, end: 75, value: true },
+                    { day: 0, start: 0, end: 30, value: false },
+                    { day: 0, start: 30, end: 75, value: true },
                     { day: 0, start: 75, end: 330, value: false },
                     { day: 0, start: 330, end: 840, value: true },
                     { day: 0, start: 840, end: 1410, value: false },
