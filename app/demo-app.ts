@@ -27,6 +27,11 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       $scope.model2.options.interval = 15;
       $scope.model2.options.maxTimeSlot = 900;
 
+      $scope.model2.options.saveScheduler = () => {
+        $scope.adapterTwoResult = $scope.adapterTwo.getSnapshot();
+        return $q.when();
+      }
+
       $scope.model.options.nullEnds = true;
 
       $scope.adapter = new DemoAdapter([

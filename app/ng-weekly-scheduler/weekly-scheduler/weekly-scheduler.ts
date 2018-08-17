@@ -8,6 +8,7 @@ class WeeklySchedulerController implements angular.IController {
     '$q',
     '$scope',
     '$timeout',
+    'brWeeklySchedulerFillEmptyWithDefaultService',
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
     'brWeeklySchedulerEndAdjusterService',
@@ -20,6 +21,7 @@ class WeeklySchedulerController implements angular.IController {
     private $q: angular.IQService,
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
+    private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
     private endAdjusterService: EndAdjusterService,
@@ -343,6 +345,16 @@ class WeeklySchedulerController implements angular.IController {
     return items;
   }
 
+  private prepareItems(items: WeeklySchedulerItem<any>[]) {
+    if (this.config.fillEmptyWithDefault) {
+      for (let item of items) {
+        item.schedules = this.fillEmptyWithDefaultService.fill(item.schedules, this.config);
+      }
+    }
+
+    return items;
+  }
+
   private resetZoom() {
     this.$scope.$broadcast(WeeklySchedulerEvents.RESET_ZOOM);
   }
@@ -357,6 +369,8 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private save() {
+    this.items = this.prepareItems(this.items);
+
     return this.config.saveScheduler().then(() => {
       this.formController.$setPristine();
     });

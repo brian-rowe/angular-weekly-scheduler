@@ -40,6 +40,21 @@ describe('fillEmptyWithDefault service', () => {
 
                 expect(angular.equals(actualResult, expectedResult)).toBeTruthy();
             });
+
+            it('should work when there is only one starting schedule', () => {
+                let schedules = [
+                    { day: 0, start: 0, end: 720, value: true }
+                ];
+
+                let expectedResult = [
+                    { day: 0, start: 0, end: 720, value: true },
+                    { day: 0, start: 720, end: config.maxValue, value: config.defaultValue },
+                ];
+
+                let actualResult = $service.fill(schedules, config);
+
+                expect(angular.equals(actualResult, expectedResult)).toBeTruthy(); 
+            });
         });
     });
 });
