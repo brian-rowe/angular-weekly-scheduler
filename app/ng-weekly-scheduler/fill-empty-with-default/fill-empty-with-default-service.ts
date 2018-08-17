@@ -69,7 +69,7 @@ class FillEmptyWithDefaultService {
             }
         }
 
-        return schedules.sort((a, b) => a.start < b.start ? -1 : 1);
+        return schedules.sort((a, b) => a.start - b.start);
     }
 
     private getNewSchedule(currentSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, nextSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
