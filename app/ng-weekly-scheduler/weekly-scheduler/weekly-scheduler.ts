@@ -11,7 +11,8 @@ class WeeklySchedulerController implements angular.IController {
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
     'brWeeklySchedulerEndAdjusterService',
-    'brWeeklySchedulerOverlapService'
+    'brWeeklySchedulerOverlapService',
+    'brWeeklySchedulerPurgeDefaultService'
   ];
 
   constructor(
@@ -22,7 +23,8 @@ class WeeklySchedulerController implements angular.IController {
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
     private endAdjusterService: EndAdjusterService,
-    private overlapService: OverlapService
+    private overlapService: OverlapService,
+    private purgeDefaultService: PurgeDefaultService
   ) {
   }
 
@@ -140,6 +142,8 @@ class WeeklySchedulerController implements angular.IController {
     this.items = this.fillItems(items);
 
     this.items.forEach(item => this.mergeAllOverlapsForItem(item));
+
+    this.items = this.purgeItems(this.items);
 
     // keep a reference on the adapter so we can pull it out later
     this.adapter.items = this.items;
@@ -327,6 +331,16 @@ class WeeklySchedulerController implements angular.IController {
         overlapHandler(item, schedule, el);
       }
     }));
+  }
+
+  private purgeItems(items: WeeklySchedulerItem<any>[]) {
+    if (this.config.fillEmptyWithDefault) {
+      for (let item of items) {
+        item.schedules = this.purgeDefaultService.purge(item.schedules, this.config);
+      }
+    }
+
+    return items;
   }
 
   private resetZoom() {
