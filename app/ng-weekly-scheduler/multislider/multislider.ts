@@ -220,10 +220,9 @@ class MultiSliderController implements angular.IComponentController {
       schedule.$isEditing = true;
 
       this.schedulerCtrl.config.editSlot(schedule).then((newSchedule) => {
-        if (newSchedule.$isDeleting) {
+        if (this.shouldDelete(newSchedule)) {
           this.schedulerCtrl.removeScheduleFromItem(this.item, schedule);
-        }
-        else {
+        } else {
           let premergeSchedule = angular.copy(newSchedule);
 
           this.merge(newSchedule);
@@ -296,6 +295,18 @@ class MultiSliderController implements angular.IComponentController {
 
   private onWeeklySlotMouseLeave() {
     this.isHoveringSlot = false;
+  }
+
+  private shouldDelete(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    if (schedule.$isDeleting) {
+      return true;
+    }
+
+    if (this.config.fillEmptyWithDefault && schedule.value === this.config.defaultValue) {
+      return true;
+    }
+
+    return false;
   }
 
   public merge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
