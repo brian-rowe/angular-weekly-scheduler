@@ -24,10 +24,10 @@ describe('fillEmptyWithDefault service', () => {
             }
 
             it ('should return a full day of schedules with the default values in place of the empty slots', () => {
-                let schedules = [
+                let item = config.createItem(0, [
                     { day: 0, start: 0, end: 720, value: true },
                     { day: 0, start: 780, end: 900, value: true }
-                ];
+                ]);
 
                 let expectedResult = [
                     { day: 0, start: 0, end: 720, value: true },
@@ -36,24 +36,36 @@ describe('fillEmptyWithDefault service', () => {
                     { day: 0, start: 900, end: 0, value: config.defaultValue }
                 ];
 
-                let actualResult = $service.fill(schedules, config);
+                let actualResult = $service.fill(item, config);
 
                 expect(angular.equals(actualResult, expectedResult)).toBeTruthy();
             });
 
             it('should work when there is only one starting schedule', () => {
-                let schedules = [
+                let item = config.createItem(0, [
                     { day: 0, start: 0, end: 720, value: true }
-                ];
+                ]);
 
                 let expectedResult = [
                     { day: 0, start: 0, end: 720, value: true },
                     { day: 0, start: 720, end: 0, value: config.defaultValue },
                 ];
 
-                let actualResult = $service.fill(schedules, config);
+                let actualResult = $service.fill(item, config);
 
                 expect(angular.equals(actualResult, expectedResult)).toBeTruthy(); 
+            });
+
+            it('should work when there are no starting schedules', () => {
+                let item = config.createItem(0, []);
+
+                let expectedResult = [
+                    { day: 0, start: 0, end: 0, value: config.defaultValue }
+                ];
+
+                let actualResult = $service.fill(item, config);
+
+                expect(angular.equals(actualResult, expectedResult)).toBeTruthy();  
             });
         });
     });

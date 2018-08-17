@@ -12,7 +12,13 @@ class FillEmptyWithDefaultService {
     ) {
     }
 
-    fill(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): br.weeklyScheduler.IWeeklySchedulerRange<any>[] {
+    fill(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): br.weeklyScheduler.IWeeklySchedulerRange<any>[] {
+        let schedules = item.schedules;
+
+        if (!schedules.length) {
+            return [this.getEmptySchedule(item, config)];
+        }
+
         if (schedules.length === 1) {
             let schedule = schedules[0];
             return [schedule, this.getEndSchedule(schedule, config)];
@@ -53,6 +59,15 @@ class FillEmptyWithDefaultService {
         }
 
         return newSchedules;
+    }
+
+    private getEmptySchedule(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>) {
+        return {
+            day: item.day,
+            start: 0,
+            end: this.endAdjusterService.adjustEndForModel(config, config.maxValue),
+            value: config.defaultValue
+        }
     }
 
     private getEndSchedule(lastSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {

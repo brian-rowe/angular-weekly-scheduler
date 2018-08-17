@@ -348,7 +348,7 @@ class WeeklySchedulerController implements angular.IController {
   private prepareItems(items: WeeklySchedulerItem<any>[]) {
     if (this.config.fillEmptyWithDefault) {
       for (let item of items) {
-        item.schedules = this.fillEmptyWithDefaultService.fill(item.schedules, this.config);
+        item.schedules = this.fillEmptyWithDefaultService.fill(item, this.config);
       }
     }
 
