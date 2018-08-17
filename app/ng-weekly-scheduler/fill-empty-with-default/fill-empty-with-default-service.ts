@@ -3,6 +3,15 @@
 class FillEmptyWithDefaultService {
     static $name = 'brWeeklySchedulerFillEmptyWithDefaultService';
 
+    static $inject = [
+        'brWeeklySchedulerEndAdjusterService'
+    ];
+
+    private constructor(
+        private endAdjusterService: EndAdjusterService
+    ) {
+    }
+
     fill(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): br.weeklyScheduler.IWeeklySchedulerRange<any>[] {
         if (schedules.length === 1) {
             let schedule = schedules[0];
@@ -50,7 +59,7 @@ class FillEmptyWithDefaultService {
         return {
             day: lastSchedule.day,
             start: lastSchedule.end,
-            end: config.maxValue,
+            end: this.endAdjusterService.adjustEndForModel(config, config.maxValue),
             value: config.defaultValue
         }
     }

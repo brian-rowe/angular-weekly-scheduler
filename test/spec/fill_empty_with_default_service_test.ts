@@ -33,7 +33,7 @@ describe('fillEmptyWithDefault service', () => {
                     { day: 0, start: 0, end: 720, value: true },
                     { day: 0, start: 720, end: 780, value: config.defaultValue },
                     { day: 0, start: 780, end: 900, value: true },
-                    { day: 0, start: 900, end: config.maxValue, value: config.defaultValue }
+                    { day: 0, start: 900, end: 0, value: config.defaultValue }
                 ];
 
                 let actualResult = $service.fill(schedules, config);
@@ -48,7 +48,7 @@ describe('fillEmptyWithDefault service', () => {
 
                 let expectedResult = [
                     { day: 0, start: 0, end: 720, value: true },
-                    { day: 0, start: 720, end: config.maxValue, value: config.defaultValue },
+                    { day: 0, start: 720, end: 0, value: config.defaultValue },
                 ];
 
                 let actualResult = $service.fill(schedules, config);
