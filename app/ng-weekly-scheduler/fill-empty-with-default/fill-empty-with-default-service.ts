@@ -48,8 +48,6 @@ class FillEmptyWithDefaultService {
     private getFilledSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>) {
         let len = schedules.length - 1;
         
-        let newSchedules = [];
-        
         // 2 at a time
         for (let i = 0; i < len; i++) {
             let currentSchedule = schedules[i];
@@ -58,12 +56,7 @@ class FillEmptyWithDefaultService {
             if (currentSchedule.end !== nextSchedule.start) {
                 let newSchedule = this.getNewSchedule(currentSchedule, nextSchedule, config);
 
-                newSchedules.push(currentSchedule);
-                newSchedules.push(newSchedule);
-                newSchedules.push(nextSchedule);
-            } else {
-                newSchedules.push(currentSchedule);
-                newSchedules.push(nextSchedule);
+                schedules.push(newSchedule);
             }
 
             let isLastLoop = i == len - 1;
@@ -71,21 +64,12 @@ class FillEmptyWithDefaultService {
             if (isLastLoop && nextSchedule.end !== this.endAdjusterService.adjustEndForModel(config, config.maxValue)) {
                 let endSchedule = this.getEndSchedule(nextSchedule, config);
 
-                newSchedules.push(endSchedule);
+                schedules.push(endSchedule);
                 break;
             }
         }
 
-        // remove duplicates
-        let result = [];
-
-        for (let schedule of newSchedules) {
-            if (result.indexOf(schedule) === -1) {
-                result.push(schedule);
-            }
-        }
-
-        return result; 
+        return schedules.sort((a, b) => a.start < b.start ? -1 : 1);
     }
 
     private getNewSchedule(currentSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, nextSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
