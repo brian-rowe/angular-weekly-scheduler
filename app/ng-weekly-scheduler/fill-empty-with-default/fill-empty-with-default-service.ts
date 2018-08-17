@@ -1,3 +1,4 @@
+/** When using the 'fillEmptyWithDefault' option, this service will be used to construct the correct calendar for server submission */
 /** @internal */
 class FillEmptyWithDefaultService {
     static $name = 'brWeeklySchedulerFillEmptyWithDefaultService';

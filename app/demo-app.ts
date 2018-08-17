@@ -76,6 +76,12 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           value: true
         },
         {
+          day: br.weeklyScheduler.Days.Sunday,
+          start: 720,
+          end: 1440,
+          value: false
+        },
+        {
           day: br.weeklyScheduler.Days.Monday,
           start: 0,
           end: 720,

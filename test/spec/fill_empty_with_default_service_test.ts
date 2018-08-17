@@ -9,7 +9,7 @@ describe('fillEmptyWithDefault service', () => {
         $service = _brWeeklySchedulerFillEmptyWithDefaultService_;
     }));
 
-    describe('getOverlapState', () => {
+    describe('fill', () => {
         describe('should return', () => {
             let createItem = (day, schedules) => {
                 return { day: day, schedules: schedules }
@@ -23,7 +23,7 @@ describe('fillEmptyWithDefault service', () => {
                 intervalCount: 96
             }
 
-            it ('should return a full calendar with the default values in place of the empty slots', () => {
+            it ('should return a full day of schedules with the default values in place of the empty slots', () => {
                 let schedules = [
                     { day: 0, start: 0, end: 720, value: true },
                     { day: 0, start: 780, end: 900, value: true }
