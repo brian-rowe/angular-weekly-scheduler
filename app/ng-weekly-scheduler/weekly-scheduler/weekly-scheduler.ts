@@ -372,6 +372,7 @@ class WeeklySchedulerController implements angular.IController {
     this.items = this.prepareItems(this.items);
 
     return this.config.saveScheduler().then(() => {
+      this.items = this.purgeItems(this.items);
       this.formController.$setPristine();
     });
   }
