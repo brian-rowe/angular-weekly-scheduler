@@ -72,6 +72,7 @@ class FillEmptyWithDefaultService {
                 let endSchedule = this.getEndSchedule(nextSchedule, config);
 
                 newSchedules.push(endSchedule);
+                break;
             }
         }
 
