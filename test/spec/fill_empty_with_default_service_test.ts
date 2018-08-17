@@ -23,22 +23,16 @@ describe('fillEmptyWithDefault service', () => {
                 intervalCount: 96
             }
 
-            it ('should return a full day of schedules with the default values in place of the empty slots', () => {
-                let item = config.createItem(0, [
-                    { day: 0, start: 0, end: 720, value: true },
-                    { day: 0, start: 780, end: 900, value: true }
-                ]);
+            it('should work when there are no starting schedules', () => {
+                let item = config.createItem(0, []);
 
                 let expectedResult = [
-                    { day: 0, start: 0, end: 720, value: true },
-                    { day: 0, start: 720, end: 780, value: config.defaultValue },
-                    { day: 0, start: 780, end: 900, value: true },
-                    { day: 0, start: 900, end: 0, value: config.defaultValue }
+                    { day: 0, start: 0, end: 0, value: config.defaultValue }
                 ];
 
                 let actualResult = $service.fill(item, config);
 
-                expect(angular.equals(actualResult, expectedResult)).toBeTruthy();
+                expect(angular.equals(actualResult, expectedResult)).toBeTruthy();  
             });
 
             it('should work when there is only one starting schedule', () => {
@@ -56,16 +50,42 @@ describe('fillEmptyWithDefault service', () => {
                 expect(angular.equals(actualResult, expectedResult)).toBeTruthy(); 
             });
 
-            it('should work when there are no starting schedules', () => {
-                let item = config.createItem(0, []);
+            it ('should work when there are two schedules', () => {
+                let item = config.createItem(0, [
+                    { day: 0, start: 0, end: 720, value: true },
+                    { day: 0, start: 780, end: 900, value: true }
+                ]);
 
                 let expectedResult = [
-                    { day: 0, start: 0, end: 0, value: config.defaultValue }
+                    { day: 0, start: 0, end: 720, value: true },
+                    { day: 0, start: 720, end: 780, value: config.defaultValue },
+                    { day: 0, start: 780, end: 900, value: true },
+                    { day: 0, start: 900, end: 0, value: config.defaultValue }
                 ];
 
                 let actualResult = $service.fill(item, config);
 
-                expect(angular.equals(actualResult, expectedResult)).toBeTruthy();  
+                expect(angular.equals(actualResult, expectedResult)).toBeTruthy();
+            });
+
+            it('should work when there are three or more schedules', () => {
+                let item = config.createItem(0, [
+                    { day: 0, start: 0, end: 75, value: true },
+                    { day: 0, start: 330, end: 840, value: true },
+                    { day: 0, start: 1410, end: 0, value: true }
+                ]);
+
+                let expectedResult = [
+                    { day: 0, start: 0, end: 75, value: true },
+                    { day: 0, start: 75, end: 330, value: false },
+                    { day: 0, start: 330, end: 840, value: true },
+                    { day: 0, start: 840, end: 1410, value: false },
+                    { day: 0, start: 1410, end: 0, value: true }
+                ];
+
+                let actualResult = $service.fill(item, config);
+
+                expect(angular.equals(actualResult, expectedResult)).toBeTruthy();
             });
         });
     });

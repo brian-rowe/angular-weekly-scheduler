@@ -51,14 +51,23 @@ class FillEmptyWithDefaultService {
 
             let isLastLoop = i == len - 1;
 
-            if (isLastLoop && nextSchedule.end !== config.maxTimeSlot) {
+            if (isLastLoop && nextSchedule.end !== this.endAdjusterService.adjustEndForModel(config, config.maxValue)) {
                 let endSchedule = this.getEndSchedule(nextSchedule, config);
 
                 newSchedules.push(endSchedule);
             }
         }
 
-        return newSchedules;
+        // remove duplicates
+        let result = [];
+
+        for (let schedule of newSchedules) {
+            if (result.indexOf(schedule) === -1) {
+                result.push(schedule);
+            }
+        }
+
+        return result;
     }
 
     private getEmptySchedule(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>) {
