@@ -55,6 +55,8 @@ class FillEmptyWithDefaultService {
     }
 
     private getFilledSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>) {
+        schedules = this.getSortedSchedules(schedules);
+
         let len = schedules.length - 1;
         
         // 2 at a time
@@ -86,7 +88,7 @@ class FillEmptyWithDefaultService {
             }
         }
 
-        return schedules.sort((a, b) => a.start - b.start);
+        return this.getSortedSchedules(schedules);
     }
 
     private getNewSchedule(currentSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, nextSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
@@ -96,6 +98,10 @@ class FillEmptyWithDefaultService {
             end: nextSchedule.start,
             value: config.defaultValue
         }
+    }
+
+    private getSortedSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
+        return schedules.sort((a, b) => a.start - b.start);
     }
 }
 
