@@ -66,7 +66,7 @@ class FillEmptyWithDefaultService {
 
             let isFirstLoop = i == 0;
 
-            if (isFirstLoop && currentSchedule.start !== 0) {
+            if (isFirstLoop && !this.scheduleTouchesStart(currentSchedule, config)) {
                 let startSchedule = this.getStartSchedule(currentSchedule, config);
 
                 schedules.push(startSchedule);
@@ -80,7 +80,7 @@ class FillEmptyWithDefaultService {
 
             let isLastLoop = i == len - 1;
 
-            if (isLastLoop && nextSchedule.end !== this.endAdjusterService.adjustEndForModel(config, config.maxValue)) {
+            if (isLastLoop && !this.scheduleTouchesEnd(nextSchedule, config)) {
                 let endSchedule = this.getEndSchedule(nextSchedule, config);
 
                 schedules.push(endSchedule);
@@ -102,6 +102,14 @@ class FillEmptyWithDefaultService {
 
     private getSortedSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
         return schedules.sort((a, b) => a.start - b.start);
+    }
+
+    private scheduleTouchesStart(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return schedule.start === 0;
+    }
+    
+    private scheduleTouchesEnd(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return schedule.end === this.endAdjusterService.adjustEndForModel(config, config.maxValue);
     }
 }
 
