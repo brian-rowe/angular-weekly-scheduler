@@ -35,19 +35,52 @@ describe('fillEmptyWithDefault service', () => {
                 expect(angular.equals(actualResult, expectedResult)).toBeTruthy();  
             });
 
-            it('there is only one starting schedule', () => {
-                let item = config.createItem(0, [
-                    { day: 0, start: 0, end: 720, value: true }
-                ]);
-    
-                let expectedResult = [
-                    { day: 0, start: 0, end: 720, value: true },
-                    { day: 0, start: 720, end: 0, value: config.defaultValue },
-                ];
-    
-                let actualResult = $service.fill(item, config);
-    
-                expect(angular.equals(actualResult, expectedResult)).toBeTruthy(); 
+            describe('there is only one starting schedule', () => {
+                it('that starts at 0', () => {
+                    let item = config.createItem(0, [
+                        { day: 0, start: 0, end: 720, value: true }
+                    ]);
+        
+                    let expectedResult = [
+                        { day: 0, start: 0, end: 720, value: true },
+                        { day: 0, start: 720, end: 0, value: config.defaultValue },
+                    ];
+        
+                    let actualResult = $service.fill(item, config);
+        
+                    expect(angular.equals(actualResult, expectedResult)).toBeTruthy(); 
+                });
+
+                it('that starts & ends in the middle', () => {
+                    let item = config.createItem(0, [
+                        { day: 0, start: 180, end: 720, value: true }
+                    ]);
+        
+                    let expectedResult = [
+                        { day: 0, start: 0, end: 180, value: config.defaultValue },
+                        { day: 0, start: 180, end: 720, value: true },
+                        { day: 0, start: 720, end: 0, value: config.defaultValue },
+                    ];
+        
+                    let actualResult = $service.fill(item, config);
+        
+                    expect(angular.equals(actualResult, expectedResult)).toBeTruthy(); 
+                });
+
+                it ('that ends at 0', () => {
+                    let item = config.createItem(0, [
+                        { day: 0, start: 720, end: 0, value: true }
+                    ]);
+        
+                    let expectedResult = [
+                        { day: 0, start: 0, end: 720, value: config.defaultValue },
+                        { day: 0, start: 720, end: 0, value: true },
+                    ];
+        
+                    let actualResult = $service.fill(item, config);
+        
+                    expect(angular.equals(actualResult, expectedResult)).toBeTruthy(); 
+                });
             });
 
             it('there are two starting schedules', () => {
