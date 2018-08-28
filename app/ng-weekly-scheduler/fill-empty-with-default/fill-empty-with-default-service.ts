@@ -19,11 +19,6 @@ class FillEmptyWithDefaultService {
             return [this.getEmptySchedule(item, config)];
         }
 
-        if (schedules.length === 1) {
-            let schedule = schedules[0];
-            return [schedule, this.getEndSchedule(schedule, config)];
-        }
-
         return this.getFilledSchedules(schedules, config);
     }
 
@@ -54,8 +49,26 @@ class FillEmptyWithDefaultService {
         };
     }
 
+    private getFilledSchedulesForSingleSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        let schedules = [schedule];
+
+        if (!this.scheduleTouchesStart(schedule, config)) {
+            schedules.push(this.getStartSchedule(schedule, config));
+        }
+
+        if (!this.scheduleTouchesEnd(schedule, config)) {
+            schedules.push(this.getEndSchedule(schedule, config));
+        }
+
+        return this.getSortedSchedules(schedules);
+    }
+
     private getFilledSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>) {
         schedules = this.getSortedSchedules(schedules);
+
+        if (schedules.length === 1) {
+            return this.getFilledSchedulesForSingleSchedule(schedules[0], config);
+        }
 
         let len = schedules.length - 1;
         
@@ -72,7 +85,7 @@ class FillEmptyWithDefaultService {
                 schedules.push(startSchedule);
             }
 
-            if (currentSchedule.end !== nextSchedule.start) {
+            if (!this.schedulesTouch(currentSchedule, nextSchedule)) {
                 let newSchedule = this.getNewSchedule(currentSchedule, nextSchedule, config);
 
                 schedules.push(newSchedule);
@@ -102,6 +115,10 @@ class FillEmptyWithDefaultService {
 
     private getSortedSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
         return schedules.sort((a, b) => a.start - b.start);
+    }
+
+    private schedulesTouch(earlierSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, laterSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+        return earlierSchedule.end === laterSchedule.start;
     }
 
     private scheduleTouchesStart(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
