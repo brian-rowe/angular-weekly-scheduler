@@ -60,6 +60,10 @@ declare namespace br.weeklyScheduler {
          * for setting $dirty or updating validation in cases where it is not desirable to save schedules individually.
          */
         onChange?: (isValid: boolean) => void;
+        /**
+         * This function allows access back to the client scope when a scheduler is removed.
+         */
+        onRemove?: () => void;
         /** The number of minutes each division of the calendar should be -- values will snap to this */
         interval?: number;
         /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
