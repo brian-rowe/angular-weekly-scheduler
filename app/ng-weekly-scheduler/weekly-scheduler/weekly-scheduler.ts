@@ -65,7 +65,8 @@ class WeeklySchedulerController implements angular.IController {
   public defaultOptions: br.weeklyScheduler.IWeeklySchedulerOptions<any> = {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
     monoSchedule: false,
-    onChange: (isValid) => angular.noop()
+    onChange: (isValid) => angular.noop(),
+    onRemove: () => angular.noop()
   };
 
   $onInit() {
@@ -119,6 +120,10 @@ class WeeklySchedulerController implements angular.IController {
   public onChange() {
     this.config.onChange(!this.hasInvalidSchedule());
   }
+  
+  public onRemove() {
+    this.config.onRemove();
+  }
 
   /**
    * Actually remove the schedule from both the screen and the model
@@ -128,6 +133,7 @@ class WeeklySchedulerController implements angular.IController {
     this.hoveringSlot = false;
 
     item.removeSchedule(schedule);
+    this.onRemove();
   }
 
   /**

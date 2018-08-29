@@ -33,6 +33,11 @@ namespace br.weeklyScheduler {
          */
         onChange?: (isValid: boolean) => void;
 
+        /**
+         * This function allows access back to the client scope when a scheduler is removed.
+         */
+        onRemove?: () => void;
+
         /** The number of minutes each division of the calendar should be -- values will snap to this */
         interval?: number;
 
