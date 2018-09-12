@@ -19,19 +19,19 @@ class RestrictionExplanationsController implements angular.IComponentController 
 
         if (config.maxTimeSlot) {
             let maxTimeSlot = this.$filter('brWeeklySchedulerMinutesAsText')(config.maxTimeSlot);
-            this.explanations[ValidationError.MaxTimeSlot] = `Max time slot length: ${maxTimeSlot}`;
+            this.explanations[ValidationError.MaxTimeSlot] = config.restrictionExplanations.maxTimeSlot(maxTimeSlot);
         }
 
         if (config.fullCalendar) {
-            this.explanations[ValidationError.FullCalendar] = 'For this calendar, every day must be completely full of schedules.';
+            this.explanations[ValidationError.FullCalendar] = config.restrictionExplanations.fullCalendar;
         }
 
         if (config.monoSchedule) {
-            this.explanations[ValidationError.MonoSchedule] = 'This calendar may only have one time slot per day';
+            this.explanations[ValidationError.MonoSchedule] = config.restrictionExplanations.monoSchedule;
         }
 
         if (config.nullEnds) {
-            this.explanations[ValidationError.NullEnd] = 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.';
+            this.explanations[ValidationError.NullEnd] = config.restrictionExplanations.nullEnds;
         }
     }
 }

@@ -17,6 +17,9 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           },
           interval: 1,
           onChange: (isValid) => {
+          },
+          restrictionExplanations: {
+            maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }

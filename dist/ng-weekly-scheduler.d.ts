@@ -1,7 +1,23 @@
 /// <reference types="angular" />
 declare namespace br.weeklyScheduler {
+    interface InvalidMessages {
+        fullCalendarFillEmptyWithDefault: string;
+        fillEmptyWithdefaultDefaultValue: string;
+        generic: string;
+    }
+}
+declare namespace br.weeklyScheduler {
     interface IResizeServiceProvider extends angular.IServiceProvider {
         setCustomResizeEvents(events: string[]): any;
+    }
+}
+declare namespace br.weeklyScheduler {
+    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
+    interface RestrictionExplanations {
+        fullCalendar: string;
+        maxTimeSlot: (value: string) => string;
+        monoSchedule: string;
+        nullEnds: string;
     }
 }
 declare namespace br.weeklyScheduler {
@@ -66,6 +82,8 @@ declare namespace br.weeklyScheduler {
         onRemove?: () => void;
         /** The number of minutes each division of the calendar should be -- values will snap to this */
         interval?: number;
+        /** Overrides for restriction explanations, if necessary */
+        restrictionExplanations?: RestrictionExplanations;
         /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
         saveScheduler?: () => angular.IPromise<any>;
     }

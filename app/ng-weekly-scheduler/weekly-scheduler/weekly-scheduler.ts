@@ -66,7 +66,13 @@ class WeeklySchedulerController implements angular.IController {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
     monoSchedule: false,
     onChange: (isValid) => angular.noop(),
-    onRemove: () => angular.noop()
+    onRemove: () => angular.noop(),
+    restrictionExplanations: {
+      maxTimeSlot: (value) => `Max time slot length: ${value}`,
+      fullCalendar: 'For this calendar, every day must be completely full of schedules.',
+      monoSchedule: 'This calendar may only have one time slot per day',
+      nullEnds: 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.'
+    }
   };
 
   $onInit() {

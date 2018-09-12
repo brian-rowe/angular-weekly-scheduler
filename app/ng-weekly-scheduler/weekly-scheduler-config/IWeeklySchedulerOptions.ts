@@ -41,6 +41,9 @@ namespace br.weeklyScheduler {
         /** The number of minutes each division of the calendar should be -- values will snap to this */
         interval?: number;
 
+        /** Overrides for restriction explanations, if necessary */
+        restrictionExplanations?: RestrictionExplanations;
+
         /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
         saveScheduler?: () => angular.IPromise<any>;
     }
