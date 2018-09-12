@@ -13,7 +13,6 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           },
           defaultValue: false,
           editSlot: function (schedule) {
-            schedule.value = false;
             return $q.when(schedule);
           },
           interval: 1,
