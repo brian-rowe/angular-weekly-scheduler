@@ -35,7 +35,7 @@ class MultiSliderController implements angular.IComponentController {
   public element: Element;
   public config: IWeeklySchedulerConfig<any>;
 
-  private _renderGhost: boolean;
+  private renderGhost: boolean;
   private item: WeeklySchedulerItem<any>;
 
   public addSlot(start: number, end: number): angular.IPromise<void> {
@@ -106,7 +106,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseDown(event: MouseEvent) {
-    this._renderGhost = true;
+    this.renderGhost = true;
     this.positionGhost(event);
   }
 
@@ -116,7 +116,7 @@ class MultiSliderController implements angular.IComponentController {
       return;
     }
 
-    if (this._renderGhost) {
+    if (this.renderGhost) {
       this.adjustGhost(event);
     }
   }
@@ -128,7 +128,7 @@ class MultiSliderController implements angular.IComponentController {
       this.canAdd = true;
     }
 
-    this._renderGhost = false;
+    this.renderGhost = false;
 
     this.onHoverElementClick();
   }
@@ -168,13 +168,13 @@ class MultiSliderController implements angular.IComponentController {
    * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
    */
   private canRenderGhost() {
-    // This one needs to come first, otherwise _renderGhost being set to true would override the protection against addt'l slots in nullEnd calendars
+    // This one needs to come first, otherwise renderGhost being set to true would override the protection against addt'l slots in nullEnd calendars
     if (this.config.nullEnds) {
-      return this._renderGhost && this.item.hasNoSchedules();
+      return this.renderGhost && this.item.hasNoSchedules();
     }
 
     // If you're already dragging the ghost it should never disappear
-    if (this._renderGhost) {
+    if (this.renderGhost) {
       return true;
     }
 
@@ -186,7 +186,7 @@ class MultiSliderController implements angular.IComponentController {
       return false;
     }
 
-    return this._renderGhost;
+    return this.renderGhost;
   }
 
   private getMousePosition(event: MouseEvent) {
