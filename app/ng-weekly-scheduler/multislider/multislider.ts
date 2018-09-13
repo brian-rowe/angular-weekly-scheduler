@@ -159,9 +159,8 @@ class MultiSliderController implements angular.IComponentController {
   private canEdit(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     let isEditable = this.item.isEditable();
     let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
-    let isNotDragging = !this.isDragging;
 
-    return isEditable && hasEditFunction && isNotDragging;
+    return isEditable && hasEditFunction;
   }
 
   /**
@@ -184,10 +183,6 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     if (this.isAdding) {
-      return false;
-    }
-
-    if (this.isDragging) {
       return false;
     }
 
@@ -301,14 +296,6 @@ class MultiSliderController implements angular.IComponentController {
   public pixelToVal(pixel: number) {
     var percent = pixel / this.element.clientWidth;
     return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
-  }
-
-  get isDragging() {
-    return this.schedulerCtrl.dragging;
-  }
-
-  set isDragging(value: boolean) {
-    this.schedulerCtrl.dragging = value;
   }
 }
 

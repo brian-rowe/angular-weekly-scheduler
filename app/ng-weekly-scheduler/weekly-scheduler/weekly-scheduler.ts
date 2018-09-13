@@ -44,9 +44,6 @@ class WeeklySchedulerController implements angular.IController {
 
   private adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>;
 
-  /** should be true if the user is currently holding down the primary mouse button on a slot */
-  public dragging: boolean;
-
   public invalidMessage: string = '';
   public isReady: boolean = false;
 
@@ -132,8 +129,6 @@ class WeeklySchedulerController implements angular.IController {
    * Actually remove the schedule from both the screen and the model
    */
   public removeScheduleFromItem(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    this.dragging = false;
-
     item.removeSchedule(schedule);
     this.onRemove();
   }

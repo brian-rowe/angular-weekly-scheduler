@@ -55,8 +55,6 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public drag(pixel: number) {
-    this.multisliderCtrl.isDragging = true;
-
     let ui = this.schedule;
     let delta = this.multisliderCtrl.pixelToVal(pixel);
     let duration = this.valuesOnDragStart.end - this.valuesOnDragStart.start;
@@ -80,13 +78,11 @@ class WeeklySlotController implements angular.IComponentController {
 
     if (!changed) {
       this.setSlotActive(false);
-      this.multisliderCtrl.isDragging = false;
       return this.editSelf();
     }
 
     this.$timeout(() => {
       this.setSlotActive(false);
-      this.multisliderCtrl.isDragging = false;
     }, 200).then(() => {
       this.ngModelCtrl.$setDirty();
       this.multisliderCtrl.merge(this.schedule);
@@ -94,8 +90,6 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public resize(pixel: number) {
-    this.multisliderCtrl.isDragging = true;
-    
     let ui = this.schedule;
     let delta = this.multisliderCtrl.pixelToVal(pixel);
 
