@@ -60,8 +60,8 @@ class MultiSliderController implements angular.IComponentController {
       value: this.config.defaultValue
     };
 
-    if (angular.isFunction(this.schedulerCtrl.config.editSlot)) {
-      return this.schedulerCtrl.config.editSlot(schedule).then((editedSchedule) => {
+    if (angular.isFunction(this.config.editSlot)) {
+      return this.config.editSlot(schedule).then((editedSchedule) => {
         this.addScheduleToItem(editedSchedule);
       });
     } else {
@@ -158,7 +158,7 @@ class MultiSliderController implements angular.IComponentController {
    */
   private canEdit(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     let isEditable = this.item.isEditable();
-    let hasEditFunction = angular.isFunction(this.schedulerCtrl.config.editSlot);
+    let hasEditFunction = angular.isFunction(this.config.editSlot);
 
     return isEditable && hasEditFunction;
   }
@@ -207,7 +207,7 @@ class MultiSliderController implements angular.IComponentController {
     if (this.canEdit(schedule)) {
       schedule.$isEditing = true;
 
-      this.schedulerCtrl.config.editSlot(schedule).then((newSchedule) => {
+      this.config.editSlot(schedule).then((newSchedule) => {
         if (this.shouldDelete(newSchedule)) {
           this.schedulerCtrl.removeScheduleFromItem(this.item, schedule);
         } else {
