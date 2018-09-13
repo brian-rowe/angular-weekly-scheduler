@@ -45,9 +45,14 @@ class WeeklySlotController implements angular.IComponentController {
     }
   }
 
-  private setSlotActive(active: boolean) {
-    this.schedule.$isActive = active;
-    this.multisliderCtrl.canAdd = !active;
+  private setSlotActive() {
+    this.schedule.$isActive = true;
+    this.multisliderCtrl.canAdd = false;
+  }
+
+  private setSlotInactive() {
+    this.schedule.$isActive = false;
+    this.multisliderCtrl.canAdd = true;
   }
 
   public editSelf() {
@@ -77,12 +82,12 @@ class WeeklySlotController implements angular.IComponentController {
     var changed: boolean = !angular.equals(this.valuesOnDragStart, this.getDragStartValues());
 
     if (!changed) {
-      this.setSlotActive(false);
+      this.setSlotInactive();
       return this.editSelf();
     }
 
     this.$timeout(() => {
-      this.setSlotActive(false);
+      this.setSlotInactive();
     }, 200).then(() => {
       this.ngModelCtrl.$setDirty();
       this.multisliderCtrl.merge(this.schedule);
@@ -133,7 +138,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    this.setSlotActive(true);
+    this.setSlotActive();
     this.valuesOnDragStart = this.getDragStartValues();
   }
 
