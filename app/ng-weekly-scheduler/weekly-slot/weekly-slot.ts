@@ -79,14 +79,14 @@ class WeeklySlotController implements angular.IComponentController {
     // Did the user actually move or resize the slot??
     var changed: boolean = !angular.equals(this.valuesOnDragStart, this.getDragStartValues());
 
-    if (!changed) {
-      this.setSlotInactive();
-      return this.editSelf();
-    }
-
     this.setSlotInactive();
-    this.ngModelCtrl.$setDirty();
-    this.multisliderCtrl.merge(this.schedule);
+
+    if (changed) {
+      this.ngModelCtrl.$setDirty();
+      this.multisliderCtrl.merge(this.schedule);
+    } else {
+      this.editSelf();
+    }
   }
 
   public resize(pixel: number) {
