@@ -4,7 +4,6 @@ class WeeklySlotController implements angular.IComponentController {
   static $controllerAs = 'weeklySlotCtrl';
 
   static $inject = [
-    '$timeout',
     'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerNullEndWidth'
   ];
@@ -24,7 +23,6 @@ class WeeklySlotController implements angular.IComponentController {
   private valuesOnDragStart: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 
   constructor(
-    private $timeout: angular.ITimeoutService,
     private endAdjusterService: EndAdjusterService,
     private nullEndWidth: number
   ) {
@@ -86,12 +84,9 @@ class WeeklySlotController implements angular.IComponentController {
       return this.editSelf();
     }
 
-    this.$timeout(() => {
-      this.setSlotInactive();
-    }, 200).then(() => {
-      this.ngModelCtrl.$setDirty();
-      this.multisliderCtrl.merge(this.schedule);
-    });
+    this.setSlotInactive();
+    this.ngModelCtrl.$setDirty();
+    this.multisliderCtrl.merge(this.schedule);
   }
 
   public resize(pixel: number) {
