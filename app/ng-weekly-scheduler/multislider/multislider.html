@@ -28,8 +28,6 @@
                 }"
                 ng-repeat="schedule in multiSliderCtrl.item.schedules"
                 ng-model="schedule"
-                ng-mouseleave="multiSliderCtrl.onWeeklySlotMouseLeave()"
-                ng-mouseover="multiSliderCtrl.onWeeklySlotMouseOver()"
                 ng-style="{
                     left: multiSliderCtrl.getSlotLeft(schedule.start),
                     right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end)

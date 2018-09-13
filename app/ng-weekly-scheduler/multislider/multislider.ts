@@ -191,10 +191,6 @@ class MultiSliderController implements angular.IComponentController {
       return false;
     }
 
-    if (this.isHoveringSlot) {
-      return false;
-    }
-
     return this._renderGhost;
   }
 
@@ -286,14 +282,6 @@ class MultiSliderController implements angular.IComponentController {
     return this.$element.parent()[0].querySelector(`[rel='${val}']`);
   }
 
-  private onWeeklySlotMouseOver() {
-    this.isHoveringSlot = true;
-  }
-
-  private onWeeklySlotMouseLeave() {
-    this.isHoveringSlot = false;
-  }
-
   private shouldDelete(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     if (schedule.$isDeleting) {
       return true;
@@ -321,14 +309,6 @@ class MultiSliderController implements angular.IComponentController {
 
   set isDragging(value: boolean) {
     this.schedulerCtrl.dragging = value;
-  }
-
-  get isHoveringSlot() {
-    return this.schedulerCtrl.hoveringSlot;
-  }
-
-  set isHoveringSlot(value: boolean) {
-    this.schedulerCtrl.hoveringSlot = value;
   }
 }
 
