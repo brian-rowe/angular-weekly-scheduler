@@ -16,7 +16,6 @@ class WeeklySlotController implements angular.IComponentController {
 
   private editSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
   private updateSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>}) => void;
-  private removeSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
 
   private resizeDirectionIsStart: boolean = true;
 
@@ -49,10 +48,6 @@ class WeeklySlotController implements angular.IComponentController {
   private setSlotActive(active: boolean) {
     this.schedule.$isActive = active;
     this.multisliderCtrl.canAdd = !active;
-  }
-
-  public deleteSelf() {
-    this.removeSchedule({ schedule: this.schedule });
   }
 
   public editSelf() {
@@ -171,7 +166,6 @@ class WeeklySlotComponent implements angular.IComponentOptions {
     config: '<',
     schedule: '=ngModel',
     editSchedule: '&',
-    removeSchedule: '&',
     updateSchedule: '&'
   };
 
