@@ -204,23 +204,25 @@ class MultiSliderController implements angular.IComponentController {
   /**
    * Perform an external action to bring up an editor for a schedule
    */
-  private editSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  private editSchedule(schedule: WeeklySchedulerRange<any>) {
     if (this.canEdit(schedule)) {
       schedule.$isEditing = true;
 
       this.config.editSlot(schedule).then((newSchedule) => {
-        if (this.shouldDelete(newSchedule)) {
+        let range = new WeeklySchedulerRange(newSchedule);
+
+        if (this.shouldDelete(range)) {
           this.schedulerCtrl.removeScheduleFromItem(this.item, schedule);
         } else {
-          let premergeSchedule = angular.copy(newSchedule);
+          let premergeSchedule = angular.copy(range);
 
-          this.merge(newSchedule);
+          this.merge(range);
 
           // If merging mutated the schedule further, then schedulerCtrl.updateSchedule would have already been called
           // This is so that edits that don't trigger merges still trigger onChange,
           // but edits that do trigger merges don't trigger it twice
-          if (angular.equals(premergeSchedule, newSchedule)) {
-            this.schedulerCtrl.updateSchedule(schedule, newSchedule);
+          if (angular.equals(premergeSchedule, range)) {
+            this.schedulerCtrl.updateSchedule(schedule, range);
           }
         }
 
@@ -290,7 +292,7 @@ class MultiSliderController implements angular.IComponentController {
     return false;
   }
 
-  public merge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  public merge(schedule: WeeklySchedulerRange<any>) {
     this.schedulerCtrl.mergeScheduleIntoItem(this.item, schedule);
   }
 

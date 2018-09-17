@@ -12,7 +12,7 @@ class FillEmptyWithDefaultService {
     ) {
     }
 
-    fill(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): br.weeklyScheduler.IWeeklySchedulerRange<any>[] {
+    fill(item: WeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>): WeeklySchedulerRange<any>[] {
         let schedules = item.schedules;
 
         if (!schedules.length) {
@@ -22,34 +22,34 @@ class FillEmptyWithDefaultService {
         return this.getFilledSchedules(schedules, config);
     }
 
-    private getEmptySchedule(item: br.weeklyScheduler.IWeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>) {
-        return {
+    private getEmptySchedule(item: WeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>) {
+        return new WeeklySchedulerRange({
             day: item.day,
             start: 0,
             end: this.endAdjusterService.adjustEndForModel(config, config.maxValue),
             value: config.defaultValue
-        }
+        });
     }
 
-    private getEndSchedule(lastSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return {
+    private getEndSchedule(lastSchedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return new WeeklySchedulerRange({
             day: lastSchedule.day,
             start: lastSchedule.end,
             end: this.endAdjusterService.adjustEndForModel(config, config.maxValue),
             value: config.defaultValue
-        }
+        })
     }
 
-    private getStartSchedule(firstSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return {
+    private getStartSchedule(firstSchedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return new WeeklySchedulerRange({
             day: firstSchedule.day,
             start: 0,
             end: firstSchedule.start,
             value: config.defaultValue
-        };
+        });
     }
 
-    private getFilledSchedulesForSingleSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+    private getFilledSchedulesForSingleSchedule(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
         let schedules = [schedule];
 
         if (!this.scheduleTouchesStart(schedule, config)) {
@@ -63,7 +63,7 @@ class FillEmptyWithDefaultService {
         return this.getSortedSchedules(schedules);
     }
 
-    private getFilledSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>) {
+    private getFilledSchedules(schedules: WeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>) {
         schedules = this.getSortedSchedules(schedules);
 
         if (schedules.length === 1) {
@@ -104,28 +104,28 @@ class FillEmptyWithDefaultService {
         return this.getSortedSchedules(schedules);
     }
 
-    private getNewSchedule(currentSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, nextSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return {
+    private getNewSchedule(currentSchedule: WeeklySchedulerRange<any>, nextSchedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return new WeeklySchedulerRange({
             day: currentSchedule.day,
             start: currentSchedule.end,
             end: nextSchedule.start,
             value: config.defaultValue
-        }
+        });
     }
 
-    private getSortedSchedules(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
+    private getSortedSchedules(schedules: WeeklySchedulerRange<any>[]) {
         return schedules.sort((a, b) => a.start - b.start);
     }
 
-    private schedulesTouch(earlierSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, laterSchedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    private schedulesTouch(earlierSchedule: WeeklySchedulerRange<any>, laterSchedule: WeeklySchedulerRange<any>) {
         return earlierSchedule.end === laterSchedule.start;
     }
 
-    private scheduleTouchesStart(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+    private scheduleTouchesStart(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
         return schedule.start === 0;
     }
     
-    private scheduleTouchesEnd(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+    private scheduleTouchesEnd(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
         return schedule.end === this.endAdjusterService.adjustEndForModel(config, config.maxValue);
     }
 }

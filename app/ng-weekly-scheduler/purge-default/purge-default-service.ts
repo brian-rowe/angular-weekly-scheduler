@@ -3,7 +3,7 @@
 class PurgeDefaultService {
     static $name = 'brWeeklySchedulerPurgeDefaultService';
 
-    purge(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): br.weeklyScheduler.IWeeklySchedulerRange<any>[] {
+    purge(schedules: WeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): WeeklySchedulerRange<any>[] {
         let lastIndex = schedules.length - 1;
 
         // loop in reverse to avoid messing up indices as we go

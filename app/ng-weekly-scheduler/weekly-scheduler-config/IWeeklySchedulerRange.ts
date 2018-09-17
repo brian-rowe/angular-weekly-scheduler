@@ -31,6 +31,11 @@ interface IInternalWeeklySchedulerRange<T> extends br.weeklyScheduler.IWeeklySch
 /** Provides common functionality for a schedule -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */
 class WeeklySchedulerRange<T> implements IInternalWeeklySchedulerRange<T> {
+    $class: string;
+    $isActive: boolean;
+    $isDeleting: boolean;
+    $isEditing: boolean;
+
     day: br.weeklyScheduler.Days;
     start: number;
     end: number;

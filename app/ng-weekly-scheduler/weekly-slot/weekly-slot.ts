@@ -18,7 +18,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   private resizeDirectionIsStart: boolean = true;
 
-  private schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>;
+  private schedule: WeeklySchedulerRange<any>;
 
   private valuesOnDragStart: br.weeklyScheduler.IWeeklySchedulerRange<any>;
 

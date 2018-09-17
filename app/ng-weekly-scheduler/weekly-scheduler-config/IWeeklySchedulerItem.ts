@@ -18,7 +18,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     day: br.weeklyScheduler.Days;
     editable: boolean;
     label: string;
-    schedules: br.weeklyScheduler.IWeeklySchedulerRange<T>[];
+    schedules: WeeklySchedulerRange<T>[];
 
     constructor(
         public config: IWeeklySchedulerConfig<T>,
@@ -28,13 +28,9 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         this.day = item.day;
         this.editable = item.editable;
         this.label = item.label;
-        this.schedules = item.schedules;
+        this.schedules = item.schedules.map(schedule => new WeeklySchedulerRange(schedule));
     }
     
-    private schedulesHaveMatchingValues(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>, other: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
-        return schedule.value === other.value;
-    }
-
     public addSchedule(schedule: WeeklySchedulerRange<T>) {
         this.schedules.push(schedule);
     }
@@ -55,7 +51,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
             let current = this.schedules[i];
             let next = this.schedules[i+1];
 
-            if (this.schedulesHaveMatchingValues(current, next)) {
+            if (current.hasSameValueAs(next)) {
                 let overlapState = this.overlapService.getOverlapState(this.config, current, next);
 
                 return [OverlapState.OtherEndIsCurrentStart, OverlapState.OtherStartIsCurrentEnd].indexOf(overlapState) > -1;
@@ -63,7 +59,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         }
     }
 
-    public removeSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+    public removeSchedule(schedule: WeeklySchedulerRange<T>) {
         let schedules = this.schedules;
 
         schedules.splice(schedules.indexOf(schedule), 1);

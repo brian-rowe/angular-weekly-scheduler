@@ -32,7 +32,7 @@ class WeeklySchedulerController implements angular.IController {
 
   private _originalItems: WeeklySchedulerItem<any>[];
 
-  private overlapHandlers: { [key: number]: (item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) => void; } = {
+  private overlapHandlers: { [key: number]: (item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>) => void; } = {
     [OverlapState.NoOverlap]: (item, current, other) => this.handleNoOverlap(item, current, other),
     [OverlapState.CurrentIsInsideOther]: (item, current, other) => this.handleCurrentIsInsideOther(item, current, other),
     [OverlapState.CurrentCoversOther]: (item, current, other) => this.handleCurrentCoversOther(item, current, other),
@@ -111,7 +111,7 @@ class WeeklySchedulerController implements angular.IController {
     return this.formController.$invalid;
   }
 
-  public mergeScheduleIntoItem(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  public mergeScheduleIntoItem(item: WeeklySchedulerItem<any>, schedule: WeeklySchedulerRange<any>) {
     // We consider the schedule we were working with to be the most important, so handle its overlaps first.
     this.mergeOverlaps(item, schedule);
     this.mergeAllOverlapsForItem(item);
@@ -128,7 +128,7 @@ class WeeklySchedulerController implements angular.IController {
   /**
    * Actually remove the schedule from both the screen and the model
    */
-  public removeScheduleFromItem(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  public removeScheduleFromItem(item: WeeklySchedulerItem<any>, schedule: WeeklySchedulerRange<any>) {
     item.removeSchedule(schedule);
     this.onRemove();
   }
@@ -202,7 +202,7 @@ class WeeklySchedulerController implements angular.IController {
   private createItem(day: number, schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
     let result: IInternalWeeklySchedulerItem<any>;
 
-    let builder: br.weeklyScheduler.IWeeklySchedulerItem<any> = this.config.createItem(day, schedules.map(schedule => new WeeklySchedulerRange(schedule)));
+    let builder: br.weeklyScheduler.IWeeklySchedulerItem<any> = this.config.createItem(day, schedules);
 
     result = angular.extend(builder, { label: this.dayMap[day] });
 
@@ -325,7 +325,7 @@ class WeeklySchedulerController implements angular.IController {
     } while (item.needsOverlapsMerged());
   }
 
-  private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: WeeklySchedulerRange<any>) {
     let schedules = item.schedules;
 
     schedules.forEach((el => {
