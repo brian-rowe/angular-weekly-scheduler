@@ -24,7 +24,6 @@ class MultiSliderController implements angular.IComponentController {
   private startingGhostValues: { left: number, right: number };
   private ghostValues: { left: number, right: number };
 
-  private schedulerCtrl: WeeklySchedulerController;
   private ngModelCtrl: angular.INgModelController;
   
   public $hoverElement: angular.IAugmentedJQuery;
@@ -147,7 +146,7 @@ class MultiSliderController implements angular.IComponentController {
 
       this.addSlot(start, end).then(() => {
         this.ngModelCtrl.$setDirty();
-        this.schedulerCtrl.onChange();
+        this.config.onChange();
         this.isAdding = false;
         this.canAdd = false;
       });
@@ -212,17 +211,17 @@ class MultiSliderController implements angular.IComponentController {
         let range = new WeeklySchedulerRange(newSchedule);
 
         if (this.shouldDelete(range)) {
-          this.schedulerCtrl.removeScheduleFromItem(this.item, schedule);
+          this.item.removeSchedule(schedule);
         } else {
           let premergeSchedule = angular.copy(range);
 
           this.merge(range);
 
-          // If merging mutated the schedule further, then schedulerCtrl.updateSchedule would have already been called
+          // If merging mutated the schedule further, then updateSchedule would have already been called
           // This is so that edits that don't trigger merges still trigger onChange,
           // but edits that do trigger merges don't trigger it twice
           if (angular.equals(premergeSchedule, range)) {
-            this.schedulerCtrl.updateSchedule(schedule, range);
+            this.item.updateSchedule(schedule, range);
           }
         }
 
@@ -293,7 +292,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public merge(schedule: WeeklySchedulerRange<any>) {
-    this.schedulerCtrl.mergeScheduleIntoItem(this.item, schedule);
+    this.item.mergeSchedule(schedule);
   }
 
   public pixelToVal(pixel: number) {
@@ -315,7 +314,6 @@ class MultiSliderComponent implements angular.IComponentOptions {
   controllerAs = MultiSliderController.$controllerAs;
 
   require = {
-    schedulerCtrl: '^brWeeklyScheduler',
     ngModelCtrl: 'ngModel'
   };
 

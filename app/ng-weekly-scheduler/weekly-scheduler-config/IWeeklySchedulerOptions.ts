@@ -27,11 +27,8 @@ namespace br.weeklyScheduler {
         /** If this is true, the calendar will enforce that only one schedule per item is allowed */
         monoSchedule?: boolean;
         
-        /**
-         * This function allows access back to the client scope when the scheduler changes. Use it to hook into angular forms
-         * for setting $dirty or updating validation in cases where it is not desirable to save schedules individually.
-         */
-        onChange?: (isValid: boolean) => void;
+        /** This function allows access back to the client scope when the scheduler changes. */
+        onChange?: () => void;
 
         /**
          * This function allows access back to the client scope when a scheduler is removed.

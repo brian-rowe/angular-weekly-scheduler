@@ -32,16 +32,6 @@ class WeeklySchedulerController implements angular.IController {
 
   private _originalItems: WeeklySchedulerItem<any>[];
 
-  private overlapHandlers: { [key: number]: (item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>) => void; } = {
-    [OverlapState.NoOverlap]: (item, current, other) => this.handleNoOverlap(item, current, other),
-    [OverlapState.CurrentIsInsideOther]: (item, current, other) => this.handleCurrentIsInsideOther(item, current, other),
-    [OverlapState.CurrentCoversOther]: (item, current, other) => this.handleCurrentCoversOther(item, current, other),
-    [OverlapState.OtherEndIsInsideCurrent]: (item, current, other) => this.handleOtherEndIsInsideCurrent(item, current, other),
-    [OverlapState.OtherStartIsInsideCurrent]: (item, current, other) => this.handleOtherStartIsInsideCurrent(item, current, other),
-    [OverlapState.OtherEndIsCurrentStart]: (item, current, other) => this.handleOtherEndIsCurrentStart(item, current, other),
-    [OverlapState.OtherStartIsCurrentEnd]: (item, current, other) => this.handleOtherStartIsCurrentEnd(item, current, other)
-  };
-
   private adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>;
 
   public invalidMessage: string = '';
@@ -59,7 +49,7 @@ class WeeklySchedulerController implements angular.IController {
   public defaultOptions: br.weeklyScheduler.IWeeklySchedulerOptions<any> = {
     createItem: (day, schedules) => { return { day: day, schedules: schedules } },
     monoSchedule: false,
-    onChange: (isValid) => angular.noop(),
+    onChange: () => angular.noop(),
     onRemove: () => angular.noop(),
     restrictionExplanations: {
       maxTimeSlot: (value) => `Max time slot length: ${value}`,
@@ -112,41 +102,13 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   public mergeScheduleIntoItem(item: WeeklySchedulerItem<any>, schedule: WeeklySchedulerRange<any>) {
-    // We consider the schedule we were working with to be the most important, so handle its overlaps first.
-    this.mergeOverlaps(item, schedule);
-    this.mergeAllOverlapsForItem(item);
-  }
-
-  public onChange() {
-    this.config.onChange(!this.hasInvalidSchedule());
-  }
-  
-  public onRemove() {
-    this.config.onRemove();
-  }
-
-  /**
-   * Actually remove the schedule from both the screen and the model
-   */
-  public removeScheduleFromItem(item: WeeklySchedulerItem<any>, schedule: WeeklySchedulerRange<any>) {
-    item.removeSchedule(schedule);
-    this.onRemove();
-  }
-
-  /**
-   * Commit new values to the schedule
-   */
-  public updateSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    schedule.start = update.start;
-    schedule.end = this.endAdjusterService.adjustEndForModel(this.config, update.end);
-
-    this.onChange();
+    item.mergeOverlaps();
   }
 
   private buildItems(items: WeeklySchedulerItem<any>[]) {
     this.items = this.fillItems(items);
 
-    this.items.forEach(item => this.mergeAllOverlapsForItem(item));
+    this.items.forEach(item => item.mergeOverlaps());
 
     this.items = this.purgeItems(this.items);
 
@@ -206,7 +168,7 @@ class WeeklySchedulerController implements angular.IController {
 
     result = angular.extend(builder, { label: this.dayMap[day] });
 
-    return new WeeklySchedulerItem(this.config, result, this.overlapService);
+    return new WeeklySchedulerItem(this.config, result, this.endAdjusterService, this.overlapService);
   }
 
   /**
@@ -232,112 +194,7 @@ class WeeklySchedulerController implements angular.IController {
 
     return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
   }
-
-  // Overlap handlers
-
-  private handleCurrentCoversOther(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
-    // Here, it doesn't matter if the values match -- the covering slot can always "eat" the other one
-    this.removeScheduleFromItem(item, other);
-  }
-
-  private handleCurrentIsInsideOther(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
-    if (current.hasSameValueAs(other)) {
-      // Remove 'other' & make current expand to fit the other slot
-      this.removeScheduleFromItem(item, other);
-
-      this.updateSchedule(current, {
-        day: other.day,
-        start: other.start,
-        end: other.end,
-        value: other.value
-      });
-    } else {
-      // Just remove 'current'
-      this.removeScheduleFromItem(item, current);
-    }
-  }
-
-  private handleNoOverlap(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    // Do nothing
-  }
-
-  private handleOtherEndIsInsideCurrent(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
-    if (current.hasSameValueAs(other)) {
-      this.removeScheduleFromItem(item, other);
-
-      this.updateSchedule(current, {
-        day: current.day,
-        start: other.start,
-        end: current.end,
-        value: other.value
-      });
-    } else {
-      this.updateSchedule(other, {
-        day: other.day,
-        start: other.start,
-        end: current.start,
-        value: current.value
-      });
-    }
-  }
-
-  private handleOtherStartIsInsideCurrent(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
-    if (current.hasSameValueAs(other)) {
-      this.removeScheduleFromItem(item, other);
-
-      this.updateSchedule(current, {
-        day: current.day,
-        start: current.start,
-        end: other.end,
-        value: other.value
-      });
-    } else {
-      this.updateSchedule(other, {
-        day: other.day,
-        start: current.end,
-        end: other.end,
-        value: other.value
-      })
-    }
-  }
-
-  private handleOtherEndIsCurrentStart(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
-    if (current.hasSameValueAs(other)) {
-      this.handleOtherEndIsInsideCurrent(item, current, other);
-    } else {
-      // DO NOTHING, this is okay if the values don't match
-    }
-  }
-
-  private handleOtherStartIsCurrentEnd(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
-    if (current.hasSameValueAs(other)) {
-      this.handleOtherStartIsInsideCurrent(item, current, other);
-    } else {
-      // DO NOTHING, this is okay if the values don't match
-    }
-  }
-
-  // End overlap handlers
-
-  private mergeAllOverlapsForItem(item: WeeklySchedulerItem<any>) {
-    do {
-      item.schedules.forEach(schedule => this.mergeOverlaps(item, schedule));
-    } while (item.needsOverlapsMerged());
-  }
-
-  private mergeOverlaps(item: WeeklySchedulerItem<any>, schedule: WeeklySchedulerRange<any>) {
-    let schedules = item.schedules;
-
-    schedules.forEach((el => {
-      if (el !== schedule) {
-        let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
-        let overlapHandler = this.overlapHandlers[overlapState];
-
-        overlapHandler(item, schedule, el);
-      }
-    }));
-  }
-
+ 
   private purgeItems(items: WeeklySchedulerItem<any>[]) {
     if (this.config.fillEmptyWithDefault) {
       for (let item of items) {
