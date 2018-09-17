@@ -20,16 +20,6 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     label: string;
     schedules: WeeklySchedulerRange<T>[];
 
-    private overlapHandlers: { [key: number]: (current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>) => void; } = {
-        [OverlapState.NoOverlap]: (current, other) => this.handleNoOverlap(current, other),
-        [OverlapState.CurrentIsInsideOther]: (current, other) => this.handleCurrentIsInsideOther(current, other),
-        [OverlapState.CurrentCoversOther]: (current, other) => this.handleCurrentCoversOther(current, other),
-        [OverlapState.OtherEndIsInsideCurrent]: (current, other) => this.handleOtherEndIsInsideCurrent(current, other),
-        [OverlapState.OtherStartIsInsideCurrent]: (current, other) => this.handleOtherStartIsInsideCurrent(current, other),
-        [OverlapState.OtherEndIsCurrentStart]: (current, other) => this.handleOtherEndIsCurrentStart(current, other),
-        [OverlapState.OtherStartIsCurrentEnd]: (current, other) => this.handleOtherStartIsCurrentEnd(current, other)
-    };
-
     constructor(
         public config: IWeeklySchedulerConfig<T>,
         private item: IInternalWeeklySchedulerItem<T>,
@@ -82,6 +72,20 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     }
 
     // Overlap handlers
+
+    private getOverlapHandler(overlapState: OverlapState) {
+        const overlapHandlers: { [key: number]: (current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>) => void; } = {
+            [OverlapState.NoOverlap]: (current, other) => this.handleNoOverlap(current, other),
+            [OverlapState.CurrentIsInsideOther]: (current, other) => this.handleCurrentIsInsideOther(current, other),
+            [OverlapState.CurrentCoversOther]: (current, other) => this.handleCurrentCoversOther(current, other),
+            [OverlapState.OtherEndIsInsideCurrent]: (current, other) => this.handleOtherEndIsInsideCurrent(current, other),
+            [OverlapState.OtherStartIsInsideCurrent]: (current, other) => this.handleOtherStartIsInsideCurrent(current, other),
+            [OverlapState.OtherEndIsCurrentStart]: (current, other) => this.handleOtherEndIsCurrentStart(current, other),
+            [OverlapState.OtherStartIsCurrentEnd]: (current, other) => this.handleOtherStartIsCurrentEnd(current, other)
+        };
+
+        return overlapHandlers[overlapState];
+    }
 
     private handleCurrentCoversOther(current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
         this.removeSchedule(other);
@@ -172,7 +176,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         schedules.forEach(el => {
             if (el !== schedule) {
                 let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
-                let overlapHandler = this.overlapHandlers[overlapState];
+                let overlapHandler = this.getOverlapHandler(overlapState);
 
                 overlapHandler(schedule, el);
             }
