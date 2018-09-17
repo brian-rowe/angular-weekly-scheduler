@@ -5,27 +5,23 @@ class WeeklySchedulerController implements angular.IController {
 
   static $inject = [
     '$element',
-    '$q',
     '$scope',
     '$timeout',
     'brWeeklySchedulerFillEmptyWithDefaultService',
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
-    'brWeeklySchedulerEndAdjusterService',
-    'brWeeklySchedulerOverlapService',
+    'brWeeklySchedulerItemFactory',
     'brWeeklySchedulerPurgeDefaultService'
   ];
 
   constructor(
     private $element: angular.IAugmentedJQuery,
-    private $q: angular.IQService,
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
     private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
-    private endAdjusterService: EndAdjusterService,
-    private overlapService: OverlapService,
+    private itemFactory: WeeklySchedulerItemFactory,
     private purgeDefaultService: PurgeDefaultService
   ) {
   }
@@ -162,13 +158,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private createItem(day: number, schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
-    let result: IInternalWeeklySchedulerItem<any>;
-
-    let builder: br.weeklyScheduler.IWeeklySchedulerItem<any> = this.config.createItem(day, schedules);
-
-    result = angular.extend(builder, { label: this.dayMap[day] });
-
-    return new WeeklySchedulerItem(this.config, result, this.endAdjusterService, this.overlapService);
+    return this.itemFactory.createItem(this.config, day, schedules);
   }
 
   /**
