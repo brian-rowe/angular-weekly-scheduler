@@ -202,7 +202,7 @@ class WeeklySchedulerController implements angular.IController {
   private createItem(day: number, schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
     let result: IInternalWeeklySchedulerItem<any>;
 
-    let builder: br.weeklyScheduler.IWeeklySchedulerItem<any> = this.config.createItem(day, schedules);
+    let builder: br.weeklyScheduler.IWeeklySchedulerItem<any> = this.config.createItem(day, schedules.map(schedule => new WeeklySchedulerRange(schedule)));
 
     result = angular.extend(builder, { label: this.dayMap[day] });
 

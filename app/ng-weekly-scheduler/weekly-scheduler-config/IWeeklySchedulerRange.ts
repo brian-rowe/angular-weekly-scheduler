@@ -21,3 +21,27 @@ namespace br.weeklyScheduler {
         value: T;
     }
 }
+
+/** Use this for properties you need access to but don't want exposed to clients */
+/** @internal */
+interface IInternalWeeklySchedulerRange<T> extends br.weeklyScheduler.IWeeklySchedulerRange<T> {
+
+}
+
+/** Provides common functionality for a schedule -- pass it in and the resulting object will allow you to operate on it */
+/** @internal */
+class WeeklySchedulerRange<T> implements IInternalWeeklySchedulerRange<T> {
+    day: br.weeklyScheduler.Days;
+    start: number;
+    end: number;
+    value: T;
+
+    constructor(
+        private schedule: IInternalWeeklySchedulerRange<T>
+    ) {
+        this.day = schedule.day;
+        this.start = schedule.start;
+        this.end = schedule.end;
+        this.value = schedule.value;
+    }
+}
