@@ -235,13 +235,13 @@ class WeeklySchedulerController implements angular.IController {
 
   // Overlap handlers
 
-  private handleCurrentCoversOther(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
+  private handleCurrentCoversOther(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
     // Here, it doesn't matter if the values match -- the covering slot can always "eat" the other one
     this.removeScheduleFromItem(item, other);
   }
 
-  private handleCurrentIsInsideOther(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
+  private handleCurrentIsInsideOther(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
+    if (current.hasSameValueAs(other)) {
       // Remove 'other' & make current expand to fit the other slot
       this.removeScheduleFromItem(item, other);
 
@@ -261,8 +261,8 @@ class WeeklySchedulerController implements angular.IController {
     // Do nothing
   }
 
-  private handleOtherEndIsInsideCurrent(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
+  private handleOtherEndIsInsideCurrent(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
+    if (current.hasSameValueAs(other)) {
       this.removeScheduleFromItem(item, other);
 
       this.updateSchedule(current, {
@@ -281,8 +281,8 @@ class WeeklySchedulerController implements angular.IController {
     }
   }
 
-  private handleOtherStartIsInsideCurrent(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
+  private handleOtherStartIsInsideCurrent(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
+    if (current.hasSameValueAs(other)) {
       this.removeScheduleFromItem(item, other);
 
       this.updateSchedule(current, {
@@ -301,16 +301,16 @@ class WeeklySchedulerController implements angular.IController {
     }
   }
 
-  private handleOtherEndIsCurrentStart(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
+  private handleOtherEndIsCurrentStart(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
+    if (current.hasSameValueAs(other)) {
       this.handleOtherEndIsInsideCurrent(item, current, other);
     } else {
       // DO NOTHING, this is okay if the values don't match
     }
   }
 
-  private handleOtherStartIsCurrentEnd(item: WeeklySchedulerItem<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): void {
-    if (this.valuesMatch(current, other)) {
+  private handleOtherStartIsCurrentEnd(item: WeeklySchedulerItem<any>, current: WeeklySchedulerRange<any>, other: WeeklySchedulerRange<any>): void {
+    if (current.hasSameValueAs(other)) {
       this.handleOtherStartIsInsideCurrent(item, current, other);
     } else {
       // DO NOTHING, this is okay if the values don't match
@@ -399,10 +399,6 @@ class WeeklySchedulerController implements angular.IController {
         this.$element.find(`.${this.hoverClass}`).addClass(pulseClass);
       }
     });
-  }
-
-  private valuesMatch(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    return schedule.value === other.value;
   }
 }
 

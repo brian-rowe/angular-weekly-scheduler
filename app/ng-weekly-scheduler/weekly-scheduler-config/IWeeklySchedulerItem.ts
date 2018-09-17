@@ -35,7 +35,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         return schedule.value === other.value;
     }
 
-    public addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+    public addSchedule(schedule: WeeklySchedulerRange<T>) {
         this.schedules.push(schedule);
     }
 

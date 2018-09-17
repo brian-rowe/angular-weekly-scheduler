@@ -44,4 +44,8 @@ class WeeklySchedulerRange<T> implements IInternalWeeklySchedulerRange<T> {
         this.end = schedule.end;
         this.value = schedule.value;
     }
+
+    public hasSameValueAs(other: WeeklySchedulerRange<T>) {
+        return this.value === other.value;
+    }
 }
