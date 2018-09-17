@@ -45,13 +45,6 @@ declare namespace br.weeklyScheduler {
     }
 }
 declare namespace br.weeklyScheduler {
-    interface IWeeklySchedulerItem<T> {
-        day: br.weeklyScheduler.Days;
-        editable?: boolean;
-        schedules: IWeeklySchedulerRange<T>[];
-    }
-}
-declare namespace br.weeklyScheduler {
     interface IWeeklySchedulerOptions<T> {
         /** If this is true schedules will be allowed & required to have no set end time */
         nullEnds?: boolean;
@@ -100,5 +93,12 @@ declare namespace br.weeklyScheduler {
         start: number;
         end: number;
         value: T;
+    }
+}
+declare namespace br.weeklyScheduler {
+    interface IWeeklySchedulerItem<T> {
+        day: br.weeklyScheduler.Days;
+        editable?: boolean;
+        schedules: IWeeklySchedulerRange<T>[];
     }
 }
