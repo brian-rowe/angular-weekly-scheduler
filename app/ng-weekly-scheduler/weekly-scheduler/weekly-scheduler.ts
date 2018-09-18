@@ -127,7 +127,7 @@ class WeeklySchedulerController implements angular.IController {
       let groupedSchedules = this.groupService.groupSchedules(schedules);
 
       for (let key in groupedSchedules) {
-        let item = this.createItem(parseInt(key, 10), groupedSchedules[key]);
+        let item = this.itemFactory.createItem(this.config, parseInt(key, 10), groupedSchedules[key]);
 
         result.push(item);
       }
@@ -157,10 +157,6 @@ class WeeklySchedulerController implements angular.IController {
     return result;
   }
 
-  private createItem(day: number, schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
-    return this.itemFactory.createItem(this.config, day, schedules);
-  }
-
   /**
    * The scheduler should always show all days, even if it was not passed any schedules for that day
    */
@@ -173,7 +169,7 @@ class WeeklySchedulerController implements angular.IController {
       let item: WeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
 
       if (!item) {
-        result.push(this.createItem(key, []));
+        result.push(this.itemFactory.createItem(this.config, key, []));
       } else {
         // If the item DID exist just set the label
         item.label = day;
