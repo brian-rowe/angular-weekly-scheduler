@@ -1,12 +1,4 @@
 /// <reference types="angular" />
-declare class AdapterService {
-    private groupService;
-    private itemFactory;
-    static $name: string;
-    static $inject: string[];
-    private constructor();
-    getItemsFromAdapter(config: IWeeklySchedulerConfig<any>, adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>): any[];
-}
 declare namespace br.weeklyScheduler {
     /**
      * Implement this on a client and then pass it in to the component.

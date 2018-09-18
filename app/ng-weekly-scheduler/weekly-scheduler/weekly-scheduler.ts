@@ -11,8 +11,7 @@ class WeeklySchedulerController implements angular.IController {
     'brWeeklySchedulerConfigurationService',
     'brWeeklySchedulerConflictingOptionsService',
     'brWeeklySchedulerFillEmptyWithDefaultService',
-    'brWeeklySchedulerDayMap',
-    'brWeeklySchedulerItemFactory',
+    'brWeeklySchedulerMissingDaysService',
     'brWeeklySchedulerPurgeDefaultService'
   ];
 
@@ -24,8 +23,7 @@ class WeeklySchedulerController implements angular.IController {
     private configurationService: ConfigurationService,
     private conflictingOptionsService: ConflictingOptionsService,
     private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
-    private dayMap: { [key: number]: string },
-    private itemFactory: WeeklySchedulerItemFactory,
+    private missingDaysService: MissingDaysService,
     private purgeDefaultService: PurgeDefaultService
   ) {
   }
@@ -77,7 +75,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private buildItems(items: WeeklySchedulerItem<any>[]) {
-    this.items = this.fillItems(items);
+    this.items = this.missingDaysService.fillItems(this.config, items);
 
     this.items.forEach(item => item.mergeOverlaps());
 
@@ -94,28 +92,9 @@ class WeeklySchedulerController implements angular.IController {
     return this.buildItems(this.adapterService.getItemsFromAdapter(this.config, this.adapter));
   }
 
-  /**
-   * The scheduler should always show all days, even if it was not passed any schedules for that day
-   */
+
   private fillItems(items: WeeklySchedulerItem<any>[]) {
-    let result: WeeklySchedulerItem<any>[] = [];
 
-    angular.forEach(this.dayMap, (day: string, stringKey: string) => {
-      let key = parseInt(stringKey, 10);
-      let filteredItems = items.filter(item => item.day === key);
-      let item: WeeklySchedulerItem<any> = filteredItems.length ? filteredItems[0] : null;
-
-      if (!item) {
-        result.push(this.itemFactory.createItem(this.config, key, []));
-      } else {
-        // If the item DID exist just set the label
-        item.label = day;
-
-        result.push(item);
-      }
-    });
-
-    return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
   }
  
   private purgeItems(items: WeeklySchedulerItem<any>[]) {

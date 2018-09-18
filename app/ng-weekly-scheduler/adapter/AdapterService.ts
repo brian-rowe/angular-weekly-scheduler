@@ -1,3 +1,4 @@
+/** @internal */
 class AdapterService {
     static $name = 'brWeeklySchedulerAdapterService';
 
