@@ -11,7 +11,6 @@ class WeeklySchedulerController implements angular.IController {
     'brWeeklySchedulerConfigurationService',
     'brWeeklySchedulerConflictingOptionsService',
     'brWeeklySchedulerFillEmptyWithDefaultService',
-    'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
     'brWeeklySchedulerItemFactory',
     'brWeeklySchedulerPurgeDefaultService'
@@ -25,7 +24,6 @@ class WeeklySchedulerController implements angular.IController {
     private configurationService: ConfigurationService,
     private conflictingOptionsService: ConflictingOptionsService,
     private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
-    private groupService: GroupService,
     private dayMap: { [key: number]: string },
     private itemFactory: WeeklySchedulerItemFactory,
     private purgeDefaultService: PurgeDefaultService
