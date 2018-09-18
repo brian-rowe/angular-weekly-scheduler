@@ -24,6 +24,14 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         this.schedules.push(schedule);
     }
 
+    public canAddSchedule() {
+        if (this.config.nullEnds) {
+            return this.hasNoSchedules();
+        } else {
+            return true;
+        }
+    }
+
     public hasNoSchedules() {
         return this.schedules.length === 0;
     }
