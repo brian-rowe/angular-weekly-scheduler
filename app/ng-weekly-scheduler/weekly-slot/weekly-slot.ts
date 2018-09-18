@@ -7,13 +7,13 @@ class WeeklySlotController implements angular.IComponentController {
     'brWeeklySchedulerDragService',
   ];
 
-  private multisliderCtrl: MultiSliderController;
-
   private config: IWeeklySchedulerConfig<any>;
   private ngModelCtrl: angular.INgModelController;
 
   private editSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
+  private getDelta: (options: { pixel: number });
 
+  private item: WeeklySchedulerItem<any>;
   private schedule: WeeklySchedulerRange<any>;
 
   private valuesOnDragStart: WeeklySchedulerRange<any>;
@@ -33,7 +33,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   public drag(pixel: number) {
     let ui = this.schedule;
-    let delta = this.multisliderCtrl.pixelToVal(pixel);
+    let delta = this.getDelta({ pixel: pixel });
 
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
     let newEnd = this.config.nullEnds ? null : Math.round(newStart + this.valuesOnDragStart.duration);
@@ -54,14 +54,14 @@ class WeeklySlotController implements angular.IComponentController {
 
     if (changed) {
       this.ngModelCtrl.$setDirty();
-      this.multisliderCtrl.merge(this.schedule);
+      this.item.mergeSchedule(this.schedule);
     } else {
       this.editSelf();
     }
   }
 
   public resizeStart(pixel: number) {
-    let delta = this.multisliderCtrl.pixelToVal(pixel);
+    let delta = this.getDelta({ pixel: pixel });
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
 
     if (this.schedule.updateStart(newStart)) {
@@ -70,7 +70,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public resizeEnd(pixel: number) {
-    let delta = this.multisliderCtrl.pixelToVal(pixel);
+    let delta = this.getDelta({ pixel: pixel });
     let newEnd = Math.round(this.valuesOnDragStart.end + delta);
 
     if (this.schedule.updateEnd(newEnd)) {
@@ -90,15 +90,16 @@ class WeeklySlotComponent implements angular.IComponentOptions {
   
   bindings = {
     config: '<',
+    item: '<',
     schedule: '=ngModel',
-    editSchedule: '&'
+    editSchedule: '&',
+    getDelta: '&'
   };
 
   controller = WeeklySlotController.$name;
   controllerAs = WeeklySlotController.$controllerAs;
 
   require = {
-    multisliderCtrl: '^brMultiSlider',
     ngModelCtrl: 'ngModel'
   };
 

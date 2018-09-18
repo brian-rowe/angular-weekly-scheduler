@@ -19,6 +19,8 @@
 
     <br-weekly-slot class="slot {{ schedule.$class }}"
                 config="multiSliderCtrl.config"
+                get-delta="multiSliderCtrl.pixelToVal(pixel)"
+                item="multiSliderCtrl.item"
                 ng-class="{
                     active: schedule.$isActive,
                     disable: multiSliderCtrl.item.editable === false,
