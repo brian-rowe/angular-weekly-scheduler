@@ -75,17 +75,17 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public resize(pixel: number) {
-    let ui = this.schedule;
     let delta = this.multisliderCtrl.pixelToVal(pixel);
 
     if (this.resizeDirectionIsStart) {
-      this.resizeStart(ui, delta);
+      this.resizeStart(delta);
     } else {
-      this.resizeEnd(ui, delta);
+      this.resizeEnd(delta);
     }
   }
 
-  public resizeStart(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, delta: number) {
+  public resizeStart(delta: number) {
+    let schedule = this.schedule;
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
     let startChanged = schedule.start !== newStart;
     let newStartBeforeOrAtEnd = newStart <= this.endAdjusterService.adjustEndForView(this.config, schedule.end) - 1;
@@ -101,7 +101,8 @@ class WeeklySlotController implements angular.IComponentController {
     } 
   }
 
-  public resizeEnd(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, delta: number) {
+  public resizeEnd(delta: number) {
+    let schedule = this.schedule;
     let newEnd = Math.round(this.valuesOnDragStart.end + delta);
     let endChanged = schedule.end !== newEnd;
     let newEndBeforeOrAtEnd = newEnd <= this.config.maxValue;
