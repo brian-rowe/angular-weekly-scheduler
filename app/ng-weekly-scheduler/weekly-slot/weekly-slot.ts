@@ -74,17 +74,8 @@ class WeeklySlotController implements angular.IComponentController {
     }
   }
 
-  public resize(pixel: number) {
+  public resizeStart(pixel: number) {
     let delta = this.multisliderCtrl.pixelToVal(pixel);
-
-    if (this.resizeDirectionIsStart) {
-      this.resizeStart(delta);
-    } else {
-      this.resizeEnd(delta);
-    }
-  }
-
-  public resizeStart(delta: number) {
     let schedule = this.schedule;
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
     let startChanged = schedule.start !== newStart;
@@ -101,7 +92,8 @@ class WeeklySlotController implements angular.IComponentController {
     } 
   }
 
-  public resizeEnd(delta: number) {
+  public resizeEnd(pixel: number) {
+    let delta = this.multisliderCtrl.pixelToVal(pixel);
     let schedule = this.schedule;
     let newEnd = Math.round(this.valuesOnDragStart.end + delta);
     let endChanged = schedule.end !== newEnd;
@@ -121,16 +113,6 @@ class WeeklySlotController implements angular.IComponentController {
   public startDrag() {
     this.schedule.$isActive = true;
     this.valuesOnDragStart = this.getDragStartValues();
-  }
-
-  public startResizeStart() {
-    this.resizeDirectionIsStart = true;
-    this.startDrag();
-  }
-
-  public startResizeEnd() {
-    this.resizeDirectionIsStart = false;
-    this.startDrag();
   }
 
   public updateSelf(update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
