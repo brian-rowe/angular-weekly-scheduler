@@ -35,10 +35,12 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
     }
 
     public update(updatedSchedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
-        this.updateStart(updatedSchedule.start);
-        this.updateEnd(updatedSchedule.end);
+        let updatedStart = this.updateStart(updatedSchedule.start);
+        let updatedEnd = this.updateEnd(updatedSchedule.end);
 
-        this.config.onChange();
+        if (updatedStart || updatedEnd) {
+            this.config.onChange();
+        }
     }
 
     public updateEnd(updatedEnd: number) {
