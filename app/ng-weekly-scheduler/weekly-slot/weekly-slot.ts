@@ -20,7 +20,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   private schedule: WeeklySchedulerRange<any>;
 
-  private valuesOnDragStart: br.weeklyScheduler.IWeeklySchedulerRange<any>;
+  private valuesOnDragStart: WeeklySchedulerRange<any>;
 
   constructor(
     private endAdjusterService: EndAdjusterService,
@@ -33,14 +33,14 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   private getDragStartValues() {
-    return {
+    return new WeeklySchedulerRange({
       day: this.schedule.day,
       start: this.schedule.start,
       end: this.config.nullEnds ?
            this.endAdjusterService.adjustEndForView(this.config, this.schedule.start + this.nullEndWidth) :
            this.endAdjusterService.adjustEndForView(this.config, this.schedule.end),
       value: this.schedule.value
-    }
+    });
   }
 
   private setSlotActive() {
@@ -75,7 +75,7 @@ class WeeklySlotController implements angular.IComponentController {
 
   public endDrag() {
     // Did the user actually move or resize the slot??
-    var changed: boolean = !angular.equals(this.valuesOnDragStart, this.getDragStartValues());
+    var changed: boolean = !this.valuesOnDragStart.equals(this.getDragStartValues());
 
     this.setSlotInactive();
 
