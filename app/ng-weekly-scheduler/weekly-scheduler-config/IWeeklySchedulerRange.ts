@@ -42,7 +42,7 @@ class WeeklySchedulerRange<T> implements IInternalWeeklySchedulerRange<T> {
     value: T;
 
     constructor(
-        private schedule: IInternalWeeklySchedulerRange<T>
+        schedule: IInternalWeeklySchedulerRange<T>
     ) {
         this.day = schedule.day;
         this.start = schedule.start;

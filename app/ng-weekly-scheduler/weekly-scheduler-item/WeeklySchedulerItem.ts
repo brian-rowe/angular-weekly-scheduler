@@ -160,7 +160,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         let schedules = this.schedules;
 
         schedules.forEach(el => {
-            if (el !== schedule) {
+            if (!angular.equals(el, schedule)) {
                 let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
                 let overlapHandler = this.getOverlapHandler(overlapState);
 
