@@ -202,7 +202,7 @@ class MultiSliderController implements angular.IComponentController {
           // This is so that edits that don't trigger merges still trigger onChange,
           // but edits that do trigger merges don't trigger it twice
           if (angular.equals(premergeSchedule, range)) {
-            this.item.updateSchedule(schedule, range);
+            schedule.update(range);
           }
         }
 

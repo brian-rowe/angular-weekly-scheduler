@@ -12,7 +12,6 @@ class WeeklySlotController implements angular.IComponentController {
   private multisliderCtrl: MultiSliderController;
 
   private config: IWeeklySchedulerConfig<any>;
-  private item: WeeklySchedulerItem<any>;
   private ngModelCtrl: angular.INgModelController;
 
   private editSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
@@ -51,7 +50,7 @@ class WeeklySlotController implements angular.IComponentController {
     let newEnd = this.config.nullEnds ? null : Math.round(newStart + this.valuesOnDragStart.duration);
 
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
-      this.updateSelf({
+      this.schedule.update({
         day: ui.day,
         start: newStart,
         end: newEnd,
@@ -94,10 +93,6 @@ class WeeklySlotController implements angular.IComponentController {
     this.schedule.$isActive = true;
     this.valuesOnDragStart = this.getDragStartValues();
   }
-
-  public updateSelf(update: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    this.item.updateSchedule(this.schedule, update);
-  }
 }
 
 /** @internal */
@@ -106,7 +101,6 @@ class WeeklySlotComponent implements angular.IComponentOptions {
   
   bindings = {
     config: '<',
-    item: '<',
     schedule: '=ngModel',
     editSchedule: '&'
   };

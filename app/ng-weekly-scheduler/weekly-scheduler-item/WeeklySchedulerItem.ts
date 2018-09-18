@@ -69,13 +69,6 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         this.config.onRemove();
     }
 
-    public updateSchedule(schedule: WeeklySchedulerRange<T>, update: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
-        schedule.start = update.start;
-        schedule.end = this.endAdjusterService.adjustEndForModel(this.config, update.end);
-
-        this.config.onChange();
-    }
-
     // Overlap handlers
 
     private getOverlapHandler(overlapState: OverlapState) {
@@ -101,7 +94,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
             // Remove 'other' & make current expand to fit the other slot
             this.removeSchedule(other);
 
-            this.updateSchedule(current, {
+            current.update({
                 day: other.day,
                 start: other.start,
                 end: other.end,
@@ -121,14 +114,14 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         if (current.hasSameValueAs(other)) {
             this.removeSchedule(other);
 
-            this.updateSchedule(current, {
+            current.update({
                 day: current.day,
                 start: other.start,
                 end: current.end,
                 value: other.value
             });
         } else {
-            this.updateSchedule(other, {
+            other.update({
                 day: other.day,
                 start: other.start,
                 end: current.start,
@@ -141,19 +134,19 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         if (current.hasSameValueAs(other)) {
             this.removeSchedule(other);
 
-            this.updateSchedule(current, {
+            current.update({
                 day: current.day,
                 start: current.start,
                 end: other.end,
                 value: other.value
             });
         } else {
-            this.updateSchedule(other, {
+            other.update({
                 day: other.day,
                 start: current.end,
                 end: other.end,
                 value: other.value
-            })
+            });
         }
     }
 
