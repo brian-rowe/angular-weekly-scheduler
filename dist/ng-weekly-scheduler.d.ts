@@ -1,4 +1,25 @@
 /// <reference types="angular" />
+declare class AdapterService {
+    private groupService;
+    private itemFactory;
+    static $name: string;
+    static $inject: string[];
+    private constructor();
+    getItemsFromAdapter(config: IWeeklySchedulerConfig<any>, adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>): any[];
+}
+declare namespace br.weeklyScheduler {
+    /**
+     * Implement this on a client and then pass it in to the component.
+     */
+    interface IWeeklySchedulerAdapter<TCustom, TValue> {
+        customModelToWeeklySchedulerRange(custom: TCustom): br.weeklyScheduler.IWeeklySchedulerRange<TValue>;
+        /** Transform the data held within the component to the format you need it outside of the component. */
+        getSnapshot(): TCustom[];
+        /** This just needs to be defined in the class, we'll set it internally */
+        items: IWeeklySchedulerItem<TValue>[];
+        initialData: TCustom[];
+    }
+}
 declare namespace br.weeklyScheduler {
     interface InvalidMessages {
         fullCalendarFillEmptyWithDefault: string;
@@ -29,19 +50,6 @@ declare namespace br.weeklyScheduler {
         Friday = 4,
         Saturday = 5,
         Sunday = 6,
-    }
-}
-declare namespace br.weeklyScheduler {
-    /**
-     * Implement this on a client and then pass it in to the component.
-     */
-    interface IWeeklySchedulerAdapter<TCustom, TValue> {
-        customModelToWeeklySchedulerRange(custom: TCustom): br.weeklyScheduler.IWeeklySchedulerRange<TValue>;
-        /** Transform the data held within the component to the format you need it outside of the component. */
-        getSnapshot(): TCustom[];
-        /** This just needs to be defined in the class, we'll set it internally */
-        items: IWeeklySchedulerItem<TValue>[];
-        initialData: TCustom[];
     }
 }
 declare namespace br.weeklyScheduler {

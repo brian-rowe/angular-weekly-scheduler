@@ -7,6 +7,7 @@ class WeeklySchedulerController implements angular.IController {
     '$element',
     '$scope',
     '$timeout',
+    'brWeeklySchedulerAdapterService',
     'brWeeklySchedulerConfigurationService',
     'brWeeklySchedulerConflictingOptionsService',
     'brWeeklySchedulerFillEmptyWithDefaultService',
@@ -20,6 +21,7 @@ class WeeklySchedulerController implements angular.IController {
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
+    private adapterService: AdapterService,
     private configurationService: ConfigurationService,
     private conflictingOptionsService: ConflictingOptionsService,
     private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
@@ -91,24 +93,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private buildItemsFromAdapter() {
-    return this.buildItems(this.getItemsFromAdapter());
-  }
-
-  private getItemsFromAdapter() {
-    let result = [];
-
-    if (this.adapter) {
-      let schedules = this.adapter.initialData.map(data => this.adapter.customModelToWeeklySchedulerRange(data));
-      let groupedSchedules = this.groupService.groupSchedules(schedules);
-
-      for (let key in groupedSchedules) {
-        let item = this.itemFactory.createItem(this.config, parseInt(key, 10), groupedSchedules[key]);
-
-        result.push(item);
-      }
-    }
-
-    return result;
+    return this.buildItems(this.adapterService.getItemsFromAdapter(this.config, this.adapter));
   }
 
   /**
