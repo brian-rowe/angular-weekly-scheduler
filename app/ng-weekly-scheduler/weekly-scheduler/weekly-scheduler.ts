@@ -10,8 +10,7 @@ class WeeklySchedulerController implements angular.IController {
     'brWeeklySchedulerAdapterService',
     'brWeeklySchedulerConfigurationService',
     'brWeeklySchedulerConflictingOptionsService',
-    'brWeeklySchedulerMissingDaysService',
-    'brWeeklySchedulerPurgeDefaultService'
+    'brWeeklySchedulerMissingDaysService'
   ];
 
   constructor(
@@ -22,7 +21,6 @@ class WeeklySchedulerController implements angular.IController {
     private configurationService: ConfigurationService,
     private conflictingOptionsService: ConflictingOptionsService,
     private missingDaysService: MissingDaysService,
-    private purgeDefaultService: PurgeDefaultService
   ) {
   }
 
@@ -91,7 +89,7 @@ class WeeklySchedulerController implements angular.IController {
   private purgeItems(items: WeeklySchedulerItem<any>[]) {
     if (this.config.fillEmptyWithDefault) {
       for (let item of items) {
-        item.schedules = this.purgeDefaultService.purge(item.schedules, this.config);
+        item.purgeDefaultSchedules();
       }
     }
 

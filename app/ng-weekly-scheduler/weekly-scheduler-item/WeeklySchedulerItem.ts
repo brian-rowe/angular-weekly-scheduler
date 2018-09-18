@@ -11,7 +11,8 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         private item: IInternalWeeklySchedulerItem<T>,
         private endAdjusterService: EndAdjusterService,
         private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
-        private overlapService: OverlapService
+        private overlapService: OverlapService,
+        private purgeDefaultService: PurgeDefaultService
     ) {
         this.day = item.day;
         this.editable = item.editable;
@@ -45,6 +46,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         // We consider the schedule we were working with to be the most important, so handle its overlaps first.
         this.mergeOverlapsForSchedule(schedule);
         this.mergeOverlaps();
+    }
+
+    public purgeDefaultSchedules() {
+        this.schedules = this.purgeDefaultService.purge(this.schedules, this.config);
     }
 
     public removeSchedule(schedule: WeeklySchedulerRange<T>) {
