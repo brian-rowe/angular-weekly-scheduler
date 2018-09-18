@@ -37,14 +37,12 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
     public updateEnd(updatedEnd: number) {
         if (this.canUpdateEnd(updatedEnd)) {
             this.end = this.endAdjusterService.adjustEndForModel(this.config, updatedEnd);
-            this.config.onChange();
         }
     }
 
     public updateStart(updatedStart: number) {
         if (this.canUpdateStart(updatedStart)) {
             this.start = updatedStart;
-            this.config.onChange();
         }
     }
 

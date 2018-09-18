@@ -79,6 +79,7 @@ class WeeklySlotController implements angular.IComponentController {
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
 
     this.schedule.updateStart(newStart);
+    this.config.onChange();
   }
 
   public resizeEnd(pixel: number) {
@@ -86,6 +87,7 @@ class WeeklySlotController implements angular.IComponentController {
     let newEnd = Math.round(this.valuesOnDragStart.end + delta);
 
     this.schedule.updateEnd(newEnd);
+    this.config.onChange();
   }
 
   public startDrag() {
