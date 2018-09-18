@@ -28,10 +28,6 @@ class WeeklySlotController implements angular.IComponentController {
   ) {
   }
 
-  $onInit() {
-    this.valuesOnDragStart = this.getDragStartValues();
-  }
-
   private getDragStartValues() {
     return new WeeklySchedulerRange({
       day: this.schedule.day,
