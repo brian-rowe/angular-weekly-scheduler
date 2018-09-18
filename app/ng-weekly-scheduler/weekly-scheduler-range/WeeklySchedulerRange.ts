@@ -20,6 +20,10 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         this.value = schedule.value;
     }
 
+    get duration() {
+        return this.end - this.start;
+    }
+
     public equals(other: WeeklySchedulerRange<T>) {
         return angular.equals(this, other);
     }

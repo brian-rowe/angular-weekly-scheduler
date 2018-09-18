@@ -58,10 +58,9 @@ class WeeklySlotController implements angular.IComponentController {
   public drag(pixel: number) {
     let ui = this.schedule;
     let delta = this.multisliderCtrl.pixelToVal(pixel);
-    let duration = this.valuesOnDragStart.end - this.valuesOnDragStart.start;
 
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
-    let newEnd = this.config.nullEnds ? null : Math.round(newStart + duration);
+    let newEnd = this.config.nullEnds ? null : Math.round(newStart + this.valuesOnDragStart.duration);
 
     if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
       this.updateSelf({
