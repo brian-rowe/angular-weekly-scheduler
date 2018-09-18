@@ -33,7 +33,6 @@ class WeeklySchedulerController implements angular.IController {
   private adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>;
 
   public invalidMessage: string = '';
-  public isReady: boolean = false;
 
   /** this is required to be part of a form for dirty/valid checks */
   public formController: angular.IFormController;
@@ -54,7 +53,6 @@ class WeeklySchedulerController implements angular.IController {
   $postLink() {
     this.$timeout(() => {
       this.invalidMessage = this.getInvalidMessage();
-      this.isReady = true;
     });
   }
 
