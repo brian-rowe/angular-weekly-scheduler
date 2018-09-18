@@ -49,14 +49,12 @@ class WeeklySlotController implements angular.IComponentController {
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
     let newEnd = this.config.nullEnds ? null : Math.round(newStart + this.valuesOnDragStart.duration);
 
-    if (ui.start !== newStart && newStart >= 0 && newEnd <= this.config.maxValue) {
-      this.schedule.update({
-        day: ui.day,
-        start: newStart,
-        end: newEnd,
-        value: ui.value
-      });
-    }
+    this.schedule.update({
+      day: ui.day,
+      start: newStart,
+      end: newEnd,
+      value: ui.value
+    });
   }
 
   public endDrag() {
