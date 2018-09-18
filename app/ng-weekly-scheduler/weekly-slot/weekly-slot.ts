@@ -15,7 +15,6 @@ class WeeklySlotController implements angular.IComponentController {
   private ngModelCtrl: angular.INgModelController;
 
   private editSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
-  private updateSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>, update: br.weeklyScheduler.IWeeklySchedulerRange<any>}) => void;
 
   private schedule: WeeklySchedulerRange<any>;
 
