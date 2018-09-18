@@ -87,10 +87,6 @@ class WeeklySchedulerController implements angular.IController {
     return this.formController.$invalid;
   }
 
-  public mergeScheduleIntoItem(item: WeeklySchedulerItem<any>, schedule: WeeklySchedulerRange<any>) {
-    item.mergeOverlaps();
-  }
-
   private buildItems(items: WeeklySchedulerItem<any>[]) {
     this.items = this.fillItems(items);
 
