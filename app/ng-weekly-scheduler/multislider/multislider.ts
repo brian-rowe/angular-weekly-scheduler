@@ -130,10 +130,6 @@ class MultiSliderController implements angular.IComponentController {
 
     this.renderGhost = false;
 
-    this.onHoverElementClick();
-  }
-
-  public onHoverElementClick() {
     if (this.canAdd) {
       let elementOffsetX = this.elementOffsetService.left(this.$element);
       let hoverElementOffsetX = this.elementOffsetService.left(this.$hoverElement) - elementOffsetX;
