@@ -10,6 +10,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         public config: IWeeklySchedulerConfig<T>,
         private item: IInternalWeeklySchedulerItem<T>,
         private endAdjusterService: EndAdjusterService,
+        private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
         private overlapService: OverlapService
     ) {
         this.day = item.day;
@@ -28,6 +29,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
 
     public isEditable() {
         return !angular.isDefined(this.editable) || this.editable;
+    }
+
+    public fillEmptySlotsWithDefaultSchedules() {
+        this.schedules = this.fillEmptyWithDefaultService.fill(this, this.config);
     }
 
     public mergeOverlaps() {
