@@ -7,6 +7,7 @@ class WeeklySchedulerController implements angular.IController {
     '$element',
     '$scope',
     '$timeout',
+    'brWeeklySchedulerConflictingOptionsService',
     'brWeeklySchedulerFillEmptyWithDefaultService',
     'brWeeklySchedulerGroupService',
     'brWeeklySchedulerDayMap',
@@ -18,6 +19,7 @@ class WeeklySchedulerController implements angular.IController {
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
+    private conflictingOptionsService: ConflictingOptionsService,
     private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
     private groupService: GroupService,
     private dayMap: { [key: number]: string },
@@ -69,20 +71,8 @@ class WeeklySchedulerController implements angular.IController {
     });
   }
 
-  public getConflictingOptions() {
-    if (this.options.fullCalendar && this.options.fillEmptyWithDefault) {
-      return `Options 'fullCalendar' & 'fillEmptyWithDefault' are mutually exclusive.`;
-    }
-
-    if (this.options.fillEmptyWithDefault && !angular.isDefined(this.options.defaultValue)) {
-      return `If using option 'fillEmptyWithDefault', you must also provide 'defaultValue.'`;
-    }
-
-    return '';
-  }
-
   public getInvalidMessage() {
-    let conflictingOptions = this.getConflictingOptions();
+    let conflictingOptions = this.conflictingOptionsService.getConflictingOptions(this.options);
 
     if (conflictingOptions) {
       return conflictingOptions;
