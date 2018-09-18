@@ -167,8 +167,6 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
     formController: 'form'
   };
 
-  transclude = true;
-
   templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
 }
 
