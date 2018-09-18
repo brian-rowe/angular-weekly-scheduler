@@ -7,6 +7,7 @@ class WeeklySchedulerController implements angular.IController {
     '$element',
     '$scope',
     '$timeout',
+    'brWeeklySchedulerConfigurationService',
     'brWeeklySchedulerConflictingOptionsService',
     'brWeeklySchedulerFillEmptyWithDefaultService',
     'brWeeklySchedulerGroupService',
@@ -19,6 +20,7 @@ class WeeklySchedulerController implements angular.IController {
     private $element: angular.IAugmentedJQuery,
     private $scope: angular.IScope,
     private $timeout: angular.ITimeoutService,
+    private configurationService: ConfigurationService,
     private conflictingOptionsService: ConflictingOptionsService,
     private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
     private groupService: GroupService,
@@ -44,21 +46,8 @@ class WeeklySchedulerController implements angular.IController {
   public items: WeeklySchedulerItem<any>[];
   public options: br.weeklyScheduler.IWeeklySchedulerOptions<any>;
 
-  public defaultOptions: br.weeklyScheduler.IWeeklySchedulerOptions<any> = {
-    createItem: (day, schedules) => { return { day: day, schedules: schedules } },
-    monoSchedule: false,
-    onChange: () => angular.noop(),
-    onRemove: () => angular.noop(),
-    restrictionExplanations: {
-      maxTimeSlot: (value) => `Max time slot length: ${value}`,
-      fullCalendar: 'For this calendar, every day must be completely full of schedules.',
-      monoSchedule: 'This calendar may only have one time slot per day',
-      nullEnds: 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.'
-    }
-  };
-
   $onInit() {
-    this.config = this.configure(this.options);
+    this.config = this.configurationService.getConfiguration(this.options);
     this.buildItemsFromAdapter();
     this.watchAdapter();
     this.watchHoverClass();
@@ -118,27 +107,6 @@ class WeeklySchedulerController implements angular.IController {
         result.push(item);
       }
     }
-
-    return result;
-  }
-
-  /**
-   * Configure the scheduler.
-   */
-  private configure(options: br.weeklyScheduler.IWeeklySchedulerOptions<any>): IWeeklySchedulerConfig<any> {
-    var interval = options.interval || 15; // minutes
-    var hoursInDay = 24;
-    var minutesInDay = hoursInDay * 60;
-    var intervalCount = minutesInDay / interval;
-
-    var userOptions = angular.extend(this.defaultOptions, options);
-
-    var result = angular.extend(userOptions, {
-      interval: interval,
-      maxValue: minutesInDay,
-      hourCount: hoursInDay,
-      intervalCount: intervalCount,
-    });
 
     return result;
   }
