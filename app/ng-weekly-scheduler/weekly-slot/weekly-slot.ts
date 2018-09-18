@@ -45,12 +45,10 @@ class WeeklySlotController implements angular.IComponentController {
 
   private setSlotActive() {
     this.schedule.$isActive = true;
-    this.multisliderCtrl.canAdd = false;
   }
 
   private setSlotInactive() {
     this.schedule.$isActive = false;
-    this.multisliderCtrl.canAdd = true;
   }
 
   public editSelf() {

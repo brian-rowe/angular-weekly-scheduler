@@ -28,7 +28,6 @@ class MultiSliderController implements angular.IComponentController {
   
   public $hoverElement: angular.IAugmentedJQuery;
 
-  public canAdd: boolean = true;
   public isAdding: boolean = false;
 
   public element: Element;
@@ -122,11 +121,9 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseUp() {
-    this.canAdd = this.item.canAddSchedule();
-
     this.renderGhost = false;
 
-    if (this.canAdd) {
+    if (this.item.canAddSchedule()) {
       let elementOffsetX = this.elementOffsetService.left(this.$element);
       let hoverElementOffsetX = this.elementOffsetService.left(this.$hoverElement) - elementOffsetX;
 
@@ -140,7 +137,6 @@ class MultiSliderController implements angular.IComponentController {
         this.ngModelCtrl.$setDirty();
         this.config.onChange();
         this.isAdding = false;
-        this.canAdd = false;
       });
     }
   }
