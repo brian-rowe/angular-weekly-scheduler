@@ -34,7 +34,21 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         return this.value === other.value;
     }
 
-    public canUpdateEnd(updatedEnd: number) {
+    public updateEnd(updatedEnd: number) {
+        if (this.canUpdateEnd(updatedEnd)) {
+            this.end = this.endAdjusterService.adjustEndForModel(this.config, updatedEnd);
+            this.config.onChange();
+        }
+    }
+
+    public updateStart(updatedStart: number) {
+        if (this.canUpdateStart(updatedStart)) {
+            this.start = updatedStart;
+            this.config.onChange();
+        }
+    }
+
+    private canUpdateEnd(updatedEnd: number) {
         let changed = this.end !== updatedEnd;
         let newEndBeforeOrAtMax = updatedEnd <= this.config.maxValue;
         let newEndAfterOrAtExistingStart = updatedEnd >= this.start + 1;
@@ -42,7 +56,7 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         return changed && newEndBeforeOrAtMax && newEndAfterOrAtExistingStart;
     }
 
-    public canUpdateStart(updatedStart: number) {
+    private canUpdateStart(updatedStart: number) {
         let changed = this.start !== updatedStart;
         let newStartBeforeOrAtExistingEnd = updatedStart <= this.endAdjusterService.adjustEndForView(this.config, this.end) - 1;
         let newStartAfterOrAtMin = updatedStart >= 0;
