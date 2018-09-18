@@ -1,4 +1,4 @@
-/// <reference path="../../app/ng-weekly-scheduler/overlap/overlap-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/overlap/OverlapService.ts" />
 /// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-config/OverlapStates.d.ts" />
 
 describe('overlap service', () => {

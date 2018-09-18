@@ -1,5 +1,5 @@
 /// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/fill-empty-with-default/fill-empty-with-default-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService.ts" />
 
 describe('fillEmptyWithDefault service', () => {
     var $itemFactory: WeeklySchedulerItemFactory;

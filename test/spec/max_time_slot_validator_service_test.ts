@@ -1,4 +1,4 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/max-time-slot-validator-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService.ts" />
 
 describe('max time slot validator service', function () {
     var $q: angular.IQService;

@@ -1,4 +1,4 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/overlap-validator-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/OverlapValidatorService.ts" />
 /// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerConfig.d.ts" />
 
 describe('overlap validator service', function () {

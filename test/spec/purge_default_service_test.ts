@@ -1,5 +1,5 @@
 /// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/purge-default/purge-default-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/purge-default/PurgeDefaultService.ts" />
 
 describe('purgeDefault service', () => {
     var $itemFactory: WeeklySchedulerItemFactory;

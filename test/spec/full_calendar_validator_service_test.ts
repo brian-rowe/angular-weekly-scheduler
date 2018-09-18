@@ -1,4 +1,4 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/full-calendar-validator-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService.ts" />
 
 describe('full calendar validator service', function () {
     var $q: angular.IQService;

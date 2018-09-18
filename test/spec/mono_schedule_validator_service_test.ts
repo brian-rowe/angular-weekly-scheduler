@@ -1,4 +1,4 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/mono-schedule-validator-service.ts" />
+/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/MonoScheduleValidatorService.ts" />
 
 describe('mono schedule validator service', () => {
     let $q: angular.IQService;
