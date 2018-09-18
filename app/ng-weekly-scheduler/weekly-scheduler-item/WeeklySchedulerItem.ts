@@ -12,12 +12,13 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         private endAdjusterService: EndAdjusterService,
         private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
         private overlapService: OverlapService,
-        private purgeDefaultService: PurgeDefaultService
+        private purgeDefaultService: PurgeDefaultService,
+        private rangeFactory: WeeklySchedulerRangeFactory
     ) {
         this.day = item.day;
         this.editable = item.editable;
         this.label = item.label;
-        this.schedules = item.schedules.map(schedule => new WeeklySchedulerRange(schedule));
+        this.schedules = item.schedules.map(schedule => rangeFactory.createRange(config, schedule));
     }
 
     public addSchedule(schedule: WeeklySchedulerRange<T>) {

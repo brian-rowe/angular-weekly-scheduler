@@ -5,7 +5,8 @@ class WeeklySlotController implements angular.IComponentController {
 
   static $inject = [
     'brWeeklySchedulerEndAdjusterService',
-    'brWeeklySchedulerNullEndWidth'
+    'brWeeklySchedulerNullEndWidth',
+    'brWeeklySchedulerRangeFactory'
   ];
 
   private multisliderCtrl: MultiSliderController;
@@ -22,12 +23,13 @@ class WeeklySlotController implements angular.IComponentController {
 
   constructor(
     private endAdjusterService: EndAdjusterService,
-    private nullEndWidth: number
+    private nullEndWidth: number,
+    private rangeFactory: WeeklySchedulerRangeFactory
   ) {
   }
 
   private getDragStartValues() {
-    return new WeeklySchedulerRange({
+    return this.rangeFactory.createRange(this.config, {
       day: this.schedule.day,
       start: this.schedule.start,
       end: this.config.nullEnds ?

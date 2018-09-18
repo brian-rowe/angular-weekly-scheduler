@@ -7,7 +7,8 @@ class WeeklySchedulerItemFactory {
         'brWeeklySchedulerEndAdjusterService',
         'brWeeklySchedulerFillEmptyWithDefaultService',
         'brWeeklySchedulerOverlapService',
-        'brWeeklySchedulerPurgeDefaultService'
+        'brWeeklySchedulerPurgeDefaultService',
+        'brWeeklySchedulerRangeFactory'
     ];
 
     private constructor(
@@ -15,7 +16,8 @@ class WeeklySchedulerItemFactory {
         private endAdjusterService: EndAdjusterService,
         private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
         private overlapService: OverlapService,
-        private purgeDefaultService: PurgeDefaultService
+        private purgeDefaultService: PurgeDefaultService,
+        private rangeFactory: WeeklySchedulerRangeFactory
     ) {
     }
 
@@ -26,7 +28,7 @@ class WeeklySchedulerItemFactory {
     
         result = angular.extend(builder, { label: this.dayMap[day] });
     
-        return new WeeklySchedulerItem(config, result, this.endAdjusterService, this.fillEmptyWithDefaultService, this.overlapService, this.purgeDefaultService);
+        return new WeeklySchedulerItem(config, result, this.endAdjusterService, this.fillEmptyWithDefaultService, this.overlapService, this.purgeDefaultService, this.rangeFactory);
     }
 }
 

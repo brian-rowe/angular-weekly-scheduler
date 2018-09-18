@@ -4,11 +4,13 @@ class FillEmptyWithDefaultService {
     static $name = 'brWeeklySchedulerFillEmptyWithDefaultService';
 
     static $inject = [
-        'brWeeklySchedulerEndAdjusterService'
+        'brWeeklySchedulerEndAdjusterService',
+        'brWeeklySchedulerRangeFactory'
     ];
 
     private constructor(
-        private endAdjusterService: EndAdjusterService
+        private endAdjusterService: EndAdjusterService,
+        private rangeFactory: WeeklySchedulerRangeFactory
     ) {
     }
 
@@ -23,7 +25,7 @@ class FillEmptyWithDefaultService {
     }
 
     private getEmptySchedule(item: WeeklySchedulerItem<any>, config: IWeeklySchedulerConfig<any>) {
-        return new WeeklySchedulerRange({
+        return this.rangeFactory.createRange(config, {
             day: item.day,
             start: 0,
             end: this.endAdjusterService.adjustEndForModel(config, config.maxValue),
@@ -32,7 +34,7 @@ class FillEmptyWithDefaultService {
     }
 
     private getEndSchedule(lastSchedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return new WeeklySchedulerRange({
+        return this.rangeFactory.createRange(config, {
             day: lastSchedule.day,
             start: lastSchedule.end,
             end: this.endAdjusterService.adjustEndForModel(config, config.maxValue),
@@ -41,7 +43,7 @@ class FillEmptyWithDefaultService {
     }
 
     private getStartSchedule(firstSchedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return new WeeklySchedulerRange({
+        return this.rangeFactory.createRange(config, {
             day: firstSchedule.day,
             start: 0,
             end: firstSchedule.start,
@@ -105,7 +107,7 @@ class FillEmptyWithDefaultService {
     }
 
     private getNewSchedule(currentSchedule: WeeklySchedulerRange<any>, nextSchedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return new WeeklySchedulerRange({
+        return this.rangeFactory.createRange(config, {
             day: currentSchedule.day,
             start: currentSchedule.end,
             end: nextSchedule.start,

@@ -8,7 +8,8 @@ class MultiSliderController implements angular.IComponentController {
     '$q',
     'brWeeklySchedulerElementOffsetService',
     'brWeeklySchedulerEndAdjusterService',
-    'brWeeklySchedulerNullEndWidth'
+    'brWeeklySchedulerNullEndWidth',
+    'brWeeklySchedulerRangeFactory'
   ];
 
   constructor(
@@ -16,7 +17,8 @@ class MultiSliderController implements angular.IComponentController {
     private $q: angular.IQService,
     private elementOffsetService: ElementOffsetService,
     private endAdjusterService: EndAdjusterService,
-    private nullEndWidth: number
+    private nullEndWidth: number,
+    private rangeFactory: WeeklySchedulerRangeFactory
   ) {
     this.element = this.$element[0];
   }
@@ -97,7 +99,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private addScheduleToItem(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
-    const range = new WeeklySchedulerRange(schedule);
+    const range = this.rangeFactory.createRange(this.config, schedule);
     this.item.addSchedule(range);
     this.merge(range);
   }
@@ -187,7 +189,7 @@ class MultiSliderController implements angular.IComponentController {
       schedule.$isEditing = true;
 
       this.config.editSlot(schedule).then((newSchedule) => {
-        let range = new WeeklySchedulerRange(newSchedule);
+        let range = this.rangeFactory.createRange(this.config, newSchedule);
 
         if (this.shouldDelete(range)) {
           this.item.removeSchedule(schedule);
