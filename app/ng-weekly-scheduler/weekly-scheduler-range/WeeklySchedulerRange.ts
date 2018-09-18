@@ -13,7 +13,8 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
 
     constructor(
         private config: IWeeklySchedulerConfig<T>,
-        schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>
+        schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>,
+        private endAdjusterService: EndAdjusterService
     ) {
         this.day = schedule.day;
         this.start = schedule.start;
@@ -39,5 +40,13 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         let newEndAfterOrAtExistingStart = updatedEnd >= this.start + 1;
 
         return changed && newEndBeforeOrAtMax && newEndAfterOrAtExistingStart;
+    }
+
+    public canUpdateStart(updatedStart: number) {
+        let changed = this.start !== updatedStart;
+        let newStartBeforeOrAtExistingEnd = updatedStart <= this.endAdjusterService.adjustEndForView(this.config, this.end) - 1;
+        let newStartAfterOrAtMin = updatedStart >= 0;
+
+        return changed && newStartBeforeOrAtExistingEnd && newStartAfterOrAtMin;
     }
 }

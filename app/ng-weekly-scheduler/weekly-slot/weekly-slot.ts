@@ -78,11 +78,8 @@ class WeeklySlotController implements angular.IComponentController {
     let delta = this.multisliderCtrl.pixelToVal(pixel);
     let schedule = this.schedule;
     let newStart = Math.round(this.valuesOnDragStart.start + delta);
-    let startChanged = schedule.start !== newStart;
-    let newStartBeforeOrAtEnd = newStart <= this.endAdjusterService.adjustEndForView(this.config, schedule.end) - 1;
-    let newStartAfterOrAtStart = newStart >= 0;
 
-    if (startChanged && newStartBeforeOrAtEnd && newStartAfterOrAtStart) {
+    if (schedule.canUpdateStart(newStart)) {
       this.updateSelf({
         day: schedule.day,
         start: newStart,
