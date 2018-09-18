@@ -50,6 +50,10 @@ class WeeklySchedulerRange<T> implements IInternalWeeklySchedulerRange<T> {
         this.value = schedule.value;
     }
 
+    public equals(other: WeeklySchedulerRange<T>) {
+        return angular.equals(this, other);
+    }
+
     public hasSameValueAs(other: WeeklySchedulerRange<T>) {
         return this.value === other.value;
     }
