@@ -79,6 +79,13 @@ declare namespace br.weeklyScheduler {
     }
 }
 declare namespace br.weeklyScheduler {
+    interface IWeeklySchedulerItem<T> {
+        day: br.weeklyScheduler.Days;
+        editable?: boolean;
+        schedules: IWeeklySchedulerRange<T>[];
+    }
+}
+declare namespace br.weeklyScheduler {
     interface IWeeklySchedulerRange<T> {
         /** A css class to apply */
         $class?: string;
@@ -93,12 +100,5 @@ declare namespace br.weeklyScheduler {
         start: number;
         end: number;
         value: T;
-    }
-}
-declare namespace br.weeklyScheduler {
-    interface IWeeklySchedulerItem<T> {
-        day: br.weeklyScheduler.Days;
-        editable?: boolean;
-        schedules: IWeeklySchedulerRange<T>[];
     }
 }
