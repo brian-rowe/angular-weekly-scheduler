@@ -39,14 +39,6 @@ class WeeklySlotController implements angular.IComponentController {
     });
   }
 
-  private setSlotActive() {
-    this.schedule.$isActive = true;
-  }
-
-  private setSlotInactive() {
-    this.schedule.$isActive = false;
-  }
-
   public editSelf() {
     this.editSchedule({ schedule: this.schedule });
   }
@@ -72,7 +64,7 @@ class WeeklySlotController implements angular.IComponentController {
     // Did the user actually move or resize the slot??
     var changed: boolean = !this.valuesOnDragStart.equals(this.getDragStartValues());
 
-    this.setSlotInactive();
+    this.schedule.$isActive = false;
 
     if (changed) {
       this.ngModelCtrl.$setDirty();
@@ -126,7 +118,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    this.setSlotActive();
+    this.schedule.$isActive = true;
     this.valuesOnDragStart = this.getDragStartValues();
   }
 
