@@ -12,6 +12,7 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
     value: T;
 
     constructor(
+        private config: IWeeklySchedulerConfig<T>,
         schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>
     ) {
         this.day = schedule.day;
@@ -30,5 +31,13 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
 
     public hasSameValueAs(other: WeeklySchedulerRange<T>) {
         return this.value === other.value;
+    }
+
+    public canUpdateEnd(updatedEnd: number) {
+        let changed = this.end !== updatedEnd;
+        let newEndBeforeOrAtMax = updatedEnd <= this.config.maxValue;
+        let newEndAfterOrAtExistingStart = updatedEnd >= this.start + 1;
+
+        return changed && newEndBeforeOrAtMax && newEndAfterOrAtExistingStart;
     }
 }
