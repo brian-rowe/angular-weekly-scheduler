@@ -28,8 +28,6 @@ class MultiSliderController implements angular.IComponentController {
   
   public $hoverElement: angular.IAugmentedJQuery;
 
-  public isAdding: boolean = false;
-
   public element: Element;
   public config: IWeeklySchedulerConfig<any>;
 
@@ -131,12 +129,9 @@ class MultiSliderController implements angular.IComponentController {
       let width = this.pixelToVal(this.$hoverElement[0].clientWidth);
       let end = this.config.nullEnds ? null : this.endAdjusterService.adjustEndForModel(this.config, start + width);
 
-      this.isAdding = true;
-
       this.addSlot(start, end).then(() => {
         this.ngModelCtrl.$setDirty();
         this.config.onChange();
-        this.isAdding = false;
       });
     }
   }
@@ -167,10 +162,6 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     if (!this.item.isEditable()) {
-      return false;
-    }
-
-    if (this.isAdding) {
       return false;
     }
 
