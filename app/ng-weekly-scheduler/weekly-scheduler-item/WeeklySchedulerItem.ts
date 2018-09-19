@@ -65,9 +65,6 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     }
 
     public removeSchedule(schedule: WeeklySchedulerRange<T>) {
-        console.log('removing!');
-        console.trace();
-
         let schedules = this.schedules;
 
         schedules.splice(schedules.indexOf(schedule), 1);
