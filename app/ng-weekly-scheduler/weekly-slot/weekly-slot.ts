@@ -50,6 +50,11 @@ class WeeklySlotController implements angular.IComponentController {
 
   public endDrag() {
     this.$scope.$emit(WeeklySchedulerEvents.DRAG_ENDED);
+    
+    // Was the schedule moved to another item??
+    if (this.item.schedules.indexOf(this.schedule) === -1) {
+      return;
+    }
 
     // Did the user actually move or resize the slot??
     var changed: boolean = !this.valuesOnDragStart.equals(this.getDragStartValues());
