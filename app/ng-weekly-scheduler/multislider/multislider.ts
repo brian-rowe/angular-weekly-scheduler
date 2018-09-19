@@ -237,18 +237,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private getUnderlyingInterval(val: number): HTMLElement {
     // Slightly hacky but does the job. TODO ?
-
-    // There is no interval to the left of the leftmost interval, so return that instead
-    if (val < 0) {
-      val = 0;
-    }
-
-    // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
-    let rightmost = this.config.maxValue - this.config.interval;
-
-    if (val > rightmost) {
-      val = rightmost;
-    }
+    val = this.normalizeValue(val);
 
     return this.$element.parent()[0].querySelector(`[rel='${val}']`);
   }
@@ -272,6 +261,22 @@ class MultiSliderController implements angular.IComponentController {
   public pixelToVal(pixel: number) {
     var percent = pixel / this.element.clientWidth;
     return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
+  }
+
+  private normalizeValue(value: number) {
+    // There is no interval to the left of the leftmost interval, so return that instead
+    if (value < 0) {
+      return 0;
+    }
+
+    // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
+    let rightmost = this.config.maxValue - this.config.interval;
+
+    if (value > rightmost) {
+      return rightmost;
+    }
+
+    return value;
   }
 }
 
