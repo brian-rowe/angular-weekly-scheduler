@@ -37,13 +37,8 @@ class MultiSliderController implements angular.IComponentController {
   private item: WeeklySchedulerItem<any>;
 
   public addSlot(start: number, end: number): angular.IPromise<void> {
-    if (start < 0) {
-      start = 0;
-    }
-
-    if (end > this.config.maxValue) {
-      end = this.config.maxValue;
-    }
+    start = this.normalizeValue(start, 0, end);
+    end = this.normalizeValue(end, start, this.config.maxValue);
 
     // Sanity check -- don't add a slot with an end before the start
     // caveat: ok to continue if nullEnds is true and end is null
