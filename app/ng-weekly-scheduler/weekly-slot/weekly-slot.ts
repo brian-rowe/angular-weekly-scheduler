@@ -4,6 +4,7 @@ class WeeklySlotController implements angular.IComponentController {
   static $controllerAs = 'weeklySlotCtrl';
 
   static $inject = [
+    '$element',
     '$rootScope',
     '$scope',
     'brWeeklySchedulerDragService'
@@ -22,6 +23,7 @@ class WeeklySlotController implements angular.IComponentController {
   private valuesOnDragStart: WeeklySchedulerRange<any>;
 
   constructor(
+    private $element: angular.IAugmentedJQuery,
     private $rootScope: angular.IRootScopeService,
     private $scope: angular.IScope,
     private dragService: DragService,
