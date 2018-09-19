@@ -4,6 +4,7 @@ class WeeklySlotController implements angular.IComponentController {
   static $controllerAs = 'weeklySlotCtrl';
 
   static $inject = [
+    '$scope',
     'brWeeklySchedulerDragService',
   ];
 
@@ -19,6 +20,7 @@ class WeeklySlotController implements angular.IComponentController {
   private valuesOnDragStart: WeeklySchedulerRange<any>;
 
   constructor(
+    private $scope: angular.IScope,
     private dragService: DragService,
   ) {
   }
@@ -47,6 +49,22 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
+    this.$scope.$emit(WeeklySchedulerEvents.DRAG_ENDED);
+
+    // Did the user actually move or resize the slot??
+    var changed: boolean = !this.valuesOnDragStart.equals(this.getDragStartValues());
+
+    this.schedule.$isActive = false;
+
+    if (changed) {
+      this.ngModelCtrl.$setDirty();
+      this.item.mergeSchedule(this.schedule);
+    } else {
+      this.editSelf();
+    }
+  }
+
+  public endResize() {
     // Did the user actually move or resize the slot??
     var changed: boolean = !this.valuesOnDragStart.equals(this.getDragStartValues());
 
@@ -79,6 +97,12 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
+    this.$scope.$emit(WeeklySchedulerEvents.SLOT_DRAGGED, this.schedule);
+    this.schedule.$isActive = true;
+    this.valuesOnDragStart = this.getDragStartValues();
+  }
+
+  public startResize() {
     this.schedule.$isActive = true;
     this.valuesOnDragStart = this.getDragStartValues();
   }

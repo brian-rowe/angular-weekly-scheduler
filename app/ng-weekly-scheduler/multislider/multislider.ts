@@ -6,6 +6,7 @@ class MultiSliderController implements angular.IComponentController {
   static $inject = [
     '$element',
     '$q',
+    '$scope',
     'brWeeklySchedulerElementOffsetService',
     'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerNullEndWidth',
@@ -15,6 +16,7 @@ class MultiSliderController implements angular.IComponentController {
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $q: angular.IQService,
+    private $scope: angular.IScope,
     private elementOffsetService: ElementOffsetService,
     private endAdjusterService: EndAdjusterService,
     private nullEndWidth: number,
@@ -22,6 +24,8 @@ class MultiSliderController implements angular.IComponentController {
   ) {
     this.element = this.$element[0];
   }
+
+  private dragSchedule: WeeklySchedulerRange<any>;
 
   private startingGhostValues: { left: number, right: number };
   private ghostValues: { left: number, right: number };
@@ -35,6 +39,13 @@ class MultiSliderController implements angular.IComponentController {
 
   private renderGhost: boolean;
   private item: WeeklySchedulerItem<any>;
+
+  public $postLink() {
+    this.$element.on('mouseenter', () => {
+      if (this.dragSchedule) {
+      }
+    });
+  }
 
   public addSlot(start: number, end: number): angular.IPromise<void> {
     start = this.normalizeValue(start, 0, end);
@@ -296,6 +307,7 @@ class MultiSliderComponent implements angular.IComponentOptions {
 
   bindings = {
     config: '<',
+    dragSchedule: '<',
     item: '=ngModel'
   };
 

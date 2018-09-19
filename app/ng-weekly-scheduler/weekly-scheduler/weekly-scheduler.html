@@ -16,6 +16,7 @@
       <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
         <br-hourly-grid no-text></br-hourly-grid>
         <br-multi-slider config="schedulerCtrl.config"
+                        drag-schedule="schedulerCtrl.dragSchedule"
                         ng-model="item"
                         ng-model-options="{allowInvalid: true}"
                         br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"

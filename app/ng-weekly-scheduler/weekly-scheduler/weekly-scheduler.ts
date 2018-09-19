@@ -30,6 +30,8 @@ class WeeklySchedulerController implements angular.IController {
 
   public invalidMessage: string = '';
 
+  private dragSchedule: WeeklySchedulerRange<any>;
+
   /** this is required to be part of a form for dirty/valid checks */
   public formController: angular.IFormController;
 
@@ -47,6 +49,14 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   $postLink() {
+    this.$scope.$on(WeeklySchedulerEvents.SLOT_DRAGGED, (event, schedule: WeeklySchedulerRange<any>) => {
+      this.dragSchedule = schedule;
+    });
+
+    this.$scope.$on(WeeklySchedulerEvents.DRAG_ENDED, () => {
+      this.dragSchedule = null;
+    });
+
     this.$timeout(() => {
       this.invalidMessage = this.getInvalidMessage();
     });
