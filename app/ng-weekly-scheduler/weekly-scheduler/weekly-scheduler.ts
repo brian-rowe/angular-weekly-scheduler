@@ -83,7 +83,9 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   private buildItemsFromAdapter() {
-    return this.buildItems(this.adapterService.getItemsFromAdapter(this.config, this.adapter));
+    let items = this.adapterService.getItemsFromAdapter(this.config, this.adapter);
+
+    return this.buildItems(items);
   }
 
   private purgeItems(items: WeeklySchedulerItem<any>[]) {
