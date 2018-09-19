@@ -51,6 +51,10 @@ class MultiSliderController implements angular.IComponentController {
       return this.$q.when();
     }
 
+    if (this.config.nullEnds) {
+      end = null;
+    }
+
     let schedule = {
       day: this.item.day,
       start: start,
