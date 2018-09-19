@@ -85,8 +85,8 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     this.ghostValues = {
-      left: updatedLeftValue,
-      right: updatedRightValue
+      left: this.normalizeGhostValue(updatedLeftValue),
+      right: this.normalizeGhostValue(updatedRightValue)
     }
   }
   
@@ -237,7 +237,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private getUnderlyingInterval(val: number): HTMLElement {
     // Slightly hacky but does the job. TODO ?
-    val = this.normalizeValue(val);
+    val = this.normalizeIntervalValue(val);
 
     return this.$element.parent()[0].querySelector(`[rel='${val}']`);
   }
@@ -263,17 +263,24 @@ class MultiSliderController implements angular.IComponentController {
     return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
   }
 
-  private normalizeValue(value: number) {
-    // There is no interval to the left of the leftmost interval, so return that instead
-    if (value < 0) {
-      return 0;
-    }
-
+  private normalizeIntervalValue(value: number) {
     // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
     let rightmost = this.config.maxValue - this.config.interval;
 
-    if (value > rightmost) {
-      return rightmost;
+    return this.normalizeValue(value, 0, rightmost);
+  }
+
+  private normalizeGhostValue(value: number) {
+    return this.normalizeValue(value, 0, this.config.maxValue);
+  }
+
+  private normalizeValue(value: number, minValue: number, maxValue: number) {
+    if (value < minValue) {
+      return minValue;
+    }
+
+    if (value > maxValue) {
+      return maxValue;
     }
 
     return value;
