@@ -142,7 +142,16 @@ class DemoAdapter implements br.weeklyScheduler.IWeeklySchedulerAdapter<br.weekl
   }
 
   public getSnapshot() {
-    return Array.prototype.concat.apply([], this.items.map(item => item.schedules.map(schedule => schedule)));
+    return Array.prototype.concat.apply([], this.items.map(item => {
+      return item.schedules.map(schedule => {
+        return {
+          day: schedule.day,
+          start: schedule.start,
+          end: schedule.end,
+          value: schedule.value
+        }
+      });
+    }));
   }
 
   public customModelToWeeklySchedulerRange(range) {

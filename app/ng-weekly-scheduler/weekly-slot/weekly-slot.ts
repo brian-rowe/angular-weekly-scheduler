@@ -4,8 +4,9 @@ class WeeklySlotController implements angular.IComponentController {
   static $controllerAs = 'weeklySlotCtrl';
 
   static $inject = [
+    '$rootScope',
     '$scope',
-    'brWeeklySchedulerDragService',
+    'brWeeklySchedulerDragService'
   ];
 
   private config: IWeeklySchedulerConfig<any>;
@@ -20,6 +21,7 @@ class WeeklySlotController implements angular.IComponentController {
   private valuesOnDragStart: WeeklySchedulerRange<any>;
 
   constructor(
+    private $rootScope: angular.IRootScopeService,
     private $scope: angular.IScope,
     private dragService: DragService,
   ) {
@@ -49,7 +51,8 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public endDrag() {
-    this.$scope.$emit(WeeklySchedulerEvents.DRAG_ENDED);
+    // If the schedule was moved to another item, the $scope hierarchy will have been broken, so we need to broadcast this to the whole app
+    this.$rootScope.$broadcast(WeeklySchedulerEvents.DRAG_ENDED);
     
     // Was the schedule moved to another item??
     if (this.item.schedules.indexOf(this.schedule) === -1) {
