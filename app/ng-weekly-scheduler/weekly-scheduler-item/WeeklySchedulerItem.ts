@@ -8,12 +8,11 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
 
     constructor(
         public config: IWeeklySchedulerConfig<T>,
-        private item: IInternalWeeklySchedulerItem<T>,
-        private endAdjusterService: EndAdjusterService,
+        item: IInternalWeeklySchedulerItem<T>,
         private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
         private overlapService: OverlapService,
         private purgeDefaultService: PurgeDefaultService,
-        private rangeFactory: WeeklySchedulerRangeFactory
+        rangeFactory: WeeklySchedulerRangeFactory
     ) {
         this.day = item.day;
         this.editable = item.editable;
