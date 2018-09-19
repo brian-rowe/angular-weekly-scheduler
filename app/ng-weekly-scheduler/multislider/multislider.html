@@ -20,6 +20,7 @@
     <br-weekly-slot class="slot {{ schedule.$class }}"
                 config="multiSliderCtrl.config"
                 get-delta="multiSliderCtrl.pixelToVal(pixel)"
+                drag-schedule="multiSliderCtrl.dragSchedule" 
                 item="multiSliderCtrl.item"
                 ng-class="{
                     active: schedule.$isActive,

@@ -16,6 +16,7 @@ class WeeklySlotController implements angular.IComponentController {
   private getDelta: (options: { pixel: number }) => number;
 
   private item: WeeklySchedulerItem<any>;
+  private dragSchedule: WeeklySchedulerRange<any>;
   private schedule: WeeklySchedulerRange<any>;
 
   private valuesOnDragStart: WeeklySchedulerRange<any>;
@@ -122,6 +123,7 @@ class WeeklySlotComponent implements angular.IComponentOptions {
   
   bindings = {
     config: '<',
+    dragSchedule: '<',
     item: '<',
     schedule: '=ngModel',
     editSchedule: '&',
