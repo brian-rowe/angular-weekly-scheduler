@@ -239,7 +239,7 @@ class MultiSliderController implements angular.IComponentController {
     // Slightly hacky but does the job. TODO ?
     val = this.normalizeIntervalValue(val);
 
-    return this.$element.parent()[0].querySelector(`[rel='${val}']`);
+    return this.element.parentElement.querySelector(`[rel='${val}']`);
   }
 
   private shouldDelete(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
