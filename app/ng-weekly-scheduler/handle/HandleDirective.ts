@@ -37,23 +37,7 @@ class HandleDirective implements angular.IDirective {
     }
 
     function getPageX(event) {
-      return event.pageX || getTouches(event)[0].pageX;
-    }
-
-    function getTouches(event: any): any { // todo
-      if (event.originalEvent) {
-        if (event.originalEvent.touches && event.originalEvent.touches.length) {
-          return event.originalEvent.touches;
-        } else if (event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
-          return event.originalEvent.changedTouches;
-        }
-      }
-  
-      if (!event.touches) {
-        event.touches = [event.originalEvent];
-      }
-  
-      return event.touches;
+      return event.pageX || this.touchService.getTouches(event)[0].pageX;
     }
 
     function mousemove(event) {
@@ -76,14 +60,15 @@ class HandleDirective implements angular.IDirective {
   }
 
   constructor(
-    private $document: angular.IDocumentService
+    private $document: angular.IDocumentService,
+    private touchService: TouchService
   ) {
   }
 
   static Factory() {
-    let directive = ($document) => new HandleDirective($document);
+    let directive = ($document, touchService) => new HandleDirective($document, touchService);
 
-    directive.$inject = ['$document'];
+    directive.$inject = ['$document', 'brWeeklySchedulerTouchService'];
 
     return directive;
   }
