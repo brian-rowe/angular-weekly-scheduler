@@ -41,20 +41,36 @@ class MultiSliderController implements angular.IComponentController {
   private item: WeeklySchedulerItem<any>;
 
   public $postLink() {
-    this.$element.on('mouseenter', () => {
-      if (this.dragSchedule) {
-      }
-    });
+    this.$element.on('mouseenter', () => this.addDragSchedule());
+    this.$element.on('mouseleave', () => this.removeDragSchedule());
+    this.$element.on('mouseup', () => this.commitDragSchedule());
   }
 
-  public addSlot(start: number, end: number): angular.IPromise<void> {
+  private addDragSchedule() {
+    if (this.dragSchedule) {
+      let schedule = this.addScheduleToItem(this.dragSchedule);
+      schedule.$isActive = true;
+    }
+  }
+
+  private removeDragSchedule() {
+    if (this.dragSchedule) {
+      this.item.removeSchedule(this.dragSchedule);
+    }
+  }
+
+  private commitDragSchedule() {
+    this.item.schedules.forEach(s => s.$isActive = false);
+  }
+
+  public addSlot(start: number, end: number): angular.IPromise<WeeklySchedulerRange<any>> {
     start = this.normalizeValue(start, 0, end);
     end = this.normalizeValue(end, start, this.config.maxValue);
 
     // Sanity check -- don't add a slot with an end before the start
     // caveat: ok to continue if nullEnds is true and end is null
     if (end && !this.config.nullEnds && end <= start) {
-      return this.$q.when();
+      return this.$q.when(null);
     }
 
     if (this.config.nullEnds) {
@@ -70,7 +86,7 @@ class MultiSliderController implements angular.IComponentController {
 
     if (angular.isFunction(this.config.editSlot)) {
       return this.config.editSlot(schedule).then((editedSchedule) => {
-        this.addScheduleToItem(editedSchedule);
+        return this.addScheduleToItem(editedSchedule);
       });
     } else {
       return this.$q.when(this.addScheduleToItem(schedule));
@@ -116,6 +132,8 @@ class MultiSliderController implements angular.IComponentController {
     const range = this.rangeFactory.createRange(this.config, schedule);
     this.item.addSchedule(range);
     this.merge(range);
+
+    return range;
   }
 
   public onGhostWrapperMouseDown(event: MouseEvent) {
