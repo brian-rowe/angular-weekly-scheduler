@@ -11,6 +11,7 @@ class HandleDirective implements angular.IDirective {
 
   link = (scope, element: angular.IAugmentedJQuery) => {
     var $document = this.$document;
+    var touchService = this.touchService;
     var x = 0;
 
     let mousedownEvent: string = 'mousedown touchstart';
@@ -37,7 +38,7 @@ class HandleDirective implements angular.IDirective {
     }
 
     function getPageX(event) {
-      return event.pageX || this.touchService.getTouches(event)[0].pageX;
+      return event.pageX || touchService.getTouches(event)[0].pageX;
     }
 
     function mousemove(event) {
