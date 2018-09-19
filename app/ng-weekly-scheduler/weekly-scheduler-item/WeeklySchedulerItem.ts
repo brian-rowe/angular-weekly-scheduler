@@ -32,6 +32,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         }
     }
 
+    public hasSchedule(schedule: WeeklySchedulerRange<T>) {
+        return this.schedules.indexOf(schedule) > -1;
+    }
+
     public hasNoSchedules() {
         return this.schedules.length === 0;
     }

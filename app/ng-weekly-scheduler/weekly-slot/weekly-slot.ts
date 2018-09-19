@@ -55,7 +55,7 @@ class WeeklySlotController implements angular.IComponentController {
     this.$rootScope.$broadcast(WeeklySchedulerEvents.DRAG_ENDED);
     
     // Was the schedule moved to another item??
-    if (this.item.schedules.indexOf(this.schedule) === -1) {
+    if (!this.item.hasSchedule(this.schedule)) {
       return;
     }
 
