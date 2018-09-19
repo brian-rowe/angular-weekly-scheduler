@@ -94,7 +94,11 @@ class MultiSliderController implements angular.IComponentController {
   public positionGhost(e: MouseEvent) {
     let val = this.getValAtMousePosition(e);
 
-    this.startingGhostValues = { left: val, right: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval };
+    this.startingGhostValues = {
+      left: val,
+      right: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval
+    };
+
     this.ghostValues = angular.copy(this.startingGhostValues);
   }
 
