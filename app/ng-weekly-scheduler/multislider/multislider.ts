@@ -49,6 +49,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private addDragSchedule() {
     if (this.dragSchedule) {
+      this.dragSchedule.day = this.item.day;
       this.pendingSchedule = this.addSchedule(this.dragSchedule);
       this.pendingSchedule.$isActive = true;
     }
