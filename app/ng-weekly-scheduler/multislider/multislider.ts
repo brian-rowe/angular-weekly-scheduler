@@ -26,6 +26,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private dragSchedule: WeeklySchedulerRange<any>;
+  private pendingSchedule: WeeklySchedulerRange<any>;
 
   private startingGhostValues: { left: number, right: number };
   private ghostValues: { left: number, right: number };
@@ -48,8 +49,8 @@ class MultiSliderController implements angular.IComponentController {
 
   private addDragSchedule() {
     if (this.dragSchedule) {
-      let schedule = this.addScheduleToItem(this.dragSchedule);
-      schedule.$isActive = true;
+      this.pendingSchedule = this.addSchedule(this.dragSchedule);
+      this.pendingSchedule.$isActive = true;
     }
   }
 
@@ -60,7 +61,10 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private commitDragSchedule() {
-    this.item.schedules.forEach(s => s.$isActive = false);
+    if (this.pendingSchedule) {
+      this.merge(this.pendingSchedule);
+      this.pendingSchedule.$isActive = false;
+    }
   }
 
   public addSlot(start: number, end: number): angular.IPromise<WeeklySchedulerRange<any>> {
@@ -86,10 +90,10 @@ class MultiSliderController implements angular.IComponentController {
 
     if (angular.isFunction(this.config.editSlot)) {
       return this.config.editSlot(schedule).then((editedSchedule) => {
-        return this.addScheduleToItem(editedSchedule);
+        return this.addScheduleAndMerge(editedSchedule);
       });
     } else {
-      return this.$q.when(this.addScheduleToItem(schedule));
+      return this.$q.when(this.addScheduleAndMerge(schedule));
     }
   }
 
@@ -128,9 +132,15 @@ class MultiSliderController implements angular.IComponentController {
     this.ghostValues = angular.copy(this.startingGhostValues);
   }
 
-  private addScheduleToItem(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  private addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     const range = this.rangeFactory.createRange(this.config, schedule);
     this.item.addSchedule(range);
+
+    return range;
+  }
+
+  private addScheduleAndMerge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    let range = this.addSchedule(schedule);
     this.merge(range);
 
     return range;
