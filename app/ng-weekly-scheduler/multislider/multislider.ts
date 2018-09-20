@@ -157,6 +157,7 @@ class MultiSliderController implements angular.IComponentController {
   public onGhostWrapperMouseMove(event: MouseEvent) {
     // nullEnds calendars don't need to do anything because the size of the slot doesn't really matter
     if (this.config.nullEnds) {
+      this.positionGhost(event);
       return;
     }
 
