@@ -13,15 +13,17 @@
         <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
       </div>
 
-      <button ng-click="saveAll()" ng-disabled="!testWrapper.$dirty || !testWrapper.$valid">Save</button>
+      <!-- <button ng-click="saveAll()" ng-disabled="!testWrapper.$dirty || !testWrapper.$valid">Save</button>
 
       <br-weekly-scheduler adapter="adapter" ng-form="test" options="model.options"></br-weekly-scheduler>
       <code>Valid: {{ test.$valid }}</code>
 
-      <hr>
+      <hr> -->
       
       <br-weekly-scheduler adapter="adapterTwo" ng-form="test2" options="model2.options"></br-weekly-scheduler>
-      <code>Result: {{ adapterTwoResult }}</code>
+      <code>Result: 
+        <pre>{{ adapterTwoResult | json }}</pre>
+      </code>
       <code>Valid: {{ test2.$valid }}</code>
 
       <script src="testVendorScripts.js"></script>
