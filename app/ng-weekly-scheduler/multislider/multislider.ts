@@ -219,15 +219,15 @@ class MultiSliderController implements angular.IComponentController {
     return this.renderGhost;
   }
 
-  private getMousePosition(event: MouseEvent) {
+  private getMousePosition(pageX: number) {
     let elementOffsetX = this.elementOffsetService.left(this.$element);
-    let left = event.pageX - elementOffsetX;
+    let left = pageX - elementOffsetX;
 
     return left;
   }
 
   private getValAtMousePosition(event: MouseEvent) {
-    return this.pixelToVal(this.getMousePosition(event));
+    return this.pixelToVal(this.getMousePosition(event.pageX));
   }
 
   /**
