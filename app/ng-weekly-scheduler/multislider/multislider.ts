@@ -111,8 +111,8 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   /** Expand ghost while dragging in it */
-  public adjustGhost(event: MouseEvent) {
-    let mouseValue: number = this.getValAtMousePosition(event.pageX);
+  public adjustGhost(point: IPoint) {
+    let mouseValue: number = this.getValAtMousePosition(point.x);
 
     let existingLeftValue: number = this.startingGhostValues.left;
 
@@ -164,15 +164,15 @@ class MultiSliderController implements angular.IComponentController {
     this.positionGhost(point);
   }
 
-  public onGhostWrapperMouseMove(event: MouseEvent) {
+  public onGhostWrapperMouseMove(point: IPoint) {
     // nullEnds calendars don't need to do anything because the size of the slot doesn't really matter
     if (this.config.nullEnds) {
-      this.positionGhost({ x: event.pageX, y: event.pageY });
+      this.positionGhost(point);
       return;
     }
 
     if (this.renderGhost) {
-      this.adjustGhost(event);
+      this.adjustGhost(point);
     }
   }
 
