@@ -62,8 +62,10 @@ class MultiSliderController implements angular.IComponentController {
 
   private commitDragSchedule() {
     if (this.pendingSchedule) {
-      this.merge(this.pendingSchedule);
       this.pendingSchedule.$isActive = false;
+
+      this.ngModelCtrl.$setDirty();
+      this.merge(this.pendingSchedule);
     }
   }
 
