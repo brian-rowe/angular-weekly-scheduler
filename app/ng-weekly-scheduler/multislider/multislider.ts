@@ -67,6 +67,7 @@ class MultiSliderController implements angular.IComponentController {
 
       this.ngModelCtrl.$setDirty();
       this.merge(this.pendingSchedule);
+      this.pendingSchedule = null;
     }
   }
 
