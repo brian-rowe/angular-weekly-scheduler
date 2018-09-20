@@ -29,13 +29,9 @@ class HandleDirective implements angular.IDirective {
       // Prevent multiple handlers from being fired if they are nested (only the one you directly interacted with should fire)
       event.stopPropagation();
 
-      $document.on(mousemoveEvent, mousemove);
-      $document.on(mouseupEvent, mouseup);
+      let point = getPoint(event);
 
-      if (angular.isFunction(scope.ondragstart)) {
-        let point = getPoint(event);
-        scope.$apply(scope.ondragstart({ point: point }));
-      }
+      startDrag(point);
     }
 
     function getPageX(event) {
@@ -65,6 +61,15 @@ class HandleDirective implements angular.IDirective {
 
       if (angular.isFunction(scope.ondragstop)) {
         scope.$apply(scope.ondragstop());
+      }
+    }
+
+    function startDrag(point: IPoint) {
+      $document.on(mousemoveEvent, mousemove);
+      $document.on(mouseupEvent, mouseup);
+
+      if (angular.isFunction(scope.ondragstart)) {
+        scope.$apply(scope.ondragstart({ point: point }));
       }
     }
   }
