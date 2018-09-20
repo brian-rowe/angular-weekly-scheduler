@@ -42,9 +42,17 @@ class MultiSliderController implements angular.IComponentController {
   private item: WeeklySchedulerItem<any>;
 
   public $postLink() {
-    this.$element.on('mouseenter', () => this.addDragSchedule());
-    this.$element.on('mouseleave', () => this.removeDragSchedule());
-    this.$element.on('mouseup', () => this.commitDragSchedule());
+    this.$element.on('mouseenter', () => {
+      this.addDragSchedule()
+    });
+
+    this.$element.on('mouseleave', () => {
+      this.removeDragSchedule()
+    });
+
+    this.$element.on('mouseup', () => {
+       this.commitDragSchedule()
+    });
   }
 
   private addDragSchedule() {

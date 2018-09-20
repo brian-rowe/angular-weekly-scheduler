@@ -20,7 +20,7 @@ class TouchService {
     public getPageX(event: any): number {
         let touches = this.getTouches(event);
 
-        if (touches && touches.length) {
+        if (touches && touches.length && touches[0]) {
             return touches[0].pageX;
         }
 
