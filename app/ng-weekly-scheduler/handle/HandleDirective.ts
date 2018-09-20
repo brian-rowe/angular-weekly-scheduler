@@ -33,17 +33,20 @@ class HandleDirective implements angular.IDirective {
       $document.on(mouseupEvent, mouseup);
 
       if (angular.isFunction(scope.ondragstart)) {
-        let point: IPoint = {
-          x: event.pageX,
-          y: event.pageY
-        }
-
+        let point = getPoint(event);
         scope.$apply(scope.ondragstart({ point: point }));
       }
     }
 
     function getPageX(event) {
       return event.pageX || touchService.getPageX(event);
+    }
+
+    function getPoint(event: MouseEvent): IPoint {
+      return {
+        x: event.pageX,
+        y: event.pageY
+      };
     }
 
     function mousemove(event) {
