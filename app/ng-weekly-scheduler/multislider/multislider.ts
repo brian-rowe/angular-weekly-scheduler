@@ -112,7 +112,7 @@ class MultiSliderController implements angular.IComponentController {
 
   /** Expand ghost while dragging in it */
   public adjustGhost(event: MouseEvent) {
-    let mouseValue: number = this.getValAtMousePosition(event);
+    let mouseValue: number = this.getValAtMousePosition(event.pageX);
 
     let existingLeftValue: number = this.startingGhostValues.left;
 
@@ -135,7 +135,7 @@ class MultiSliderController implements angular.IComponentController {
   
   /** Move ghost around while not dragging */
   public positionGhost(e: MouseEvent) {
-    let val = this.getValAtMousePosition(e);
+    let val = this.getValAtMousePosition(e.pageX);
 
     this.startingGhostValues = {
       left: val,
@@ -226,8 +226,8 @@ class MultiSliderController implements angular.IComponentController {
     return left;
   }
 
-  private getValAtMousePosition(event: MouseEvent) {
-    return this.pixelToVal(this.getMousePosition(event.pageX));
+  private getValAtMousePosition(pageX: number) {
+    return this.pixelToVal(this.getMousePosition(pageX));
   }
 
   /**
