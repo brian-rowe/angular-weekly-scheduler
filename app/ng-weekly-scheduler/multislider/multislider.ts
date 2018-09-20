@@ -58,6 +58,7 @@ class MultiSliderController implements angular.IComponentController {
   private removeDragSchedule() {
     if (this.dragSchedule) {
       this.item.removeSchedule(this.dragSchedule);
+      this.pendingSchedule = null;
     }
   }
 
