@@ -16,6 +16,16 @@ class TouchService {
 
         return event.touches;
     }
+    
+    public getPageX(event: any): number {
+        let touches = this.getTouches(event);
+
+        if (touches && touches.length) {
+            return touches[0].pageX;
+        }
+
+        return null;
+    }
 }
 
 angular

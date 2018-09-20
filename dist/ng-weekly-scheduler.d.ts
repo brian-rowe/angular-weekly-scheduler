@@ -36,6 +36,7 @@ declare namespace br.weeklyScheduler {
 declare class TouchService {
     static $name: string;
     getTouches(event: any): any;
+    getPageX(event: any): number;
 }
 declare namespace br.weeklyScheduler {
     const enum Days {

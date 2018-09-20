@@ -38,7 +38,7 @@ class HandleDirective implements angular.IDirective {
     }
 
     function getPageX(event) {
-      return event.pageX || touchService.getTouches(event)[0].pageX;
+      return event.pageX || touchService.getPageX(event);
     }
 
     function mousemove(event) {
