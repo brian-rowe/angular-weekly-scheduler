@@ -19,10 +19,6 @@ declare namespace br.weeklyScheduler {
         generic: string;
     }
 }
-interface IPoint {
-    x: number;
-    y: number;
-}
 declare namespace br.weeklyScheduler {
     interface IResizeServiceProvider extends angular.IServiceProvider {
         setCustomResizeEvents(events: string[]): any;
