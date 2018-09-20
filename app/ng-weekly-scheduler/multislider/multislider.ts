@@ -9,6 +9,7 @@ class MultiSliderController implements angular.IComponentController {
     '$scope',
     'brWeeklySchedulerElementOffsetService',
     'brWeeklySchedulerEndAdjusterService',
+    'brWeeklySchedulerMouseTrackerService',
     'brWeeklySchedulerNullEndWidth',
     'brWeeklySchedulerRangeFactory'
   ];
@@ -19,6 +20,7 @@ class MultiSliderController implements angular.IComponentController {
     private $scope: angular.IScope,
     private elementOffsetService: ElementOffsetService,
     private endAdjusterService: EndAdjusterService,
+    private mouseTrackerService: MouseTrackerService,
     private nullEndWidth: number,
     private rangeFactory: WeeklySchedulerRangeFactory
   ) {
@@ -111,7 +113,8 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   /** Expand ghost while dragging in it */
-  public adjustGhost(point: IPoint) {
+  public adjustGhost() {
+    let point = this.mouseTrackerService.getMousePosition();
     let mouseValue: number = this.getValAtMousePosition(point.x);
 
     let existingLeftValue: number = this.startingGhostValues.left;
@@ -134,7 +137,8 @@ class MultiSliderController implements angular.IComponentController {
   }
   
   /** Move ghost around while not dragging */
-  public positionGhost(point: IPoint) {
+  public positionGhost() {
+    let point = this.mouseTrackerService.getMousePosition();
     let val = this.getValAtMousePosition(point.x);
 
     this.startingGhostValues = {
@@ -159,20 +163,20 @@ class MultiSliderController implements angular.IComponentController {
     return range;
   }
 
-  public onGhostWrapperMouseDown(point: IPoint) {
+  public onGhostWrapperMouseDown() {
     this.renderGhost = true;
-    this.positionGhost(point);
+    this.positionGhost();
   }
 
-  public onGhostWrapperMouseMove(point: IPoint) {
+  public onGhostWrapperMouseMove() {
     // nullEnds calendars don't need to do anything because the size of the slot doesn't really matter
     if (this.config.nullEnds) {
-      this.positionGhost(point);
+      this.positionGhost();
       return;
     }
 
     if (this.renderGhost) {
-      this.adjustGhost(point);
+      this.adjustGhost();
     }
   }
 
