@@ -21,13 +21,11 @@ class MouseTrackerService {
     }
 
     public getMousePosition() {
-        console.log(this.mousePosition.x);
         return this.mousePosition;
     }
 
     private setMousePosition(event) {
         this.mousePosition = { x: event.pageX, y: event.pageY };
-        console.log(this.mousePosition.x);
     }
 }
 
