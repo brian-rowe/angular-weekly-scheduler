@@ -56,11 +56,21 @@ class MultiSliderController implements angular.IComponentController {
     this.$element.on('mouseup', () => {
        this.onMouseUp();
     });
+
+    this.$scope.$on(WeeklySchedulerEvents.COMMIT_GHOST, () => {
+      if (this.renderGhost) {
+        this.commitGhost();
+      }
+    });
   }
 
   private onMouseEnter() {
     if (this.dragSchedule) {
       this.addDragSchedule();
+    }
+
+    if (this.ghostValues) {
+      this.onGhostWrapperMouseDown();
     }
   }
 
@@ -198,7 +208,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseUp() {
-    this.commitGhost();
+    this.$scope.$emit(WeeklySchedulerEvents.GHOST_DRAG_ENDED);
   }
 
   /**
@@ -240,6 +250,7 @@ class MultiSliderController implements angular.IComponentController {
       this.addSlot(this.ghostValues.left, this.ghostValues.right).then(() => {
         this.ngModelCtrl.$setDirty();
         this.config.onChange();
+        this.setGhostValues(null);
       });
     }
   }

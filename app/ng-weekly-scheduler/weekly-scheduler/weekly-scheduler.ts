@@ -59,6 +59,10 @@ class WeeklySchedulerController implements angular.IController {
       this.dragSchedule = null;
     });
 
+    this.$scope.$on(WeeklySchedulerEvents.GHOST_DRAG_ENDED, () => {
+      this.$scope.$broadcast(WeeklySchedulerEvents.COMMIT_GHOST);
+    });
+
     this.$timeout(() => {
       this.invalidMessage = this.getInvalidMessage();
     });
