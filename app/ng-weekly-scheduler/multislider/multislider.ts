@@ -70,7 +70,7 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     if (this.ghostValues) {
-      this.onGhostWrapperMouseDown();
+      this.createGhost();
     }
   }
 
