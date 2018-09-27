@@ -5,8 +5,10 @@ declare const enum WeeklySchedulerEvents {
     ZOOMED_OUT = 'zoomedOut', //ack
     RESET_ZOOM = 'resetZoom', // command
     ZOOM_IN = 'zoomIn', // command
+
     SLOT_DRAGGED = 'slotDragged',
     DRAG_ENDED = 'dragEnded',
+
     GHOST_DRAG_ENDED = 'ghostDragEnded',
     COMMIT_GHOST = 'commitGhost'
 }

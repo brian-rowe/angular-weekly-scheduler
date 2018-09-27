@@ -191,8 +191,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseDown() {
-    this.renderGhost = true;
-    this.positionGhost();
+    this.createGhost();
   }
 
   public onGhostWrapperMouseMove() {
@@ -219,6 +218,11 @@ class MultiSliderController implements angular.IComponentController {
     let hasEditFunction = angular.isFunction(this.config.editSlot);
 
     return isEditable && hasEditFunction;
+  }
+
+  private createGhost() {
+    this.renderGhost = true;
+    this.positionGhost();
   }
 
   /**
