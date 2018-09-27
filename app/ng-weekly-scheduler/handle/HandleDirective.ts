@@ -6,11 +6,13 @@ class HandleDirective implements angular.IDirective {
   scope = {
     ondrag: '&',
     ondragstop: '&',
-    ondragstart: '&'
+    ondragstart: '&',
+    immediate: '<'
   };
 
   link = (scope, element: angular.IAugmentedJQuery) => {
     var $document = this.$document;
+    var mouseTrackerService = this.mouseTrackerService;
     var touchService = this.touchService;
     var x = 0;
 
@@ -28,6 +30,12 @@ class HandleDirective implements angular.IDirective {
 
       // Prevent multiple handlers from being fired if they are nested (only the one you directly interacted with should fire)
       event.stopPropagation();
+
+      startDrag();
+    }
+
+    function fakeMousedown() {
+      x = mouseTrackerService.getMousePosition().x;
 
       startDrag();
     }
@@ -62,18 +70,23 @@ class HandleDirective implements angular.IDirective {
         scope.$apply(scope.ondragstart());
       }
     }
+
+    if (scope.immediate) {
+      fakeMousedown();
+    }
   }
 
   constructor(
     private $document: angular.IDocumentService,
+    private mouseTrackerService: MouseTrackerService,
     private touchService: TouchService
   ) {
   }
 
   static Factory() {
-    let directive = ($document, touchService) => new HandleDirective($document, touchService);
+    let directive = ($document, mouseTrackerService, touchService) => new HandleDirective($document, mouseTrackerService, touchService);
 
-    directive.$inject = ['$document', 'brWeeklySchedulerTouchService'];
+    directive.$inject = ['$document', 'brWeeklySchedulerMouseTrackerService', 'brWeeklySchedulerTouchService'];
 
     return directive;
   }

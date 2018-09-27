@@ -30,6 +30,10 @@ class WeeklySlotController implements angular.IComponentController {
   ) {
   }
 
+  get hasDragSchedule() {
+    return angular.isDefined(this.dragSchedule) && this.dragSchedule != null;
+  }
+
   private getDragStartValues() {
     return this.dragService.getDragRangeFromSchedule(this.config, this.schedule);
   }
