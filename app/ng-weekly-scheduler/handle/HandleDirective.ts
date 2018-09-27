@@ -67,7 +67,7 @@ class HandleDirective implements angular.IDirective {
       $document.on(mouseupEvent, mouseup);
 
       if (angular.isFunction(scope.ondragstart)) {
-        scope.$apply(scope.ondragstart());
+        scope.$applyAsync(scope.ondragstart());
       }
     }
 
