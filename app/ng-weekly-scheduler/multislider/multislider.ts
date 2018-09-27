@@ -46,41 +46,53 @@ class MultiSliderController implements angular.IComponentController {
 
   public $postLink() {
     this.$element.on('mouseenter', () => {
-      this.addDragSchedule()
+      this.onMouseEnter();
     });
 
     this.$element.on('mouseleave', () => {
-      this.removeDragSchedule()
+      this.onMouseLeave();
     });
 
     this.$element.on('mouseup', () => {
-       this.commitDragSchedule()
+       this.onMouseUp();
     });
   }
 
-  private addDragSchedule() {
+  private onMouseEnter() {
     if (this.dragSchedule) {
-      this.dragSchedule.day = this.item.day;
-      this.pendingSchedule = this.addSchedule(this.dragSchedule);
-      this.pendingSchedule.$isActive = true;
+      this.addDragSchedule();
     }
+  }
+
+  private onMouseLeave() {
+    if (this.dragSchedule) {
+      this.removeDragSchedule();
+    }
+  }
+
+  private onMouseUp() {
+    if (this.pendingSchedule) {
+      this.commitDragSchedule();
+    }
+  }
+
+  private addDragSchedule() {
+    this.dragSchedule.day = this.item.day;
+    this.pendingSchedule = this.addSchedule(this.dragSchedule);
+    this.pendingSchedule.$isActive = true;
   }
 
   private removeDragSchedule() {
-    if (this.dragSchedule) {
-      this.item.removeSchedule(this.dragSchedule);
-      this.pendingSchedule = null;
-    }
+    this.item.removeSchedule(this.dragSchedule);
+    this.pendingSchedule = null;
   }
 
   private commitDragSchedule() {
-    if (this.pendingSchedule) {
-      this.pendingSchedule.$isActive = false;
+    this.pendingSchedule.$isActive = false;
 
-      this.ngModelCtrl.$setDirty();
-      this.merge(this.pendingSchedule);
-      this.pendingSchedule = null;
-    }
+    this.ngModelCtrl.$setDirty();
+    this.merge(this.pendingSchedule);
+    this.pendingSchedule = null;
   }
 
   public addSlot(start: number, end: number): angular.IPromise<WeeklySchedulerRange<any>> {
