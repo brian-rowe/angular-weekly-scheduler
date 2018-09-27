@@ -31,7 +31,8 @@ class MultiSliderController implements angular.IComponentController {
   private pendingSchedule: WeeklySchedulerRange<any>;
 
   private startingGhostValues: { left: number, right: number };
-  private ghostValues: { left: number, right: number };
+  private readonly ghostValues: { left: number, right: number };
+  private setGhostValues: (options: { ghostValues: { left: number, right: number } }) => void;
 
   private ngModelCtrl: angular.INgModelController;
   
@@ -130,10 +131,12 @@ class MultiSliderController implements angular.IComponentController {
       updatedRightValue = mouseValue;
     }
 
-    this.ghostValues = {
-      left: this.normalizeGhostValue(updatedLeftValue),
-      right: this.normalizeGhostValue(updatedRightValue)
-    }
+    this.setGhostValues({ 
+      ghostValues: {
+        left: this.normalizeGhostValue(updatedLeftValue),
+        right: this.normalizeGhostValue(updatedRightValue)
+      }
+    });
   }
   
   /** Move ghost around while not dragging */
@@ -146,7 +149,9 @@ class MultiSliderController implements angular.IComponentController {
       right: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval
     };
 
-    this.ghostValues = angular.copy(this.startingGhostValues);
+    this.setGhostValues({
+      ghostValues: angular.copy(this.startingGhostValues)
+    });
   }
 
   private addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
@@ -354,7 +359,9 @@ class MultiSliderComponent implements angular.IComponentOptions {
   bindings = {
     config: '<',
     dragSchedule: '<',
-    item: '=ngModel'
+    ghostValues: '<',
+    item: '=ngModel',
+    setGhostValues: '&'
   };
 
   controller = MultiSliderController.$name;

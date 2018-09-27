@@ -35,4 +35,3 @@ angular
     .run([MouseTrackerService.$name, (mouseTrackerService: MouseTrackerService) => {
         mouseTrackerService.initialize();
     }]);
-

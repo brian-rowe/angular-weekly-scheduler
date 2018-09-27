@@ -16,15 +16,17 @@
       <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
         <br-hourly-grid no-text></br-hourly-grid>
         <br-multi-slider config="schedulerCtrl.config"
-                        drag-schedule="schedulerCtrl.dragSchedule"
-                        ng-model="item"
-                        ng-model-options="{allowInvalid: true}"
                         br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
                         br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
                         br-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
                         br-null-end="{{ schedulerCtrl.config.nullEnds }}"
                         br-overlap
                         br-revalidate
+                        drag-schedule="schedulerCtrl.dragSchedule"
+                        ghost-values="schedulerCtrl.ghostValues"
+                        ng-model="item"
+                        ng-model-options="{allowInvalid: true}"
+                        set-ghost-values="schedulerCtrl.setGhostValues(ghostValues)"
         ></br-multi-slider>
       </div>
     </div>

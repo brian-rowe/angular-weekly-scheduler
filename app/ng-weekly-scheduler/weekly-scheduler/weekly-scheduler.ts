@@ -32,6 +32,8 @@ class WeeklySchedulerController implements angular.IController {
 
   private dragSchedule: WeeklySchedulerRange<any>;
 
+  private ghostValues: { left: number, right: number };
+
   /** this is required to be part of a form for dirty/valid checks */
   public formController: angular.IFormController;
 
@@ -116,6 +118,10 @@ class WeeklySchedulerController implements angular.IController {
     }
 
     return items;
+  }
+
+  private setGhostValues(ghostValues: { left: number, right: number }) {
+    this.ghostValues = ghostValues;
   }
 
   private resetZoom() {
