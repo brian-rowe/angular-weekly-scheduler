@@ -2,7 +2,7 @@
     <br-ghost-slot class="slot"
                    ng-if="multiSliderCtrl.canRenderGhost()"
                    ng-class="{
-                      active: multiSliderCtrl.renderGhost,
+                      active: multiSliderCtrl.item.$renderGhost,
                       nullEnd: multiSliderCtrl.config.nullEnds
                    }"
                    ng-style="{

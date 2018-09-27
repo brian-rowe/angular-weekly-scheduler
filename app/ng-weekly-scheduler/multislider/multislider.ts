@@ -41,7 +41,6 @@ class MultiSliderController implements angular.IComponentController {
   public element: Element;
   public config: IWeeklySchedulerConfig<any>;
 
-  private renderGhost: boolean;
   private item: WeeklySchedulerItem<any>;
 
   public $postLink() {
@@ -58,7 +57,7 @@ class MultiSliderController implements angular.IComponentController {
     });
 
     this.$scope.$on(WeeklySchedulerEvents.COMMIT_GHOST, () => {
-      if (this.renderGhost) {
+      if (this.item.$renderGhost) {
         this.commitGhost();
       }
     });
@@ -201,7 +200,7 @@ class MultiSliderController implements angular.IComponentController {
       return;
     }
 
-    if (this.renderGhost) {
+    if (this.item.$renderGhost) {
       this.adjustGhost();
     }
   }
@@ -221,7 +220,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private createGhost() {
-    this.renderGhost = true;
+    this.item.$renderGhost = true;
     this.positionGhost();
   }
 
@@ -232,11 +231,11 @@ class MultiSliderController implements angular.IComponentController {
   private canRenderGhost() {
     // This one needs to come first, otherwise renderGhost being set to true would override the protection against addt'l slots in nullEnd calendars
     if (this.config.nullEnds) {
-      return this.renderGhost && this.item.hasNoSchedules();
+      return this.item.$renderGhost && this.item.hasNoSchedules();
     }
 
     // If you're already dragging the ghost it should never disappear
-    if (this.renderGhost) {
+    if (this.item.$renderGhost) {
       return true;
     }
 
@@ -244,11 +243,11 @@ class MultiSliderController implements angular.IComponentController {
       return false;
     }
 
-    return this.renderGhost;
+    return this.item.$renderGhost;
   }
 
   private commitGhost() {
-    this.renderGhost = false;
+    this.item.$renderGhost = false;
 
     if (this.item.canAddSchedule()) {
       this.addSlot(this.ghostValues.left, this.ghostValues.right).then(() => {

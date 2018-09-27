@@ -1,6 +1,7 @@
 /** Provides common functionality for an item -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */
 class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
+    $renderGhost: boolean;
     day: br.weeklyScheduler.Days;
     editable: boolean;
     label: string;
