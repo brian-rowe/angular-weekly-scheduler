@@ -198,14 +198,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseUp() {
-    this.renderGhost = false;
-
-    if (this.item.canAddSchedule()) {
-      this.addSlot(this.ghostValues.left, this.ghostValues.right).then(() => {
-        this.ngModelCtrl.$setDirty();
-        this.config.onChange();
-      });
-    }
+    this.commitGhost();
   }
 
   /**
@@ -238,6 +231,17 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     return this.renderGhost;
+  }
+
+  private commitGhost() {
+    this.renderGhost = false;
+
+    if (this.item.canAddSchedule()) {
+      this.addSlot(this.ghostValues.left, this.ghostValues.right).then(() => {
+        this.ngModelCtrl.$setDirty();
+        this.config.onChange();
+      });
+    }
   }
 
   private getMousePosition(pageX: number) {
