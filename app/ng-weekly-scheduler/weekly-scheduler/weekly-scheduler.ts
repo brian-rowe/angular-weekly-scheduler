@@ -10,6 +10,7 @@ class WeeklySchedulerController implements angular.IController {
     'brWeeklySchedulerAdapterService',
     'brWeeklySchedulerConfigurationService',
     'brWeeklySchedulerConflictingOptionsService',
+    'brWeeklySchedulerLastGhostDayService',
     'brWeeklySchedulerMissingDaysService'
   ];
 
@@ -20,6 +21,7 @@ class WeeklySchedulerController implements angular.IController {
     private adapterService: AdapterService,
     private configurationService: ConfigurationService,
     private conflictingOptionsService: ConflictingOptionsService,
+    private lastGhostDayService: LastGhostDayService,
     private missingDaysService: MissingDaysService,
   ) {
   }
@@ -64,7 +66,7 @@ class WeeklySchedulerController implements angular.IController {
     });
 
     this.$scope.$on(WeeklySchedulerEvents.REMOVE_LAST_GHOST, () => {
-      let lastGhostDay = this.getLastGhostDay();
+      let lastGhostDay = this.lastGhostDayService.getLastGhostDay(this.items);
 
       this.$scope.$broadcast(WeeklySchedulerEvents.REMOVE_GHOST, lastGhostDay);
     });
@@ -108,45 +110,6 @@ class WeeklySchedulerController implements angular.IController {
     let items = this.adapterService.getItemsFromAdapter(this.config, this.adapter);
 
     return this.buildItems(items);
-  }
-
-  private getLastGhostDay(){ 
-    // get the index of the $isGhostOrigin item
-    let originIndex;
-    let len = this.items.length;
-
-    for (let i = 0; i < len; i++) {
-      let currentItem = this.items[i];
-
-      if (currentItem.$isGhostOrigin) {
-        originIndex = i;
-        break;
-      }
-    }
-
-    // determine if the other $renderGhost items are above or below the $isGhostOrigin item
-    let renderedGhostIndices = [];
-
-    for (let i = 0; i < len; i++) {
-      let currentItem = this.items[i];
-
-      if (currentItem.$renderGhost) {
-        renderedGhostIndices.push(i);
-      }
-    }
-
-    let above = renderedGhostIndices.every(i => i <= originIndex);
-
-    // take first item for above or last item for below
-    let result;
-
-    if (above) {
-      result = renderedGhostIndices[0];
-    } else {
-      result = renderedGhostIndices[renderedGhostIndices.length - 1];
-    }
-
-    return result;
   }
 
   private purgeItems(items: WeeklySchedulerItem<any>[]) {
