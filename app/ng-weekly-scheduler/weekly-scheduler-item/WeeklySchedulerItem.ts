@@ -33,6 +33,28 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         }
     }
 
+    /**
+     * Rather than having to deal with modifying mergeOverlaps to handle nullEnds calendars,
+     * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
+     */
+    public canRenderGhost() {
+        // This one needs to come first, otherwise renderGhost being set to true would override the protection against addt'l slots in nullEnd calendars
+        if (this.config.nullEnds) {
+            return this.$renderGhost && this.hasNoSchedules();
+        }
+
+        // If you're already dragging the ghost it should never disappear
+        if (this.$renderGhost) {
+            return true;
+        }
+
+        if (!this.isEditable()) {
+            return false;
+        }
+
+        return this.$renderGhost;
+    }
+
     public hasSchedule(schedule: WeeklySchedulerRange<T>) {
         return this.schedules.indexOf(schedule) > -1;
     }

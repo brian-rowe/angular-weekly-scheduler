@@ -1,6 +1,6 @@
 <div class="ghost-wrapper" br-handle ondragstart="multiSliderCtrl.onGhostWrapperMouseDown()" ondragstop="multiSliderCtrl.onGhostWrapperMouseUp()" ondrag="multiSliderCtrl.onGhostWrapperMouseMove()">
     <br-ghost-slot class="slot"
-                   ng-if="multiSliderCtrl.canRenderGhost()"
+                   ng-if="multiSliderCtrl.item.canRenderGhost()"
                    ng-class="{
                       active: multiSliderCtrl.item.$renderGhost,
                       nullEnd: multiSliderCtrl.config.nullEnds

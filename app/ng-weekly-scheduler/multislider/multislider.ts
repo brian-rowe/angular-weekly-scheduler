@@ -224,28 +224,6 @@ class MultiSliderController implements angular.IComponentController {
     this.positionGhost();
   }
 
-  /**
-   * Rather than having to deal with modifying mergeOverlaps to handle nullEnds calendars,
-   * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
-   */
-  private canRenderGhost() {
-    // This one needs to come first, otherwise renderGhost being set to true would override the protection against addt'l slots in nullEnd calendars
-    if (this.config.nullEnds) {
-      return this.item.$renderGhost && this.item.hasNoSchedules();
-    }
-
-    // If you're already dragging the ghost it should never disappear
-    if (this.item.$renderGhost) {
-      return true;
-    }
-
-    if (!this.item.isEditable()) {
-      return false;
-    }
-
-    return this.item.$renderGhost;
-  }
-
   private commitGhost() {
     this.item.$renderGhost = false;
 
