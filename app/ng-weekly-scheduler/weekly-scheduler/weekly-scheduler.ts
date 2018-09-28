@@ -63,6 +63,12 @@ class WeeklySchedulerController implements angular.IController {
       this.$scope.$broadcast(WeeklySchedulerEvents.COMMIT_GHOST);
     });
 
+    this.$scope.$on(WeeklySchedulerEvents.REMOVE_LAST_GHOST, () => {
+      let lastGhostDay = this.getLastGhostDay();
+
+      this.$scope.$broadcast(WeeklySchedulerEvents.REMOVE_GHOST, lastGhostDay);
+    });
+
     this.$timeout(() => {
       this.invalidMessage = this.getInvalidMessage();
     });
@@ -102,6 +108,45 @@ class WeeklySchedulerController implements angular.IController {
     let items = this.adapterService.getItemsFromAdapter(this.config, this.adapter);
 
     return this.buildItems(items);
+  }
+
+  private getLastGhostDay(){ 
+    // get the index of the $isGhostOrigin item
+    let originIndex;
+    let len = this.items.length;
+
+    for (let i = 0; i < len; i++) {
+      let currentItem = this.items[i];
+
+      if (currentItem.$isGhostOrigin) {
+        originIndex = i;
+        break;
+      }
+    }
+
+    // determine if the other $renderGhost items are above or below the $isGhostOrigin item
+    let renderedGhostIndices = [];
+
+    for (let i = 0; i < len; i++) {
+      let currentItem = this.items[i];
+
+      if (currentItem.$renderGhost) {
+        renderedGhostIndices.push(i);
+      }
+    }
+
+    let above = renderedGhostIndices.every(i => i <= originIndex);
+
+    // take first item for above or last item for below
+    let result;
+
+    if (above) {
+      result = renderedGhostIndices[0];
+    } else {
+      result = renderedGhostIndices[renderedGhostIndices.length - 1];
+    }
+
+    return result;
   }
 
   private purgeItems(items: WeeklySchedulerItem<any>[]) {
