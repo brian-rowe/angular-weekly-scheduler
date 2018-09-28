@@ -100,7 +100,7 @@ class MultiSliderController implements angular.IComponentController {
     this.pendingSchedule.$isActive = false;
 
     this.ngModelCtrl.$setDirty();
-    this.merge(this.pendingSchedule);
+    this.item.mergeSchedule(this.pendingSchedule);
     this.pendingSchedule = null;
   }
 
@@ -184,7 +184,7 @@ class MultiSliderController implements angular.IComponentController {
 
   private addScheduleAndMerge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
     let range = this.addSchedule(schedule);
-    this.merge(range);
+    this.item.mergeSchedule(range);
 
     return range;
   }
@@ -284,7 +284,7 @@ class MultiSliderController implements angular.IComponentController {
         } else {
           let premergeSchedule = angular.copy(range);
 
-          this.merge(range);
+          this.item.mergeSchedule(range);
 
           // If merging mutated the schedule further, then updateSchedule would have already been called
           // This is so that edits that don't trigger merges still trigger onChange,
@@ -347,10 +347,6 @@ class MultiSliderController implements angular.IComponentController {
     }
 
     return false;
-  }
-
-  public merge(schedule: WeeklySchedulerRange<any>) {
-    this.item.mergeSchedule(schedule);
   }
 
   public pixelToVal(pixel: number) {
