@@ -14,15 +14,9 @@ class LastGhostDayService {
         let above = renderedGhostIndices.every(i => i <= originIndex);
 
         // take first item for above or last item for below
-        let result;
+        let lastGhostDayIndex = above ? 0 : renderedGhostIndices.length - 1;
 
-        if (above) {
-            result = renderedGhostIndices[0];
-        } else {
-            result = renderedGhostIndices[renderedGhostIndices.length - 1];
-        }
-
-        return result;
+        return renderedGhostIndices[lastGhostDayIndex];
     }
 
     /** Get the index of the $isGhostOrigin item */
