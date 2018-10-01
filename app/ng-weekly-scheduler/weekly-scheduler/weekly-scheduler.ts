@@ -71,6 +71,10 @@ class WeeklySchedulerController implements angular.IController {
       this.$scope.$broadcast(WeeklySchedulerEvents.REMOVE_GHOST, lastGhostDay);
     });
 
+    this.$scope.$on(WeeklySchedulerEvents.CANCEL_GHOST, () => {
+      this.$scope.$broadcast(WeeklySchedulerEvents.REMOVE_ALL_GHOSTS);
+    });
+
     this.$timeout(() => {
       this.invalidMessage = this.getInvalidMessage();
     });

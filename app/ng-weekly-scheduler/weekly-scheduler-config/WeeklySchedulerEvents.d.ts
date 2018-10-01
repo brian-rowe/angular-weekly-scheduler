@@ -10,7 +10,9 @@ declare const enum WeeklySchedulerEvents {
     DRAG_ENDED = 'brWeeklyScheduler.dragEnded',
 
     GHOST_DRAG_ENDED = 'brWeeklyScheduler.ghostDragEnded',
+    CANCEL_GHOST = 'brWeeklyScheduler.cancelGhost',
     COMMIT_GHOST = 'brWeeklyScheduler.commitGhost',
+    REMOVE_ALL_GHOSTS = 'brWeeklyScheduler.removeAllGhosts',
     REMOVE_LAST_GHOST = 'brWeeklyScheduler.removeLastGhost',
     REMOVE_GHOST = 'brWeeklyScheduler.removeGhost'
 }

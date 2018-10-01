@@ -67,6 +67,10 @@ class MultiSliderController implements angular.IComponentController {
         this.item.$renderGhost = false;
       }
     });
+
+    this.$scope.$on(WeeklySchedulerEvents.REMOVE_ALL_GHOSTS, () => {
+      this.item.$renderGhost = false;
+    });
   }
 
   private onMouseEnter() {
@@ -206,6 +210,8 @@ class MultiSliderController implements angular.IComponentController {
 
     this.openEditorForAdd(ghostSchedule).then(editedGhostSchedule => {
       this.$scope.$emit(WeeklySchedulerEvents.GHOST_DRAG_ENDED, editedGhostSchedule);
+    }).catch(() => {
+      this.$scope.$emit(WeeklySchedulerEvents.CANCEL_GHOST);
     });
   }
 
