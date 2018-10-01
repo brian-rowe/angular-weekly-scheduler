@@ -42,6 +42,10 @@ declare class TouchService {
     getTouches(event: any): any;
     getPageX(event: any): number;
 }
+declare class ValueNormalizationService {
+    static $name: string;
+    normalizeValue(value: number, min: number, max: number): number;
+}
 declare namespace br.weeklyScheduler {
     const enum Days {
         Monday = 0,

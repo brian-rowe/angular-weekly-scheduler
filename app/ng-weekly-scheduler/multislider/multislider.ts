@@ -11,7 +11,8 @@ class MultiSliderController implements angular.IComponentController {
     'brWeeklySchedulerEndAdjusterService',
     'brWeeklySchedulerMouseTrackerService',
     'brWeeklySchedulerNullEndWidth',
-    'brWeeklySchedulerRangeFactory'
+    'brWeeklySchedulerRangeFactory',
+    'brWeeklySchedulerValueNormalizationService'
   ];
 
   constructor(
@@ -22,7 +23,8 @@ class MultiSliderController implements angular.IComponentController {
     private endAdjusterService: EndAdjusterService,
     private mouseTrackerService: MouseTrackerService,
     private nullEndWidth: number,
-    private rangeFactory: WeeklySchedulerRangeFactory
+    private rangeFactory: WeeklySchedulerRangeFactory,
+    private valueNormalizationService: ValueNormalizationService
   ) {
     this.element = this.$element[0];
   }
@@ -116,8 +118,8 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public addSlot(start: number, end: number): angular.IPromise<WeeklySchedulerRange<any>> {
-    start = this.normalizeValue(start, 0, end);
-    end = this.normalizeValue(end, start, this.config.maxValue);
+    start = this.valueNormalizationService.normalizeValue(start, 0, end);
+    end = this.valueNormalizationService.normalizeValue(end, start, this.config.maxValue);
 
     // Sanity check -- don't add a slot with an end before the start
     // caveat: ok to continue if nullEnds is true and end is null
@@ -326,23 +328,11 @@ class MultiSliderController implements angular.IComponentController {
     // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
     let rightmost = this.config.maxValue - this.config.interval;
 
-    return this.normalizeValue(value, 0, rightmost);
+    return this.valueNormalizationService.normalizeValue(value, 0, rightmost);
   }
 
   private normalizeGhostValue(value: number) {
-    return this.normalizeValue(value, 0, this.config.maxValue);
-  }
-
-  private normalizeValue(value: number, minValue: number, maxValue: number) {
-    if (value < minValue) {
-      return minValue;
-    }
-
-    if (value > maxValue) {
-      return maxValue;
-    }
-
-    return value;
+    return this.valueNormalizationService.normalizeValue(value, 0, this.config.maxValue);
   }
 }
 
