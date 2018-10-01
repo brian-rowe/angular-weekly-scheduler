@@ -29,6 +29,13 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         return range;
     }
 
+    public addScheduleAndMerge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+        let range = this.addSchedule(schedule);
+        this.mergeSchedule(range);
+
+        return range;
+    }
+
     public canAddSchedule() {
         if (this.config.nullEnds) {
             return this.hasNoSchedules();
