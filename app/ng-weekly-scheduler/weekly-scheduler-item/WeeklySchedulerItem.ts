@@ -37,6 +37,14 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         }
     }
 
+    /** Determine if the conditions allow for a pop-up editor */
+    public canEdit() {
+        let isEditable = this.isEditable();
+        let hasEditFunction = angular.isFunction(this.config.editSlot);
+
+        return isEditable && hasEditFunction;
+    }
+
     /**
      * Rather than having to deal with modifying mergeOverlaps to handle nullEnds calendars,
      * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
