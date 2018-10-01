@@ -38,8 +38,6 @@ class MultiSliderController implements angular.IComponentController {
 
   private ngModelCtrl: angular.INgModelController;
   
-  public $hoverElement: angular.IAugmentedJQuery;
-
   public element: Element;
   public config: IWeeklySchedulerConfig<any>;
 

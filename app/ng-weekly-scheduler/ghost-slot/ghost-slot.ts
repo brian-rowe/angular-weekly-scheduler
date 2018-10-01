@@ -13,10 +13,6 @@ class GhostSlotController implements angular.IComponentController {
     }
 
     private multiSliderCtrl: MultiSliderController;
-
-    public $postLink() {
-        this.multiSliderCtrl.$hoverElement = this.$element;
-    }
 }
 
 /** @internal */
