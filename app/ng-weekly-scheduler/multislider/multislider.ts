@@ -79,7 +79,7 @@ class MultiSliderController implements angular.IComponentController {
       this.addDragSchedule();
     }
 
-    if (this.ghostValues) {
+    if (this.ghostValues && !this.item.$renderGhost) {
       this.createGhost();
     }
   }
@@ -163,11 +163,13 @@ class MultiSliderController implements angular.IComponentController {
       updatedRightValue = mouseValue;
     }
 
+    let ghostValues = {
+      left: this.normalizeGhostValue(updatedLeftValue),
+      right: this.normalizeGhostValue(updatedRightValue)
+    };
+
     this.setGhostValues({ 
-      ghostValues: {
-        left: this.normalizeGhostValue(updatedLeftValue),
-        right: this.normalizeGhostValue(updatedRightValue)
-      }
+      ghostValues: ghostValues
     });
   }
   
