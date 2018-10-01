@@ -116,14 +116,16 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public addSlot(start: number, end: number): angular.IPromise<WeeklySchedulerRange<any>> {
+    let schedule = this.getScheduleForAdd(start, end);
+
+    return this.openEditorForAdd(schedule).then(editedSchedule => {
+      return this.item.addScheduleAndMerge(editedSchedule)
+    });
+  }
+
+  private getScheduleForAdd(start: number, end: number) {
     start = this.valueNormalizationService.normalizeValue(start, 0, end);
     end = this.valueNormalizationService.normalizeValue(end, start, this.config.maxValue);
-
-    // Sanity check -- don't add a slot with an end before the start
-    // caveat: ok to continue if nullEnds is true and end is null
-    if (end && !this.config.nullEnds && end <= start) {
-      return this.$q.when(null);
-    }
 
     if (this.config.nullEnds) {
       end = null;
@@ -136,12 +138,14 @@ class MultiSliderController implements angular.IComponentController {
       value: this.config.defaultValue
     };
 
-    if (angular.isFunction(this.config.editSlot)) {
-      return this.config.editSlot(schedule).then((editedSchedule) => {
-        return this.item.addScheduleAndMerge(editedSchedule);
-      });
+    return schedule;
+  }
+
+  private openEditorForAdd(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>): angular.IPromise<br.weeklyScheduler.IWeeklySchedulerRange<any>> {
+    if (this.item.canEdit()) {
+      return this.config.editSlot(schedule);
     } else {
-      return this.$q.when(this.item.addScheduleAndMerge(schedule));
+      return this.$q.when(schedule);
     }
   }
 
