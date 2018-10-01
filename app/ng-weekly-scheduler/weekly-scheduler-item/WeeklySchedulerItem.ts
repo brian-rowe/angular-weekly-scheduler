@@ -82,10 +82,6 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         return this.schedules.length === 0;
     }
 
-    public isEditable() {
-        return !angular.isDefined(this.editable) || this.editable;
-    }
-
     public fillEmptySlotsWithDefaultSchedules() {
         this.schedules = this.fillEmptyWithDefaultService.fill(this, this.config);
     }
@@ -212,6 +208,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     }
 
     // End overlap handlers
+
+    private isEditable() {
+        return !angular.isDefined(this.editable) || this.editable;
+    }
 
     private mergeOverlapsForSchedule(schedule: WeeklySchedulerRange<any>) {
         let schedules = this.schedules;
