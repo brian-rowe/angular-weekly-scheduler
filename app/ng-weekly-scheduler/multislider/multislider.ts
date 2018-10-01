@@ -115,14 +115,6 @@ class MultiSliderController implements angular.IComponentController {
     this.pendingSchedule = null;
   }
 
-  public addSlot(start: number, end: number): angular.IPromise<WeeklySchedulerRange<any>> {
-    let schedule = this.getScheduleForAdd(start, end);
-
-    return this.openEditorForAdd(schedule).then(editedSchedule => {
-      return this.item.addScheduleAndMerge(editedSchedule)
-    });
-  }
-
   private getScheduleForAdd(start: number, end: number) {
     start = this.valueNormalizationService.normalizeValue(start, 0, end);
     end = this.valueNormalizationService.normalizeValue(end, start, this.config.maxValue);
@@ -223,7 +215,10 @@ class MultiSliderController implements angular.IComponentController {
     this.item.$isGhostOrigin = false;
 
     if (this.item.canAddSchedule()) {
-      this.addSlot(this.ghostValues.left, this.ghostValues.right).then(() => {
+      let schedule = this.getScheduleForAdd(this.ghostValues.left, this.ghostValues.right);
+
+      this.openEditorForAdd(schedule).then(editedSchedule => {
+        this.item.addScheduleAndMerge(editedSchedule);
         this.ngModelCtrl.$setDirty();
         this.config.onChange();
         this.setGhostValues(null);
