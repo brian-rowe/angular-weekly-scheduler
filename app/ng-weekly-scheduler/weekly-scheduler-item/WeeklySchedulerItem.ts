@@ -14,7 +14,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         private fillEmptyWithDefaultService: FillEmptyWithDefaultService,
         private overlapService: OverlapService,
         private purgeDefaultService: PurgeDefaultService,
-        rangeFactory: WeeklySchedulerRangeFactory
+        private rangeFactory: WeeklySchedulerRangeFactory
     ) {
         this.day = item.day;
         this.editable = item.editable;
@@ -22,8 +22,11 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         this.schedules = item.schedules.map(schedule => rangeFactory.createRange(config, schedule));
     }
 
-    public addSchedule(schedule: WeeklySchedulerRange<T>) {
-        this.schedules.push(schedule);
+    public addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+        const range = this.rangeFactory.createRange(this.config, schedule);
+        this.schedules.push(range);
+
+        return range;
     }
 
     public canAddSchedule() {

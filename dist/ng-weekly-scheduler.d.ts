@@ -12,6 +12,10 @@ declare namespace br.weeklyScheduler {
         initialData: TCustom[];
     }
 }
+declare const enum DragMode {
+    MOVE = 0,
+    COPY = 1,
+}
 declare namespace br.weeklyScheduler {
     interface InvalidMessages {
         fullCalendarFillEmptyWithDefault: string;
