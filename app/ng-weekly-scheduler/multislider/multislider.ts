@@ -56,9 +56,9 @@ class MultiSliderController implements angular.IComponentController {
        this.onMouseUp();
     });
 
-    this.$scope.$on(WeeklySchedulerEvents.COMMIT_GHOST, () => {
+    this.$scope.$on(WeeklySchedulerEvents.COMMIT_GHOST, (event: angular.IAngularEvent, ghostSchedule: WeeklySchedulerRange<any>) => {
       if (this.item.$renderGhost) {
-        this.commitGhost();
+        this.commitGhost(ghostSchedule);
       }
     });
 
@@ -202,7 +202,11 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseUp() {
-    this.$scope.$emit(WeeklySchedulerEvents.GHOST_DRAG_ENDED);
+    let ghostSchedule = this.getScheduleForAdd(this.ghostValues.left, this.ghostValues.right);
+
+    this.openEditorForAdd(ghostSchedule).then(editedGhostSchedule => {
+      this.$scope.$emit(WeeklySchedulerEvents.GHOST_DRAG_ENDED, editedGhostSchedule);
+    });
   }
 
   private createGhost() {
@@ -210,19 +214,15 @@ class MultiSliderController implements angular.IComponentController {
     this.positionGhost();
   }
 
-  private commitGhost() {
+  private commitGhost(ghostSchedule: WeeklySchedulerRange<any>) {
     this.item.$renderGhost = false;
     this.item.$isGhostOrigin = false;
 
     if (this.item.canAddSchedule()) {
-      let schedule = this.getScheduleForAdd(this.ghostValues.left, this.ghostValues.right);
-
-      this.openEditorForAdd(schedule).then(editedSchedule => {
-        this.item.addScheduleAndMerge(editedSchedule);
-        this.ngModelCtrl.$setDirty();
-        this.config.onChange();
-        this.setGhostValues(null);
-      });
+      this.item.addScheduleAndMerge(ghostSchedule);
+      this.ngModelCtrl.$setDirty();
+      this.config.onChange();
+      this.setGhostValues(null);
     }
   }
 

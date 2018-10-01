@@ -53,7 +53,7 @@ class WeeklySchedulerController implements angular.IController {
   }
 
   $postLink() {
-    this.$scope.$on(WeeklySchedulerEvents.SLOT_DRAGGED, (event, schedule: WeeklySchedulerRange<any>) => {
+    this.$scope.$on(WeeklySchedulerEvents.SLOT_DRAGGED, (event: angular.IAngularEvent, schedule: WeeklySchedulerRange<any>) => {
       this.dragSchedule = schedule;
     });
 
@@ -61,8 +61,8 @@ class WeeklySchedulerController implements angular.IController {
       this.dragSchedule = null;
     });
 
-    this.$scope.$on(WeeklySchedulerEvents.GHOST_DRAG_ENDED, () => {
-      this.$scope.$broadcast(WeeklySchedulerEvents.COMMIT_GHOST);
+    this.$scope.$on(WeeklySchedulerEvents.GHOST_DRAG_ENDED, (event: angular.IAngularEvent, ghostSchedule: WeeklySchedulerRange<any>) => {
+      this.$scope.$broadcast(WeeklySchedulerEvents.COMMIT_GHOST, ghostSchedule);
     });
 
     this.$scope.$on(WeeklySchedulerEvents.REMOVE_LAST_GHOST, () => {
