@@ -300,7 +300,6 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private getUnderlyingInterval(val: number): HTMLElement {
-    // Slightly hacky but does the job. TODO ?
     val = this.normalizeIntervalValue(val);
 
     return this.element.parentElement.querySelector(`[rel='${val}']`);
