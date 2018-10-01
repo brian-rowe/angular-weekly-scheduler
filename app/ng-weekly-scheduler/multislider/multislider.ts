@@ -219,7 +219,7 @@ class MultiSliderController implements angular.IComponentController {
   /**
    * Determine if the schedule is able to be edited
    */
-  private canEdit(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  private canEdit() {
     let isEditable = this.item.isEditable();
     let hasEditFunction = angular.isFunction(this.config.editSlot);
 
@@ -259,7 +259,7 @@ class MultiSliderController implements angular.IComponentController {
    * Perform an external action to bring up an editor for a schedule
    */
   private editSchedule(schedule: WeeklySchedulerRange<any>) {
-    if (this.canEdit(schedule)) {
+    if (this.canEdit()) {
       schedule.$isEditing = true;
 
       this.config.editSlot(schedule).then((newSchedule) => {
