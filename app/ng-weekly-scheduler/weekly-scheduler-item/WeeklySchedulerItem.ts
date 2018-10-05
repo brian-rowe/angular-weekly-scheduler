@@ -62,15 +62,6 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
             return this.$renderGhost && this.hasNoSchedules();
         }
 
-        // If you're already dragging the ghost it should never disappear
-        if (this.$renderGhost) {
-            return true;
-        }
-
-        if (!this.isEditable()) {
-            return false;
-        }
-
         return this.$renderGhost;
     }
 
