@@ -6,10 +6,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         options: {
           buttonClasses: ['wow!'],
           createItem: (day, schedules) => {
-            return {
-              day: day,
-              schedules: schedules,
-            }
+            return new DemoItem(day, schedules);
           },
           defaultValue: false,
           editSlot: function (schedule) {
@@ -136,10 +133,22 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       }
     }]);
 
+class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
+  constructor(
+    public day: br.weeklyScheduler.Days,
+    public schedules: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[]
+  ) {
+  }
+
+  get editable() {
+    return false;
+  }
+}
+
 /** The data is already in an acceptable format for the demo so just pass it through */
 /** @internal */
 class DemoAdapter implements br.weeklyScheduler.IWeeklySchedulerAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
-  public items: br.weeklyScheduler.IWeeklySchedulerItem<boolean>[] = [];
+  public items: DemoItem[] = [];
 
   constructor(
     public initialData: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[],

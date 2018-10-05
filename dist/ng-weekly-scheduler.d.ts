@@ -1,4 +1,10 @@
 /// <reference types="angular" />
+declare class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
+    day: br.weeklyScheduler.Days;
+    schedules: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[];
+    constructor(day: br.weeklyScheduler.Days, schedules: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[]);
+    readonly editable: boolean;
+}
 declare namespace br.weeklyScheduler {
     /**
      * Implement this on a client and then pass it in to the component.
