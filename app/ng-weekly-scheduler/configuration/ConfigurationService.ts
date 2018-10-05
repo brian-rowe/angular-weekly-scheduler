@@ -33,6 +33,10 @@ class ConfigurationService {
                 fullCalendar: 'For this calendar, every day must be completely full of schedules.',
                 monoSchedule: 'This calendar may only have one time slot per day',
                 nullEnds: 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.'
+            },
+            scheduleCountOptions: {
+                count: null,
+                exact: false
             }
         };
     }

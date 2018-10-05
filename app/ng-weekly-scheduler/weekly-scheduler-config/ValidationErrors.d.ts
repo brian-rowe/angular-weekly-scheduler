@@ -3,5 +3,6 @@ declare const enum ValidationError {
     MonoSchedule = 'monoSchedule',
     NullEnd = 'nullEnd',
     FullCalendar = 'fullCalendar',
-    Overlap = 'overlap'
+    Overlap = 'overlap',
+    ScheduleCount = 'scheduleCount'
 }

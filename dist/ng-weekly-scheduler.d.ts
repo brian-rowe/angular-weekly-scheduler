@@ -37,6 +37,15 @@ declare namespace br.weeklyScheduler {
         nullEnds: string;
     }
 }
+declare namespace br.weeklyScheduler {
+    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
+    interface ScheduleCountOptions {
+        /** The number of schedules allowed on each item. Null for no max */
+        count: number;
+        /** Whether you must have exactly that many schedules, or if "up to" is allowed */
+        exact: boolean;
+    }
+}
 declare class TouchService {
     static $name: string;
     getTouches(event: any): any;
@@ -89,6 +98,8 @@ declare namespace br.weeklyScheduler {
         restrictionExplanations?: RestrictionExplanations;
         /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
         saveScheduler?: () => angular.IPromise<any>;
+        /** Overrides for schedule count options, if necessary */
+        scheduleCountOptions: ScheduleCountOptions;
     }
 }
 declare namespace br.weeklyScheduler {
