@@ -45,6 +45,6 @@ namespace br.weeklyScheduler {
         saveScheduler?: () => angular.IPromise<any>;
 
         /** Overrides for schedule count options, if necessary */
-        scheduleCountOptions: ScheduleCountOptions;
+        scheduleCountOptions?: ScheduleCountOptions;
     }
 }

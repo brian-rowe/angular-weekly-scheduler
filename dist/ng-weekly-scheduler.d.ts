@@ -100,7 +100,7 @@ declare namespace br.weeklyScheduler {
         /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
         saveScheduler?: () => angular.IPromise<any>;
         /** Overrides for schedule count options, if necessary */
-        scheduleCountOptions: ScheduleCountOptions;
+        scheduleCountOptions?: ScheduleCountOptions;
     }
 }
 declare namespace br.weeklyScheduler {
