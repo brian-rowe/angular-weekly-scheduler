@@ -35,6 +35,7 @@ declare namespace br.weeklyScheduler {
         maxTimeSlot: (value: string) => string;
         monoSchedule: string;
         nullEnds: string;
+        scheduleCount: (options: ScheduleCountOptions) => string;
     }
 }
 declare namespace br.weeklyScheduler {

@@ -33,6 +33,10 @@ class RestrictionExplanationsController implements angular.IComponentController 
         if (config.nullEnds) {
             this.explanations[ValidationError.NullEnd] = config.restrictionExplanations.nullEnds;
         }
+
+        if (config.scheduleCountOptions && config.scheduleCountOptions.count) {
+            this.explanations[ValidationError.ScheduleCount] = config.restrictionExplanations.scheduleCount(config.scheduleCountOptions);
+        }
     }
 }
 

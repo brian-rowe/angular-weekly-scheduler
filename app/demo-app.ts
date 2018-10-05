@@ -23,8 +23,8 @@ angular.module('demoApp', ['br.weeklyScheduler'])
             maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
           },
           scheduleCountOptions: {
-            count: 1,
-            exact: true
+            count: 2,
+            exact: false
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }

@@ -10,7 +10,7 @@ class ConfigurationService {
 
         const defaultOptions = this.getDefaultOptions();
 
-        var userOptions = angular.extend(defaultOptions, options);
+        var userOptions = angular.merge(defaultOptions, options);
 
         var result = angular.extend(userOptions, {
             interval: interval,
@@ -32,7 +32,14 @@ class ConfigurationService {
                 maxTimeSlot: (value) => `Max time slot length: ${value}`,
                 fullCalendar: 'For this calendar, every day must be completely full of schedules.',
                 monoSchedule: 'This calendar may only have one time slot per day',
-                nullEnds: 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.'
+                nullEnds: 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.',
+                scheduleCount: (options) => {
+                    if (options.exact) {
+                        return `This calendar must have exactly ${options.count} slots per day`;
+                    } else {
+                        return `This calendar may only have a maximum of ${options.count} slots per day`;
+                    }
+                }
             },
             scheduleCountOptions: {
                 count: null,
