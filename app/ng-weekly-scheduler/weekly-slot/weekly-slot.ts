@@ -112,12 +112,20 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
+    if (!this.item.editable) {
+      return;
+    }
+
     this.$scope.$emit(WeeklySchedulerEvents.SLOT_DRAGGED, this.schedule);
     this.schedule.$isActive = true;
     this.valuesOnDragStart = this.getDragStartValues();
   }
 
   public startResize() {
+    if (!this.item.editable) {
+      return;
+    }
+
     this.schedule.$isActive = true;
     this.valuesOnDragStart = this.getDragStartValues();
   }
