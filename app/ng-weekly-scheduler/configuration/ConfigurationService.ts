@@ -34,10 +34,12 @@ class ConfigurationService {
                 monoSchedule: 'This calendar may only have one time slot per day',
                 nullEnds: 'Items in this calendar do not have end times. Scheduled events begin at the start time and end when they are finished.',
                 scheduleCount: (options) => {
+                    let pluralizedSlot = 'slot' + (options.count === 1 ? '' : 's');
+
                     if (options.exact) {
-                        return `This calendar must have exactly ${options.count} slots per day`;
+                        return `This calendar must have exactly ${options.count} ${pluralizedSlot} per day`;
                     } else {
-                        return `This calendar may only have a maximum of ${options.count} slots per day`;
+                        return `This calendar may only have a maximum of ${options.count} ${pluralizedSlot} per day`;
                     }
                 }
             },
