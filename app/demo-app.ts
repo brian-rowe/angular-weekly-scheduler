@@ -14,6 +14,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
             return $q.when(schedule);
           },
           interval: 1,
+          minimumSeparation: 5,
           onChange: (isValid) => {
           },
           restrictionExplanations: {

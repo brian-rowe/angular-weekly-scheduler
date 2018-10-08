@@ -37,6 +37,11 @@ class RestrictionExplanationsController implements angular.IComponentController 
         if (config.scheduleCountOptions && config.scheduleCountOptions.count) {
             this.explanations[ValidationError.ScheduleCount] = config.restrictionExplanations.scheduleCount(config.scheduleCountOptions);
         }
+
+        if (config.minimumSeparation) {
+            let minimumSeparation = this.$filter('brWeeklySchedulerMinutesAsText')(config.minimumSeparation);
+            this.explanations[ValidationError.MinimumSeparation] = config.restrictionExplanations.minimumSeparation(minimumSeparation);
+        }
     }
 }
 
