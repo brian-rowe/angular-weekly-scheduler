@@ -4,7 +4,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     $isGhostOrigin: boolean;
     $renderGhost: boolean;
     day: br.weeklyScheduler.Days;
-    private editable: boolean;
+    editable: boolean;
     label: string;
     schedules: WeeklySchedulerRange<T>[];
 
