@@ -18,6 +18,8 @@ class MinimumSeparationValidatorService implements ValidatorService {
 
         const loopLen = len - 1;
 
+        schedules.sort((a, b) => a.start - b.start);
+
         for (let i = 0; i < loopLen; i++) {
             let currentSchedule = schedules[i];
             let nextSchedule = schedules[i + 1];

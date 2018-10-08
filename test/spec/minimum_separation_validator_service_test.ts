@@ -88,6 +88,32 @@ describe('minimum separation validator service', function () {
                 { day: 0, start: 300, end: 600, value: true },
                 { day: 0, start: 630, end: 900, value: false }
             ];
+
+            it('as valid when minimum separation is not defined', () => {
+                expect($service.validate(item, normalConfig)).toBeTruthy();
+                expect($service.validate(item2, normalConfig)).toBeTruthy();
+            });
+
+            it('as invalid when minimum separation is defined and they are not sufficiently far apart', () => {
+                expect($service.validate(item, minimumSeparationConfig)).toBeFalsy();
+            });
+
+            it('as valid when minimum separation is defined and they are sufficiently far apart', () => {
+                expect($service.validate(item2, minimumSeparationConfig)).toBeTruthy();
+            });
+        });
+
+        describe('unsorted schedules', () => {
+            let item = [
+                { day: 0, start: 603, end: 900, value: false },
+                { day: 0, start: 300, end: 600, value: true }
+            ];
+
+            let item2 = [
+                { day: 0, start: 630, end: 900, value: false },
+                { day: 0, start: 300, end: 600, value: true }
+            ];
+
             it('as valid when minimum separation is not defined', () => {
                 expect($service.validate(item, normalConfig)).toBeTruthy();
                 expect($service.validate(item2, normalConfig)).toBeTruthy();
