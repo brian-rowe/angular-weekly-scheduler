@@ -82,7 +82,8 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           day: br.weeklyScheduler.Days.Sunday,
           start: 0,
           end: 720,
-          value: true
+          value: true,
+          editable: false
         },
         {
           day: br.weeklyScheduler.Days.Sunday,
@@ -177,7 +178,7 @@ class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
   }
 
   get editable() {
-    return false;
+    return true;
   }
 }
 

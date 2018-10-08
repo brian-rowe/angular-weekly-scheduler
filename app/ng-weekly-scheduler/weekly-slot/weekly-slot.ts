@@ -112,7 +112,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    if (!this.item.editable) {
+    if (!this.item.editable || !this.schedule.editable) {
       return;
     }
 
@@ -122,7 +122,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startResize() {
-    if (!this.item.editable) {
+    if (!this.item.editable || !this.schedule.editable) {
       return;
     }
 

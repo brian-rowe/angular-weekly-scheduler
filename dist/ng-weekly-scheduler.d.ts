@@ -131,5 +131,6 @@ declare namespace br.weeklyScheduler {
         start: number;
         end: number;
         value: T;
+        editable?: boolean;
     }
 }

@@ -11,6 +11,8 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
     end: number;
     value: T;
 
+    editable: boolean;
+
     constructor(
         private config: IWeeklySchedulerConfig<T>,
         schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>,
@@ -20,6 +22,7 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         this.start = schedule.start;
         this.end = schedule.end;
         this.value = schedule.value;
+        this.editable = angular.isDefined(schedule.editable) ? schedule.editable : true;
     }
 
     get duration() {
