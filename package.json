@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "François Maturel <francoismaturel@dijit.fr> (http://dijit.fr), Brian Rowe <browe404@gmail.com>",
   "dependencies": {
-    "angular": "~1.6.9"
+    "angular": "^1.7.5"
   },
   "devDependencies": {
     "@types/angular": "^1.6.43",
