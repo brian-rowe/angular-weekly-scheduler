@@ -4,7 +4,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     $isGhostOrigin: boolean;
     $renderGhost: boolean;
     day: br.weeklyScheduler.Days;
-    editable: boolean;
+    private editable: boolean;
     label: string;
     schedules: WeeklySchedulerRange<T>[];
 
@@ -208,7 +208,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
 
     // End overlap handlers
 
-    private isEditable() {
+    public isEditable() {
         return !angular.isDefined(this.editable) || this.editable;
     }
 

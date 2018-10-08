@@ -189,7 +189,7 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseDown() {
-    if (!this.item.editable) {
+    if (!this.item.isEditable()) {
       return;
     }
 
