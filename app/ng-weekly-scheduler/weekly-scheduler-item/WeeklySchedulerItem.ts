@@ -211,10 +211,14 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
 
         schedules.forEach(el => {
             if (!el.equals(schedule)) {
-                let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
-                let overlapHandler = this.getOverlapHandler(overlapState);
+                let schedulesBothEditable = el.editable && schedule.editable;
 
-                overlapHandler(schedule, el);
+                if (schedulesBothEditable) {
+                    let overlapState = this.overlapService.getOverlapState(this.config, schedule, el);
+                    let overlapHandler = this.getOverlapHandler(overlapState);
+
+                    overlapHandler(schedule, el);
+                }
             }
         });
     }
