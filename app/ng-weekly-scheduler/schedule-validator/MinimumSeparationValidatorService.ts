@@ -1,3 +1,4 @@
+/** @internal */
 class MinimumSeparationValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMinimumSeparationValidatorService';
 

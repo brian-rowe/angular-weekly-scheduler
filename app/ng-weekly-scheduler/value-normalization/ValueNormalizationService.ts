@@ -1,3 +1,4 @@
+/** @internal */
 class ValueNormalizationService {
     static $name = 'brWeeklySchedulerValueNormalizationService';
 

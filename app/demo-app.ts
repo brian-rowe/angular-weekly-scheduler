@@ -171,6 +171,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
       }
     }]);
 
+/** @internal */
 class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
   constructor(
     public day: br.weeklyScheduler.Days,

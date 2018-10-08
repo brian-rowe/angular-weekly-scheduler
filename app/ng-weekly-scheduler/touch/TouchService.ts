@@ -1,3 +1,4 @@
+/** @internal */
 class TouchService {
     static $name = 'brWeeklySchedulerTouchService';
 

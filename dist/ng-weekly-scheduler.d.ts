@@ -1,10 +1,4 @@
 /// <reference types="angular" />
-declare class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
-    day: br.weeklyScheduler.Days;
-    schedules: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[];
-    constructor(day: br.weeklyScheduler.Days, schedules: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[]);
-    readonly editable: boolean;
-}
 declare namespace br.weeklyScheduler {
     /**
      * Implement this on a client and then pass it in to the component.
@@ -17,10 +11,6 @@ declare namespace br.weeklyScheduler {
         items: IWeeklySchedulerItem<TValue>[];
         initialData: TCustom[];
     }
-}
-declare const enum DragMode {
-    MOVE = 0,
-    COPY = 1,
 }
 declare namespace br.weeklyScheduler {
     interface InvalidMessages {
@@ -53,20 +43,6 @@ declare namespace br.weeklyScheduler {
         /** Whether you must have exactly that many schedules, or if "up to" is allowed */
         exact: boolean;
     }
-}
-declare class MinimumSeparationValidatorService implements ValidatorService {
-    static $name: string;
-    readonly error: ValidationError;
-    validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean;
-}
-declare class TouchService {
-    static $name: string;
-    getTouches(event: any): any;
-    getPageX(event: any): number;
-}
-declare class ValueNormalizationService {
-    static $name: string;
-    normalizeValue(value: number, min: number, max: number): number;
 }
 declare namespace br.weeklyScheduler {
     const enum Days {
