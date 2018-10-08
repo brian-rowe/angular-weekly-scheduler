@@ -3,6 +3,7 @@ namespace br.weeklyScheduler {
     export interface RestrictionExplanations {
         fullCalendar: string;
         maxTimeSlot: (value: string) => string;
+        minimumSeparation: (value: string) => string;
         monoSchedule: string;
         nullEnds: string;
         scheduleCount: (options: ScheduleCountOptions) => string;

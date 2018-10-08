@@ -39,6 +39,7 @@ declare namespace br.weeklyScheduler {
     interface RestrictionExplanations {
         fullCalendar: string;
         maxTimeSlot: (value: string) => string;
+        minimumSeparation: (value: string) => string;
         monoSchedule: string;
         nullEnds: string;
         scheduleCount: (options: ScheduleCountOptions) => string;
@@ -52,6 +53,11 @@ declare namespace br.weeklyScheduler {
         /** Whether you must have exactly that many schedules, or if "up to" is allowed */
         exact: boolean;
     }
+}
+declare class MinimumSeparationValidatorService implements ValidatorService {
+    static $name: string;
+    readonly error: ValidationError;
+    validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean;
 }
 declare class TouchService {
     static $name: string;
@@ -91,6 +97,8 @@ declare namespace br.weeklyScheduler {
         fullCalendar?: boolean;
         /** If this is defined, a time slot will not be able to be more than this many minutes long */
         maxTimeSlot?: number;
+        /** If this is defined, slots must be at least this many minutes apart */
+        minimumSeparation?: number;
         /** If this is true, the calendar will enforce that only one schedule per item is allowed */
         monoSchedule?: boolean;
         /** This function allows access back to the client scope when the scheduler changes. */
@@ -131,5 +139,6 @@ declare namespace br.weeklyScheduler {
         start: number;
         end: number;
         value: T;
+        editable?: boolean;
     }
 }

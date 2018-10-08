@@ -24,6 +24,9 @@ namespace br.weeklyScheduler {
         /** If this is defined, a time slot will not be able to be more than this many minutes long */
         maxTimeSlot?: number;
 
+        /** If this is defined, slots must be at least this many minutes apart */
+        minimumSeparation?: number;
+
         /** If this is true, the calendar will enforce that only one schedule per item is allowed */
         monoSchedule?: boolean;
         

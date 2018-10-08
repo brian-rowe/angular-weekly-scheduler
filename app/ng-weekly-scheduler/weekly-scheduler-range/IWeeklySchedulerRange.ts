@@ -19,5 +19,7 @@ namespace br.weeklyScheduler {
         end: number;
 
         value: T;
+
+        editable?: boolean;
     }
 }
