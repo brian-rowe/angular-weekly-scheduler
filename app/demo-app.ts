@@ -20,7 +20,7 @@ angular.module('demoApp', ['br.weeklyScheduler'])
             maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
           },
           scheduleCountOptions: {
-            count: 1,
+            count: 2,
             exact: true
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
@@ -86,14 +86,20 @@ angular.module('demoApp', ['br.weeklyScheduler'])
         },
         {
           day: br.weeklyScheduler.Days.Sunday,
-          start: 720,
-          end: 1440,
-          value: false
+          start: 900,
+          end: 1200,
+          value: true
         },
         {
           day: br.weeklyScheduler.Days.Monday,
           start: 0,
           end: 720,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Monday,
+          start: 900,
+          end: 1200,
           value: true
         },
         {
@@ -103,9 +109,21 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           value: true
         },
         {
+          day: br.weeklyScheduler.Days.Tuesday,
+          start: 900,
+          end: 1200,
+          value: true
+        },
+        {
           day: br.weeklyScheduler.Days.Wednesday,
           start: 0,
           end: 720,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Wednesday,
+          start: 900,
+          end: 1200,
           value: true
         },
         {
@@ -115,15 +133,33 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           value: true
         },
         {
+          day: br.weeklyScheduler.Days.Thursday,
+          start: 900,
+          end: 1200,
+          value: true
+        },
+        {
           day: br.weeklyScheduler.Days.Friday,
           start: 0,
           end: 720,
           value: true
         },
         {
+          day: br.weeklyScheduler.Days.Friday,
+          start: 900,
+          end: 1200,
+          value: true
+        },
+        {
           day: br.weeklyScheduler.Days.Saturday,
           start: 0,
           end: 720,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Saturday,
+          start: 900,
+          end: 1200,
           value: true
         }
       ]);
