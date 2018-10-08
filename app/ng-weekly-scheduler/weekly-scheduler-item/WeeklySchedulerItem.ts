@@ -231,6 +231,12 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
             let current = this.schedules[i];
             let next = this.schedules[i + 1];
 
+            let schedulesBothEditable = current.editable && next.editable;
+
+            if (!schedulesBothEditable) {
+                return false;
+            }
+
             if (current.hasSameValueAs(next)) {
                 let overlapState = this.overlapService.getOverlapState(this.config, current, next);
 
