@@ -24,7 +24,7 @@
                 item="multiSliderCtrl.item"
                 ng-class="{
                     active: schedule.$isActive,
-                    disable: multiSliderCtrl.item.editable === false || schedule.editable === false,
+                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),
                     nullEnd: schedule.end === null,
                     pending: schedule.$isEditing
                 }"

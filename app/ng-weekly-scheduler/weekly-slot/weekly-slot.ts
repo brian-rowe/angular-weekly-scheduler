@@ -112,7 +112,7 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startDrag() {
-    if (!this.item.editable || !this.schedule.editable) {
+    if (!this.item.canEditSchedule(this.schedule)){
       return;
     }
 
@@ -122,10 +122,10 @@ class WeeklySlotController implements angular.IComponentController {
   }
 
   public startResize() {
-    if (!this.item.editable || !this.schedule.editable) {
+    if (!this.item.canEditSchedule(this.schedule)) {
       return;
     }
-
+    
     this.schedule.$isActive = true;
     this.valuesOnDragStart = this.getDragStartValues();
   }

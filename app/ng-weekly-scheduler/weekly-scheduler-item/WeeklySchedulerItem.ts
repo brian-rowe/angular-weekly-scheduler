@@ -52,6 +52,14 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         return isEditable && hasEditFunction;
     }
 
+    /** Determine if a schedule is able to be modified */
+    public canEditSchedule(schedule: WeeklySchedulerRange<T>) {
+        let itemIsEditable = this.isEditable();
+        let scheduleIsEditable = schedule.editable;
+
+        return itemIsEditable && scheduleIsEditable;
+    }
+
     /**
      * Rather than having to deal with modifying mergeOverlaps to handle nullEnds calendars,
      * just prevent the user from creating additional slots in nullEnds calendars unless there are no slots there already.
