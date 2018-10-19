@@ -11,7 +11,10 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           defaultValue: false,
           editSlot: function (schedule) {
             return $mdDialog.show({
-              scope: $scope,
+              controller: ($scope, $mdDialog) => {
+                $scope.cancelDialog = () => $mdDialog.cancel();
+                $scope.closeDialog = () => $mdDialog.hide();
+              },
               template: `
                 <md-dialog>
                   <md-dialog-content>
@@ -46,9 +49,6 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
-
-      $scope.cancelDialog = () => $mdDialog.cancel();
-      $scope.closeDialog = () => $mdDialog.hide();
 
       $scope.model2 = angular.copy($scope.model);
       $scope.model2.options.fillEmptyWithDefault = true;

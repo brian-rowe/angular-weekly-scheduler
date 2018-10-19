@@ -135,6 +135,7 @@ gulp.task('start', function () {
 
 gulp.task('copyTestCSS', function () {
     return gulp.src([
+        "node_modules/angular-material/angular-material.css",
         "dist/ng-weekly-scheduler.css"
     ])
         .pipe(concat('testStyles.css'))
