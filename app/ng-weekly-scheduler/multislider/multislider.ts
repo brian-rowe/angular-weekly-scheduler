@@ -64,12 +64,12 @@ class MultiSliderController implements angular.IComponentController {
 
     this.$scope.$on(WeeklySchedulerEvents.REMOVE_GHOST, (event: angular.IAngularEvent, day: number) => {
       if (!this.item.$isGhostOrigin && this.item.day === day) {
-        this.item.$renderGhost = false;
+        this.removeGhost();
       }
     });
 
     this.$scope.$on(WeeklySchedulerEvents.REMOVE_ALL_GHOSTS, () => {
-      this.item.$renderGhost = false;
+      this.removeGhost();
     });
   }
 
@@ -226,15 +226,13 @@ class MultiSliderController implements angular.IComponentController {
   }
 
   private commitGhost(ghostSchedule: WeeklySchedulerRange<any>) {
-    this.item.$renderGhost = false;
-    this.item.$isGhostOrigin = false;
-
     if (this.item.canAddSchedule()) {
       this.item.addScheduleAndMerge(ghostSchedule);
       this.ngModelCtrl.$setDirty();
       this.config.onChange();
-      this.setGhostValues(null);
     }
+
+    this.removeGhost();
   }
 
   private getMousePosition(pageX: number) {
@@ -341,6 +339,12 @@ class MultiSliderController implements angular.IComponentController {
 
   private normalizeGhostValue(value: number) {
     return this.valueNormalizationService.normalizeValue(value, 0, this.config.maxValue);
+  }
+
+  private removeGhost() {
+    this.item.$isGhostOrigin = false;
+    this.item.$renderGhost = false;
+    this.setGhostValues(null);
   }
 }
 
