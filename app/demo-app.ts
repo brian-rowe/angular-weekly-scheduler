@@ -1,6 +1,6 @@
-angular.module('demoApp', ['br.weeklyScheduler'])
-  .controller('DemoController', ['$q', '$scope', '$timeout', '$log',
-    function ($q: angular.IQService, $scope, $timeout, $log) {
+angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
+  .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
+    function ($q: angular.IQService, $scope, $timeout, $log, $mdDialog) {
 
       $scope.model = {
         options: {
@@ -10,8 +10,14 @@ angular.module('demoApp', ['br.weeklyScheduler'])
           },
           defaultValue: false,
           editSlot: function (schedule) {
-            schedule.value = true;
-            return $q.when(schedule);
+            return $mdDialog.show({
+              template: `
+                <md-dialog>Hi</md-dialog>
+              `
+            }).then(() => {
+              schedule.value = true;
+              return schedule;
+            });
           },
           interval: 1,
           minimumSeparation: 5,

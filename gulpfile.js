@@ -150,9 +150,11 @@ gulp.task('copyTestJS', function () {
 gulp.task('copyTestFiles', ['copyTestCSS', 'copyTestJS'], function () {
     let vendorJavascript = gulp.src([
         'angular/angular.js',
+        'angular-aria/angular-aria.js',
         'angular-mocks/angular-mocks.js',
         'angular-animate/angular-animate.js',
         'angular-dynamic-locale/dist/tmhDynamicLocale.js',
+        'angular-material/angular-material.js',
         'moment/moment.js',
         'moment-duration-format/lib/moment-duration-format.js'
     ],
