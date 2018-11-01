@@ -23,6 +23,7 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     }
 
     public addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+        schedule.day = this.day;
         const range = this.rangeFactory.createRange(this.config, schedule);
         this.schedules.push(range);
 
