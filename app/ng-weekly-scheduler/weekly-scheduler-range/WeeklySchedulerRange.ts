@@ -77,6 +77,6 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         let newStartBeforeOrAtExistingEnd = updatedStart <= this.endAdjusterService.adjustEndForView(this.config, this.end) - 1;
         let newStartAfterOrAtMin = updatedStart >= 0;
 
-        return changed && newStartBeforeOrAtExistingEnd && newStartAfterOrAtMin;
+        return changed && (this.config.nullEnds || newStartBeforeOrAtExistingEnd) && newStartAfterOrAtMin;
     }
 }

@@ -10,31 +10,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           },
           defaultValue: false,
           editSlot: function (schedule) {
-            return $mdDialog.show({
-              controller: ($scope, $mdDialog) => {
-                $scope.cancelDialog = () => $mdDialog.cancel();
-                $scope.closeDialog = () => $mdDialog.hide();
-              },
-              template: `
-                <md-dialog>
-                  <md-dialog-content>
-                    Hi
-                  </md-dialog-content>
-                  <md-dialog-actions>
-                    <md-button ng-click="cancelDialog()">
-                      Go Away
-                    </md-button>
-
-                    <md-button ng-click="closeDialog()">
-                      Hello
-                    </md-button>
-                  </md-dialog-actions>
-                </md-dialog>
-              `
-            }).then(() => {
-              schedule.value = true;
-              return schedule;
-            });
+            return $q.when(schedule);
           },
           interval: 1,
           minimumSeparation: 5,
@@ -44,8 +20,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
             maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
           },
           scheduleCountOptions: {
-            count: 2,
-            exact: true
+            count: 2
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
