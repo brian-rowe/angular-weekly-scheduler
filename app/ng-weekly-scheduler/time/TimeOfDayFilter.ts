@@ -3,10 +3,16 @@ class TimeOfDayFilter {
     static $name = 'brWeeklySchedulerTimeOfDay';
 
     public static Factory() {
-        return function(minutes: number): string {
-            let hours = Math.floor(minutes / 60);
-            let remainingMinutes = (minutes - (hours * 60)).toString();
+        return function(seconds: number): string {
+            let hours = Math.floor(seconds / 3600);
             let meridiem = hours > 11 && hours < 24 ? 'P' : 'A';
+
+            seconds -= hours * 3600;
+
+            let minutes = Math.floor(seconds / 60);
+            seconds -= minutes * 60;
+
+            let remainingMinutes = minutes.toString()
 
             if (remainingMinutes.length == 1) {
                 remainingMinutes = '0' + remainingMinutes;

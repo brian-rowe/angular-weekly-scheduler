@@ -20,13 +20,13 @@ describe('time of day filter', function() {
 
     describe('should display times correctly', function() {
         var testCases = [
-            [0, '12:00A'],
-            [1, '12:01A'],
-            [375, '6:15A'],
-            [720, '12:00P'],
-            [900, '3:00P'],
-            [1439, '11:59P'],
-            [1440, '12:00A']
+            [0 * 60, '12:00A'],
+            [1 * 60, '12:01A'],
+            [375 * 60, '6:15A'],
+            [720 * 60, '12:00P'],
+            [900 * 60, '3:00P'],
+            [1439 * 60, '11:59P'],
+            [1440 * 60, '12:00A']
         ];
 
         testCases.forEach(function(testCase) {

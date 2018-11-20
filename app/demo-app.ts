@@ -27,7 +27,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 
       $scope.model2 = angular.copy($scope.model);
       $scope.model2.options.fillEmptyWithDefault = true;
-      $scope.model2.options.interval = 15 * 60;
+      $scope.model2.options.interval = 1 * 60;
       $scope.model2.options.maxTimeSlot = 900 * 60;
 
       $scope.model2.options.saveScheduler = () => {
