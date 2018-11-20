@@ -20,7 +20,11 @@ class TimeOfDayFilter {
 
             let displayHours = hours % 12 || 12;
 
-            return `${displayHours}:${remainingMinutes}${meridiem}`;
+            if (!seconds) {
+                return `${displayHours}:${remainingMinutes}${meridiem}`;
+            } else {
+                return `${displayHours}:${remainingMinutes}:${seconds}${meridiem}`;
+            }
         }
     }
 }
