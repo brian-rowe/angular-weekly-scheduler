@@ -18,7 +18,7 @@ class RestrictionExplanationsController implements angular.IComponentController 
         let config = this.schedulerCtrl.config;
 
         if (config.maxTimeSlot) {
-            let maxTimeSlot = this.$filter('brWeeklySchedulerMinutesAsText')(config.maxTimeSlot);
+            let maxTimeSlot = this.$filter('brWeeklySchedulerSecondsAsText')(config.maxTimeSlot);
             this.explanations[ValidationError.MaxTimeSlot] = config.restrictionExplanations.maxTimeSlot(maxTimeSlot);
         }
 
@@ -39,7 +39,7 @@ class RestrictionExplanationsController implements angular.IComponentController 
         }
 
         if (config.minimumSeparation) {
-            let minimumSeparation = this.$filter('brWeeklySchedulerMinutesAsText')(config.minimumSeparation);
+            let minimumSeparation = this.$filter('brWeeklySchedulerSecondsAsText')(config.minimumSeparation);
             this.explanations[ValidationError.MinimumSeparation] = config.restrictionExplanations.minimumSeparation(minimumSeparation);
         }
     }

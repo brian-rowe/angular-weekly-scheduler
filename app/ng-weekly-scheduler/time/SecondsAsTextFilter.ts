@@ -1,19 +1,21 @@
 /** @internal */
-class MinutesAsTextFilter {
-    static $name = 'brWeeklySchedulerMinutesAsText';
+class SecondsAsTextFilter {
+    static $name = 'brWeeklySchedulerSecondsAsText';
 
     public static Factory() {
-        return function(minutes: number): string {
+        return function(seconds: number): string {
             let result = ``;
 
-            let hours = Math.floor(minutes / 60);
+            let hours = Math.floor(seconds / 3600);
             let hasHours = hours > 0;
 
             if (hasHours) {
                 result += `${hours} hours`;
             }
 
-            let min = minutes % 60;
+            seconds -= hours * 3600;
+
+            let min = Math.floor(seconds / 60);
             let hasMinutes = min > 0;
 
             if (hasMinutes) {
@@ -22,6 +24,12 @@ class MinutesAsTextFilter {
                 }
 
                 result += `${min} minute${min > 1 ? 's' : ''}`;
+            }
+
+            seconds -= min * 60;
+
+            if (seconds) {
+                result += ` ${seconds} seconds`;    
             }
 
             if (!result) {
@@ -35,4 +43,4 @@ class MinutesAsTextFilter {
 
 angular
     .module('br.weeklyScheduler')
-    .filter(MinutesAsTextFilter.$name, [MinutesAsTextFilter.Factory]);
+    .filter(SecondsAsTextFilter.$name, [SecondsAsTextFilter.Factory]);

@@ -40,7 +40,7 @@ class HourlyGridDirective implements angular.IDirective {
 
             child.text(`${currentHour || '12'}${meridiem}`);
           } else {
-            let numIntervalsInTick = 60 / config.interval;
+            let numIntervalsInTick = 60 * 60 / config.interval;
             let intervalPercentage = 100 / numIntervalsInTick;
 
             for (let j = 0; j < numIntervalsInTick; j++) {

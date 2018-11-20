@@ -21,8 +21,8 @@ describe('max time slot validator service', function () {
             fullCalendar: false,
             hourCount: 24,
             intervalCount: 96,
-            maxTimeSlot: 60,
-            maxValue: 1440,
+            maxTimeSlot: 3600,
+            maxValue: 86400,
             saveScheduler: () => $q.when(true)
         };
 
@@ -94,14 +94,14 @@ describe('max time slot validator service', function () {
 
         it('as invalid when they do exceed the maxTimeSlot length', function () {
             let singleSchedule = [
-                { day: 3, start: 0, end: 75, value: false }
+                { day: 3, start: 0, end: 75 * 60, value: false }
             ];
 
             expect($service.validate(singleSchedule, maxTimeSlotConfig)).toBeFalsy();
 
             let doubleSchedule = [
-                { day: 4, start: 0, end: 75, value: true },
-                { day: 4, start: 90, end: 180, value: false }
+                { day: 4, start: 0, end: 75 * 60, value: true },
+                { day: 4, start: 90 * 60, end: 180 * 60, value: false }
             ];
 
             expect($service.validate(doubleSchedule, maxTimeSlotConfig)).toBeFalsy();

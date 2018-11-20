@@ -1,10 +1,10 @@
-describe('minutes as text filter', function() {
+describe('seconds as text filter', function() {
     var $filter;
 
     beforeEach(angular.mock.module('demoApp'));
 
-    beforeEach(inject(function(_brWeeklySchedulerMinutesAsTextFilter_) {
-        $filter = _brWeeklySchedulerMinutesAsTextFilter_;
+    beforeEach(inject(function(_brWeeklySchedulerSecondsAsTextFilter_) {
+        $filter = _brWeeklySchedulerSecondsAsTextFilter_;
     }));
 
     function testDisplay(value) {
@@ -20,13 +20,15 @@ describe('minutes as text filter', function() {
 
     describe('should display times correctly', function() {
         var testCases = [
-            [0, 'none'],
-            [1, '1 minute'],
-            [375, '6 hours 15 minutes'],
-            [720, '12 hours'],
-            [900, '15 hours'],
-            [1439, '23 hours 59 minutes'],
-            [1440, '24 hours']
+            [0 * 60, 'none'],
+            [1 * 60, '1 minute'],
+            [375 * 60, '6 hours 15 minutes'],
+            [(375 * 60) + 30, '6 hours 15 minutes 30 seconds'],
+            [720 * 60, '12 hours'],
+            [900 * 60, '15 hours'],
+            [(900 * 60) + 30, '15 hours 30 seconds'],
+            [1439 * 60, '23 hours 59 minutes'],
+            [1440 * 60, '24 hours']
         ];
 
         testCases.forEach(function(testCase) {

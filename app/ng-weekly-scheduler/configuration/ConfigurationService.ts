@@ -6,6 +6,7 @@ class ConfigurationService {
         var interval = options.interval || 15; // minutes
         var hoursInDay = 24;
         var minutesInDay = hoursInDay * 60;
+        var secondsInDay = minutesInDay * 60;
         var intervalCount = minutesInDay / interval;
 
         const defaultOptions = this.getDefaultOptions();
@@ -14,7 +15,7 @@ class ConfigurationService {
 
         var result = angular.extend(userOptions, {
             interval: interval,
-            maxValue: minutesInDay,
+            maxValue: secondsInDay,
             hourCount: hoursInDay,
             intervalCount: intervalCount,
         });
