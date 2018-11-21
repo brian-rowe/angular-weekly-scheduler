@@ -54,7 +54,7 @@ class SecondsAsTextFilter {
                 result += ` `;
             }
 
-            result += `${seconds} seconds`;
+            result += `${seconds} second${seconds > 1 ? 's' : ''}`;
         }
 
         return result;
