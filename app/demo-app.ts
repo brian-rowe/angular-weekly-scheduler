@@ -206,6 +206,8 @@ class DemoAdapter implements br.weeklyScheduler.IWeeklySchedulerAdapter<br.weekl
   }
 
   public customModelToWeeklySchedulerRange(range) {
+    range.$class = 'test';
+
     return range;
   }
 }
