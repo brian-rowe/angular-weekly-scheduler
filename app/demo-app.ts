@@ -13,7 +13,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
             return $q.when(schedule);
           },
           interval: 1 * 60,
-          minimumSeparation: 5,
+          minimumSeparation: 5 * 60,
           onChange: (isValid) => {
           },
           restrictionExplanations: {
@@ -27,7 +27,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 
       $scope.model2 = angular.copy($scope.model);
       $scope.model2.options.fillEmptyWithDefault = true;
-      $scope.model2.options.interval = 1 * 60;
+      $scope.model2.options.interval = 15 * 60;
       $scope.model2.options.maxTimeSlot = 900 * 60;
 
       $scope.model2.options.saveScheduler = () => {
