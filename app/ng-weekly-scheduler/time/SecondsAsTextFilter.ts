@@ -7,34 +7,18 @@ class SecondsAsTextFilter {
             let result = ``;
 
             let hours = Math.floor(seconds / 3600);
-            let hasHours = hours > 0;
 
-            if (hasHours) {
-                result += `${hours} hours`;
-            }
+            result = SecondsAsTextFilter.addHoursToResult(result, hours);
 
             seconds -= hours * 3600;
 
-            let min = Math.floor(seconds / 60);
-            let hasMinutes = min > 0;
+            let minutes = Math.floor(seconds / 60);
 
-            if (hasMinutes) {
-                if (hasHours) {
-                    result += ' ';
-                }
+            result = SecondsAsTextFilter.addMinutesToResult(result, minutes);
 
-                result += `${min} minute${min > 1 ? 's' : ''}`;
-            }
+            seconds -= minutes * 60;
 
-            seconds -= min * 60;
-
-            if (seconds) {
-                if (result) {
-                    result += ` `;
-                }
-
-                result += `${seconds} seconds`;    
-            }
+            result = SecondsAsTextFilter.addSecondsToResult(result, seconds);
 
             if (!result) {
                 result = 'none';
@@ -42,6 +26,38 @@ class SecondsAsTextFilter {
 
             return result;
         }
+    }
+
+    private static addHoursToResult(result: string, hours: number) {
+        if (hours) {
+            result += `${hours} hours`;
+        }
+
+        return result;
+    }
+
+    private static addMinutesToResult(result: string, minutes: number) {
+        if (minutes) {
+            if (result) {
+                result += ` `;
+            }
+
+            result += `${minutes} minute${minutes > 1 ? 's' : ''}`; 
+        }
+
+        return result;
+    }
+
+    private static addSecondsToResult(result: string, seconds: number) {
+        if (seconds) {
+            if (result) {
+                result += ` `;
+            }
+
+            result += `${seconds} seconds`;
+        }
+
+        return result;
     }
 }
 
