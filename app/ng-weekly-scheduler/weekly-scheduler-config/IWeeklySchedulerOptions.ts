@@ -38,7 +38,7 @@ namespace br.weeklyScheduler {
          */
         onRemove?: () => void;
 
-        /** The number of minutes each division of the calendar should be -- values will snap to this */
+        /** The number of seconds each division of the calendar should be -- values will snap to this */
         interval?: number;
 
         /** Overrides for restriction explanations, if necessary */

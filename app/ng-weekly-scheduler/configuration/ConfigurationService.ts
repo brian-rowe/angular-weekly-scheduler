@@ -7,7 +7,7 @@ class ConfigurationService {
         var hoursInDay = 24;
         var minutesInDay = hoursInDay * 60;
         var secondsInDay = minutesInDay * 60;
-        var intervalCount = minutesInDay / interval;
+        var intervalCount = minutesInDay / interval * 60;
 
         const defaultOptions = this.getDefaultOptions();
 
