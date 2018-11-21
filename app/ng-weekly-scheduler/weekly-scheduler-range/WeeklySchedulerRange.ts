@@ -18,6 +18,7 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>,
         private endAdjusterService: EndAdjusterService
     ) {
+        this.$class = schedule.$class;
         this.day = schedule.day;
         this.start = schedule.start;
         this.end = schedule.end;
