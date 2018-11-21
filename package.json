@@ -9,9 +9,9 @@
     "angular": "^1.7.5"
   },
   "devDependencies": {
-    "@types/angular": "^1.6.43",
-    "@types/angular-mocks": "^1.5.11",
-    "@types/jasmine": "^2.8.6",
+    "@types/angular": "^1.6.51",
+    "@types/angular-mocks": "^1.7.0",
+    "@types/jasmine": "^3.3.0",
     "angular-animate": "^1.7.5",
     "angular-aria": "^1.7.5",
     "angular-material": "^1.1.10",
