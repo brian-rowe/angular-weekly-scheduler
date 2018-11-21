@@ -21,6 +21,7 @@ describe('seconds as text filter', function() {
     describe('should display times correctly', function() {
         var testCases = [
             [0 * 60, 'none'],
+            [5, '5 seconds'],
             [1 * 60, '1 minute'],
             [375 * 60, '6 hours 15 minutes'],
             [(375 * 60) + 30, '6 hours 15 minutes 30 seconds'],

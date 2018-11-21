@@ -29,7 +29,11 @@ class SecondsAsTextFilter {
             seconds -= min * 60;
 
             if (seconds) {
-                result += ` ${seconds} seconds`;    
+                if (result) {
+                    result += ` `;
+                }
+
+                result += `${seconds} seconds`;    
             }
 
             if (!result) {
