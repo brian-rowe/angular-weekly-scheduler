@@ -4,13 +4,13 @@ class DayMap {
     static $name = 'brWeeklySchedulerDayMap';
     
     static value = {
-        0: 'Mon',
-        1: 'Tue',
-        2: 'Wed',
-        3: 'Thur',
-        4: 'Fri',
-        5: 'Sat',
-        6: 'Sun' 
+        [br.weeklyScheduler.Days.Monday]: 'Mon',
+        [br.weeklyScheduler.Days.Tuesday]: 'Tue',
+        [br.weeklyScheduler.Days.Wednesday]: 'Wed',
+        [br.weeklyScheduler.Days.Thursday]: 'Thur',
+        [br.weeklyScheduler.Days.Friday]: 'Fri',
+        [br.weeklyScheduler.Days.Saturday]: 'Sat',
+        [br.weeklyScheduler.Days.Sunday]: 'Sun' 
     }
 }
 
