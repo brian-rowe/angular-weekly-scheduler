@@ -37,131 +37,131 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 
       $scope.model.options.nullEnds = true;
 
-      $scope.adapter = new DemoAdapter([
-        {
-          day: br.weeklyScheduler.Days.Saturday,
-          start: 1380,
-          end: null,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Sunday,
-          start: 600,
-          end: null,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Monday,
-          start: 720,
-          end: null,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Tuesday,
-          start: 60,
-          end: null,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Wednesday,
-          start: 60,
-          end: null,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Friday,
-          start: 0,
-          end: null,
-          value: true
-        }
-      ]);
+      // $scope.adapter = new DemoAdapter([
+      //   {
+      //     day: br.weeklyScheduler.Days.Saturday,
+      //     start: 1380,
+      //     end: null,
+      //     value: true
+      //   },
+      //   {
+      //     day: br.weeklyScheduler.Days.Sunday,
+      //     start: 600,
+      //     end: null,
+      //     value: true
+      //   },
+      //   {
+      //     day: br.weeklyScheduler.Days.Monday,
+      //     start: 720,
+      //     end: null,
+      //     value: true
+      //   },
+      //   {
+      //     day: br.weeklyScheduler.Days.Tuesday,
+      //     start: 60,
+      //     end: null,
+      //     value: true
+      //   },
+      //   {
+      //     day: br.weeklyScheduler.Days.Wednesday,
+      //     start: 60,
+      //     end: null,
+      //     value: true
+      //   },
+      //   {
+      //     day: br.weeklyScheduler.Days.Friday,
+      //     start: 0,
+      //     end: null,
+      //     value: true
+      //   }
+      // ]);
 
       $scope.adapterTwo = new DemoAdapter([
+        // {
+        //   day: br.weeklyScheduler.Days.Sunday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true,
+        //   editable: false
+        // },
         {
           day: br.weeklyScheduler.Days.Sunday,
-          start: 0,
-          end: 43200,
-          value: true,
-          editable: false
-        },
-        {
-          day: br.weeklyScheduler.Days.Sunday,
-          start: 54000,
-          end: 72000,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Monday,
-          start: 0,
-          end: 43200,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Monday,
-          start: 54000,
-          end: 72000,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Tuesday,
-          start: 0,
-          end: 43200,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Tuesday,
-          start: 54000,
-          end: 72000,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Wednesday,
-          start: 0,
-          end: 43200,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Wednesday,
-          start: 54000,
-          end: 72000,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Thursday,
-          start: 0,
-          end: 43200,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Thursday,
-          start: 54000,
-          end: 72000,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Friday,
-          start: 0,
-          end: 43200,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Friday,
-          start: 54000,
-          end: 72000,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Saturday,
-          start: 0,
-          end: 43200,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Saturday,
           start: 54000,
           end: 72000,
           value: true
         }
+        // {
+        //   day: br.weeklyScheduler.Days.Monday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Monday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Tuesday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Tuesday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Wednesday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Wednesday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Thursday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Thursday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Friday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Friday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Saturday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Saturday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // }
       ]);
 
       $scope.saveAll = function () {
