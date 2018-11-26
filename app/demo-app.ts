@@ -87,81 +87,81 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
         {
           day: br.weeklyScheduler.Days.Sunday,
           start: 54000,
-          end: 72000,
+          end: 0,
+          value: true
+        },
+        // {
+        //   day: br.weeklyScheduler.Days.Monday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Monday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Tuesday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Tuesday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Wednesday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Wednesday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Thursday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Thursday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Friday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Friday,
+        //   start: 54000,
+        //   end: 72000,
+        //   value: true
+        // },
+        // {
+        //   day: br.weeklyScheduler.Days.Saturday,
+        //   start: 0,
+        //   end: 43200,
+        //   value: true
+        // },
+        {
+          day: br.weeklyScheduler.Days.Saturday,
+          start: 57600,
+          end: 61200,
           value: true
         }
-        // {
-        //   day: br.weeklyScheduler.Days.Monday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Monday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Tuesday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Tuesday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Wednesday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Wednesday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Thursday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Thursday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Friday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Friday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Saturday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Saturday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // }
       ]);
 
       $scope.saveAll = function () {
