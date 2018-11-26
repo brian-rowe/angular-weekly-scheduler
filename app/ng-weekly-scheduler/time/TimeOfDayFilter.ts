@@ -3,32 +3,38 @@ class TimeOfDayFilter {
     static $name = 'brWeeklySchedulerTimeOfDay';
 
     public static Factory() {
-        return function(seconds: number): string {
-            let hours = Math.floor(seconds / 3600);
-            let meridiem = hours > 11 && hours < 24 ? 'P' : 'A';
+        let factoryFunction = (timeConstants: TimeConstantsService) => {
+            return function(seconds: number): string {
+                let hours = Math.floor(seconds / timeConstants.SECONDS_IN_HOUR);
+                let meridiem = hours > 11 && hours < 24 ? 'P' : 'A';
 
-            seconds -= hours * 3600;
+                seconds -= hours * timeConstants.SECONDS_IN_HOUR;
 
-            let minutes = Math.floor(seconds / 60);
-            seconds -= minutes * 60;
+                let minutes = Math.floor(seconds / timeConstants.SECONDS_IN_MINUTE);
+                seconds -= minutes * timeConstants.SECONDS_IN_MINUTE;
 
-            let remainingMinutes = minutes.toString()
+                let remainingMinutes = minutes.toString()
 
-            if (remainingMinutes.length == 1) {
-                remainingMinutes = '0' + remainingMinutes;
+                if (remainingMinutes.length == 1) {
+                    remainingMinutes = '0' + remainingMinutes;
+                }
+
+                let displayHours = hours % 12 || 12;
+
+                if (!seconds) {
+                    return `${displayHours}:${remainingMinutes}${meridiem}`;
+                } else {
+                    return `${displayHours}:${remainingMinutes}:${seconds}${meridiem}`;
+                }
             }
+        };
 
-            let displayHours = hours % 12 || 12;
+        factoryFunction.$inject = ['brWeeklySchedulerTimeConstantsService']
 
-            if (!seconds) {
-                return `${displayHours}:${remainingMinutes}${meridiem}`;
-            } else {
-                return `${displayHours}:${remainingMinutes}:${seconds}${meridiem}`;
-            }
-        }
+        return factoryFunction;
     }
 }
 
 angular
     .module('br.weeklyScheduler')
-    .filter(TimeOfDayFilter.$name, [TimeOfDayFilter.Factory]);
+    .filter(TimeOfDayFilter.$name, TimeOfDayFilter.Factory());

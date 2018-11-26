@@ -3,29 +3,35 @@ class SecondsAsTextFilter {
     static $name = 'brWeeklySchedulerSecondsAsText';
 
     public static Factory() {
-        return function(seconds: number): string {
-            let result = ``;
+        let factoryFunction = (timeConstants: TimeConstantsService) => {
+            return function(seconds: number): string {
+                let result = ``;
 
-            let hours = Math.floor(seconds / 3600);
+                let hours = Math.floor(seconds / timeConstants.SECONDS_IN_HOUR);
 
-            result = SecondsAsTextFilter.addHoursToResult(result, hours);
+                result = SecondsAsTextFilter.addHoursToResult(result, hours);
 
-            seconds -= hours * 3600;
+                seconds -= hours * timeConstants.SECONDS_IN_HOUR;
 
-            let minutes = Math.floor(seconds / 60);
+                let minutes = Math.floor(seconds / timeConstants.SECONDS_IN_MINUTE);
 
-            result = SecondsAsTextFilter.addMinutesToResult(result, minutes);
+                result = SecondsAsTextFilter.addMinutesToResult(result, minutes);
 
-            seconds -= minutes * 60;
+                seconds -= minutes * timeConstants.SECONDS_IN_MINUTE;
 
-            result = SecondsAsTextFilter.addSecondsToResult(result, seconds);
+                result = SecondsAsTextFilter.addSecondsToResult(result, seconds);
 
-            if (!result) {
-                result = 'none';
+                if (!result) {
+                    result = 'none';
+                }
+
+                return result;
             }
+        };
 
-            return result;
-        }
+        factoryFunction.$inject = ['brWeeklySchedulerTimeConstantsService'];
+
+        return factoryFunction;
     }
 
     private static addHoursToResult(result: string, hours: number) {
@@ -63,4 +69,4 @@ class SecondsAsTextFilter {
 
 angular
     .module('br.weeklyScheduler')
-    .filter(SecondsAsTextFilter.$name, [SecondsAsTextFilter.Factory]);
+    .filter(SecondsAsTextFilter.$name, SecondsAsTextFilter.Factory());
