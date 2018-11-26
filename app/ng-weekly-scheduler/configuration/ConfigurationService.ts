@@ -2,12 +2,18 @@
 class ConfigurationService {
     static $name = 'brWeeklySchedulerConfigurationService';
 
+    static $inject = [
+        'brWeeklySchedulerTimeConstantsService'
+    ];
+
+    private constructor(
+        private timeConstants: TimeConstantsService
+    ) {
+    }
+
     public getConfiguration(options: br.weeklyScheduler.IWeeklySchedulerOptions<any>) {
         var interval = options.interval || 900; // seconds
-        var hoursInDay = 24;
-        var minutesInDay = hoursInDay * 60;
-        var secondsInDay = minutesInDay * 60;
-        var intervalCount = secondsInDay / interval;
+        var intervalCount = this.timeConstants.SECONDS_IN_DAY / interval;
 
         const defaultOptions = this.getDefaultOptions();
 
@@ -15,8 +21,8 @@ class ConfigurationService {
 
         var result = angular.extend(userOptions, {
             interval: interval,
-            maxValue: secondsInDay,
-            hourCount: hoursInDay,
+            maxValue: this.timeConstants.SECONDS_IN_DAY,
+            hourCount: this.timeConstants.HOURS_IN_DAY,
             intervalCount: intervalCount,
         });
 
