@@ -40,7 +40,7 @@ class HourlyGridDirective implements angular.IDirective {
 
             child.text(`${currentHour || '12'}${meridiem}`);
           } else {
-            let numIntervalsInTick = 3600 / config.interval;
+            let numIntervalsInTick = this.timeConstants.SECONDS_IN_HOUR / config.interval;
             let intervalPercentage = 100 / numIntervalsInTick;
 
             for (let j = 0; j < numIntervalsInTick; j++) {
@@ -62,8 +62,15 @@ class HourlyGridDirective implements angular.IDirective {
         }
     }
 
+    constructor(
+        private timeConstants: TimeConstantsService
+    ) {
+    }
+
     static Factory() {
-        let directive = () => new HourlyGridDirective();
+        let directive = (timeConstants) => new HourlyGridDirective(timeConstants);
+
+        directive.$inject = ['brWeeklySchedulerTimeConstantsService'];
 
         return directive;
     }
