@@ -68,7 +68,7 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
     private canUpdateEnd(updatedEnd: number) {
         let changed = this.end !== updatedEnd;
         let newEndBeforeOrAtMax = updatedEnd <= this.config.maxValue;
-        let newEndAfterOrAtExistingStart = updatedEnd >= this.start + 1;
+        let newEndAfterOrAtExistingStart = this.endAdjusterService.adjustEndForView(this.config, updatedEnd) >= this.start + 1;
 
         return changed && newEndBeforeOrAtMax && newEndAfterOrAtExistingStart;
     }
