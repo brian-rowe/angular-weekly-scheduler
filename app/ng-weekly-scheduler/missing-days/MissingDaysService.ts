@@ -34,7 +34,7 @@ class MissingDaysService {
           }
         });
     
-        return angular.copy(result).sort((a, b) => a.day > b.day ? 1 : -1);
+        return angular.copy(result).sort((a, b) => a.day - b.day);
     }
 }
 
