@@ -2,7 +2,7 @@
 class NullEndWidth {
     static $name = 'brWeeklySchedulerNullEndWidth';
 
-    static value = 120;
+    static value = 7200; 
 }
 
 angular

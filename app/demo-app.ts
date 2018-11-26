@@ -37,44 +37,44 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 
       $scope.model.options.nullEnds = true;
 
-      // $scope.adapter = new DemoAdapter([
-      //   // {
-      //   //   day: Days.Saturday,
-      //   //   start: 1380,
-      //   //   end: null,
-      //   //   value: true
-      //   // },
-      //   {
-      //     day: br.weeklyScheduler.Days.Sunday,
-      //     start: 600,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Monday,
-      //     start: 720,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Tuesday,
-      //     start: 60,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Wednesday,
-      //     start: 30,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Friday,
-      //     start: 0,
-      //     end: null,
-      //     value: true
-      //   }
-      // ]);
+      $scope.adapter = new DemoAdapter([
+        {
+          day: br.weeklyScheduler.Days.Saturday,
+          start: 1380,
+          end: null,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Sunday,
+          start: 600,
+          end: null,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Monday,
+          start: 720,
+          end: null,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Tuesday,
+          start: 60,
+          end: null,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Wednesday,
+          start: 60,
+          end: null,
+          value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Friday,
+          start: 0,
+          end: null,
+          value: true
+        }
+      ]);
 
       $scope.adapterTwo = new DemoAdapter([
         {
