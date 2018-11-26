@@ -3,11 +3,11 @@ class ConfigurationService {
     static $name = 'brWeeklySchedulerConfigurationService';
 
     public getConfiguration(options: br.weeklyScheduler.IWeeklySchedulerOptions<any>) {
-        var interval = options.interval || 15; // minutes
+        var interval = options.interval || 900; // seconds
         var hoursInDay = 24;
         var minutesInDay = hoursInDay * 60;
         var secondsInDay = minutesInDay * 60;
-        var intervalCount = minutesInDay / interval * 60;
+        var intervalCount = secondsInDay / interval;
 
         const defaultOptions = this.getDefaultOptions();
 
