@@ -12,8 +12,8 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           editSlot: function (schedule) {
             return $q.when(schedule);
           },
-          interval: 1 * 60,
-          minimumSeparation: 5 * 60,
+          interval: 60,
+          minimumSeparation: 300,
           onChange: (isValid) => {
           },
           restrictionExplanations: {
@@ -27,8 +27,8 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 
       $scope.model2 = angular.copy($scope.model);
       $scope.model2.options.fillEmptyWithDefault = true;
-      $scope.model2.options.interval = 15 * 60;
-      $scope.model2.options.maxTimeSlot = 900 * 60;
+      $scope.model2.options.interval = 900;
+      $scope.model2.options.maxTimeSlot = 54000;
 
       $scope.model2.options.saveScheduler = () => {
         $scope.adapterTwoResult = $scope.adapterTwo.getSnapshot();
@@ -79,87 +79,87 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
       $scope.adapterTwo = new DemoAdapter([
         {
           day: br.weeklyScheduler.Days.Sunday,
-          start: 0 * 60,
-          end: 720 * 60,
+          start: 0,
+          end: 43200,
           value: true,
           editable: false
         },
         {
           day: br.weeklyScheduler.Days.Sunday,
-          start: 900 * 60,
-          end: 1200 * 60,
+          start: 54000,
+          end: 72000,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Monday,
-          start: 0 * 60,
-          end: 720 * 60,
+          start: 0,
+          end: 43200,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Monday,
-          start: 900 * 60,
-          end: 1200 * 60,
+          start: 54000,
+          end: 72000,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Tuesday,
-          start: 0 * 60,
-          end: 720 * 60,
+          start: 0,
+          end: 43200,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Tuesday,
-          start: 900 * 60,
-          end: 1200 * 60,
+          start: 54000,
+          end: 72000,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Wednesday,
-          start: 0 * 60,
-          end: 720 * 60,
+          start: 0,
+          end: 43200,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Wednesday,
-          start: 900 * 60,
-          end: 1200 * 60,
+          start: 54000,
+          end: 72000,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Thursday,
-          start: 0 * 60,
-          end: 720 * 60,
+          start: 0,
+          end: 43200,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Thursday,
-          start: 900 * 60,
-          end: 1200 * 60,
+          start: 54000,
+          end: 72000,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Friday,
-          start: 0 * 60,
-          end: 720 * 60,
+          start: 0,
+          end: 43200,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Friday,
-          start: 900 * 60,
-          end: 1200 * 60,
+          start: 54000,
+          end: 72000,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Saturday,
-          start: 0 * 60,
-          end: 720 * 60,
+          start: 0,
+          end: 43200,
           value: true
         },
         {
           day: br.weeklyScheduler.Days.Saturday,
-          start: 900 * 60,
-          end: 1200 * 60,
+          start: 54000,
+          end: 72000,
           value: true
         }
       ]);
