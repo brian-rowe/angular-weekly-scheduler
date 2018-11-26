@@ -20,18 +20,18 @@ describe('seconds as text filter', function() {
 
     describe('should display times correctly', function() {
         var testCases = [
-            [0 * 60, 'none'],
+            [0, 'none'],
             [1, '1 second'],
             [5, '5 seconds'],
-            [1 * 60, '1 minute'],
-            [375 * 60, '6 hours 15 minutes'],
-            [(375 * 60) + 1, '6 hours 15 minutes 1 second'],
-            [(375 * 60) + 30, '6 hours 15 minutes 30 seconds'],
-            [720 * 60, '12 hours'],
-            [900 * 60, '15 hours'],
-            [(900 * 60) + 30, '15 hours 30 seconds'],
-            [1439 * 60, '23 hours 59 minutes'],
-            [1440 * 60, '24 hours']
+            [60, '1 minute'],
+            [22500, '6 hours 15 minutes'],
+            [22501, '6 hours 15 minutes 1 second'],
+            [22530, '6 hours 15 minutes 30 seconds'],
+            [43200, '12 hours'],
+            [54000, '15 hours'],
+            [54030, '15 hours 30 seconds'],
+            [86340, '23 hours 59 minutes'],
+            [86400, '24 hours']
         ];
 
         testCases.forEach(function(testCase) {
