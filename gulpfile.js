@@ -113,7 +113,8 @@ gulp.task("buildCSS", function () {
 
 gulp.task("incrementVersion", function () {
     increment.config({
-        "push-tag": false
+        "push-tag": false,
+        "type": "major"
     });
 
     return increment.task();
