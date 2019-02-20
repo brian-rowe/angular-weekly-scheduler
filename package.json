@@ -2,7 +2,7 @@
   "name": "angular-weekly-scheduler",
   "version": "1.0.0",
   "description": "A scheduler using weeks for AngularJS",
-  "repository": "https://github.com/brian-rowe/angular-weekly-scheduler",
+  "repository": "https://github.com/rosie-rowe/angular-weekly-scheduler",
   "license": "MIT",
   "author": "François Maturel <francoismaturel@dijit.fr> (http://dijit.fr), Rosalyn Rowe <rrowe404@gmail.com>",
   "dependencies": {
