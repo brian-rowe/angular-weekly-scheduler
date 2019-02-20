@@ -19,6 +19,9 @@ class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRang
         private endAdjusterService: EndAdjusterService
     ) {
         this.$class = schedule.$class;
+        this.$isActive = schedule.$isActive;
+        this.$isDeleting = schedule.$isDeleting;
+        this.$isEditing = schedule.$isEditing;
         this.day = schedule.day;
         this.start = schedule.start;
         this.end = schedule.end;

@@ -10,6 +10,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           },
           defaultValue: false,
           editSlot: function (schedule) {
+            schedule.$isDeleting = true;
             return $q.when(schedule);
           },
           interval: 60,
