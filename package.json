@@ -4,7 +4,7 @@
   "description": "A scheduler using weeks for AngularJS",
   "repository": "https://github.com/brian-rowe/angular-weekly-scheduler",
   "license": "MIT",
-  "author": "François Maturel <francoismaturel@dijit.fr> (http://dijit.fr), Brian Rowe <browe404@gmail.com>",
+  "author": "François Maturel <francoismaturel@dijit.fr> (http://dijit.fr), Rosalyn Rowe <rrowe404@gmail.com>",
   "dependencies": {
     "angular": "^1.7.5"
   },
