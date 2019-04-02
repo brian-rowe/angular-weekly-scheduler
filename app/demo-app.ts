@@ -13,160 +13,30 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
             schedule.$isDeleting = true;
             return $q.when(schedule);
           },
-          interval: 60,
+          fillEmptyWithDefault: true,
+          interval: 60 * 15,
           minimumSeparation: 300,
           onChange: (isValid) => {
           },
           restrictionExplanations: {
             maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
-          },
-          scheduleCountOptions: {
-            count: 2
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
 
-      $scope.model2 = angular.copy($scope.model);
-      $scope.model2.options.fillEmptyWithDefault = true;
-      $scope.model2.options.interval = 900;
-      $scope.model2.options.maxTimeSlot = 54000;
-
-      $scope.model2.options.saveScheduler = () => {
-        $scope.adapterTwoResult = $scope.adapterTwo.getSnapshot();
-        return $q.when();
-      }
-
       $scope.model.options.nullEnds = true;
 
-      // $scope.adapter = new DemoAdapter([
-      //   {
-      //     day: br.weeklyScheduler.Days.Saturday,
-      //     start: 1380,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Sunday,
-      //     start: 600,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Monday,
-      //     start: 720,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Tuesday,
-      //     start: 60,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Wednesday,
-      //     start: 60,
-      //     end: null,
-      //     value: true
-      //   },
-      //   {
-      //     day: br.weeklyScheduler.Days.Friday,
-      //     start: 0,
-      //     end: null,
-      //     value: true
-      //   }
-      // ]);
-
-      $scope.adapterTwo = new DemoAdapter([
-        // {
-        //   day: br.weeklyScheduler.Days.Sunday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true,
-        //   editable: false
-        // },
-        {
-          day: br.weeklyScheduler.Days.Sunday,
-          start: 54000,
-          end: 0,
-          value: true
-        },
-        // {
-        //   day: br.weeklyScheduler.Days.Monday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Monday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Tuesday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Tuesday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Wednesday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Wednesday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Thursday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Thursday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Friday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Friday,
-        //   start: 54000,
-        //   end: 72000,
-        //   value: true
-        // },
-        // {
-        //   day: br.weeklyScheduler.Days.Saturday,
-        //   start: 0,
-        //   end: 43200,
-        //   value: true
-        // },
+      $scope.adapter = new DemoAdapter([
         {
           day: br.weeklyScheduler.Days.Saturday,
-          start: 57600,
-          end: 61200,
+          start: 3600,
+          end: null,
           value: true
         }
       ]);
 
       $scope.saveAll = function () {
-        $scope.result = JSON.stringify($scope.adapter.getSnapshot()) + JSON.stringify($scope.adapterTwo.getSnapshot());
+        $scope.result = JSON.stringify($scope.adapter.getSnapshot());
       }
     }]);
 
