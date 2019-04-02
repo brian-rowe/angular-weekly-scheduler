@@ -3,7 +3,7 @@ class ConflictingOptionsService {
     static $name = 'brWeeklySchedulerConflictingOptionsService';
 
     public getConflictingOptions(options: br.weeklyScheduler.IWeeklySchedulerOptions<any>) {
-        if (options.nullEnds && options.scheduleCountOptions.count > 1) {
+        if (options.nullEnds && options.scheduleCountOptions && options.scheduleCountOptions.count > 1) {
             return `A nullEnds calendar has a maximum scheduleCount of 1`;
         }
 
