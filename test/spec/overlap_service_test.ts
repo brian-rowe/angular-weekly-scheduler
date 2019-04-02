@@ -18,7 +18,7 @@ describe('overlap service', () => {
 
             let config = {
                 createItem: createItem,
-                maxValue: 1440,
+                maxValue: 86400,
                 hourCount: 24,
                 intervalCount: 96
             }
@@ -34,6 +34,7 @@ describe('overlap service', () => {
 
             it('NoOverlap when items do not touch', () => {
                 expect($service.getOverlapState(config, getSchedule(0, 15), getSchedule(30, 45))).toBe(OverlapState.NoOverlap);
+                expect($service.getOverlapState(config, getSchedule(0, 16200), getSchedule(63000, 0))).toBe(OverlapState.NoOverlap);
             });
 
             it('CurrentIsInsideOther when current item is entirely within other item', () => {
