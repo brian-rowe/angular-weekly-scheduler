@@ -20,6 +20,9 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           },
           restrictionExplanations: {
             maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
+          },
+          saveScheduler: () => {
+            $scope.result = $scope.adapter.getSnapshot();
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
@@ -34,10 +37,6 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           value: true
         }
       ]);
-
-      $scope.saveAll = function () {
-        $scope.result = JSON.stringify($scope.adapter.getSnapshot());
-      }
     }]);
 
 /** @internal */

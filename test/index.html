@@ -13,7 +13,7 @@
         <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
       </div>
 
-      <button ng-click="saveAll()" ng-disabled="!testWrapper.$dirty || !testWrapper.$valid">Save</button>
+      <!-- <button ng-click="saveAll()" ng-disabled="!testWrapper.$dirty || !testWrapper.$valid">Save</button> -->
 
       <br-weekly-scheduler adapter="adapter" ng-form="test" options="model.options"></br-weekly-scheduler>
       <code>Valid: {{ test.$valid }}</code>
@@ -21,7 +21,7 @@
       <hr>
       
       <code>Result: 
-        <pre>{{ result | json }}</pre>
+        <pre ng-bind="result | json" style="overflow-y:auto"></pre>
       </code>
 
       <script src="testVendorScripts.js"></script>
