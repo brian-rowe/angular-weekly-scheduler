@@ -109,21 +109,23 @@ describe('fillEmptyWithDefault service', () => {
                 });
             });
 
-            it('there are two starting schedules', () => {
-                let item = $itemFactory.createItem(config, 0, [
-                    { day: 0, start: 0, end: 720, value: true },
-                    { day: 0, start: 780, end: 0, value: true }
-                ]);
-    
-                let expectedResult = $itemFactory.createItem(config, 0,  [
-                    { day: 0, start: 0, end: 720, value: true },
-                    { day: 0, start: 720, end: 780, value: config.defaultValue },
-                    { day: 0, start: 780, end: 0, value: true },
-                ]);
-    
-                let actualResult = $service.fill(item, config);
-    
-                expect(angular.equals(actualResult, expectedResult.schedules)).toBeTruthy();
+            describe('there are two starting schedules', () => {
+                it('that start and end on extremes', () => {
+                    let item = $itemFactory.createItem(config, 0, [
+                        { day: 0, start: 0, end: 720, value: true },
+                        { day: 0, start: 780, end: 0, value: true }
+                    ]);
+        
+                    let expectedResult = $itemFactory.createItem(config, 0,  [
+                        { day: 0, start: 0, end: 720, value: true },
+                        { day: 0, start: 720, end: 780, value: config.defaultValue },
+                        { day: 0, start: 780, end: 0, value: true },
+                    ]);
+        
+                    let actualResult = $service.fill(item, config);
+        
+                    expect(angular.equals(actualResult, expectedResult.schedules)).toBeTruthy();
+                });
             });
 
             describe('there are three or more starting schedules', () => {

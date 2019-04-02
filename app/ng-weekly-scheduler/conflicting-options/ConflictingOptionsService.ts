@@ -3,6 +3,10 @@ class ConflictingOptionsService {
     static $name = 'brWeeklySchedulerConflictingOptionsService';
 
     public getConflictingOptions(options: br.weeklyScheduler.IWeeklySchedulerOptions<any>) {
+        if (options.nullEnds && options.scheduleCountOptions.count > 1) {
+            return `A nullEnds calendar has a maximum scheduleCount of 1`;
+        }
+
         if (options.fullCalendar && options.fillEmptyWithDefault) {
             return `Options 'fullCalendar' & 'fillEmptyWithDefault' are mutually exclusive.`;
         }
