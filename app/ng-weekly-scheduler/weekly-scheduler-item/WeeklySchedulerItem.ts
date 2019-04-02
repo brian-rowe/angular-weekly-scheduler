@@ -85,6 +85,10 @@ class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         this.schedules = this.fillEmptyWithDefaultService.fill(this, this.config);
     }
 
+    public forceNullEnds() {
+        this.schedules.forEach(s => s.end = null);
+    }
+
     public mergeOverlaps() {
         do {
             this.schedules.forEach(schedule => this.mergeOverlapsForSchedule(schedule));

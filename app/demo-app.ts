@@ -30,7 +30,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
 
-      // $scope.model.options.nullEnds = true;
+      $scope.model.options.nullEnds = true;
 
       $scope.adapter = new DemoAdapter([
         {
@@ -42,13 +42,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
         {
           day: br.weeklyScheduler.Days.Saturday,
           start: 3600,
-          end: 5400,
-          value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Saturday,
-          start: 5400,
-          end: 7200,
+          end: 7500,
           value: true
         },
         {

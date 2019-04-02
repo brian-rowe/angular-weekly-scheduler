@@ -120,6 +120,10 @@ class WeeklySchedulerController implements angular.IController {
     if (this.config.fillEmptyWithDefault) {
       for (let item of items) {
         item.purgeDefaultSchedules();
+
+        if(this.config.nullEnds) {
+          item.forceNullEnds();
+        }
       }
     }
 
