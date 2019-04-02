@@ -69,6 +69,8 @@ declare namespace br.weeklyScheduler {
         editSlot?: (schedule: IWeeklySchedulerRange<T>) => angular.IPromise<IWeeklySchedulerRange<T>>;
         /** Whether to fill empty spaces with the default value */
         fillEmptyWithDefault?: boolean;
+        /** If this is defined, a null-ended time slot will be assigned its start + this value when it is saved */
+        fillNullEnds?: number;
         /** If this is true, ALL slots in the calendar must be filled in order for it to be valid */
         fullCalendar?: boolean;
         /** If this is defined, a time slot will not be able to be more than this many minutes long */

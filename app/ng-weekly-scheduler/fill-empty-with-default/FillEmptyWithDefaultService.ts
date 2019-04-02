@@ -120,7 +120,7 @@ class FillEmptyWithDefaultService {
     }
 
     private getNullEndValue(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return schedule.start + config.maxTimeSlot;
+        return schedule.start + config.fillNullEnds;
     }
 
     private getSortedSchedules(schedules: WeeklySchedulerRange<any>[]) {
@@ -140,7 +140,7 @@ class FillEmptyWithDefaultService {
     }
 
     private shouldFillNullEnd(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
-        return schedule.end === null && config.nullEnds && config.maxTimeSlot;
+        return schedule.end === null && config.nullEnds && config.fillNullEnds;
     }
 }
 

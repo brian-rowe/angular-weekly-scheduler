@@ -15,6 +15,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           },
           fillEmptyWithDefault: true,
           interval: 60 * 15,
+          fillNullEnds: 1800,
           maxTimeSlot: 3600,
           minimumSeparation: 300,
           onChange: (isValid) => {

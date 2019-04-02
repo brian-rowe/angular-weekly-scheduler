@@ -20,6 +20,7 @@ describe('fillEmptyWithDefault service', () => {
         let config = {
             createItem: createItem,
             defaultValue: false,
+            fillNullEnds: 0,
             maxValue: 86400,
             hourCount: 24,
             intervalCount: 96,
@@ -88,21 +89,23 @@ describe('fillEmptyWithDefault service', () => {
                 });
 
                 describe('that has a null end', () => {
-                    it('and a maxTimeSlot value', () => {
-                        config.maxTimeSlot = 7200;
-                        config.nullEnds = true;
+                    it('and a fillNullEnds value', () => {
+                        let testConfig = angular.copy(config);
 
-                        let item = $itemFactory.createItem(config, 0, [
+                        testConfig.fillNullEnds = 7200;
+                        testConfig.nullEnds = true;
+
+                        let item = $itemFactory.createItem(testConfig, 0, [
                             { day:0, start: 300, end: null, value: true }
                         ]);
 
-                        let expectedResult = $itemFactory.createItem(config, 0, [
+                        let expectedResult = $itemFactory.createItem(testConfig, 0, [
                             { day: 0, start: 0, end: 300, value: false },
                             { day: 0, start: 300, end: 7500, value: true },
                             { day: 0, start: 7500, end: 0, value: false }
                         ]);
 
-                        let actualResult = $service.fill(item, config);
+                        let actualResult = $service.fill(item, testConfig);
                         
                         expect(angular.equals(actualResult, expectedResult.schedules)).toBeTruthy();
                     });
