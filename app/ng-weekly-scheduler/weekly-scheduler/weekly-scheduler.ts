@@ -99,9 +99,9 @@ class WeeklySchedulerController implements angular.IController {
   private buildItems(items: WeeklySchedulerItem<any>[]) {
     this.items = this.missingDaysService.fillItems(this.config, items);
 
-    this.items.forEach(item => item.mergeOverlaps());
-
     this.items = this.purgeItems(this.items);
+
+    this.items.forEach(item => item.mergeOverlaps());
 
     // keep a reference on the adapter so we can pull it out later
     this.adapter.items = this.items;
