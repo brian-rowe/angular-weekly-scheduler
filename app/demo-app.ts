@@ -35,9 +35,21 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
       $scope.adapter = new DemoAdapter([
         {
           day: br.weeklyScheduler.Days.Saturday,
+          start: 0,
+          end: 3600,
+          value: false
+        },
+        {
+          day: br.weeklyScheduler.Days.Saturday,
           start: 3600,
           end: null,
           value: true
+        },
+        {
+          day: br.weeklyScheduler.Days.Saturday,
+          start: 7200,
+          end: 86400,
+          value: false
         }
       ]);
     }]);
