@@ -20,10 +20,12 @@ describe('fillEmptyWithDefault service', () => {
         let config = {
             createItem: createItem,
             defaultValue: false,
-            maxValue: 1440,
+            maxValue: 86400,
             hourCount: 24,
-            intervalCount: 96
-        }
+            intervalCount: 96,
+            maxTimeSlot: 7200,
+            nullEnds: false
+        };
 
         describe('should work when', () => {
             it('there are no starting schedules', () => {
@@ -83,6 +85,27 @@ describe('fillEmptyWithDefault service', () => {
                     let actualResult = $service.fill(item, config);
         
                     expect(angular.equals(actualResult, expectedResult.schedules)).toBeTruthy(); 
+                });
+
+                describe('that has a null end', () => {
+                    it('and a maxTimeSlot value', () => {
+                        config.maxTimeSlot = 7200;
+                        config.nullEnds = true;
+
+                        let item = $itemFactory.createItem(config, 0, [
+                            { day:0, start: 300, end: null, value: true }
+                        ]);
+
+                        let expectedResult = $itemFactory.createItem(config, 0, [
+                            { day: 0, start: 0, end: 300, value: false },
+                            { day: 0, start: 300, end: 7500, value: true },
+                            { day: 0, start: 7500, end: 0, value: false }
+                        ]);
+
+                        let actualResult = $service.fill(item, config);
+                        
+                        expect(angular.equals(actualResult, expectedResult.schedules)).toBeTruthy();
+                    });
                 });
             });
 

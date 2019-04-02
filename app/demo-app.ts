@@ -15,6 +15,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           },
           fillEmptyWithDefault: true,
           interval: 60 * 15,
+          maxTimeSlot: 3600,
           minimumSeparation: 300,
           onChange: (isValid) => {
           },
@@ -23,6 +24,8 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           },
           saveScheduler: () => {
             $scope.result = $scope.adapter.getSnapshot();
+
+            return $q.when(true);
           }
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }

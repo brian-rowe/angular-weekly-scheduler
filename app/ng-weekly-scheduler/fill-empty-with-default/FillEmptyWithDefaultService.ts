@@ -52,6 +52,10 @@ class FillEmptyWithDefaultService {
     }
 
     private getFilledSchedulesForSingleSchedule(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        if (this.shouldFillNullEnd(schedule, config)) {
+            schedule.end = this.getNullEndValue(schedule, config);
+        }
+
         let schedules = [schedule];
 
         if (!this.scheduleTouchesStart(schedule, config)) {
@@ -115,6 +119,10 @@ class FillEmptyWithDefaultService {
         });
     }
 
+    private getNullEndValue(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return schedule.start + config.maxTimeSlot;
+    }
+
     private getSortedSchedules(schedules: WeeklySchedulerRange<any>[]) {
         return schedules.sort((a, b) => a.start - b.start);
     }
@@ -129,6 +137,10 @@ class FillEmptyWithDefaultService {
     
     private scheduleTouchesEnd(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
         return schedule.end === this.endAdjusterService.adjustEndForModel(config, config.maxValue);
+    }
+
+    private shouldFillNullEnd(schedule: WeeklySchedulerRange<any>, config: IWeeklySchedulerConfig<any>) {
+        return schedule.end === null && config.nullEnds && config.maxTimeSlot;
     }
 }
 
