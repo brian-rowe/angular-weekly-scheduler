@@ -253,6 +253,8 @@ class MultiSliderController implements angular.IComponentController {
     if (this.item.canEdit()) {
       schedule.$isEditing = true;
 
+      let originalSchedule = angular.copy(schedule);
+
       this.config.editSlot(schedule).then((newSchedule) => {
         let range = this.rangeFactory.createRange(this.config, newSchedule);
 
@@ -267,7 +269,9 @@ class MultiSliderController implements angular.IComponentController {
           // This is so that edits that don't trigger merges still trigger onChange,
           // but edits that do trigger merges don't trigger it twice
           if (angular.equals(premergeSchedule, range)) {
-            schedule.update(range);
+            // The 'schedule' variable has already been updated with the correct values.
+            // The range should be applied as an update to the originalSchedule so that onChange is triggered if necessary
+            originalSchedule.update(range);
           }
         }
 
