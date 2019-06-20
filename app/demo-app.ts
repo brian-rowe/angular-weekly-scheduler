@@ -11,10 +11,11 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           defaultValue: false,
           editSlot: function (schedule) {
             schedule.start += 60;
+            schedule.value = true;
             return $q.when(schedule);
           },
           fillEmptyWithDefault: true,
-          interval: 60 * 15,
+          interval: 60,
           fillNullEnds: 1800,
           maxTimeSlot: 3600,
           minimumSeparation: 300,
