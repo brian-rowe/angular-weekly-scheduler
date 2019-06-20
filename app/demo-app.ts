@@ -10,7 +10,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           },
           defaultValue: false,
           editSlot: function (schedule) {
-            schedule.$isDeleting = true;
+            schedule.start += 60;
             return $q.when(schedule);
           },
           fillEmptyWithDefault: true,
@@ -19,6 +19,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
           maxTimeSlot: 3600,
           minimumSeparation: 300,
           onChange: (isValid) => {
+            console.log("changed!");
           },
           restrictionExplanations: {
             maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
@@ -31,26 +32,12 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
         } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
       }
 
-      $scope.model.options.nullEnds = true;
-
       $scope.adapter = new DemoAdapter([
         {
           day: br.weeklyScheduler.Days.Saturday,
-          start: 0,
-          end: 3600,
-          value: false
-        },
-        {
-          day: br.weeklyScheduler.Days.Saturday,
           start: 3600,
-          end: 7500,
+          end: 7200,
           value: true
-        },
-        {
-          day: br.weeklyScheduler.Days.Saturday,
-          start: 7200,
-          end: 0,
-          value: false
         }
       ]);
     }]);
