@@ -1,16 +1,30 @@
 /// <reference types="angular" />
-declare namespace br.weeklyScheduler {
+declare module "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter" {
     /**
      * Implement this on a client and then pass it in to the component.
      */
-    interface IWeeklySchedulerAdapter<TCustom, TValue> {
+    export interface IWeeklySchedulerAdapter<TCustom, TValue> {
         customModelToWeeklySchedulerRange(custom: TCustom): br.weeklyScheduler.IWeeklySchedulerRange<TValue>;
         /** Transform the data held within the component to the format you need it outside of the component. */
         getSnapshot(): TCustom[];
         /** This just needs to be defined in the class, we'll set it internally */
-        items: IWeeklySchedulerItem<TValue>[];
+        items: br.weeklyScheduler.IWeeklySchedulerItem<TValue>[];
         initialData: TCustom[];
     }
+}
+declare module "demo-app" {
+}
+declare module "ng-weekly-scheduler/index" {
+    import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter";
+    export namespace weeklyScheduler {
+        type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
+    }
+}
+declare module "ng-weekly-scheduler/adapter/AdapterService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler/weekly-scheduler" {
+}
+declare module "ng-weekly-scheduler/hourly-grid/HourlyGridDirective" {
 }
 declare namespace br.weeklyScheduler {
     interface InvalidMessages {
@@ -34,6 +48,8 @@ declare namespace br.weeklyScheduler {
         nullEnds: string;
         scheduleCount: (options: ScheduleCountOptions) => string;
     }
+}
+declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent" {
 }
 declare namespace br.weeklyScheduler {
     /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */

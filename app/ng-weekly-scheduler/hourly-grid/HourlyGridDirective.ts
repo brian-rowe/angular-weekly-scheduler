@@ -1,3 +1,6 @@
+import * as angular from 'angular';
+import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
+
 /** @internal */
 class HourlyGridDirective implements angular.IDirective {
     static $name = 'brHourlyGrid';

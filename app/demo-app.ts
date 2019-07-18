@@ -1,3 +1,6 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
+
 angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
   .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
     function ($q: angular.IQService, $scope, $timeout, $log, $mdDialog) {
@@ -58,7 +61,7 @@ class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
 
 /** The data is already in an acceptable format for the demo so just pass it through */
 /** @internal */
-class DemoAdapter implements br.weeklyScheduler.IWeeklySchedulerAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
+class DemoAdapter implements IWeeklySchedulerAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
   public items: DemoItem[] = [];
 
   constructor(

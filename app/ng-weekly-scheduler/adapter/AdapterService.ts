@@ -1,5 +1,8 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
+
 /** @internal */
-class AdapterService {
+export class AdapterService {
     static $name = 'brWeeklySchedulerAdapterService';
 
     static $inject = [
@@ -13,7 +16,7 @@ class AdapterService {
     ) {
     }
 
-    getItemsFromAdapter(config: IWeeklySchedulerConfig<any>, adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>) {
+    getItemsFromAdapter(config: IWeeklySchedulerConfig<any>, adapter: IWeeklySchedulerAdapter<any, any>) {
         let result = [];
 
         if (adapter) {

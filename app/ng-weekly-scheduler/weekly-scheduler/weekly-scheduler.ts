@@ -1,5 +1,9 @@
+import * as angular from 'angular';
+import { AdapterService } from '../adapter/AdapterService';
+import { IWeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
+
 /** @internal */
-class WeeklySchedulerController implements angular.IController {
+export class WeeklySchedulerController implements angular.IController {
   static $controllerAs = 'schedulerCtrl';
   static $name = 'brWeeklySchedulerController';
 
@@ -28,7 +32,7 @@ class WeeklySchedulerController implements angular.IController {
 
   private _originalItems: WeeklySchedulerItem<any>[];
 
-  private adapter: br.weeklyScheduler.IWeeklySchedulerAdapter<any, any>;
+  private adapter: IWeeklySchedulerAdapter<any, any>;
 
   public invalidMessage: string = '';
 
