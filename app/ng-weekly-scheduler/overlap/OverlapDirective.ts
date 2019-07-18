@@ -1,3 +1,7 @@
+import * as angular from 'angular';
+import { OverlapValidatorService } from '../schedule-validator/OverlapValidatorService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+
 /** @internal */
 class OverlapDirective implements angular.IDirective {
     static $name = 'brOverlap';

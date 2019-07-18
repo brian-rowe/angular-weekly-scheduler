@@ -1,5 +1,10 @@
+import * as angular from 'angular';
+import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+
 /** @internal */
-class WeeklySchedulerRangeFactory {
+export class WeeklySchedulerRangeFactory {
     static $name = 'brWeeklySchedulerRangeFactory';
 
     static $inject = [

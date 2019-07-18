@@ -1,6 +1,10 @@
+import * as angular from 'angular';
+import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+
 /** Provides common functionality for a schedule -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */
-class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRange<T> {
+export class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRange<T> {
     $class: string;
     $isActive: boolean;
     $isDeleting: boolean;

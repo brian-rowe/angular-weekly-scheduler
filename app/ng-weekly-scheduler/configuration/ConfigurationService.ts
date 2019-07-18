@@ -1,5 +1,8 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
+
 /** @internal */
-class ConfigurationService {
+export class ConfigurationService {
     static $name = 'brWeeklySchedulerConfigurationService';
 
     static $inject = [
@@ -11,7 +14,7 @@ class ConfigurationService {
     ) {
     }
 
-    public getConfiguration(options: br.weeklyScheduler.IWeeklySchedulerOptions<any>) {
+    public getConfiguration(options: IWeeklySchedulerOptions<any>) {
         var interval = options.interval || 900; // seconds
         var intervalCount = this.timeConstants.SECONDS_IN_DAY / interval;
 
@@ -29,7 +32,7 @@ class ConfigurationService {
         return result;
     }
 
-    private getDefaultOptions(): br.weeklyScheduler.IWeeklySchedulerOptions<any> {
+    private getDefaultOptions(): IWeeklySchedulerOptions<any> {
         return {
             createItem: (day, schedules) => { return { day: day, schedules: schedules } },
             monoSchedule: false,

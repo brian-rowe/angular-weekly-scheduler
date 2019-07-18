@@ -1,5 +1,6 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
+import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
 
 angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
   .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
@@ -33,7 +34,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 
             return $q.when(true);
           }
-        } as br.weeklyScheduler.IWeeklySchedulerOptions<any>
+        } as IWeeklySchedulerOptions<any>
       }
 
       $scope.adapter = new DemoAdapter([

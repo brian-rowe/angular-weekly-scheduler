@@ -1,5 +1,8 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+
 /** @internal */
-class MinimumSeparationValidatorService implements ValidatorService {
+export class MinimumSeparationValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMinimumSeparationValidatorService';
 
     get error() {

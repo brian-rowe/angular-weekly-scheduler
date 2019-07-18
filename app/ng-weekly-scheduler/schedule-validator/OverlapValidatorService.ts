@@ -1,5 +1,9 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { OverlapService } from '../overlap/OverlapService';
+
 /** @internal */
-class OverlapValidatorService implements ValidatorService {
+export class OverlapValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerOverlapValidatorService';
 
     static $inject = [

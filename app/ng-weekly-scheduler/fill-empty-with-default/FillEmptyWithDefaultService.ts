@@ -1,6 +1,13 @@
+import * as angular from 'angular';
+import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
+
 /** When using the 'fillEmptyWithDefault' option, this service will be used to construct the correct calendar for server submission */
 /** @internal */
-class FillEmptyWithDefaultService {
+export class FillEmptyWithDefaultService {
     static $name = 'brWeeklySchedulerFillEmptyWithDefaultService';
 
     static $inject = [

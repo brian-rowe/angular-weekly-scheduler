@@ -1,5 +1,13 @@
+import * as angular from 'angular';
+import { FillEmptyWithDefaultService } from '../fill-empty-with-default/FillEmptyWithDefaultService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { OverlapService } from '../overlap/OverlapService';
+import { PurgeDefaultService } from '../purge-default/PurgeDefaultService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
+
 /** @internal */
-class WeeklySchedulerItemFactory {
+export class WeeklySchedulerItemFactory {
     static $name = 'brWeeklySchedulerItemFactory';
 
     static $inject = [

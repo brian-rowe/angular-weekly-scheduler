@@ -1,5 +1,12 @@
+import * as angular from 'angular';
+import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
+
 /** @internal */
-class MultiSliderController implements angular.IComponentController {
+export class MultiSliderController implements angular.IComponentController {
   static $name = 'brMultiSliderController';
   static $controllerAs = 'multiSliderCtrl';
 

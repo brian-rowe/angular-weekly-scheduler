@@ -1,3 +1,7 @@
+import * as angular from 'angular';
+import { FullCalendarValidatorService } from '../schedule-validator/FullCalendarValidatorService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+
 /** @internal */
 class FullCalendarDirective implements angular.IDirective {
     static $name = 'brFullCalendar';

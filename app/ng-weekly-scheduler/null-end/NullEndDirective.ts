@@ -1,3 +1,7 @@
+import * as angular from 'angular';
+import { NullEndScheduleValidatorService } from '../schedule-validator/NullEndValidatorService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+
 /** @internal */
 class NullEndDirective implements angular.IDirective {
     static $name = 'brNullEnd';

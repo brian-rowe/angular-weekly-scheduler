@@ -12,77 +12,18 @@ declare module "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter" {
         initialData: TCustom[];
     }
 }
-declare module "demo-app" {
-}
-declare module "ng-weekly-scheduler/index" {
-    import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter";
-    export namespace weeklyScheduler {
-        type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
-    }
-}
-declare module "ng-weekly-scheduler/adapter/AdapterService" {
-}
-declare module "ng-weekly-scheduler/weekly-scheduler/weekly-scheduler" {
-}
-declare module "ng-weekly-scheduler/hourly-grid/HourlyGridDirective" {
-}
-declare namespace br.weeklyScheduler {
-    interface InvalidMessages {
-        fullCalendarFillEmptyWithDefault: string;
-        fillEmptyWithdefaultDefaultValue: string;
-        generic: string;
-    }
-}
-declare namespace br.weeklyScheduler {
-    interface IResizeServiceProvider extends angular.IServiceProvider {
-        setCustomResizeEvents(events: string[]): any;
-    }
-}
-declare namespace br.weeklyScheduler {
-    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
-    interface RestrictionExplanations {
-        fullCalendar: string;
-        maxTimeSlot: (value: string) => string;
-        minimumSeparation: (value: string) => string;
-        monoSchedule: string;
-        nullEnds: string;
-        scheduleCount: (options: ScheduleCountOptions) => string;
-    }
-}
-declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent" {
-}
-declare namespace br.weeklyScheduler {
-    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
-    interface ScheduleCountOptions {
-        /** The number of schedules allowed on each item. Null for no max */
-        count: number;
-        /** Whether you must have exactly that many schedules, or if "up to" is allowed */
-        exact: boolean;
-    }
-}
-declare namespace br.weeklyScheduler {
-    const enum Days {
-        Monday = 0,
-        Tuesday = 1,
-        Wednesday = 2,
-        Thursday = 3,
-        Friday = 4,
-        Saturday = 5,
-        Sunday = 6,
-    }
-}
-declare namespace br.weeklyScheduler {
-    interface IWeeklySchedulerOptions<T> {
+declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions" {
+    export interface IWeeklySchedulerOptions<T> {
         /** If this is true schedules will be allowed & required to have no set end time */
         nullEnds?: boolean;
         /** These classes will be applied directly to the buttons */
         buttonClasses?: string[];
         /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
-        createItem: (day: br.weeklyScheduler.Days, schedules: IWeeklySchedulerRange<T>[]) => br.weeklyScheduler.IWeeklySchedulerItem<T>;
+        createItem: (day: br.weeklyScheduler.Days, schedules: br.weeklyScheduler.IWeeklySchedulerRange<T>[]) => br.weeklyScheduler.IWeeklySchedulerItem<T>;
         /** defaultValue should be assigned per set of options, not per item. Do not assign for no default */
         defaultValue?: T;
         /** A function to call when an item is clicked in order to bring up an editor for it */
-        editSlot?: (schedule: IWeeklySchedulerRange<T>) => angular.IPromise<IWeeklySchedulerRange<T>>;
+        editSlot?: (schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) => angular.IPromise<br.weeklyScheduler.IWeeklySchedulerRange<T>>;
         /** Whether to fill empty spaces with the default value */
         fillEmptyWithDefault?: boolean;
         /** If this is defined, a null-ended time slot will be assigned its start + this value when it is saved */
@@ -104,11 +45,130 @@ declare namespace br.weeklyScheduler {
         /** The number of seconds each division of the calendar should be -- values will snap to this */
         interval?: number;
         /** Overrides for restriction explanations, if necessary */
-        restrictionExplanations?: RestrictionExplanations;
+        restrictionExplanations?: br.weeklyScheduler.RestrictionExplanations;
         /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
         saveScheduler?: () => angular.IPromise<any>;
         /** Overrides for schedule count options, if necessary */
-        scheduleCountOptions?: ScheduleCountOptions;
+        scheduleCountOptions?: br.weeklyScheduler.ScheduleCountOptions;
+    }
+}
+declare module "demo-app" {
+}
+declare module "ng-weekly-scheduler/index" {
+    import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter";
+    import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions";
+    export namespace weeklyScheduler {
+        type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
+        type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
+    }
+}
+declare module "ng-weekly-scheduler/end-adjuster/EndAdjusterService" {
+}
+declare module "ng-weekly-scheduler/overlap/OverlapService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRange" {
+}
+declare module "ng-weekly-scheduler/purge-default/PurgeDefaultService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItem" {
+}
+declare module "ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory" {
+}
+declare module "ng-weekly-scheduler/adapter/AdapterService" {
+}
+declare module "ng-weekly-scheduler/configuration/ConfigurationService" {
+}
+declare module "ng-weekly-scheduler/conflicting-options/ConflictingOptionsService" {
+}
+declare module "ng-weekly-scheduler/drag/DragService" {
+}
+declare module "ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService" {
+}
+declare module "ng-weekly-scheduler/full-calendar/FullCalendarDirective" {
+}
+declare module "ng-weekly-scheduler/multislider/multislider" {
+}
+declare module "ng-weekly-scheduler/ghost-slot/ghost-slot" {
+}
+declare module "ng-weekly-scheduler/last-ghost-day/LastGhostDayService" {
+}
+declare module "ng-weekly-scheduler/missing-days/MissingDaysService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler/weekly-scheduler" {
+}
+declare module "ng-weekly-scheduler/hourly-grid/HourlyGridDirective" {
+}
+declare namespace br.weeklyScheduler {
+    interface InvalidMessages {
+        fullCalendarFillEmptyWithDefault: string;
+        fillEmptyWithdefaultDefaultValue: string;
+        generic: string;
+    }
+}
+declare module "ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService" {
+}
+declare module "ng-weekly-scheduler/max-time-slot/MaxTimeSlotDirective" {
+}
+declare module "ng-weekly-scheduler/schedule-validator/MinimumSeparationValidatorService" {
+}
+declare module "ng-weekly-scheduler/minimum-separation/MinimumSeparationDirective" {
+}
+declare module "ng-weekly-scheduler/schedule-validator/MonoScheduleValidatorService" {
+}
+declare module "ng-weekly-scheduler/mono-schedule/MonoScheduleDirective" {
+}
+declare module "ng-weekly-scheduler/schedule-validator/NullEndValidatorService" {
+}
+declare module "ng-weekly-scheduler/null-end/NullEndDirective" {
+}
+declare module "ng-weekly-scheduler/schedule-validator/OverlapValidatorService" {
+}
+declare module "ng-weekly-scheduler/overlap/OverlapDirective" {
+}
+declare namespace br.weeklyScheduler {
+    interface IResizeServiceProvider extends angular.IServiceProvider {
+        setCustomResizeEvents(events: string[]): any;
+    }
+}
+declare namespace br.weeklyScheduler {
+    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
+    interface RestrictionExplanations {
+        fullCalendar: string;
+        maxTimeSlot: (value: string) => string;
+        minimumSeparation: (value: string) => string;
+        monoSchedule: string;
+        nullEnds: string;
+        scheduleCount: (options: ScheduleCountOptions) => string;
+    }
+}
+declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent" {
+}
+declare module "ng-weekly-scheduler/schedule-validator/ScheduleCountValidatorService" {
+}
+declare module "ng-weekly-scheduler/schedule-count/ScheduleCountDirective" {
+}
+declare namespace br.weeklyScheduler {
+    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
+    interface ScheduleCountOptions {
+        /** The number of schedules allowed on each item. Null for no max */
+        count: number;
+        /** Whether you must have exactly that many schedules, or if "up to" is allowed */
+        exact: boolean;
+    }
+}
+declare namespace br.weeklyScheduler {
+    const enum Days {
+        Monday = 0,
+        Tuesday = 1,
+        Wednesday = 2,
+        Thursday = 3,
+        Friday = 4,
+        Saturday = 5,
+        Sunday = 6,
     }
 }
 declare namespace br.weeklyScheduler {
@@ -135,4 +195,6 @@ declare namespace br.weeklyScheduler {
         value: T;
         editable?: boolean;
     }
+}
+declare module "ng-weekly-scheduler/weekly-slot/weekly-slot" {
 }

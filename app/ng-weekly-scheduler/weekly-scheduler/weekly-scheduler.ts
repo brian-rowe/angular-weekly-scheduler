@@ -1,6 +1,14 @@
 import * as angular from 'angular';
 import { AdapterService } from '../adapter/AdapterService';
+import { ConfigurationService } from '../configuration/ConfigurationService';
+import { ConflictingOptionsService } from '../conflicting-options/ConflictingOptionsService';
+import { LastGhostDayService } from '../last-ghost-day/LastGhostDayService';
+import { MissingDaysService } from '../missing-days/MissingDaysService';
 import { IWeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 
 /** @internal */
 export class WeeklySchedulerController implements angular.IController {
@@ -47,7 +55,7 @@ export class WeeklySchedulerController implements angular.IController {
 
   public config: IWeeklySchedulerConfig<any>;
   public items: WeeklySchedulerItem<any>[];
-  public options: br.weeklyScheduler.IWeeklySchedulerOptions<any>;
+  public options: IWeeklySchedulerOptions<any>;
 
   $onInit() {
     this.config = this.configurationService.getConfiguration(this.options);

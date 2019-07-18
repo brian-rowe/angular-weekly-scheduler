@@ -1,5 +1,8 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+
 /** @internal */
-class ScheduleCountValidatorService implements ValidatorService {
+export class ScheduleCountValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerScheduleCountValidatorService';
 
     get error() {

@@ -1,3 +1,7 @@
+import * as angular from 'angular';
+import { MaxTimeSlotValidatorService } from '../schedule-validator/MaxTimeSlotValidatorService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+
 /** @internal */
 class MaxTimeSlotDirective implements angular.IDirective {
     static $name = 'brMaxTimeSlot';

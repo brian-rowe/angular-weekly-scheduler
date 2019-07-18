@@ -1,5 +1,9 @@
+import * as angular from 'angular';
+import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+
 /** @internal */
-class MaxTimeSlotValidatorService implements ValidatorService {
+export class MaxTimeSlotValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
 
     static $inject = ['brWeeklySchedulerEndAdjusterService'];

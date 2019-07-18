@@ -1,5 +1,8 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+
 /** @internal */
-class FullCalendarValidatorService implements ValidatorService {
+export class FullCalendarValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerFullCalendarValidatorService';
 
     get error() {

@@ -1,3 +1,9 @@
+import * as angular from 'angular';
+import { DragService } from '../drag/DragService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+
 /** @internal */
 class WeeklySlotController implements angular.IComponentController {
   static $name = 'weeklySlotController';

@@ -1,5 +1,8 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+
 /** @internal */
-class EndAdjusterService {
+export class EndAdjusterService {
     static $name = 'brWeeklySchedulerEndAdjusterService';
 
     public adjustEndForModel(config: IWeeklySchedulerConfig<any>, end: number) {

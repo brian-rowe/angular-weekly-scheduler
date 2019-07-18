@@ -1,3 +1,7 @@
+import * as angular from 'angular';
+import { ScheduleCountValidatorService } from '../schedule-validator/ScheduleCountValidatorService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+
 /** @internal */
 class ScheduleCountDirective implements angular.IDirective {
     static $name = 'brScheduleCount';
@@ -31,4 +35,3 @@ class ScheduleCountDirective implements angular.IDirective {
 angular
     .module('br.weeklyScheduler')
     .directive(ScheduleCountDirective.$name, ScheduleCountDirective.Factory());
-

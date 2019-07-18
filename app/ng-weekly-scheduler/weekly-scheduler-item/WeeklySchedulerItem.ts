@@ -1,6 +1,14 @@
+import * as angular from 'angular';
+import { FillEmptyWithDefaultService } from '../fill-empty-with-default/FillEmptyWithDefaultService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { OverlapService } from '../overlap/OverlapService';
+import { PurgeDefaultService } from '../purge-default/PurgeDefaultService';
+import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
+
 /** Provides common functionality for an item -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */
-class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
+export class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     $isGhostOrigin: boolean;
     $renderGhost: boolean;
     day: br.weeklyScheduler.Days;

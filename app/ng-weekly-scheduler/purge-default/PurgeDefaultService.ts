@@ -1,6 +1,10 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+
 /** When using the 'fillEmptyWithDefault' option, this service will be used to delete the default schedules for correct display on the calendar */
 /** @internal */
-class PurgeDefaultService {
+export class PurgeDefaultService {
     static $name = 'brWeeklySchedulerPurgeDefaultService';
 
     purge(schedules: WeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): WeeklySchedulerRange<any>[] {

@@ -1,3 +1,7 @@
+import * as angular from 'angular';
+import { MinimumSeparationValidatorService } from '../schedule-validator/MinimumSeparationValidatorService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+
 /** @internal */
 class MinimumSeparationDirective implements angular.IDirective {
     static $name = 'brMinimumSeparation';

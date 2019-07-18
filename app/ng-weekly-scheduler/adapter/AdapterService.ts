@@ -1,5 +1,7 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { WeeklySchedulerItemFactory } from '../weekly-scheduler-item/WeeklySchedulerItemFactory';
 
 /** @internal */
 export class AdapterService {

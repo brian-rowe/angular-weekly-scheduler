@@ -1,3 +1,7 @@
+import * as angular from 'angular';
+import { MonoScheduleValidatorService } from '../schedule-validator/MonoScheduleValidatorService';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+
 /** @internal */
 class MonoScheduleDirective implements angular.IDirective {
     static $name = 'brMonoSchedule';

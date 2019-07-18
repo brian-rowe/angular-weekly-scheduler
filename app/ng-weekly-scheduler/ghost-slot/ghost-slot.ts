@@ -1,3 +1,6 @@
+import * as angular from 'angular';
+import { MultiSliderController } from '../multislider/multislider';
+
 /** @internal */
 class GhostSlotController implements angular.IComponentController {
     static $name = 'brGhostSlotController';

@@ -1,5 +1,10 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+import { WeeklySchedulerItemFactory } from '../weekly-scheduler-item/WeeklySchedulerItemFactory';
+
 /** @internal */
-class MissingDaysService {
+export class MissingDaysService {
     static $name = 'brWeeklySchedulerMissingDaysService';
 
     static $inject = [
