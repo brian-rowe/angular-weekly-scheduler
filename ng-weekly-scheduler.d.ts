@@ -159,13 +159,6 @@ declare module "ng-weekly-scheduler/weekly-scheduler/weekly-scheduler" {
 }
 declare module "ng-weekly-scheduler/hourly-grid/HourlyGridDirective" {
 }
-declare namespace br.weeklyScheduler {
-    interface InvalidMessages {
-        fullCalendarFillEmptyWithDefault: string;
-        fillEmptyWithdefaultDefaultValue: string;
-        generic: string;
-    }
-}
 declare module "ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService" {
 }
 declare module "ng-weekly-scheduler/max-time-slot/MaxTimeSlotDirective" {
