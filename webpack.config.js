@@ -25,7 +25,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: ['html-loader']
+                use: ['html-loader?exportAsEs6Default']
             },
             {
                 test: /\.less$/,
@@ -35,7 +35,7 @@ module.exports = {
     },
     plugins: [htmlPlugin],
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js', '.html']
     },
     output: {
         filename: isProduction ? '[name].bundle-[hash].js' : '[name].bundle.js',

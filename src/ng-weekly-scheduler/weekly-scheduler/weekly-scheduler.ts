@@ -9,6 +9,7 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+import template from 'html-loader!./ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
 
 /** @internal */
 export class WeeklySchedulerController implements angular.IController {
@@ -217,7 +218,7 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
     formController: 'form'
   };
 
-  templateUrl = 'ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html';
+  template = template;
 }
 
 angular.module('br.weeklyScheduler')
