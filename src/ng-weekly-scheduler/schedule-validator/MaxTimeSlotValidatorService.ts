@@ -1,6 +1,8 @@
 import * as angular from 'angular';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+import { ValidatorService } from '../schedule-validator/ValidatorService';
 
 /** @internal */
 export class MaxTimeSlotValidatorService implements ValidatorService {
@@ -17,7 +19,7 @@ export class MaxTimeSlotValidatorService implements ValidatorService {
         return ValidationError.MaxTimeSlot;
     }
 
-    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         let maxTimeSlot = config.maxTimeSlot;
 
         if (!maxTimeSlot) {

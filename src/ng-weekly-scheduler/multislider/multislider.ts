@@ -1,6 +1,7 @@
 import * as angular from 'angular';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
@@ -145,7 +146,7 @@ export class MultiSliderController implements angular.IComponentController {
     return schedule;
   }
 
-  private openEditorForAdd(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>): angular.IPromise<br.weeklyScheduler.IWeeklySchedulerRange<any>> {
+  private openEditorForAdd(schedule: IWeeklySchedulerRange<any>): angular.IPromise<IWeeklySchedulerRange<any>> {
     if (this.item.canEdit()) {
       return this.config.editSlot(schedule);
     } else {
@@ -322,7 +323,7 @@ export class MultiSliderController implements angular.IComponentController {
     return this.element.parentElement.querySelector(`[rel='${val}']`);
   }
 
-  private shouldDelete(schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+  private shouldDelete(schedule: IWeeklySchedulerRange<any>) {
     if (schedule.$isDeleting) {
       return true;
     }

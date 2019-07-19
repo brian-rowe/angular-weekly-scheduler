@@ -1,6 +1,7 @@
 import * as angular from 'angular';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 
 /** @internal */
 export class OverlapService {
@@ -15,7 +16,7 @@ export class OverlapService {
     ) {
     }
 
-    getOverlapState(config: IWeeklySchedulerConfig<any>, current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>): OverlapState {
+    getOverlapState(config: IWeeklySchedulerConfig<any>, current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>): OverlapState {
         let currentStart = current.start;
         let currentEnd = this.endAdjusterService.adjustEndForView(config, current.end);
 

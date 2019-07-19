@@ -1,5 +1,7 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+import { ValidatorService } from '../schedule-validator/ValidatorService'
 
 /** @internal */
 export class MinimumSeparationValidatorService implements ValidatorService {
@@ -9,7 +11,7 @@ export class MinimumSeparationValidatorService implements ValidatorService {
         return ValidationError.MinimumSeparation;
     }
 
-    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (!config.minimumSeparation) {
             return true;
         }

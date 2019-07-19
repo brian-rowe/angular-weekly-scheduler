@@ -1,3 +1,6 @@
+import { IWeeklySchedulerItem } from '../weekly-scheduler-item/IWeeklySchedulerItem';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+
 export interface IWeeklySchedulerOptions<T> {
     /** If this is true schedules will be allowed & required to have no set end time */
     nullEnds?: boolean;
@@ -6,13 +9,13 @@ export interface IWeeklySchedulerOptions<T> {
     buttonClasses?: string[];
 
     /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
-    createItem: (day: br.weeklyScheduler.Days, schedules: br.weeklyScheduler.IWeeklySchedulerRange<T>[]) => br.weeklyScheduler.IWeeklySchedulerItem<T>;
+    createItem: (day: br.weeklyScheduler.Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
 
     /** defaultValue should be assigned per set of options, not per item. Do not assign for no default */
     defaultValue?: T;
 
     /** A function to call when an item is clicked in order to bring up an editor for it */
-    editSlot?: (schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) => angular.IPromise<br.weeklyScheduler.IWeeklySchedulerRange<T>>;
+    editSlot?: (schedule: IWeeklySchedulerRange<T>) => angular.IPromise<IWeeklySchedulerRange<T>>;
 
     /** Whether to fill empty spaces with the default value */
     fillEmptyWithDefault?: boolean;

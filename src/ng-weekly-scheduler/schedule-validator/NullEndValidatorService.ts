@@ -1,5 +1,7 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+import { ValidatorService } from '../schedule-validator/ValidatorService'
 
 /** @internal */
 export class NullEndScheduleValidatorService implements ValidatorService {
@@ -9,7 +11,7 @@ export class NullEndScheduleValidatorService implements ValidatorService {
         return ValidationError.NullEnd;
     }
 
-    validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (config.nullEnds) {
             return schedules.length <= 1 && schedules.every(schedule => schedule.end === null);
         } else {

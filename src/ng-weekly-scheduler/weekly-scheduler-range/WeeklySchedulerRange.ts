@@ -1,10 +1,12 @@
 import * as angular from 'angular';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from './IWeeklySchedulerRange';
+
 
 /** Provides common functionality for a schedule -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */
-export class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedulerRange<T> {
+export class WeeklySchedulerRange<T> implements IWeeklySchedulerRange<T> {
     $class: string;
     $isActive: boolean;
     $isDeleting: boolean;
@@ -19,7 +21,7 @@ export class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedu
 
     constructor(
         private config: IWeeklySchedulerConfig<T>,
-        schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>,
+        schedule: IWeeklySchedulerRange<T>,
         private endAdjusterService: EndAdjusterService
     ) {
         this.$class = schedule.$class;
@@ -45,7 +47,7 @@ export class WeeklySchedulerRange<T> implements br.weeklyScheduler.IWeeklySchedu
         return this.value === other.value;
     }
 
-    public update(updatedSchedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+    public update(updatedSchedule: IWeeklySchedulerRange<T>) {
         let updatedStart = this.updateStart(updatedSchedule.start);
         let updatedEnd = this.updateEnd(updatedSchedule.end);
 

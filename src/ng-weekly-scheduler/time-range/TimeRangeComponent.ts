@@ -1,3 +1,6 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+
 /** @internal */
 class TimeRangeComponent implements angular.IComponentOptions {
     static $name = 'brTimeRange';
@@ -23,7 +26,7 @@ class TimeRangeController implements angular.IComponentController {
     private hasStart: boolean;
     private hasEnd: boolean;
 
-    private schedule: br.weeklyScheduler.IWeeklySchedulerRange<any>;
+    private schedule: IWeeklySchedulerRange<any>;
 
     $onInit() {
         this.hasStart = angular.isDefined(this.schedule.start);

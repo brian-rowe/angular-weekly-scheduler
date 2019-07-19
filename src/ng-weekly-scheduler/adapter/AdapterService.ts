@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+import { GroupService } from '../group-by/GroupService';
 import { IWeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { WeeklySchedulerItemFactory } from '../weekly-scheduler-item/WeeklySchedulerItemFactory';

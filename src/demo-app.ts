@@ -1,6 +1,8 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
+import { IWeeklySchedulerItem } from './ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem';
 import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
+import { IWeeklySchedulerRange } from './ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange';
 
 angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
   .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
@@ -48,10 +50,10 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
     }]);
 
 /** @internal */
-class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
+class DemoItem implements IWeeklySchedulerItem<boolean> {
   constructor(
     public day: br.weeklyScheduler.Days,
-    public schedules: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[]
+    public schedules: IWeeklySchedulerRange<boolean>[]
   ) {
   }
 
@@ -62,11 +64,11 @@ class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
 
 /** The data is already in an acceptable format for the demo so just pass it through */
 /** @internal */
-class DemoAdapter implements IWeeklySchedulerAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
+class DemoAdapter implements IWeeklySchedulerAdapter<IWeeklySchedulerRange<boolean>, boolean> {
   public items: DemoItem[] = [];
 
   constructor(
-    public initialData: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[],
+    public initialData: IWeeklySchedulerRange<boolean>[],
   ) {
   }
 

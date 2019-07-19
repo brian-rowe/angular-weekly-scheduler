@@ -1,6 +1,8 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { OverlapService } from '../overlap/OverlapService';
+import { ValidatorService } from '../schedule-validator/ValidatorService'
 
 /** @internal */
 export class OverlapValidatorService implements ValidatorService {
@@ -19,7 +21,7 @@ export class OverlapValidatorService implements ValidatorService {
         return ValidationError.Overlap;
     }
 
-    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         // Compare two at a time until the end
         let len = schedules.length;
         let result = true;

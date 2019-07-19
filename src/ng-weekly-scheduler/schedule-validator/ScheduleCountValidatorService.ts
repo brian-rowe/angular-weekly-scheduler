@@ -1,5 +1,7 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+import { ValidatorService } from '../schedule-validator/ValidatorService'
 
 /** @internal */
 export class ScheduleCountValidatorService implements ValidatorService {
@@ -9,7 +11,7 @@ export class ScheduleCountValidatorService implements ValidatorService {
         return ValidationError.ScheduleCount;
     }
 
-    public validate(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    public validate(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         if (!config.scheduleCountOptions.count) {
             return true;    
         }
@@ -21,11 +23,11 @@ export class ScheduleCountValidatorService implements ValidatorService {
         }
     }
 
-    private validateExactCount(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    private validateExactCount(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         return schedules.length === config.scheduleCountOptions.count;
     }
 
-    private validateMaxCount(schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
+    private validateMaxCount(schedules: IWeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): boolean {
         return schedules.length <= config.scheduleCountOptions.count;
     }
 }

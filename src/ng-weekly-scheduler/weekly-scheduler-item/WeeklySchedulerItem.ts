@@ -1,6 +1,8 @@
 import * as angular from 'angular';
 import { FillEmptyWithDefaultService } from '../fill-empty-with-default/FillEmptyWithDefaultService';
+import { IInternalWeeklySchedulerItem } from '../weekly-scheduler-item/IInternalWeeklySchedulerItem';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { OverlapService } from '../overlap/OverlapService';
 import { PurgeDefaultService } from '../purge-default/PurgeDefaultService';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
@@ -30,7 +32,7 @@ export class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         this.schedules = item.schedules.map(schedule => rangeFactory.createRange(config, schedule));
     }
 
-    public addSchedule(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+    public addSchedule(schedule: IWeeklySchedulerRange<T>) {
         schedule.day = this.day;
         const range = this.rangeFactory.createRange(this.config, schedule);
         this.schedules.push(range);
@@ -38,7 +40,7 @@ export class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         return range;
     }
 
-    public addScheduleAndMerge(schedule: br.weeklyScheduler.IWeeklySchedulerRange<T>) {
+    public addScheduleAndMerge(schedule: IWeeklySchedulerRange<T>) {
         let range = this.addSchedule(schedule);
         this.mergeSchedule(range);
 
@@ -158,7 +160,7 @@ export class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
         }
     }
 
-    private handleNoOverlap(current: br.weeklyScheduler.IWeeklySchedulerRange<any>, other: br.weeklyScheduler.IWeeklySchedulerRange<any>) {
+    private handleNoOverlap(current: IWeeklySchedulerRange<any>, other: IWeeklySchedulerRange<any>) {
         // Do nothing
     }
 

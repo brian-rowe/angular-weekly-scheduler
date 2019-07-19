@@ -1,6 +1,7 @@
 import * as angular from 'angular';
 import { DragService } from '../drag/DragService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 
@@ -19,7 +20,7 @@ class WeeklySlotController implements angular.IComponentController {
   private config: IWeeklySchedulerConfig<any>;
   private ngModelCtrl: angular.INgModelController;
 
-  private editSchedule: (options: { schedule: br.weeklyScheduler.IWeeklySchedulerRange<any> }) => void;
+  private editSchedule: (options: { schedule: IWeeklySchedulerRange<any> }) => void;
   private getDelta: (options: { pixel: number }) => number;
 
   private item: WeeklySchedulerItem<any>;

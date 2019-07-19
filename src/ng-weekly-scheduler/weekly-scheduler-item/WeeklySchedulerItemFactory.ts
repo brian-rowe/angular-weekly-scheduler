@@ -1,6 +1,9 @@
 import * as angular from 'angular';
 import { FillEmptyWithDefaultService } from '../fill-empty-with-default/FillEmptyWithDefaultService';
+import { IInternalWeeklySchedulerItem } from '../weekly-scheduler-item/IInternalWeeklySchedulerItem';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerItem } from '../weekly-scheduler-item/IWeeklySchedulerItem';
+import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { OverlapService } from '../overlap/OverlapService';
 import { PurgeDefaultService } from '../purge-default/PurgeDefaultService';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
@@ -27,10 +30,10 @@ export class WeeklySchedulerItemFactory {
     ) {
     }
 
-    public createItem(config: IWeeklySchedulerConfig<any>, day: number, schedules: br.weeklyScheduler.IWeeklySchedulerRange<any>[]) {
+    public createItem(config: IWeeklySchedulerConfig<any>, day: number, schedules: IWeeklySchedulerRange<any>[]) {
         let result: IInternalWeeklySchedulerItem<any>;
 
-        let builder: br.weeklyScheduler.IWeeklySchedulerItem<any> = config.createItem(day, schedules);
+        let builder: IWeeklySchedulerItem<any> = config.createItem(day, schedules);
     
         result = angular.extend(builder, { label: this.dayMap[day] });
     
