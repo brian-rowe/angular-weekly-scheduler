@@ -104,7 +104,7 @@ gulp.task("incrementVersion", function () {
 
 gulp.task("server", function () {
     return gulp
-        .src(srcFolder)
+        .src(distFolder)
         .pipe(webserver({
             port: "8081",
             livereload: true,
