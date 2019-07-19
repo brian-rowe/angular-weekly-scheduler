@@ -9,7 +9,7 @@ Any overrides must be handled in your software.
 Run the demo @home with few steps (prerequisite git & node V0.10+ & npm installed):
 
 ```
- git clone https://github.com/brian-rowe/angular-weekly-scheduler.git && cd angular-weekly-scheduler
+ git clone https://github.com/rosie-rowe/angular-weekly-scheduler.git && cd angular-weekly-scheduler
  npm install
  npm install -g gulp-cli
 ```
@@ -20,7 +20,7 @@ Then run
 
 ## Install
 
-> yarn add https://github.com/brian-rowe/angular-weekly-scheduler
+> yarn add https://github.com/rosie-rowe/angular-weekly-scheduler
 
 Add the scripts and css to your index.html.
 
@@ -97,4 +97,4 @@ You should see your scheduler items fading in!
 
 Released under the MIT License. See the [LICENSE][license] file for further details.
 
-[license]: https://github.com/brian-rowe/angular-weekly-scheduler/blob/master/LICENSE
+[license]: https://github.com/rosie-rowe/angular-weekly-scheduler/blob/master/LICENSE
