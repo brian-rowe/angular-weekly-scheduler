@@ -1,1 +1,1 @@
-angular.module('br.weeklyScheduler', ['ngWeeklySchedulerTemplates']);
+angular.module('br.weeklyScheduler', []);
