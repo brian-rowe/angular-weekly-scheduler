@@ -1,5 +1,7 @@
 import { IWeeklySchedulerItem } from '../weekly-scheduler-item/IWeeklySchedulerItem';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+import { RestrictionExplanations } from '../restriction-explanations/RestrictionExplanations';
+import { ScheduleCountOptions } from '../schedule-count/ScheduleCountOptions';
 
 export interface IWeeklySchedulerOptions<T> {
     /** If this is true schedules will be allowed & required to have no set end time */
@@ -47,11 +49,11 @@ export interface IWeeklySchedulerOptions<T> {
     interval?: number;
 
     /** Overrides for restriction explanations, if necessary */
-    restrictionExplanations?: br.weeklyScheduler.RestrictionExplanations;
+    restrictionExplanations?: RestrictionExplanations;
 
     /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
     saveScheduler?: () => angular.IPromise<any>;
 
     /** Overrides for schedule count options, if necessary */
-    scheduleCountOptions?: br.weeklyScheduler.ScheduleCountOptions;
+    scheduleCountOptions?: ScheduleCountOptions;
 }

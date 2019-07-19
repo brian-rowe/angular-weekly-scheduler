@@ -40,9 +40,32 @@ declare module "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter" {
         initialData: TCustom[];
     }
 }
+declare module "ng-weekly-scheduler/schedule-count/ScheduleCountOptions" {
+    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
+    export interface ScheduleCountOptions {
+        /** The number of schedules allowed on each item. Null for no max */
+        count: number;
+        /** Whether you must have exactly that many schedules, or if "up to" is allowed */
+        exact: boolean;
+    }
+}
+declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanations" {
+    import { ScheduleCountOptions } from "ng-weekly-scheduler/schedule-count/ScheduleCountOptions";
+    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
+    export interface RestrictionExplanations {
+        fullCalendar: string;
+        maxTimeSlot: (value: string) => string;
+        minimumSeparation: (value: string) => string;
+        monoSchedule: string;
+        nullEnds: string;
+        scheduleCount: (options: ScheduleCountOptions) => string;
+    }
+}
 declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions" {
     import { IWeeklySchedulerItem } from "ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem";
     import { IWeeklySchedulerRange } from "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
+    import { RestrictionExplanations } from "ng-weekly-scheduler/restriction-explanations/RestrictionExplanations";
+    import { ScheduleCountOptions } from "ng-weekly-scheduler/schedule-count/ScheduleCountOptions";
     export interface IWeeklySchedulerOptions<T> {
         /** If this is true schedules will be allowed & required to have no set end time */
         nullEnds?: boolean;
@@ -75,11 +98,11 @@ declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOpti
         /** The number of seconds each division of the calendar should be -- values will snap to this */
         interval?: number;
         /** Overrides for restriction explanations, if necessary */
-        restrictionExplanations?: br.weeklyScheduler.RestrictionExplanations;
+        restrictionExplanations?: RestrictionExplanations;
         /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
         saveScheduler?: () => angular.IPromise<any>;
         /** Overrides for schedule count options, if necessary */
-        scheduleCountOptions?: br.weeklyScheduler.ScheduleCountOptions;
+        scheduleCountOptions?: ScheduleCountOptions;
     }
 }
 declare module "demo-app" {
@@ -168,31 +191,11 @@ declare namespace br.weeklyScheduler {
         setCustomResizeEvents(events: string[]): any;
     }
 }
-declare namespace br.weeklyScheduler {
-    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
-    interface RestrictionExplanations {
-        fullCalendar: string;
-        maxTimeSlot: (value: string) => string;
-        minimumSeparation: (value: string) => string;
-        monoSchedule: string;
-        nullEnds: string;
-        scheduleCount: (options: ScheduleCountOptions) => string;
-    }
-}
 declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent" {
 }
 declare module "ng-weekly-scheduler/schedule-validator/ScheduleCountValidatorService" {
 }
 declare module "ng-weekly-scheduler/schedule-count/ScheduleCountDirective" {
-}
-declare namespace br.weeklyScheduler {
-    /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
-    interface ScheduleCountOptions {
-        /** The number of schedules allowed on each item. Null for no max */
-        count: number;
-        /** Whether you must have exactly that many schedules, or if "up to" is allowed */
-        exact: boolean;
-    }
 }
 declare module "ng-weekly-scheduler/time-range/TimeRangeComponent" {
 }
