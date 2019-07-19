@@ -1,5 +1,5 @@
-/// <reference path="../../app/demo-app.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.ts" />
+/// <reference path="../../src/demo-app.ts" />
+/// <reference path="../../src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.ts" />
 
 describe('weekly scheduler', () => {
     let $compile: angular.ICompileService;
