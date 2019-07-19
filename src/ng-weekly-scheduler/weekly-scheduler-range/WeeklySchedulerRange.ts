@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+import { Days } from '../weekly-scheduler-config/Days';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerRange } from './IWeeklySchedulerRange';
@@ -12,7 +13,7 @@ export class WeeklySchedulerRange<T> implements IWeeklySchedulerRange<T> {
     $isDeleting: boolean;
     $isEditing: boolean;
 
-    day: br.weeklyScheduler.Days;
+    day: Days;
     start: number;
     end: number;
     value: T;

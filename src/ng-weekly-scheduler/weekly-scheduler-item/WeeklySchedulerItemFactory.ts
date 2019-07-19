@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+import { DayMap } from '../weekly-scheduler-config/DayMap';
 import { FillEmptyWithDefaultService } from '../fill-empty-with-default/FillEmptyWithDefaultService';
 import { IInternalWeeklySchedulerItem } from '../weekly-scheduler-item/IInternalWeeklySchedulerItem';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';

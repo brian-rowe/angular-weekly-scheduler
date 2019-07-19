@@ -1,3 +1,5 @@
+import { Days } from '../weekly-scheduler-config/Days';
+
 export interface IWeeklySchedulerRange<T> {
     /** A css class to apply */
     $class?: string;
@@ -12,7 +14,7 @@ export interface IWeeklySchedulerRange<T> {
     $isEditing?: boolean;
 
     /** Not strictly necessary but makes things a whooole lot easier */
-    day: br.weeklyScheduler.Days;
+    day: Days;
 
     start: number;
     end: number;

@@ -1,16 +1,19 @@
+import * as angular from 'angular';
+import { Days } from '../weekly-scheduler-config/Days';
+
 /** Ahhahhahh! Fighter of the NightMap! */
 /** @internal */
-class DayMap {
+export class DayMap {
     static $name = 'brWeeklySchedulerDayMap';
     
     static value = {
-        [br.weeklyScheduler.Days.Monday]: 'Mon',
-        [br.weeklyScheduler.Days.Tuesday]: 'Tue',
-        [br.weeklyScheduler.Days.Wednesday]: 'Wed',
-        [br.weeklyScheduler.Days.Thursday]: 'Thur',
-        [br.weeklyScheduler.Days.Friday]: 'Fri',
-        [br.weeklyScheduler.Days.Saturday]: 'Sat',
-        [br.weeklyScheduler.Days.Sunday]: 'Sun' 
+        [Days.Monday]: 'Mon',
+        [Days.Tuesday]: 'Tue',
+        [Days.Wednesday]: 'Wed',
+        [Days.Thursday]: 'Thur',
+        [Days.Friday]: 'Fri',
+        [Days.Saturday]: 'Sat',
+        [Days.Sunday]: 'Sun' 
     }
 }
 

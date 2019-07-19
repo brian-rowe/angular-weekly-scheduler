@@ -1,5 +1,8 @@
+import * as angular from 'angular';
+import { IResizeServiceProvider } from './IResizeServiceProvider';
+
 /** @internal */
-class ResizeServiceProvider implements br.weeklyScheduler.IResizeServiceProvider {
+class ResizeServiceProvider implements IResizeServiceProvider {
     public static $name = 'br.weeklyScheduler.resizeService';
 
     constructor() {

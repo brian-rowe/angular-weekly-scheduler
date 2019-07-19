@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+import { Days } from './ng-weekly-scheduler/weekly-scheduler-config/Days';
 import { IWeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
 import { IWeeklySchedulerItem } from './ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem';
 import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
@@ -41,7 +42,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 
       $scope.adapter = new DemoAdapter([
         {
-          day: br.weeklyScheduler.Days.Saturday,
+          day: Days.Saturday,
           start: 3600,
           end: 7200,
           value: true
@@ -52,7 +53,7 @@ angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
 /** @internal */
 class DemoItem implements IWeeklySchedulerItem<boolean> {
   constructor(
-    public day: br.weeklyScheduler.Days,
+    public day: Days,
     public schedules: IWeeklySchedulerRange<boolean>[]
   ) {
   }

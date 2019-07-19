@@ -1,3 +1,4 @@
+import { Days } from '../weekly-scheduler-config/Days';
 import { IWeeklySchedulerItem } from '../weekly-scheduler-item/IWeeklySchedulerItem';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { RestrictionExplanations } from '../restriction-explanations/RestrictionExplanations';
@@ -11,7 +12,7 @@ export interface IWeeklySchedulerOptions<T> {
     buttonClasses?: string[];
 
     /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
-    createItem: (day: br.weeklyScheduler.Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
+    createItem: (day: Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
 
     /** defaultValue should be assigned per set of options, not per item. Do not assign for no default */
     defaultValue?: T;

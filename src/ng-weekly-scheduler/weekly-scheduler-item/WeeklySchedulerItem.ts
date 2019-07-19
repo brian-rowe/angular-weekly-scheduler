@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+import { Days } from '../weekly-scheduler-config/Days';
 import { FillEmptyWithDefaultService } from '../fill-empty-with-default/FillEmptyWithDefaultService';
 import { IInternalWeeklySchedulerItem } from '../weekly-scheduler-item/IInternalWeeklySchedulerItem';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
@@ -13,7 +14,7 @@ import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySch
 export class WeeklySchedulerItem<T> implements IInternalWeeklySchedulerItem<T> {
     $isGhostOrigin: boolean;
     $renderGhost: boolean;
-    day: br.weeklyScheduler.Days;
+    day: Days;
     editable: boolean;
     label: string;
     schedules: WeeklySchedulerRange<T>[];

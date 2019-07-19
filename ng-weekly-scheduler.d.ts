@@ -1,5 +1,17 @@
 /// <reference types="angular" />
+declare module "ng-weekly-scheduler/weekly-scheduler-config/Days" {
+    export const enum Days {
+        Monday = 0,
+        Tuesday = 1,
+        Wednesday = 2,
+        Thursday = 3,
+        Friday = 4,
+        Saturday = 5,
+        Sunday = 6,
+    }
+}
 declare module "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange" {
+    import { Days } from "ng-weekly-scheduler/weekly-scheduler-config/Days";
     export interface IWeeklySchedulerRange<T> {
         /** A css class to apply */
         $class?: string;
@@ -10,7 +22,7 @@ declare module "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange
         /** This will indicate whether the item is currently being edited by the user */
         $isEditing?: boolean;
         /** Not strictly necessary but makes things a whooole lot easier */
-        day: br.weeklyScheduler.Days;
+        day: Days;
         start: number;
         end: number;
         value: T;
@@ -18,9 +30,10 @@ declare module "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange
     }
 }
 declare module "ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem" {
+    import { Days } from "ng-weekly-scheduler/weekly-scheduler-config/Days";
     import { IWeeklySchedulerRange } from "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
     export interface IWeeklySchedulerItem<T> {
-        day: br.weeklyScheduler.Days;
+        day: Days;
         editable?: boolean;
         schedules: IWeeklySchedulerRange<T>[];
     }
@@ -62,6 +75,7 @@ declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanat
     }
 }
 declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions" {
+    import { Days } from "ng-weekly-scheduler/weekly-scheduler-config/Days";
     import { IWeeklySchedulerItem } from "ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem";
     import { IWeeklySchedulerRange } from "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
     import { RestrictionExplanations } from "ng-weekly-scheduler/restriction-explanations/RestrictionExplanations";
@@ -72,7 +86,7 @@ declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOpti
         /** These classes will be applied directly to the buttons */
         buttonClasses?: string[];
         /** A function to return an item -- this is REQUIRED so that adapters will always be used for new items, even if they weren't passed in */
-        createItem: (day: br.weeklyScheduler.Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
+        createItem: (day: Days, schedules: IWeeklySchedulerRange<T>[]) => IWeeklySchedulerItem<T>;
         /** defaultValue should be assigned per set of options, not per item. Do not assign for no default */
         defaultValue?: T;
         /** A function to call when an item is clicked in order to bring up an editor for it */
@@ -116,6 +130,8 @@ declare module "index" {
     }
 }
 declare module "ng-weekly-scheduler/group-by/GroupService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-config/DayMap" {
 }
 declare module "ng-weekly-scheduler/end-adjuster/EndAdjusterService" {
 }
@@ -179,10 +195,12 @@ declare module "ng-weekly-scheduler/schedule-validator/OverlapValidatorService" 
 }
 declare module "ng-weekly-scheduler/overlap/OverlapDirective" {
 }
-declare namespace br.weeklyScheduler {
-    interface IResizeServiceProvider extends angular.IServiceProvider {
+declare module "ng-weekly-scheduler/resize/IResizeServiceProvider" {
+    export interface IResizeServiceProvider extends angular.IServiceProvider {
         setCustomResizeEvents(events: string[]): any;
     }
+}
+declare module "ng-weekly-scheduler/resize/ResizeService" {
 }
 declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent" {
 }
@@ -191,17 +209,6 @@ declare module "ng-weekly-scheduler/schedule-validator/ScheduleCountValidatorSer
 declare module "ng-weekly-scheduler/schedule-count/ScheduleCountDirective" {
 }
 declare module "ng-weekly-scheduler/time-range/TimeRangeComponent" {
-}
-declare namespace br.weeklyScheduler {
-    const enum Days {
-        Monday = 0,
-        Tuesday = 1,
-        Wednesday = 2,
-        Thursday = 3,
-        Friday = 4,
-        Saturday = 5,
-        Sunday = 6,
-    }
 }
 declare module "ng-weekly-scheduler/weekly-slot/weekly-slot" {
 }
