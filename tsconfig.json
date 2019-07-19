@@ -13,7 +13,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "app/**/*",
+    "src/**/*",
   ],
   "exclude": [
     "dist/**/*"

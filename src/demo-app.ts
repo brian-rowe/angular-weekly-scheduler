@@ -1,0 +1,91 @@
+import * as angular from 'angular';
+import { IWeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
+import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
+
+angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
+  .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
+    function ($q: angular.IQService, $scope, $timeout, $log, $mdDialog) {
+
+      $scope.model = {
+        options: {
+          buttonClasses: ['wow!'],
+          createItem: (day, schedules) => {
+            return new DemoItem(day, schedules);
+          },
+          defaultValue: false,
+          editSlot: function (schedule) {
+            schedule.start += 60;
+            schedule.value = true;
+            return $q.when(schedule);
+          },
+          fillEmptyWithDefault: true,
+          interval: 60,
+          fillNullEnds: 1800,
+          maxTimeSlot: 7200,
+          minimumSeparation: 300,
+          onChange: (isValid) => {
+            console.log("changed!");
+          },
+          restrictionExplanations: {
+            maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
+          },
+          saveScheduler: () => {
+            $scope.result = $scope.adapter.getSnapshot();
+
+            return $q.when(true);
+          }
+        } as IWeeklySchedulerOptions<any>
+      }
+
+      $scope.adapter = new DemoAdapter([
+        {
+          day: br.weeklyScheduler.Days.Saturday,
+          start: 3600,
+          end: 7200,
+          value: true
+        }
+      ]);
+    }]);
+
+/** @internal */
+class DemoItem implements br.weeklyScheduler.IWeeklySchedulerItem<boolean> {
+  constructor(
+    public day: br.weeklyScheduler.Days,
+    public schedules: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[]
+  ) {
+  }
+
+  get editable() {
+    return true;
+  }
+}
+
+/** The data is already in an acceptable format for the demo so just pass it through */
+/** @internal */
+class DemoAdapter implements IWeeklySchedulerAdapter<br.weeklyScheduler.IWeeklySchedulerRange<boolean>, boolean> {
+  public items: DemoItem[] = [];
+
+  constructor(
+    public initialData: br.weeklyScheduler.IWeeklySchedulerRange<boolean>[],
+  ) {
+  }
+
+  public getSnapshot() {
+    return Array.prototype.concat.apply([], this.items.map(item => {
+      return item.schedules.map(schedule => {
+        return {
+          day: schedule.day,
+          start: schedule.start,
+          end: schedule.end,
+          value: schedule.value
+        }
+      });
+    }));
+  }
+
+  public customModelToWeeklySchedulerRange(range) {
+    range.$class = 'test';
+
+    return range;
+  }
+}

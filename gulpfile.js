@@ -6,16 +6,13 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     merge = require('merge2'),
     runSequence = require("run-sequence"),
-    sourcemaps = require("gulp-sourcemaps"),
     sort = require("gulp-sort"),
     templateCache = require("gulp-angular-templatecache"),
-    ts = require("gulp-typescript"),
     minify = require("gulp-minify"),
     increment = require("gulp-increment-version"),
-    watch = require("gulp-watch"),
     webserver = require("gulp-webserver");
 
-var srcFolder = 'app';
+var srcFolder = 'src';
 var distFolder = 'dist';
 var testFolder = 'test';
 
@@ -44,7 +41,6 @@ gulp.task("devbuild", function () {
     return runSequence(
         "clean",
         "buildCSS",
-        "buildJS",
         "buildTemplateCache",
         "concat",
         "copyTestFiles",
@@ -56,19 +52,6 @@ gulp.task("clean", function () {
     return gulp.src(distFolder, {
         read: false
     }).pipe(clean());
-});
-
-gulp.task("buildJS", function () {
-    var tsProject = ts.createProject("tsconfig.json");
-
-    var tsResult = tsProject.src()
-        .pipe(sourcemaps.init({ largeFile: true }))
-        .pipe(tsProject());
-
-    return merge([
-        tsResult.dts.pipe(gulp.dest(distFolder)),
-        tsResult.js.pipe(sourcemaps.write()).pipe(gulp.dest(distFolder))
-    ]);
 });
 
 gulp.task("buildTemplateCache", function () {
@@ -121,7 +104,7 @@ gulp.task("incrementVersion", function () {
 
 gulp.task("server", function () {
     return gulp
-        .src(testFolder)
+        .src(srcFolder)
         .pipe(webserver({
             port: "8081",
             livereload: true,
@@ -144,7 +127,7 @@ gulp.task('copyTestCSS', function () {
 
 gulp.task('copyTestJS', function () {
     return gulp.src([compiledJavascriptPath])
-        .pipe(concat('testScripts.js'))
+        .pipe(concat('index.js'))
         .pipe(gulp.dest(testFolder));
 });
 

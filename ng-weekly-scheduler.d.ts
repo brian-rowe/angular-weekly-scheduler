@@ -54,7 +54,7 @@ declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOpti
 }
 declare module "demo-app" {
 }
-declare module "ng-weekly-scheduler/index" {
+declare module "index" {
     import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter";
     import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions";
     export namespace weeklyScheduler {
