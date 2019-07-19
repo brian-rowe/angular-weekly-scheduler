@@ -1,9 +1,19 @@
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+var htmlPlugin = new HtmlPlugin({
+    template: 'src/index.html',
+    filename: 'index.html'
+});
+
 module.exports = {
     mode: 'development',
-    entry: './src/index.ts',
+    entry: {
+        'vendor': [
+            'angular-material'
+        ],
+        'index': './src/index.ts',
+    },
     module: {
         rules: [
             {
@@ -21,17 +31,12 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new HtmlPlugin({
-            template: 'src/index.html',
-            filename: 'index.html'
-        })
-    ],
+    plugins: [htmlPlugin],
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
     output: {
-        filename: 'index.js',
+        filename: '[name].bundle-[hash].js',
         path: path.resolve(__dirname, 'dist')
     }
 };
