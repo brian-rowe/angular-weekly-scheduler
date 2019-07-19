@@ -1,6 +1,8 @@
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+var isProduction = process.env.NODE_ENV === 'production';
+
 var htmlPlugin = new HtmlPlugin({
     template: 'src/index.html',
     filename: 'index.html'
@@ -36,7 +38,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js']
     },
     output: {
-        filename: '[name].bundle-[hash].js',
+        filename: isProduction ? '[name].bundle-[hash].js' : '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     }
 };
