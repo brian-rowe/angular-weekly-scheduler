@@ -1,4 +1,8 @@
 /// <reference types="angular" />
+declare module "index" {
+    const _default: "FUCK";
+    export default _default;
+}
 declare module "ng-weekly-scheduler/weekly-scheduler-config/Days" {
     export const enum Days {
         Monday = 0,
@@ -352,13 +356,17 @@ declare module "ng-weekly-scheduler/touch/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth" {
-}
-declare module "ng-weekly-scheduler/weekly-scheduler-config/module" {
+declare module "ng-weekly-scheduler/value-normalization/module" {
     const _default: string;
     export default _default;
 }
 declare module "ng-weekly-scheduler/weekly-scheduler/module" {
+    const _default: string;
+    export default _default;
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-config/module" {
     const _default: string;
     export default _default;
 }
@@ -376,20 +384,7 @@ declare module "ng-weekly-scheduler/weekly-slot/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/value-normalization/module" {
-    const _default: string;
-    export default _default;
-}
 declare module "ng-weekly-scheduler/zoom/module" {
     const _default: string;
     export default _default;
-}
-declare module "index" {
-    import './ng-weekly-scheduler.less';
-    import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter";
-    import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions";
-    export namespace weeklyScheduler {
-        type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
-        type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
-    }
 }
