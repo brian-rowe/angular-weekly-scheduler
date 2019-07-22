@@ -1,4 +1,5 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/MonoScheduleValidatorService.ts" />
+import * as angular from 'angular';
+import { MonoScheduleValidatorService } from '../../src/ng-weekly-scheduler/schedule-validator/MonoScheduleValidatorService';
 
 describe('mono schedule validator service', () => {
     let $q: angular.IQService;

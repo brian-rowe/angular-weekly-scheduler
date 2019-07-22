@@ -1,4 +1,5 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService.ts" />
+import * as angular from 'angular';
+import { MaxTimeSlotValidatorService } from '../../src/ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService';
 
 describe('max time slot validator service', function () {
     var $q: angular.IQService;

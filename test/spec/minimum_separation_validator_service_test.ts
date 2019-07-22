@@ -1,4 +1,5 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/MinimumSeparationValidatorService.ts" />
+import * as angular from 'angular';
+import { MinimumSeparationValidatorService } from '../../src/ng-weekly-scheduler/schedule-validator/MinimumSeparationValidatorService';
 
 describe('minimum separation validator service', function () {
     var $q: angular.IQService;

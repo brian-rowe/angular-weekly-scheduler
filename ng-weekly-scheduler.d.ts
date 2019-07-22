@@ -1,9 +1,5 @@
 /// <reference types="angular" />
-declare module "index" {
-    const _default: "FUCK";
-    export default _default;
-}
-declare module "ng-weekly-scheduler/weekly-scheduler-config/Days" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-config/Days" {
     export const enum Days {
         Monday = 0,
         Tuesday = 1,
@@ -14,8 +10,8 @@ declare module "ng-weekly-scheduler/weekly-scheduler-config/Days" {
         Sunday = 6,
     }
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange" {
-    import { Days } from "ng-weekly-scheduler/weekly-scheduler-config/Days";
+declare module "src/ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange" {
+    import { Days } from "src/ng-weekly-scheduler/weekly-scheduler-config/Days";
     export interface IWeeklySchedulerRange<T> {
         /** A css class to apply */
         $class?: string;
@@ -33,20 +29,18 @@ declare module "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange
         editable?: boolean;
     }
 }
-declare module "ng-weekly-scheduler/group-by/GroupService" {
-}
-declare module "ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem" {
-    import { Days } from "ng-weekly-scheduler/weekly-scheduler-config/Days";
-    import { IWeeklySchedulerRange } from "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
+declare module "src/ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem" {
+    import { Days } from "src/ng-weekly-scheduler/weekly-scheduler-config/Days";
+    import { IWeeklySchedulerRange } from "src/ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
     export interface IWeeklySchedulerItem<T> {
         day: Days;
         editable?: boolean;
         schedules: IWeeklySchedulerRange<T>[];
     }
 }
-declare module "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter" {
-    import { IWeeklySchedulerItem } from "ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem";
-    import { IWeeklySchedulerRange } from "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
+declare module "src/ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter" {
+    import { IWeeklySchedulerItem } from "src/ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem";
+    import { IWeeklySchedulerRange } from "src/ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
     /**
      * Implement this on a client and then pass it in to the component.
      */
@@ -59,7 +53,7 @@ declare module "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter" {
         initialData: TCustom[];
     }
 }
-declare module "ng-weekly-scheduler/schedule-count/ScheduleCountOptions" {
+declare module "src/ng-weekly-scheduler/schedule-count/ScheduleCountOptions" {
     /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
     export interface ScheduleCountOptions {
         /** The number of schedules allowed on each item. Null for no max */
@@ -68,8 +62,8 @@ declare module "ng-weekly-scheduler/schedule-count/ScheduleCountOptions" {
         exact: boolean;
     }
 }
-declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanations" {
-    import { ScheduleCountOptions } from "ng-weekly-scheduler/schedule-count/ScheduleCountOptions";
+declare module "src/ng-weekly-scheduler/restriction-explanations/RestrictionExplanations" {
+    import { ScheduleCountOptions } from "src/ng-weekly-scheduler/schedule-count/ScheduleCountOptions";
     /** Defaults will be provided, but you can override these on a per-calendar basis if necessary */
     export interface RestrictionExplanations {
         fullCalendar: string;
@@ -80,12 +74,12 @@ declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanat
         scheduleCount: (options: ScheduleCountOptions) => string;
     }
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions" {
-    import { Days } from "ng-weekly-scheduler/weekly-scheduler-config/Days";
-    import { IWeeklySchedulerItem } from "ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem";
-    import { IWeeklySchedulerRange } from "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
-    import { RestrictionExplanations } from "ng-weekly-scheduler/restriction-explanations/RestrictionExplanations";
-    import { ScheduleCountOptions } from "ng-weekly-scheduler/schedule-count/ScheduleCountOptions";
+declare module "src/ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions" {
+    import { Days } from "src/ng-weekly-scheduler/weekly-scheduler-config/Days";
+    import { IWeeklySchedulerItem } from "src/ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem";
+    import { IWeeklySchedulerRange } from "src/ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
+    import { RestrictionExplanations } from "src/ng-weekly-scheduler/restriction-explanations/RestrictionExplanations";
+    import { ScheduleCountOptions } from "src/ng-weekly-scheduler/schedule-count/ScheduleCountOptions";
     export interface IWeeklySchedulerOptions<T> {
         /** If this is true schedules will be allowed & required to have no set end time */
         nullEnds?: boolean;
@@ -125,266 +119,296 @@ declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOpti
         scheduleCountOptions?: ScheduleCountOptions;
     }
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-config/DayMap" {
+declare module "src/demo-app" {
 }
-declare module "ng-weekly-scheduler/end-adjuster/EndAdjusterService" {
+declare module "src/index" {
+    const _default: "FUCK";
+    export default _default;
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-item/IInternalWeeklySchedulerItem" {
+declare module "src/ng-weekly-scheduler/group-by/GroupService" {
 }
-declare module "ng-weekly-scheduler/overlap/OverlapService" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-config/DayMap" {
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRange" {
+declare module "src/ng-weekly-scheduler/end-adjuster/EndAdjusterService" {
 }
-declare module "ng-weekly-scheduler/purge-default/PurgeDefaultService" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-item/IInternalWeeklySchedulerItem" {
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory" {
+declare module "src/ng-weekly-scheduler/overlap/OverlapService" {
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItem" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRange" {
 }
-declare module "ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService" {
+declare module "src/ng-weekly-scheduler/purge-default/PurgeDefaultService" {
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory" {
 }
-declare module "ng-weekly-scheduler/adapter/AdapterService" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItem" {
 }
-declare module "ng-weekly-scheduler/adapter/module" {
+declare module "src/ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService" {
+}
+declare module "src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory" {
+}
+declare module "src/ng-weekly-scheduler/adapter/AdapterService" {
+}
+declare module "src/ng-weekly-scheduler/adapter/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/time/TimeConstantsService" {
+declare module "src/ng-weekly-scheduler/time/TimeConstantsService" {
 }
-declare module "ng-weekly-scheduler/configuration/ConfigurationService" {
+declare module "src/ng-weekly-scheduler/configuration/ConfigurationService" {
 }
-declare module "ng-weekly-scheduler/configuration/module" {
+declare module "src/ng-weekly-scheduler/configuration/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/conflicting-options/ConflictingOptionsService" {
+declare module "src/ng-weekly-scheduler/conflicting-options/ConflictingOptionsService" {
 }
-declare module "ng-weekly-scheduler/conflicting-options/module" {
+declare module "src/ng-weekly-scheduler/conflicting-options/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/drag/DragService" {
+declare module "src/ng-weekly-scheduler/drag/DragService" {
 }
-declare module "ng-weekly-scheduler/drag/module" {
+declare module "src/ng-weekly-scheduler/drag/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/element-offset/ElementOffsetService" {
+declare module "src/ng-weekly-scheduler/element-offset/ElementOffsetService" {
 }
-declare module "ng-weekly-scheduler/element-offset/module" {
+declare module "src/ng-weekly-scheduler/element-offset/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/end-adjuster/module" {
+declare module "src/ng-weekly-scheduler/end-adjuster/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/fill-empty-with-default/module" {
+declare module "src/ng-weekly-scheduler/fill-empty-with-default/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService" {
+declare module "src/ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService" {
 }
-declare module "ng-weekly-scheduler/full-calendar/FullCalendarDirective" {
+declare module "src/ng-weekly-scheduler/full-calendar/FullCalendarDirective" {
 }
-declare module "ng-weekly-scheduler/full-calendar/module" {
+declare module "src/ng-weekly-scheduler/full-calendar/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/mouse-tracker/MouseTrackerService" {
+declare module "src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService" {
 }
-declare module "ng-weekly-scheduler/value-normalization/ValueNormalizationService" {
+declare module "src/ng-weekly-scheduler/value-normalization/ValueNormalizationService" {
 }
-declare module "ng-weekly-scheduler/multislider/multislider" {
+declare module "src/ng-weekly-scheduler/multislider/multislider" {
 }
-declare module "ng-weekly-scheduler/ghost-slot/ghost-slot" {
+declare module "src/ng-weekly-scheduler/ghost-slot/ghost-slot" {
 }
-declare module "ng-weekly-scheduler/ghost-slot/module" {
+declare module "src/ng-weekly-scheduler/ghost-slot/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/group-by/module" {
+declare module "src/ng-weekly-scheduler/group-by/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/touch/TouchService" {
+declare module "src/ng-weekly-scheduler/touch/TouchService" {
 }
-declare module "ng-weekly-scheduler/handle/HandleDirective" {
+declare module "src/ng-weekly-scheduler/handle/HandleDirective" {
 }
-declare module "ng-weekly-scheduler/handle/module" {
+declare module "src/ng-weekly-scheduler/handle/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/last-ghost-day/LastGhostDayService" {
+declare module "src/ng-weekly-scheduler/last-ghost-day/LastGhostDayService" {
 }
-declare module "ng-weekly-scheduler/missing-days/MissingDaysService" {
+declare module "src/ng-weekly-scheduler/missing-days/MissingDaysService" {
 }
-declare module "ng-weekly-scheduler/weekly-scheduler/weekly-scheduler" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler" {
 }
-declare module "ng-weekly-scheduler/hourly-grid/HourlyGridDirective" {
+declare module "src/ng-weekly-scheduler/hourly-grid/HourlyGridDirective" {
 }
-declare module "ng-weekly-scheduler/hourly-grid/module" {
+declare module "src/ng-weekly-scheduler/hourly-grid/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/last-ghost-day/module" {
+declare module "src/ng-weekly-scheduler/last-ghost-day/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService" {
+declare module "src/ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService" {
 }
-declare module "ng-weekly-scheduler/max-time-slot/MaxTimeSlotDirective" {
+declare module "src/ng-weekly-scheduler/max-time-slot/MaxTimeSlotDirective" {
 }
-declare module "ng-weekly-scheduler/max-time-slot/module" {
+declare module "src/ng-weekly-scheduler/max-time-slot/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/MinimumSeparationValidatorService" {
+declare module "src/ng-weekly-scheduler/schedule-validator/MinimumSeparationValidatorService" {
 }
-declare module "ng-weekly-scheduler/minimum-separation/MinimumSeparationDirective" {
+declare module "src/ng-weekly-scheduler/minimum-separation/MinimumSeparationDirective" {
 }
-declare module "ng-weekly-scheduler/minimum-separation/module" {
+declare module "src/ng-weekly-scheduler/minimum-separation/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/missing-days/module" {
+declare module "src/ng-weekly-scheduler/missing-days/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/MonoScheduleValidatorService" {
+declare module "src/ng-weekly-scheduler/schedule-validator/MonoScheduleValidatorService" {
 }
-declare module "ng-weekly-scheduler/mono-schedule/MonoScheduleDirective" {
+declare module "src/ng-weekly-scheduler/mono-schedule/MonoScheduleDirective" {
 }
-declare module "ng-weekly-scheduler/mono-schedule/module" {
+declare module "src/ng-weekly-scheduler/mono-schedule/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/mouse-tracker/module" {
+declare module "src/ng-weekly-scheduler/mouse-tracker/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/multislider/module" {
+declare module "src/ng-weekly-scheduler/multislider/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/NullEndValidatorService" {
+declare module "src/ng-weekly-scheduler/schedule-validator/NullEndValidatorService" {
 }
-declare module "ng-weekly-scheduler/null-end/NullEndDirective" {
+declare module "src/ng-weekly-scheduler/null-end/NullEndDirective" {
 }
-declare module "ng-weekly-scheduler/null-end/module" {
+declare module "src/ng-weekly-scheduler/null-end/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/OverlapValidatorService" {
+declare module "src/ng-weekly-scheduler/schedule-validator/OverlapValidatorService" {
 }
-declare module "ng-weekly-scheduler/overlap/OverlapDirective" {
+declare module "src/ng-weekly-scheduler/overlap/OverlapDirective" {
 }
-declare module "ng-weekly-scheduler/overlap/module" {
+declare module "src/ng-weekly-scheduler/overlap/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/purge-default/module" {
+declare module "src/ng-weekly-scheduler/purge-default/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/resize/IResizeServiceProvider" {
+declare module "src/ng-weekly-scheduler/resize/IResizeServiceProvider" {
     export interface IResizeServiceProvider extends angular.IServiceProvider {
         setCustomResizeEvents(events: string[]): any;
     }
 }
-declare module "ng-weekly-scheduler/resize/ResizeService" {
+declare module "src/ng-weekly-scheduler/resize/ResizeService" {
 }
-declare module "ng-weekly-scheduler/resize/module" {
+declare module "src/ng-weekly-scheduler/resize/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent" {
+declare module "src/ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent" {
 }
-declare module "ng-weekly-scheduler/restriction-explanations/module" {
+declare module "src/ng-weekly-scheduler/restriction-explanations/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/revalidate/RevalidateDirective" {
+declare module "src/ng-weekly-scheduler/revalidate/RevalidateDirective" {
 }
-declare module "ng-weekly-scheduler/revalidate/module" {
+declare module "src/ng-weekly-scheduler/revalidate/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/zoom/ZoomService" {
+declare module "src/ng-weekly-scheduler/zoom/ZoomService" {
 }
-declare module "ng-weekly-scheduler/scroll/ScrollService" {
+declare module "src/ng-weekly-scheduler/scroll/ScrollService" {
 }
-declare module "ng-weekly-scheduler/schedule-area-container/schedule-area-container" {
+declare module "src/ng-weekly-scheduler/schedule-area-container/schedule-area-container" {
 }
-declare module "ng-weekly-scheduler/schedule-area-container/module" {
+declare module "src/ng-weekly-scheduler/schedule-area-container/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/ScheduleCountValidatorService" {
+declare module "src/ng-weekly-scheduler/schedule-validator/ScheduleCountValidatorService" {
 }
-declare module "ng-weekly-scheduler/schedule-count/ScheduleCountDirective" {
+declare module "src/ng-weekly-scheduler/schedule-count/ScheduleCountDirective" {
 }
-declare module "ng-weekly-scheduler/schedule-count/module" {
+declare module "src/ng-weekly-scheduler/schedule-count/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/schedule-validator/module" {
+declare module "src/ng-weekly-scheduler/schedule-validator/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/scroll/module" {
+declare module "src/ng-weekly-scheduler/scroll/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/time/SecondsAsTextFilter" {
+declare module "src/ng-weekly-scheduler/time/SecondsAsTextFilter" {
 }
-declare module "ng-weekly-scheduler/time/TimeOfDayFilter" {
+declare module "src/ng-weekly-scheduler/time/TimeOfDayFilter" {
 }
-declare module "ng-weekly-scheduler/time/module" {
+declare module "src/ng-weekly-scheduler/time/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/time-range/TimeRangeComponent" {
+declare module "src/ng-weekly-scheduler/time-range/TimeRangeComponent" {
 }
-declare module "ng-weekly-scheduler/time-range/module" {
+declare module "src/ng-weekly-scheduler/time-range/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/touch/module" {
+declare module "src/ng-weekly-scheduler/touch/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/value-normalization/module" {
+declare module "src/ng-weekly-scheduler/value-normalization/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/weekly-scheduler/module" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth" {
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-config/module" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-config/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-item/module" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-item/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-range/module" {
+declare module "src/ng-weekly-scheduler/weekly-scheduler-range/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/weekly-slot/weekly-slot" {
+declare module "src/ng-weekly-scheduler/weekly-slot/weekly-slot" {
 }
-declare module "ng-weekly-scheduler/weekly-slot/module" {
+declare module "src/ng-weekly-scheduler/weekly-slot/module" {
     const _default: string;
     export default _default;
 }
-declare module "ng-weekly-scheduler/zoom/module" {
+declare module "src/ng-weekly-scheduler/zoom/module" {
     const _default: string;
     export default _default;
+}
+declare module "test/spec/fill_empty_with_default_service_test" {
+}
+declare module "test/spec/full_calendar_validator_service_test" {
+}
+declare module "test/spec/last_ghost_day_service_test" {
+}
+declare module "test/spec/max_time_slot_validator_service_test" {
+}
+declare module "test/spec/minimum_separation_validator_service_test" {
+}
+declare module "test/spec/mono_schedule_validator_service_test" {
+}
+declare module "test/spec/overlap_service_test" {
+}
+declare module "test/spec/overlap_validator_service_test" {
+}
+declare module "test/spec/purge_default_service_test" {
+}
+declare module "test/spec/schedule_count_validator_service_test" {
+}
+declare module "test/spec/weekly_scheduler_test" {
 }

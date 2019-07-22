@@ -8,6 +8,7 @@ import { OverlapService } from '../overlap/OverlapService';
 import { PurgeDefaultService } from '../purge-default/PurgeDefaultService';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
+import { OverlapState } from '../weekly-scheduler-config/OverlapStates';
 
 /** Provides common functionality for an item -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */

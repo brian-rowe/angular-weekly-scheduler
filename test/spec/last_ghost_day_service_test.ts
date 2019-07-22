@@ -1,5 +1,6 @@
-/// <reference path="../../app/ng-weekly-scheduler/last-ghost-day/LastGhostDayService.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts" />
+import * as angular from 'angular';
+import { WeeklySchedulerItemFactory } from '../../src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory';
+import { LastGhostDayService } from '../../src/ng-weekly-scheduler/last-ghost-day/LastGhostDayService';
 
 describe('full calendar validator service', function () {
     var $q: angular.IQService;

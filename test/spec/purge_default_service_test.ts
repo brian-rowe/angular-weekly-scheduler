@@ -1,5 +1,6 @@
-/// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/purge-default/PurgeDefaultService.ts" />
+import * as angular from 'angular';
+import { WeeklySchedulerItemFactory } from '../../src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory';
+import { PurgeDefaultService } from '../../src/ng-weekly-scheduler/purge-default/PurgeDefaultService';
 
 describe('purgeDefault service', () => {
     var $itemFactory: WeeklySchedulerItemFactory;

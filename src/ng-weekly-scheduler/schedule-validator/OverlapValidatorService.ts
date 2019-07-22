@@ -3,6 +3,7 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { OverlapService } from '../overlap/OverlapService';
 import { ValidatorService } from '../schedule-validator/ValidatorService'
+import { OverlapState } from '../weekly-scheduler-config/OverlapStates';
 
 /** @internal */
 export class OverlapValidatorService implements ValidatorService {

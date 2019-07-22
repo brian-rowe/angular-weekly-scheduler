@@ -1,5 +1,6 @@
-/// <reference path="../../app/ng-weekly-scheduler/overlap/OverlapService.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-config/OverlapStates.d.ts" />
+import * as angular from 'angular';
+import { OverlapService } from '../../src/ng-weekly-scheduler/overlap/OverlapService';
+import { OverlapState } from '../../src/ng-weekly-scheduler/weekly-scheduler-config/OverlapStates';
 
 describe('overlap service', () => {
     var $service: OverlapService;

@@ -1,4 +1,4 @@
-declare const enum OverlapState {
+export const enum OverlapState {
     NoOverlap,
     CurrentIsInsideOther,
     CurrentCoversOther,

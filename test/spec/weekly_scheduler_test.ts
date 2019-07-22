@@ -1,5 +1,6 @@
-/// <reference path="../../src/demo-app.ts" />
-/// <reference path="../../src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.ts" />
+import * as angular from 'angular';
+import { DemoAdapter } from '../../src/demo-app';
+import { WeeklySchedulerController } from '../../src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.ts';
 
 describe('weekly scheduler', () => {
     let $compile: angular.ICompileService;

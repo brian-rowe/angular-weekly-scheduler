@@ -1,5 +1,5 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/OverlapValidatorService.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerConfig.d.ts" />
+import * as angular from 'angular';
+import { OverlapValidatorService } from '../../src/ng-weekly-scheduler/schedule-validator/OverlapValidatorService';
 
 describe('overlap validator service', function () {
     var $service: OverlapValidatorService;

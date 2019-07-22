@@ -11,11 +11,5 @@
     "sourceMap": true,
     "outFile": "ng-weekly-scheduler.js",
     "skipLibCheck": true
-  },
-  "include": [
-    "src/**/*",
-  ],
-  "exclude": [
-    "dist/**/*"
-  ]
+  }
 }

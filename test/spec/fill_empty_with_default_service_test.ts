@@ -1,5 +1,6 @@
-/// <reference path="../../app/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts" />
-/// <reference path="../../app/ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService.ts" />
+import * as angular from 'angular';
+import { WeeklySchedulerItemFactory } from '../../src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory';
+import { FillEmptyWithDefaultService } from '../../src/ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService';
 
 describe('fillEmptyWithDefault service', () => {
     var $itemFactory: WeeklySchedulerItemFactory;

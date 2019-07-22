@@ -1,4 +1,5 @@
-/// <reference path="../../app/ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService.ts" />
+import * as angular from 'angular';
+import { FullCalendarValidatorService } from '../../src/ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService';
 
 describe('full calendar validator service', function () {
     var $q: angular.IQService;
