@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 
@@ -20,7 +19,3 @@ export class PurgeDefaultService {
         return schedules;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(PurgeDefaultService.$name, PurgeDefaultService);

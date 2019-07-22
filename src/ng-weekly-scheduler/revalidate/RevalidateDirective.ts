@@ -3,7 +3,7 @@
  */
 
 /** @internal */
-class RevalidateDirective implements angular.IDirective {
+export class RevalidateDirective implements angular.IDirective {
     static $name = 'brRevalidate';
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
@@ -22,7 +22,3 @@ class RevalidateDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(RevalidateDirective.$name, RevalidateDirective.Factory());

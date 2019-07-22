@@ -43,7 +43,3 @@ export class MissingDaysService {
         return angular.copy(result).sort((a, b) => a.day - b.day);
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(MissingDaysService.$name, MissingDaysService);

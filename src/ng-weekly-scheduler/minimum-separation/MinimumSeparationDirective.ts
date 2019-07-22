@@ -3,7 +3,7 @@ import { MinimumSeparationValidatorService } from '../schedule-validator/Minimum
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 
 /** @internal */
-class MinimumSeparationDirective implements angular.IDirective {
+export class MinimumSeparationDirective implements angular.IDirective {
     static $name = 'brMinimumSeparation';
 
     constructor(
@@ -31,7 +31,3 @@ class MinimumSeparationDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(MinimumSeparationDirective.$name, MinimumSeparationDirective.Factory());

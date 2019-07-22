@@ -2,7 +2,7 @@ import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 
 /** @internal */
-class RestrictionExplanationsController implements angular.IComponentController {
+export class RestrictionExplanationsController implements angular.IComponentController {
     static $controllerAs = 'restrictionExplanationsCtrl';
     static $name = 'brWeeklySchedulerRestrictionExplanationsController';
 
@@ -49,7 +49,7 @@ class RestrictionExplanationsController implements angular.IComponentController 
 }
 
 /** @internal */
-class RestrictionExplanationsComponent implements angular.IComponentOptions {
+export class RestrictionExplanationsComponent implements angular.IComponentOptions {
     static $name = 'brRestrictionExplanations';
 
     controller = RestrictionExplanationsController.$name;
@@ -65,8 +65,3 @@ class RestrictionExplanationsComponent implements angular.IComponentOptions {
         </div>
     `;
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .component(RestrictionExplanationsComponent.$name, new RestrictionExplanationsComponent())
-    .controller(RestrictionExplanationsController.$name, RestrictionExplanationsController);

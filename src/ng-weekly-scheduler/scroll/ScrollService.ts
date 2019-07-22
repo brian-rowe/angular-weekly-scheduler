@@ -1,5 +1,7 @@
+import { ZoomService } from '../zoom/ZoomService';
+
 /** @internal */
-class ScrollService {
+export class ScrollService {
     static $name = 'brWeeklySchedulerScrollService';
 
     static $inject = [
@@ -30,7 +32,3 @@ class ScrollService {
         });
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(ScrollService.$name, ScrollService);

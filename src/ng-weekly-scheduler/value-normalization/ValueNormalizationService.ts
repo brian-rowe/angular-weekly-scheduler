@@ -1,5 +1,5 @@
 /** @internal */
-class ValueNormalizationService {
+export class ValueNormalizationService {
     static $name = 'brWeeklySchedulerValueNormalizationService';
 
     public normalizeValue(value: number, min: number, max: number) {
@@ -14,8 +14,3 @@ class ValueNormalizationService {
         return value;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(ValueNormalizationService.$name, ValueNormalizationService);
-

@@ -3,7 +3,7 @@ import { MonoScheduleValidatorService } from '../schedule-validator/MonoSchedule
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 
 /** @internal */
-class MonoScheduleDirective implements angular.IDirective {
+export class MonoScheduleDirective implements angular.IDirective {
     static $name = 'brMonoSchedule';
 
     constructor(
@@ -31,8 +31,3 @@ class MonoScheduleDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(MonoScheduleDirective.$name, MonoScheduleDirective.Factory());
-

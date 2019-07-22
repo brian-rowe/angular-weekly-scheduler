@@ -1,5 +1,5 @@
 /** @internal */
-class MouseTrackerService {
+export class MouseTrackerService {
     static $name = 'brWeeklySchedulerMouseTrackerService';
 
     static $inject = ['$document'];
@@ -28,10 +28,3 @@ class MouseTrackerService {
         this.mousePosition = { x: event.pageX, y: event.pageY };
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(MouseTrackerService.$name, MouseTrackerService)
-    .run([MouseTrackerService.$name, (mouseTrackerService: MouseTrackerService) => {
-        mouseTrackerService.initialize();
-    }]);

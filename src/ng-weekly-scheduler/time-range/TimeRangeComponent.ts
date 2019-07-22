@@ -2,7 +2,7 @@ import * as angular from 'angular';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 
 /** @internal */
-class TimeRangeComponent implements angular.IComponentOptions {
+export class TimeRangeComponent implements angular.IComponentOptions {
     static $name = 'brTimeRange';
 
     bindings = {
@@ -19,7 +19,7 @@ class TimeRangeComponent implements angular.IComponentOptions {
 }
 
 /** @internal */
-class TimeRangeController implements angular.IComponentController {
+export class TimeRangeController implements angular.IComponentController {
     static $controllerAs = 'timeRangeCtrl';
     static $name = 'brTimeRangeController';
 
@@ -33,8 +33,3 @@ class TimeRangeController implements angular.IComponentController {
         this.hasEnd = angular.isDefined(this.schedule.end) && this.schedule.end !== null;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .component(TimeRangeComponent.$name, new TimeRangeComponent())
-    .controller(TimeRangeController.$name, TimeRangeController);

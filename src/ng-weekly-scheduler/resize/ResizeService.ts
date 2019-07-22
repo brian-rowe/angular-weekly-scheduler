@@ -2,7 +2,7 @@ import * as angular from 'angular';
 import { IResizeServiceProvider } from './IResizeServiceProvider';
 
 /** @internal */
-class ResizeServiceProvider implements IResizeServiceProvider {
+export class ResizeServiceProvider implements IResizeServiceProvider {
     public static $name = 'br.weeklyScheduler.resizeService';
 
     constructor() {
@@ -50,8 +50,3 @@ class ResizeServiceProvider implements IResizeServiceProvider {
         };
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .provider(ResizeServiceProvider.$name, ResizeServiceProvider)
-    .run([ResizeServiceProvider.$name, (resizeService: IResizeService) => resizeService.initialize()]);

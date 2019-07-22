@@ -1,5 +1,5 @@
 /** @internal */
-class TouchService {
+export class TouchService {
     static $name = 'brWeeklySchedulerTouchService';
 
     public getTouches(event: any): any { // todo
@@ -28,7 +28,3 @@ class TouchService {
         return null;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(TouchService.$name, TouchService);
