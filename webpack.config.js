@@ -1,7 +1,10 @@
+const CleanPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 var isProduction = process.env.NODE_ENV === 'production';
+
+var cleanPlugin = new CleanPlugin();
 
 var htmlPlugin = new HtmlPlugin({
     template: 'src/index.html',
@@ -33,7 +36,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlPlugin],
+    plugins: [cleanPlugin, htmlPlugin],
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.html']
     },
