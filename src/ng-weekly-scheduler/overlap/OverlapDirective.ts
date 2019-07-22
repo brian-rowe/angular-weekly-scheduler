@@ -3,7 +3,7 @@ import { OverlapValidatorService } from '../schedule-validator/OverlapValidatorS
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 
 /** @internal */
-class OverlapDirective implements angular.IDirective {
+export class OverlapDirective implements angular.IDirective {
     static $name = 'brOverlap';
 
     constructor(
@@ -29,8 +29,3 @@ class OverlapDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(OverlapDirective.$name, OverlapDirective.Factory());
-

@@ -1,5 +1,5 @@
 /** @internal */
-class ZoomService {
+export class ZoomService {
     static $name = 'brWeeklySchedulerZoomService';
 
     static $inject = ['$rootScope'];
@@ -85,7 +85,3 @@ class ZoomService {
         }
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(ZoomService.$name, ZoomService);

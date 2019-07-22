@@ -66,7 +66,3 @@ export class FullCalendarValidatorService implements ValidatorService {
         return (end || config.maxValue) === config.maxValue;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(FullCalendarValidatorService.$name, FullCalendarValidatorService);

@@ -3,7 +3,7 @@ import { NullEndScheduleValidatorService } from '../schedule-validator/NullEndVa
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 
 /** @internal */
-class NullEndDirective implements angular.IDirective {
+export class NullEndDirective implements angular.IDirective {
     static $name = 'brNullEnd';
 
     constructor(
@@ -29,8 +29,3 @@ class NullEndDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(NullEndDirective.$name, NullEndDirective.Factory());
-

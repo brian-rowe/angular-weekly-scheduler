@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 
 /** @internal */
@@ -21,7 +20,3 @@ export class EndAdjusterService {
         return end;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(EndAdjusterService.$name, EndAdjusterService);

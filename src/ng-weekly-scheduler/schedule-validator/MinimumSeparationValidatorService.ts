@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { ValidatorService } from '../schedule-validator/ValidatorService'
@@ -38,7 +37,3 @@ export class MinimumSeparationValidatorService implements ValidatorService {
         return true;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(MinimumSeparationValidatorService.$name, MinimumSeparationValidatorService);

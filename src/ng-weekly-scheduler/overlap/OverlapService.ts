@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
@@ -50,7 +49,3 @@ export class OverlapService {
         return OverlapState.NoOverlap;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(OverlapService.$name, OverlapService);

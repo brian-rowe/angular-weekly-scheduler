@@ -30,7 +30,3 @@ export class MonoScheduleValidatorService implements ValidatorService {
         return !schedulesToValidate.length || schedulesToValidate.length === 1;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(MonoScheduleValidatorService.$name, MonoScheduleValidatorService);

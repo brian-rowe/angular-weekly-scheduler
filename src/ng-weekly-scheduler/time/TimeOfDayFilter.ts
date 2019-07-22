@@ -1,5 +1,7 @@
+import { TimeConstantsService } from './TimeConstantsService';
+
 /** @internal */
-class TimeOfDayFilter {
+export class TimeOfDayFilter {
     static $name = 'brWeeklySchedulerTimeOfDay';
 
     public static Factory() {
@@ -34,7 +36,3 @@ class TimeOfDayFilter {
         return factoryFunction;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .filter(TimeOfDayFilter.$name, TimeOfDayFilter.Factory());

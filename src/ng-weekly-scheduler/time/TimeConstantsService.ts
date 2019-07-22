@@ -1,5 +1,5 @@
 /** @internal */
-class TimeConstantsService {
+export class TimeConstantsService {
     static $name = 'brWeeklySchedulerTimeConstantsService';
 
     public get SECONDS_IN_DAY() {
@@ -26,7 +26,3 @@ class TimeConstantsService {
         return 60;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(TimeConstantsService.$name, TimeConstantsService);

@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { ValidatorService } from '../schedule-validator/ValidatorService'
@@ -31,7 +30,3 @@ export class ScheduleCountValidatorService implements ValidatorService {
         return schedules.length <= config.scheduleCountOptions.count;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(ScheduleCountValidatorService.$name, ScheduleCountValidatorService);

@@ -4,7 +4,7 @@
  */
 
 /** @internal */
-class ElementOffsetService {
+export class ElementOffsetService {
     static $name = 'brWeeklySchedulerElementOffsetService';
 
     public left($element: angular.IAugmentedJQuery) {
@@ -15,7 +15,3 @@ class ElementOffsetService {
         return $element[0].getBoundingClientRect().right;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(ElementOffsetService.$name, ElementOffsetService);

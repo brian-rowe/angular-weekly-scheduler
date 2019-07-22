@@ -41,7 +41,3 @@ export class OverlapValidatorService implements ValidatorService {
         return result;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(OverlapValidatorService.$name, OverlapValidatorService);

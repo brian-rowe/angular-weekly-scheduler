@@ -41,8 +41,3 @@ export class WeeklySchedulerItemFactory {
         return new WeeklySchedulerItem(config, result, this.fillEmptyWithDefaultService, this.overlapService, this.purgeDefaultService, this.rangeFactory);
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(WeeklySchedulerItemFactory.$name, WeeklySchedulerItemFactory);
-

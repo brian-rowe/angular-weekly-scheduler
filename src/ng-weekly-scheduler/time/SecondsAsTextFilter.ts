@@ -1,5 +1,7 @@
+import { TimeConstantsService } from './TimeConstantsService';
+
 /** @internal */
-class SecondsAsTextFilter {
+export class SecondsAsTextFilter {
     static $name = 'brWeeklySchedulerSecondsAsText';
 
     public static Factory() {
@@ -66,7 +68,3 @@ class SecondsAsTextFilter {
         return result;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .filter(SecondsAsTextFilter.$name, SecondsAsTextFilter.Factory());

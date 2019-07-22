@@ -19,8 +19,3 @@ export class NullEndScheduleValidatorService implements ValidatorService {
         }
     }
 }
-
-
-angular
-    .module('br.weeklyScheduler')
-    .service(NullEndScheduleValidatorService.$name, NullEndScheduleValidatorService);
