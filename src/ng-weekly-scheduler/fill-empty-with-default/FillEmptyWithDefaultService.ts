@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
@@ -150,7 +149,3 @@ export class FillEmptyWithDefaultService {
         return schedule.end === null && config.nullEnds && config.fillNullEnds;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(FillEmptyWithDefaultService.$name, FillEmptyWithDefaultService);

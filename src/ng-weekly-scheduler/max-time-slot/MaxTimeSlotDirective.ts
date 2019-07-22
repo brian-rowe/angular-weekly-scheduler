@@ -3,7 +3,7 @@ import { MaxTimeSlotValidatorService } from '../schedule-validator/MaxTimeSlotVa
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 
 /** @internal */
-class MaxTimeSlotDirective implements angular.IDirective {
+export class MaxTimeSlotDirective implements angular.IDirective {
     static $name = 'brMaxTimeSlot';
 
     constructor(
@@ -31,8 +31,3 @@ class MaxTimeSlotDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(MaxTimeSlotDirective.$name, MaxTimeSlotDirective.Factory());
-

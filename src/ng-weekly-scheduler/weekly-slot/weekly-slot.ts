@@ -6,7 +6,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 
 /** @internal */
-class WeeklySlotController implements angular.IComponentController {
+export class WeeklySlotController implements angular.IComponentController {
   static $name = 'weeklySlotController';
   static $controllerAs = 'weeklySlotCtrl';
 
@@ -139,7 +139,7 @@ class WeeklySlotController implements angular.IComponentController {
 }
 
 /** @internal */
-class WeeklySlotComponent implements angular.IComponentOptions {
+export class WeeklySlotComponent implements angular.IComponentOptions {
   static $name = 'brWeeklySlot';
   
   bindings = {
@@ -160,8 +160,3 @@ class WeeklySlotComponent implements angular.IComponentOptions {
 
   templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';
 }
-
-angular
-  .module('br.weeklyScheduler')
-  .controller(WeeklySlotController.$name, WeeklySlotController)
-  .component(WeeklySlotComponent.$name, new WeeklySlotComponent());

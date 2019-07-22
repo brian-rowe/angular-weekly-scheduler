@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { Days } from '../weekly-scheduler-config/Days';
 
 /** Ahhahhahh! Fighter of the NightMap! */
@@ -16,7 +15,3 @@ export class DayMap {
         [Days.Sunday]: 'Sun' 
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .constant(DayMap.$name, DayMap.value);

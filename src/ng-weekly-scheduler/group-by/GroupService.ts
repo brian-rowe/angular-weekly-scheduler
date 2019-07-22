@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 
 /**
@@ -29,7 +28,3 @@ export class GroupService {
         return result;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(GroupService.$name, GroupService);

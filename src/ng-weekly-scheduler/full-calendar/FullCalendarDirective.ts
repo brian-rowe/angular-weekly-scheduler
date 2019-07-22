@@ -3,7 +3,7 @@ import { FullCalendarValidatorService } from '../schedule-validator/FullCalendar
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 
 /** @internal */
-class FullCalendarDirective implements angular.IDirective {
+export class FullCalendarDirective implements angular.IDirective {
     static $name = 'brFullCalendar';
 
     constructor(
@@ -31,7 +31,3 @@ class FullCalendarDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(FullCalendarDirective.$name, FullCalendarDirective.Factory());

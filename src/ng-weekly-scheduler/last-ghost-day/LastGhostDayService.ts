@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 
 /** @internal */
@@ -55,7 +54,3 @@ export class LastGhostDayService {
         return renderedGhostIndices;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(LastGhostDayService.$name, LastGhostDayService);

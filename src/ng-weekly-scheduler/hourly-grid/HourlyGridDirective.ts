@@ -1,9 +1,10 @@
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { TimeConstantsService } from '../time/TimeConstantsService';
 
 /** @internal */
-class HourlyGridDirective implements angular.IDirective {
+export class HourlyGridDirective implements angular.IDirective {
     static $name = 'brHourlyGrid';
 
     restrict = 'E';
@@ -79,7 +80,3 @@ class HourlyGridDirective implements angular.IDirective {
         return directive;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .directive(HourlyGridDirective.$name, HourlyGridDirective.Factory());

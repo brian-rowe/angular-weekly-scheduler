@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
@@ -21,7 +20,3 @@ export class WeeklySchedulerRangeFactory {
         return new WeeklySchedulerRange(config, schedule, this.endAdjusterService);
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(WeeklySchedulerRangeFactory.$name, WeeklySchedulerRangeFactory);
