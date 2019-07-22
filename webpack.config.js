@@ -14,9 +14,6 @@ var htmlPlugin = new HtmlPlugin({
 module.exports = {
     mode: 'development',
     entry: {
-        'vendor': [
-            'angular-material'
-        ],
         'index': './src/index.ts',
     },
     module: {
