@@ -29,6 +29,8 @@ declare module "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange
         editable?: boolean;
     }
 }
+declare module "ng-weekly-scheduler/group-by/GroupService" {
+}
 declare module "ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem" {
     import { Days } from "ng-weekly-scheduler/weekly-scheduler-config/Days";
     import { IWeeklySchedulerRange } from "ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange";
@@ -118,10 +120,6 @@ declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOpti
         /** Overrides for schedule count options, if necessary */
         scheduleCountOptions?: ScheduleCountOptions;
     }
-}
-declare module "demo-app" {
-}
-declare module "ng-weekly-scheduler/group-by/GroupService" {
 }
 declare module "ng-weekly-scheduler/weekly-scheduler-config/DayMap" {
 }
