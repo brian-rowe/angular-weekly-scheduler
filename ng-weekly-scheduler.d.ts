@@ -121,34 +121,27 @@ declare module "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOpti
 }
 declare module "demo-app" {
 }
-declare module "index" {
-    import './ng-weekly-scheduler.less';
-    import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter";
-    import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions";
-    export namespace weeklyScheduler {
-        type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
-        type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
-    }
-}
-declare module "ng-weekly-scheduler/group-by/GroupService" {
-}
-declare module "ng-weekly-scheduler/weekly-scheduler-config/DayMap" {
-}
 declare module "ng-weekly-scheduler/end-adjuster/EndAdjusterService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRange" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory" {
+}
+declare module "ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService" {
 }
 declare module "ng-weekly-scheduler/weekly-scheduler-item/IInternalWeeklySchedulerItem" {
 }
 declare module "ng-weekly-scheduler/overlap/OverlapService" {
 }
-declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRange" {
-}
 declare module "ng-weekly-scheduler/purge-default/PurgeDefaultService" {
-}
-declare module "ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory" {
 }
 declare module "ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItem" {
 }
-declare module "ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService" {
+declare module "ng-weekly-scheduler/multislider/multislider" {
+}
+declare module "ng-weekly-scheduler/group-by/GroupService" {
+}
+declare module "ng-weekly-scheduler/weekly-scheduler-config/DayMap" {
 }
 declare module "ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory" {
 }
@@ -158,21 +151,32 @@ declare module "ng-weekly-scheduler/configuration/ConfigurationService" {
 }
 declare module "ng-weekly-scheduler/conflicting-options/ConflictingOptionsService" {
 }
-declare module "ng-weekly-scheduler/drag/DragService" {
-}
-declare module "ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService" {
-}
-declare module "ng-weekly-scheduler/full-calendar/FullCalendarDirective" {
-}
-declare module "ng-weekly-scheduler/multislider/multislider" {
-}
-declare module "ng-weekly-scheduler/ghost-slot/ghost-slot" {
-}
 declare module "ng-weekly-scheduler/last-ghost-day/LastGhostDayService" {
 }
 declare module "ng-weekly-scheduler/missing-days/MissingDaysService" {
 }
 declare module "ng-weekly-scheduler/weekly-scheduler/weekly-scheduler" {
+}
+declare module "ng-weekly-scheduler/schedule-area-container/schedule-area-container" {
+}
+declare module "ng-weekly-scheduler/ghost-slot/ghost-slot" {
+}
+declare module "ng-weekly-scheduler/handle/HandleDirective" {
+}
+declare module "index" {
+    import './ng-weekly-scheduler.less';
+    import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from "ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter";
+    import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from "ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions";
+    export namespace weeklyScheduler {
+        type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
+        type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
+    }
+}
+declare module "ng-weekly-scheduler/drag/DragService" {
+}
+declare module "ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService" {
+}
+declare module "ng-weekly-scheduler/full-calendar/FullCalendarDirective" {
 }
 declare module "ng-weekly-scheduler/hourly-grid/HourlyGridDirective" {
 }

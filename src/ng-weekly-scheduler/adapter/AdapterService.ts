@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { GroupService } from '../group-by/GroupService';
 import { IWeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
@@ -36,7 +35,3 @@ export class AdapterService {
         return result;
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(AdapterService.$name, AdapterService);

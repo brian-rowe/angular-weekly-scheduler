@@ -1,5 +1,5 @@
 /** @internal */
-class ScheduleAreaContainerController implements angular.IComponentController {
+export class ScheduleAreaContainerController implements angular.IComponentController {
     static $name = 'brWeeklySchedulerScheduleAreaContainerController';
 
     static $inject = [
@@ -39,7 +39,7 @@ class ScheduleAreaContainerController implements angular.IComponentController {
 }
 
 /** @internal */
-class ScheduleAreaContainerComponent implements angular.IComponentOptions {
+export class ScheduleAreaContainerComponent implements angular.IComponentOptions {
     static $name = 'brScheduleAreaContainer';
 
     controller = ScheduleAreaContainerController.$name;
@@ -47,7 +47,3 @@ class ScheduleAreaContainerComponent implements angular.IComponentOptions {
 
     template = `<ng-transclude></ng-transclude>`;
 }
-
-angular.module('br.weeklyScheduler')
-    .controller(ScheduleAreaContainerController.$name, ScheduleAreaContainerController)
-    .component(ScheduleAreaContainerComponent.$name, new ScheduleAreaContainerComponent());

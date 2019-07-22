@@ -1,8 +1,7 @@
-import * as angular from 'angular';
 import { MultiSliderController } from '../multislider/multislider';
 
 /** @internal */
-class GhostSlotController implements angular.IComponentController {
+export class GhostSlotController implements angular.IComponentController {
     static $name = 'brGhostSlotController';
     static $controllerAs = 'ghostSlotCtrl';
 
@@ -19,7 +18,7 @@ class GhostSlotController implements angular.IComponentController {
 }
 
 /** @internal */
-class GhostSlotComponent implements angular.IComponentOptions {
+export class GhostSlotComponent implements angular.IComponentOptions {
     static $name = 'brGhostSlot';
 
     controller = GhostSlotController.$name;
@@ -35,8 +34,3 @@ class GhostSlotComponent implements angular.IComponentOptions {
 
     transclude = true;
 }
-
-
-angular.module('br.weeklyScheduler')
-    .controller(GhostSlotController.$name, GhostSlotController)
-    .component(GhostSlotComponent.$name, new GhostSlotComponent());

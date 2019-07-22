@@ -61,7 +61,3 @@ export class ConfigurationService {
         };
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(ConfigurationService.$name, ConfigurationService);

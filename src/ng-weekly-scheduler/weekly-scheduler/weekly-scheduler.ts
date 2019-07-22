@@ -202,7 +202,7 @@ export class WeeklySchedulerController implements angular.IController {
 }
 
 /** @internal */
-class WeeklySchedulerComponent implements angular.IComponentOptions {
+export class WeeklySchedulerComponent implements angular.IComponentOptions {
   static $name = 'brWeeklyScheduler';
 
   bindings = {
@@ -220,7 +220,3 @@ class WeeklySchedulerComponent implements angular.IComponentOptions {
 
   template = template;
 }
-
-angular.module('br.weeklyScheduler')
-  .controller(WeeklySchedulerController.$name, WeeklySchedulerController)
-  .component(WeeklySchedulerComponent.$name, new WeeklySchedulerComponent());

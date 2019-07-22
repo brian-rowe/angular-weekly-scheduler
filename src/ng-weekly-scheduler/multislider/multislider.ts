@@ -359,7 +359,7 @@ export class MultiSliderController implements angular.IComponentController {
 }
 
 /** @internal */
-class MultiSliderComponent implements angular.IComponentOptions {
+export class MultiSliderComponent implements angular.IComponentOptions {
   static $name = 'brMultiSlider';
 
   bindings = {
@@ -379,7 +379,3 @@ class MultiSliderComponent implements angular.IComponentOptions {
 
   templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
 }
-
-angular.module('br.weeklyScheduler')
-  .controller(MultiSliderController.$name, MultiSliderController)
-  .component(MultiSliderComponent.$name, new MultiSliderComponent());

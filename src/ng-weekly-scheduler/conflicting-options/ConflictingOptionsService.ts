@@ -21,7 +21,3 @@ export class ConflictingOptionsService {
         return '';
     }
 }
-
-angular
-    .module('br.weeklyScheduler')
-    .service(ConflictingOptionsService.$name, ConflictingOptionsService);

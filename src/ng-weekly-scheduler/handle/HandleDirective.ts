@@ -1,5 +1,7 @@
+import * as angular from 'angular';
+
 /** @internal */
-class HandleDirective implements angular.IDirective {
+export class HandleDirective implements angular.IDirective {
   static $name = 'brHandle';
   restrict = 'A';
 
@@ -91,6 +93,3 @@ class HandleDirective implements angular.IDirective {
     return directive;
   }
 }
-
-angular.module('br.weeklyScheduler')
-  .directive(HandleDirective.$name, HandleDirective.Factory());
