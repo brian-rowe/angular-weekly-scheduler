@@ -1,6 +1,6 @@
 import * as angular from 'angular';
 import { DemoAdapter } from '../../src/demo-app';
-import { WeeklySchedulerController } from '../../src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.ts';
+import { WeeklySchedulerController } from '../../src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler';
 
 describe('weekly scheduler', () => {
     let $compile: angular.ICompileService;
