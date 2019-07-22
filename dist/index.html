@@ -5,14 +5,14 @@
     <title>Angularjs weekly scheduler demo</title>
   </head>
 
-  <body class="container-fluid">
-    <!-- <div class="row" ng-controller="DemoController as demo" ng-form="testWrapper">
+  <body class="container-fluid" ng-app="demoApp">
+    <div class="row" ng-controller="DemoController as demo" ng-form="testWrapper">
       <div>
         <code>$scope.model</code>
         <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
       </div>
 
-      <button ng-click="saveAll()" ng-disabled="!testWrapper.$dirty || !testWrapper.$valid">Save</button>
+      <!-- <button ng-click="saveAll()" ng-disabled="!testWrapper.$dirty || !testWrapper.$valid">Save</button> -->
 
       <br-weekly-scheduler adapter="adapter" ng-form="test" options="model.options"></br-weekly-scheduler>
       <code>Valid: {{ test.$valid }}</code>
@@ -21,6 +21,6 @@
       
       <code>Result: 
         <pre ng-bind="result | json" style="overflow-y:auto"></pre>
-      </code> -->
+      </code>
   <script type="text/javascript" src="index.bundle.js"></script></body>
 </html>

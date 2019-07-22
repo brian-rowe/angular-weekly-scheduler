@@ -1,15 +1,6 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
-    "declaration": true,
-    "noResolve": false,
-    "module": "AMD",
-    "target": "es5",
-    "noImplicitAny": false,
-    "removeComments": false,
-    "stripInternal": true,
     "sourceMap": true,
-    "outFile": "ng-weekly-scheduler.js",
-    "skipLibCheck": true
+    "target": "es5"
   }
 }
