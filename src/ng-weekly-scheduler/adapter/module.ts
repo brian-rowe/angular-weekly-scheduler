@@ -3,4 +3,5 @@ import { AdapterService } from './AdapterService';
 
 export default angular
     .module('rr.weeklyScheduler.adapter', [])
-    .service(AdapterService.$name, AdapterService).name;
+    .service(AdapterService.$name, AdapterService)
+    .name;
