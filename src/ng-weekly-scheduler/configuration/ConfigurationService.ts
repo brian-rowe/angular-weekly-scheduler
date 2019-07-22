@@ -1,5 +1,6 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
+import { TimeConstantsService } from '../time/TimeConstantsService';
 
 /** @internal */
 export class ConfigurationService {

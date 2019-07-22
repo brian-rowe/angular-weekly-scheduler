@@ -1,3 +1,6 @@
+import { ScrollService } from '../scroll/ScrollService';
+import { ZoomService } from '../zoom/ZoomService';
+
 /** @internal */
 export class ScheduleAreaContainerController implements angular.IComponentController {
     static $name = 'brWeeklySchedulerScheduleAreaContainerController';

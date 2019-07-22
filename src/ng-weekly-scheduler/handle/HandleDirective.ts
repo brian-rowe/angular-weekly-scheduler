@@ -1,4 +1,6 @@
 import * as angular from 'angular';
+import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
+import { TouchService } from '../touch/TouchService';
 
 /** @internal */
 export class HandleDirective implements angular.IDirective {
