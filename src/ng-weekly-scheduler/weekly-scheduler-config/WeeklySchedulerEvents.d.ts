@@ -1,0 +1,16 @@
+export declare const enum WeeklySchedulerEvents {
+    CLICK_ON_A_CELL = "brWeeklyScheduler.clickOnACell",
+    RESIZED = "brWeeklyScheduler.resized",
+    ZOOMED_IN = "brWeeklyScheduler.zoomedIn",
+    ZOOMED_OUT = "brWeeklyScheduler.zoomedOut",
+    RESET_ZOOM = "brWeeklyScheduler.resetZoom",
+    ZOOM_IN = "brWeeklyScheduler.zoomIn",
+    SLOT_DRAGGED = "brWeeklyScheduler.slotDragged",
+    DRAG_ENDED = "brWeeklyScheduler.dragEnded",
+    GHOST_DRAG_ENDED = "brWeeklyScheduler.ghostDragEnded",
+    CANCEL_GHOST = "brWeeklyScheduler.cancelGhost",
+    COMMIT_GHOST = "brWeeklyScheduler.commitGhost",
+    REMOVE_ALL_GHOSTS = "brWeeklyScheduler.removeAllGhosts",
+    REMOVE_LAST_GHOST = "brWeeklyScheduler.removeLastGhost",
+    REMOVE_GHOST = "brWeeklyScheduler.removeGhost",
+}
