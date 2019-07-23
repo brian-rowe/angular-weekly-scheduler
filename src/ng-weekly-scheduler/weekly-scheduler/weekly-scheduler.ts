@@ -9,6 +9,7 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
+import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 
 /** @internal */
 export class WeeklySchedulerController implements angular.IController {

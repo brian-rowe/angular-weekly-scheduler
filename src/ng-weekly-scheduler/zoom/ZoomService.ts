@@ -1,3 +1,5 @@
+import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
+
 /** @internal */
 export class ZoomService {
     static $name = 'brWeeklySchedulerZoomService';

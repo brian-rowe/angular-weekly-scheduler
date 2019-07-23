@@ -1,5 +1,6 @@
 import { ScrollService } from '../scroll/ScrollService';
 import { ZoomService } from '../zoom/ZoomService';
+import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 
 /** @internal */
 export class ScheduleAreaContainerController implements angular.IComponentController {

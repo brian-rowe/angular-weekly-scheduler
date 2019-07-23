@@ -1,4 +1,4 @@
-declare const enum WeeklySchedulerEvents {
+export const enum WeeklySchedulerEvents {
     CLICK_ON_A_CELL = 'brWeeklyScheduler.clickOnACell',
     RESIZED = 'brWeeklyScheduler.resized',
     ZOOMED_IN = 'brWeeklyScheduler.zoomedIn', // ack

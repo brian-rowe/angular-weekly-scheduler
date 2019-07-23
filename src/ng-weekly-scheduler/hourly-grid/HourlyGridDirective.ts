@@ -2,6 +2,7 @@ import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { TimeConstantsService } from '../time/TimeConstantsService';
+import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 
 /** @internal */
 export class HourlyGridDirective implements angular.IDirective {

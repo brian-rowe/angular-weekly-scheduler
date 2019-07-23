@@ -8,6 +8,7 @@ import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySch
 import { ElementOffsetService } from '../element-offset/ElementOffsetService';
 import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
+import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
