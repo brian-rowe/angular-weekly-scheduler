@@ -380,5 +380,5 @@ export class MultiSliderComponent implements angular.IComponentOptions {
     ngModelCtrl: 'ngModel'
   };
 
-  templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
+  template = require('./multislider.html');
 }

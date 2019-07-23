@@ -80420,6 +80420,17 @@ exports.default = angular.module('rr.weeklyScheduler.multiSlider', [])
 
 /***/ }),
 
+/***/ "./src/ng-weekly-scheduler/multislider/multislider.html":
+/*!**************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/multislider/multislider.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"ghost-wrapper\" br-handle ondragstart=\"multiSliderCtrl.onGhostWrapperMouseDown()\" ondragstop=\"multiSliderCtrl.onGhostWrapperMouseUp()\" ondrag=\"multiSliderCtrl.onGhostWrapperMouseMove()\">\r\n    <br-ghost-slot class=\"slot\"\r\n                   ng-if=\"multiSliderCtrl.item.canRenderGhost()\"\r\n                   ng-class=\"{\r\n                      active: multiSliderCtrl.item.$renderGhost,\r\n                      nullEnd: multiSliderCtrl.config.nullEnds\r\n                   }\"\r\n                   ng-style=\"{\r\n                      left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.left),\r\n                      right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.left, multiSliderCtrl.ghostValues.right)\r\n                   }\">\r\n        <div class=\"slotWrapper\">\r\n            <div class=\"middle fullWidth\">\r\n                <span ng-if=\"!multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>\r\n                <span ng-if=\"multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} until</span>\r\n            </div>\r\n        </div>\r\n    </br-ghost-slot>\r\n\r\n    <br-weekly-slot class=\"slot {{ schedule.$class }}\"\r\n                config=\"multiSliderCtrl.config\"\r\n                get-delta=\"multiSliderCtrl.pixelToVal(pixel)\"\r\n                drag-schedule=\"multiSliderCtrl.dragSchedule\" \r\n                item=\"multiSliderCtrl.item\"\r\n                ng-class=\"{\r\n                    active: schedule.$isActive,\r\n                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),\r\n                    nullEnd: schedule.end === null,\r\n                    pending: schedule.$isEditing\r\n                }\"\r\n                ng-repeat=\"schedule in multiSliderCtrl.item.schedules\"\r\n                ng-model=\"schedule\"\r\n                ng-style=\"{\r\n                    left: multiSliderCtrl.getSlotLeft(schedule.start),\r\n                    right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end)\r\n                }\"\r\n                edit-schedule=\"multiSliderCtrl.editSchedule(schedule)\"\r\n    ></br-weekly-slot>\r\n</div>";
+
+/***/ }),
+
 /***/ "./src/ng-weekly-scheduler/multislider/multislider.ts":
 /*!************************************************************!*\
   !*** ./src/ng-weekly-scheduler/multislider/multislider.ts ***!
@@ -80722,7 +80733,7 @@ var MultiSliderComponent = /** @class */ (function () {
         this.require = {
             ngModelCtrl: 'ngModel'
         };
-        this.templateUrl = 'ng-weekly-scheduler/multislider/multislider.html';
+        this.template = __webpack_require__(/*! ./multislider.html */ "./src/ng-weekly-scheduler/multislider/multislider.html");
     }
     MultiSliderComponent.$name = 'brMultiSlider';
     return MultiSliderComponent;
@@ -82841,6 +82852,17 @@ exports.default = angular
 
 /***/ }),
 
+/***/ "./src/ng-weekly-scheduler/weekly-slot/weekly-slot.html":
+/*!**************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/weekly-slot/weekly-slot.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}\">\r\n  <div class=\"handle left\" ondrag=\"weeklySlotCtrl.resizeStart(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n  <div class=\"middle\" ondrag=\"weeklySlotCtrl.drag(delta)\" ondragstart=\"weeklySlotCtrl.startDrag()\" ondragstop=\"weeklySlotCtrl.endDrag()\" br-handle immediate=\"weeklySlotCtrl.hasDragSchedule\">\r\n    <br-time-range schedule=\"weeklySlotCtrl.schedule\"></br-time-range>\r\n  </div>\r\n  <div class=\"handle right\" ondrag=\"weeklySlotCtrl.resizeEnd(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n</div>";
+
+/***/ }),
+
 /***/ "./src/ng-weekly-scheduler/weekly-slot/weekly-slot.ts":
 /*!************************************************************!*\
   !*** ./src/ng-weekly-scheduler/weekly-slot/weekly-slot.ts ***!
@@ -82971,7 +82993,7 @@ var WeeklySlotComponent = /** @class */ (function () {
         this.require = {
             ngModelCtrl: 'ngModel'
         };
-        this.templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';
+        this.template = __webpack_require__(/*! ./weekly-slot.html */ "./src/ng-weekly-scheduler/weekly-slot/weekly-slot.html");
     }
     WeeklySlotComponent.$name = 'brWeeklySlot';
     return WeeklySlotComponent;

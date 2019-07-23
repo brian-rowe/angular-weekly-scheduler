@@ -158,5 +158,5 @@ export class WeeklySlotComponent implements angular.IComponentOptions {
     ngModelCtrl: 'ngModel'
   };
 
-  templateUrl = 'ng-weekly-scheduler/weekly-slot/weekly-slot.html';
+  template = require('./weekly-slot.html');
 }
