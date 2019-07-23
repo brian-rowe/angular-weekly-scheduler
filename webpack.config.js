@@ -12,6 +12,7 @@ var htmlPlugin = new HtmlPlugin({
 });
 
 module.exports = {
+    devtool: 'source-map',
     mode: 'development',
     entry: {
         'index': './src/demo-app.ts',
