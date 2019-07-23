@@ -1,5 +1,5 @@
 import * as angular from 'angular';
-import { DemoAdapter } from '../../src/demo-app';
+import { DemoAdapter } from '../../src/ng-weekly-scheduler/demo/DemoAdapter';
 import { WeeklySchedulerController } from '../../src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler';
 
 describe('weekly scheduler', () => {
