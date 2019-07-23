@@ -15,7 +15,7 @@ module.exports = {
     devtool: 'source-map',
     mode: 'development',
     entry: {
-        'index': './src/demo-app.ts',
+        'angular-weekly-scheduler': './src/demo-app.ts',
     },
     module: {
         rules: [
@@ -39,7 +39,6 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js', '.html']
     },
     output: {
-        filename: isProduction ? '[name].bundle-[hash].js' : '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     }
 };
