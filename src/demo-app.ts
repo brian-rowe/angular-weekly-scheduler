@@ -2,7 +2,7 @@ import * as angular from 'angular'
 import 'angular-material';
 import { Days } from './ng-weekly-scheduler/weekly-scheduler-config/Days';
 import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
-import AppModule from './index';
+import AppModule from './ng-weekly-scheduler/app/module';
 import { DemoItem } from './ng-weekly-scheduler/demo/DemoItem';
 import { DemoAdapter } from './ng-weekly-scheduler/demo/DemoAdapter';
 

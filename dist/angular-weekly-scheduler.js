@@ -78854,11 +78854,11 @@ module.exports = function (css) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 __webpack_require__(/*! angular-material */ "./node_modules/angular-material/index.js");
-var index_1 = __webpack_require__(/*! ./index */ "./src/index.ts");
+var module_1 = __webpack_require__(/*! ./ng-weekly-scheduler/app/module */ "./src/ng-weekly-scheduler/app/module.ts");
 var DemoItem_1 = __webpack_require__(/*! ./ng-weekly-scheduler/demo/DemoItem */ "./src/ng-weekly-scheduler/demo/DemoItem.ts");
 var DemoAdapter_1 = __webpack_require__(/*! ./ng-weekly-scheduler/demo/DemoAdapter */ "./src/ng-weekly-scheduler/demo/DemoAdapter.ts");
 function application() {
-    angular.module('demoApp', [index_1.default, 'ngMaterial'])
+    angular.module('demoApp', [module_1.default, 'ngMaterial'])
         .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
         function ($q, $scope, $timeout, $log, $mdDialog) {
             $scope.model = {
@@ -78904,109 +78904,6 @@ function application() {
     });
 }
 application();
-
-
-/***/ }),
-
-/***/ "./src/index.ts":
-/*!**********************!*\
-  !*** ./src/index.ts ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
-__webpack_require__(/*! ./ng-weekly-scheduler.less */ "./src/ng-weekly-scheduler.less");
-var module_1 = __webpack_require__(/*! ./ng-weekly-scheduler/adapter/module */ "./src/ng-weekly-scheduler/adapter/module.ts");
-var module_2 = __webpack_require__(/*! ./ng-weekly-scheduler/configuration/module */ "./src/ng-weekly-scheduler/configuration/module.ts");
-var module_3 = __webpack_require__(/*! ./ng-weekly-scheduler/conflicting-options/module */ "./src/ng-weekly-scheduler/conflicting-options/module.ts");
-var module_4 = __webpack_require__(/*! ./ng-weekly-scheduler/drag/module */ "./src/ng-weekly-scheduler/drag/module.ts");
-var module_5 = __webpack_require__(/*! ./ng-weekly-scheduler/element-offset/module */ "./src/ng-weekly-scheduler/element-offset/module.ts");
-var module_6 = __webpack_require__(/*! ./ng-weekly-scheduler/end-adjuster/module */ "./src/ng-weekly-scheduler/end-adjuster/module.ts");
-var module_7 = __webpack_require__(/*! ./ng-weekly-scheduler/fill-empty-with-default/module */ "./src/ng-weekly-scheduler/fill-empty-with-default/module.ts");
-var module_8 = __webpack_require__(/*! ./ng-weekly-scheduler/full-calendar/module */ "./src/ng-weekly-scheduler/full-calendar/module.ts");
-var module_9 = __webpack_require__(/*! ./ng-weekly-scheduler/ghost-slot/module */ "./src/ng-weekly-scheduler/ghost-slot/module.ts");
-var module_10 = __webpack_require__(/*! ./ng-weekly-scheduler/group-by/module */ "./src/ng-weekly-scheduler/group-by/module.ts");
-var module_11 = __webpack_require__(/*! ./ng-weekly-scheduler/handle/module */ "./src/ng-weekly-scheduler/handle/module.ts");
-var module_12 = __webpack_require__(/*! ./ng-weekly-scheduler/hourly-grid/module */ "./src/ng-weekly-scheduler/hourly-grid/module.ts");
-var module_13 = __webpack_require__(/*! ./ng-weekly-scheduler/last-ghost-day/module */ "./src/ng-weekly-scheduler/last-ghost-day/module.ts");
-var module_14 = __webpack_require__(/*! ./ng-weekly-scheduler/max-time-slot/module */ "./src/ng-weekly-scheduler/max-time-slot/module.ts");
-var module_15 = __webpack_require__(/*! ./ng-weekly-scheduler/minimum-separation/module */ "./src/ng-weekly-scheduler/minimum-separation/module.ts");
-var module_16 = __webpack_require__(/*! ./ng-weekly-scheduler/missing-days/module */ "./src/ng-weekly-scheduler/missing-days/module.ts");
-var module_17 = __webpack_require__(/*! ./ng-weekly-scheduler/mono-schedule/module */ "./src/ng-weekly-scheduler/mono-schedule/module.ts");
-var module_18 = __webpack_require__(/*! ./ng-weekly-scheduler/mouse-tracker/module */ "./src/ng-weekly-scheduler/mouse-tracker/module.ts");
-var module_19 = __webpack_require__(/*! ./ng-weekly-scheduler/multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
-var module_20 = __webpack_require__(/*! ./ng-weekly-scheduler/null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
-var module_21 = __webpack_require__(/*! ./ng-weekly-scheduler/overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
-var module_22 = __webpack_require__(/*! ./ng-weekly-scheduler/purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
-var module_23 = __webpack_require__(/*! ./ng-weekly-scheduler/resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
-var module_24 = __webpack_require__(/*! ./ng-weekly-scheduler/restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
-var module_25 = __webpack_require__(/*! ./ng-weekly-scheduler/revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
-var module_26 = __webpack_require__(/*! ./ng-weekly-scheduler/schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
-var module_27 = __webpack_require__(/*! ./ng-weekly-scheduler/schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
-var module_28 = __webpack_require__(/*! ./ng-weekly-scheduler/schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
-var module_29 = __webpack_require__(/*! ./ng-weekly-scheduler/scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
-var module_30 = __webpack_require__(/*! ./ng-weekly-scheduler/time/module */ "./src/ng-weekly-scheduler/time/module.ts");
-var module_31 = __webpack_require__(/*! ./ng-weekly-scheduler/time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
-var module_32 = __webpack_require__(/*! ./ng-weekly-scheduler/touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
-var module_33 = __webpack_require__(/*! ./ng-weekly-scheduler/weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
-var module_34 = __webpack_require__(/*! ./ng-weekly-scheduler/weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
-var module_35 = __webpack_require__(/*! ./ng-weekly-scheduler/weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
-var module_36 = __webpack_require__(/*! ./ng-weekly-scheduler/weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
-var module_37 = __webpack_require__(/*! ./ng-weekly-scheduler/weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
-var module_38 = __webpack_require__(/*! ./ng-weekly-scheduler/value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
-var module_39 = __webpack_require__(/*! ./ng-weekly-scheduler/zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
-// import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
-// import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
-// export namespace weeklyScheduler {
-//     export type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
-//     export type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
-// }
-exports.default = angular.module('br.weeklyScheduler', [
-    module_1.default,
-    module_2.default,
-    module_3.default,
-    module_4.default,
-    module_5.default,
-    module_6.default,
-    module_7.default,
-    module_8.default,
-    module_10.default,
-    module_9.default,
-    module_11.default,
-    module_12.default,
-    module_13.default,
-    module_14.default,
-    module_15.default,
-    module_17.default,
-    module_18.default,
-    module_16.default,
-    module_19.default,
-    module_20.default,
-    module_21.default,
-    module_22.default,
-    module_23.default,
-    module_24.default,
-    module_25.default,
-    module_26.default,
-    module_27.default,
-    module_28.default,
-    module_29.default,
-    module_30.default,
-    module_31.default,
-    module_32.default,
-    module_33.default,
-    module_34.default,
-    module_35.default,
-    module_36.default,
-    module_37.default,
-    module_38.default,
-    module_39.default
-])
-    .name;
 
 
 /***/ }),
@@ -79096,6 +78993,109 @@ var AdapterService_1 = __webpack_require__(/*! ./AdapterService */ "./src/ng-wee
 exports.default = angular
     .module('rr.weeklyScheduler.adapter', [])
     .service(AdapterService_1.AdapterService.$name, AdapterService_1.AdapterService)
+    .name;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/app/module.ts":
+/*!***********************************************!*\
+  !*** ./src/ng-weekly-scheduler/app/module.ts ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+__webpack_require__(/*! ../../ng-weekly-scheduler.less */ "./src/ng-weekly-scheduler.less");
+var module_1 = __webpack_require__(/*! ../adapter/module */ "./src/ng-weekly-scheduler/adapter/module.ts");
+var module_2 = __webpack_require__(/*! ../configuration/module */ "./src/ng-weekly-scheduler/configuration/module.ts");
+var module_3 = __webpack_require__(/*! ../conflicting-options/module */ "./src/ng-weekly-scheduler/conflicting-options/module.ts");
+var module_4 = __webpack_require__(/*! ../drag/module */ "./src/ng-weekly-scheduler/drag/module.ts");
+var module_5 = __webpack_require__(/*! ../element-offset/module */ "./src/ng-weekly-scheduler/element-offset/module.ts");
+var module_6 = __webpack_require__(/*! ../end-adjuster/module */ "./src/ng-weekly-scheduler/end-adjuster/module.ts");
+var module_7 = __webpack_require__(/*! ../fill-empty-with-default/module */ "./src/ng-weekly-scheduler/fill-empty-with-default/module.ts");
+var module_8 = __webpack_require__(/*! ../full-calendar/module */ "./src/ng-weekly-scheduler/full-calendar/module.ts");
+var module_9 = __webpack_require__(/*! ../ghost-slot/module */ "./src/ng-weekly-scheduler/ghost-slot/module.ts");
+var module_10 = __webpack_require__(/*! ../group-by/module */ "./src/ng-weekly-scheduler/group-by/module.ts");
+var module_11 = __webpack_require__(/*! ../handle/module */ "./src/ng-weekly-scheduler/handle/module.ts");
+var module_12 = __webpack_require__(/*! ../hourly-grid/module */ "./src/ng-weekly-scheduler/hourly-grid/module.ts");
+var module_13 = __webpack_require__(/*! ../last-ghost-day/module */ "./src/ng-weekly-scheduler/last-ghost-day/module.ts");
+var module_14 = __webpack_require__(/*! ../max-time-slot/module */ "./src/ng-weekly-scheduler/max-time-slot/module.ts");
+var module_15 = __webpack_require__(/*! ../minimum-separation/module */ "./src/ng-weekly-scheduler/minimum-separation/module.ts");
+var module_16 = __webpack_require__(/*! ../missing-days/module */ "./src/ng-weekly-scheduler/missing-days/module.ts");
+var module_17 = __webpack_require__(/*! ../mono-schedule/module */ "./src/ng-weekly-scheduler/mono-schedule/module.ts");
+var module_18 = __webpack_require__(/*! ../mouse-tracker/module */ "./src/ng-weekly-scheduler/mouse-tracker/module.ts");
+var module_19 = __webpack_require__(/*! ../multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
+var module_20 = __webpack_require__(/*! ../null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
+var module_21 = __webpack_require__(/*! ../overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
+var module_22 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
+var module_23 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
+var module_24 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
+var module_25 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
+var module_26 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
+var module_27 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
+var module_28 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
+var module_29 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
+var module_30 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
+var module_31 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
+var module_32 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
+var module_33 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
+var module_34 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
+var module_35 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
+var module_36 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
+var module_37 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
+var module_38 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
+var module_39 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
+// import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
+// import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
+// export namespace weeklyScheduler {
+//     export type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
+//     export type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
+// }
+exports.default = angular.module('br.weeklyScheduler', [
+    module_1.default,
+    module_2.default,
+    module_3.default,
+    module_4.default,
+    module_5.default,
+    module_6.default,
+    module_7.default,
+    module_8.default,
+    module_10.default,
+    module_9.default,
+    module_11.default,
+    module_12.default,
+    module_13.default,
+    module_14.default,
+    module_15.default,
+    module_17.default,
+    module_18.default,
+    module_16.default,
+    module_19.default,
+    module_20.default,
+    module_21.default,
+    module_22.default,
+    module_23.default,
+    module_24.default,
+    module_25.default,
+    module_26.default,
+    module_27.default,
+    module_28.default,
+    module_29.default,
+    module_30.default,
+    module_31.default,
+    module_32.default,
+    module_33.default,
+    module_34.default,
+    module_35.default,
+    module_36.default,
+    module_37.default,
+    module_38.default,
+    module_39.default
+])
     .name;
 
 
