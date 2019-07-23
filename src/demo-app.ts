@@ -51,6 +51,10 @@ function application() {
           }
         ]);
       }]);
+
+      angular.element(document).ready(() => {
+        angular.bootstrap(document, ['demoApp']);
+      });
 }
 
 application();
