@@ -1,5 +1,6 @@
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
+import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class RestrictionExplanationsController implements angular.IComponentController {

@@ -1,7 +1,7 @@
-import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { ValidatorService } from '../schedule-validator/ValidatorService';
+import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class FullCalendarValidatorService implements ValidatorService {

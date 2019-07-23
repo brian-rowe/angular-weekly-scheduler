@@ -1,4 +1,4 @@
-declare const enum ValidationError {
+export const enum ValidationError {
     MaxTimeSlot = 'maxTimeSlot',
     MinimumSeparation = 'minimumSeparation',
     MonoSchedule = 'monoSchedule',
