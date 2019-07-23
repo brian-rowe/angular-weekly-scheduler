@@ -39,5 +39,6 @@
     "typescript": "^2.8.1",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6"
-  }
+  },
+  "typings": "src/index.d.ts"
 }
