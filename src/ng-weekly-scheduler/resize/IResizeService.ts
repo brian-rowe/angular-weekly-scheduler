@@ -1,4 +1,4 @@
 /** @internal */
-interface IResizeService {
+export interface IResizeService {
     initialize(): void;
 }

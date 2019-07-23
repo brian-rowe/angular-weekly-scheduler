@@ -1,6 +1,7 @@
 import * as angular from 'angular';
 import { IResizeServiceProvider } from './IResizeServiceProvider';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
+import { IResizeService } from './IResizeService';
 
 /** @internal */
 export class ResizeServiceProvider implements IResizeServiceProvider {
