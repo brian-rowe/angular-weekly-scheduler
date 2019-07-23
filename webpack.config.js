@@ -14,7 +14,7 @@ var htmlPlugin = new HtmlPlugin({
 module.exports = {
     mode: 'development',
     entry: {
-        'index': './src/index.ts',
+        'index': './src/demo-app.ts',
     },
     module: {
         rules: [

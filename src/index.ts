@@ -41,15 +41,15 @@ import WeeklySlotModule from './ng-weekly-scheduler/weekly-slot/module';
 import ValueNormalizationModule from './ng-weekly-scheduler/value-normalization/module';
 import ZoomModule from './ng-weekly-scheduler/zoom/module';
 
-import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
-import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
+// import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
+// import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
 
-export namespace weeklyScheduler {
-    export type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
-    export type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
-}
+// export namespace weeklyScheduler {
+//     export type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
+//     export type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
+// }
 
-angular.module('br.weeklyScheduler', [
+export default angular.module('br.weeklyScheduler', [
     AdapterModule,
     ConfigurationModule,
     ConflictingOptionsModule,
@@ -89,4 +89,5 @@ angular.module('br.weeklyScheduler', [
     WeeklySlotModule,
     ValueNormalizationModule,
     ZoomModule
-]);
+])
+.name;

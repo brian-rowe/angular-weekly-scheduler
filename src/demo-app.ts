@@ -1,11 +1,13 @@
-import * as angular from 'angular';
+import * as angular from 'angular'
+import 'angular-material';
 import { Days } from './ng-weekly-scheduler/weekly-scheduler-config/Days';
 import { IWeeklySchedulerAdapter } from './ng-weekly-scheduler/adapter/IWeeklySchedulerAdapter';
 import { IWeeklySchedulerItem } from './ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem';
 import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
 import { IWeeklySchedulerRange } from './ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange';
+import AppModule from './index';
 
-angular.module('demoApp', ['br.weeklyScheduler', 'ngMaterial'])
+angular.module('demoApp', [AppModule, 'ngMaterial'])
   .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
     function ($q: angular.IQService, $scope, $timeout, $log, $mdDialog) {
 
