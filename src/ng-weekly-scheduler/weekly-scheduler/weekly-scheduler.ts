@@ -9,7 +9,6 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
-import template from 'html-loader!./weekly-scheduler.html';
 
 /** @internal */
 export class WeeklySchedulerController implements angular.IController {
@@ -218,5 +217,5 @@ export class WeeklySchedulerComponent implements angular.IComponentOptions {
     formController: 'form'
   };
 
-  template = template;
+  template = require('./weekly-scheduler.html');
 };

@@ -26,7 +26,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: ['html-loader?exportAsEs6Default']
+                use: ['html-loader']
             },
             {
                 test: /\.less$/,
