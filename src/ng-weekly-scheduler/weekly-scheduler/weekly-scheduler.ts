@@ -219,4 +219,4 @@ export class WeeklySchedulerComponent implements angular.IComponentOptions {
   };
 
   template = template;
-}
+};

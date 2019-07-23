@@ -81193,7 +81193,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var schedule_area_container_1 = __webpack_require__(/*! ./schedule-area-container */ "./src/ng-weekly-scheduler/schedule-area-container/schedule-area-container.ts");
 exports.default = angular
-    .module('rr.weeklyScheduler', [])
+    .module('rr.weeklyScheduler.scheduleAreaContainer', [])
     .component(schedule_area_container_1.ScheduleAreaContainerComponent.$name, new schedule_area_container_1.ScheduleAreaContainerComponent())
     .controller(schedule_area_container_1.ScheduleAreaContainerController.$name, schedule_area_container_1.ScheduleAreaContainerController)
     .name;
@@ -82816,6 +82816,7 @@ var WeeklySchedulerComponent = /** @class */ (function () {
     return WeeklySchedulerComponent;
 }());
 exports.WeeklySchedulerComponent = WeeklySchedulerComponent;
+;
 
 
 /***/ }),
