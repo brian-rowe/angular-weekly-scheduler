@@ -1,4 +1,5 @@
 /// <reference types="angular" />
+import * as angular from 'angular';
 import { Days } from '../weekly-scheduler-config/Days';
 import { IWeeklySchedulerItem } from '../weekly-scheduler-item/IWeeklySchedulerItem';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
