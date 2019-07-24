@@ -179,7 +179,7 @@ exports.push([module.i, "br-weekly-scheduler {\n  background: #fff;\n  border-le
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 __webpack_require__(/*! angular-material */ "./node_modules/angular-material/index.js");
 var module_1 = __webpack_require__(/*! ./ng-weekly-scheduler/app/module */ "./src/ng-weekly-scheduler/app/module.ts");
 var DemoItem_1 = __webpack_require__(/*! ./ng-weekly-scheduler/demo/DemoItem */ "./src/ng-weekly-scheduler/demo/DemoItem.ts");
@@ -315,7 +315,7 @@ exports.AdapterService = AdapterService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var AdapterService_1 = __webpack_require__(/*! ./AdapterService */ "./src/ng-weekly-scheduler/adapter/AdapterService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.adapter', [])
@@ -335,7 +335,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 __webpack_require__(/*! ../../ng-weekly-scheduler.less */ "./src/ng-weekly-scheduler.less");
 var module_1 = __webpack_require__(/*! ../adapter/module */ "./src/ng-weekly-scheduler/adapter/module.ts");
 var module_2 = __webpack_require__(/*! ../configuration/module */ "./src/ng-weekly-scheduler/configuration/module.ts");
@@ -438,7 +438,7 @@ exports.default = angular.module('br.weeklyScheduler', [
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var ConfigurationService = /** @class */ (function () {
     function ConfigurationService(timeConstants) {
@@ -506,7 +506,7 @@ exports.ConfigurationService = ConfigurationService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ConfigurationService_1 = __webpack_require__(/*! ./ConfigurationService */ "./src/ng-weekly-scheduler/configuration/ConfigurationService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.configuration', [])
@@ -526,7 +526,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var ConflictingOptionsService = /** @class */ (function () {
     function ConflictingOptionsService() {
@@ -561,7 +561,7 @@ exports.ConflictingOptionsService = ConflictingOptionsService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ConflictingOptionsService_1 = __webpack_require__(/*! ./ConflictingOptionsService */ "./src/ng-weekly-scheduler/conflicting-options/ConflictingOptionsService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.conflictingOptions', [])
@@ -691,7 +691,7 @@ exports.DragService = DragService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var DragService_1 = __webpack_require__(/*! ./DragService */ "./src/ng-weekly-scheduler/drag/DragService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.drag', [])
@@ -743,7 +743,7 @@ exports.ElementOffsetService = ElementOffsetService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ElementOffsetService_1 = __webpack_require__(/*! ./ElementOffsetService */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.elementOffset', [])
@@ -797,7 +797,7 @@ exports.EndAdjusterService = EndAdjusterService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var EndAdjusterService_1 = __webpack_require__(/*! ./EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.endAdjuster', [])
@@ -944,7 +944,7 @@ exports.FillEmptyWithDefaultService = FillEmptyWithDefaultService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var FillEmptyWithDefaultService_1 = __webpack_require__(/*! ./FillEmptyWithDefaultService */ "./src/ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.fillEmptyWithDefault', [])
@@ -1003,7 +1003,7 @@ exports.FullCalendarDirective = FullCalendarDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var FullCalendarDirective_1 = __webpack_require__(/*! ./FullCalendarDirective */ "./src/ng-weekly-scheduler/full-calendar/FullCalendarDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.fullCalendar', [])
@@ -1065,7 +1065,7 @@ exports.GhostSlotComponent = GhostSlotComponent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ghost_slot_1 = __webpack_require__(/*! ./ghost-slot */ "./src/ng-weekly-scheduler/ghost-slot/ghost-slot.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.ghostSlot', [])
@@ -1125,7 +1125,7 @@ exports.GroupService = GroupService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var GroupService_1 = __webpack_require__(/*! ./GroupService */ "./src/ng-weekly-scheduler/group-by/GroupService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.groupBy', [])
@@ -1145,7 +1145,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var HandleDirective = /** @class */ (function () {
     function HandleDirective($document, mouseTrackerService, touchService) {
@@ -1233,7 +1233,7 @@ exports.HandleDirective = HandleDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var HandleDirective_1 = __webpack_require__(/*! ./HandleDirective */ "./src/ng-weekly-scheduler/handle/HandleDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.handle', [])
@@ -1253,7 +1253,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var HourlyGridDirective = /** @class */ (function () {
     function HourlyGridDirective(timeConstants) {
@@ -1331,7 +1331,7 @@ exports.HourlyGridDirective = HourlyGridDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var HourlyGridDirective_1 = __webpack_require__(/*! ./HourlyGridDirective */ "./src/ng-weekly-scheduler/hourly-grid/HourlyGridDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.hourlyGrid', [])
@@ -1411,7 +1411,7 @@ exports.LastGhostDayService = LastGhostDayService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var LastGhostDayService_1 = __webpack_require__(/*! ./LastGhostDayService */ "./src/ng-weekly-scheduler/last-ghost-day/LastGhostDayService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.lastGhostDay', [])
@@ -1470,7 +1470,7 @@ exports.MaxTimeSlotDirective = MaxTimeSlotDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var MaxTimeSlotDirective_1 = __webpack_require__(/*! ./MaxTimeSlotDirective */ "./src/ng-weekly-scheduler/max-time-slot/MaxTimeSlotDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.maxTimeSlot', [])
@@ -1529,7 +1529,7 @@ exports.MinimumSeparationDirective = MinimumSeparationDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var MinimumSeparationDirective_1 = __webpack_require__(/*! ./MinimumSeparationDirective */ "./src/ng-weekly-scheduler/minimum-separation/MinimumSeparationDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.minimumSeparation', [])
@@ -1549,7 +1549,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var MissingDaysService = /** @class */ (function () {
     function MissingDaysService(dayMap, itemFactory) {
@@ -1599,7 +1599,7 @@ exports.MissingDaysService = MissingDaysService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var MissingDaysService_1 = __webpack_require__(/*! ./MissingDaysService */ "./src/ng-weekly-scheduler/missing-days/MissingDaysService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.missingDays', [])
@@ -1658,7 +1658,7 @@ exports.MonoScheduleDirective = MonoScheduleDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var MonoScheduleDirective_1 = __webpack_require__(/*! ./MonoScheduleDirective */ "./src/ng-weekly-scheduler/mono-schedule/MonoScheduleDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.monoSchedule', [])
@@ -1714,7 +1714,7 @@ exports.MouseTrackerService = MouseTrackerService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var MouseTrackerService_1 = __webpack_require__(/*! ./MouseTrackerService */ "./src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.mouseTracker', [])
@@ -1737,7 +1737,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var multislider_1 = __webpack_require__(/*! ./multislider */ "./src/ng-weekly-scheduler/multislider/multislider.ts");
 exports.default = angular.module('rr.weeklyScheduler.multiSlider', [])
     .component(multislider_1.MultiSliderComponent.$name, new multislider_1.MultiSliderComponent())
@@ -1768,7 +1768,7 @@ module.exports = "<div class=\"ghost-wrapper\" br-handle ondragstart=\"multiSlid
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var MultiSliderController = /** @class */ (function () {
     function MultiSliderController($element, $q, $scope, elementOffsetService, endAdjusterService, mouseTrackerService, nullEndWidth, rangeFactory, valueNormalizationService) {
@@ -2117,7 +2117,7 @@ exports.NullEndDirective = NullEndDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var NullEndDirective_1 = __webpack_require__(/*! ./NullEndDirective */ "./src/ng-weekly-scheduler/null-end/NullEndDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.nullEnd', [])
@@ -2225,7 +2225,7 @@ exports.OverlapService = OverlapService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var OverlapDirective_1 = __webpack_require__(/*! ./OverlapDirective */ "./src/ng-weekly-scheduler/overlap/OverlapDirective.ts");
 var OverlapService_1 = __webpack_require__(/*! ./OverlapService */ "./src/ng-weekly-scheduler/overlap/OverlapService.ts");
 exports.default = angular
@@ -2280,7 +2280,7 @@ exports.PurgeDefaultService = PurgeDefaultService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var PurgeDefaultService_1 = __webpack_require__(/*! ./PurgeDefaultService */ "./src/ng-weekly-scheduler/purge-default/PurgeDefaultService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.purgeDefault', [])
@@ -2355,7 +2355,7 @@ exports.ResizeServiceProvider = ResizeServiceProvider;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ResizeService_1 = __webpack_require__(/*! ./ResizeService */ "./src/ng-weekly-scheduler/resize/ResizeService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.resize', [])
@@ -2439,7 +2439,7 @@ exports.RestrictionExplanationsComponent = RestrictionExplanationsComponent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var RestrictionExplanationsComponent_1 = __webpack_require__(/*! ./RestrictionExplanationsComponent */ "./src/ng-weekly-scheduler/restriction-explanations/RestrictionExplanationsComponent.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.restrictionExplanations', [])
@@ -2497,7 +2497,7 @@ exports.RevalidateDirective = RevalidateDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var RevalidateDirective_1 = __webpack_require__(/*! ./RevalidateDirective */ "./src/ng-weekly-scheduler/revalidate/RevalidateDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.revalidate', [])
@@ -2517,7 +2517,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var schedule_area_container_1 = __webpack_require__(/*! ./schedule-area-container */ "./src/ng-weekly-scheduler/schedule-area-container/schedule-area-container.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.scheduleAreaContainer', [])
@@ -2635,7 +2635,7 @@ exports.ScheduleCountDirective = ScheduleCountDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ScheduleCountDirective_1 = __webpack_require__(/*! ./ScheduleCountDirective */ "./src/ng-weekly-scheduler/schedule-count/ScheduleCountDirective.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.scheduleCount', [])
@@ -2812,7 +2812,7 @@ exports.MinimumSeparationValidatorService = MinimumSeparationValidatorService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var MonoScheduleValidatorService = /** @class */ (function () {
     function MonoScheduleValidatorService() {
@@ -2989,7 +2989,7 @@ exports.ScheduleCountValidatorService = ScheduleCountValidatorService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var FullCalendarValidatorService_1 = __webpack_require__(/*! ./FullCalendarValidatorService */ "./src/ng-weekly-scheduler/schedule-validator/FullCalendarValidatorService.ts");
 var MaxTimeSlotValidatorService_1 = __webpack_require__(/*! ./MaxTimeSlotValidatorService */ "./src/ng-weekly-scheduler/schedule-validator/MaxTimeSlotValidatorService.ts");
 var MinimumSeparationValidatorService_1 = __webpack_require__(/*! ./MinimumSeparationValidatorService */ "./src/ng-weekly-scheduler/schedule-validator/MinimumSeparationValidatorService.ts");
@@ -3066,7 +3066,7 @@ exports.ScrollService = ScrollService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ScrollService_1 = __webpack_require__(/*! ./ScrollService */ "./src/ng-weekly-scheduler/scroll/ScrollService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.scroll', [])
@@ -3086,7 +3086,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var TimeRangeComponent = /** @class */ (function () {
     function TimeRangeComponent() {
@@ -3128,7 +3128,7 @@ exports.TimeRangeController = TimeRangeController;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var TimeRangeComponent_1 = __webpack_require__(/*! ./TimeRangeComponent */ "./src/ng-weekly-scheduler/time-range/TimeRangeComponent.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.timeRange', [])
@@ -3325,7 +3325,7 @@ exports.TimeOfDayFilter = TimeOfDayFilter;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var SecondsAsTextFilter_1 = __webpack_require__(/*! ./SecondsAsTextFilter */ "./src/ng-weekly-scheduler/time/SecondsAsTextFilter.ts");
 var TimeConstantsService_1 = __webpack_require__(/*! ./TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 var TimeOfDayFilter_1 = __webpack_require__(/*! ./TimeOfDayFilter */ "./src/ng-weekly-scheduler/time/TimeOfDayFilter.ts");
@@ -3392,7 +3392,7 @@ exports.TouchService = TouchService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var TouchService_1 = __webpack_require__(/*! ./TouchService */ "./src/ng-weekly-scheduler/touch/TouchService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.touch', [])
@@ -3443,7 +3443,7 @@ exports.ValueNormalizationService = ValueNormalizationService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ValueNormalizationService_1 = __webpack_require__(/*! ./ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.valueNormalization', [])
@@ -3519,7 +3519,7 @@ exports.NullEndWidth = NullEndWidth;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var DayMap_1 = __webpack_require__(/*! ./DayMap */ "./src/ng-weekly-scheduler/weekly-scheduler-config/DayMap.ts");
 var NullEndWidth_1 = __webpack_require__(/*! ./NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
 exports.default = angular
@@ -3541,7 +3541,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** Provides common functionality for an item -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */
 var WeeklySchedulerItem = /** @class */ (function () {
@@ -3767,7 +3767,7 @@ exports.WeeklySchedulerItem = WeeklySchedulerItem;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var WeeklySchedulerItem_1 = __webpack_require__(/*! ../weekly-scheduler-item/WeeklySchedulerItem */ "./src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItem.ts");
 /** @internal */
 var WeeklySchedulerItemFactory = /** @class */ (function () {
@@ -3809,7 +3809,7 @@ exports.WeeklySchedulerItemFactory = WeeklySchedulerItemFactory;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var WeeklySchedulerItemFactory_1 = __webpack_require__(/*! ./WeeklySchedulerItemFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.weeklySchedulerItem', [])
@@ -3829,7 +3829,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** Provides common functionality for a schedule -- pass it in and the resulting object will allow you to operate on it */
 /** @internal */
 var WeeklySchedulerRange = /** @class */ (function () {
@@ -3939,7 +3939,7 @@ exports.WeeklySchedulerRangeFactory = WeeklySchedulerRangeFactory;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ./WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.weeklySchedulerRange', [])
@@ -3959,7 +3959,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var weekly_scheduler_1 = __webpack_require__(/*! ./weekly-scheduler */ "./src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.weeklyScheduler', [])
@@ -3991,7 +3991,7 @@ module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var WeeklySchedulerController = /** @class */ (function () {
     function WeeklySchedulerController($element, $scope, $timeout, adapterService, configurationService, conflictingOptionsService, lastGhostDayService, missingDaysService) {
@@ -4168,7 +4168,7 @@ exports.WeeklySchedulerComponent = WeeklySchedulerComponent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var weekly_slot_1 = __webpack_require__(/*! ./weekly-slot */ "./src/ng-weekly-scheduler/weekly-slot/weekly-slot.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.weeklySlot', [])
@@ -4200,7 +4200,7 @@ module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.s
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 /** @internal */
 var WeeklySlotController = /** @class */ (function () {
     function WeeklySlotController($element, $rootScope, $scope, dragService) {
@@ -4420,13 +4420,24 @@ exports.ZoomService = ZoomService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var angular = __webpack_require__(/*! angular */ "angular");
 var ZoomService_1 = __webpack_require__(/*! ./ZoomService */ "./src/ng-weekly-scheduler/zoom/ZoomService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.zoom', [])
     .service(ZoomService_1.ZoomService.$name, ZoomService_1.ZoomService)
     .name;
 
+
+/***/ }),
+
+/***/ "angular":
+/*!**************************!*\
+  !*** external "angular" ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = angular;
 
 /***/ })
 

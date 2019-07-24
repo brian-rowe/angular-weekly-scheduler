@@ -15,6 +15,9 @@ module.exports = {
     entry: {
         'angular-weekly-scheduler': './src/demo-app.ts',
     },
+    externals: {
+        angular: 'angular'
+    },
     module: {
         rules: [
             {
