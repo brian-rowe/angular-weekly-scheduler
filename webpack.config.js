@@ -2,8 +2,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-var isProduction = process.env.NODE_ENV === 'production';
-
 var cleanPlugin = new CleanWebpackPlugin();
 
 var htmlPlugin = new HtmlPlugin({
