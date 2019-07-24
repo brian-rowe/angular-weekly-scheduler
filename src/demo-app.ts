@@ -1,5 +1,4 @@
 import * as angular from 'angular'
-import 'angular-material';
 import { Days } from './ng-weekly-scheduler/weekly-scheduler-config/Days';
 import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
 import AppModule from './ng-weekly-scheduler/app/module';
@@ -7,9 +6,9 @@ import { DemoItem } from './ng-weekly-scheduler/demo/DemoItem';
 import { DemoAdapter } from './ng-weekly-scheduler/demo/DemoAdapter';
 
 function application() {
-  angular.module('demoApp', [AppModule, 'ngMaterial'])
-    .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
-      function ($q: angular.IQService, $scope, $timeout, $log, $mdDialog) {
+  angular.module('demoApp', [AppModule])
+    .controller('DemoController', ['$q', '$scope', '$timeout', '$log',
+      function ($q: angular.IQService, $scope, $timeout, $log) {
 
         $scope.model = {
           options: {

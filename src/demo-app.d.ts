@@ -1,1 +1,1 @@
-import 'angular-material';
+export {};

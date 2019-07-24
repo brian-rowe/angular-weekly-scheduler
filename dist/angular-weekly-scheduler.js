@@ -180,14 +180,13 @@ exports.push([module.i, "br-weekly-scheduler {\n  background: #fff;\n  border-le
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "angular");
-__webpack_require__(/*! angular-material */ "./node_modules/angular-material/index.js");
 var module_1 = __webpack_require__(/*! ./ng-weekly-scheduler/app/module */ "./src/ng-weekly-scheduler/app/module.ts");
 var DemoItem_1 = __webpack_require__(/*! ./ng-weekly-scheduler/demo/DemoItem */ "./src/ng-weekly-scheduler/demo/DemoItem.ts");
 var DemoAdapter_1 = __webpack_require__(/*! ./ng-weekly-scheduler/demo/DemoAdapter */ "./src/ng-weekly-scheduler/demo/DemoAdapter.ts");
 function application() {
-    angular.module('demoApp', [module_1.default, 'ngMaterial'])
-        .controller('DemoController', ['$q', '$scope', '$timeout', '$log', '$mdDialog',
-        function ($q, $scope, $timeout, $log, $mdDialog) {
+    angular.module('demoApp', [module_1.default])
+        .controller('DemoController', ['$q', '$scope', '$timeout', '$log',
+        function ($q, $scope, $timeout, $log) {
             $scope.model = {
                 options: {
                     buttonClasses: ['wow!'],
