@@ -11,7 +11,7 @@ var htmlPlugin = new HtmlPlugin({
 
 module.exports = {
     devtool: 'source-map',
-    mode: 'development',
+    mode: 'production',
     entry: {
         'angular-weekly-scheduler': './src/demo-app.ts',
     },
