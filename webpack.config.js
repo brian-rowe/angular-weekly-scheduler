@@ -36,6 +36,18 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.html']
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /node_modules/,
+                    name: 'vendor',
+                    chunks: 'all'
+                }
+            }
+
+        }
+    },
     output: {
         path: path.resolve(__dirname, 'dist')
     }
