@@ -6,3 +6,8 @@ export * from './ng-weekly-scheduler/weekly-scheduler-config/Days';
 export * from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
 export * from './ng-weekly-scheduler/weekly-scheduler-item/IWeeklySchedulerItem';
 export * from './ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRange';
+
+import * as angular from 'angular';
+import AppModule from './ng-weekly-scheduler/app/module';
+
+angular.module('br.weeklyScheduler', [AppModule]);

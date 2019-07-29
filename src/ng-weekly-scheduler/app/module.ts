@@ -41,15 +41,7 @@ import WeeklySlotModule from '../weekly-slot/module';
 import ValueNormalizationModule from '../value-normalization/module';
 import ZoomModule from '../zoom/module';
 
-// import { IWeeklySchedulerAdapter as WeeklySchedulerAdapter } from '../adapter/IWeeklySchedulerAdapter';
-// import { IWeeklySchedulerOptions as WeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
-
-// export namespace weeklyScheduler {
-//     export type IWeeklySchedulerAdapter<TCustom, TValue> = WeeklySchedulerAdapter<TCustom, TValue>;
-//     export type IWeeklySchedulerOptions<T> = WeeklySchedulerOptions<T>;
-// }
-
-export default angular.module('br.weeklyScheduler', [
+export default angular.module('br.weeklyScheduler.app', [
     AdapterModule,
     ConfigurationModule,
     ConflictingOptionsModule,
