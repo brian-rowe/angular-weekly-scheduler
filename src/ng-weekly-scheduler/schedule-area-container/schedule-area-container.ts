@@ -49,5 +49,5 @@ export class ScheduleAreaContainerComponent implements angular.IComponentOptions
     controller = ScheduleAreaContainerController.$name;
     transclude = true;
 
-    template = `<ng-transclude></ng-transclude>`;
+    template = require('./schedule-area-container.html');
 }

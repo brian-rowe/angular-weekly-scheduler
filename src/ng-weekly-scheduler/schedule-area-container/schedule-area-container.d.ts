@@ -17,5 +17,5 @@ export declare class ScheduleAreaContainerComponent implements angular.IComponen
     static $name: string;
     controller: string;
     transclude: boolean;
-    template: string;
+    template: any;
 }

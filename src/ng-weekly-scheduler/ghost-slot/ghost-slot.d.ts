@@ -16,6 +16,6 @@ export declare class GhostSlotComponent implements angular.IComponentOptions {
     require: {
         multiSliderCtrl: string;
     };
-    template: string;
+    template: any;
     transclude: boolean;
 }

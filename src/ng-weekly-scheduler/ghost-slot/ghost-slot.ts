@@ -28,9 +28,7 @@ export class GhostSlotComponent implements angular.IComponentOptions {
         multiSliderCtrl: '^brMultiSlider'
     };
 
-    template = `
-        <ng-transclude class="fullWidth"></ng-transclude>
-    `;
+    template = require('./ghost-slot.html');
 
     transclude = true;
 }
