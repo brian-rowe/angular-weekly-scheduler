@@ -10,4 +10,8 @@ export * from './ng-weekly-scheduler/weekly-scheduler-range/IWeeklySchedulerRang
 import * as angular from 'angular';
 import AppModule from './ng-weekly-scheduler/app/module';
 
-angular.module('br.weeklyScheduler', [AppModule]);
+function application() {
+    angular.module('br.weeklyScheduler', [AppModule]);
+}
+
+application();
