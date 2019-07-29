@@ -13,7 +13,8 @@ module.exports = {
     devtool: 'source-map',
     mode: 'production',
     entry: {
-        'angular-weekly-scheduler': './src/demo-app.ts',
+        'demo-app': './src/demo-app.ts',
+        'angular-weekly-scheduler': './src/index.ts',
     },
     externals: {
         angular: 'angular'
