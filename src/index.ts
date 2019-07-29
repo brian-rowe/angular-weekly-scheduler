@@ -12,6 +12,7 @@ import AppModule from './ng-weekly-scheduler/app/module';
 
 function application() {
     angular.module('br.weeklyScheduler', [AppModule]);
+    angular.noop();
 }
 
 application();
