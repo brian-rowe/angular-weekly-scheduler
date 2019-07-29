@@ -14,7 +14,7 @@ module.exports = {
     mode: 'production',
     entry: {
         'demo-app': './src/demo-app.ts',
-        'angular-weekly-scheduler': './src/index.ts',
+        'angular-weekly-scheduler': './src/app.ts',
     },
     externals: {
         angular: 'angular'
