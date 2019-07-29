@@ -49,8 +49,8 @@ module.exports = {
                     chunks: 'all'
                 }
             }
-
-        }
+        },
+        minimize: false
     },
     output: {
         path: path.resolve(__dirname, 'dist')
