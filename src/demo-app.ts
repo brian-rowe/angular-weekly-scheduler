@@ -1,59 +1,14 @@
 import * as angular from 'angular'
-import { Days } from './ng-weekly-scheduler/weekly-scheduler-config/Days';
-import { IWeeklySchedulerOptions } from './ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerOptions';
 import AppModule from './ng-weekly-scheduler/app/module';
-import { DemoItem } from './ng-weekly-scheduler/demo/DemoItem';
-import { DemoAdapter } from './ng-weekly-scheduler/demo/DemoAdapter';
+import { DemoController } from './ng-weekly-scheduler/demo/DemoController';
 
 function application() {
   angular.module('demoApp', [AppModule])
-    .controller('DemoController', ['$q', '$scope', '$timeout', '$log',
-      function ($q: angular.IQService, $scope, $timeout, $log) {
+    .controller(DemoController.$name, DemoController);
 
-        $scope.model = {
-          options: {
-            buttonClasses: ['wow!'],
-            createItem: (day, schedules) => {
-              return new DemoItem(day, schedules);
-            },
-            defaultValue: false,
-            editSlot: function (schedule) {
-              schedule.start += 60;
-              schedule.value = true;
-              return $q.when(schedule);
-            },
-            fillEmptyWithDefault: true,
-            interval: 60,
-            fillNullEnds: 1800,
-            maxTimeSlot: 7200,
-            minimumSeparation: 300,
-            onChange: (isValid) => {
-              console.log("changed!");
-            },
-            restrictionExplanations: {
-              maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
-            },
-            saveScheduler: () => {
-              $scope.result = $scope.adapter.getSnapshot();
-
-              return $q.when(true);
-            }
-          } as IWeeklySchedulerOptions<any>
-        }
-
-        $scope.adapter = new DemoAdapter([
-          {
-            day: Days.Saturday,
-            start: 3600,
-            end: 7200,
-            value: true
-          }
-        ]);
-      }]);
-
-      angular.element(document).ready(() => {
-        angular.bootstrap(document, ['demoApp']);
-      });
+  angular.element(document).ready(() => {
+    angular.bootstrap(document, ['demoApp']);
+  });
 }
 
 application();
