@@ -3,7 +3,7 @@ var webpackConfig = require('./webpack.config');
 module.exports = function (config) {
   config.set({
     files: [
-      'test/module.js'
+      'test/module.ts'
     ],
 
     autoWatch: true,
@@ -15,7 +15,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      'test/spec/**/*.ts': ['webpack']
+      'test/**/*.ts': ['webpack']
     },
 
     junitReporter: {
