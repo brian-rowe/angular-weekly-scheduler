@@ -2,7 +2,7 @@ var gulp = require("gulp"),
     increment = require("gulp-increment-version"),
     webserver = require("gulp-webserver");
 
-var distFolder = 'dist';
+var demoFolder = 'demo';
 
 gulp.task("default", ["server"]);
 
@@ -16,7 +16,7 @@ gulp.task("incrementVersion", function () {
 
 gulp.task("server", function () {
     return gulp
-        .src(distFolder)
+        .src(demoFolder)
         .pipe(webserver({
             port: "8081",
             livereload: true,

@@ -1,13 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 var cleanPlugin = new CleanWebpackPlugin();
-
-var htmlPlugin = new HtmlPlugin({
-    template: 'src/index.html',
-    filename: 'index.html'
-});
 
 var rules =  [
     {
@@ -28,25 +22,6 @@ var rules =  [
 var resolve = {
     extensions: ['.tsx', '.ts', '.js', '.html']
 };
-
-var demo = {
-    devtool: 'source-map',
-    mode: 'development',
-    entry: {
-        'demo-app': './src/demo-app.ts'
-    },
-    module: {
-        rules: rules
-    },
-    plugins: [
-        cleanPlugin,
-        htmlPlugin
-    ],
-    resolve: resolve,
-    output: {
-        path: path.resolve(__dirname, 'demo')
-    }
-}
 
 var library = {
     mode: 'production',
@@ -80,4 +55,4 @@ var library = {
     }
 }
 
-module.exports = [demo, library];
+module.exports = library;

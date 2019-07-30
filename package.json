@@ -39,5 +39,10 @@
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6"
   },
+  "scripts": {
+    "buildDemo": "webpack",
+    "buildLibrary": "webpack --config ./webpack.config.library.js",
+    "build": "npm run buildDemo & npm run buildLibrary"
+  },
   "typings": "src/index.d.ts"
 }
