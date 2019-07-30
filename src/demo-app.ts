@@ -1,9 +1,7 @@
 import * as angular from 'angular'
-import AppModule from './ng-weekly-scheduler/app/module';
-import { DemoController } from './ng-weekly-scheduler/demo/DemoController';
+import DemoModule from './ng-weekly-scheduler/demo/module';
 
-angular.module('demoApp', [AppModule])
-  .controller(DemoController.$name, DemoController);
+angular.module('demoApp', [DemoModule]);
 
 angular.element(document).ready(() => {
   angular.bootstrap(document, ['demoApp']);

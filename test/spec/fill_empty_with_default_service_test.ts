@@ -10,8 +10,6 @@ export class FillEmptyWithDefaultServiceTests {
             var $itemFactory: WeeklySchedulerItemFactory;
             var $service: FillEmptyWithDefaultService;
 
-            beforeEach(angular.mock.module('demoApp'));
-
             beforeEach(inject(function (_brWeeklySchedulerItemFactory_, _brWeeklySchedulerFillEmptyWithDefaultService_) {
                 $itemFactory = _brWeeklySchedulerItemFactory_;
                 $service = _brWeeklySchedulerFillEmptyWithDefaultService_;

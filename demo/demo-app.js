@@ -36965,10 +36965,8 @@ module.exports = function (css) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
-var module_1 = __webpack_require__(/*! ./ng-weekly-scheduler/app/module */ "./src/ng-weekly-scheduler/app/module.ts");
-var DemoController_1 = __webpack_require__(/*! ./ng-weekly-scheduler/demo/DemoController */ "./src/ng-weekly-scheduler/demo/DemoController.ts");
-angular.module('demoApp', [module_1.default])
-    .controller(DemoController_1.DemoController.$name, DemoController_1.DemoController);
+var module_1 = __webpack_require__(/*! ./ng-weekly-scheduler/demo/module */ "./src/ng-weekly-scheduler/demo/module.ts");
+angular.module('demoApp', [module_1.default]);
 angular.element(document).ready(function () {
     angular.bootstrap(document, ['demoApp']);
 });
@@ -37438,6 +37436,27 @@ var DemoItem = /** @class */ (function () {
     return DemoItem;
 }());
 exports.DemoItem = DemoItem;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/demo/module.ts":
+/*!************************************************!*\
+  !*** ./src/ng-weekly-scheduler/demo/module.ts ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var module_1 = __webpack_require__(/*! ../app/module */ "./src/ng-weekly-scheduler/app/module.ts");
+var DemoController_1 = __webpack_require__(/*! ./DemoController */ "./src/ng-weekly-scheduler/demo/DemoController.ts");
+exports.default = angular
+    .module('rr.weeklyScheduler.demo', [module_1.default])
+    .controller(DemoController_1.DemoController.$name, DemoController_1.DemoController)
+    .name;
 
 
 /***/ }),
