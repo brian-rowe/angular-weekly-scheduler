@@ -37,7 +37,7 @@ class TestModule {
             ScheduleCountValidatorServiceTests,
             SecondsAsTextFilterTests,
             TimeOfDayFilterTests,
-            // WeeklySchedulerTests
+            WeeklySchedulerTests
         ];
 
         tests.forEach(test => test.run());
