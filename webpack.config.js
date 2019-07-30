@@ -1,3 +1,4 @@
+const baseConfig = require('./webpack.config.base');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
@@ -9,75 +10,19 @@ var htmlPlugin = new HtmlPlugin({
     filename: 'index.html'
 });
 
-var rules =  [
-    {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-    },
-    {
-        test: /\.html$/,
-        use: ['html-loader']
-    },
-    {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
-    }
-];
-
-var resolve = {
-    extensions: ['.tsx', '.ts', '.js', '.html']
-};
-
-var demo = {
+var demo = Object.assign({
     devtool: 'source-map',
     mode: 'development',
     entry: {
         'demo-app': './src/demo-app.ts'
     },
-    module: {
-        rules: rules
-    },
     plugins: [
         cleanPlugin,
         htmlPlugin
     ],
-    resolve: resolve,
     output: {
         path: path.resolve(__dirname, 'demo')
     }
-}
+}, baseConfig);
 
-var library = {
-    mode: 'production',
-    entry: {
-        'angular-weekly-scheduler': './src/app.ts',
-    },
-    externals: {
-        angular: 'angular'
-    },
-    module: {
-        rules: rules
-    },
-    plugins: [
-        cleanPlugin
-    ],
-    resolve: resolve,
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    test: /node_modules/,
-                    name: 'vendor',
-                    chunks: 'all'
-                }
-            }
-        },
-        minimize: false
-    },
-    output: {
-        path: path.resolve(__dirname, 'dist')
-    }
-}
-
-module.exports = [demo, library];
+module.exports = demo;

@@ -1,29 +1,10 @@
+const baseConfig = require('./webpack.config.base');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 var cleanPlugin = new CleanWebpackPlugin();
 
-var rules =  [
-    {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-    },
-    {
-        test: /\.html$/,
-        use: ['html-loader']
-    },
-    {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
-    }
-];
-
-var resolve = {
-    extensions: ['.tsx', '.ts', '.js', '.html']
-};
-
-var library = {
+var library = Object.assign({
     mode: 'production',
     entry: {
         'angular-weekly-scheduler': './src/app.ts',
@@ -31,13 +12,9 @@ var library = {
     externals: {
         angular: 'angular'
     },
-    module: {
-        rules: rules
-    },
     plugins: [
         cleanPlugin
     ],
-    resolve: resolve,
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -47,12 +24,11 @@ var library = {
                     chunks: 'all'
                 }
             }
-        },
-        minimize: false
+        }
     },
     output: {
         path: path.resolve(__dirname, 'dist')
     }
-}
+}, baseConfig);
 
 module.exports = library;
