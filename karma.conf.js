@@ -2,29 +2,20 @@ var webpackConfig = require('./webpack.config');
 
 module.exports = function (config) {
   config.set({
-
     files: [
-      'dist/angular-weekly-scheduler.js',
-      'test/spec/**/*.ts'
+      'test/module.js'
     ],
 
     autoWatch: true,
 
-    frameworks: ['jasmine', 'karma-typescript'],
+    frameworks: ['jasmine'],
 
     browsers: [
       'Chrome'
     ],
 
-    plugins: [
-      'karma-typescript',
-      'karma-chrome-launcher',
-      'karma-phantomjs-launcher',
-      'karma-jasmine'
-    ],
-
     preprocessors: {
-      'test/spec/**/*.ts': 'karma-typescript'
+      'test/spec/**/*.ts': ['webpack']
     },
 
     junitReporter: {
@@ -33,6 +24,6 @@ module.exports = function (config) {
     },
 
     tsconfig: './tsconfig.json',
-    webpackConfig: webpackConfig
+    webpack: webpackConfig
   });
 };

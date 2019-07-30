@@ -15,6 +15,9 @@ var rules =  [
 ];
 
 var resolve = {
+    modules: [
+        'node_modules'
+    ],
     extensions: ['.tsx', '.ts', '.js', '.html']
 };
 
