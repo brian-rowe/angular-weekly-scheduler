@@ -12,8 +12,6 @@ export class WeeklySchedulerTests {
             let $rootScope: angular.IRootScopeService;
             let $scope: angular.IScope;
 
-            angular.mock.module.sharedInjector();
-
             beforeEach(inject((_$compile_, _$componentController_, _$rootScope_, ) => {
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
@@ -49,37 +47,37 @@ export class WeeklySchedulerTests {
                     expect(element).toBeTruthy();
                 });
 
-                // describe('24 hours: ', () => {
-                //     let hours = [
-                //         '12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12a',
-                //         '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p', '12p',
-                //     ];
+                describe('24 hours: ', () => {
+                    let hours = [
+                        '12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12a',
+                        '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p', '12p',
+                    ];
 
-                //     angular.forEach(hours, (hour) => {
-                //         describe(hour, () => {
-                //             it('renders', () => {
-                //                 expect($element.text()).toContain(hour);
-                //             });
-                //         });
-                //     });
-                // });
+                    angular.forEach(hours, (hour) => {
+                        describe(hour, () => {
+                            it('renders', () => {
+                                expect($element.text()).toContain(hour);
+                            });
+                        });
+                    });
+                });
             });
 
-            // describe('should have a full week of items', () => {
-            //     it('when no items existed to begin with', () => {
-            //         expect($controller.items.length).toBe(7);
-            //     });
+            describe('should have a full week of items', () => {
+                it('when no items existed to begin with', () => {
+                    expect($controller.items.length).toBe(7);
+                });
 
-            //     it('with the correct day labels', () => {
-            //         let days = [
-            //             'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'
-            //         ];
+                it('with the correct day labels', () => {
+                    let days = [
+                        'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'
+                    ];
 
-            //         angular.forEach(days, day => {
-            //             expect($controller.items.filter(item => item.label === day).length).toBe(1);
-            //         });
-            //     });
-            // });
+                    angular.forEach(days, day => {
+                        expect($controller.items.filter(item => item.label === day).length).toBe(1);
+                    });
+                });
+            });
         });
     }
 }
