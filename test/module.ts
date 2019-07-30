@@ -1,12 +1,10 @@
 import * as angular from 'angular';
 
+import { FillEmptyWithDefaultServiceTests } from './spec/fill_empty_with_default_service_test';
+
 class TestModule {
     static run() {
-        describe('hmm', () => {
-            it('should work', () => {
-                expect(1).toBe(1);
-            });
-        });
+        FillEmptyWithDefaultServiceTests.run();
     }
 }
 
