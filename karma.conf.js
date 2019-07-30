@@ -1,3 +1,5 @@
+var webpackConfig = require('./webpack.config');
+
 module.exports = function (config) {
   config.set({
 
@@ -30,6 +32,7 @@ module.exports = function (config) {
       suite: 'unit'
     },
 
-    tsconfig: './tsconfig.json'
+    tsconfig: './tsconfig.json',
+    webpackConfig: webpackConfig
   });
 };
