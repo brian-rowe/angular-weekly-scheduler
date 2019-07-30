@@ -15,17 +15,6 @@ var library = Object.assign({
     plugins: [
         cleanPlugin
     ],
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    test: /node_modules/,
-                    name: 'vendor',
-                    chunks: 'all'
-                }
-            }
-        }
-    },
     output: {
         path: path.resolve(__dirname, 'dist')
     }
