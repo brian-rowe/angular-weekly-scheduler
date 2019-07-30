@@ -2,8 +2,7 @@ module.exports = function (config) {
   config.set({
 
     files: [
-      'test/testVendorScripts.js',
-      'dist/ng-weekly-scheduler.js',
+      'dist/angular-weekly-scheduler.js',
       'test/spec/**/*.ts'
     ],
 
