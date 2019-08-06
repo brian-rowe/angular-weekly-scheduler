@@ -54,7 +54,7 @@ export interface IWeeklySchedulerOptions<T> {
     /** Overrides for restriction explanations, if necessary */
     restrictionExplanations?: RestrictionExplanations;
 
-    orientationOptions: OrientationOptions;
+    orientationOptions?: OrientationOptions;
 
     /** A function to call when the save button is clicked. If this is not passed, no save button will be present. */
     saveScheduler?: () => angular.IPromise<any>;
