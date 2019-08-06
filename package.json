@@ -44,5 +44,5 @@
     "buildLibrary": "webpack --config ./webpack.config.library.js",
     "build": "npm run buildDemo & npm run buildLibrary"
   },
-  "typings": "src/index.d.ts"
+  "typings": "dist/index.d.ts"
 }
