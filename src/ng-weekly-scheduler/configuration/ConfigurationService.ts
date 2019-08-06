@@ -39,6 +39,9 @@ export class ConfigurationService {
             monoSchedule: false,
             onChange: () => angular.noop(),
             onRemove: () => angular.noop(),
+            orientationOptions: {
+                defaultOrientation: 'horizontal'
+            },
             restrictionExplanations: {
                 maxTimeSlot: (value) => `Max time slot length: ${value}`,
                 minimumSeparation: (value) => `Slots must be at least ${value} apart!`,

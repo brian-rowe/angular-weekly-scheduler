@@ -35,6 +35,9 @@ export class DemoController {
                 onChange: (isValid) => {
                     console.log('changed!');
                 },
+                orientationOptions: {
+                    defaultOrientation: 'vertical'
+                },
                 restrictionExplanations: {
                     maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`
                 },

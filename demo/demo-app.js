@@ -37196,6 +37196,9 @@ var ConfigurationService = /** @class */ (function () {
             monoSchedule: false,
             onChange: function () { return angular.noop(); },
             onRemove: function () { return angular.noop(); },
+            orientationOptions: {
+                defaultOrientation: 'horizontal'
+            },
             restrictionExplanations: {
                 maxTimeSlot: function (value) { return "Max time slot length: " + value; },
                 minimumSeparation: function (value) { return "Slots must be at least " + value + " apart!"; },
@@ -37382,6 +37385,9 @@ var DemoController = /** @class */ (function () {
                 minimumSeparation: 300,
                 onChange: function (isValid) {
                     console.log('changed!');
+                },
+                orientationOptions: {
+                    defaultOrientation: 'vertical'
                 },
                 restrictionExplanations: {
                     maxTimeSlot: function (value) { return "Slots cannot be longer than " + value + "!"; }
