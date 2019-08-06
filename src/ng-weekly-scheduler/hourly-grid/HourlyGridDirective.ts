@@ -2,7 +2,7 @@ import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { TimeConstantsService } from '../time/TimeConstantsService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
-import { GridGeneratorService } from "../grid-generator/GridGeneratorService";
+import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 
 /** @internal */
 export class HourlyGridDirective implements angular.IDirective {
@@ -35,9 +35,6 @@ export class HourlyGridDirective implements angular.IDirective {
     }
 
     private doGrid(scope, element, attrs) {
-        // Clean element
-        element.empty();
-
         // Stripe it by hour
         element.addClass('striped');
 

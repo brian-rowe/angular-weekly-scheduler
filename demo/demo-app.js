@@ -38186,8 +38186,6 @@ var HourlyGridDirective = /** @class */ (function () {
     };
     HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
         var _this = this;
-        // Clean element
-        element.empty();
         // Stripe it by hour
         element.addClass('striped');
         var hourStrategy = function (child, i) {
