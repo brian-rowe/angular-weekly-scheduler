@@ -8,8 +8,13 @@ export declare class HourlyGridDirective implements angular.IDirective {
     restrict: string;
     require: string;
     private GRID_TEMPLATE;
+    private tickCount;
+    private interval;
+    private intervalsInTick;
+    private intervalPercentage;
     private handleClickEvent(child, hourCount, idx, scope);
-    private doGrid(scope, element, attrs, config);
+    private generateHourText(hour);
+    private doGrid(scope, element, attrs);
     link: (scope: any, element: any, attrs: any, schedulerCtrl: WeeklySchedulerController) => void;
     constructor(timeConstants: TimeConstantsService);
     static Factory(): (timeConstants: any) => HourlyGridDirective;

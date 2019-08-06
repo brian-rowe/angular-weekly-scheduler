@@ -38101,7 +38101,11 @@ var HourlyGridDirective = /** @class */ (function () {
         this.GRID_TEMPLATE = angular.element('<div class="grid-item"></div>');
         this.link = function (scope, element, attrs, schedulerCtrl) {
             if (schedulerCtrl.config) {
-                _this.doGrid(scope, element, attrs, schedulerCtrl.config);
+                _this.tickCount = schedulerCtrl.config.hourCount;
+                _this.interval = schedulerCtrl.config.interval;
+                _this.intervalsInTick = _this.timeConstants.SECONDS_IN_HOUR / _this.interval;
+                _this.intervalPercentage = 100 / _this.intervalsInTick;
+                _this.doGrid(scope, element, attrs);
             }
         };
     }
@@ -38115,30 +38119,31 @@ var HourlyGridDirective = /** @class */ (function () {
             });
         });
     };
-    HourlyGridDirective.prototype.doGrid = function (scope, element, attrs, config) {
+    HourlyGridDirective.prototype.generateHourText = function (hour) {
+        var currentHour = hour % 12;
+        var meridiem = hour >= 12 ? 'p' : 'a';
+        return "" + (currentHour || '12') + meridiem;
+    };
+    HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
         // Calculate hour width distribution
-        var tickcount = config.hourCount;
         var gridItemEl = this.GRID_TEMPLATE.clone();
         // Clean element
         element.empty();
         // Stripe it by hour
         element.addClass('striped');
-        for (var i = 0; i < tickcount; i++) {
+        for (var i = 0; i < this.tickCount; i++) {
             var child = gridItemEl.clone();
             if (angular.isUndefined(attrs.noText)) {
-                this.handleClickEvent(child, tickcount, i, scope);
-                var currentHour = i % 12;
-                var meridiem = i >= 12 ? 'p' : 'a';
-                child.text("" + (currentHour || '12') + meridiem);
+                this.handleClickEvent(child, this.tickCount, i, scope);
+                var hourText = this.generateHourText(i);
+                child.text(hourText);
             }
             else {
-                var numIntervalsInTick = this.timeConstants.SECONDS_IN_HOUR / config.interval;
-                var intervalPercentage = 100 / numIntervalsInTick;
-                for (var j = 0; j < numIntervalsInTick; j++) {
+                for (var j = 0; j < this.intervalsInTick; j++) {
                     var grandChild = this.GRID_TEMPLATE.clone();
-                    grandChild.attr('rel', ((i * numIntervalsInTick) + j) * config.interval);
+                    grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
                     grandChild.addClass('interval');
-                    grandChild.css('width', intervalPercentage + '%');
+                    grandChild.css('width', this.intervalPercentage + '%');
                     child.append(grandChild);
                 }
             }

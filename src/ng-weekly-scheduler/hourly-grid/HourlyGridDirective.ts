@@ -12,6 +12,11 @@ export class HourlyGridDirective implements angular.IDirective {
     require = '^brWeeklyScheduler';
 
     private GRID_TEMPLATE = angular.element('<div class="grid-item"></div>');
+    
+    private tickCount: number;
+    private interval: number;
+    private intervalsInTick: number;
+    private intervalPercentage: number;
 
     private handleClickEvent(child, hourCount, idx, scope) {
         child.bind('click', function () {
@@ -24,9 +29,15 @@ export class HourlyGridDirective implements angular.IDirective {
         });
     }
 
-    private doGrid(scope, element, attrs, config: IWeeklySchedulerConfig<any>) {
+    private generateHourText(hour: number) {
+        let currentHour = hour % 12;
+        let meridiem = hour >= 12 ? 'p' : 'a';
+
+        return `${currentHour || '12'}${meridiem}`;
+    }
+
+    private doGrid(scope, element, attrs) {
         // Calculate hour width distribution
-        var tickcount = config.hourCount;
         var gridItemEl = this.GRID_TEMPLATE.clone();
   
         // Clean element
@@ -35,25 +46,19 @@ export class HourlyGridDirective implements angular.IDirective {
         // Stripe it by hour
         element.addClass('striped');
 
-        for (let i = 0; i < tickcount; i++) {
+        for (let i = 0; i < this.tickCount; i++) {
           var child = gridItemEl.clone();
 
           if (angular.isUndefined(attrs.noText)) {
-            this.handleClickEvent(child, tickcount, i, scope);
-
-            let currentHour = i % 12;
-            let meridiem = i >= 12 ? 'p' : 'a';
-
-            child.text(`${currentHour || '12'}${meridiem}`);
+            this.handleClickEvent(child, this.tickCount, i, scope);
+            let hourText = this.generateHourText(i);
+            child.text(hourText);
           } else {
-            let numIntervalsInTick = this.timeConstants.SECONDS_IN_HOUR / config.interval;
-            let intervalPercentage = 100 / numIntervalsInTick;
-
-            for (let j = 0; j < numIntervalsInTick; j++) {
+            for (let j = 0; j < this.intervalsInTick; j++) {
                 let grandChild = this.GRID_TEMPLATE.clone();
-                grandChild.attr('rel', ((i * numIntervalsInTick) + j) * config.interval);
+                grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
                 grandChild.addClass('interval');
-                grandChild.css('width', intervalPercentage + '%');
+                grandChild.css('width', this.intervalPercentage + '%');
                 child.append(grandChild);
             }
           }
@@ -64,7 +69,11 @@ export class HourlyGridDirective implements angular.IDirective {
 
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
         if (schedulerCtrl.config) {
-            this.doGrid(scope, element, attrs, schedulerCtrl.config);
+            this.tickCount = schedulerCtrl.config.hourCount;
+            this.interval = schedulerCtrl.config.interval;
+            this.intervalsInTick = this.timeConstants.SECONDS_IN_HOUR / this.interval;
+            this.intervalPercentage = 100 / this.intervalsInTick;
+            this.doGrid(scope, element, attrs);
         }
     }
 
