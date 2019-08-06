@@ -1,9 +1,8 @@
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
-import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { TimeConstantsService } from '../time/TimeConstantsService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
-import { Cipher } from "crypto";
+import { GridGeneratorService } from "../grid-generator/GridGeneratorService";
 
 /** @internal */
 export class HourlyGridDirective implements angular.IDirective {
@@ -12,8 +11,6 @@ export class HourlyGridDirective implements angular.IDirective {
     restrict = 'E';
     require = '^brWeeklyScheduler';
 
-    private GRID_TEMPLATE = angular.element('<div class="grid-item"></div>');
-    
     private tickCount: number;
     private interval: number;
     private intervalsInTick: number;
@@ -53,7 +50,7 @@ export class HourlyGridDirective implements angular.IDirective {
 
         var intervalStrategy = (child, i) => {
             for (let j = 0; j < this.intervalsInTick; j++) {
-                let grandChild = this.GRID_TEMPLATE.clone();
+                let grandChild = this.gridGeneratorService.getGridTemplate();
                 grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
                 grandChild.addClass('interval');
                 grandChild.css('width', this.intervalPercentage + '%');
@@ -64,25 +61,7 @@ export class HourlyGridDirective implements angular.IDirective {
         };
 
         var strategy = angular.isUndefined(attrs.noText) ? hourStrategy : intervalStrategy;
-        this.generateGrid(element, strategy);
-    }
-
-    private generateGrid(element: JQLite, itemStrategy: (child: JQLite, iteration: number) => JQLite) {
-        for (let i = 0; i < this.tickCount; i++) {
-            var child = this.GRID_TEMPLATE.clone();
-  
-            child = this.generateGridItem(i, itemStrategy);
-  
-            element.append(child);
-        }
-
-        return element;
-    }
-
-    private generateGridItem(iteration: number, strategy: (child: JQLite, iteration: number) => JQLite): JQLite {
-        var child = this.GRID_TEMPLATE.clone();
-
-        return strategy(child, iteration);
+        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     }
 
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
@@ -96,14 +75,15 @@ export class HourlyGridDirective implements angular.IDirective {
     }
 
     constructor(
-        private timeConstants: TimeConstantsService
+        private timeConstants: TimeConstantsService,
+        private gridGeneratorService: GridGeneratorService
     ) {
     }
 
     static Factory() {
-        let directive = (timeConstants) => new HourlyGridDirective(timeConstants);
+        let directive = (timeConstants, gridGeneratorService) => new HourlyGridDirective(timeConstants, gridGeneratorService);
 
-        directive.$inject = ['brWeeklySchedulerTimeConstantsService'];
+        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService'];
 
         return directive;
     }

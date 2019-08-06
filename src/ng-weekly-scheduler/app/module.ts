@@ -10,6 +10,7 @@ import EndAdjusterModule from '../end-adjuster/module';
 import FillEmptyWithDefaultModule from '../fill-empty-with-default/module';
 import FullCalendarModule from '../full-calendar/module';
 import GhostSlotModule from '../ghost-slot/module';
+import GridGeneratorModule from '../grid-generator/module';
 import GroupByModule from '../group-by/module';
 import HandleModule from '../handle/module';
 import HourlyGridModule from '../hourly-grid/module';
@@ -50,6 +51,7 @@ export default angular.module('br.weeklyScheduler.app', [
     EndAdjusterModule,
     FillEmptyWithDefaultModule,
     FullCalendarModule,
+    GridGeneratorModule,
     GroupByModule,
     GhostSlotModule,
     HandleModule,
