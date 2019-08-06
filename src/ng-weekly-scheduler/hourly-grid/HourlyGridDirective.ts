@@ -38,9 +38,6 @@ export class HourlyGridDirective implements angular.IDirective {
     }
 
     private doGrid(scope, element, attrs) {
-        // Calculate hour width distribution
-        var gridItemEl = this.GRID_TEMPLATE.clone();
-  
         // Clean element
         element.empty();
 
@@ -66,17 +63,20 @@ export class HourlyGridDirective implements angular.IDirective {
             return child;
         };
 
+        var strategy = angular.isUndefined(attrs.noText) ? hourStrategy : intervalStrategy;
+        this.generateGrid(element, strategy);
+    }
+
+    private generateGrid(element: JQLite, itemStrategy: (child: JQLite, iteration: number) => JQLite) {
         for (let i = 0; i < this.tickCount; i++) {
-          var child = gridItemEl.clone();
-
-          if (angular.isUndefined(attrs.noText)) {
-            child = this.generateGridItem(i, hourStrategy);
-          } else {
-            child = this.generateGridItem(i, intervalStrategy);
-          }
-
-          element.append(child);
+            var child = this.GRID_TEMPLATE.clone();
+  
+            child = this.generateGridItem(i, itemStrategy);
+  
+            element.append(child);
         }
+
+        return element;
     }
 
     private generateGridItem(iteration: number, strategy: (child: JQLite, iteration: number) => JQLite): JQLite {

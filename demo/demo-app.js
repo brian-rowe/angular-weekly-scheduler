@@ -38126,8 +38126,6 @@ var HourlyGridDirective = /** @class */ (function () {
     };
     HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
         var _this = this;
-        // Calculate hour width distribution
-        var gridItemEl = this.GRID_TEMPLATE.clone();
         // Clean element
         element.empty();
         // Stripe it by hour
@@ -38148,16 +38146,16 @@ var HourlyGridDirective = /** @class */ (function () {
             }
             return child;
         };
+        var strategy = angular.isUndefined(attrs.noText) ? hourStrategy : intervalStrategy;
+        this.generateGrid(element, strategy);
+    };
+    HourlyGridDirective.prototype.generateGrid = function (element, itemStrategy) {
         for (var i = 0; i < this.tickCount; i++) {
-            var child = gridItemEl.clone();
-            if (angular.isUndefined(attrs.noText)) {
-                child = this.generateGridItem(i, hourStrategy);
-            }
-            else {
-                child = this.generateGridItem(i, intervalStrategy);
-            }
+            var child = this.GRID_TEMPLATE.clone();
+            child = this.generateGridItem(i, itemStrategy);
             element.append(child);
         }
+        return element;
     };
     HourlyGridDirective.prototype.generateGridItem = function (iteration, strategy) {
         var child = this.GRID_TEMPLATE.clone();
