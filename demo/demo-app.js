@@ -38125,30 +38125,43 @@ var HourlyGridDirective = /** @class */ (function () {
         return "" + (currentHour || '12') + meridiem;
     };
     HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
+        var _this = this;
         // Calculate hour width distribution
         var gridItemEl = this.GRID_TEMPLATE.clone();
         // Clean element
         element.empty();
         // Stripe it by hour
         element.addClass('striped');
+        var hourStrategy = function (child, i) {
+            _this.handleClickEvent(child, _this.tickCount, i, scope);
+            var hourText = _this.generateHourText(i);
+            child.text(hourText);
+            return child;
+        };
+        var intervalStrategy = function (child, i) {
+            for (var j = 0; j < _this.intervalsInTick; j++) {
+                var grandChild = _this.GRID_TEMPLATE.clone();
+                grandChild.attr('rel', ((i * _this.intervalsInTick) + j) * _this.interval);
+                grandChild.addClass('interval');
+                grandChild.css('width', _this.intervalPercentage + '%');
+                child.append(grandChild);
+            }
+            return child;
+        };
         for (var i = 0; i < this.tickCount; i++) {
             var child = gridItemEl.clone();
             if (angular.isUndefined(attrs.noText)) {
-                this.handleClickEvent(child, this.tickCount, i, scope);
-                var hourText = this.generateHourText(i);
-                child.text(hourText);
+                child = this.generateGridItem(i, hourStrategy);
             }
             else {
-                for (var j = 0; j < this.intervalsInTick; j++) {
-                    var grandChild = this.GRID_TEMPLATE.clone();
-                    grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
-                    grandChild.addClass('interval');
-                    grandChild.css('width', this.intervalPercentage + '%');
-                    child.append(grandChild);
-                }
+                child = this.generateGridItem(i, intervalStrategy);
             }
             element.append(child);
         }
+    };
+    HourlyGridDirective.prototype.generateGridItem = function (iteration, strategy) {
+        var child = this.GRID_TEMPLATE.clone();
+        return strategy(child, iteration);
     };
     HourlyGridDirective.Factory = function () {
         var directive = function (timeConstants) { return new HourlyGridDirective(timeConstants); };

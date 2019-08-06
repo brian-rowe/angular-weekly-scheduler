@@ -3,6 +3,7 @@ import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler'
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { TimeConstantsService } from '../time/TimeConstantsService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
+import { Cipher } from "crypto";
 
 /** @internal */
 export class HourlyGridDirective implements angular.IDirective {
@@ -46,14 +47,14 @@ export class HourlyGridDirective implements angular.IDirective {
         // Stripe it by hour
         element.addClass('striped');
 
-        for (let i = 0; i < this.tickCount; i++) {
-          var child = gridItemEl.clone();
-
-          if (angular.isUndefined(attrs.noText)) {
+        var hourStrategy = (child, i) => {
             this.handleClickEvent(child, this.tickCount, i, scope);
             let hourText = this.generateHourText(i);
             child.text(hourText);
-          } else {
+            return child;
+        };
+
+        var intervalStrategy = (child, i) => {
             for (let j = 0; j < this.intervalsInTick; j++) {
                 let grandChild = this.GRID_TEMPLATE.clone();
                 grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
@@ -61,10 +62,27 @@ export class HourlyGridDirective implements angular.IDirective {
                 grandChild.css('width', this.intervalPercentage + '%');
                 child.append(grandChild);
             }
+
+            return child;
+        };
+
+        for (let i = 0; i < this.tickCount; i++) {
+          var child = gridItemEl.clone();
+
+          if (angular.isUndefined(attrs.noText)) {
+            child = this.generateGridItem(i, hourStrategy);
+          } else {
+            child = this.generateGridItem(i, intervalStrategy);
           }
 
           element.append(child);
         }
+    }
+
+    private generateGridItem(iteration: number, strategy: (child: JQLite, iteration: number) => JQLite): JQLite {
+        var child = this.GRID_TEMPLATE.clone();
+
+        return strategy(child, iteration);
     }
 
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
