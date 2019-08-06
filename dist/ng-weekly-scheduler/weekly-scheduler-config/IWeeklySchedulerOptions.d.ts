@@ -5,7 +5,7 @@ import { IWeeklySchedulerItem } from '../weekly-scheduler-item/IWeeklySchedulerI
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { RestrictionExplanations } from '../restriction-explanations/RestrictionExplanations';
 import { ScheduleCountOptions } from '../schedule-count/ScheduleCountOptions';
-import { OrientationOptions } from "../orientation/OrientationOptions";
+import { OrientationOptions } from '../orientation/OrientationOptions';
 export interface IWeeklySchedulerOptions<T> {
     /** If this is true schedules will be allowed & required to have no set end time */
     nullEnds?: boolean;

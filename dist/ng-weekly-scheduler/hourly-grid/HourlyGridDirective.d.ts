@@ -1,7 +1,7 @@
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { TimeConstantsService } from '../time/TimeConstantsService';
-import { GridGeneratorService } from "../grid-generator/GridGeneratorService";
+import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 /** @internal */
 export declare class HourlyGridDirective implements angular.IDirective {
     private timeConstants;
