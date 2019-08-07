@@ -20,11 +20,11 @@ export class WeeklySchedulerController implements angular.IController {
     '$element',
     '$scope',
     '$timeout',
-    'brWeeklySchedulerAdapterService',
-    'brWeeklySchedulerConfigurationService',
-    'brWeeklySchedulerConflictingOptionsService',
-    'brWeeklySchedulerLastGhostDayService',
-    'brWeeklySchedulerMissingDaysService'
+    AdapterService.$name,
+    ConfigurationService.$name,
+    ConflictingOptionsService.$name,
+    LastGhostDayService.$name,
+    MissingDaysService.$name
   ];
 
   constructor(

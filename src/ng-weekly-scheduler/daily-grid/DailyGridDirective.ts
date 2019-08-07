@@ -78,7 +78,7 @@ export class DailyGridDirective implements angular.IDirective {
     static Factory() {
         let directive = (timeConstants, gridGeneratorService) => new DailyGridDirective(timeConstants, gridGeneratorService);
 
-        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService'];
+        directive.$inject = [TimeConstantsService.$name, GridGeneratorService.$name];
 
         return directive;
     }

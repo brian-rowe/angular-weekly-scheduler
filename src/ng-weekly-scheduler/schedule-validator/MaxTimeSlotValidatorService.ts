@@ -8,7 +8,7 @@ import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 export class MaxTimeSlotValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
 
-    static $inject = ['brWeeklySchedulerEndAdjusterService'];
+    static $inject = [EndAdjusterService.$name];
 
     private constructor(
         private endAdjusterService: EndAdjusterService

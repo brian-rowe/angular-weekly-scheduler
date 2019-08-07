@@ -24,7 +24,7 @@ export class NullEndDirective implements angular.IDirective {
             return new NullEndDirective(validator);
         };
 
-        directive.$inject = ['brWeeklySchedulerNullEndValidatorService'];
+        directive.$inject = [NullEndScheduleValidatorService.$name];
 
         return directive;
     }

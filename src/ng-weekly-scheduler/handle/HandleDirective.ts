@@ -90,7 +90,7 @@ export class HandleDirective implements angular.IDirective {
   static Factory() {
     let directive = ($document, mouseTrackerService, touchService) => new HandleDirective($document, mouseTrackerService, touchService);
 
-    directive.$inject = ['$document', 'brWeeklySchedulerMouseTrackerService', 'brWeeklySchedulerTouchService'];
+    directive.$inject = ['$document', MouseTrackerService.$name, TouchService.$name];
 
     return directive;
   }

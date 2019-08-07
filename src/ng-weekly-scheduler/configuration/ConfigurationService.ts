@@ -7,7 +7,7 @@ export class ConfigurationService {
     static $name = 'brWeeklySchedulerConfigurationService';
 
     static $inject = [
-        'brWeeklySchedulerTimeConstantsService'
+        TimeConstantsService.$name
     ];
 
     private constructor(

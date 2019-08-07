@@ -8,8 +8,8 @@ export class AdapterService {
     static $name = 'brWeeklySchedulerAdapterService';
 
     static $inject = [
-        'brWeeklySchedulerGroupService',
-        'brWeeklySchedulerItemFactory'
+      GroupService.$name,
+      WeeklySchedulerItemFactory.$name
     ];
 
     private constructor(

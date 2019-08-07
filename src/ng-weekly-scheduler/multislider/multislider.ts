@@ -9,6 +9,7 @@ import { ElementOffsetService } from '../element-offset/ElementOffsetService';
 import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
+import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
@@ -19,12 +20,12 @@ export class MultiSliderController implements angular.IComponentController {
     '$element',
     '$q',
     '$scope',
-    'brWeeklySchedulerElementOffsetService',
-    'brWeeklySchedulerEndAdjusterService',
-    'brWeeklySchedulerMouseTrackerService',
-    'brWeeklySchedulerNullEndWidth',
-    'brWeeklySchedulerRangeFactory',
-    'brWeeklySchedulerValueNormalizationService'
+    ElementOffsetService.$name,
+    EndAdjusterService.$name,
+    MouseTrackerService.$name,
+    NullEndWidth.$name,
+    WeeklySchedulerRangeFactory.$name,
+    ValueNormalizationService.$name
   ];
 
   constructor(

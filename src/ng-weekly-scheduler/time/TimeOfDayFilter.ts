@@ -31,7 +31,7 @@ export class TimeOfDayFilter {
             }
         };
 
-        factoryFunction.$inject = ['brWeeklySchedulerTimeConstantsService']
+        factoryFunction.$inject = [TimeConstantsService.$name]
 
         return factoryFunction;
     }

@@ -26,7 +26,7 @@ export class ScheduleCountDirective implements angular.IDirective {
             return new ScheduleCountDirective(validator);
         };
 
-        directive.$inject = ['brWeeklySchedulerScheduleCountValidatorService'];
+        directive.$inject = [ScheduleCountValidatorService.$name];
 
         return directive;
     }

@@ -11,7 +11,7 @@ export class OverlapValidatorService implements ValidatorService {
     static $name = 'brWeeklySchedulerOverlapValidatorService';
 
     static $inject = [
-        'brWeeklySchedulerOverlapService'
+        OverlapService.$name
     ];
     
     private constructor(

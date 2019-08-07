@@ -5,7 +5,7 @@ export class ScrollService {
     static $name = 'brWeeklySchedulerScrollService';
 
     static $inject = [
-        'brWeeklySchedulerZoomService'
+        ZoomService.$name
     ];
 
     private constructor(

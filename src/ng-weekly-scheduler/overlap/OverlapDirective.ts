@@ -24,7 +24,7 @@ export class OverlapDirective implements angular.IDirective {
             return new OverlapDirective(validator);
         };
 
-        directive.$inject = ['brWeeklySchedulerOverlapValidatorService'];
+        directive.$inject = [OverlapValidatorService.$name];
 
         return directive;
     }

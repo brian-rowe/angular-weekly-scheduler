@@ -9,8 +9,8 @@ export class ScheduleAreaContainerController implements angular.IComponentContro
     static $inject = [
         '$element',
         '$scope',
-        'brWeeklySchedulerScrollService',
-        'brWeeklySchedulerZoomService'
+        ScrollService.$name,
+        ZoomService.$name
     ];
 
     constructor(

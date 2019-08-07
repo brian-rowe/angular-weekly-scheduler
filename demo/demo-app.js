@@ -37014,6 +37014,8 @@ if(false) {}
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var GroupService_1 = __webpack_require__(/*! ../group-by/GroupService */ "./src/ng-weekly-scheduler/group-by/GroupService.ts");
+var WeeklySchedulerItemFactory_1 = __webpack_require__(/*! ../weekly-scheduler-item/WeeklySchedulerItemFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts");
 /** @internal */
 var AdapterService = /** @class */ (function () {
     function AdapterService(groupService, itemFactory) {
@@ -37034,8 +37036,8 @@ var AdapterService = /** @class */ (function () {
     };
     AdapterService.$name = 'brWeeklySchedulerAdapterService';
     AdapterService.$inject = [
-        'brWeeklySchedulerGroupService',
-        'brWeeklySchedulerItemFactory'
+        GroupService_1.GroupService.$name,
+        WeeklySchedulerItemFactory_1.WeeklySchedulerItemFactory.$name
     ];
     return AdapterService;
 }());
@@ -37178,6 +37180,7 @@ exports.default = angular.module('br.weeklyScheduler.app', [
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 /** @internal */
 var ConfigurationService = /** @class */ (function () {
     function ConfigurationService(timeConstants) {
@@ -37229,7 +37232,7 @@ var ConfigurationService = /** @class */ (function () {
     };
     ConfigurationService.$name = 'brWeeklySchedulerConfigurationService';
     ConfigurationService.$inject = [
-        'brWeeklySchedulerTimeConstantsService'
+        TimeConstantsService_1.TimeConstantsService.$name
     ];
     return ConfigurationService;
 }());
@@ -37324,6 +37327,8 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
+var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
 var DayMap_1 = __webpack_require__(/*! ../../../src/ng-weekly-scheduler/weekly-scheduler-config/DayMap */ "./src/ng-weekly-scheduler/weekly-scheduler-config/DayMap.ts");
 /** @internal */
 var DailyGridDirective = /** @class */ (function () {
@@ -37381,7 +37386,7 @@ var DailyGridDirective = /** @class */ (function () {
     };
     DailyGridDirective.Factory = function () {
         var directive = function (timeConstants, gridGeneratorService) { return new DailyGridDirective(timeConstants, gridGeneratorService); };
-        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService'];
+        directive.$inject = [TimeConstantsService_1.TimeConstantsService.$name, GridGeneratorService_1.GridGeneratorService.$name];
         return directive;
     };
     DailyGridDirective.$name = 'brDailyGrid';
@@ -37748,6 +37753,8 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
+var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
 /** When using the 'fillEmptyWithDefault' option, this service will be used to construct the correct calendar for server submission */
 /** @internal */
 var FillEmptyWithDefaultService = /** @class */ (function () {
@@ -37855,8 +37862,8 @@ var FillEmptyWithDefaultService = /** @class */ (function () {
     };
     FillEmptyWithDefaultService.$name = 'brWeeklySchedulerFillEmptyWithDefaultService';
     FillEmptyWithDefaultService.$inject = [
-        'brWeeklySchedulerEndAdjusterService',
-        'brWeeklySchedulerRangeFactory'
+        EndAdjusterService_1.EndAdjusterService.$name,
+        WeeklySchedulerRangeFactory_1.WeeklySchedulerRangeFactory.$name
     ];
     return FillEmptyWithDefaultService;
 }());
@@ -37913,7 +37920,7 @@ var FullCalendarDirective = /** @class */ (function () {
         var directive = function (validator) {
             return new FullCalendarDirective(validator);
         };
-        directive.$inject = ['brWeeklySchedulerFullCalendarValidatorService'];
+        directive.$inject = [FullCalendarDirective.$name];
         return directive;
     };
     FullCalendarDirective.$name = 'brFullCalendar';
@@ -38146,6 +38153,8 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var MouseTrackerService_1 = __webpack_require__(/*! ../mouse-tracker/MouseTrackerService */ "./src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService.ts");
+var TouchService_1 = __webpack_require__(/*! ../touch/TouchService */ "./src/ng-weekly-scheduler/touch/TouchService.ts");
 /** @internal */
 var HandleDirective = /** @class */ (function () {
     function HandleDirective($document, mouseTrackerService, touchService) {
@@ -38212,7 +38221,7 @@ var HandleDirective = /** @class */ (function () {
     }
     HandleDirective.Factory = function () {
         var directive = function ($document, mouseTrackerService, touchService) { return new HandleDirective($document, mouseTrackerService, touchService); };
-        directive.$inject = ['$document', 'brWeeklySchedulerMouseTrackerService', 'brWeeklySchedulerTouchService'];
+        directive.$inject = ['$document', MouseTrackerService_1.MouseTrackerService.$name, TouchService_1.TouchService.$name];
         return directive;
     };
     HandleDirective.$name = 'brHandle';
@@ -38300,6 +38309,9 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
+var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
+var HourTextService_1 = __webpack_require__(/*! ../hour-text/HourTextService */ "./src/ng-weekly-scheduler/hour-text/HourTextService.ts");
 /** @internal */
 var HourlyGridDirective = /** @class */ (function () {
     function HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService) {
@@ -38354,7 +38366,7 @@ var HourlyGridDirective = /** @class */ (function () {
     };
     HourlyGridDirective.Factory = function () {
         var directive = function (timeConstants, gridGeneratorService, hourTextService) { return new HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService); };
-        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService', 'rrWeeklySchedulerHourTextService'];
+        directive.$inject = [TimeConstantsService_1.TimeConstantsService.$name, GridGeneratorService_1.GridGeneratorService.$name, HourTextService_1.HourTextService.$name];
         return directive;
     };
     HourlyGridDirective.$name = 'brHourlyGrid';
@@ -38493,7 +38505,7 @@ var MaxTimeSlotDirective = /** @class */ (function () {
         var directive = function (validator) {
             return new MaxTimeSlotDirective(validator);
         };
-        directive.$inject = ['brWeeklySchedulerMaxTimeSlotValidatorService'];
+        directive.$inject = [MaxTimeSlotDirective.$name];
         return directive;
     };
     MaxTimeSlotDirective.$name = 'brMaxTimeSlot';
@@ -38552,7 +38564,7 @@ var MinimumSeparationDirective = /** @class */ (function () {
         var directive = function (validator) {
             return new MinimumSeparationDirective(validator);
         };
-        directive.$inject = ['brWeeklySchedulerMinimumSeparationValidatorService'];
+        directive.$inject = [MinimumSeparationDirective.$name];
         return directive;
     };
     MinimumSeparationDirective.$name = 'brMinimumSeparation';
@@ -38594,6 +38606,8 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var DayMap_1 = __webpack_require__(/*! ../weekly-scheduler-config/DayMap */ "./src/ng-weekly-scheduler/weekly-scheduler-config/DayMap.ts");
+var WeeklySchedulerItemFactory_1 = __webpack_require__(/*! ../weekly-scheduler-item/WeeklySchedulerItemFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItemFactory.ts");
 /** @internal */
 var MissingDaysService = /** @class */ (function () {
     function MissingDaysService(dayMap, itemFactory) {
@@ -38623,8 +38637,8 @@ var MissingDaysService = /** @class */ (function () {
     };
     MissingDaysService.$name = 'brWeeklySchedulerMissingDaysService';
     MissingDaysService.$inject = [
-        'brWeeklySchedulerDayMap',
-        'brWeeklySchedulerItemFactory'
+        DayMap_1.DayMap.$name,
+        WeeklySchedulerItemFactory_1.WeeklySchedulerItemFactory.$name
     ];
     return MissingDaysService;
 }());
@@ -38663,6 +38677,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var MonoScheduleValidatorService_1 = __webpack_require__(/*! ../schedule-validator/MonoScheduleValidatorService */ "./src/ng-weekly-scheduler/schedule-validator/MonoScheduleValidatorService.ts");
 /** @internal */
 var MonoScheduleDirective = /** @class */ (function () {
     function MonoScheduleDirective(validator) {
@@ -38681,7 +38696,7 @@ var MonoScheduleDirective = /** @class */ (function () {
         var directive = function (validator) {
             return new MonoScheduleDirective(validator);
         };
-        directive.$inject = ['brWeeklySchedulerMonoScheduleValidatorService'];
+        directive.$inject = [MonoScheduleValidatorService_1.MonoScheduleValidatorService.$name];
         return directive;
     };
     MonoScheduleDirective.$name = 'brMonoSchedule';
@@ -38813,6 +38828,12 @@ module.exports = "<div class=\"ghost-wrapper\" br-handle ondragstart=\"multiSlid
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
+var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
+var ElementOffsetService_1 = __webpack_require__(/*! ../element-offset/ElementOffsetService */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts");
+var MouseTrackerService_1 = __webpack_require__(/*! ../mouse-tracker/MouseTrackerService */ "./src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService.ts");
+var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
+var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
 /** @internal */
 var MultiSliderController = /** @class */ (function () {
     function MultiSliderController($element, $q, $scope, elementOffsetService, endAdjusterService, mouseTrackerService, nullEndWidth, rangeFactory, valueNormalizationService) {
@@ -39079,12 +39100,12 @@ var MultiSliderController = /** @class */ (function () {
         '$element',
         '$q',
         '$scope',
-        'brWeeklySchedulerElementOffsetService',
-        'brWeeklySchedulerEndAdjusterService',
-        'brWeeklySchedulerMouseTrackerService',
-        'brWeeklySchedulerNullEndWidth',
-        'brWeeklySchedulerRangeFactory',
-        'brWeeklySchedulerValueNormalizationService'
+        ElementOffsetService_1.ElementOffsetService.$name,
+        EndAdjusterService_1.EndAdjusterService.$name,
+        MouseTrackerService_1.MouseTrackerService.$name,
+        NullEndWidth_1.NullEndWidth.$name,
+        WeeklySchedulerRangeFactory_1.WeeklySchedulerRangeFactory.$name,
+        ValueNormalizationService_1.ValueNormalizationService.$name
     ];
     return MultiSliderController;
 }());
@@ -39124,6 +39145,7 @@ exports.MultiSliderComponent = MultiSliderComponent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var NullEndValidatorService_1 = __webpack_require__(/*! ../schedule-validator/NullEndValidatorService */ "./src/ng-weekly-scheduler/schedule-validator/NullEndValidatorService.ts");
 /** @internal */
 var NullEndDirective = /** @class */ (function () {
     function NullEndDirective(validator) {
@@ -39140,7 +39162,7 @@ var NullEndDirective = /** @class */ (function () {
         var directive = function (validator) {
             return new NullEndDirective(validator);
         };
-        directive.$inject = ['brWeeklySchedulerNullEndValidatorService'];
+        directive.$inject = [NullEndValidatorService_1.NullEndScheduleValidatorService.$name];
         return directive;
     };
     NullEndDirective.$name = 'brNullEnd';
@@ -39181,6 +39203,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var OverlapValidatorService_1 = __webpack_require__(/*! ../schedule-validator/OverlapValidatorService */ "./src/ng-weekly-scheduler/schedule-validator/OverlapValidatorService.ts");
 /** @internal */
 var OverlapDirective = /** @class */ (function () {
     function OverlapDirective(validator) {
@@ -39197,7 +39220,7 @@ var OverlapDirective = /** @class */ (function () {
         var directive = function (validator) {
             return new OverlapDirective(validator);
         };
-        directive.$inject = ['brWeeklySchedulerOverlapValidatorService'];
+        directive.$inject = [OverlapValidatorService_1.OverlapValidatorService.$name];
         return directive;
     };
     OverlapDirective.$name = 'brOverlap';
@@ -39218,6 +39241,7 @@ exports.OverlapDirective = OverlapDirective;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
 /** @internal */
 var OverlapService = /** @class */ (function () {
     function OverlapService(endAdjusterService) {
@@ -39250,7 +39274,7 @@ var OverlapService = /** @class */ (function () {
     };
     OverlapService.$name = 'brWeeklySchedulerOverlapService';
     OverlapService.$inject = [
-        'brWeeklySchedulerEndAdjusterService'
+        EndAdjusterService_1.EndAdjusterService.$name
     ];
     return OverlapService;
 }());
@@ -39593,6 +39617,8 @@ module.exports = "<ng-transclude></ng-transclude>";
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var ScrollService_1 = __webpack_require__(/*! ../scroll/ScrollService */ "./src/ng-weekly-scheduler/scroll/ScrollService.ts");
+var ZoomService_1 = __webpack_require__(/*! ../zoom/ZoomService */ "./src/ng-weekly-scheduler/zoom/ZoomService.ts");
 /** @internal */
 var ScheduleAreaContainerController = /** @class */ (function () {
     function ScheduleAreaContainerController($element, $scope, scrollService, zoomService) {
@@ -39620,8 +39646,8 @@ var ScheduleAreaContainerController = /** @class */ (function () {
     ScheduleAreaContainerController.$inject = [
         '$element',
         '$scope',
-        'brWeeklySchedulerScrollService',
-        'brWeeklySchedulerZoomService'
+        ScrollService_1.ScrollService.$name,
+        ZoomService_1.ZoomService.$name
     ];
     return ScheduleAreaContainerController;
 }());
@@ -39651,6 +39677,7 @@ exports.ScheduleAreaContainerComponent = ScheduleAreaContainerComponent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var ScheduleCountValidatorService_1 = __webpack_require__(/*! ../schedule-validator/ScheduleCountValidatorService */ "./src/ng-weekly-scheduler/schedule-validator/ScheduleCountValidatorService.ts");
 /** @internal */
 var ScheduleCountDirective = /** @class */ (function () {
     function ScheduleCountDirective(validator) {
@@ -39669,7 +39696,7 @@ var ScheduleCountDirective = /** @class */ (function () {
         var directive = function (validator) {
             return new ScheduleCountDirective(validator);
         };
-        directive.$inject = ['brWeeklySchedulerScheduleCountValidatorService'];
+        directive.$inject = [ScheduleCountValidatorService_1.ScheduleCountValidatorService.$name];
         return directive;
     };
     ScheduleCountDirective.$name = 'brScheduleCount';
@@ -39780,6 +39807,7 @@ exports.FullCalendarValidatorService = FullCalendarValidatorService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
 /** @internal */
 var MaxTimeSlotValidatorService = /** @class */ (function () {
     function MaxTimeSlotValidatorService(endAdjusterService) {
@@ -39801,7 +39829,7 @@ var MaxTimeSlotValidatorService = /** @class */ (function () {
         return !schedules.some(function (s) { return s.value !== config.defaultValue && _this.endAdjusterService.adjustEndForView(config, s.end) - s.start > maxTimeSlot; });
     };
     MaxTimeSlotValidatorService.$name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
-    MaxTimeSlotValidatorService.$inject = ['brWeeklySchedulerEndAdjusterService'];
+    MaxTimeSlotValidatorService.$inject = [EndAdjusterService_1.EndAdjusterService.$name];
     return MaxTimeSlotValidatorService;
 }());
 exports.MaxTimeSlotValidatorService = MaxTimeSlotValidatorService;
@@ -39950,6 +39978,7 @@ exports.NullEndScheduleValidatorService = NullEndScheduleValidatorService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var OverlapService_1 = __webpack_require__(/*! ../overlap/OverlapService */ "./src/ng-weekly-scheduler/overlap/OverlapService.ts");
 /** @internal */
 var OverlapValidatorService = /** @class */ (function () {
     function OverlapValidatorService(overlapService) {
@@ -39979,7 +40008,7 @@ var OverlapValidatorService = /** @class */ (function () {
     };
     OverlapValidatorService.$name = 'brWeeklySchedulerOverlapValidatorService';
     OverlapValidatorService.$inject = [
-        'brWeeklySchedulerOverlapService'
+        OverlapService_1.OverlapService.$name
     ];
     return OverlapValidatorService;
 }());
@@ -40076,6 +40105,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var ZoomService_1 = __webpack_require__(/*! ../zoom/ZoomService */ "./src/ng-weekly-scheduler/zoom/ZoomService.ts");
 /** @internal */
 var ScrollService = /** @class */ (function () {
     function ScrollService(zoomService) {
@@ -40102,7 +40132,7 @@ var ScrollService = /** @class */ (function () {
     };
     ScrollService.$name = 'brWeeklySchedulerScrollService';
     ScrollService.$inject = [
-        'brWeeklySchedulerZoomService'
+        ZoomService_1.ZoomService.$name
     ];
     return ScrollService;
 }());
@@ -40204,6 +40234,7 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var TimeConstantsService_1 = __webpack_require__(/*! ./TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 /** @internal */
 var SecondsAsTextFilter = /** @class */ (function () {
     function SecondsAsTextFilter() {
@@ -40225,7 +40256,7 @@ var SecondsAsTextFilter = /** @class */ (function () {
                 return result;
             };
         };
-        factoryFunction.$inject = ['brWeeklySchedulerTimeConstantsService'];
+        factoryFunction.$inject = [TimeConstantsService_1.TimeConstantsService.$name];
         return factoryFunction;
     };
     SecondsAsTextFilter.addHoursToResult = function (result, hours) {
@@ -40334,6 +40365,7 @@ exports.TimeConstantsService = TimeConstantsService;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var TimeConstantsService_1 = __webpack_require__(/*! ./TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 /** @internal */
 var TimeOfDayFilter = /** @class */ (function () {
     function TimeOfDayFilter() {
@@ -40359,7 +40391,7 @@ var TimeOfDayFilter = /** @class */ (function () {
                 }
             };
         };
-        factoryFunction.$inject = ['brWeeklySchedulerTimeConstantsService'];
+        factoryFunction.$inject = [TimeConstantsService_1.TimeConstantsService.$name];
         return factoryFunction;
     };
     TimeOfDayFilter.$name = 'brWeeklySchedulerTimeOfDay';
@@ -40823,7 +40855,12 @@ exports.WeeklySchedulerItem = WeeklySchedulerItem;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var DayMap_1 = __webpack_require__(/*! ../weekly-scheduler-config/DayMap */ "./src/ng-weekly-scheduler/weekly-scheduler-config/DayMap.ts");
+var FillEmptyWithDefaultService_1 = __webpack_require__(/*! ../fill-empty-with-default/FillEmptyWithDefaultService */ "./src/ng-weekly-scheduler/fill-empty-with-default/FillEmptyWithDefaultService.ts");
+var OverlapService_1 = __webpack_require__(/*! ../overlap/OverlapService */ "./src/ng-weekly-scheduler/overlap/OverlapService.ts");
+var PurgeDefaultService_1 = __webpack_require__(/*! ../purge-default/PurgeDefaultService */ "./src/ng-weekly-scheduler/purge-default/PurgeDefaultService.ts");
 var WeeklySchedulerItem_1 = __webpack_require__(/*! ../weekly-scheduler-item/WeeklySchedulerItem */ "./src/ng-weekly-scheduler/weekly-scheduler-item/WeeklySchedulerItem.ts");
+var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
 /** @internal */
 var WeeklySchedulerItemFactory = /** @class */ (function () {
     function WeeklySchedulerItemFactory(dayMap, fillEmptyWithDefaultService, overlapService, purgeDefaultService, rangeFactory) {
@@ -40841,11 +40878,11 @@ var WeeklySchedulerItemFactory = /** @class */ (function () {
     };
     WeeklySchedulerItemFactory.$name = 'brWeeklySchedulerItemFactory';
     WeeklySchedulerItemFactory.$inject = [
-        'brWeeklySchedulerDayMap',
-        'brWeeklySchedulerFillEmptyWithDefaultService',
-        'brWeeklySchedulerOverlapService',
-        'brWeeklySchedulerPurgeDefaultService',
-        'brWeeklySchedulerRangeFactory'
+        DayMap_1.DayMap.$name,
+        FillEmptyWithDefaultService_1.FillEmptyWithDefaultService.$name,
+        OverlapService_1.OverlapService.$name,
+        PurgeDefaultService_1.PurgeDefaultService.$name,
+        WeeklySchedulerRangeFactory_1.WeeklySchedulerRangeFactory.$name
     ];
     return WeeklySchedulerItemFactory;
 }());
@@ -40964,6 +41001,7 @@ exports.WeeklySchedulerRange = WeeklySchedulerRange;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
 var WeeklySchedulerRange_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRange */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRange.ts");
 /** @internal */
 var WeeklySchedulerRangeFactory = /** @class */ (function () {
@@ -40975,7 +41013,7 @@ var WeeklySchedulerRangeFactory = /** @class */ (function () {
     };
     WeeklySchedulerRangeFactory.$name = 'brWeeklySchedulerRangeFactory';
     WeeklySchedulerRangeFactory.$inject = [
-        'brWeeklySchedulerEndAdjusterService'
+        EndAdjusterService_1.EndAdjusterService.$name
     ];
     return WeeklySchedulerRangeFactory;
 }());
@@ -41047,6 +41085,11 @@ module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var AdapterService_1 = __webpack_require__(/*! ../adapter/AdapterService */ "./src/ng-weekly-scheduler/adapter/AdapterService.ts");
+var ConfigurationService_1 = __webpack_require__(/*! ../configuration/ConfigurationService */ "./src/ng-weekly-scheduler/configuration/ConfigurationService.ts");
+var ConflictingOptionsService_1 = __webpack_require__(/*! ../conflicting-options/ConflictingOptionsService */ "./src/ng-weekly-scheduler/conflicting-options/ConflictingOptionsService.ts");
+var LastGhostDayService_1 = __webpack_require__(/*! ../last-ghost-day/LastGhostDayService */ "./src/ng-weekly-scheduler/last-ghost-day/LastGhostDayService.ts");
+var MissingDaysService_1 = __webpack_require__(/*! ../missing-days/MissingDaysService */ "./src/ng-weekly-scheduler/missing-days/MissingDaysService.ts");
 /** @internal */
 var WeeklySchedulerController = /** @class */ (function () {
     function WeeklySchedulerController($element, $scope, $timeout, adapterService, configurationService, conflictingOptionsService, lastGhostDayService, missingDaysService) {
@@ -41180,11 +41223,11 @@ var WeeklySchedulerController = /** @class */ (function () {
         '$element',
         '$scope',
         '$timeout',
-        'brWeeklySchedulerAdapterService',
-        'brWeeklySchedulerConfigurationService',
-        'brWeeklySchedulerConflictingOptionsService',
-        'brWeeklySchedulerLastGhostDayService',
-        'brWeeklySchedulerMissingDaysService'
+        AdapterService_1.AdapterService.$name,
+        ConfigurationService_1.ConfigurationService.$name,
+        ConflictingOptionsService_1.ConflictingOptionsService.$name,
+        LastGhostDayService_1.LastGhostDayService.$name,
+        MissingDaysService_1.MissingDaysService.$name
     ];
     return WeeklySchedulerController;
 }());
@@ -41256,6 +41299,7 @@ module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.s
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var DragService_1 = __webpack_require__(/*! ../drag/DragService */ "./src/ng-weekly-scheduler/drag/DragService.ts");
 /** @internal */
 var WeeklySlotController = /** @class */ (function () {
     function WeeklySlotController($element, $rootScope, $scope, dragService) {
@@ -41354,7 +41398,7 @@ var WeeklySlotController = /** @class */ (function () {
         '$element',
         '$rootScope',
         '$scope',
-        'brWeeklySchedulerDragService'
+        DragService_1.DragService.$name
     ];
     return WeeklySlotController;
 }());

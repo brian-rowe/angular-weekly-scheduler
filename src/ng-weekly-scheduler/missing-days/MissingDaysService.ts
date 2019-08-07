@@ -9,8 +9,8 @@ export class MissingDaysService {
     static $name = 'brWeeklySchedulerMissingDaysService';
 
     static $inject = [
-        'brWeeklySchedulerDayMap',
-        'brWeeklySchedulerItemFactory'
+      DayMap.$name,
+      WeeklySchedulerItemFactory.$name
     ];
 
     private constructor(

@@ -15,7 +15,7 @@ export class WeeklySlotController implements angular.IComponentController {
     '$element',
     '$rootScope',
     '$scope',
-    'brWeeklySchedulerDragService'
+    DragService.$name
   ];
 
   private config: IWeeklySchedulerConfig<any>;

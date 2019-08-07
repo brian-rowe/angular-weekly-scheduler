@@ -10,8 +10,8 @@ export class FillEmptyWithDefaultService {
     static $name = 'brWeeklySchedulerFillEmptyWithDefaultService';
 
     static $inject = [
-        'brWeeklySchedulerEndAdjusterService',
-        'brWeeklySchedulerRangeFactory'
+        EndAdjusterService.$name,
+        WeeklySchedulerRangeFactory.$name
     ];
 
     private constructor(

@@ -26,7 +26,7 @@ export class MonoScheduleDirective implements angular.IDirective {
             return new MonoScheduleDirective(validator);
         };
 
-        directive.$inject = ['brWeeklySchedulerMonoScheduleValidatorService'];
+        directive.$inject = [MonoScheduleValidatorService.$name];
 
         return directive;
     }

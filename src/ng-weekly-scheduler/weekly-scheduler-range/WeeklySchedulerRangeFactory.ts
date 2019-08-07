@@ -8,7 +8,7 @@ export class WeeklySchedulerRangeFactory {
     static $name = 'brWeeklySchedulerRangeFactory';
 
     static $inject = [
-        'brWeeklySchedulerEndAdjusterService'
+        EndAdjusterService.$name
     ];
 
     private constructor(

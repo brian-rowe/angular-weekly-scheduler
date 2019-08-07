@@ -31,7 +31,7 @@ export class SecondsAsTextFilter {
             }
         };
 
-        factoryFunction.$inject = ['brWeeklySchedulerTimeConstantsService'];
+        factoryFunction.$inject = [TimeConstantsService.$name];
 
         return factoryFunction;
     }

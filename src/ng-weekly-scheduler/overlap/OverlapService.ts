@@ -8,7 +8,7 @@ export class OverlapService {
     static $name = 'brWeeklySchedulerOverlapService';
 
     static $inject = [
-        'brWeeklySchedulerEndAdjusterService'
+        EndAdjusterService.$name
     ];
 
     private constructor(

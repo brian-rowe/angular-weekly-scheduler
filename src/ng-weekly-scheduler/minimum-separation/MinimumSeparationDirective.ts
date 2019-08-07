@@ -26,7 +26,7 @@ export class MinimumSeparationDirective implements angular.IDirective {
             return new MinimumSeparationDirective(validator);
         };
 
-        directive.$inject = ['brWeeklySchedulerMinimumSeparationValidatorService'];
+        directive.$inject = [MinimumSeparationDirective.$name];
 
         return directive;
     }

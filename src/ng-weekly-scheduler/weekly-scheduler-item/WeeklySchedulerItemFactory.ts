@@ -15,11 +15,11 @@ export class WeeklySchedulerItemFactory {
     static $name = 'brWeeklySchedulerItemFactory';
 
     static $inject = [
-        'brWeeklySchedulerDayMap',
-        'brWeeklySchedulerFillEmptyWithDefaultService',
-        'brWeeklySchedulerOverlapService',
-        'brWeeklySchedulerPurgeDefaultService',
-        'brWeeklySchedulerRangeFactory'
+        DayMap.$name,
+        FillEmptyWithDefaultService.$name,
+        OverlapService.$name,
+        PurgeDefaultService.$name,
+        WeeklySchedulerRangeFactory.$name
     ];
 
     private constructor(
