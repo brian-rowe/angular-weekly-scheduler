@@ -3,6 +3,7 @@ import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler'
 import { TimeConstantsService } from '../time/TimeConstantsService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
+import { HourTextService } from "../hour-text/HourTextService";
 
 /** @internal */
 export class HourlyGridDirective implements angular.IDirective {
@@ -27,20 +28,13 @@ export class HourlyGridDirective implements angular.IDirective {
         });
     }
 
-    private generateHourText(hour: number) {
-        let currentHour = hour % 12;
-        let meridiem = hour >= 12 ? 'p' : 'a';
-
-        return `${currentHour || '12'}${meridiem}`;
-    }
-
     private doGrid(scope, element, attrs) {
         // Stripe it by hour
         element.addClass('striped');
 
         var hourStrategy = (child, i) => {
             this.handleClickEvent(child, this.tickCount, i, scope);
-            let hourText = this.generateHourText(i);
+            let hourText = this.hourTextService.generateHourText(i);
             child.text(hourText);
             return child;
         };
@@ -73,14 +67,15 @@ export class HourlyGridDirective implements angular.IDirective {
 
     constructor(
         private timeConstants: TimeConstantsService,
-        private gridGeneratorService: GridGeneratorService
+        private gridGeneratorService: GridGeneratorService,
+        private hourTextService: HourTextService
     ) {
     }
 
     static Factory() {
-        let directive = (timeConstants, gridGeneratorService) => new HourlyGridDirective(timeConstants, gridGeneratorService);
+        let directive = (timeConstants, gridGeneratorService, hourTextService) => new HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService);
 
-        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService'];
+        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService', 'rrWeeklySchedulerHourTextService'];
 
         return directive;
     }

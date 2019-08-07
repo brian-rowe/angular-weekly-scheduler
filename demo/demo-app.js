@@ -37090,33 +37090,34 @@ var module_11 = __webpack_require__(/*! ../grid-generator/module */ "./src/ng-we
 var module_12 = __webpack_require__(/*! ../group-by/module */ "./src/ng-weekly-scheduler/group-by/module.ts");
 var module_13 = __webpack_require__(/*! ../handle/module */ "./src/ng-weekly-scheduler/handle/module.ts");
 var module_14 = __webpack_require__(/*! ../hourly-grid/module */ "./src/ng-weekly-scheduler/hourly-grid/module.ts");
-var module_15 = __webpack_require__(/*! ../last-ghost-day/module */ "./src/ng-weekly-scheduler/last-ghost-day/module.ts");
-var module_16 = __webpack_require__(/*! ../max-time-slot/module */ "./src/ng-weekly-scheduler/max-time-slot/module.ts");
-var module_17 = __webpack_require__(/*! ../minimum-separation/module */ "./src/ng-weekly-scheduler/minimum-separation/module.ts");
-var module_18 = __webpack_require__(/*! ../missing-days/module */ "./src/ng-weekly-scheduler/missing-days/module.ts");
-var module_19 = __webpack_require__(/*! ../mono-schedule/module */ "./src/ng-weekly-scheduler/mono-schedule/module.ts");
-var module_20 = __webpack_require__(/*! ../mouse-tracker/module */ "./src/ng-weekly-scheduler/mouse-tracker/module.ts");
-var module_21 = __webpack_require__(/*! ../multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
-var module_22 = __webpack_require__(/*! ../null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
-var module_23 = __webpack_require__(/*! ../overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
-var module_24 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
-var module_25 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
-var module_26 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
-var module_27 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
-var module_28 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
-var module_29 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
-var module_30 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
-var module_31 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
-var module_32 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
-var module_33 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
-var module_34 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
-var module_35 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
-var module_36 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
-var module_37 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
-var module_38 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
-var module_39 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
-var module_40 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
-var module_41 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
+var module_15 = __webpack_require__(/*! ../hour-text/module */ "./src/ng-weekly-scheduler/hour-text/module.ts");
+var module_16 = __webpack_require__(/*! ../last-ghost-day/module */ "./src/ng-weekly-scheduler/last-ghost-day/module.ts");
+var module_17 = __webpack_require__(/*! ../max-time-slot/module */ "./src/ng-weekly-scheduler/max-time-slot/module.ts");
+var module_18 = __webpack_require__(/*! ../minimum-separation/module */ "./src/ng-weekly-scheduler/minimum-separation/module.ts");
+var module_19 = __webpack_require__(/*! ../missing-days/module */ "./src/ng-weekly-scheduler/missing-days/module.ts");
+var module_20 = __webpack_require__(/*! ../mono-schedule/module */ "./src/ng-weekly-scheduler/mono-schedule/module.ts");
+var module_21 = __webpack_require__(/*! ../mouse-tracker/module */ "./src/ng-weekly-scheduler/mouse-tracker/module.ts");
+var module_22 = __webpack_require__(/*! ../multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
+var module_23 = __webpack_require__(/*! ../null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
+var module_24 = __webpack_require__(/*! ../overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
+var module_25 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
+var module_26 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
+var module_27 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
+var module_28 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
+var module_29 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
+var module_30 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
+var module_31 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
+var module_32 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
+var module_33 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
+var module_34 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
+var module_35 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
+var module_36 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
+var module_37 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
+var module_38 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
+var module_39 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
+var module_40 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
+var module_41 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
+var module_42 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
 exports.default = angular.module('br.weeklyScheduler.app', [
     module_1.default,
     module_2.default,
@@ -37135,10 +37136,10 @@ exports.default = angular.module('br.weeklyScheduler.app', [
     module_15.default,
     module_16.default,
     module_17.default,
-    module_19.default,
-    module_20.default,
     module_18.default,
+    module_20.default,
     module_21.default,
+    module_19.default,
     module_22.default,
     module_23.default,
     module_24.default,
@@ -37158,7 +37159,8 @@ exports.default = angular.module('br.weeklyScheduler.app', [
     module_38.default,
     module_39.default,
     module_40.default,
-    module_41.default
+    module_41.default,
+    module_42.default
 ])
     .name;
 
@@ -38241,6 +38243,52 @@ exports.default = angular
 
 /***/ }),
 
+/***/ "./src/ng-weekly-scheduler/hour-text/HourTextService.ts":
+/*!**************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/hour-text/HourTextService.ts ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HourTextService = /** @class */ (function () {
+    function HourTextService() {
+    }
+    HourTextService.prototype.generateHourText = function (hour) {
+        var currentHour = hour % 12;
+        var meridiem = hour >= 12 ? 'p' : 'a';
+        return "" + (currentHour || '12') + meridiem;
+    };
+    HourTextService.$name = 'rrWeeklySchedulerHourTextService';
+    return HourTextService;
+}());
+exports.HourTextService = HourTextService;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/hour-text/module.ts":
+/*!*****************************************************!*\
+  !*** ./src/ng-weekly-scheduler/hour-text/module.ts ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var HourTextService_1 = __webpack_require__(/*! ./HourTextService */ "./src/ng-weekly-scheduler/hour-text/HourTextService.ts");
+exports.default = angular
+    .module('rr.weeklyScheduler.hourText', [])
+    .service(HourTextService_1.HourTextService.$name, HourTextService_1.HourTextService)
+    .name;
+
+
+/***/ }),
+
 /***/ "./src/ng-weekly-scheduler/hourly-grid/HourlyGridDirective.ts":
 /*!********************************************************************!*\
   !*** ./src/ng-weekly-scheduler/hourly-grid/HourlyGridDirective.ts ***!
@@ -38254,10 +38302,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 /** @internal */
 var HourlyGridDirective = /** @class */ (function () {
-    function HourlyGridDirective(timeConstants, gridGeneratorService) {
+    function HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService) {
         var _this = this;
         this.timeConstants = timeConstants;
         this.gridGeneratorService = gridGeneratorService;
+        this.hourTextService = hourTextService;
         this.restrict = 'E';
         this.require = '^brWeeklyScheduler';
         this.link = function (scope, element, attrs, schedulerCtrl) {
@@ -38280,18 +38329,13 @@ var HourlyGridDirective = /** @class */ (function () {
             });
         });
     };
-    HourlyGridDirective.prototype.generateHourText = function (hour) {
-        var currentHour = hour % 12;
-        var meridiem = hour >= 12 ? 'p' : 'a';
-        return "" + (currentHour || '12') + meridiem;
-    };
     HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
         var _this = this;
         // Stripe it by hour
         element.addClass('striped');
         var hourStrategy = function (child, i) {
             _this.handleClickEvent(child, _this.tickCount, i, scope);
-            var hourText = _this.generateHourText(i);
+            var hourText = _this.hourTextService.generateHourText(i);
             child.text(hourText);
             return child;
         };
@@ -38309,8 +38353,8 @@ var HourlyGridDirective = /** @class */ (function () {
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
     HourlyGridDirective.Factory = function () {
-        var directive = function (timeConstants, gridGeneratorService) { return new HourlyGridDirective(timeConstants, gridGeneratorService); };
-        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService'];
+        var directive = function (timeConstants, gridGeneratorService, hourTextService) { return new HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService); };
+        directive.$inject = ['brWeeklySchedulerTimeConstantsService', 'rrWeeklySchedulerGridGeneratorService', 'rrWeeklySchedulerHourTextService'];
         return directive;
     };
     HourlyGridDirective.$name = 'brHourlyGrid';

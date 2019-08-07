@@ -2,10 +2,12 @@ import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { TimeConstantsService } from '../time/TimeConstantsService';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
+import { HourTextService } from "../hour-text/HourTextService";
 /** @internal */
 export declare class HourlyGridDirective implements angular.IDirective {
     private timeConstants;
     private gridGeneratorService;
+    private hourTextService;
     static $name: string;
     restrict: string;
     require: string;
@@ -14,9 +16,8 @@ export declare class HourlyGridDirective implements angular.IDirective {
     private intervalsInTick;
     private intervalPercentage;
     private handleClickEvent(child, hourCount, idx, scope);
-    private generateHourText(hour);
     private doGrid(scope, element, attrs);
     link: (scope: any, element: any, attrs: any, schedulerCtrl: WeeklySchedulerController) => void;
-    constructor(timeConstants: TimeConstantsService, gridGeneratorService: GridGeneratorService);
-    static Factory(): (timeConstants: any, gridGeneratorService: any) => HourlyGridDirective;
+    constructor(timeConstants: TimeConstantsService, gridGeneratorService: GridGeneratorService, hourTextService: HourTextService);
+    static Factory(): (timeConstants: any, gridGeneratorService: any, hourTextService: any) => HourlyGridDirective;
 }
