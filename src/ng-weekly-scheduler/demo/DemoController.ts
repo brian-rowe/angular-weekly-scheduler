@@ -22,7 +22,7 @@ export class DemoController {
                     return new DemoItem(day, schedules);
                 },
                 defaultValue: false,
-                editSlot: function (schedule) {
+                editSlot: (schedule) => {
                     schedule.start += 60;
                     schedule.value = true;
                     return this.$q.when(schedule);

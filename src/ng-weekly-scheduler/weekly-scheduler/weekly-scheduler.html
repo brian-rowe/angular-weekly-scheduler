@@ -44,8 +44,7 @@
   </div>
 </div>
 
-<!--- VERTICAL -->
-<div ng-if="!schedulerCtrl.invalidMessage">
+<!-- <div ng-if="!schedulerCtrl.invalidMessage">
     <div class="labels">
       <div class="srow dummy"></div>
       <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
@@ -60,23 +59,25 @@
           <br-daily-grid></br-daily-grid>
         </div>
   
-        <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
-          <br-daily-grid no-text></br-daily-grid>
-          <br-multi-slider config="schedulerCtrl.config"
-                          br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
-                          br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
-                          br-minimum-separation="{{ schedulerCtrl.config.minimumSeparation }}"
-                          br-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
-                          br-null-end="{{ schedulerCtrl.config.nullEnds }}"
-                          br-schedule-count="{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}"
-                          br-overlap
-                          br-revalidate
-                          drag-schedule="schedulerCtrl.dragSchedule"
-                          ghost-values="schedulerCtrl.ghostValues"
-                          ng-model="item"
-                          ng-model-options="{allowInvalid: true}"
-                          set-ghost-values="schedulerCtrl.setGhostValues(ghostValues)"
-          ></br-multi-slider>
+        <div class="vertical-multi-slider-area">
+          <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
+            <br-daily-grid no-text></br-daily-grid>
+            <br-multi-slider config="schedulerCtrl.config"
+                            br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
+                            br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
+                            br-minimum-separation="{{ schedulerCtrl.config.minimumSeparation }}"
+                            br-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
+                            br-null-end="{{ schedulerCtrl.config.nullEnds }}"
+                            br-schedule-count="{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}"
+                            br-overlap
+                            br-revalidate
+                            drag-schedule="schedulerCtrl.dragSchedule"
+                            ghost-values="schedulerCtrl.ghostValues"
+                            ng-model="item"
+                            ng-model-options="{allowInvalid: true}"
+                            set-ghost-values="schedulerCtrl.setGhostValues(ghostValues)"
+            ></br-multi-slider>
+          </div>
         </div>
       </div>
     </br-schedule-area-container>
@@ -89,7 +90,7 @@
       <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.resetZoom()">Zoom Out</button>
       <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.zoomIn()">Zoom In</button>
     </div>
-  </div>
+</div> -->
 
 <div class="srow" ng-if="schedulerCtrl.invalidMessage">
   {{ schedulerCtrl.invalidMessage }}
