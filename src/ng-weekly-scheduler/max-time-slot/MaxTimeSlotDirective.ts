@@ -26,7 +26,7 @@ export class MaxTimeSlotDirective implements angular.IDirective {
             return new MaxTimeSlotDirective(validator);
         };
 
-        directive.$inject = [MaxTimeSlotDirective.$name];
+        directive.$inject = [MaxTimeSlotValidatorService.$name];
 
         return directive;
     }

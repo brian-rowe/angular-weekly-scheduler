@@ -26,7 +26,7 @@ export class FullCalendarDirective implements angular.IDirective {
             return new FullCalendarDirective(validator);
         };
 
-        directive.$inject = [FullCalendarDirective.$name];
+        directive.$inject = [FullCalendarValidatorService.$name];
 
         return directive;
     }
