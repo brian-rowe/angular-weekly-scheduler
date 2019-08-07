@@ -4,6 +4,7 @@ import '../../ng-weekly-scheduler.less';
 import AdapterModule from '../adapter/module';
 import ConfigurationModule from '../configuration/module';
 import ConflictingOptionsModule from '../conflicting-options/module';
+import DailyGridModule from '../daily-grid/module';
 import DragModule from '../drag/module';
 import ElementOffsetModule from '../element-offset/module';
 import EndAdjusterModule from '../end-adjuster/module';
@@ -46,6 +47,7 @@ export default angular.module('br.weeklyScheduler.app', [
     AdapterModule,
     ConfigurationModule,
     ConflictingOptionsModule,
+    DailyGridModule,
     DragModule,
     ElementOffsetModule,
     EndAdjusterModule,
