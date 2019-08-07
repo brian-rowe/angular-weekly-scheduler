@@ -5,10 +5,7 @@
                       active: multiSliderCtrl.item.$renderGhost,
                       nullEnd: multiSliderCtrl.config.nullEnds
                    }"
-                   ng-style="{
-                      left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.start),
-                      right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.start, multiSliderCtrl.ghostValues.end)
-                   }">
+                   ng-style="multiSliderCtrl.getSlotStyle(multiSliderCtrl.ghostValues)">
         <div class="slotWrapper">
             <div class="middle fullWidth">
                 <span ng-if="!multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | brWeeklySchedulerTimeOfDay }}</span>
@@ -30,10 +27,7 @@
                 }"
                 ng-repeat="schedule in multiSliderCtrl.item.schedules"
                 ng-model="schedule"
-                ng-style="{
-                    left: multiSliderCtrl.getSlotLeft(schedule.start),
-                    right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end)
-                }"
+                ng-style="multiSliderCtrl.getSlotStyle(schedule)"
                 edit-schedule="multiSliderCtrl.editSchedule(schedule)"
     ></br-weekly-slot>
 </div>

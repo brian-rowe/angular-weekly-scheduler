@@ -56,6 +56,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     private editSchedule(schedule);
     private getSlotLeft(start);
     private getSlotRight(start, end);
+    private getSlotStyle(schedule);
     private getUnderlyingInterval(val);
     private shouldDelete(schedule);
     pixelToVal(pixel: number): number;

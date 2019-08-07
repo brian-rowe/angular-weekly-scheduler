@@ -322,6 +322,13 @@ export class MultiSliderController implements angular.IComponentController {
     return result + 'px';
   }
 
+  private getSlotStyle(schedule: IWeeklySchedulerRange<any>) {
+    return {
+      left: this.getSlotLeft(schedule.start),
+      right: this.getSlotRight(schedule.start, schedule.end)
+    };
+  }
+
   private getUnderlyingInterval(val: number): HTMLElement {
     val = this.normalizeIntervalValue(val);
 
