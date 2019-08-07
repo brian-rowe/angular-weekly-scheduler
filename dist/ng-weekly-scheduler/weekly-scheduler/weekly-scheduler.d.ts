@@ -9,6 +9,7 @@ import { MissingDaysService } from '../missing-days/MissingDaysService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySchedulerOptions';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
+import { HourTextService } from '../hour-text/HourTextService';
 /** @internal */
 export declare class WeeklySchedulerController implements angular.IController {
     private $element;
@@ -17,12 +18,13 @@ export declare class WeeklySchedulerController implements angular.IController {
     private adapterService;
     private configurationService;
     private conflictingOptionsService;
+    private hourTextService;
     private lastGhostDayService;
     private missingDaysService;
     static $controllerAs: string;
     static $name: string;
     static $inject: string[];
-    constructor($element: angular.IAugmentedJQuery, $scope: angular.IScope, $timeout: angular.ITimeoutService, adapterService: AdapterService, configurationService: ConfigurationService, conflictingOptionsService: ConflictingOptionsService, lastGhostDayService: LastGhostDayService, missingDaysService: MissingDaysService);
+    constructor($element: angular.IAugmentedJQuery, $scope: angular.IScope, $timeout: angular.ITimeoutService, adapterService: AdapterService, configurationService: ConfigurationService, conflictingOptionsService: ConflictingOptionsService, hourTextService: HourTextService, lastGhostDayService: LastGhostDayService, missingDaysService: MissingDaysService);
     private _originalItems;
     private adapter;
     invalidMessage: string;
@@ -34,6 +36,8 @@ export declare class WeeklySchedulerController implements angular.IController {
     config: IWeeklySchedulerConfig<any>;
     items: WeeklySchedulerItem<any>[];
     options: IWeeklySchedulerOptions<any>;
+    private verticalTickCount;
+    private verticalTicks;
     $onInit(): void;
     $postLink(): void;
     getInvalidMessage(): string;

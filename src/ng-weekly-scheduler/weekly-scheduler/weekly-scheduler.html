@@ -44,11 +44,12 @@
   </div>
 </div>
 
+<!--- VERTICAL -->
 <div ng-if="!schedulerCtrl.invalidMessage">
     <div class="labels">
       <div class="srow dummy"></div>
-      <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
-        {{ item.label }}
+      <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
+        {{ item }}
       </div>
     </div>
   
@@ -59,7 +60,7 @@
           <br-daily-grid></br-daily-grid>
         </div>
   
-        <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
+        <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
           <br-daily-grid no-text></br-daily-grid>
           <br-multi-slider config="schedulerCtrl.config"
                           br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"

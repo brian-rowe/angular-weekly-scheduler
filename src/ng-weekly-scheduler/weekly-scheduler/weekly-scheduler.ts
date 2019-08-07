@@ -10,6 +10,7 @@ import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySched
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
+import { HourTextService } from '../hour-text/HourTextService';
 
 /** @internal */
 export class WeeklySchedulerController implements angular.IController {
@@ -23,6 +24,7 @@ export class WeeklySchedulerController implements angular.IController {
     AdapterService.$name,
     ConfigurationService.$name,
     ConflictingOptionsService.$name,
+    HourTextService.$name,
     LastGhostDayService.$name,
     MissingDaysService.$name
   ];
@@ -34,6 +36,7 @@ export class WeeklySchedulerController implements angular.IController {
     private adapterService: AdapterService,
     private configurationService: ConfigurationService,
     private conflictingOptionsService: ConflictingOptionsService,
+    private hourTextService: HourTextService,
     private lastGhostDayService: LastGhostDayService,
     private missingDaysService: MissingDaysService,
   ) {
@@ -58,11 +61,20 @@ export class WeeklySchedulerController implements angular.IController {
   public items: WeeklySchedulerItem<any>[];
   public options: IWeeklySchedulerOptions<any>;
 
+  private verticalTickCount: number;
+  private verticalTicks: string[] = [];
+
   $onInit() {
     this.config = this.configurationService.getConfiguration(this.options);
     this.buildItemsFromAdapter();
     this.watchAdapter();
     this.watchHoverClass();
+
+    this.verticalTickCount = this.config.hourCount;
+
+    for (let i = 0; i < this.verticalTickCount; i++) {
+      this.verticalTicks.push(this.hourTextService.generateHourText(i));
+    }
   }
 
   $postLink() {
