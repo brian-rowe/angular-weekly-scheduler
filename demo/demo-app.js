@@ -38816,7 +38816,7 @@ exports.default = angular.module('rr.weeklyScheduler.multiSlider', [])
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ghost-wrapper\" br-handle ondragstart=\"multiSliderCtrl.onGhostWrapperMouseDown()\" ondragstop=\"multiSliderCtrl.onGhostWrapperMouseUp()\" ondrag=\"multiSliderCtrl.onGhostWrapperMouseMove()\">\r\n    <br-ghost-slot class=\"slot\"\r\n                   ng-if=\"multiSliderCtrl.item.canRenderGhost()\"\r\n                   ng-class=\"{\r\n                      active: multiSliderCtrl.item.$renderGhost,\r\n                      nullEnd: multiSliderCtrl.config.nullEnds\r\n                   }\"\r\n                   ng-style=\"{\r\n                      left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.left),\r\n                      right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.left, multiSliderCtrl.ghostValues.right)\r\n                   }\">\r\n        <div class=\"slotWrapper\">\r\n            <div class=\"middle fullWidth\">\r\n                <span ng-if=\"!multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>\r\n                <span ng-if=\"multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} until</span>\r\n            </div>\r\n        </div>\r\n    </br-ghost-slot>\r\n\r\n    <br-weekly-slot class=\"slot {{ schedule.$class }}\"\r\n                config=\"multiSliderCtrl.config\"\r\n                get-delta=\"multiSliderCtrl.pixelToVal(pixel)\"\r\n                drag-schedule=\"multiSliderCtrl.dragSchedule\" \r\n                item=\"multiSliderCtrl.item\"\r\n                ng-class=\"{\r\n                    active: schedule.$isActive,\r\n                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),\r\n                    nullEnd: schedule.end === null,\r\n                    pending: schedule.$isEditing\r\n                }\"\r\n                ng-repeat=\"schedule in multiSliderCtrl.item.schedules\"\r\n                ng-model=\"schedule\"\r\n                ng-style=\"{\r\n                    left: multiSliderCtrl.getSlotLeft(schedule.start),\r\n                    right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end)\r\n                }\"\r\n                edit-schedule=\"multiSliderCtrl.editSchedule(schedule)\"\r\n    ></br-weekly-slot>\r\n</div>";
+module.exports = "<div class=\"ghost-wrapper\" br-handle ondragstart=\"multiSliderCtrl.onGhostWrapperMouseDown()\" ondragstop=\"multiSliderCtrl.onGhostWrapperMouseUp()\" ondrag=\"multiSliderCtrl.onGhostWrapperMouseMove()\">\r\n    <br-ghost-slot class=\"slot\"\r\n                   ng-if=\"multiSliderCtrl.item.canRenderGhost()\"\r\n                   ng-class=\"{\r\n                      active: multiSliderCtrl.item.$renderGhost,\r\n                      nullEnd: multiSliderCtrl.config.nullEnds\r\n                   }\"\r\n                   ng-style=\"{\r\n                      left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.start),\r\n                      right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.start, multiSliderCtrl.ghostValues.end)\r\n                   }\">\r\n        <div class=\"slotWrapper\">\r\n            <div class=\"middle fullWidth\">\r\n                <span ng-if=\"!multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | brWeeklySchedulerTimeOfDay }}</span>\r\n                <span ng-if=\"multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} until</span>\r\n            </div>\r\n        </div>\r\n    </br-ghost-slot>\r\n\r\n    <br-weekly-slot class=\"slot {{ schedule.$class }}\"\r\n                config=\"multiSliderCtrl.config\"\r\n                get-delta=\"multiSliderCtrl.pixelToVal(pixel)\"\r\n                drag-schedule=\"multiSliderCtrl.dragSchedule\" \r\n                item=\"multiSliderCtrl.item\"\r\n                ng-class=\"{\r\n                    active: schedule.$isActive,\r\n                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),\r\n                    nullEnd: schedule.end === null,\r\n                    pending: schedule.$isEditing\r\n                }\"\r\n                ng-repeat=\"schedule in multiSliderCtrl.item.schedules\"\r\n                ng-model=\"schedule\"\r\n                ng-style=\"{\r\n                    left: multiSliderCtrl.getSlotLeft(schedule.start),\r\n                    right: multiSliderCtrl.getSlotRight(schedule.start, schedule.end)\r\n                }\"\r\n                edit-schedule=\"multiSliderCtrl.editSchedule(schedule)\"\r\n    ></br-weekly-slot>\r\n</div>";
 
 /***/ }),
 
@@ -38940,20 +38940,20 @@ var MultiSliderController = /** @class */ (function () {
     MultiSliderController.prototype.adjustGhost = function () {
         var point = this.mouseTrackerService.getMousePosition();
         var mouseValue = this.getValAtMousePosition(point.x);
-        var existingLeftValue = this.startingGhostValues.left;
-        var updatedLeftValue;
-        var updatedRightValue;
-        if (mouseValue < existingLeftValue) { // user is dragging left
-            updatedLeftValue = mouseValue;
-            updatedRightValue = existingLeftValue;
+        var existingStartValue = this.startingGhostValues.start;
+        var updatedStartValue;
+        var updatedEndValue;
+        if (mouseValue < existingStartValue) { // user is dragging towards start
+            updatedStartValue = mouseValue;
+            updatedEndValue = existingStartValue;
         }
-        else { // user is dragging right
-            updatedLeftValue = existingLeftValue;
-            updatedRightValue = mouseValue;
+        else { // user is dragging towards end
+            updatedStartValue = existingStartValue;
+            updatedEndValue = mouseValue;
         }
         var ghostValues = {
-            left: this.normalizeGhostValue(updatedLeftValue),
-            right: this.normalizeGhostValue(updatedRightValue)
+            start: this.normalizeGhostValue(updatedStartValue),
+            end: this.normalizeGhostValue(updatedEndValue)
         };
         this.setGhostValues({
             ghostValues: ghostValues
@@ -38964,8 +38964,8 @@ var MultiSliderController = /** @class */ (function () {
         var point = this.mouseTrackerService.getMousePosition();
         var val = this.getValAtMousePosition(point.x);
         this.startingGhostValues = {
-            left: val,
-            right: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval
+            start: val,
+            end: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval
         };
         this.setGhostValues({
             ghostValues: angular.copy(this.startingGhostValues)
@@ -38990,7 +38990,7 @@ var MultiSliderController = /** @class */ (function () {
     };
     MultiSliderController.prototype.onGhostWrapperMouseUp = function () {
         var _this = this;
-        var ghostSchedule = this.getScheduleForAdd(this.ghostValues.left, this.ghostValues.right);
+        var ghostSchedule = this.getScheduleForAdd(this.ghostValues.start, this.ghostValues.end);
         this.openEditorForAdd(ghostSchedule).then(function (editedGhostSchedule) {
             _this.$scope.$emit("brWeeklyScheduler.ghostDragEnded" /* GHOST_DRAG_ENDED */, editedGhostSchedule);
         }).catch(function () {

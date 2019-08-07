@@ -46,19 +46,19 @@ export class OverlapServiceTests {
                         expect($service.getOverlapState(config, getSchedule(0, 45), getSchedule(15, 30))).toBe(OverlapState.CurrentCoversOther);
                     });
 
-                    it('OtherEndIsInsideCurrent when right edge of other item overlaps left edge of current item', () => {
+                    it('OtherEndIsInsideCurrent when ending edge of other item overlaps starting edge of current item', () => {
                         expect($service.getOverlapState(config, getSchedule(15, 45), getSchedule(0, 30))).toBe(OverlapState.OtherEndIsInsideCurrent);
                     });
 
-                    it('OtherStartIsInsideCurrent when left edge of other item overlaps right edge of current item', () => {
+                    it('OtherStartIsInsideCurrent when starting edge of other item overlaps ending edge of current item', () => {
                         expect($service.getOverlapState(config, getSchedule(0, 30), getSchedule(15, 45))).toBe(OverlapState.OtherStartIsInsideCurrent);
                     });
 
-                    it('OtherEndIsCurrentStart when right edge of other item IS left edge of current item', () => {
+                    it('OtherEndIsCurrentStart when ending edge of other item IS starting edge of current item', () => {
                         expect($service.getOverlapState(config, getSchedule(30, 45), getSchedule(0, 30))).toBe(OverlapState.OtherEndIsCurrentStart);
                     });
 
-                    it('OtherStartIsCurrentEnd when left edge of other item IS right edge of current item', () => {
+                    it('OtherStartIsCurrentEnd when starting edge of other item IS ending edge of current item', () => {
                         expect($service.getOverlapState(config, getSchedule(0, 30), getSchedule(30, 45))).toBe(OverlapState.OtherStartIsCurrentEnd);
                     });
                 });

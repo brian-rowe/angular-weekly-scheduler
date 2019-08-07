@@ -45,9 +45,9 @@ export class MultiSliderController implements angular.IComponentController {
   private dragSchedule: WeeklySchedulerRange<any>;
   private pendingSchedule: WeeklySchedulerRange<any>;
 
-  private startingGhostValues: { left: number, right: number };
-  private readonly ghostValues: { left: number, right: number };
-  private setGhostValues: (options: { ghostValues: { left: number, right: number } }) => void;
+  private startingGhostValues: { start: number, end: number };
+  private readonly ghostValues: { start: number, end: number };
+  private setGhostValues: (options: { ghostValues: { start: number, end: number } }) => void;
 
   private ngModelCtrl: angular.INgModelController;
   
@@ -164,22 +164,22 @@ export class MultiSliderController implements angular.IComponentController {
     let point = this.mouseTrackerService.getMousePosition();
     let mouseValue: number = this.getValAtMousePosition(point.x);
 
-    let existingLeftValue: number = this.startingGhostValues.left;
+    let existingStartValue: number = this.startingGhostValues.start;
 
-    let updatedLeftValue: number;
-    let updatedRightValue: number;
+    let updatedStartValue;
+    let updatedEndValue: number;
     
-    if (mouseValue < existingLeftValue) { // user is dragging left
-      updatedLeftValue = mouseValue;
-      updatedRightValue = existingLeftValue;
-    } else { // user is dragging right
-      updatedLeftValue = existingLeftValue;
-      updatedRightValue = mouseValue;
+    if (mouseValue < existingStartValue) { // user is dragging towards start
+      updatedStartValue = mouseValue;
+      updatedEndValue = existingStartValue;
+    } else { // user is dragging towards end
+      updatedStartValue = existingStartValue;
+      updatedEndValue = mouseValue;
     }
 
     let ghostValues = {
-      left: this.normalizeGhostValue(updatedLeftValue),
-      right: this.normalizeGhostValue(updatedRightValue)
+      start: this.normalizeGhostValue(updatedStartValue),
+      end: this.normalizeGhostValue(updatedEndValue)
     };
 
     this.setGhostValues({ 
@@ -193,8 +193,8 @@ export class MultiSliderController implements angular.IComponentController {
     let val = this.getValAtMousePosition(point.x);
 
     this.startingGhostValues = {
-      left: val,
-      right: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval
+      start: val,
+      end: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval
     };
 
     this.setGhostValues({
@@ -224,7 +224,7 @@ export class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseUp() {
-    let ghostSchedule = this.getScheduleForAdd(this.ghostValues.left, this.ghostValues.right);
+    let ghostSchedule = this.getScheduleForAdd(this.ghostValues.start, this.ghostValues.end);
 
     this.openEditorForAdd(ghostSchedule).then(editedGhostSchedule => {
       this.$scope.$emit(WeeklySchedulerEvents.GHOST_DRAG_ENDED, editedGhostSchedule);

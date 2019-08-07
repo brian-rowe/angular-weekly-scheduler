@@ -50,7 +50,7 @@ export class WeeklySchedulerController implements angular.IController {
 
   private dragSchedule: WeeklySchedulerRange<any>;
 
-  private ghostValues: { left: number, right: number };
+  private ghostValues: { start: number, end: number };
 
   /** this is required to be part of a form for dirty/valid checks */
   public formController: angular.IFormController;
@@ -165,7 +165,7 @@ export class WeeklySchedulerController implements angular.IController {
     return items;
   }
 
-  private setGhostValues(ghostValues: { left: number, right: number }) {
+  private setGhostValues(ghostValues: { start: number, end: number }) {
     this.ghostValues = ghostValues;
   }
 

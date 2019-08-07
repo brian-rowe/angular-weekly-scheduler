@@ -6,13 +6,13 @@
                       nullEnd: multiSliderCtrl.config.nullEnds
                    }"
                    ng-style="{
-                      left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.left),
-                      right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.left, multiSliderCtrl.ghostValues.right)
+                      left: multiSliderCtrl.getSlotLeft(multiSliderCtrl.ghostValues.start),
+                      right: multiSliderCtrl.getSlotRight(multiSliderCtrl.ghostValues.start, multiSliderCtrl.ghostValues.end)
                    }">
         <div class="slotWrapper">
             <div class="middle fullWidth">
-                <span ng-if="!multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.right | brWeeklySchedulerTimeOfDay }}</span>
-                <span ng-if="multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.left | brWeeklySchedulerTimeOfDay }} until</span>
+                <span ng-if="!multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | brWeeklySchedulerTimeOfDay }}</span>
+                <span ng-if="multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} until</span>
             </div>
         </div>
     </br-ghost-slot>
