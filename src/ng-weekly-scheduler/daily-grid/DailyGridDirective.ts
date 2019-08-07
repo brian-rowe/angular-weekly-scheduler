@@ -3,7 +3,7 @@ import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler'
 import { TimeConstantsService } from '../time/TimeConstantsService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
-import { DayMap } from '../../../src/ng-weekly-scheduler/weekly-scheduler-config/DayMap';
+import { DayMap } from '../weekly-scheduler-config/DayMap';
 
 /** @internal */
 export class DailyGridDirective implements angular.IDirective {
