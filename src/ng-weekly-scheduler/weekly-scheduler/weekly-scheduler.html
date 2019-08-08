@@ -10,11 +10,11 @@
     <div class="schedule-area">
 
       <div class="srow timestamps">
-        <br-hourly-grid></br-hourly-grid>
+        <br-hour-grid></br-hour-grid>
       </div>
 
       <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
-        <br-hourly-grid no-text></br-hourly-grid>
+        <br-hourly-grid></br-hourly-grid>
         <br-multi-slider config="schedulerCtrl.config"
                         br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
                         br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"

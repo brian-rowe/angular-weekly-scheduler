@@ -14,6 +14,7 @@ import GhostSlotModule from '../ghost-slot/module';
 import GridGeneratorModule from '../grid-generator/module';
 import GroupByModule from '../group-by/module';
 import HandleModule from '../handle/module';
+import HourGridModule from '../hour-grid/module';
 import HourlyGridModule from '../hourly-grid/module';
 import HourTextModule from '../hour-text/module';
 import IntervalGenerationModule from '../interval-generation/module';
@@ -60,6 +61,7 @@ export default angular.module('br.weeklyScheduler.app', [
     GroupByModule,
     GhostSlotModule,
     HandleModule,
+    HourGridModule,
     HourlyGridModule,
     HourTextModule,
     IntervalGenerationModule,
