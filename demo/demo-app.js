@@ -37110,16 +37110,17 @@ var module_29 = __webpack_require__(/*! ../schedule-area-container/module */ "./
 var module_30 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
 var module_31 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
 var module_32 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
-var module_33 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
-var module_34 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
-var module_35 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
-var module_36 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
-var module_37 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
-var module_38 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
-var module_39 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
-var module_40 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
-var module_41 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
-var module_42 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
+var module_33 = __webpack_require__(/*! ../slot-style/module */ "./src/ng-weekly-scheduler/slot-style/module.ts");
+var module_34 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
+var module_35 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
+var module_36 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
+var module_37 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
+var module_38 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
+var module_39 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
+var module_40 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
+var module_41 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
+var module_42 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
+var module_43 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
 exports.default = angular.module('br.weeklyScheduler.app', [
     module_1.default,
     module_2.default,
@@ -37162,7 +37163,8 @@ exports.default = angular.module('br.weeklyScheduler.app', [
     module_39.default,
     module_40.default,
     module_41.default,
-    module_42.default
+    module_42.default,
+    module_43.default
 ])
     .name;
 
@@ -38831,22 +38833,22 @@ module.exports = "<div class=\"ghost-wrapper\" br-handle ondragstart=\"multiSlid
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
-var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
 var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
 var ElementOffsetService_1 = __webpack_require__(/*! ../element-offset/ElementOffsetService */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts");
 var MouseTrackerService_1 = __webpack_require__(/*! ../mouse-tracker/MouseTrackerService */ "./src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService.ts");
 var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
 var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
+var SlotStyleFactory_1 = __webpack_require__(/*! ../slot-style/SlotStyleFactory */ "./src/ng-weekly-scheduler/slot-style/SlotStyleFactory.ts");
 /** @internal */
 var MultiSliderController = /** @class */ (function () {
-    function MultiSliderController($element, $q, $scope, elementOffsetService, endAdjusterService, mouseTrackerService, nullEndWidth, rangeFactory, valueNormalizationService) {
+    function MultiSliderController($element, $q, $scope, elementOffsetService, mouseTrackerService, nullEndWidth, slotStyleFactory, rangeFactory, valueNormalizationService) {
         this.$element = $element;
         this.$q = $q;
         this.$scope = $scope;
         this.elementOffsetService = elementOffsetService;
-        this.endAdjusterService = endAdjusterService;
         this.mouseTrackerService = mouseTrackerService;
         this.nullEndWidth = nullEndWidth;
+        this.slotStyleFactory = slotStyleFactory;
         this.rangeFactory = rangeFactory;
         this.valueNormalizationService = valueNormalizationService;
         this.element = this.$element[0];
@@ -38927,6 +38929,9 @@ var MultiSliderController = /** @class */ (function () {
             value: this.config.defaultValue
         };
         return schedule;
+    };
+    MultiSliderController.prototype.getSlotStyle = function (schedule) {
+        return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
     };
     MultiSliderController.prototype.openEditorForAdd = function (schedule) {
         if (this.item.canEdit()) {
@@ -39050,33 +39055,6 @@ var MultiSliderController = /** @class */ (function () {
             });
         }
     };
-    MultiSliderController.prototype.getSlotLeft = function (start) {
-        var underlyingInterval = this.getUnderlyingInterval(start);
-        return underlyingInterval.offsetLeft + 'px';
-    };
-    MultiSliderController.prototype.getSlotRight = function (start, end) {
-        // If there is a null end, place the end of the slot two hours away from the beginning.
-        if (this.config.nullEnds && end === null) {
-            end = start + this.nullEndWidth;
-        }
-        // An end of 0 should display allll the way to the right, up to the edge
-        end = this.endAdjusterService.adjustEndForView(this.config, end);
-        // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
-        var underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
-        var offsetRight = underlyingInterval.offsetLeft + underlyingInterval.offsetWidth;
-        var result = this.element.clientWidth - offsetRight;
-        return result + 'px';
-    };
-    MultiSliderController.prototype.getSlotStyle = function (schedule) {
-        return {
-            left: this.getSlotLeft(schedule.start),
-            right: this.getSlotRight(schedule.start, schedule.end)
-        };
-    };
-    MultiSliderController.prototype.getUnderlyingInterval = function (val) {
-        val = this.normalizeIntervalValue(val);
-        return this.element.parentElement.querySelector("[rel='" + val + "']");
-    };
     MultiSliderController.prototype.shouldDelete = function (schedule) {
         if (schedule.$isDeleting) {
             return true;
@@ -39089,11 +39067,6 @@ var MultiSliderController = /** @class */ (function () {
     MultiSliderController.prototype.pixelToVal = function (pixel) {
         var percent = pixel / this.element.clientWidth;
         return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
-    };
-    MultiSliderController.prototype.normalizeIntervalValue = function (value) {
-        // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
-        var rightmost = this.config.maxValue - this.config.interval;
-        return this.valueNormalizationService.normalizeValue(value, 0, rightmost);
     };
     MultiSliderController.prototype.normalizeGhostValue = function (value) {
         return this.valueNormalizationService.normalizeValue(value, 0, this.config.maxValue);
@@ -39110,9 +39083,9 @@ var MultiSliderController = /** @class */ (function () {
         '$q',
         '$scope',
         ElementOffsetService_1.ElementOffsetService.$name,
-        EndAdjusterService_1.EndAdjusterService.$name,
         MouseTrackerService_1.MouseTrackerService.$name,
         NullEndWidth_1.NullEndWidth.$name,
+        SlotStyleFactory_1.SlotStyleFactory.$name,
         WeeklySchedulerRangeFactory_1.WeeklySchedulerRangeFactory.$name,
         ValueNormalizationService_1.ValueNormalizationService.$name
     ];
@@ -40170,6 +40143,120 @@ exports.default = angular
 
 /***/ }),
 
+/***/ "./src/ng-weekly-scheduler/slot-style/HorizontalSlotStyle.ts":
+/*!*******************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/slot-style/HorizontalSlotStyle.ts ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HorizontalSlotStyle = /** @class */ (function () {
+    function HorizontalSlotStyle(config, $element, nullEndWidth, endAdjusterService, valueNormalizationService) {
+        this.config = config;
+        this.$element = $element;
+        this.nullEndWidth = nullEndWidth;
+        this.endAdjusterService = endAdjusterService;
+        this.valueNormalizationService = valueNormalizationService;
+        this.element = this.$element[0];
+    }
+    HorizontalSlotStyle.prototype.getCss = function (schedule) {
+        return {
+            left: this.getSlotLeft(schedule.start),
+            right: this.getSlotRight(schedule.start, schedule.end)
+        };
+    };
+    HorizontalSlotStyle.prototype.getSlotLeft = function (start) {
+        var underlyingInterval = this.getUnderlyingInterval(start);
+        return underlyingInterval.offsetLeft + 'px';
+    };
+    HorizontalSlotStyle.prototype.getSlotRight = function (start, end) {
+        // If there is a null end, place the end of the slot two hours away from the beginning.
+        if (this.config.nullEnds && end === null) {
+            end = start + this.nullEndWidth;
+        }
+        // An end of 0 should display allll the way to the right, up to the edge
+        end = this.endAdjusterService.adjustEndForView(this.config, end);
+        // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
+        var underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
+        var offsetRight = underlyingInterval.offsetLeft + underlyingInterval.offsetWidth;
+        var result = this.element.clientWidth - offsetRight;
+        return result + 'px';
+    };
+    HorizontalSlotStyle.prototype.getUnderlyingInterval = function (val) {
+        val = this.normalizeIntervalValue(val);
+        return this.element.parentElement.querySelector("[rel='" + val + "']");
+    };
+    HorizontalSlotStyle.prototype.normalizeIntervalValue = function (value) {
+        // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
+        var rightmost = this.config.maxValue - this.config.interval;
+        return this.valueNormalizationService.normalizeValue(value, 0, rightmost);
+    };
+    return HorizontalSlotStyle;
+}());
+exports.HorizontalSlotStyle = HorizontalSlotStyle;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/slot-style/SlotStyleFactory.ts":
+/*!****************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/slot-style/SlotStyleFactory.ts ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
+var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
+var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
+var HorizontalSlotStyle_1 = __webpack_require__(/*! ./HorizontalSlotStyle */ "./src/ng-weekly-scheduler/slot-style/HorizontalSlotStyle.ts");
+var SlotStyleFactory = /** @class */ (function () {
+    function SlotStyleFactory(nullEndWidth, endAdjusterService, valueNormalizationService) {
+        this.nullEndWidth = nullEndWidth;
+        this.endAdjusterService = endAdjusterService;
+        this.valueNormalizationService = valueNormalizationService;
+    }
+    SlotStyleFactory.prototype.getSlotStyle = function (config, $element) {
+        return new HorizontalSlotStyle_1.HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
+    };
+    SlotStyleFactory.$name = 'rrWeeklySchedulerSlotStyleFactory';
+    SlotStyleFactory.$inject = [
+        NullEndWidth_1.NullEndWidth.$name,
+        EndAdjusterService_1.EndAdjusterService.$name,
+        ValueNormalizationService_1.ValueNormalizationService.$name
+    ];
+    return SlotStyleFactory;
+}());
+exports.SlotStyleFactory = SlotStyleFactory;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/slot-style/module.ts":
+/*!******************************************************!*\
+  !*** ./src/ng-weekly-scheduler/slot-style/module.ts ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var SlotStyleFactory_1 = __webpack_require__(/*! ./SlotStyleFactory */ "./src/ng-weekly-scheduler/slot-style/SlotStyleFactory.ts");
+exports.default = angular
+    .module('rr.weeklyScheduler.slotStyle', [])
+    .service(SlotStyleFactory_1.SlotStyleFactory.$name, SlotStyleFactory_1.SlotStyleFactory)
+    .name;
+
+
+/***/ }),
+
 /***/ "./src/ng-weekly-scheduler/time-range/TimeRangeComponent.ts":
 /*!******************************************************************!*\
   !*** ./src/ng-weekly-scheduler/time-range/TimeRangeComponent.ts ***!
@@ -41079,7 +41166,7 @@ exports.default = angular
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n      {{ item.label }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-hourly-grid></br-hourly-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <br-hourly-grid no-text></br-hourly-grid>\r\n        <br-multi-slider config=\"schedulerCtrl.config\"\r\n                        br-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        br-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        br-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        br-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        br-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        br-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        br-overlap\r\n                        br-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></br-multi-slider>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n    <div class=\"labels\">\r\n      <div class=\"srow dummy\"></div>\r\n      <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n        {{ item }}\r\n      </div>\r\n    </div>\r\n  \r\n    <br-schedule-area-container>\r\n      <div class=\"schedule-area\">\r\n  \r\n        <div class=\"srow timestamps\">\r\n          <br-daily-grid></br-daily-grid>\r\n        </div>\r\n  \r\n        <div class=\"vertical-multi-slider-area\">\r\n          <div class=\"calendar-overlay\">\r\n            <div class=\"calendar\">\r\n              <br-daily-grid no-text></br-daily-grid>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n            <br-daily-grid no-text></br-daily-grid>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </br-schedule-area-container>\r\n  \r\n    <br-restriction-explanations></br-restriction-explanations>\r\n  \r\n    <div class=\"srow buttons\">\r\n      <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n      <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n      <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n      <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
+module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n      {{ item.label }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-hourly-grid></br-hourly-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <br-hourly-grid no-text></br-hourly-grid>\r\n        <br-multi-slider config=\"schedulerCtrl.config\"\r\n                        br-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        br-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        br-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        br-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        br-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        br-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        br-overlap\r\n                        br-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></br-multi-slider>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n      {{ item }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-daily-grid></br-daily-grid>\r\n      </div>\r\n\r\n      <div class=\"vertical-multi-slider-area\">\r\n        <div class=\"calendar-overlay\">\r\n          <div class=\"calendar\">\r\n            <br-daily-grid no-text></br-daily-grid>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n          <br-daily-grid no-text></br-daily-grid>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
 
 /***/ }),
 

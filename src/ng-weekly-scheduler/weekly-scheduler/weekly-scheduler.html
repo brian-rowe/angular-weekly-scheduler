@@ -45,42 +45,42 @@
 </div>
 
 <div ng-if="!schedulerCtrl.invalidMessage">
-    <div class="labels">
-      <div class="srow dummy"></div>
-      <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
-        {{ item }}
-      </div>
+  <div class="labels">
+    <div class="srow dummy"></div>
+    <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
+      {{ item }}
     </div>
-  
-    <br-schedule-area-container>
-      <div class="schedule-area">
-  
-        <div class="srow timestamps">
-          <br-daily-grid></br-daily-grid>
-        </div>
-  
-        <div class="vertical-multi-slider-area">
-          <div class="calendar-overlay">
-            <div class="calendar">
-              <br-daily-grid no-text></br-daily-grid>
-            </div>
-          </div>
+  </div>
 
-          <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
+  <br-schedule-area-container>
+    <div class="schedule-area">
+
+      <div class="srow timestamps">
+        <br-daily-grid></br-daily-grid>
+      </div>
+
+      <div class="vertical-multi-slider-area">
+        <div class="calendar-overlay">
+          <div class="calendar">
             <br-daily-grid no-text></br-daily-grid>
           </div>
         </div>
+
+        <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item">
+          <br-daily-grid no-text></br-daily-grid>
+        </div>
       </div>
-    </br-schedule-area-container>
-  
-    <br-restriction-explanations></br-restriction-explanations>
-  
-    <div class="srow buttons">
-      <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.rollback()" ng-disabled="!schedulerCtrl.formController.$dirty">Reset</button>
-      <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.save()" ng-disabled="!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid" ng-if="schedulerCtrl.config.saveScheduler">Save</button>
-      <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.resetZoom()">Zoom Out</button>
-      <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.zoomIn()">Zoom In</button>
     </div>
+  </br-schedule-area-container>
+
+  <br-restriction-explanations></br-restriction-explanations>
+
+  <div class="srow buttons">
+    <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.rollback()" ng-disabled="!schedulerCtrl.formController.$dirty">Reset</button>
+    <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.save()" ng-disabled="!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid" ng-if="schedulerCtrl.config.saveScheduler">Save</button>
+    <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.resetZoom()">Zoom Out</button>
+    <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.zoomIn()">Zoom In</button>
+  </div>
 </div>
 
 <div class="srow" ng-if="schedulerCtrl.invalidMessage">

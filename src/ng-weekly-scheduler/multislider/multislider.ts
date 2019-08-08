@@ -1,5 +1,4 @@
 import * as angular from 'angular';
-import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
@@ -10,6 +9,7 @@ import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
+import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
@@ -21,9 +21,9 @@ export class MultiSliderController implements angular.IComponentController {
     '$q',
     '$scope',
     ElementOffsetService.$name,
-    EndAdjusterService.$name,
     MouseTrackerService.$name,
     NullEndWidth.$name,
+    SlotStyleFactory.$name,
     WeeklySchedulerRangeFactory.$name,
     ValueNormalizationService.$name
   ];
@@ -33,9 +33,9 @@ export class MultiSliderController implements angular.IComponentController {
     private $q: angular.IQService,
     private $scope: angular.IScope,
     private elementOffsetService: ElementOffsetService,
-    private endAdjusterService: EndAdjusterService,
     private mouseTrackerService: MouseTrackerService,
     private nullEndWidth: number,
+    private slotStyleFactory: SlotStyleFactory,
     private rangeFactory: WeeklySchedulerRangeFactory,
     private valueNormalizationService: ValueNormalizationService
   ) {
@@ -149,6 +149,10 @@ export class MultiSliderController implements angular.IComponentController {
     };
 
     return schedule;
+  }
+
+  private getSlotStyle(schedule: IWeeklySchedulerRange<any>) {
+    return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
   }
 
   private openEditorForAdd(schedule: IWeeklySchedulerRange<any>): angular.IPromise<IWeeklySchedulerRange<any>> {
@@ -297,44 +301,6 @@ export class MultiSliderController implements angular.IComponentController {
     }
   }
 
-  private getSlotLeft(start: number) {
-    let underlyingInterval: HTMLElement = this.getUnderlyingInterval(start);
-
-    return underlyingInterval.offsetLeft + 'px';
-  }
-
-  private getSlotRight(start: number, end: number) {
-    // If there is a null end, place the end of the slot two hours away from the beginning.
-    if (this.config.nullEnds && end === null) {
-      end = start + this.nullEndWidth;
-    }
-
-    // An end of 0 should display allll the way to the right, up to the edge
-    end = this.endAdjusterService.adjustEndForView(this.config, end);
-
-    // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
-    let underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
-
-    let offsetRight = underlyingInterval.offsetLeft + underlyingInterval.offsetWidth;
-
-    let result = this.element.clientWidth - offsetRight;
-
-    return result + 'px';
-  }
-
-  private getSlotStyle(schedule: IWeeklySchedulerRange<any>) {
-    return {
-      left: this.getSlotLeft(schedule.start),
-      right: this.getSlotRight(schedule.start, schedule.end)
-    };
-  }
-
-  private getUnderlyingInterval(val: number): HTMLElement {
-    val = this.normalizeIntervalValue(val);
-
-    return this.element.parentElement.querySelector(`[rel='${val}']`);
-  }
-
   private shouldDelete(schedule: IWeeklySchedulerRange<any>) {
     if (schedule.$isDeleting) {
       return true;
@@ -350,13 +316,6 @@ export class MultiSliderController implements angular.IComponentController {
   public pixelToVal(pixel: number) {
     var percent = pixel / this.element.clientWidth;
     return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
-  }
-
-  private normalizeIntervalValue(value: number) {
-    // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
-    let rightmost = this.config.maxValue - this.config.interval;
-
-    return this.valueNormalizationService.normalizeValue(value, 0, rightmost);
   }
 
   private normalizeGhostValue(value: number) {

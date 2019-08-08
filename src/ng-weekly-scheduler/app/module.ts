@@ -33,6 +33,7 @@ import ScheduleAreaContainerModule from '../schedule-area-container/module';
 import ScheduleCountModule from '../schedule-count/module';
 import ScheduleValidationModule from '../schedule-validator/module';
 import ScrollModule from '../scroll/module';
+import SlotStyleModule from '../slot-style/module';
 import TimeModule from '../time/module';
 import TimeRangeModule from '../time-range/module';
 import TouchModule from '../touch/module';
@@ -77,6 +78,7 @@ export default angular.module('br.weeklyScheduler.app', [
     ScheduleCountModule,
     ScheduleValidationModule,
     ScrollModule,
+    SlotStyleModule,
     TimeModule,
     TimeRangeModule,
     TouchModule,
