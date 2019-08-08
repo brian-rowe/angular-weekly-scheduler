@@ -112,6 +112,20 @@ br-weekly-scheduler {
     .schedule-area {
       min-width: 600px;
     }
+
+    .vertical-multi-slider-area {
+      position: relative;
+    
+      .calendar-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    
+        .calendar {
+          height: 100%;
+        }
+      }
+    }
   }
 
   .srow {
@@ -308,20 +322,6 @@ br-multi-slider {
     &.active {
       font-weight: bolder;
       z-index: 10;
-    }
-  }
-}
-
-.vertical-multi-slider-area {
-  position: relative;
-
-  .calendar-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    .calendar {
-      height: 100%;
     }
   }
 }
