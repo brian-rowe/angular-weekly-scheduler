@@ -38357,7 +38357,10 @@ var HourlyGridDirective = /** @class */ (function () {
         element.addClass('striped');
         var strategy = angular.isUndefined(attrs.noText) ?
             this.createHourGenerationStrategy(scope) :
-            this.intervalGenerationService.createIntervalGenerationStrategy(this.config);
+            this.intervalGenerationService.createIntervalGenerationStrategy({
+                interval: this.config.interval,
+                intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
+            });
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
     HourlyGridDirective.prototype.createHourGenerationStrategy = function (scope) {
@@ -38420,26 +38423,22 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
-var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 /**
  * Elements for the background structure of the scheduler
  * are generated as static html rather than as angular elements
  * for performance -- we don't want (SECONDS_IN_DAY / interval) watchers for every calendar
  */
 var IntervalGenerationService = /** @class */ (function () {
-    function IntervalGenerationService(gridGeneratorService, timeConstants) {
+    function IntervalGenerationService(gridGeneratorService) {
         this.gridGeneratorService = gridGeneratorService;
-        this.timeConstants = timeConstants;
     }
-    IntervalGenerationService.prototype.createIntervalGenerationStrategy = function (config) {
+    IntervalGenerationService.prototype.createIntervalGenerationStrategy = function (options) {
         var _this = this;
-        var interval = config.interval;
-        var intervalsInTick = this.timeConstants.SECONDS_IN_HOUR / interval;
-        var intervalPercentage = 100 / intervalsInTick;
+        var intervalPercentage = 100 / options.intervalsInTick;
         return function (child, i) {
-            for (var j = 0; j < intervalsInTick; j++) {
+            for (var j = 0; j < options.intervalsInTick; j++) {
                 var grandChild = _this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', ((i * intervalsInTick) + j) * interval);
+                grandChild.attr('rel', ((i * options.intervalsInTick) + j) * options.interval);
                 grandChild.addClass('interval');
                 grandChild.css('width', intervalPercentage + '%');
                 child.append(grandChild);
@@ -38450,7 +38449,6 @@ var IntervalGenerationService = /** @class */ (function () {
     IntervalGenerationService.$name = 'rrWeeklySchedulerIntervalGenerationService';
     IntervalGenerationService.$inject = [
         GridGeneratorService_1.GridGeneratorService.$name,
-        TimeConstantsService_1.TimeConstantsService.$name
     ];
     return IntervalGenerationService;
 }());
