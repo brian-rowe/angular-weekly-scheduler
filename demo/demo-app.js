@@ -37379,7 +37379,7 @@ var DailyGridDirective = /** @class */ (function () {
                 getRel: function (options, tick, subtick) {
                     if (scope.item) {
                         var baseRel = ((scope.item.index * _this.config.interval) + subtick) * _this.config.interval;
-                        return baseRel + (_this.timeConstants.SECONDS_IN_HOUR * tick);
+                        return baseRel;
                     }
                     return -1;
                 }

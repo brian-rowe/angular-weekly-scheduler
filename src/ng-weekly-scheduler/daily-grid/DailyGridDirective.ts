@@ -45,7 +45,7 @@ export class DailyGridDirective implements angular.IDirective {
                 getRel: (options, tick, subtick) => {
                     if (scope.item) {
                         var baseRel = ((scope.item.index * this.config.interval) + subtick) * this.config.interval;
-                        return baseRel + (this.timeConstants.SECONDS_IN_HOUR * tick);
+                        return baseRel;
                     }
 
                     return -1;
