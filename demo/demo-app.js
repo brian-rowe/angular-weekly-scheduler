@@ -37370,7 +37370,10 @@ var DailyGridDirective = /** @class */ (function () {
             this.createDayGenerationStrategy(scope) :
             this.intevalGenerationService.createIntervalGenerationStrategy({
                 interval: 1,
-                intervalsInTick: 1
+                intervalsInTick: 1,
+                getRel: function (options, tick, subtick) {
+                    return ((tick * options.intervalsInTick) + subtick) * options.interval;
+                }
             });
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
@@ -38348,7 +38351,10 @@ var HourlyGridDirective = /** @class */ (function () {
             this.createHourGenerationStrategy(scope) :
             this.intervalGenerationService.createIntervalGenerationStrategy({
                 interval: this.config.interval,
-                intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
+                intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval,
+                getRel: function (options, tick, subtick) {
+                    return ((tick * options.intervalsInTick) + subtick) * options.interval;
+                }
             });
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
@@ -38427,7 +38433,7 @@ var IntervalGenerationService = /** @class */ (function () {
         return function (child, i) {
             for (var j = 0; j < options.intervalsInTick; j++) {
                 var grandChild = _this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', ((i * options.intervalsInTick) + j) * options.interval);
+                grandChild.attr('rel', options.getRel(options, i, j));
                 grandChild.addClass('interval');
                 grandChild.css('width', intervalPercentage + '%');
                 child.append(grandChild);

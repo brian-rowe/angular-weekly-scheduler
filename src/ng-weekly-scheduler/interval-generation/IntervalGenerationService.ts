@@ -25,7 +25,7 @@ export class IntervalGenerationService {
         return (child, i) => {
             for (let j = 0; j < options.intervalsInTick; j++) {
                 let grandChild = this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', ((i * options.intervalsInTick) + j) * options.interval);
+                grandChild.attr('rel', options.getRel(options, i, j));
                 grandChild.addClass('interval');
                 grandChild.css('width', intervalPercentage + '%');
                 child.append(grandChild);

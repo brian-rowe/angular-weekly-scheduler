@@ -34,11 +34,14 @@ export class DailyGridDirective implements angular.IDirective {
         element.addClass('striped');
 
         var strategy = angular.isUndefined(attrs.noText) ?
-                       this.createDayGenerationStrategy(scope) :
-                       this.intevalGenerationService.createIntervalGenerationStrategy({
-                           interval: 1,
-                           intervalsInTick: 1
-                       });
+            this.createDayGenerationStrategy(scope) :
+            this.intevalGenerationService.createIntervalGenerationStrategy({
+                interval: 1,
+                intervalsInTick: 1,
+                getRel: (options, tick, subtick) => {
+                    return ((tick * options.intervalsInTick) + subtick) * options.interval;
+                }
+            });
 
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     }
