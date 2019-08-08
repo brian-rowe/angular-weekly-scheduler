@@ -3,7 +3,9 @@ import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler'
 import { TimeConstantsService } from '../time/TimeConstantsService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
-import { HourTextService } from "../hour-text/HourTextService";
+import { HourTextService } from '../hour-text/HourTextService';
+import { IntervalGenerationService } from '../interval-generation/IntervalGenerationService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 
 /** @internal */
 export class HourlyGridDirective implements angular.IDirective {
@@ -12,10 +14,8 @@ export class HourlyGridDirective implements angular.IDirective {
     restrict = 'E';
     require = '^brWeeklyScheduler';
 
+    private config: IWeeklySchedulerConfig<any>;
     private tickCount: number;
-    private interval: number;
-    private intervalsInTick: number;
-    private intervalPercentage: number;
 
     private handleClickEvent(child, hourCount, idx, scope) {
         child.bind('click', function () {
@@ -34,7 +34,7 @@ export class HourlyGridDirective implements angular.IDirective {
 
         var strategy = angular.isUndefined(attrs.noText) ?
                        this.createHourGenerationStrategy(scope) :
-                       this.createIntervalGenerationStrategy();
+                       this.intervalGenerationService.createIntervalGenerationStrategy(this.config);
 
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     }
@@ -48,26 +48,10 @@ export class HourlyGridDirective implements angular.IDirective {
         };
     }
 
-    private createIntervalGenerationStrategy() {
-        return (child, i) => {
-            for (let j = 0; j < this.intervalsInTick; j++) {
-                let grandChild = this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
-                grandChild.addClass('interval');
-                grandChild.css('width', this.intervalPercentage + '%');
-                child.append(grandChild);
-            }
-
-            return child;
-        };
-    }
-
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
         if (schedulerCtrl.config) {
+            this.config = schedulerCtrl.config;
             this.tickCount = schedulerCtrl.config.hourCount;
-            this.interval = schedulerCtrl.config.interval;
-            this.intervalsInTick = this.timeConstants.SECONDS_IN_HOUR / this.interval;
-            this.intervalPercentage = 100 / this.intervalsInTick;
             this.doGrid(scope, element, attrs);
         }
     }
@@ -75,14 +59,22 @@ export class HourlyGridDirective implements angular.IDirective {
     constructor(
         private timeConstants: TimeConstantsService,
         private gridGeneratorService: GridGeneratorService,
-        private hourTextService: HourTextService
+        private hourTextService: HourTextService,
+        private intervalGenerationService: IntervalGenerationService
     ) {
     }
 
     static Factory() {
-        let directive = (timeConstants, gridGeneratorService, hourTextService) => new HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService);
+        let directive = (timeConstants, gridGeneratorService, hourTextService, intervalGenerationService) =>{
+            return new HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService, intervalGenerationService);
+        }
 
-        directive.$inject = [TimeConstantsService.$name, GridGeneratorService.$name, HourTextService.$name];
+        directive.$inject = [
+            TimeConstantsService.$name,
+            GridGeneratorService.$name,
+            HourTextService.$name,
+            IntervalGenerationService.$name
+        ];
 
         return directive;
     }
