@@ -4,7 +4,8 @@ import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedule
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 import { DayMap } from '../weekly-scheduler-config/DayMap';
 import { IntervalGenerationService } from '../interval-generation/IntervalGenerationService';
-import { IWeeklySchedulerConfig } from 'ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerConfig';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
+import { TimeConstantsService } from '../time/TimeConstantsService';
 
 /** @internal */
 export class DailyGridDirective implements angular.IDirective {
@@ -38,11 +39,13 @@ export class DailyGridDirective implements angular.IDirective {
         var strategy = angular.isUndefined(attrs.noText) ?
             this.createDayGenerationStrategy(scope) :
             this.intevalGenerationService.createIntervalGenerationStrategy({
+                cssDimensionProperty: 'height',
                 interval: 1,
-                intervalsInTick: 1,
+                intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval,
                 getRel: (options, tick, subtick) => {
                     if (scope.item) {
-                        return scope.item.index * this.config.interval;
+                        var baseRel = ((scope.item.index * this.config.interval) + subtick) * this.config.interval;
+                        return baseRel + (this.timeConstants.SECONDS_IN_HOUR * tick);
                     }
 
                     return -1;
@@ -72,14 +75,15 @@ export class DailyGridDirective implements angular.IDirective {
     constructor(
         private dayMap: DayMap,
         private gridGeneratorService: GridGeneratorService,
-        private intevalGenerationService: IntervalGenerationService
+        private intevalGenerationService: IntervalGenerationService,
+        private timeConstants: TimeConstantsService
     ) {
     }
 
     static Factory() {
-        let directive = (dayMap, gridGeneratorService, intervalGenerationService) => new DailyGridDirective(dayMap, gridGeneratorService, intervalGenerationService);
+        let directive = (dayMap, gridGeneratorService, intervalGenerationService, timeConstants) => new DailyGridDirective(dayMap, gridGeneratorService, intervalGenerationService, timeConstants);
 
-        directive.$inject = [DayMap.$name, GridGeneratorService.$name, IntervalGenerationService.$name];
+        directive.$inject = [DayMap.$name, GridGeneratorService.$name, IntervalGenerationService.$name, TimeConstantsService.$name];
 
         return directive;
     }

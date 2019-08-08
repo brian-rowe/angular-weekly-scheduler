@@ -35,6 +35,7 @@ export class HourlyGridDirective implements angular.IDirective {
         var strategy = angular.isUndefined(attrs.noText) ?
                        this.createHourGenerationStrategy(scope) :
                        this.intervalGenerationService.createIntervalGenerationStrategy({
+                           cssDimensionProperty: 'width',
                            interval: this.config.interval,
                            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval,
                            getRel: (options, tick, subtick) => {
