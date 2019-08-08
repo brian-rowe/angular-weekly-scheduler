@@ -37370,8 +37370,6 @@ var DailyGridDirective = /** @class */ (function () {
     };
     DailyGridDirective.prototype.doGrid = function (scope, element, attrs) {
         var _this = this;
-        // Stripe it by hour
-        element.addClass('striped');
         var strategy = angular.isUndefined(attrs.noText) ?
             this.createDayGenerationStrategy(scope) :
             this.intevalGenerationService.createIntervalGenerationStrategy({
@@ -38058,6 +38056,7 @@ var GridGeneratorService = /** @class */ (function () {
         return this.GRID_TEMPLATE.clone();
     };
     GridGeneratorService.prototype.generateGrid = function (element, tickCount, itemStrategy) {
+        element.addClass('striped');
         for (var i = 0; i < tickCount; i++) {
             var child = this.GRID_TEMPLATE.clone();
             child = this.generateGridItem(i, itemStrategy);
@@ -38304,8 +38303,6 @@ var HourGridDirective = /** @class */ (function () {
         });
     };
     HourGridDirective.prototype.doGrid = function (scope, element) {
-        // Stripe it by hour
-        element.addClass('striped');
         this.gridGeneratorService.generateGrid(element, this.tickCount, this.createHourGenerationStrategy(scope));
     };
     HourGridDirective.prototype.createHourGenerationStrategy = function (scope) {
@@ -38432,8 +38429,6 @@ var HourlyGridDirective = /** @class */ (function () {
         };
     }
     HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
-        // Stripe it by hour
-        element.addClass('striped');
         this.gridGeneratorService.generateGrid(element, this.tickCount, this.intervalGenerationService.createIntervalGenerationStrategy({
             cssDimensionProperty: 'width',
             interval: this.config.interval,

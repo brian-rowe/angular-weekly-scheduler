@@ -9,6 +9,8 @@ export class GridGeneratorService {
     }
 
     public generateGrid(element: JQLite, tickCount: number, itemStrategy: (child: JQLite, iteration: number) => JQLite) {
+        element.addClass('striped');
+
         for (let i = 0; i < tickCount; i++) {
             var child = this.GRID_TEMPLATE.clone();
   

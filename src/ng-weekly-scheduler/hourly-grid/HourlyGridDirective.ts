@@ -1,9 +1,7 @@
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { TimeConstantsService } from '../time/TimeConstantsService';
-import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
-import { HourTextService } from '../hour-text/HourTextService';
 import { IntervalGenerationService } from '../interval-generation/IntervalGenerationService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 
@@ -18,9 +16,6 @@ export class HourlyGridDirective implements angular.IDirective {
     private tickCount: number;
 
     private doGrid(scope, element, attrs) {
-        // Stripe it by hour
-        element.addClass('striped');
-
         this.gridGeneratorService.generateGrid(element, this.tickCount,  this.intervalGenerationService.createIntervalGenerationStrategy({
             cssDimensionProperty: 'width',
             interval: this.config.interval,

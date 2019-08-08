@@ -33,9 +33,6 @@ export class DailyGridDirective implements angular.IDirective {
     }
 
     private doGrid(scope, element, attrs) {
-        // Stripe it by hour
-        element.addClass('striped');
-
         var strategy = angular.isUndefined(attrs.noText) ?
             this.createDayGenerationStrategy(scope) :
             this.intevalGenerationService.createIntervalGenerationStrategy({

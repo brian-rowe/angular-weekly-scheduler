@@ -28,9 +28,6 @@ export class HourGridDirective implements angular.IDirective {
     }
 
     private doGrid(scope, element) {
-        // Stripe it by hour
-        element.addClass('striped');
-
         this.gridGeneratorService.generateGrid(element, this.tickCount, this.createHourGenerationStrategy(scope));
     }
 
