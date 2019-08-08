@@ -62,7 +62,7 @@ export class WeeklySchedulerController implements angular.IController {
   public options: IWeeklySchedulerOptions<any>;
 
   private verticalTickCount: number;
-  private verticalTicks: string[] = [];
+  private verticalTicks: { text: string, index: number }[] = [];
 
   $onInit() {
     this.config = this.configurationService.getConfiguration(this.options);
@@ -73,7 +73,10 @@ export class WeeklySchedulerController implements angular.IController {
     this.verticalTickCount = this.config.hourCount;
 
     for (let i = 0; i < this.verticalTickCount; i++) {
-      this.verticalTicks.push(this.hourTextService.generateHourText(i));
+      this.verticalTicks.push({
+        text: this.hourTextService.generateHourText(i),
+        index: i
+      });
     }
   }
 

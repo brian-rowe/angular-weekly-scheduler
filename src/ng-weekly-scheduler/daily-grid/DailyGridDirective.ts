@@ -4,6 +4,7 @@ import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedule
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 import { DayMap } from '../weekly-scheduler-config/DayMap';
 import { IntervalGenerationService } from '../interval-generation/IntervalGenerationService';
+import { IWeeklySchedulerConfig } from 'ng-weekly-scheduler/weekly-scheduler-config/IWeeklySchedulerConfig';
 
 /** @internal */
 export class DailyGridDirective implements angular.IDirective {
@@ -12,6 +13,7 @@ export class DailyGridDirective implements angular.IDirective {
     restrict = 'E';
     require = '^brWeeklyScheduler';
 
+    private config: IWeeklySchedulerConfig<any>;
     private tickCount: number;
 
     private handleClickEvent(child, hourCount, idx, scope) {
@@ -39,7 +41,11 @@ export class DailyGridDirective implements angular.IDirective {
                 interval: 1,
                 intervalsInTick: 1,
                 getRel: (options, tick, subtick) => {
-                    return ((tick * options.intervalsInTick) + subtick) * options.interval;
+                    if (scope.item) {
+                        return scope.item.index * this.config.interval;
+                    }
+
+                    return -1;
                 }
             });
 
@@ -57,6 +63,7 @@ export class DailyGridDirective implements angular.IDirective {
 
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
         if (schedulerCtrl.config) {
+            this.config = schedulerCtrl.config;
             this.tickCount = 7;
             this.doGrid(scope, element, attrs);
         }

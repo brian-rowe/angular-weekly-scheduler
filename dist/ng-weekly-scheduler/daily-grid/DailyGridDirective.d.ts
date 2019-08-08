@@ -11,6 +11,7 @@ export declare class DailyGridDirective implements angular.IDirective {
     static $name: string;
     restrict: string;
     require: string;
+    private config;
     private tickCount;
     private handleClickEvent(child, hourCount, idx, scope);
     private generateDayText(day);
