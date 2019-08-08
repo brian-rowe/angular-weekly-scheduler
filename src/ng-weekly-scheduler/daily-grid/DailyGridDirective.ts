@@ -67,7 +67,7 @@ export class DailyGridDirective implements angular.IDirective {
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
         if (schedulerCtrl.config) {
             this.config = schedulerCtrl.config;
-            this.tickCount = 7;
+            this.tickCount = this.timeConstants.DAYS_IN_WEEK;
             this.doGrid(scope, element, attrs);
         }
     }

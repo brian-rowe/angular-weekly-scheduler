@@ -37348,7 +37348,7 @@ var DailyGridDirective = /** @class */ (function () {
         this.link = function (scope, element, attrs, schedulerCtrl) {
             if (schedulerCtrl.config) {
                 _this.config = schedulerCtrl.config;
-                _this.tickCount = 7;
+                _this.tickCount = _this.timeConstants.DAYS_IN_WEEK;
                 _this.doGrid(scope, element, attrs);
             }
         };
@@ -40483,6 +40483,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var TimeConstantsService = /** @class */ (function () {
     function TimeConstantsService() {
     }
+    Object.defineProperty(TimeConstantsService.prototype, "DAYS_IN_WEEK", {
+        get: function () {
+            return 7;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(TimeConstantsService.prototype, "SECONDS_IN_DAY", {
         get: function () {
             return this.MINUTES_IN_DAY * this.SECONDS_IN_MINUTE;

@@ -1,6 +1,7 @@
 /** @internal */
 export declare class TimeConstantsService {
     static $name: string;
+    readonly DAYS_IN_WEEK: number;
     readonly SECONDS_IN_DAY: number;
     readonly SECONDS_IN_HOUR: number;
     readonly SECONDS_IN_MINUTE: number;

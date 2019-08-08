@@ -2,6 +2,10 @@
 export class TimeConstantsService {
     static $name = 'brWeeklySchedulerTimeConstantsService';
 
+    public get DAYS_IN_WEEK() {
+        return 7;
+    }
+
     public get SECONDS_IN_DAY() {
         return this.MINUTES_IN_DAY * this.SECONDS_IN_MINUTE; 
     }
