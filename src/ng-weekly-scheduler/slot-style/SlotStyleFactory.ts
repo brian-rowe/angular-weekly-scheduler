@@ -3,6 +3,7 @@ import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 import { HorizontalSlotStyle } from './HorizontalSlotStyle';
+import { ISlotStyle } from './ISlotStyle';
 
 export class SlotStyleFactory {
     static $name = 'rrWeeklySchedulerSlotStyleFactory';
@@ -20,7 +21,7 @@ export class SlotStyleFactory {
     ) {
     }
 
-    public getSlotStyle(config: IWeeklySchedulerConfig<any>, $element: angular.IAugmentedJQuery) {
+    public getSlotStyle(config: IWeeklySchedulerConfig<any>, $element: angular.IAugmentedJQuery): ISlotStyle {
         return new HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
     }
 }
