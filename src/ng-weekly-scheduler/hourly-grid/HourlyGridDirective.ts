@@ -1,3 +1,6 @@
+/**
+ * Generates a grid that conforms to hours that is used as a backdrop for the calendar to provide snap values
+ */
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { TimeConstantsService } from '../time/TimeConstantsService';
