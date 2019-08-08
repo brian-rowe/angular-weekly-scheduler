@@ -1,8 +1,10 @@
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
+import { DayMap } from '../weekly-scheduler-config/DayMap';
 /** @internal */
 export declare class DailyGridDirective implements angular.IDirective {
+    private dayMap;
     private gridGeneratorService;
     static $name: string;
     restrict: string;
@@ -17,6 +19,6 @@ export declare class DailyGridDirective implements angular.IDirective {
     private createDayGenerationStrategy(scope);
     private createIntervalGenerationStrategy();
     link: (scope: any, element: any, attrs: any, schedulerCtrl: WeeklySchedulerController) => void;
-    constructor(gridGeneratorService: GridGeneratorService);
-    static Factory(): (gridGeneratorService: any) => DailyGridDirective;
+    constructor(dayMap: DayMap, gridGeneratorService: GridGeneratorService);
+    static Factory(): (dayMap: any, gridGeneratorService: any) => DailyGridDirective;
 }

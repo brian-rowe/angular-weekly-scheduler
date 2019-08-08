@@ -28,7 +28,7 @@ export class DailyGridDirective implements angular.IDirective {
     }
 
     private generateDayText(day: number) {
-        return DayMap.value[day];
+        return this.dayMap[day];
     }
 
     private doGrid(scope, element, attrs) {
@@ -76,14 +76,15 @@ export class DailyGridDirective implements angular.IDirective {
     }
 
     constructor(
+        private dayMap: DayMap,
         private gridGeneratorService: GridGeneratorService
     ) {
     }
 
     static Factory() {
-        let directive = (gridGeneratorService) => new DailyGridDirective(gridGeneratorService);
+        let directive = (dayMap, gridGeneratorService) => new DailyGridDirective(dayMap, gridGeneratorService);
 
-        directive.$inject = [GridGeneratorService.$name];
+        directive.$inject = [DayMap.$name, GridGeneratorService.$name];
 
         return directive;
     }

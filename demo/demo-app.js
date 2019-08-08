@@ -37333,8 +37333,9 @@ var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGener
 var DayMap_1 = __webpack_require__(/*! ../weekly-scheduler-config/DayMap */ "./src/ng-weekly-scheduler/weekly-scheduler-config/DayMap.ts");
 /** @internal */
 var DailyGridDirective = /** @class */ (function () {
-    function DailyGridDirective(gridGeneratorService) {
+    function DailyGridDirective(dayMap, gridGeneratorService) {
         var _this = this;
+        this.dayMap = dayMap;
         this.gridGeneratorService = gridGeneratorService;
         this.restrict = 'E';
         this.require = '^brWeeklyScheduler';
@@ -37359,7 +37360,7 @@ var DailyGridDirective = /** @class */ (function () {
         });
     };
     DailyGridDirective.prototype.generateDayText = function (day) {
-        return DayMap_1.DayMap.value[day];
+        return this.dayMap[day];
     };
     DailyGridDirective.prototype.doGrid = function (scope, element, attrs) {
         // Stripe it by hour
@@ -37392,8 +37393,8 @@ var DailyGridDirective = /** @class */ (function () {
         };
     };
     DailyGridDirective.Factory = function () {
-        var directive = function (gridGeneratorService) { return new DailyGridDirective(gridGeneratorService); };
-        directive.$inject = [GridGeneratorService_1.GridGeneratorService.$name];
+        var directive = function (dayMap, gridGeneratorService) { return new DailyGridDirective(dayMap, gridGeneratorService); };
+        directive.$inject = [DayMap_1.DayMap.$name, GridGeneratorService_1.GridGeneratorService.$name];
         return directive;
     };
     DailyGridDirective.$name = 'brDailyGrid';
