@@ -1,6 +1,5 @@
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
-import { TimeConstantsService } from '../time/TimeConstantsService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 import { DayMap } from '../weekly-scheduler-config/DayMap';
@@ -36,14 +35,24 @@ export class DailyGridDirective implements angular.IDirective {
         // Stripe it by hour
         element.addClass('striped');
 
-        var dayStrategy = (child, i) => {
+        var strategy = angular.isUndefined(attrs.noText) ?
+                       this.createDayGenerationStrategy(scope) :
+                       this.createIntervalGenerationStrategy();
+
+        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
+    }
+
+    private createDayGenerationStrategy(scope) {
+        return (child, i) => {
             this.handleClickEvent(child, this.tickCount, i, scope);
             let dayText = this.generateDayText(i);
             child.text(dayText);
             return child;
         };
+    }
 
-        var intervalStrategy = (child, i) => {
+    private createIntervalGenerationStrategy() {
+        return (child, i) => {
             for (let j = 0; j < this.intervalsInTick; j++) {
                 let grandChild = this.gridGeneratorService.getGridTemplate();
                 grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
@@ -54,9 +63,6 @@ export class DailyGridDirective implements angular.IDirective {
 
             return child;
         };
-
-        var strategy = angular.isUndefined(attrs.noText) ? dayStrategy : intervalStrategy;
-        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     }
 
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
@@ -70,15 +76,14 @@ export class DailyGridDirective implements angular.IDirective {
     }
 
     constructor(
-        private timeConstants: TimeConstantsService,
         private gridGeneratorService: GridGeneratorService
     ) {
     }
 
     static Factory() {
-        let directive = (timeConstants, gridGeneratorService) => new DailyGridDirective(timeConstants, gridGeneratorService);
+        let directive = (gridGeneratorService) => new DailyGridDirective(gridGeneratorService);
 
-        directive.$inject = [TimeConstantsService.$name, GridGeneratorService.$name];
+        directive.$inject = [GridGeneratorService.$name];
 
         return directive;
     }

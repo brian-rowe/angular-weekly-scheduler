@@ -37329,14 +37329,12 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
-var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
 var DayMap_1 = __webpack_require__(/*! ../weekly-scheduler-config/DayMap */ "./src/ng-weekly-scheduler/weekly-scheduler-config/DayMap.ts");
 /** @internal */
 var DailyGridDirective = /** @class */ (function () {
-    function DailyGridDirective(timeConstants, gridGeneratorService) {
+    function DailyGridDirective(gridGeneratorService) {
         var _this = this;
-        this.timeConstants = timeConstants;
         this.gridGeneratorService = gridGeneratorService;
         this.restrict = 'E';
         this.require = '^brWeeklyScheduler';
@@ -37364,16 +37362,25 @@ var DailyGridDirective = /** @class */ (function () {
         return DayMap_1.DayMap.value[day];
     };
     DailyGridDirective.prototype.doGrid = function (scope, element, attrs) {
-        var _this = this;
         // Stripe it by hour
         element.addClass('striped');
-        var dayStrategy = function (child, i) {
+        var strategy = angular.isUndefined(attrs.noText) ?
+            this.createDayGenerationStrategy(scope) :
+            this.createIntervalGenerationStrategy();
+        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
+    };
+    DailyGridDirective.prototype.createDayGenerationStrategy = function (scope) {
+        var _this = this;
+        return function (child, i) {
             _this.handleClickEvent(child, _this.tickCount, i, scope);
             var dayText = _this.generateDayText(i);
             child.text(dayText);
             return child;
         };
-        var intervalStrategy = function (child, i) {
+    };
+    DailyGridDirective.prototype.createIntervalGenerationStrategy = function () {
+        var _this = this;
+        return function (child, i) {
             for (var j = 0; j < _this.intervalsInTick; j++) {
                 var grandChild = _this.gridGeneratorService.getGridTemplate();
                 grandChild.attr('rel', ((i * _this.intervalsInTick) + j) * _this.interval);
@@ -37383,12 +37390,10 @@ var DailyGridDirective = /** @class */ (function () {
             }
             return child;
         };
-        var strategy = angular.isUndefined(attrs.noText) ? dayStrategy : intervalStrategy;
-        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
     DailyGridDirective.Factory = function () {
-        var directive = function (timeConstants, gridGeneratorService) { return new DailyGridDirective(timeConstants, gridGeneratorService); };
-        directive.$inject = [TimeConstantsService_1.TimeConstantsService.$name, GridGeneratorService_1.GridGeneratorService.$name];
+        var directive = function (gridGeneratorService) { return new DailyGridDirective(gridGeneratorService); };
+        directive.$inject = [GridGeneratorService_1.GridGeneratorService.$name];
         return directive;
     };
     DailyGridDirective.$name = 'brDailyGrid';
@@ -40190,9 +40195,9 @@ var HorizontalSlotStyle = /** @class */ (function () {
         return this.element.parentElement.querySelector("[rel='" + val + "']");
     };
     HorizontalSlotStyle.prototype.normalizeIntervalValue = function (value) {
-        // There is no interval to the right of the rightmost interval -- the last interval will not actually render with a "rel" value
-        var rightmost = this.config.maxValue - this.config.interval;
-        return this.valueNormalizationService.normalizeValue(value, 0, rightmost);
+        // There is no interval beyond the last rendered interval -- the last actual interval will not render with a "rel" value
+        var lastRendered = this.config.maxValue - this.config.interval;
+        return this.valueNormalizationService.normalizeValue(value, 0, lastRendered);
     };
     return HorizontalSlotStyle;
 }());
@@ -41166,7 +41171,7 @@ exports.default = angular
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n      {{ item.label }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-hourly-grid></br-hourly-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <br-hourly-grid no-text></br-hourly-grid>\r\n        <br-multi-slider config=\"schedulerCtrl.config\"\r\n                        br-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        br-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        br-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        br-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        br-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        br-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        br-overlap\r\n                        br-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></br-multi-slider>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n      {{ item }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-daily-grid></br-daily-grid>\r\n      </div>\r\n\r\n      <div class=\"vertical-multi-slider-area\">\r\n        <div class=\"calendar-overlay\">\r\n          <div class=\"calendar\">\r\n            <br-daily-grid no-text></br-daily-grid>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n          <br-daily-grid no-text></br-daily-grid>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
+module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n      {{ item.label }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-hourly-grid></br-hourly-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <br-hourly-grid no-text></br-hourly-grid>\r\n        <br-multi-slider config=\"schedulerCtrl.config\"\r\n                        br-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        br-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        br-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        br-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        br-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        br-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        br-overlap\r\n                        br-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></br-multi-slider>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n      {{ item }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-daily-grid></br-daily-grid>\r\n      </div>\r\n\r\n      <div class=\"vertical-multi-slider-area\">\r\n        <div class=\"calendar-overlay\">\r\n          <div class=\"calendar\">\r\n            <br-daily-grid no-text>\r\n            </br-daily-grid>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item\">\r\n          <br-daily-grid no-text></br-daily-grid>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
 
 /***/ }),
 
