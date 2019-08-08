@@ -37333,20 +37333,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
 var DayMap_1 = __webpack_require__(/*! ../weekly-scheduler-config/DayMap */ "./src/ng-weekly-scheduler/weekly-scheduler-config/DayMap.ts");
+var IntervalGenerationService_1 = __webpack_require__(/*! ../interval-generation/IntervalGenerationService */ "./src/ng-weekly-scheduler/interval-generation/IntervalGenerationService.ts");
 /** @internal */
 var DailyGridDirective = /** @class */ (function () {
-    function DailyGridDirective(dayMap, gridGeneratorService) {
+    function DailyGridDirective(dayMap, gridGeneratorService, intevalGenerationService) {
         var _this = this;
         this.dayMap = dayMap;
         this.gridGeneratorService = gridGeneratorService;
+        this.intevalGenerationService = intevalGenerationService;
         this.restrict = 'E';
         this.require = '^brWeeklyScheduler';
         this.link = function (scope, element, attrs, schedulerCtrl) {
             if (schedulerCtrl.config) {
                 _this.tickCount = 7;
-                _this.interval = 1;
-                _this.intervalsInTick = 1;
-                _this.intervalPercentage = 100;
                 _this.doGrid(scope, element, attrs);
             }
         };
@@ -37369,7 +37368,10 @@ var DailyGridDirective = /** @class */ (function () {
         element.addClass('striped');
         var strategy = angular.isUndefined(attrs.noText) ?
             this.createDayGenerationStrategy(scope) :
-            this.createIntervalGenerationStrategy();
+            this.intevalGenerationService.createIntervalGenerationStrategy({
+                interval: 1,
+                intervalsInTick: 1
+            });
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
     DailyGridDirective.prototype.createDayGenerationStrategy = function (scope) {
@@ -37381,22 +37383,9 @@ var DailyGridDirective = /** @class */ (function () {
             return child;
         };
     };
-    DailyGridDirective.prototype.createIntervalGenerationStrategy = function () {
-        var _this = this;
-        return function (child, i) {
-            for (var j = 0; j < _this.intervalsInTick; j++) {
-                var grandChild = _this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', ((i * _this.intervalsInTick) + j) * _this.interval);
-                grandChild.addClass('interval');
-                grandChild.css('width', _this.intervalPercentage + '%');
-                child.append(grandChild);
-            }
-            return child;
-        };
-    };
     DailyGridDirective.Factory = function () {
-        var directive = function (dayMap, gridGeneratorService) { return new DailyGridDirective(dayMap, gridGeneratorService); };
-        directive.$inject = [DayMap_1.DayMap.$name, GridGeneratorService_1.GridGeneratorService.$name];
+        var directive = function (dayMap, gridGeneratorService, intervalGenerationService) { return new DailyGridDirective(dayMap, gridGeneratorService, intervalGenerationService); };
+        directive.$inject = [DayMap_1.DayMap.$name, GridGeneratorService_1.GridGeneratorService.$name, IntervalGenerationService_1.IntervalGenerationService.$name];
         return directive;
     };
     DailyGridDirective.$name = 'brDailyGrid';

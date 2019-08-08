@@ -3,6 +3,7 @@ import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler'
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 import { DayMap } from '../weekly-scheduler-config/DayMap';
+import { IntervalGenerationService } from '../interval-generation/IntervalGenerationService';
 
 /** @internal */
 export class DailyGridDirective implements angular.IDirective {
@@ -12,9 +13,6 @@ export class DailyGridDirective implements angular.IDirective {
     require = '^brWeeklyScheduler';
 
     private tickCount: number;
-    private interval: number;
-    private intervalsInTick: number;
-    private intervalPercentage: number;
 
     private handleClickEvent(child, hourCount, idx, scope) {
         child.bind('click', function () {
@@ -37,7 +35,10 @@ export class DailyGridDirective implements angular.IDirective {
 
         var strategy = angular.isUndefined(attrs.noText) ?
                        this.createDayGenerationStrategy(scope) :
-                       this.createIntervalGenerationStrategy();
+                       this.intevalGenerationService.createIntervalGenerationStrategy({
+                           interval: 1,
+                           intervalsInTick: 1
+                       });
 
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     }
@@ -51,40 +52,24 @@ export class DailyGridDirective implements angular.IDirective {
         };
     }
 
-    private createIntervalGenerationStrategy() {
-        return (child, i) => {
-            for (let j = 0; j < this.intervalsInTick; j++) {
-                let grandChild = this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
-                grandChild.addClass('interval');
-                grandChild.css('width', this.intervalPercentage + '%');
-                child.append(grandChild);
-            }
-
-            return child;
-        };
-    }
-
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {
         if (schedulerCtrl.config) {
             this.tickCount = 7;
-            this.interval = 1;
-            this.intervalsInTick = 1;
-            this.intervalPercentage = 100;
             this.doGrid(scope, element, attrs);
         }
     }
 
     constructor(
         private dayMap: DayMap,
-        private gridGeneratorService: GridGeneratorService
+        private gridGeneratorService: GridGeneratorService,
+        private intevalGenerationService: IntervalGenerationService
     ) {
     }
 
     static Factory() {
-        let directive = (dayMap, gridGeneratorService) => new DailyGridDirective(dayMap, gridGeneratorService);
+        let directive = (dayMap, gridGeneratorService, intervalGenerationService) => new DailyGridDirective(dayMap, gridGeneratorService, intervalGenerationService);
 
-        directive.$inject = [DayMap.$name, GridGeneratorService.$name];
+        directive.$inject = [DayMap.$name, GridGeneratorService.$name, IntervalGenerationService.$name];
 
         return directive;
     }
