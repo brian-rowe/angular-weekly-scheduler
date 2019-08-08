@@ -32,14 +32,24 @@ export class HourlyGridDirective implements angular.IDirective {
         // Stripe it by hour
         element.addClass('striped');
 
-        var hourStrategy = (child, i) => {
+        var strategy = angular.isUndefined(attrs.noText) ?
+                       this.createHourGenerationStrategy(scope) :
+                       this.createIntervalGenerationStrategy();
+
+        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
+    }
+
+    private createHourGenerationStrategy(scope) {
+        return (child, i) => {
             this.handleClickEvent(child, this.tickCount, i, scope);
             let hourText = this.hourTextService.generateHourText(i);
             child.text(hourText);
             return child;
         };
+    }
 
-        var intervalStrategy = (child, i) => {
+    private createIntervalGenerationStrategy() {
+        return (child, i) => {
             for (let j = 0; j < this.intervalsInTick; j++) {
                 let grandChild = this.gridGeneratorService.getGridTemplate();
                 grandChild.attr('rel', ((i * this.intervalsInTick) + j) * this.interval);
@@ -50,9 +60,6 @@ export class HourlyGridDirective implements angular.IDirective {
 
             return child;
         };
-
-        var strategy = angular.isUndefined(attrs.noText) ? hourStrategy : intervalStrategy;
-        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     }
 
     link = (scope, element, attrs, schedulerCtrl: WeeklySchedulerController) => {

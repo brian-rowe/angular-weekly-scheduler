@@ -38350,16 +38350,25 @@ var HourlyGridDirective = /** @class */ (function () {
         });
     };
     HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
-        var _this = this;
         // Stripe it by hour
         element.addClass('striped');
-        var hourStrategy = function (child, i) {
+        var strategy = angular.isUndefined(attrs.noText) ?
+            this.createHourGenerationStrategy(scope) :
+            this.createIntervalGenerationStrategy();
+        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
+    };
+    HourlyGridDirective.prototype.createHourGenerationStrategy = function (scope) {
+        var _this = this;
+        return function (child, i) {
             _this.handleClickEvent(child, _this.tickCount, i, scope);
             var hourText = _this.hourTextService.generateHourText(i);
             child.text(hourText);
             return child;
         };
-        var intervalStrategy = function (child, i) {
+    };
+    HourlyGridDirective.prototype.createIntervalGenerationStrategy = function () {
+        var _this = this;
+        return function (child, i) {
             for (var j = 0; j < _this.intervalsInTick; j++) {
                 var grandChild = _this.gridGeneratorService.getGridTemplate();
                 grandChild.attr('rel', ((i * _this.intervalsInTick) + j) * _this.interval);
@@ -38369,8 +38378,6 @@ var HourlyGridDirective = /** @class */ (function () {
             }
             return child;
         };
-        var strategy = angular.isUndefined(attrs.noText) ? hourStrategy : intervalStrategy;
-        this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
     HourlyGridDirective.Factory = function () {
         var directive = function (timeConstants, gridGeneratorService, hourTextService) { return new HourlyGridDirective(timeConstants, gridGeneratorService, hourTextService); };
