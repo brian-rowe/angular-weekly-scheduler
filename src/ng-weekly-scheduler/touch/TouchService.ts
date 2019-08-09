@@ -27,4 +27,14 @@ export class TouchService {
 
         return null;
     }
+    
+    public getPageY(event: any): number {
+        let touches = this.getTouches(event);
+
+        if (touches && touches.length && touches[0]) {
+            return touches[0].pageY;
+        }
+
+        return null;
+    }
 }

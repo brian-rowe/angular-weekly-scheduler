@@ -1,6 +1,6 @@
 import * as angular from 'angular';
-import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
-import { TouchService } from '../touch/TouchService';
+import { VerticalHandleProvider } from './VerticalHandleProvider';
+import { HandleProviderFactory } from './HandleProviderFactory';
 
 /** @internal */
 export class HandleDirective implements angular.IDirective {
@@ -8,6 +8,7 @@ export class HandleDirective implements angular.IDirective {
   restrict = 'A';
 
   scope = {
+    config: '<',
     ondrag: '&',
     ondragstop: '&',
     ondragstart: '&',
@@ -16,9 +17,8 @@ export class HandleDirective implements angular.IDirective {
 
   link = (scope, element: angular.IAugmentedJQuery) => {
     var $document = this.$document;
-    var mouseTrackerService = this.mouseTrackerService;
-    var touchService = this.touchService;
-    var x = 0;
+    var provider = this.handleProviderFactory.getHandleProvider(scope.config);
+    var position = 0;
 
     let mousedownEvent: string = 'mousedown touchstart';
     let mousemoveEvent: string = 'mousemove touchmove';
@@ -27,7 +27,7 @@ export class HandleDirective implements angular.IDirective {
     element.on(mousedownEvent, mousedown);
 
     function mousedown(event) {
-      x = getPageX(event);
+      position = provider.getPositionFromEvent(event);
 
       // Prevent default dragging of selected content
       event.preventDefault();
@@ -39,18 +39,14 @@ export class HandleDirective implements angular.IDirective {
     }
 
     function fakeMousedown() {
-      x = mouseTrackerService.getMousePosition().x;
+      position = provider.getCursorPosition();
 
       startDrag();
     }
 
-    function getPageX(event) {
-      return event.pageX || touchService.getPageX(event);
-    }
-
     function mousemove(event) {
-      let pageX = getPageX(event);
-      var delta = pageX - x;
+      let current = provider.getPositionFromEvent(event);
+      var delta = current - position;
 
       if (angular.isFunction(scope.ondrag)) {
         scope.$apply(scope.ondrag({ delta: delta }));
@@ -82,15 +78,14 @@ export class HandleDirective implements angular.IDirective {
 
   constructor(
     private $document: angular.IDocumentService,
-    private mouseTrackerService: MouseTrackerService,
-    private touchService: TouchService
+    private handleProviderFactory: HandleProviderFactory
   ) {
   }
 
   static Factory() {
-    let directive = ($document, mouseTrackerService, touchService) => new HandleDirective($document, mouseTrackerService, touchService);
+    let directive = ($document, handleProviderFactory) => new HandleDirective($document, handleProviderFactory);
 
-    directive.$inject = ['$document', MouseTrackerService.$name, TouchService.$name];
+    directive.$inject = ['$document', HandleProviderFactory.$name];
 
     return directive;
   }

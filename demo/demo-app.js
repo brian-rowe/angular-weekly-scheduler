@@ -38280,17 +38280,16 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
-var MouseTrackerService_1 = __webpack_require__(/*! ../mouse-tracker/MouseTrackerService */ "./src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService.ts");
-var TouchService_1 = __webpack_require__(/*! ../touch/TouchService */ "./src/ng-weekly-scheduler/touch/TouchService.ts");
+var HandleProviderFactory_1 = __webpack_require__(/*! ./HandleProviderFactory */ "./src/ng-weekly-scheduler/handle/HandleProviderFactory.ts");
 /** @internal */
 var HandleDirective = /** @class */ (function () {
-    function HandleDirective($document, mouseTrackerService, touchService) {
+    function HandleDirective($document, handleProviderFactory) {
         var _this = this;
         this.$document = $document;
-        this.mouseTrackerService = mouseTrackerService;
-        this.touchService = touchService;
+        this.handleProviderFactory = handleProviderFactory;
         this.restrict = 'A';
         this.scope = {
+            config: '<',
             ondrag: '&',
             ondragstop: '&',
             ondragstart: '&',
@@ -38298,15 +38297,14 @@ var HandleDirective = /** @class */ (function () {
         };
         this.link = function (scope, element) {
             var $document = _this.$document;
-            var mouseTrackerService = _this.mouseTrackerService;
-            var touchService = _this.touchService;
-            var x = 0;
+            var provider = _this.handleProviderFactory.getHandleProvider(scope.config);
+            var position = 0;
             var mousedownEvent = 'mousedown touchstart';
             var mousemoveEvent = 'mousemove touchmove';
             var mouseupEvent = 'mouseup touchend';
             element.on(mousedownEvent, mousedown);
             function mousedown(event) {
-                x = getPageX(event);
+                position = provider.getPositionFromEvent(event);
                 // Prevent default dragging of selected content
                 event.preventDefault();
                 // Prevent multiple handlers from being fired if they are nested (only the one you directly interacted with should fire)
@@ -38314,15 +38312,12 @@ var HandleDirective = /** @class */ (function () {
                 startDrag();
             }
             function fakeMousedown() {
-                x = mouseTrackerService.getMousePosition().x;
+                position = provider.getCursorPosition();
                 startDrag();
             }
-            function getPageX(event) {
-                return event.pageX || touchService.getPageX(event);
-            }
             function mousemove(event) {
-                var pageX = getPageX(event);
-                var delta = pageX - x;
+                var current = provider.getPositionFromEvent(event);
+                var delta = current - position;
                 if (angular.isFunction(scope.ondrag)) {
                     scope.$apply(scope.ondrag({ delta: delta }));
                 }
@@ -38347,14 +38342,110 @@ var HandleDirective = /** @class */ (function () {
         };
     }
     HandleDirective.Factory = function () {
-        var directive = function ($document, mouseTrackerService, touchService) { return new HandleDirective($document, mouseTrackerService, touchService); };
-        directive.$inject = ['$document', MouseTrackerService_1.MouseTrackerService.$name, TouchService_1.TouchService.$name];
+        var directive = function ($document, handleProviderFactory) { return new HandleDirective($document, handleProviderFactory); };
+        directive.$inject = ['$document', HandleProviderFactory_1.HandleProviderFactory.$name];
         return directive;
     };
     HandleDirective.$name = 'brHandle';
     return HandleDirective;
 }());
 exports.HandleDirective = HandleDirective;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/handle/HandleProviderFactory.ts":
+/*!*****************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/handle/HandleProviderFactory.ts ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var MouseTrackerService_1 = __webpack_require__(/*! ../mouse-tracker/MouseTrackerService */ "./src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService.ts");
+var TouchService_1 = __webpack_require__(/*! ../touch/TouchService */ "./src/ng-weekly-scheduler/touch/TouchService.ts");
+var HorizontalHandleProvider_1 = __webpack_require__(/*! ./HorizontalHandleProvider */ "./src/ng-weekly-scheduler/handle/HorizontalHandleProvider.ts");
+var VerticalHandleProvider_1 = __webpack_require__(/*! ./VerticalHandleProvider */ "./src/ng-weekly-scheduler/handle/VerticalHandleProvider.ts");
+var HandleProviderFactory = /** @class */ (function () {
+    function HandleProviderFactory(mouseTrackerService, touchService) {
+        this.mouseTrackerService = mouseTrackerService;
+        this.touchService = touchService;
+    }
+    HandleProviderFactory.prototype.getHandleProvider = function (config) {
+        if (config.orientation === 'horizontal') {
+            return new HorizontalHandleProvider_1.HorizontalHandleProvider(this.mouseTrackerService, this.touchService);
+        }
+        else {
+            return new VerticalHandleProvider_1.VerticalHandleProvider(this.mouseTrackerService, this.touchService);
+        }
+    };
+    ;
+    HandleProviderFactory.$name = 'rrWeeklySchedulerHandleProviderFactory';
+    HandleProviderFactory.$inject = [
+        MouseTrackerService_1.MouseTrackerService.$name,
+        TouchService_1.TouchService.$name
+    ];
+    return HandleProviderFactory;
+}());
+exports.HandleProviderFactory = HandleProviderFactory;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/handle/HorizontalHandleProvider.ts":
+/*!********************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/handle/HorizontalHandleProvider.ts ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HorizontalHandleProvider = /** @class */ (function () {
+    function HorizontalHandleProvider(mouseTrackerService, touchService) {
+        this.mouseTrackerService = mouseTrackerService;
+        this.touchService = touchService;
+    }
+    HorizontalHandleProvider.prototype.getCursorPosition = function () {
+        return this.mouseTrackerService.getMousePosition().x;
+    };
+    HorizontalHandleProvider.prototype.getPositionFromEvent = function (event) {
+        return event.pageX || this.touchService.getPageX(event);
+    };
+    return HorizontalHandleProvider;
+}());
+exports.HorizontalHandleProvider = HorizontalHandleProvider;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/handle/VerticalHandleProvider.ts":
+/*!******************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/handle/VerticalHandleProvider.ts ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var VerticalHandleProvider = /** @class */ (function () {
+    function VerticalHandleProvider(mouseTrackerService, touchService) {
+        this.mouseTrackerService = mouseTrackerService;
+        this.touchService = touchService;
+    }
+    VerticalHandleProvider.prototype.getCursorPosition = function () {
+        return this.mouseTrackerService.getMousePosition().y;
+    };
+    VerticalHandleProvider.prototype.getPositionFromEvent = function (event) {
+        return event.pageY || this.touchService.getPageY(event);
+    };
+    return VerticalHandleProvider;
+}());
+exports.VerticalHandleProvider = VerticalHandleProvider;
 
 
 /***/ }),
@@ -38371,9 +38462,11 @@ exports.HandleDirective = HandleDirective;
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var HandleDirective_1 = __webpack_require__(/*! ./HandleDirective */ "./src/ng-weekly-scheduler/handle/HandleDirective.ts");
+var HandleProviderFactory_1 = __webpack_require__(/*! ./HandleProviderFactory */ "./src/ng-weekly-scheduler/handle/HandleProviderFactory.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.handle', [])
     .directive(HandleDirective_1.HandleDirective.$name, HandleDirective_1.HandleDirective.Factory())
+    .service(HandleProviderFactory_1.HandleProviderFactory.$name, HandleProviderFactory_1.HandleProviderFactory)
     .name;
 
 
@@ -39139,7 +39232,7 @@ exports.default = angular.module('rr.weeklyScheduler.multiSlider', [])
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ghost-wrapper\" br-handle ondragstart=\"multiSliderCtrl.onGhostWrapperMouseDown()\" ondragstop=\"multiSliderCtrl.onGhostWrapperMouseUp()\" ondrag=\"multiSliderCtrl.onGhostWrapperMouseMove()\">\r\n    <br-ghost-slot class=\"slot\"\r\n                   ng-if=\"multiSliderCtrl.item.canRenderGhost()\"\r\n                   ng-class=\"{\r\n                      active: multiSliderCtrl.item.$renderGhost,\r\n                      nullEnd: multiSliderCtrl.config.nullEnds\r\n                   }\"\r\n                   ng-style=\"multiSliderCtrl.getSlotStyle(multiSliderCtrl.ghostValues)\">\r\n        <div class=\"slotWrapper\">\r\n            <div class=\"middle fullWidth\">\r\n                <span ng-if=\"!multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | brWeeklySchedulerTimeOfDay }}</span>\r\n                <span ng-if=\"multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} until</span>\r\n            </div>\r\n        </div>\r\n    </br-ghost-slot>\r\n\r\n    <br-weekly-slot class=\"slot {{ schedule.$class }}\"\r\n                config=\"multiSliderCtrl.config\"\r\n                get-delta=\"multiSliderCtrl.pixelToVal(pixel)\"\r\n                drag-schedule=\"multiSliderCtrl.dragSchedule\" \r\n                item=\"multiSliderCtrl.item\"\r\n                ng-class=\"{\r\n                    active: schedule.$isActive,\r\n                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),\r\n                    nullEnd: schedule.end === null,\r\n                    pending: schedule.$isEditing\r\n                }\"\r\n                ng-repeat=\"schedule in multiSliderCtrl.item.schedules\"\r\n                ng-model=\"schedule\"\r\n                ng-style=\"multiSliderCtrl.getSlotStyle(schedule)\"\r\n                edit-schedule=\"multiSliderCtrl.editSchedule(schedule)\"\r\n    ></br-weekly-slot>\r\n</div>";
+module.exports = "<div class=\"ghost-wrapper\" config=\"multiSliderCtrl.config\" br-handle ondragstart=\"multiSliderCtrl.onGhostWrapperMouseDown()\" ondragstop=\"multiSliderCtrl.onGhostWrapperMouseUp()\" ondrag=\"multiSliderCtrl.onGhostWrapperMouseMove()\">\r\n    <br-ghost-slot class=\"slot\"\r\n                   ng-if=\"multiSliderCtrl.item.canRenderGhost()\"\r\n                   ng-class=\"{\r\n                      active: multiSliderCtrl.item.$renderGhost,\r\n                      nullEnd: multiSliderCtrl.config.nullEnds\r\n                   }\"\r\n                   ng-style=\"multiSliderCtrl.getSlotStyle(multiSliderCtrl.ghostValues)\">\r\n        <div class=\"slotWrapper\">\r\n            <div class=\"middle fullWidth\">\r\n                <span ng-if=\"!multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | brWeeklySchedulerTimeOfDay }}</span>\r\n                <span ng-if=\"multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} until</span>\r\n            </div>\r\n        </div>\r\n    </br-ghost-slot>\r\n\r\n    <br-weekly-slot class=\"slot {{ schedule.$class }}\"\r\n                config=\"multiSliderCtrl.config\"\r\n                get-delta=\"multiSliderCtrl.pixelToVal(pixel)\"\r\n                drag-schedule=\"multiSliderCtrl.dragSchedule\" \r\n                item=\"multiSliderCtrl.item\"\r\n                ng-class=\"{\r\n                    active: schedule.$isActive,\r\n                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),\r\n                    nullEnd: schedule.end === null,\r\n                    pending: schedule.$isEditing\r\n                }\"\r\n                ng-repeat=\"schedule in multiSliderCtrl.item.schedules\"\r\n                ng-model=\"schedule\"\r\n                ng-style=\"multiSliderCtrl.getSlotStyle(schedule)\"\r\n                edit-schedule=\"multiSliderCtrl.editSchedule(schedule)\"\r\n    ></br-weekly-slot>\r\n</div>";
 
 /***/ }),
 
@@ -40969,6 +41062,13 @@ var TouchService = /** @class */ (function () {
         }
         return null;
     };
+    TouchService.prototype.getPageY = function (event) {
+        var touches = this.getTouches(event);
+        if (touches && touches.length && touches[0]) {
+            return touches[0].pageY;
+        }
+        return null;
+    };
     TouchService.$name = 'brWeeklySchedulerTouchService';
     return TouchService;
 }());
@@ -41803,7 +41903,7 @@ exports.default = angular
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}\">\r\n  <div class=\"handle left\" ondrag=\"weeklySlotCtrl.resizeStart(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n  <div class=\"middle\" ondrag=\"weeklySlotCtrl.drag(delta)\" ondragstart=\"weeklySlotCtrl.startDrag()\" ondragstop=\"weeklySlotCtrl.endDrag()\" br-handle immediate=\"weeklySlotCtrl.hasDragSchedule\">\r\n    <br-time-range schedule=\"weeklySlotCtrl.schedule\"></br-time-range>\r\n  </div>\r\n  <div class=\"handle right\" ondrag=\"weeklySlotCtrl.resizeEnd(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n</div>";
+module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}\">\r\n  <div class=\"handle left\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.resizeStart(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n  <div class=\"middle\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.drag(delta)\" ondragstart=\"weeklySlotCtrl.startDrag()\" ondragstop=\"weeklySlotCtrl.endDrag()\" br-handle immediate=\"weeklySlotCtrl.hasDragSchedule\">\r\n    <br-time-range schedule=\"weeklySlotCtrl.schedule\"></br-time-range>\r\n  </div>\r\n  <div class=\"handle right\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.resizeEnd(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n</div>";
 
 /***/ }),
 
