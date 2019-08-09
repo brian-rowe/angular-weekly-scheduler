@@ -3,6 +3,7 @@ import { ISlotStyle } from './ISlotStyle';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
+import { SlotStyleService } from './SlotStyleService';
 
 export class VerticalSlotStyle implements ISlotStyle {
     private element: Element;
@@ -12,6 +13,7 @@ export class VerticalSlotStyle implements ISlotStyle {
         private $element: angular.IAugmentedJQuery,
         private nullEndWidth: number,
         private endAdjusterService: EndAdjusterService,
+        private slotStyleService: SlotStyleService,
         private valueNormalizationService: ValueNormalizationService
     ) {
         this.element = this.$element[0];
@@ -48,15 +50,6 @@ export class VerticalSlotStyle implements ISlotStyle {
     }
 
     private getUnderlyingInterval(val: number): HTMLElement {
-        val = this.normalizeIntervalValue(val);
-
-        return this.element.parentElement.querySelector(`[rel='${val}']`);
-    }
-
-    private normalizeIntervalValue(value: number) {
-        // There is no interval beyond the last rendered interval -- the last actual interval will not render with a "rel" value
-        let lastRendered = this.config.maxValue - this.config.interval;
-
-        return this.valueNormalizationService.normalizeValue(value, 0, lastRendered);
+        return this.slotStyleService.getUnderlyingInterval(this.config, this.element, val);
     }
 };

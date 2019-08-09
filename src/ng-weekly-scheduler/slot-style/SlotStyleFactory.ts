@@ -5,6 +5,7 @@ import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 import { HorizontalSlotStyle } from './HorizontalSlotStyle';
 import { ISlotStyle } from './ISlotStyle';
 import { VerticalSlotStyle } from './VerticalSlotStyle';
+import { SlotStyleService } from './SlotStyleService';
 
 export class SlotStyleFactory {
     static $name = 'rrWeeklySchedulerSlotStyleFactory';
@@ -12,12 +13,14 @@ export class SlotStyleFactory {
     static $inject = [
         NullEndWidth.$name,
         EndAdjusterService.$name,
+        SlotStyleService.$name,
         ValueNormalizationService.$name
     ];
 
     constructor(
         private nullEndWidth: number,
         private endAdjusterService: EndAdjusterService,
+        private slotStyleService: SlotStyleService,
         private valueNormalizationService: ValueNormalizationService
     ) {
     }
@@ -26,9 +29,9 @@ export class SlotStyleFactory {
         var hmm = true;
 
         if (hmm) {
-            return new VerticalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
+            return new VerticalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.slotStyleService, this.valueNormalizationService);
         } else {
-            return new HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
+            return new HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.slotStyleService, this.valueNormalizationService);
         }
     }
 }

@@ -40474,11 +40474,12 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var HorizontalSlotStyle = /** @class */ (function () {
-    function HorizontalSlotStyle(config, $element, nullEndWidth, endAdjusterService, valueNormalizationService) {
+    function HorizontalSlotStyle(config, $element, nullEndWidth, endAdjusterService, slotStyleService, valueNormalizationService) {
         this.config = config;
         this.$element = $element;
         this.nullEndWidth = nullEndWidth;
         this.endAdjusterService = endAdjusterService;
+        this.slotStyleService = slotStyleService;
         this.valueNormalizationService = valueNormalizationService;
         this.element = this.$element[0];
     }
@@ -40506,13 +40507,7 @@ var HorizontalSlotStyle = /** @class */ (function () {
         return result + 'px';
     };
     HorizontalSlotStyle.prototype.getUnderlyingInterval = function (val) {
-        val = this.normalizeIntervalValue(val);
-        return this.element.parentElement.querySelector("[rel='" + val + "']");
-    };
-    HorizontalSlotStyle.prototype.normalizeIntervalValue = function (value) {
-        // There is no interval beyond the last rendered interval -- the last actual interval will not render with a "rel" value
-        var lastRendered = this.config.maxValue - this.config.interval;
-        return this.valueNormalizationService.normalizeValue(value, 0, lastRendered);
+        return this.slotStyleService.getUnderlyingInterval(this.config, this.element, val);
     };
     return HorizontalSlotStyle;
 }());
@@ -40536,30 +40531,70 @@ var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization
 var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
 var HorizontalSlotStyle_1 = __webpack_require__(/*! ./HorizontalSlotStyle */ "./src/ng-weekly-scheduler/slot-style/HorizontalSlotStyle.ts");
 var VerticalSlotStyle_1 = __webpack_require__(/*! ./VerticalSlotStyle */ "./src/ng-weekly-scheduler/slot-style/VerticalSlotStyle.ts");
+var SlotStyleService_1 = __webpack_require__(/*! ./SlotStyleService */ "./src/ng-weekly-scheduler/slot-style/SlotStyleService.ts");
 var SlotStyleFactory = /** @class */ (function () {
-    function SlotStyleFactory(nullEndWidth, endAdjusterService, valueNormalizationService) {
+    function SlotStyleFactory(nullEndWidth, endAdjusterService, slotStyleService, valueNormalizationService) {
         this.nullEndWidth = nullEndWidth;
         this.endAdjusterService = endAdjusterService;
+        this.slotStyleService = slotStyleService;
         this.valueNormalizationService = valueNormalizationService;
     }
     SlotStyleFactory.prototype.getSlotStyle = function (config, $element) {
         var hmm = true;
         if (hmm) {
-            return new VerticalSlotStyle_1.VerticalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
+            return new VerticalSlotStyle_1.VerticalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.slotStyleService, this.valueNormalizationService);
         }
         else {
-            return new HorizontalSlotStyle_1.HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
+            return new HorizontalSlotStyle_1.HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.slotStyleService, this.valueNormalizationService);
         }
     };
     SlotStyleFactory.$name = 'rrWeeklySchedulerSlotStyleFactory';
     SlotStyleFactory.$inject = [
         NullEndWidth_1.NullEndWidth.$name,
         EndAdjusterService_1.EndAdjusterService.$name,
+        SlotStyleService_1.SlotStyleService.$name,
         ValueNormalizationService_1.ValueNormalizationService.$name
     ];
     return SlotStyleFactory;
 }());
 exports.SlotStyleFactory = SlotStyleFactory;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/slot-style/SlotStyleService.ts":
+/*!****************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/slot-style/SlotStyleService.ts ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
+var SlotStyleService = /** @class */ (function () {
+    function SlotStyleService(valueNormalizationService) {
+        this.valueNormalizationService = valueNormalizationService;
+    }
+    /**
+     * This relies on the html structure having the grid and the multislider
+     * under the same div.
+     */
+    SlotStyleService.prototype.getUnderlyingInterval = function (config, element, val) {
+        val = this.normalizeIntervalValue(config, val);
+        return element.parentElement.querySelector("[rel='" + val + "']");
+    };
+    SlotStyleService.prototype.normalizeIntervalValue = function (config, value) {
+        // There is no interval beyond the last rendered interval -- the last actual interval will not render with a "rel" value
+        var lastRendered = config.maxValue - config.interval;
+        return this.valueNormalizationService.normalizeValue(value, 0, lastRendered);
+    };
+    SlotStyleService.$name = 'rrWeeklySchedulerSlotStyleService';
+    SlotStyleService.$inject = [ValueNormalizationService_1.ValueNormalizationService.$name];
+    return SlotStyleService;
+}());
+exports.SlotStyleService = SlotStyleService;
 
 
 /***/ }),
@@ -40575,11 +40610,12 @@ exports.SlotStyleFactory = SlotStyleFactory;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var VerticalSlotStyle = /** @class */ (function () {
-    function VerticalSlotStyle(config, $element, nullEndWidth, endAdjusterService, valueNormalizationService) {
+    function VerticalSlotStyle(config, $element, nullEndWidth, endAdjusterService, slotStyleService, valueNormalizationService) {
         this.config = config;
         this.$element = $element;
         this.nullEndWidth = nullEndWidth;
         this.endAdjusterService = endAdjusterService;
+        this.slotStyleService = slotStyleService;
         this.valueNormalizationService = valueNormalizationService;
         this.element = this.$element[0];
     }
@@ -40606,13 +40642,7 @@ var VerticalSlotStyle = /** @class */ (function () {
         return result + 'px';
     };
     VerticalSlotStyle.prototype.getUnderlyingInterval = function (val) {
-        val = this.normalizeIntervalValue(val);
-        return this.element.parentElement.querySelector("[rel='" + val + "']");
-    };
-    VerticalSlotStyle.prototype.normalizeIntervalValue = function (value) {
-        // There is no interval beyond the last rendered interval -- the last actual interval will not render with a "rel" value
-        var lastRendered = this.config.maxValue - this.config.interval;
-        return this.valueNormalizationService.normalizeValue(value, 0, lastRendered);
+        return this.slotStyleService.getUnderlyingInterval(this.config, this.element, val);
     };
     return VerticalSlotStyle;
 }());
@@ -40634,9 +40664,11 @@ exports.VerticalSlotStyle = VerticalSlotStyle;
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var SlotStyleFactory_1 = __webpack_require__(/*! ./SlotStyleFactory */ "./src/ng-weekly-scheduler/slot-style/SlotStyleFactory.ts");
+var SlotStyleService_1 = __webpack_require__(/*! ./SlotStyleService */ "./src/ng-weekly-scheduler/slot-style/SlotStyleService.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.slotStyle', [])
     .service(SlotStyleFactory_1.SlotStyleFactory.$name, SlotStyleFactory_1.SlotStyleFactory)
+    .service(SlotStyleService_1.SlotStyleService.$name, SlotStyleService_1.SlotStyleService)
     .name;
 
 
