@@ -23,11 +23,12 @@ export class SlotStyleFactory {
     }
 
     public getSlotStyle(config: IWeeklySchedulerConfig<any>, $element: angular.IAugmentedJQuery): ISlotStyle {
-        if (true) {
+        var hmm = true;
+
+        if (hmm) {
             return new VerticalSlotStyle();
+        } else {
+            return new HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
         }
-
-
-        return new HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
     }
 }

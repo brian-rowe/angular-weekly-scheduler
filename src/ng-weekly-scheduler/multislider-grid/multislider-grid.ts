@@ -25,6 +25,7 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
             'display': 'inline-block',
             'width': multiSliderGridCtrl.width 
         }">
+            <br-daily-grid></br-daily-grid>
             <br-multi-slider config="schedulerCtrl.config"
                              br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
                              br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"

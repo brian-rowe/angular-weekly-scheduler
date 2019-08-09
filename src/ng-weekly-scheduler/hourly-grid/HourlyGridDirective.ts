@@ -19,7 +19,7 @@ export class HourlyGridDirective implements angular.IDirective {
     private tickCount: number;
 
     private doGrid(scope, element, attrs) {
-        this.gridGeneratorService.generateGrid(element, this.tickCount,  this.intervalGenerationService.createIntervalGenerationStrategy({
+        this.gridGeneratorService.generateStripedGrid(element, this.tickCount,  this.intervalGenerationService.createIntervalGenerationStrategy({
             cssDimensionProperty: 'width',
             interval: this.config.interval,
             intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval,

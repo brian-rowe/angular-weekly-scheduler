@@ -35,7 +35,7 @@ export class DayGridDirective implements angular.IDirective {
     }
 
     private doGrid(scope, element, attrs) {
-        this.gridGeneratorService.generateGrid(element, this.tickCount, this.createDayGenerationStrategy(scope));
+        this.gridGeneratorService.generateStripedGrid(element, this.tickCount, this.createDayGenerationStrategy(scope));
     }
 
     private createDayGenerationStrategy(scope) {

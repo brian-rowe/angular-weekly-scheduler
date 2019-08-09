@@ -180,17 +180,21 @@ br-hour-grid,
 br-hourly-grid,
 br-day-grid,
 br-daily-grid {
-  display: table-row;
-
   div {
     box-sizing: border-box;
     display: table-cell;
   }
-
+  
   .interval {
     display: block;
     float: left;
   }
+}
+
+br-hour-grid, 
+br-hourly-grid,
+br-day-grid {
+  display: table-row;
 }
 
 br-hour-grid,
@@ -204,6 +208,17 @@ br-day-grid,
 br-daily-grid {
   div {
     width: 100%;
+  }
+}
+
+br-daily-grid {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  .grid-item {
+    display: block;
+    height: @rowHeight;
   }
 }
 
