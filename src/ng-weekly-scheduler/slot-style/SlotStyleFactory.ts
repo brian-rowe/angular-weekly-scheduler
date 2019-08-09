@@ -17,9 +17,7 @@ export class SlotStyleFactory {
     }
 
     public getSlotStyle(config: IWeeklySchedulerConfig<any>, $element: angular.IAugmentedJQuery): ISlotStyle {
-        var hmm = true;
-
-        if (hmm) {
+        if (config.orientation === 'vertical') {
             return new VerticalSlotStyle(config, $element, this.slotStyleService);
         } else {
             return new HorizontalSlotStyle(config, $element, this.slotStyleService);

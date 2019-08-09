@@ -28,6 +28,7 @@ export class ConfigurationService {
             maxValue: this.timeConstants.SECONDS_IN_DAY,
             hourCount: this.timeConstants.HOURS_IN_DAY,
             intervalCount: intervalCount,
+            orientation: userOptions.orientationOptions.defaultOrientation
         });
 
         return result;
