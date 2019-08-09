@@ -35,11 +35,11 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
                              br-schedule-count="{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}"
                              br-overlap
                              br-revalidate
-                             drag-schedule="schedulerCtrl.dragSchedule"
-                             ghost-values="schedulerCtrl.ghostValues"
+                             drag-schedule="multiSliderGridCtrl.schedulerCtrl.dragSchedule"
+                             ghost-values="multiSliderGridCtrl.schedulerCtrl.ghostValues"
                              ng-model="item"
                              ng-model-options="{allowInvalid: true}"
-                             set-ghost-values="schedulerCtrl.setGhostValues(ghostValues)"
+                             set-ghost-values="multiSliderGridCtrl.schedulerCtrl.setGhostValues(ghostValues)"
                              class="vertical"
                              ng-style="{ 'width': multiSliderGridCtrl.width }"
             ></br-multi-slider>

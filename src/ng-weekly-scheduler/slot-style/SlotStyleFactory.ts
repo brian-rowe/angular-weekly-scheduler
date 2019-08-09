@@ -1,7 +1,4 @@
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
-import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
-import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
-import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 import { HorizontalSlotStyle } from './HorizontalSlotStyle';
 import { ISlotStyle } from './ISlotStyle';
 import { VerticalSlotStyle } from './VerticalSlotStyle';
@@ -11,17 +8,11 @@ export class SlotStyleFactory {
     static $name = 'rrWeeklySchedulerSlotStyleFactory';
 
     static $inject = [
-        NullEndWidth.$name,
-        EndAdjusterService.$name,
-        SlotStyleService.$name,
-        ValueNormalizationService.$name
+        SlotStyleService.$name
     ];
 
     constructor(
-        private nullEndWidth: number,
-        private endAdjusterService: EndAdjusterService,
-        private slotStyleService: SlotStyleService,
-        private valueNormalizationService: ValueNormalizationService
+        private slotStyleService: SlotStyleService
     ) {
     }
 

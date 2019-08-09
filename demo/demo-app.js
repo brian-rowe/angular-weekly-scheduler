@@ -39089,7 +39089,7 @@ var MultisliderGridComponent = /** @class */ (function () {
         this.require = {
             schedulerCtrl: '^brWeeklyScheduler'
         };
-        this.template = "\n        <div class=\"repeat\" ng-repeat=\"item in multiSliderGridCtrl.items\" ng-style=\"{ \n            'display': 'inline-block',\n            'width': multiSliderGridCtrl.width \n        }\">\n            <br-daily-grid></br-daily-grid>\n            <br-multi-slider config=\"multiSliderGridCtrl.config\"\n                             br-full-calendar=\"{{ multiSliderGridCtrl.config.fullCalendar }}\"\n                             br-max-time-slot=\"{{ multiSliderGridCtrl.config.maxTimeSlot }}\"\n                             br-minimum-separation=\"{{ multiSliderGridCtrl.config.minimumSeparation }}\"\n                             br-mono-schedule=\"{{ multiSliderGridCtrl.config.monoSchedule }}\"\n                             br-null-end=\"{{ multiSliderGridCtrl.config.nullEnds }}\"\n                             br-schedule-count=\"{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}\"\n                             br-overlap\n                             br-revalidate\n                             drag-schedule=\"schedulerCtrl.dragSchedule\"\n                             ghost-values=\"schedulerCtrl.ghostValues\"\n                             ng-model=\"item\"\n                             ng-model-options=\"{allowInvalid: true}\"\n                             set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\n                             class=\"vertical\"\n                             ng-style=\"{ 'width': multiSliderGridCtrl.width }\"\n            ></br-multi-slider>\n        </div>\n    ";
+        this.template = "\n        <div class=\"repeat\" ng-repeat=\"item in multiSliderGridCtrl.items\" ng-style=\"{ \n            'display': 'inline-block',\n            'width': multiSliderGridCtrl.width \n        }\">\n            <br-daily-grid></br-daily-grid>\n            <br-multi-slider config=\"multiSliderGridCtrl.config\"\n                             br-full-calendar=\"{{ multiSliderGridCtrl.config.fullCalendar }}\"\n                             br-max-time-slot=\"{{ multiSliderGridCtrl.config.maxTimeSlot }}\"\n                             br-minimum-separation=\"{{ multiSliderGridCtrl.config.minimumSeparation }}\"\n                             br-mono-schedule=\"{{ multiSliderGridCtrl.config.monoSchedule }}\"\n                             br-null-end=\"{{ multiSliderGridCtrl.config.nullEnds }}\"\n                             br-schedule-count=\"{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}\"\n                             br-overlap\n                             br-revalidate\n                             drag-schedule=\"multiSliderGridCtrl.schedulerCtrl.dragSchedule\"\n                             ghost-values=\"multiSliderGridCtrl.schedulerCtrl.ghostValues\"\n                             ng-model=\"item\"\n                             ng-model-options=\"{allowInvalid: true}\"\n                             set-ghost-values=\"multiSliderGridCtrl.schedulerCtrl.setGhostValues(ghostValues)\"\n                             class=\"vertical\"\n                             ng-style=\"{ 'width': multiSliderGridCtrl.width }\"\n            ></br-multi-slider>\n        </div>\n    ";
     }
     MultisliderGridComponent.$name = 'rrMultisliderGrid';
     return MultisliderGridComponent;
@@ -40512,18 +40512,12 @@ exports.HorizontalSlotStyle = HorizontalSlotStyle;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
-var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
-var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
 var HorizontalSlotStyle_1 = __webpack_require__(/*! ./HorizontalSlotStyle */ "./src/ng-weekly-scheduler/slot-style/HorizontalSlotStyle.ts");
 var VerticalSlotStyle_1 = __webpack_require__(/*! ./VerticalSlotStyle */ "./src/ng-weekly-scheduler/slot-style/VerticalSlotStyle.ts");
 var SlotStyleService_1 = __webpack_require__(/*! ./SlotStyleService */ "./src/ng-weekly-scheduler/slot-style/SlotStyleService.ts");
 var SlotStyleFactory = /** @class */ (function () {
-    function SlotStyleFactory(nullEndWidth, endAdjusterService, slotStyleService, valueNormalizationService) {
-        this.nullEndWidth = nullEndWidth;
-        this.endAdjusterService = endAdjusterService;
+    function SlotStyleFactory(slotStyleService) {
         this.slotStyleService = slotStyleService;
-        this.valueNormalizationService = valueNormalizationService;
     }
     SlotStyleFactory.prototype.getSlotStyle = function (config, $element) {
         var hmm = true;
@@ -40536,10 +40530,7 @@ var SlotStyleFactory = /** @class */ (function () {
     };
     SlotStyleFactory.$name = 'rrWeeklySchedulerSlotStyleFactory';
     SlotStyleFactory.$inject = [
-        NullEndWidth_1.NullEndWidth.$name,
-        EndAdjusterService_1.EndAdjusterService.$name,
-        SlotStyleService_1.SlotStyleService.$name,
-        ValueNormalizationService_1.ValueNormalizationService.$name
+        SlotStyleService_1.SlotStyleService.$name
     ];
     return SlotStyleFactory;
 }());
