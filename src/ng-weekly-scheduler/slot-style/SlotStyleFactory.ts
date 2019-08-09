@@ -26,7 +26,7 @@ export class SlotStyleFactory {
         var hmm = true;
 
         if (hmm) {
-            return new VerticalSlotStyle();
+            return new VerticalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
         } else {
             return new HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.valueNormalizationService);
         }

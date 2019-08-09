@@ -26,13 +26,13 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
             'width': multiSliderGridCtrl.width 
         }">
             <br-daily-grid></br-daily-grid>
-            <br-multi-slider config="schedulerCtrl.config"
-                             br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
-                             br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
-                             br-minimum-separation="{{ schedulerCtrl.config.minimumSeparation }}"
-                             br-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
-                             br-null-end="{{ schedulerCtrl.config.nullEnds }}"
-                             br-schedule-count="{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}"
+            <br-multi-slider config="multiSliderGridCtrl.config"
+                             br-full-calendar="{{ multiSliderGridCtrl.config.fullCalendar }}"
+                             br-max-time-slot="{{ multiSliderGridCtrl.config.maxTimeSlot }}"
+                             br-minimum-separation="{{ multiSliderGridCtrl.config.minimumSeparation }}"
+                             br-mono-schedule="{{ multiSliderGridCtrl.config.monoSchedule }}"
+                             br-null-end="{{ multiSliderGridCtrl.config.nullEnds }}"
+                             br-schedule-count="{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}"
                              br-overlap
                              br-revalidate
                              drag-schedule="schedulerCtrl.dragSchedule"
