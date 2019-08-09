@@ -25,7 +25,7 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
             'display': 'inline-block',
             'width': multiSliderGridCtrl.width 
         }">
-            <br-multi-slider config="multiSliderGridCtrl.config"
+            <br-multi-slider config="schedulerCtrl.config"
                              br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
                              br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
                              br-minimum-separation="{{ schedulerCtrl.config.minimumSeparation }}"
@@ -39,6 +39,8 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
                              ng-model="item"
                              ng-model-options="{allowInvalid: true}"
                              set-ghost-values="schedulerCtrl.setGhostValues(ghostValues)"
+                             class="vertical"
+                             ng-style="{ 'width': multiSliderGridCtrl.width }"
             ></br-multi-slider>
         </div>
     `;
@@ -49,7 +51,6 @@ class MultisliderGridController implements angular.IComponentController {
         TimeConstantsService.$name
     ];
 
-    private config: IWeeklySchedulerConfig<any>;
     private items: WeeklySchedulerItem<any>[];
 
     private width: string;
