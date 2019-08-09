@@ -25,6 +25,7 @@ import MinimumSeparationModule from '../minimum-separation/module';
 import MissingDaysModule from '../missing-days/module';
 import MonoScheduleModule from '../mono-schedule/module';
 import MouseTrackerModule from '../mouse-tracker/module';
+import MultiSliderGridModule from '../multislider-grid/module';
 import MultiSliderModule from '../multislider/module';
 import NullEndModule from '../null-end/module';
 import OverlapModule from '../overlap/module';
@@ -73,6 +74,7 @@ export default angular.module('br.weeklyScheduler.app', [
     MonoScheduleModule,
     MouseTrackerModule,
     MissingDaysModule,
+    MultiSliderGridModule,
     MultiSliderModule,
     NullEndModule,
     OverlapModule,
