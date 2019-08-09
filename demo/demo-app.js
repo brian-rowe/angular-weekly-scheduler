@@ -40474,13 +40474,10 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var HorizontalSlotStyle = /** @class */ (function () {
-    function HorizontalSlotStyle(config, $element, nullEndWidth, endAdjusterService, slotStyleService, valueNormalizationService) {
+    function HorizontalSlotStyle(config, $element, slotStyleService) {
         this.config = config;
         this.$element = $element;
-        this.nullEndWidth = nullEndWidth;
-        this.endAdjusterService = endAdjusterService;
         this.slotStyleService = slotStyleService;
-        this.valueNormalizationService = valueNormalizationService;
         this.element = this.$element[0];
     }
     HorizontalSlotStyle.prototype.getCss = function (schedule) {
@@ -40490,24 +40487,13 @@ var HorizontalSlotStyle = /** @class */ (function () {
         };
     };
     HorizontalSlotStyle.prototype.getSlotLeft = function (start) {
-        var underlyingInterval = this.getUnderlyingInterval(start);
-        return underlyingInterval.offsetLeft + 'px';
+        return this.slotStyleService.getSlotStart(this.config, this.element, start, function (interval) { return interval.offsetLeft; });
     };
     HorizontalSlotStyle.prototype.getSlotRight = function (start, end) {
-        // If there is a null end, place the end of the slot two hours away from the beginning.
-        if (this.config.nullEnds && end === null) {
-            end = start + this.nullEndWidth;
-        }
-        // An end of 0 should display allll the way to the right, up to the edge
-        end = this.endAdjusterService.adjustEndForView(this.config, end);
-        // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
-        var underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
-        var offsetRight = underlyingInterval.offsetLeft + underlyingInterval.offsetWidth;
-        var result = this.element.clientWidth - offsetRight;
-        return result + 'px';
-    };
-    HorizontalSlotStyle.prototype.getUnderlyingInterval = function (val) {
-        return this.slotStyleService.getUnderlyingInterval(this.config, this.element, val);
+        var _this = this;
+        return this.slotStyleService.getSlotEnd(this.config, this.element, start, end, function (interval) {
+            return _this.element.clientWidth - (interval.offsetLeft + interval.offsetWidth);
+        });
     };
     return HorizontalSlotStyle;
 }());
@@ -40542,10 +40528,10 @@ var SlotStyleFactory = /** @class */ (function () {
     SlotStyleFactory.prototype.getSlotStyle = function (config, $element) {
         var hmm = true;
         if (hmm) {
-            return new VerticalSlotStyle_1.VerticalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.slotStyleService, this.valueNormalizationService);
+            return new VerticalSlotStyle_1.VerticalSlotStyle(config, $element, this.slotStyleService);
         }
         else {
-            return new HorizontalSlotStyle_1.HorizontalSlotStyle(config, $element, this.nullEndWidth, this.endAdjusterService, this.slotStyleService, this.valueNormalizationService);
+            return new HorizontalSlotStyle_1.HorizontalSlotStyle(config, $element, this.slotStyleService);
         }
     };
     SlotStyleFactory.$name = 'rrWeeklySchedulerSlotStyleFactory';
@@ -40573,10 +40559,30 @@ exports.SlotStyleFactory = SlotStyleFactory;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
+var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
 var SlotStyleService = /** @class */ (function () {
-    function SlotStyleService(valueNormalizationService) {
+    function SlotStyleService(endAdjusterService, nullEndWidth, valueNormalizationService) {
+        this.endAdjusterService = endAdjusterService;
+        this.nullEndWidth = nullEndWidth;
         this.valueNormalizationService = valueNormalizationService;
     }
+    SlotStyleService.prototype.getSlotStart = function (config, element, start, offsetStrategy) {
+        var underlyingInterval = this.getUnderlyingInterval(config, element, start);
+        var offset = offsetStrategy(underlyingInterval);
+        return offset + 'px';
+    };
+    SlotStyleService.prototype.getSlotEnd = function (config, element, start, end, strategy) {
+        // If there is a null end, place the end of the slot two hours away from the beginning.
+        if (config.nullEnds && end === null) {
+            end = start + this.nullEndWidth;
+        }
+        // An end of 0 should display allll the way to the right, up to the edge
+        end = this.endAdjusterService.adjustEndForView(config, end);
+        // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
+        var underlyingInterval = this.getUnderlyingInterval(config, element, end - config.interval);
+        return strategy(underlyingInterval) + 'px';
+    };
     /**
      * This relies on the html structure having the grid and the multislider
      * under the same div.
@@ -40591,7 +40597,11 @@ var SlotStyleService = /** @class */ (function () {
         return this.valueNormalizationService.normalizeValue(value, 0, lastRendered);
     };
     SlotStyleService.$name = 'rrWeeklySchedulerSlotStyleService';
-    SlotStyleService.$inject = [ValueNormalizationService_1.ValueNormalizationService.$name];
+    SlotStyleService.$inject = [
+        EndAdjusterService_1.EndAdjusterService.$name,
+        NullEndWidth_1.NullEndWidth.$name,
+        ValueNormalizationService_1.ValueNormalizationService.$name
+    ];
     return SlotStyleService;
 }());
 exports.SlotStyleService = SlotStyleService;
@@ -40610,13 +40620,10 @@ exports.SlotStyleService = SlotStyleService;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var VerticalSlotStyle = /** @class */ (function () {
-    function VerticalSlotStyle(config, $element, nullEndWidth, endAdjusterService, slotStyleService, valueNormalizationService) {
+    function VerticalSlotStyle(config, $element, slotStyleService) {
         this.config = config;
         this.$element = $element;
-        this.nullEndWidth = nullEndWidth;
-        this.endAdjusterService = endAdjusterService;
         this.slotStyleService = slotStyleService;
-        this.valueNormalizationService = valueNormalizationService;
         this.element = this.$element[0];
     }
     VerticalSlotStyle.prototype.getCss = function (schedule) {
@@ -40626,23 +40633,13 @@ var VerticalSlotStyle = /** @class */ (function () {
         };
     };
     VerticalSlotStyle.prototype.getSlotTop = function (start) {
-        return this.getUnderlyingInterval(start).offsetTop + 'px';
+        return this.slotStyleService.getSlotStart(this.config, this.element, start, function (interval) { return interval.offsetTop; });
     };
     VerticalSlotStyle.prototype.getSlotBottom = function (start, end) {
-        // If there is a null end, place the end of the slot two hours away from the beginning.
-        if (this.config.nullEnds && end === null) {
-            end = start + this.nullEndWidth;
-        }
-        // An end of 0 should display allll the way to the right, up to the edge
-        end = this.endAdjusterService.adjustEndForView(this.config, end);
-        // We want the right side to go /up to/ the interval it represents, not cover it, so we must substract 1 interval
-        var underlyingInterval = this.getUnderlyingInterval(end - this.config.interval);
-        var offsetBottom = underlyingInterval.offsetTop + underlyingInterval.offsetHeight;
-        var result = this.element.clientHeight - offsetBottom;
-        return result + 'px';
-    };
-    VerticalSlotStyle.prototype.getUnderlyingInterval = function (val) {
-        return this.slotStyleService.getUnderlyingInterval(this.config, this.element, val);
+        var _this = this;
+        return this.slotStyleService.getSlotEnd(this.config, this.element, start, end, function (interval) {
+            return _this.element.clientHeight - (interval.offsetTop + interval.offsetHeight);
+        });
     };
     return VerticalSlotStyle;
 }());
