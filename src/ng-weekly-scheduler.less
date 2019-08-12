@@ -86,6 +86,14 @@ br-weekly-scheduler {
     .applyTheme(@darkBackgroundColor, @darkBorderColor, @darkStripeColor, @backgroundColor);
   }
 
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .flex-row {
+    flex-direction: row;
+  }
+
   .fullWidth {
     width: 100%;
   }
@@ -317,6 +325,13 @@ br-multi-slider {
         min-width: 4px;
         height: 100%;
       }
+
+      &.top, &.bottom {
+        display: block;
+        cursor: n-resize;
+        min-height: 4px;
+        width: 100%;
+      }
     }
 
     &.disable {
@@ -326,6 +341,7 @@ br-multi-slider {
     }
 
     .handle {
+      &.top:hover, &.bottom:hover, 
       &.left:hover, &.right:hover {
         background-color: #000;
         opacity: 0.3;

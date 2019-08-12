@@ -1,4 +1,4 @@
-<div class="slotWrapper" title="{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}">
+<div class="slotWrapper" ng-class="weeklySlotCtrl.slotWrapperClass" title="{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}">
   <div class="handle" config="weeklySlotCtrl.config" ng-class="weeklySlotCtrl.startHandleClass" ondrag="weeklySlotCtrl.resizeStart(delta)" ondragstart="weeklySlotCtrl.startResize()" ondragstop="weeklySlotCtrl.endResize()" br-handle ng-if="!weeklySlotCtrl.config.nullEnds"></div>
   <div class="middle" config="weeklySlotCtrl.config" ondrag="weeklySlotCtrl.drag(delta)" ondragstart="weeklySlotCtrl.startDrag()" ondragstop="weeklySlotCtrl.endDrag()" br-handle immediate="weeklySlotCtrl.hasDragSchedule">
     <br-time-range schedule="weeklySlotCtrl.schedule"></br-time-range>

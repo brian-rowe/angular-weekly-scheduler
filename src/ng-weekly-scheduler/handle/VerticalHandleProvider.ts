@@ -24,4 +24,8 @@ export class VerticalHandleProvider implements IHandleProvider {
     getEndHandleClass() {
         return 'bottom';
     }
+
+    getSlotWrapperClass() {
+        return 'flex-column';
+    }
 }

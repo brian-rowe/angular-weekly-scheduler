@@ -9,4 +9,5 @@ export declare class HorizontalHandleProvider implements IHandleProvider {
     getPositionFromEvent(event: any): any;
     getStartHandleClass(): string;
     getEndHandleClass(): string;
+    getSlotWrapperClass(): string;
 }

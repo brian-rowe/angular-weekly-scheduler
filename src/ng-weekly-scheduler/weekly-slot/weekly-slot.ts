@@ -36,6 +36,7 @@ export class WeeklySlotController implements angular.IComponentController {
   private handleProvider: IHandleProvider;
   private startHandleClass: string;
   private endHandleClass: string;
+  private slotWrapperClass: string;
 
   constructor(
     private $element: angular.IAugmentedJQuery,
@@ -50,6 +51,7 @@ export class WeeklySlotController implements angular.IComponentController {
     this.handleProvider = this.handleProviderFactory.getHandleProvider(this.config);
     this.startHandleClass = this.handleProvider.getStartHandleClass();
     this.endHandleClass = this.handleProvider.getEndHandleClass();
+    this.slotWrapperClass = this.handleProvider.getSlotWrapperClass();
   }
 
   get hasDragSchedule() {

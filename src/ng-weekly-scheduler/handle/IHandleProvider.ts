@@ -3,4 +3,5 @@ export interface IHandleProvider {
     getPositionFromEvent(event): number;
     getStartHandleClass(): string;
     getEndHandleClass(): string;
+    getSlotWrapperClass(): string;
 }

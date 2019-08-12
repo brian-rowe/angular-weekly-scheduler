@@ -23,6 +23,7 @@ export declare class WeeklySlotController implements angular.IComponentControlle
     private handleProvider;
     private startHandleClass;
     private endHandleClass;
+    private slotWrapperClass;
     constructor($element: angular.IAugmentedJQuery, $rootScope: angular.IRootScopeService, $scope: angular.IScope, dragService: DragService, handleProviderFactory: HandleProviderFactory);
     $onInit(): void;
     readonly hasDragSchedule: boolean;

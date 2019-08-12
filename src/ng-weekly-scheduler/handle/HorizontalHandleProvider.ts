@@ -24,4 +24,8 @@ export class HorizontalHandleProvider implements IHandleProvider {
     getEndHandleClass() {
         return 'right';
     }
+
+    getSlotWrapperClass() {
+        return 'flex-row';
+    }
 }
