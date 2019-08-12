@@ -11,6 +11,7 @@ import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedule
 import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 import { PixelToValService } from '../pixel-to-val/PixelToValService';
+import { MousePositionService } from '../mouse-position/MousePositionService';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
@@ -22,6 +23,7 @@ export class MultiSliderController implements angular.IComponentController {
     '$q',
     '$scope',
     ElementOffsetService.$name,
+    MousePositionService.$name,
     MouseTrackerService.$name,
     NullEndWidth.$name,
     PixelToValService.$name,
@@ -35,6 +37,7 @@ export class MultiSliderController implements angular.IComponentController {
     private $q: angular.IQService,
     private $scope: angular.IScope,
     private elementOffsetService: ElementOffsetService,
+    private mousePositionService: MousePositionService,
     private mouseTrackerService: MouseTrackerService,
     private nullEndWidth: number,
     private pixelToValService: PixelToValService,
@@ -253,16 +256,9 @@ export class MultiSliderController implements angular.IComponentController {
     this.removeGhost();
   }
 
-  private getMousePosition(pageX: number) {
-    let elementOffsetX = this.elementOffsetService.left(this.$element);
-    let left = pageX - elementOffsetX;
-
-    return left;
-  }
-
   private getValAtMousePosition() {
     let point = this.mouseTrackerService.getMousePosition();
-    let mousePosition = this.getMousePosition(point.x);
+    let mousePosition = this.mousePositionService.getMousePosition(this.$element, point);
 
     return this.pixelToVal(mousePosition); 
   }

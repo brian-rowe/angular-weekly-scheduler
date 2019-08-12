@@ -24,6 +24,7 @@ import MaxTimeSlotModule from '../max-time-slot/module';
 import MinimumSeparationModule from '../minimum-separation/module';
 import MissingDaysModule from '../missing-days/module';
 import MonoScheduleModule from '../mono-schedule/module';
+import MousePositionModule from '../mouse-position/module';
 import MouseTrackerModule from '../mouse-tracker/module';
 import MultiSliderGridModule from '../multislider-grid/module';
 import MultiSliderModule from '../multislider/module';
@@ -73,6 +74,7 @@ export default angular.module('br.weeklyScheduler.app', [
     MaxTimeSlotModule,
     MinimumSeparationModule,
     MonoScheduleModule,
+    MousePositionModule,
     MouseTrackerModule,
     MissingDaysModule,
     MultiSliderGridModule,

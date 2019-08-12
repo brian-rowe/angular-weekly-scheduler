@@ -7,12 +7,14 @@ import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 import { PixelToValService } from '../pixel-to-val/PixelToValService';
+import { MousePositionService } from '../mouse-position/MousePositionService';
 /** @internal */
 export declare class MultiSliderController implements angular.IComponentController {
     private $element;
     private $q;
     private $scope;
     private elementOffsetService;
+    private mousePositionService;
     private mouseTrackerService;
     private nullEndWidth;
     private pixelToValService;
@@ -22,7 +24,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     static $name: string;
     static $controllerAs: string;
     static $inject: string[];
-    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, elementOffsetService: ElementOffsetService, mouseTrackerService: MouseTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
+    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, elementOffsetService: ElementOffsetService, mousePositionService: MousePositionService, mouseTrackerService: MouseTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
     private dragSchedule;
     private pendingSchedule;
     private startingGhostValues;
@@ -51,7 +53,6 @@ export declare class MultiSliderController implements angular.IComponentControll
     onGhostWrapperMouseUp(): void;
     private createGhost();
     private commitGhost(ghostSchedule);
-    private getMousePosition(pageX);
     private getValAtMousePosition();
     /**
      * Perform an external action to bring up an editor for a schedule
