@@ -50,6 +50,7 @@ export declare class WeeklySchedulerController implements angular.IController {
     private resetZoom();
     private zoomIn();
     private rollback();
+    private rotate();
     private save();
     private watchAdapter();
     private watchHoverClass();

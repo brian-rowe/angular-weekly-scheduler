@@ -185,6 +185,14 @@ export class WeeklySchedulerController implements angular.IController {
     this.formController.$setPristine();
   }
 
+  private rotate() {
+    if (this.config.orientation === 'horizontal') {
+      this.config.orientation = 'vertical';
+    } else {
+      this.config.orientation = 'horizontal';
+    }
+  }
+
   private save() {
     this.items = this.prepareItems(this.items);
 
