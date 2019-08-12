@@ -2,7 +2,6 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
-import { ElementOffsetService } from '../element-offset/ElementOffsetService';
 import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
@@ -13,7 +12,6 @@ export declare class MultiSliderController implements angular.IComponentControll
     private $element;
     private $q;
     private $scope;
-    private elementOffsetService;
     private mousePositionService;
     private mouseTrackerService;
     private nullEndWidth;
@@ -24,7 +22,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     static $name: string;
     static $controllerAs: string;
     static $inject: string[];
-    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, elementOffsetService: ElementOffsetService, mousePositionService: MousePositionService, mouseTrackerService: MouseTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
+    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, mousePositionService: MousePositionService, mouseTrackerService: MouseTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
     private dragSchedule;
     private pendingSchedule;
     private startingGhostValues;

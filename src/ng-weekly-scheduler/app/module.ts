@@ -30,6 +30,7 @@ import MultiSliderGridModule from '../multislider-grid/module';
 import MultiSliderModule from '../multislider/module';
 import NullEndModule from '../null-end/module';
 import OverlapModule from '../overlap/module';
+import PointModule from '../point/module';
 import PixelToValModule from '../pixel-to-val/module';
 import PurgeDefaultModule from '../purge-default/module';
 import ResizeModule from '../resize/module';
@@ -81,6 +82,7 @@ export default angular.module('br.weeklyScheduler.app', [
     MultiSliderModule,
     NullEndModule,
     OverlapModule,
+    PointModule,
     PixelToValModule,
     PurgeDefaultModule,
     ResizeModule,

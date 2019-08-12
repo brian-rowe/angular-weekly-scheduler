@@ -1,7 +1,7 @@
 import * as angular from 'angular';
-import { ElementOffsetService } from './ElementOffsetService';
+import { ElementOffsetProviderFactory } from './ElementOffsetProviderFactory';
 
 export default angular
     .module('rr.weeklyScheduler.elementOffset', [])
-    .service(ElementOffsetService.$name, ElementOffsetService)
+    .service(ElementOffsetProviderFactory.$name, ElementOffsetProviderFactory)
     .name;

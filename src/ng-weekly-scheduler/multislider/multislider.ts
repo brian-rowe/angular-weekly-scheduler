@@ -4,7 +4,6 @@ import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedule
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
-import { ElementOffsetService } from '../element-offset/ElementOffsetService';
 import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
@@ -22,7 +21,6 @@ export class MultiSliderController implements angular.IComponentController {
     '$element',
     '$q',
     '$scope',
-    ElementOffsetService.$name,
     MousePositionService.$name,
     MouseTrackerService.$name,
     NullEndWidth.$name,
@@ -36,7 +34,6 @@ export class MultiSliderController implements angular.IComponentController {
     private $element: angular.IAugmentedJQuery,
     private $q: angular.IQService,
     private $scope: angular.IScope,
-    private elementOffsetService: ElementOffsetService,
     private mousePositionService: MousePositionService,
     private mouseTrackerService: MouseTrackerService,
     private nullEndWidth: number,
@@ -258,7 +255,7 @@ export class MultiSliderController implements angular.IComponentController {
 
   private getValAtMousePosition() {
     let point = this.mouseTrackerService.getMousePosition();
-    let mousePosition = this.mousePositionService.getMousePosition(this.$element, point);
+    let mousePosition = this.mousePositionService.getMousePosition(this.config, this.$element, point);
 
     return this.pixelToVal(mousePosition); 
   }

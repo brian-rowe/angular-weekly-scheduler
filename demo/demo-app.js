@@ -37107,26 +37107,27 @@ var module_26 = __webpack_require__(/*! ../multislider-grid/module */ "./src/ng-
 var module_27 = __webpack_require__(/*! ../multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
 var module_28 = __webpack_require__(/*! ../null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
 var module_29 = __webpack_require__(/*! ../overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
-var module_30 = __webpack_require__(/*! ../pixel-to-val/module */ "./src/ng-weekly-scheduler/pixel-to-val/module.ts");
-var module_31 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
-var module_32 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
-var module_33 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
-var module_34 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
-var module_35 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
-var module_36 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
-var module_37 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
-var module_38 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
-var module_39 = __webpack_require__(/*! ../slot-style/module */ "./src/ng-weekly-scheduler/slot-style/module.ts");
-var module_40 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
-var module_41 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
-var module_42 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
-var module_43 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
-var module_44 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
-var module_45 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
-var module_46 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
-var module_47 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
-var module_48 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
-var module_49 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
+var module_30 = __webpack_require__(/*! ../point/module */ "./src/ng-weekly-scheduler/point/module.ts");
+var module_31 = __webpack_require__(/*! ../pixel-to-val/module */ "./src/ng-weekly-scheduler/pixel-to-val/module.ts");
+var module_32 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
+var module_33 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
+var module_34 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
+var module_35 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
+var module_36 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
+var module_37 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
+var module_38 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
+var module_39 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
+var module_40 = __webpack_require__(/*! ../slot-style/module */ "./src/ng-weekly-scheduler/slot-style/module.ts");
+var module_41 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
+var module_42 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
+var module_43 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
+var module_44 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
+var module_45 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
+var module_46 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
+var module_47 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
+var module_48 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
+var module_49 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
+var module_50 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
 exports.default = angular.module('br.weeklyScheduler.app', [
     module_1.default,
     module_2.default,
@@ -37176,7 +37177,8 @@ exports.default = angular.module('br.weeklyScheduler.app', [
     module_46.default,
     module_47.default,
     module_48.default,
-    module_49.default
+    module_49.default,
+    module_50.default
 ])
     .name;
 
@@ -37715,34 +37717,79 @@ exports.default = angular
 
 /***/ }),
 
-/***/ "./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts":
-/*!************************************************************************!*\
-  !*** ./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts ***!
-  \************************************************************************/
+/***/ "./src/ng-weekly-scheduler/element-offset/ElementOffsetProviderFactory.ts":
+/*!********************************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/element-offset/ElementOffsetProviderFactory.ts ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-/**
- * This helps reduce code duplication
- * This is used as a substitute for jQuery to keep dependencies minimal
- */
 Object.defineProperty(exports, "__esModule", { value: true });
-/** @internal */
-var ElementOffsetService = /** @class */ (function () {
-    function ElementOffsetService() {
+var HorizontalElementOffsetProvider_1 = __webpack_require__(/*! ./HorizontalElementOffsetProvider */ "./src/ng-weekly-scheduler/element-offset/HorizontalElementOffsetProvider.ts");
+var VerticalElementOffsetProvider_1 = __webpack_require__(/*! ./VerticalElementOffsetProvider */ "./src/ng-weekly-scheduler/element-offset/VerticalElementOffsetProvider.ts");
+var ElementOffsetProviderFactory = /** @class */ (function () {
+    function ElementOffsetProviderFactory() {
     }
-    ElementOffsetService.prototype.left = function ($element) {
+    ElementOffsetProviderFactory.prototype.getElementOffsetProvider = function (config) {
+        if (config.orientation === 'horizontal') {
+            return new HorizontalElementOffsetProvider_1.HorizontalElementOffsetProvider();
+        }
+        else {
+            return new VerticalElementOffsetProvider_1.VerticalElementOffsetProvider();
+        }
+    };
+    ElementOffsetProviderFactory.$name = 'rrWeeklySchedulerElementOffsetProvider';
+    return ElementOffsetProviderFactory;
+}());
+exports.ElementOffsetProviderFactory = ElementOffsetProviderFactory;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/element-offset/HorizontalElementOffsetProvider.ts":
+/*!***********************************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/element-offset/HorizontalElementOffsetProvider.ts ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HorizontalElementOffsetProvider = /** @class */ (function () {
+    function HorizontalElementOffsetProvider() {
+    }
+    HorizontalElementOffsetProvider.prototype.getElementOffset = function ($element) {
         return $element[0].getBoundingClientRect().left;
     };
-    ElementOffsetService.prototype.right = function ($element) {
-        return $element[0].getBoundingClientRect().right;
-    };
-    ElementOffsetService.$name = 'brWeeklySchedulerElementOffsetService';
-    return ElementOffsetService;
+    return HorizontalElementOffsetProvider;
 }());
-exports.ElementOffsetService = ElementOffsetService;
+exports.HorizontalElementOffsetProvider = HorizontalElementOffsetProvider;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/element-offset/VerticalElementOffsetProvider.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/element-offset/VerticalElementOffsetProvider.ts ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var VerticalElementOffsetProvider = /** @class */ (function () {
+    function VerticalElementOffsetProvider() {
+    }
+    VerticalElementOffsetProvider.prototype.getElementOffset = function ($element) {
+        return $element[0].getBoundingClientRect().top;
+    };
+    return VerticalElementOffsetProvider;
+}());
+exports.VerticalElementOffsetProvider = VerticalElementOffsetProvider;
 
 
 /***/ }),
@@ -37758,10 +37805,10 @@ exports.ElementOffsetService = ElementOffsetService;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
-var ElementOffsetService_1 = __webpack_require__(/*! ./ElementOffsetService */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts");
+var ElementOffsetProviderFactory_1 = __webpack_require__(/*! ./ElementOffsetProviderFactory */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetProviderFactory.ts");
 exports.default = angular
     .module('rr.weeklyScheduler.elementOffset', [])
-    .service(ElementOffsetService_1.ElementOffsetService.$name, ElementOffsetService_1.ElementOffsetService)
+    .service(ElementOffsetProviderFactory_1.ElementOffsetProviderFactory.$name, ElementOffsetProviderFactory_1.ElementOffsetProviderFactory)
     .name;
 
 
@@ -39113,23 +39160,29 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ElementOffsetService_1 = __webpack_require__(/*! ../element-offset/ElementOffsetService */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts");
+var ElementOffsetProviderFactory_1 = __webpack_require__(/*! ../element-offset/ElementOffsetProviderFactory */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetProviderFactory.ts");
+var PointProviderFactory_1 = __webpack_require__(/*! ../point/PointProviderFactory */ "./src/ng-weekly-scheduler/point/PointProviderFactory.ts");
 /**
  * Gets mouse position relative to the calendar element.
  * (as opposed to mouse-tracker, which gets the mouse position relative to the document)
  */
 var MousePositionService = /** @class */ (function () {
-    function MousePositionService(elementOffsetService) {
-        this.elementOffsetService = elementOffsetService;
+    function MousePositionService(elementOffsetProviderFactory, pointProviderFactory) {
+        this.elementOffsetProviderFactory = elementOffsetProviderFactory;
+        this.pointProviderFactory = pointProviderFactory;
     }
-    MousePositionService.prototype.getMousePosition = function ($element, point) {
-        var elementOffset = this.elementOffsetService.left($element);
-        var position = point.x - elementOffset;
+    MousePositionService.prototype.getMousePosition = function (config, $element, point) {
+        var elementOffsetProvider = this.elementOffsetProviderFactory.getElementOffsetProvider(config);
+        var elementOffset = elementOffsetProvider.getElementOffset($element);
+        var pointProvider = this.pointProviderFactory.getPointProvider(config);
+        var pointValue = pointProvider.getValue(point);
+        var position = pointValue - elementOffset;
         return position;
     };
     MousePositionService.$name = 'rrWeeklySchedulerMousePositionService';
     MousePositionService.$inject = [
-        ElementOffsetService_1.ElementOffsetService.$name
+        ElementOffsetProviderFactory_1.ElementOffsetProviderFactory.$name,
+        PointProviderFactory_1.PointProviderFactory.$name
     ];
     return MousePositionService;
 }());
@@ -39325,7 +39378,6 @@ module.exports = "<div class=\"ghost-wrapper\" config=\"multiSliderCtrl.config\"
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
-var ElementOffsetService_1 = __webpack_require__(/*! ../element-offset/ElementOffsetService */ "./src/ng-weekly-scheduler/element-offset/ElementOffsetService.ts");
 var MouseTrackerService_1 = __webpack_require__(/*! ../mouse-tracker/MouseTrackerService */ "./src/ng-weekly-scheduler/mouse-tracker/MouseTrackerService.ts");
 var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
 var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
@@ -39334,11 +39386,10 @@ var PixelToValService_1 = __webpack_require__(/*! ../pixel-to-val/PixelToValServ
 var MousePositionService_1 = __webpack_require__(/*! ../mouse-position/MousePositionService */ "./src/ng-weekly-scheduler/mouse-position/MousePositionService.ts");
 /** @internal */
 var MultiSliderController = /** @class */ (function () {
-    function MultiSliderController($element, $q, $scope, elementOffsetService, mousePositionService, mouseTrackerService, nullEndWidth, pixelToValService, slotStyleFactory, rangeFactory, valueNormalizationService) {
+    function MultiSliderController($element, $q, $scope, mousePositionService, mouseTrackerService, nullEndWidth, pixelToValService, slotStyleFactory, rangeFactory, valueNormalizationService) {
         this.$element = $element;
         this.$q = $q;
         this.$scope = $scope;
-        this.elementOffsetService = elementOffsetService;
         this.mousePositionService = mousePositionService;
         this.mouseTrackerService = mouseTrackerService;
         this.nullEndWidth = nullEndWidth;
@@ -39509,7 +39560,7 @@ var MultiSliderController = /** @class */ (function () {
     };
     MultiSliderController.prototype.getValAtMousePosition = function () {
         var point = this.mouseTrackerService.getMousePosition();
-        var mousePosition = this.mousePositionService.getMousePosition(this.$element, point);
+        var mousePosition = this.mousePositionService.getMousePosition(this.config, this.$element, point);
         return this.pixelToVal(mousePosition);
     };
     /**
@@ -39571,7 +39622,6 @@ var MultiSliderController = /** @class */ (function () {
         '$element',
         '$q',
         '$scope',
-        ElementOffsetService_1.ElementOffsetService.$name,
         MousePositionService_1.MousePositionService.$name,
         MouseTrackerService_1.MouseTrackerService.$name,
         NullEndWidth_1.NullEndWidth.$name,
@@ -39904,6 +39954,103 @@ exports.default = angular
     .module('rr.weeklyScheduler.pixelToVal', [])
     .service(PixelToValProviderFactory_1.PixelToValProviderFactory.$name, PixelToValProviderFactory_1.PixelToValProviderFactory)
     .service(PixelToValService_1.PixelToValService.$name, PixelToValService_1.PixelToValService)
+    .name;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/point/HorizontalPointProvider.ts":
+/*!******************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/point/HorizontalPointProvider.ts ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HorizontalPointProvider = /** @class */ (function () {
+    function HorizontalPointProvider() {
+    }
+    HorizontalPointProvider.prototype.getValue = function (point) {
+        return point.x;
+    };
+    return HorizontalPointProvider;
+}());
+exports.HorizontalPointProvider = HorizontalPointProvider;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/point/PointProviderFactory.ts":
+/*!***************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/point/PointProviderFactory.ts ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HorizontalPointProvider_1 = __webpack_require__(/*! ./HorizontalPointProvider */ "./src/ng-weekly-scheduler/point/HorizontalPointProvider.ts");
+var VerticalPointProvider_1 = __webpack_require__(/*! ./VerticalPointProvider */ "./src/ng-weekly-scheduler/point/VerticalPointProvider.ts");
+var PointProviderFactory = /** @class */ (function () {
+    function PointProviderFactory() {
+    }
+    PointProviderFactory.prototype.getPointProvider = function (config) {
+        if (config.orientation === 'horizontal') {
+            return new HorizontalPointProvider_1.HorizontalPointProvider();
+        }
+        else {
+            return new VerticalPointProvider_1.VerticalPointProvider();
+        }
+    };
+    PointProviderFactory.$name = 'rrWeeklySchedulerPointProviderFactory';
+    return PointProviderFactory;
+}());
+exports.PointProviderFactory = PointProviderFactory;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/point/VerticalPointProvider.ts":
+/*!****************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/point/VerticalPointProvider.ts ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var VerticalPointProvider = /** @class */ (function () {
+    function VerticalPointProvider() {
+    }
+    VerticalPointProvider.prototype.getValue = function (point) {
+        return point.y;
+    };
+    return VerticalPointProvider;
+}());
+exports.VerticalPointProvider = VerticalPointProvider;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/point/module.ts":
+/*!*************************************************!*\
+  !*** ./src/ng-weekly-scheduler/point/module.ts ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var PointProviderFactory_1 = __webpack_require__(/*! ./PointProviderFactory */ "./src/ng-weekly-scheduler/point/PointProviderFactory.ts");
+exports.default = angular
+    .module('rr.weeklyScheduler.point', [])
+    .service(PointProviderFactory_1.PointProviderFactory.$name, PointProviderFactory_1.PointProviderFactory)
     .name;
 
 
