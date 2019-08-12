@@ -36,7 +36,7 @@ export class DemoController {
                     console.log('changed!');
                 },
                 orientationOptions: {
-                    defaultOrientation: 'horizontal'
+                    defaultOrientation: 'vertical'
                 },
                 restrictionExplanations: {
                     maxTimeSlot: (value) => `Slots cannot be longer than ${value}!`

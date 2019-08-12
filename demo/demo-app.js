@@ -37573,7 +37573,7 @@ var DemoController = /** @class */ (function () {
                     console.log('changed!');
                 },
                 orientationOptions: {
-                    defaultOrientation: 'horizontal'
+                    defaultOrientation: 'vertical'
                 },
                 restrictionExplanations: {
                     maxTimeSlot: function (value) { return "Slots cannot be longer than " + value + "!"; }
