@@ -10,6 +10,7 @@ import { ValueNormalizationService } from '../value-normalization/ValueNormaliza
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
+import { PixelToValService } from '../pixel-to-val/PixelToValService';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
@@ -23,6 +24,7 @@ export class MultiSliderController implements angular.IComponentController {
     ElementOffsetService.$name,
     MouseTrackerService.$name,
     NullEndWidth.$name,
+    PixelToValService.$name,
     SlotStyleFactory.$name,
     WeeklySchedulerRangeFactory.$name,
     ValueNormalizationService.$name
@@ -35,6 +37,7 @@ export class MultiSliderController implements angular.IComponentController {
     private elementOffsetService: ElementOffsetService,
     private mouseTrackerService: MouseTrackerService,
     private nullEndWidth: number,
+    private pixelToValService: PixelToValService,
     private slotStyleFactory: SlotStyleFactory,
     private rangeFactory: WeeklySchedulerRangeFactory,
     private valueNormalizationService: ValueNormalizationService
@@ -314,8 +317,7 @@ export class MultiSliderController implements angular.IComponentController {
   }
 
   public pixelToVal(pixel: number) {
-    var percent = pixel / this.element.clientWidth;
-    return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
+    return this.pixelToValService.pixelToVal(this.config, this.element, pixel);
   }
 
   private normalizeGhostValue(value: number) {

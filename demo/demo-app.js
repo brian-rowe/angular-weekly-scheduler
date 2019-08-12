@@ -37106,25 +37106,26 @@ var module_25 = __webpack_require__(/*! ../multislider-grid/module */ "./src/ng-
 var module_26 = __webpack_require__(/*! ../multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
 var module_27 = __webpack_require__(/*! ../null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
 var module_28 = __webpack_require__(/*! ../overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
-var module_29 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
-var module_30 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
-var module_31 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
-var module_32 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
-var module_33 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
-var module_34 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
-var module_35 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
-var module_36 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
-var module_37 = __webpack_require__(/*! ../slot-style/module */ "./src/ng-weekly-scheduler/slot-style/module.ts");
-var module_38 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
-var module_39 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
-var module_40 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
-var module_41 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
-var module_42 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
-var module_43 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
-var module_44 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
-var module_45 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
-var module_46 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
-var module_47 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
+var module_29 = __webpack_require__(/*! ../pixel-to-val/module */ "./src/ng-weekly-scheduler/pixel-to-val/module.ts");
+var module_30 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
+var module_31 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
+var module_32 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
+var module_33 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
+var module_34 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
+var module_35 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
+var module_36 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
+var module_37 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
+var module_38 = __webpack_require__(/*! ../slot-style/module */ "./src/ng-weekly-scheduler/slot-style/module.ts");
+var module_39 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
+var module_40 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
+var module_41 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
+var module_42 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
+var module_43 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
+var module_44 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
+var module_45 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
+var module_46 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
+var module_47 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
+var module_48 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
 exports.default = angular.module('br.weeklyScheduler.app', [
     module_1.default,
     module_2.default,
@@ -37172,7 +37173,8 @@ exports.default = angular.module('br.weeklyScheduler.app', [
     module_44.default,
     module_45.default,
     module_46.default,
-    module_47.default
+    module_47.default,
+    module_48.default
 ])
     .name;
 
@@ -39271,15 +39273,17 @@ var MouseTrackerService_1 = __webpack_require__(/*! ../mouse-tracker/MouseTracke
 var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
 var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
 var SlotStyleFactory_1 = __webpack_require__(/*! ../slot-style/SlotStyleFactory */ "./src/ng-weekly-scheduler/slot-style/SlotStyleFactory.ts");
+var PixelToValService_1 = __webpack_require__(/*! ../pixel-to-val/PixelToValService */ "./src/ng-weekly-scheduler/pixel-to-val/PixelToValService.ts");
 /** @internal */
 var MultiSliderController = /** @class */ (function () {
-    function MultiSliderController($element, $q, $scope, elementOffsetService, mouseTrackerService, nullEndWidth, slotStyleFactory, rangeFactory, valueNormalizationService) {
+    function MultiSliderController($element, $q, $scope, elementOffsetService, mouseTrackerService, nullEndWidth, pixelToValService, slotStyleFactory, rangeFactory, valueNormalizationService) {
         this.$element = $element;
         this.$q = $q;
         this.$scope = $scope;
         this.elementOffsetService = elementOffsetService;
         this.mouseTrackerService = mouseTrackerService;
         this.nullEndWidth = nullEndWidth;
+        this.pixelToValService = pixelToValService;
         this.slotStyleFactory = slotStyleFactory;
         this.rangeFactory = rangeFactory;
         this.valueNormalizationService = valueNormalizationService;
@@ -39497,8 +39501,7 @@ var MultiSliderController = /** @class */ (function () {
         return false;
     };
     MultiSliderController.prototype.pixelToVal = function (pixel) {
-        var percent = pixel / this.element.clientWidth;
-        return Math.floor(percent * (this.config.intervalCount) + 0.5) * this.config.interval;
+        return this.pixelToValService.pixelToVal(this.config, this.element, pixel);
     };
     MultiSliderController.prototype.normalizeGhostValue = function (value) {
         return this.valueNormalizationService.normalizeValue(value, 0, this.config.maxValue);
@@ -39517,6 +39520,7 @@ var MultiSliderController = /** @class */ (function () {
         ElementOffsetService_1.ElementOffsetService.$name,
         MouseTrackerService_1.MouseTrackerService.$name,
         NullEndWidth_1.NullEndWidth.$name,
+        PixelToValService_1.PixelToValService.$name,
         SlotStyleFactory_1.SlotStyleFactory.$name,
         WeeklySchedulerRangeFactory_1.WeeklySchedulerRangeFactory.$name,
         ValueNormalizationService_1.ValueNormalizationService.$name
@@ -39714,6 +39718,137 @@ exports.default = angular
     .module('rr.weeklyScheduler.overlap', [])
     .directive(OverlapDirective_1.OverlapDirective.$name, OverlapDirective_1.OverlapDirective.Factory())
     .service(OverlapService_1.OverlapService.$name, OverlapService_1.OverlapService)
+    .name;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/pixel-to-val/HorizontalPixelToValProvider.ts":
+/*!******************************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/pixel-to-val/HorizontalPixelToValProvider.ts ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HorizontalPixelToValProvider = /** @class */ (function () {
+    function HorizontalPixelToValProvider() {
+    }
+    HorizontalPixelToValProvider.prototype.getSize = function (element) {
+        return element.clientWidth;
+    };
+    return HorizontalPixelToValProvider;
+}());
+exports.HorizontalPixelToValProvider = HorizontalPixelToValProvider;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/pixel-to-val/PixelToValProviderFactory.ts":
+/*!***************************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/pixel-to-val/PixelToValProviderFactory.ts ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HorizontalPixelToValProvider_1 = __webpack_require__(/*! ./HorizontalPixelToValProvider */ "./src/ng-weekly-scheduler/pixel-to-val/HorizontalPixelToValProvider.ts");
+var VerticalPixelToValProvider_1 = __webpack_require__(/*! ./VerticalPixelToValProvider */ "./src/ng-weekly-scheduler/pixel-to-val/VerticalPixelToValProvider.ts");
+var PixelToValProviderFactory = /** @class */ (function () {
+    function PixelToValProviderFactory() {
+    }
+    PixelToValProviderFactory.prototype.getPixelToValProvider = function (config) {
+        if (config.orientation === 'horizontal') {
+            return new HorizontalPixelToValProvider_1.HorizontalPixelToValProvider();
+        }
+        else {
+            return new VerticalPixelToValProvider_1.VerticalPixelToValProvider();
+        }
+    };
+    PixelToValProviderFactory.$name = 'rrWeeklySchedulerPixelToValProviderFactory';
+    return PixelToValProviderFactory;
+}());
+exports.PixelToValProviderFactory = PixelToValProviderFactory;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/pixel-to-val/PixelToValService.ts":
+/*!*******************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/pixel-to-val/PixelToValService.ts ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var PixelToValProviderFactory_1 = __webpack_require__(/*! ./PixelToValProviderFactory */ "./src/ng-weekly-scheduler/pixel-to-val/PixelToValProviderFactory.ts");
+var PixelToValService = /** @class */ (function () {
+    function PixelToValService(pixelToValProviderFactory) {
+        this.pixelToValProviderFactory = pixelToValProviderFactory;
+    }
+    PixelToValService.prototype.pixelToVal = function (config, element, pixel) {
+        var provider = this.pixelToValProviderFactory.getPixelToValProvider(config);
+        var percent = pixel / provider.getSize(element);
+        var result = Math.floor(percent * (config.intervalCount) + 0.5) * config.interval;
+        return result;
+    };
+    PixelToValService.$name = 'rrWeeklySchedulerPixelToValService';
+    PixelToValService.$inject = [
+        PixelToValProviderFactory_1.PixelToValProviderFactory.$name
+    ];
+    return PixelToValService;
+}());
+exports.PixelToValService = PixelToValService;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/pixel-to-val/VerticalPixelToValProvider.ts":
+/*!****************************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/pixel-to-val/VerticalPixelToValProvider.ts ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var VerticalPixelToValProvider = /** @class */ (function () {
+    function VerticalPixelToValProvider() {
+    }
+    VerticalPixelToValProvider.prototype.getSize = function (element) {
+        return element.clientHeight;
+    };
+    return VerticalPixelToValProvider;
+}());
+exports.VerticalPixelToValProvider = VerticalPixelToValProvider;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/pixel-to-val/module.ts":
+/*!********************************************************!*\
+  !*** ./src/ng-weekly-scheduler/pixel-to-val/module.ts ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var PixelToValProviderFactory_1 = __webpack_require__(/*! ./PixelToValProviderFactory */ "./src/ng-weekly-scheduler/pixel-to-val/PixelToValProviderFactory.ts");
+var PixelToValService_1 = __webpack_require__(/*! ./PixelToValService */ "./src/ng-weekly-scheduler/pixel-to-val/PixelToValService.ts");
+exports.default = angular
+    .module('rr.weeklyScheduler.pixelToVal', [])
+    .service(PixelToValProviderFactory_1.PixelToValProviderFactory.$name, PixelToValProviderFactory_1.PixelToValProviderFactory)
+    .service(PixelToValService_1.PixelToValService.$name, PixelToValService_1.PixelToValService)
     .name;
 
 
