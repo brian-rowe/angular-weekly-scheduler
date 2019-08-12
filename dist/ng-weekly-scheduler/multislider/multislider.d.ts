@@ -52,7 +52,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     private createGhost();
     private commitGhost(ghostSchedule);
     private getMousePosition(pageX);
-    private getValAtMousePosition(pageX);
+    private getValAtMousePosition();
     /**
      * Perform an external action to bring up an editor for a schedule
      */

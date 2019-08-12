@@ -39379,8 +39379,7 @@ var MultiSliderController = /** @class */ (function () {
     };
     /** Expand ghost while dragging in it */
     MultiSliderController.prototype.adjustGhost = function () {
-        var point = this.mouseTrackerService.getMousePosition();
-        var mouseValue = this.getValAtMousePosition(point.x);
+        var mouseValue = this.getValAtMousePosition();
         var existingStartValue = this.startingGhostValues.start;
         var updatedStartValue;
         var updatedEndValue;
@@ -39402,8 +39401,7 @@ var MultiSliderController = /** @class */ (function () {
     };
     /** Move ghost around while not dragging */
     MultiSliderController.prototype.positionGhost = function () {
-        var point = this.mouseTrackerService.getMousePosition();
-        var val = this.getValAtMousePosition(point.x);
+        var val = this.getValAtMousePosition();
         this.startingGhostValues = {
             start: val,
             end: this.config.nullEnds ? val + this.nullEndWidth : val + this.config.interval
@@ -39455,8 +39453,10 @@ var MultiSliderController = /** @class */ (function () {
         var left = pageX - elementOffsetX;
         return left;
     };
-    MultiSliderController.prototype.getValAtMousePosition = function (pageX) {
-        return this.pixelToVal(this.getMousePosition(pageX));
+    MultiSliderController.prototype.getValAtMousePosition = function () {
+        var point = this.mouseTrackerService.getMousePosition();
+        var mousePosition = this.getMousePosition(point.x);
+        return this.pixelToVal(mousePosition);
     };
     /**
      * Perform an external action to bring up an editor for a schedule
