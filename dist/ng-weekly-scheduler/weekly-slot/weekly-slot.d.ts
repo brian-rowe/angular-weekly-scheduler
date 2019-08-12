@@ -1,12 +1,14 @@
 /// <reference types="angular" />
 import * as angular from 'angular';
 import { DragService } from '../drag/DragService';
+import { HandleProviderFactory } from '../handle/HandleProviderFactory';
 /** @internal */
 export declare class WeeklySlotController implements angular.IComponentController {
     private $element;
     private $rootScope;
     private $scope;
     private dragService;
+    private handleProviderFactory;
     static $name: string;
     static $controllerAs: string;
     static $inject: string[];
@@ -18,7 +20,11 @@ export declare class WeeklySlotController implements angular.IComponentControlle
     private dragSchedule;
     private schedule;
     private valuesOnDragStart;
-    constructor($element: angular.IAugmentedJQuery, $rootScope: angular.IRootScopeService, $scope: angular.IScope, dragService: DragService);
+    private handleProvider;
+    private startHandleClass;
+    private endHandleClass;
+    constructor($element: angular.IAugmentedJQuery, $rootScope: angular.IRootScopeService, $scope: angular.IScope, dragService: DragService, handleProviderFactory: HandleProviderFactory);
+    $onInit(): void;
     readonly hasDragSchedule: boolean;
     private getDragStartValues();
     editSelf(): void;

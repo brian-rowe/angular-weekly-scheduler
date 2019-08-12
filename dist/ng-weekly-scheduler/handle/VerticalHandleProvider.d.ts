@@ -7,4 +7,6 @@ export declare class VerticalHandleProvider implements IHandleProvider {
     constructor(mouseTrackerService: MouseTrackerService, touchService: TouchService);
     getCursorPosition(): number;
     getPositionFromEvent(event: any): any;
+    getStartHandleClass(): string;
+    getEndHandleClass(): string;
 }

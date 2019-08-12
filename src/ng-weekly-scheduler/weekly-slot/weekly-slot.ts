@@ -5,6 +5,8 @@ import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedule
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
+import { HandleProviderFactory } from '../handle/HandleProviderFactory';
+import { IHandleProvider } from '../handle/IHandleProvider';
 
 /** @internal */
 export class WeeklySlotController implements angular.IComponentController {
@@ -15,7 +17,8 @@ export class WeeklySlotController implements angular.IComponentController {
     '$element',
     '$rootScope',
     '$scope',
-    DragService.$name
+    DragService.$name,
+    HandleProviderFactory.$name
   ];
 
   private config: IWeeklySchedulerConfig<any>;
@@ -30,12 +33,23 @@ export class WeeklySlotController implements angular.IComponentController {
 
   private valuesOnDragStart: WeeklySchedulerRange<any>;
 
+  private handleProvider: IHandleProvider;
+  private startHandleClass: string;
+  private endHandleClass: string;
+
   constructor(
     private $element: angular.IAugmentedJQuery,
     private $rootScope: angular.IRootScopeService,
     private $scope: angular.IScope,
     private dragService: DragService,
+    private handleProviderFactory: HandleProviderFactory
   ) {
+  }
+
+  $onInit() {
+    this.handleProvider = this.handleProviderFactory.getHandleProvider(this.config);
+    this.startHandleClass = this.handleProvider.getStartHandleClass();
+    this.endHandleClass = this.handleProvider.getEndHandleClass();
   }
 
   get hasDragSchedule() {

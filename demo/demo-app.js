@@ -38415,6 +38415,12 @@ var HorizontalHandleProvider = /** @class */ (function () {
     HorizontalHandleProvider.prototype.getPositionFromEvent = function (event) {
         return event.pageX || this.touchService.getPageX(event);
     };
+    HorizontalHandleProvider.prototype.getStartHandleClass = function () {
+        return 'left';
+    };
+    HorizontalHandleProvider.prototype.getEndHandleClass = function () {
+        return 'right';
+    };
     return HorizontalHandleProvider;
 }());
 exports.HorizontalHandleProvider = HorizontalHandleProvider;
@@ -38442,6 +38448,12 @@ var VerticalHandleProvider = /** @class */ (function () {
     };
     VerticalHandleProvider.prototype.getPositionFromEvent = function (event) {
         return event.pageY || this.touchService.getPageY(event);
+    };
+    VerticalHandleProvider.prototype.getStartHandleClass = function () {
+        return 'top';
+    };
+    VerticalHandleProvider.prototype.getEndHandleClass = function () {
+        return 'bottom';
     };
     return VerticalHandleProvider;
 }());
@@ -41903,7 +41915,7 @@ exports.default = angular
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}\">\r\n  <div class=\"handle left\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.resizeStart(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n  <div class=\"middle\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.drag(delta)\" ondragstart=\"weeklySlotCtrl.startDrag()\" ondragstop=\"weeklySlotCtrl.endDrag()\" br-handle immediate=\"weeklySlotCtrl.hasDragSchedule\">\r\n    <br-time-range schedule=\"weeklySlotCtrl.schedule\"></br-time-range>\r\n  </div>\r\n  <div class=\"handle right\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.resizeEnd(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n</div>";
+module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}\">\r\n  <div class=\"handle\" config=\"weeklySlotCtrl.config\" ng-class=\"weeklySlotCtrl.startHandleClass\" ondrag=\"weeklySlotCtrl.resizeStart(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n  <div class=\"middle\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.drag(delta)\" ondragstart=\"weeklySlotCtrl.startDrag()\" ondragstop=\"weeklySlotCtrl.endDrag()\" br-handle immediate=\"weeklySlotCtrl.hasDragSchedule\">\r\n    <br-time-range schedule=\"weeklySlotCtrl.schedule\"></br-time-range>\r\n  </div>\r\n  <div class=\"handle\" config=\"weeklySlotCtrl.config\" ng-class=\"weeklySlotCtrl.endHandleClass\" ondrag=\"weeklySlotCtrl.resizeEnd(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n</div>";
 
 /***/ }),
 
@@ -41919,14 +41931,21 @@ module.exports = "<div class=\"slotWrapper\" title=\"{{weeklySlotCtrl.schedule.s
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var DragService_1 = __webpack_require__(/*! ../drag/DragService */ "./src/ng-weekly-scheduler/drag/DragService.ts");
+var HandleProviderFactory_1 = __webpack_require__(/*! ../handle/HandleProviderFactory */ "./src/ng-weekly-scheduler/handle/HandleProviderFactory.ts");
 /** @internal */
 var WeeklySlotController = /** @class */ (function () {
-    function WeeklySlotController($element, $rootScope, $scope, dragService) {
+    function WeeklySlotController($element, $rootScope, $scope, dragService, handleProviderFactory) {
         this.$element = $element;
         this.$rootScope = $rootScope;
         this.$scope = $scope;
         this.dragService = dragService;
+        this.handleProviderFactory = handleProviderFactory;
     }
+    WeeklySlotController.prototype.$onInit = function () {
+        this.handleProvider = this.handleProviderFactory.getHandleProvider(this.config);
+        this.startHandleClass = this.handleProvider.getStartHandleClass();
+        this.endHandleClass = this.handleProvider.getEndHandleClass();
+    };
     Object.defineProperty(WeeklySlotController.prototype, "hasDragSchedule", {
         get: function () {
             return angular.isDefined(this.dragSchedule) && this.dragSchedule != null;
@@ -42017,7 +42036,8 @@ var WeeklySlotController = /** @class */ (function () {
         '$element',
         '$rootScope',
         '$scope',
-        DragService_1.DragService.$name
+        DragService_1.DragService.$name,
+        HandleProviderFactory_1.HandleProviderFactory.$name
     ];
     return WeeklySlotController;
 }());
