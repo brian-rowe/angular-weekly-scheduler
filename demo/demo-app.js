@@ -37096,38 +37096,39 @@ var module_15 = __webpack_require__(/*! ../hour-grid/module */ "./src/ng-weekly-
 var module_16 = __webpack_require__(/*! ../hourly-grid/module */ "./src/ng-weekly-scheduler/hourly-grid/module.ts");
 var module_17 = __webpack_require__(/*! ../hour-text/module */ "./src/ng-weekly-scheduler/hour-text/module.ts");
 var module_18 = __webpack_require__(/*! ../interval-generation/module */ "./src/ng-weekly-scheduler/interval-generation/module.ts");
-var module_19 = __webpack_require__(/*! ../last-ghost-day/module */ "./src/ng-weekly-scheduler/last-ghost-day/module.ts");
-var module_20 = __webpack_require__(/*! ../max-time-slot/module */ "./src/ng-weekly-scheduler/max-time-slot/module.ts");
-var module_21 = __webpack_require__(/*! ../minimum-separation/module */ "./src/ng-weekly-scheduler/minimum-separation/module.ts");
-var module_22 = __webpack_require__(/*! ../missing-days/module */ "./src/ng-weekly-scheduler/missing-days/module.ts");
-var module_23 = __webpack_require__(/*! ../mono-schedule/module */ "./src/ng-weekly-scheduler/mono-schedule/module.ts");
-var module_24 = __webpack_require__(/*! ../mouse-position/module */ "./src/ng-weekly-scheduler/mouse-position/module.ts");
-var module_25 = __webpack_require__(/*! ../mouse-tracker/module */ "./src/ng-weekly-scheduler/mouse-tracker/module.ts");
-var module_26 = __webpack_require__(/*! ../multislider-grid/module */ "./src/ng-weekly-scheduler/multislider-grid/module.ts");
-var module_27 = __webpack_require__(/*! ../multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
-var module_28 = __webpack_require__(/*! ../null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
-var module_29 = __webpack_require__(/*! ../overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
-var module_30 = __webpack_require__(/*! ../point/module */ "./src/ng-weekly-scheduler/point/module.ts");
-var module_31 = __webpack_require__(/*! ../pixel-to-val/module */ "./src/ng-weekly-scheduler/pixel-to-val/module.ts");
-var module_32 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
-var module_33 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
-var module_34 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
-var module_35 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
-var module_36 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
-var module_37 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
-var module_38 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
-var module_39 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
-var module_40 = __webpack_require__(/*! ../slot-style/module */ "./src/ng-weekly-scheduler/slot-style/module.ts");
-var module_41 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
-var module_42 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
-var module_43 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
-var module_44 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
-var module_45 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
-var module_46 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
-var module_47 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
-var module_48 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
-var module_49 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
-var module_50 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
+var module_19 = __webpack_require__(/*! ../label-column/module */ "./src/ng-weekly-scheduler/label-column/module.ts");
+var module_20 = __webpack_require__(/*! ../last-ghost-day/module */ "./src/ng-weekly-scheduler/last-ghost-day/module.ts");
+var module_21 = __webpack_require__(/*! ../max-time-slot/module */ "./src/ng-weekly-scheduler/max-time-slot/module.ts");
+var module_22 = __webpack_require__(/*! ../minimum-separation/module */ "./src/ng-weekly-scheduler/minimum-separation/module.ts");
+var module_23 = __webpack_require__(/*! ../missing-days/module */ "./src/ng-weekly-scheduler/missing-days/module.ts");
+var module_24 = __webpack_require__(/*! ../mono-schedule/module */ "./src/ng-weekly-scheduler/mono-schedule/module.ts");
+var module_25 = __webpack_require__(/*! ../mouse-position/module */ "./src/ng-weekly-scheduler/mouse-position/module.ts");
+var module_26 = __webpack_require__(/*! ../mouse-tracker/module */ "./src/ng-weekly-scheduler/mouse-tracker/module.ts");
+var module_27 = __webpack_require__(/*! ../multislider-grid/module */ "./src/ng-weekly-scheduler/multislider-grid/module.ts");
+var module_28 = __webpack_require__(/*! ../multislider/module */ "./src/ng-weekly-scheduler/multislider/module.ts");
+var module_29 = __webpack_require__(/*! ../null-end/module */ "./src/ng-weekly-scheduler/null-end/module.ts");
+var module_30 = __webpack_require__(/*! ../overlap/module */ "./src/ng-weekly-scheduler/overlap/module.ts");
+var module_31 = __webpack_require__(/*! ../point/module */ "./src/ng-weekly-scheduler/point/module.ts");
+var module_32 = __webpack_require__(/*! ../pixel-to-val/module */ "./src/ng-weekly-scheduler/pixel-to-val/module.ts");
+var module_33 = __webpack_require__(/*! ../purge-default/module */ "./src/ng-weekly-scheduler/purge-default/module.ts");
+var module_34 = __webpack_require__(/*! ../resize/module */ "./src/ng-weekly-scheduler/resize/module.ts");
+var module_35 = __webpack_require__(/*! ../restriction-explanations/module */ "./src/ng-weekly-scheduler/restriction-explanations/module.ts");
+var module_36 = __webpack_require__(/*! ../revalidate/module */ "./src/ng-weekly-scheduler/revalidate/module.ts");
+var module_37 = __webpack_require__(/*! ../schedule-area-container/module */ "./src/ng-weekly-scheduler/schedule-area-container/module.ts");
+var module_38 = __webpack_require__(/*! ../schedule-count/module */ "./src/ng-weekly-scheduler/schedule-count/module.ts");
+var module_39 = __webpack_require__(/*! ../schedule-validator/module */ "./src/ng-weekly-scheduler/schedule-validator/module.ts");
+var module_40 = __webpack_require__(/*! ../scroll/module */ "./src/ng-weekly-scheduler/scroll/module.ts");
+var module_41 = __webpack_require__(/*! ../slot-style/module */ "./src/ng-weekly-scheduler/slot-style/module.ts");
+var module_42 = __webpack_require__(/*! ../time/module */ "./src/ng-weekly-scheduler/time/module.ts");
+var module_43 = __webpack_require__(/*! ../time-range/module */ "./src/ng-weekly-scheduler/time-range/module.ts");
+var module_44 = __webpack_require__(/*! ../touch/module */ "./src/ng-weekly-scheduler/touch/module.ts");
+var module_45 = __webpack_require__(/*! ../weekly-scheduler-config/module */ "./src/ng-weekly-scheduler/weekly-scheduler-config/module.ts");
+var module_46 = __webpack_require__(/*! ../weekly-scheduler/module */ "./src/ng-weekly-scheduler/weekly-scheduler/module.ts");
+var module_47 = __webpack_require__(/*! ../weekly-scheduler-item/module */ "./src/ng-weekly-scheduler/weekly-scheduler-item/module.ts");
+var module_48 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./src/ng-weekly-scheduler/weekly-scheduler-range/module.ts");
+var module_49 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
+var module_50 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
+var module_51 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
 exports.default = angular.module('br.weeklyScheduler.app', [
     module_1.default,
     module_2.default,
@@ -37150,11 +37151,11 @@ exports.default = angular.module('br.weeklyScheduler.app', [
     module_19.default,
     module_20.default,
     module_21.default,
-    module_23.default,
+    module_22.default,
     module_24.default,
     module_25.default,
-    module_22.default,
     module_26.default,
+    module_23.default,
     module_27.default,
     module_28.default,
     module_29.default,
@@ -37178,7 +37179,8 @@ exports.default = angular.module('br.weeklyScheduler.app', [
     module_47.default,
     module_48.default,
     module_49.default,
-    module_50.default
+    module_50.default,
+    module_51.default
 ])
     .name;
 
@@ -38803,6 +38805,64 @@ var IntervalGenerationService_1 = __webpack_require__(/*! ./IntervalGenerationSe
 exports.default = angular
     .module('rr.weeklyScheduler.intervalGeneration', [])
     .service(IntervalGenerationService_1.IntervalGenerationService.$name, IntervalGenerationService_1.IntervalGenerationService)
+    .name;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/label-column/LabelColumnComponent.ts":
+/*!**********************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/label-column/LabelColumnComponent.ts ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var LabelColumnComponent = /** @class */ (function () {
+    function LabelColumnComponent() {
+        this.bindings = {
+            items: '<',
+            getText: '&'
+        };
+        this.controllerAs = 'labelColumnCtrl';
+        this.template = __webpack_require__(/*! ./LabelColumnView.html */ "./src/ng-weekly-scheduler/label-column/LabelColumnView.html");
+    }
+    LabelColumnComponent.$name = 'rrLabelColumn';
+    return LabelColumnComponent;
+}());
+exports.LabelColumnComponent = LabelColumnComponent;
+
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/label-column/LabelColumnView.html":
+/*!*******************************************************************!*\
+  !*** ./src/ng-weekly-scheduler/label-column/LabelColumnView.html ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in labelColumnCtrl.items\">\r\n        {{ ::labelColumnCtrl.getText({ item: item }) }}\r\n    </div>\r\n</div>";
+
+/***/ }),
+
+/***/ "./src/ng-weekly-scheduler/label-column/module.ts":
+/*!********************************************************!*\
+  !*** ./src/ng-weekly-scheduler/label-column/module.ts ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+var LabelColumnComponent_1 = __webpack_require__(/*! ./LabelColumnComponent */ "./src/ng-weekly-scheduler/label-column/LabelColumnComponent.ts");
+exports.default = angular
+    .module('rr.weeklyScheduler.labelColumn', [])
+    .component(LabelColumnComponent_1.LabelColumnComponent.$name, new LabelColumnComponent_1.LabelColumnComponent())
     .name;
 
 
@@ -42023,7 +42083,7 @@ exports.default = angular
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'horizontal'\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n      {{ item.label }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-hour-grid></br-hour-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <br-hourly-grid></br-hourly-grid>\r\n        <br-multi-slider config=\"schedulerCtrl.config\"\r\n                        br-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        br-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        br-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        br-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        br-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        br-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        br-overlap\r\n                        br-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></br-multi-slider>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'vertical'\">\r\n  <div class=\"labels\">\r\n    <div class=\"srow dummy\"></div>\r\n    <div class=\"srow schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item.index\">\r\n      {{ item.text }}\r\n    </div>\r\n  </div>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-day-grid></br-day-grid>\r\n      </div>\r\n\r\n      <div class=\"vertical-multi-slider-area\">\r\n        <div class=\"calendar-overlay\">\r\n          <div class=\"calendar\">\r\n            <rr-multislider-grid config=\"schedulerCtrl.config\" items=\"schedulerCtrl.items\"></rr-multislider-grid>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item.index\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
+module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'horizontal'\">\r\n  <rr-label-column items=\"schedulerCtrl.items\" get-text=\"schedulerCtrl.getDayText(item)\"></rr-label-column>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-hour-grid></br-hour-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <br-hourly-grid></br-hourly-grid>\r\n        <br-multi-slider config=\"schedulerCtrl.config\"\r\n                        br-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        br-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        br-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        br-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        br-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        br-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        br-overlap\r\n                        br-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></br-multi-slider>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'vertical'\">\r\n  <rr-label-column items=\"schedulerCtrl.verticalTicks\" get-text=\"schedulerCtrl.getHourText(item)\"></rr-label-column>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-day-grid></br-day-grid>\r\n      </div>\r\n\r\n      <div class=\"vertical-multi-slider-area\">\r\n        <div class=\"calendar-overlay\">\r\n          <div class=\"calendar\">\r\n            <rr-multislider-grid config=\"schedulerCtrl.config\" items=\"schedulerCtrl.items\"></rr-multislider-grid>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item.index\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
 
 /***/ }),
 
@@ -42118,6 +42178,12 @@ var WeeklySchedulerController = /** @class */ (function () {
     WeeklySchedulerController.prototype.buildItemsFromAdapter = function () {
         var items = this.adapterService.getItemsFromAdapter(this.config, this.adapter);
         return this.buildItems(items);
+    };
+    WeeklySchedulerController.prototype.getDayText = function (item) {
+        return item.label;
+    };
+    WeeklySchedulerController.prototype.getHourText = function (item) {
+        return item.text;
     };
     WeeklySchedulerController.prototype.purgeItems = function (items) {
         if (this.config.fillEmptyWithDefault) {

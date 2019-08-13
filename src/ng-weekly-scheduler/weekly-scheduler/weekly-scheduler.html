@@ -1,10 +1,5 @@
 <div ng-if="!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'horizontal'">
-  <div class="labels">
-    <div class="srow dummy"></div>
-    <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
-      {{ item.label }}
-    </div>
-  </div>
+  <rr-label-column items="schedulerCtrl.items" get-text="schedulerCtrl.getDayText(item)"></rr-label-column>
 
   <br-schedule-area-container>
     <div class="schedule-area">
@@ -46,12 +41,7 @@
 </div>
 
 <div ng-if="!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'vertical'">
-  <div class="labels">
-    <div class="srow dummy"></div>
-    <div class="srow schedule-animate" ng-repeat="item in schedulerCtrl.verticalTicks track by item.index">
-      {{ item.text }}
-    </div>
-  </div>
+  <rr-label-column items="schedulerCtrl.verticalTicks" get-text="schedulerCtrl.getHourText(item)"></rr-label-column>
 
   <br-schedule-area-container>
     <div class="schedule-area">

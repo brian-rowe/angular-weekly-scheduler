@@ -44,6 +44,8 @@ export declare class WeeklySchedulerController implements angular.IController {
     hasInvalidSchedule(): boolean;
     private buildItems(items);
     private buildItemsFromAdapter();
+    private getDayText(item);
+    private getHourText(item);
     private purgeItems(items);
     private prepareItems(items);
     private setGhostValues(ghostValues);

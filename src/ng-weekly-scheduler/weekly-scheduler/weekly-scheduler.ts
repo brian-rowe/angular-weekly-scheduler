@@ -144,6 +144,14 @@ export class WeeklySchedulerController implements angular.IController {
     return this.buildItems(items);
   }
 
+  private getDayText(item: WeeklySchedulerItem<any>) {
+    return item.label;
+  }
+
+  private getHourText(item: { text: string, index: number }) {
+    return item.text;
+  }
+
   private purgeItems(items: WeeklySchedulerItem<any>[]) {
     if (this.config.fillEmptyWithDefault) {
       for (let item of items) {

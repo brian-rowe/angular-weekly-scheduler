@@ -19,6 +19,7 @@ import HourGridModule from '../hour-grid/module';
 import HourlyGridModule from '../hourly-grid/module';
 import HourTextModule from '../hour-text/module';
 import IntervalGenerationModule from '../interval-generation/module';
+import LabelColumnModule from '../label-column/module';
 import LastGhostDayModule from '../last-ghost-day/module';
 import MaxTimeSlotModule from '../max-time-slot/module';
 import MinimumSeparationModule from '../minimum-separation/module';
@@ -71,6 +72,7 @@ export default angular.module('br.weeklyScheduler.app', [
     HourlyGridModule,
     HourTextModule,
     IntervalGenerationModule,
+    LabelColumnModule,
     LastGhostDayModule,
     MaxTimeSlotModule,
     MinimumSeparationModule,
