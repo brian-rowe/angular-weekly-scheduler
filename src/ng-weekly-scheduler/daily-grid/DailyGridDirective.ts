@@ -19,10 +19,7 @@ export class DailyGridDirective implements angular.IDirective {
         var strategy = this.intevalGenerationService.createIntervalGenerationStrategy({
             cssDimensionProperty: 'height',
             interval: this.config.interval,
-            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval,
-            getRel: (options, tick, subtick) => {
-                return ((tick * options.intervalsInTick) + subtick) * options.interval;
-            }
+            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
         });
 
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);

@@ -37367,10 +37367,7 @@ var DailyGridDirective = /** @class */ (function () {
         var strategy = this.intevalGenerationService.createIntervalGenerationStrategy({
             cssDimensionProperty: 'height',
             interval: this.config.interval,
-            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval,
-            getRel: function (options, tick, subtick) {
-                return ((tick * options.intervalsInTick) + subtick) * options.interval;
-            }
+            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
         });
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
@@ -38708,10 +38705,7 @@ var HourlyGridDirective = /** @class */ (function () {
         this.gridGeneratorService.generateStripedGrid(element, this.tickCount, this.intervalGenerationService.createIntervalGenerationStrategy({
             cssDimensionProperty: 'width',
             interval: this.config.interval,
-            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval,
-            getRel: function (options, tick, subtick) {
-                return ((tick * options.intervalsInTick) + subtick) * options.interval;
-            }
+            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
         }));
     };
     HourlyGridDirective.Factory = function () {
@@ -38779,13 +38773,16 @@ var IntervalGenerationService = /** @class */ (function () {
         return function (child, i) {
             for (var j = 0; j < options.intervalsInTick; j++) {
                 var grandChild = _this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', options.getRel(options, i, j));
+                grandChild.attr('rel', _this.getRel(options, i, j));
                 grandChild.addClass('interval');
                 grandChild.css(options.cssDimensionProperty, intervalPercentage + '%');
                 child.append(grandChild);
             }
             return child;
         };
+    };
+    IntervalGenerationService.prototype.getRel = function (options, tick, subtick) {
+        return ((tick * options.intervalsInTick) + subtick) * options.interval;
     };
     IntervalGenerationService.$name = 'rrWeeklySchedulerIntervalGenerationService';
     IntervalGenerationService.$inject = [

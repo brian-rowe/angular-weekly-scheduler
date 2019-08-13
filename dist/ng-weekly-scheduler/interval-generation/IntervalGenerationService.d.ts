@@ -11,4 +11,5 @@ export declare class IntervalGenerationService {
     static $inject: string[];
     constructor(gridGeneratorService: GridGeneratorService);
     createIntervalGenerationStrategy(options: IntervalGenerationOptions): (child: any, i: any) => any;
+    private getRel(options, tick, subtick);
 }
