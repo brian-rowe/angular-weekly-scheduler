@@ -1,5 +1,7 @@
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 import { IntervalGenerationOptions } from './IntervalGenerationOptions';
+import { TimeConstantsService } from '../time/TimeConstantsService';
+import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 
 /**
  * Elements for the background structure of the scheduler
@@ -12,20 +14,24 @@ export class IntervalGenerationService {
 
     static $inject = [
         GridGeneratorService.$name,
+        TimeConstantsService.$name,
     ];
 
     constructor(
         private gridGeneratorService: GridGeneratorService,
+        private timeConstants: TimeConstantsService
     ) {
     }
 
-    public createIntervalGenerationStrategy(options: IntervalGenerationOptions) {
-        let intervalPercentage = 100 / options.intervalsInTick;
+    public createIntervalGenerationStrategy(config: IWeeklySchedulerConfig<any>, options: IntervalGenerationOptions) {
+        let interval = config.interval;
+        let intervalsInTick = this.timeConstants.SECONDS_IN_HOUR / interval;
+        let intervalPercentage = 100 / intervalsInTick;
 
         return (child, i) => {
-            for (let j = 0; j < options.intervalsInTick; j++) {
+            for (let j = 0; j < intervalsInTick; j++) {
                 let grandChild = this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', this.getRel(options, i, j));
+                grandChild.attr('rel', ((i * intervalsInTick) + j) * interval);
                 grandChild.addClass('interval');
                 grandChild.css(options.cssDimensionProperty, intervalPercentage + '%');
                 child.append(grandChild);
@@ -33,9 +39,5 @@ export class IntervalGenerationService {
 
             return child;
         };
-    }
-
-    private getRel(options: IntervalGenerationOptions, tick: number, subtick: number) {
-        return ((tick * options.intervalsInTick) + subtick) * options.interval;
     }
 }

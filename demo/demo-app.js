@@ -37345,14 +37345,12 @@ exports.default = angular
 Object.defineProperty(exports, "__esModule", { value: true });
 var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
 var IntervalGenerationService_1 = __webpack_require__(/*! ../interval-generation/IntervalGenerationService */ "./src/ng-weekly-scheduler/interval-generation/IntervalGenerationService.ts");
-var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 /** @internal */
 var DailyGridDirective = /** @class */ (function () {
-    function DailyGridDirective(gridGeneratorService, intevalGenerationService, timeConstants) {
+    function DailyGridDirective(gridGeneratorService, intevalGenerationService) {
         var _this = this;
         this.gridGeneratorService = gridGeneratorService;
         this.intevalGenerationService = intevalGenerationService;
-        this.timeConstants = timeConstants;
         this.restrict = 'E';
         this.require = '^brWeeklyScheduler';
         this.link = function (scope, element, attrs, schedulerCtrl) {
@@ -37364,16 +37362,14 @@ var DailyGridDirective = /** @class */ (function () {
         };
     }
     DailyGridDirective.prototype.doGrid = function (scope, element, attrs) {
-        var strategy = this.intevalGenerationService.createIntervalGenerationStrategy({
-            cssDimensionProperty: 'height',
-            interval: this.config.interval,
-            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
+        var strategy = this.intevalGenerationService.createIntervalGenerationStrategy(this.config, {
+            cssDimensionProperty: 'height'
         });
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
     };
     DailyGridDirective.Factory = function () {
-        var directive = function (gridGeneratorService, intervalGenerationService, timeConstants) { return new DailyGridDirective(gridGeneratorService, intervalGenerationService, timeConstants); };
-        directive.$inject = [GridGeneratorService_1.GridGeneratorService.$name, IntervalGenerationService_1.IntervalGenerationService.$name, TimeConstantsService_1.TimeConstantsService.$name];
+        var directive = function (gridGeneratorService, intervalGenerationService) { return new DailyGridDirective(gridGeneratorService, intervalGenerationService); };
+        directive.$inject = [GridGeneratorService_1.GridGeneratorService.$name, IntervalGenerationService_1.IntervalGenerationService.$name];
         return directive;
     };
     DailyGridDirective.$name = 'brDailyGrid';
@@ -38681,14 +38677,12 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
 var IntervalGenerationService_1 = __webpack_require__(/*! ../interval-generation/IntervalGenerationService */ "./src/ng-weekly-scheduler/interval-generation/IntervalGenerationService.ts");
 /** @internal */
 var HourlyGridDirective = /** @class */ (function () {
-    function HourlyGridDirective(timeConstants, gridGeneratorService, intervalGenerationService) {
+    function HourlyGridDirective(gridGeneratorService, intervalGenerationService) {
         var _this = this;
-        this.timeConstants = timeConstants;
         this.gridGeneratorService = gridGeneratorService;
         this.intervalGenerationService = intervalGenerationService;
         this.restrict = 'E';
@@ -38702,18 +38696,15 @@ var HourlyGridDirective = /** @class */ (function () {
         };
     }
     HourlyGridDirective.prototype.doGrid = function (scope, element, attrs) {
-        this.gridGeneratorService.generateStripedGrid(element, this.tickCount, this.intervalGenerationService.createIntervalGenerationStrategy({
-            cssDimensionProperty: 'width',
-            interval: this.config.interval,
-            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
+        this.gridGeneratorService.generateStripedGrid(element, this.tickCount, this.intervalGenerationService.createIntervalGenerationStrategy(this.config, {
+            cssDimensionProperty: 'width'
         }));
     };
     HourlyGridDirective.Factory = function () {
-        var directive = function (timeConstants, gridGeneratorService, intervalGenerationService) {
-            return new HourlyGridDirective(timeConstants, gridGeneratorService, intervalGenerationService);
+        var directive = function (gridGeneratorService, intervalGenerationService) {
+            return new HourlyGridDirective(gridGeneratorService, intervalGenerationService);
         };
         directive.$inject = [
-            TimeConstantsService_1.TimeConstantsService.$name,
             GridGeneratorService_1.GridGeneratorService.$name,
             IntervalGenerationService_1.IntervalGenerationService.$name
         ];
@@ -38758,22 +38749,26 @@ exports.default = angular
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var GridGeneratorService_1 = __webpack_require__(/*! ../grid-generator/GridGeneratorService */ "./src/ng-weekly-scheduler/grid-generator/GridGeneratorService.ts");
+var TimeConstantsService_1 = __webpack_require__(/*! ../time/TimeConstantsService */ "./src/ng-weekly-scheduler/time/TimeConstantsService.ts");
 /**
  * Elements for the background structure of the scheduler
  * are generated as static html rather than as angular elements
  * for performance -- we don't want (SECONDS_IN_DAY / interval) watchers for every calendar
  */
 var IntervalGenerationService = /** @class */ (function () {
-    function IntervalGenerationService(gridGeneratorService) {
+    function IntervalGenerationService(gridGeneratorService, timeConstants) {
         this.gridGeneratorService = gridGeneratorService;
+        this.timeConstants = timeConstants;
     }
-    IntervalGenerationService.prototype.createIntervalGenerationStrategy = function (options) {
+    IntervalGenerationService.prototype.createIntervalGenerationStrategy = function (config, options) {
         var _this = this;
-        var intervalPercentage = 100 / options.intervalsInTick;
+        var interval = config.interval;
+        var intervalsInTick = this.timeConstants.SECONDS_IN_HOUR / interval;
+        var intervalPercentage = 100 / intervalsInTick;
         return function (child, i) {
-            for (var j = 0; j < options.intervalsInTick; j++) {
+            for (var j = 0; j < intervalsInTick; j++) {
                 var grandChild = _this.gridGeneratorService.getGridTemplate();
-                grandChild.attr('rel', _this.getRel(options, i, j));
+                grandChild.attr('rel', ((i * intervalsInTick) + j) * interval);
                 grandChild.addClass('interval');
                 grandChild.css(options.cssDimensionProperty, intervalPercentage + '%');
                 child.append(grandChild);
@@ -38781,12 +38776,10 @@ var IntervalGenerationService = /** @class */ (function () {
             return child;
         };
     };
-    IntervalGenerationService.prototype.getRel = function (options, tick, subtick) {
-        return ((tick * options.intervalsInTick) + subtick) * options.interval;
-    };
     IntervalGenerationService.$name = 'rrWeeklySchedulerIntervalGenerationService';
     IntervalGenerationService.$inject = [
         GridGeneratorService_1.GridGeneratorService.$name,
+        TimeConstantsService_1.TimeConstantsService.$name,
     ];
     return IntervalGenerationService;
 }());

@@ -3,7 +3,6 @@
  */
 import * as angular from 'angular';
 import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler';
-import { TimeConstantsService } from '../time/TimeConstantsService';
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 import { IntervalGenerationService } from '../interval-generation/IntervalGenerationService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
@@ -19,10 +18,8 @@ export class HourlyGridDirective implements angular.IDirective {
     private tickCount: number;
 
     private doGrid(scope, element, attrs) {
-        this.gridGeneratorService.generateStripedGrid(element, this.tickCount,  this.intervalGenerationService.createIntervalGenerationStrategy({
-            cssDimensionProperty: 'width',
-            interval: this.config.interval,
-            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
+        this.gridGeneratorService.generateStripedGrid(element, this.tickCount,  this.intervalGenerationService.createIntervalGenerationStrategy(this.config, {
+            cssDimensionProperty: 'width'
         }));
     }
 
@@ -35,19 +32,17 @@ export class HourlyGridDirective implements angular.IDirective {
     }
 
     constructor(
-        private timeConstants: TimeConstantsService,
         private gridGeneratorService: GridGeneratorService,
         private intervalGenerationService: IntervalGenerationService
     ) {
     }
 
     static Factory() {
-        let directive = (timeConstants, gridGeneratorService, intervalGenerationService) =>{
-            return new HourlyGridDirective(timeConstants, gridGeneratorService, intervalGenerationService);
+        let directive = (gridGeneratorService, intervalGenerationService) =>{
+            return new HourlyGridDirective(gridGeneratorService, intervalGenerationService);
         }
 
         directive.$inject = [
-            TimeConstantsService.$name,
             GridGeneratorService.$name,
             IntervalGenerationService.$name
         ];

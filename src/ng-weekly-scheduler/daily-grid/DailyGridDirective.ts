@@ -3,7 +3,6 @@ import { WeeklySchedulerController } from '../weekly-scheduler/weekly-scheduler'
 import { GridGeneratorService } from '../grid-generator/GridGeneratorService';
 import { IntervalGenerationService } from '../interval-generation/IntervalGenerationService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
-import { TimeConstantsService } from '../time/TimeConstantsService';
 
 /** @internal */
 export class DailyGridDirective implements angular.IDirective {
@@ -16,10 +15,8 @@ export class DailyGridDirective implements angular.IDirective {
     private tickCount: number;
 
     private doGrid(scope, element, attrs) {
-        var strategy = this.intevalGenerationService.createIntervalGenerationStrategy({
-            cssDimensionProperty: 'height',
-            interval: this.config.interval,
-            intervalsInTick: this.timeConstants.SECONDS_IN_HOUR / this.config.interval
+        var strategy = this.intevalGenerationService.createIntervalGenerationStrategy(this.config, {
+            cssDimensionProperty: 'height'
         });
 
         this.gridGeneratorService.generateGrid(element, this.tickCount, strategy);
@@ -36,14 +33,13 @@ export class DailyGridDirective implements angular.IDirective {
     constructor(
         private gridGeneratorService: GridGeneratorService,
         private intevalGenerationService: IntervalGenerationService,
-        private timeConstants: TimeConstantsService
     ) {
     }
 
     static Factory() {
-        let directive = (gridGeneratorService, intervalGenerationService, timeConstants) => new DailyGridDirective(gridGeneratorService, intervalGenerationService, timeConstants);
+        let directive = (gridGeneratorService, intervalGenerationService) => new DailyGridDirective(gridGeneratorService, intervalGenerationService);
 
-        directive.$inject = [GridGeneratorService.$name, IntervalGenerationService.$name, TimeConstantsService.$name];
+        directive.$inject = [GridGeneratorService.$name, IntervalGenerationService.$name];
 
         return directive;
     }
