@@ -37564,7 +37564,7 @@ var DemoController = /** @class */ (function () {
                 fillEmptyWithDefault: true,
                 interval: 60,
                 fillNullEnds: 1800,
-                maxTimeSlot: 7200,
+                maxTimeSlot: 7200 * 4,
                 minimumSeparation: 300,
                 onChange: function (isValid) {
                     console.log('changed!');

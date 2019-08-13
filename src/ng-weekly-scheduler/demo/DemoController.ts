@@ -30,7 +30,7 @@ export class DemoController {
                 fillEmptyWithDefault: true,
                 interval: 60,
                 fillNullEnds: 1800,
-                maxTimeSlot: 7200,
+                maxTimeSlot: 7200 * 4,
                 minimumSeparation: 300,
                 onChange: (isValid) => {
                     console.log('changed!');
