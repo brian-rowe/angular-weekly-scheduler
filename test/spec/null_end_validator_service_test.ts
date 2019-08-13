@@ -4,9 +4,9 @@ export class NullEndValidatorServiceTests {
             let $service;
             let $q;
 
-            beforeEach(inject(function (_$q_, _brWeeklySchedulerNullEndValidatorService_) {
+            beforeEach(inject(function (_$q_, _rrWeeklySchedulerNullEndValidatorService_) {
                 $q = _$q_;
-                $service = _brWeeklySchedulerNullEndValidatorService_;
+                $service = _rrWeeklySchedulerNullEndValidatorService_;
             }));
 
             describe('should validate', () => {

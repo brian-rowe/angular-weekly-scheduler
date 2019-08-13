@@ -4,7 +4,7 @@ import { TimeConstantsService } from '../time/TimeConstantsService';
 
 /** @internal */
 export class ConfigurationService {
-    static $name = 'brWeeklySchedulerConfigurationService';
+    static $name = 'rrWeeklySchedulerConfigurationService';
 
     static $inject = [
         TimeConstantsService.$name

@@ -7,9 +7,9 @@ export class FullCalendarValidatorServiceTests {
             var $q: angular.IQService;
             var $service: FullCalendarValidatorService;
 
-            beforeEach(inject(function (_$q_, _brWeeklySchedulerFullCalendarValidatorService_) {
+            beforeEach(inject(function (_$q_, _rrWeeklySchedulerFullCalendarValidatorService_) {
                 $q = _$q_,
-                    $service = _brWeeklySchedulerFullCalendarValidatorService_;
+                    $service = _rrWeeklySchedulerFullCalendarValidatorService_;
             }));
 
             describe('should validate', function () {

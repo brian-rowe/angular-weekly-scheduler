@@ -6,7 +6,7 @@ import { IWeeklySchedulerFilterService } from '../weekly-scheduler-config/IWeekl
 /** @internal */
 export class RestrictionExplanationsController implements angular.IComponentController {
     static $controllerAs = 'restrictionExplanationsCtrl';
-    static $name = 'brWeeklySchedulerRestrictionExplanationsController';
+    static $name = 'rrWeeklySchedulerRestrictionExplanationsController';
 
     static $inject = ['$filter'];
 
@@ -23,7 +23,7 @@ export class RestrictionExplanationsController implements angular.IComponentCont
         let config = this.schedulerCtrl.config;
 
         if (config.maxTimeSlot) {
-            let maxTimeSlot = this.$filter('brWeeklySchedulerSecondsAsText')(config.maxTimeSlot);
+            let maxTimeSlot = this.$filter('rrWeeklySchedulerSecondsAsText')(config.maxTimeSlot);
             this.explanations[ValidationError.MaxTimeSlot] = config.restrictionExplanations.maxTimeSlot(maxTimeSlot);
         }
 
@@ -44,7 +44,7 @@ export class RestrictionExplanationsController implements angular.IComponentCont
         }
 
         if (config.minimumSeparation) {
-            let minimumSeparation = this.$filter('brWeeklySchedulerSecondsAsText')(config.minimumSeparation);
+            let minimumSeparation = this.$filter('rrWeeklySchedulerSecondsAsText')(config.minimumSeparation);
             this.explanations[ValidationError.MinimumSeparation] = config.restrictionExplanations.minimumSeparation(minimumSeparation);
         }
     }
@@ -52,13 +52,13 @@ export class RestrictionExplanationsController implements angular.IComponentCont
 
 /** @internal */
 export class RestrictionExplanationsComponent implements angular.IComponentOptions {
-    static $name = 'brRestrictionExplanations';
+    static $name = 'rrRestrictionExplanations';
 
     controller = RestrictionExplanationsController.$name;
     controllerAs = RestrictionExplanationsController.$controllerAs;
 
     require = {
-        schedulerCtrl: '^brWeeklyScheduler'
+        schedulerCtrl: '^rrWeeklyScheduler'
     };
 
     template = `

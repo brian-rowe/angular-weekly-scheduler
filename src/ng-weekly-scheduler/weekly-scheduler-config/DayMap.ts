@@ -3,7 +3,7 @@ import { Days } from '../weekly-scheduler-config/Days';
 /** Ahhahhahh! Fighter of the NightMap! */
 /** @internal */
 export class DayMap {
-    static $name = 'brWeeklySchedulerDayMap';
+    static $name = 'rrWeeklySchedulerDayMap';
     
     static value = {
         [Days.Monday]: 'Mon',

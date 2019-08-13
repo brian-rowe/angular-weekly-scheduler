@@ -1,6 +1,6 @@
 /** @internal */
 export class TouchService {
-    static $name = 'brWeeklySchedulerTouchService';
+    static $name = 'rrWeeklySchedulerTouchService';
 
     public getTouches(event: any): any { // todo
         if (event.originalEvent) {

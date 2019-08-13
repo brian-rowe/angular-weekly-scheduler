@@ -4,7 +4,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 
 /** @internal */
 export class OverlapDirective implements angular.IDirective {
-    static $name = 'brOverlap';
+    static $name = 'rrOverlap';
 
     constructor(
         private validator: OverlapValidatorService

@@ -12,7 +12,7 @@ import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySch
 
 /** @internal */
 export class WeeklySchedulerItemFactory {
-    static $name = 'brWeeklySchedulerItemFactory';
+    static $name = 'rrWeeklySchedulerItemFactory';
 
     static $inject = [
         DayMap.$name,

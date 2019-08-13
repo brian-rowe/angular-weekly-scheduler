@@ -4,7 +4,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 
 /** @internal */
 export class NullEndDirective implements angular.IDirective {
-    static $name = 'brNullEnd';
+    static $name = 'rrNullEnd';
 
     constructor(
         private validator: NullEndScheduleValidatorService

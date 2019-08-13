@@ -2,7 +2,7 @@ import { ZoomService } from '../zoom/ZoomService';
 
 /** @internal */
 export class ScrollService {
-    static $name = 'brWeeklySchedulerScrollService';
+    static $name = 'rrWeeklySchedulerScrollService';
 
     static $inject = [
         ZoomService.$name

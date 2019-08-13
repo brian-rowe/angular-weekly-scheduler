@@ -15,7 +15,7 @@ import { HourTextService } from '../hour-text/HourTextService';
 /** @internal */
 export class WeeklySchedulerController implements angular.IController {
   static $controllerAs = 'schedulerCtrl';
-  static $name = 'brWeeklySchedulerController';
+  static $name = 'rrWeeklySchedulerController';
 
   static $inject = [
     '$element',
@@ -234,7 +234,7 @@ export class WeeklySchedulerController implements angular.IController {
 
 /** @internal */
 export class WeeklySchedulerComponent implements angular.IComponentOptions {
-  static $name = 'brWeeklyScheduler';
+  static $name = 'rrWeeklyScheduler';
 
   bindings = {
     adapter: '<',

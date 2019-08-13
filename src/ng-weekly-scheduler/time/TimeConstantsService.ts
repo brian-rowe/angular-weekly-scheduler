@@ -1,6 +1,6 @@
 /** @internal */
 export class TimeConstantsService {
-    static $name = 'brWeeklySchedulerTimeConstantsService';
+    static $name = 'rrWeeklySchedulerTimeConstantsService';
 
     public get DAYS_IN_WEEK() {
         return 7;

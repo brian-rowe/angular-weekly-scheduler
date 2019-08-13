@@ -6,7 +6,7 @@ import { WeeklySchedulerItemFactory } from '../weekly-scheduler-item/WeeklySched
 
 /** @internal */
 export class MissingDaysService {
-    static $name = 'brWeeklySchedulerMissingDaysService';
+    static $name = 'rrWeeklySchedulerMissingDaysService';
 
     static $inject = [
       DayMap.$name,

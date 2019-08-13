@@ -7,7 +7,7 @@ import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySch
 /** When using the 'fillEmptyWithDefault' option, this service will be used to construct the correct calendar for server submission */
 /** @internal */
 export class FillEmptyWithDefaultService {
-    static $name = 'brWeeklySchedulerFillEmptyWithDefaultService';
+    static $name = 'rrWeeklySchedulerFillEmptyWithDefaultService';
 
     static $inject = [
         EndAdjusterService.$name,

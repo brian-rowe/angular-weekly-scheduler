@@ -36339,7 +36339,7 @@ module.exports = angular;
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "br-weekly-scheduler {\n  background: #fff;\n  border-left: 1px solid #ddd;\n  border-right: 1px solid #ddd;\n  border-top: 1px solid #ddd;\n  color: #1c1c1c;\n  display: block;\n  margin-bottom: 10px;\n  /* The dark class will be applied by a client on the outside of this component */\n}\nbr-weekly-scheduler br-multi-slider .slot.active {\n  box-shadow: 0px 0px 2px 2px #1c1c1c;\n}\nbr-weekly-scheduler br-multi-slider .slot.nullEnd {\n  background: linear-gradient(to right, currentColor, rgba(255, 255, 255, 0.5));\n}\nbr-weekly-scheduler br-multi-slider .slot span {\n  color: #fff;\n  display: block;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\nbr-weekly-scheduler .labels {\n  border-right: 1px solid #ddd;\n}\nbr-weekly-scheduler .striped > div:nth-child(even) {\n  background-color: #f6f6f6;\n}\nbr-weekly-scheduler .srow {\n  border-bottom: 1px solid #ddd;\n}\nbr-weekly-scheduler .timestamps div {\n  border-width: 2px;\n}\nbr-weekly-scheduler .timestamps div:hover {\n  background-color: #f6f6f6;\n}\nbr-weekly-scheduler .buttons div {\n  display: inline-block;\n}\n.dark br-weekly-scheduler {\n  background: #1c1c1c;\n  border-left: 1px solid #777;\n  border-right: 1px solid #777;\n  border-top: 1px solid #777;\n  color: #fff;\n}\n.dark br-weekly-scheduler br-multi-slider .slot.active {\n  box-shadow: 0px 0px 2px 2px #fff;\n}\n.dark br-weekly-scheduler br-multi-slider .slot.nullEnd {\n  background: linear-gradient(to right, currentColor, rgba(28, 28, 28, 0.5));\n}\n.dark br-weekly-scheduler br-multi-slider .slot span {\n  color: #fff;\n  display: block;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.dark br-weekly-scheduler .labels {\n  border-right: 1px solid #777;\n}\n.dark br-weekly-scheduler .striped > div:nth-child(even) {\n  background-color: #333;\n}\n.dark br-weekly-scheduler .srow {\n  border-bottom: 1px solid #777;\n}\n.dark br-weekly-scheduler .timestamps div {\n  border-width: 2px;\n}\n.dark br-weekly-scheduler .timestamps div:hover {\n  background-color: #333;\n}\nbr-weekly-scheduler .flex-column {\n  flex-direction: column;\n}\nbr-weekly-scheduler .flex-row {\n  flex-direction: row;\n}\nbr-weekly-scheduler .fullWidth {\n  width: 100%;\n}\nbr-weekly-scheduler .labels {\n  display: block;\n  float: left;\n  text-align: center;\n}\nbr-weekly-scheduler .labels .dummy {\n  height: 15px;\n}\nbr-weekly-scheduler .labels .srow {\n  padding: 0 5px;\n}\nbr-weekly-scheduler br-schedule-area-container {\n  display: block;\n  overflow-x: auto;\n  /** Practical effect of \"start zoomed if the screen is below this width\" */\n}\nbr-weekly-scheduler br-schedule-area-container .schedule-area {\n  min-width: 600px;\n}\nbr-weekly-scheduler br-schedule-area-container .vertical-multi-slider-area {\n  position: relative;\n}\nbr-weekly-scheduler br-schedule-area-container .vertical-multi-slider-area .calendar-overlay {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 1;\n}\nbr-weekly-scheduler br-schedule-area-container .vertical-multi-slider-area .calendar-overlay .calendar {\n  height: 100%;\n}\nbr-weekly-scheduler .srow {\n  position: relative;\n  height: 28px;\n  line-height: 28px;\n}\nbr-weekly-scheduler .srow.buttons {\n  height: auto;\n}\nbr-weekly-scheduler .srow.explanations {\n  padding-left: 5px;\n}\nbr-weekly-scheduler .srow.explanations.violation {\n  color: red;\n}\nbr-weekly-scheduler .calendar {\n  display: table;\n  table-layout: fixed;\n  position: relative;\n  width: 100%;\n}\nbr-weekly-scheduler .timestamps {\n  display: table;\n  font-size: 0.6em;\n  font-weight: bold;\n  line-height: 15px;\n  height: 15px;\n  table-layout: fixed;\n  text-transform: uppercase;\n  width: 100%;\n}\nbr-weekly-scheduler .timestamps div {\n  overflow: hidden;\n  padding-left: 2px;\n  text-overflow: clip;\n}\nbr-weekly-scheduler .timestamps div:hover {\n  cursor: pointer;\n}\nbr-hour-grid div,\nbr-hourly-grid div,\nbr-day-grid div,\nbr-daily-grid div {\n  box-sizing: border-box;\n  display: table-cell;\n}\nbr-hour-grid .interval,\nbr-hourly-grid .interval,\nbr-day-grid .interval,\nbr-daily-grid .interval {\n  display: block;\n  float: left;\n}\nbr-hour-grid,\nbr-hourly-grid,\nbr-day-grid {\n  display: table-row;\n}\nbr-hour-grid div,\nbr-hourly-grid div {\n  height: 100%;\n}\nbr-day-grid div,\nbr-daily-grid div {\n  width: 100%;\n}\nbr-daily-grid {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\nbr-daily-grid .grid-item {\n  display: block;\n  height: 29px;\n}\nbr-multi-slider {\n  cursor: crosshair;\n  height: 100%;\n  top: 0;\n  position: absolute;\n  width: 100%;\n}\nbr-multi-slider .ghost-wrapper {\n  width: 100%;\n  height: 100%;\n}\nbr-multi-slider .slot {\n  font-family: monospace;\n  font-size: x-small;\n  position: absolute;\n  top: 5px;\n  bottom: 5px;\n  border-radius: 3px;\n  text-align: center;\n  white-space: nowrap;\n  line-height: 18px;\n}\nbr-multi-slider .slot.nullEnd {\n  text-align: left;\n}\nbr-multi-slider .slot .slotWrapper {\n  display: flex;\n  height: 100%;\n}\nbr-multi-slider .slot .slotWrapper .middle {\n  cursor: all-scroll;\n  display: inline-block;\n  overflow: hidden;\n  padding: 0 4px;\n}\nbr-multi-slider br-ghost-slot {\n  background: #5ab56a;\n  color: #5ab56a;\n  opacity: 0.6;\n  cursor: pointer;\n  user-select: none;\n}\nbr-multi-slider br-ghost-slot span {\n  color: #fff;\n}\nbr-multi-slider br-time-range {\n  display: block;\n  width: 100%;\n}\nbr-multi-slider br-weekly-slot {\n  /**\n     * We want to set the COLOR on any item we want to have a custom background color for.\n     * This is because the gradient backgrounds for allowNulls rely on currentColor.\n     * The text color within is set using a more specific selector\n     */\n  background: #2e81e1;\n  color: #2e81e1;\n  user-select: none;\n}\nbr-multi-slider br-weekly-slot.disable {\n  cursor: not-allowed;\n  color: #666;\n  background: #c0c0c0;\n}\nbr-multi-slider br-weekly-slot.pending {\n  background-color: #c81919;\n}\nbr-multi-slider br-weekly-slot .handle {\n  display: inline-block;\n  flex-grow: 1;\n}\nbr-multi-slider br-weekly-slot .handle.left,\nbr-multi-slider br-weekly-slot .handle.right {\n  cursor: e-resize;\n  min-width: 4px;\n  height: 100%;\n}\nbr-multi-slider br-weekly-slot .handle.top,\nbr-multi-slider br-weekly-slot .handle.bottom {\n  display: block;\n  cursor: n-resize;\n  min-height: 4px;\n  width: 100%;\n}\nbr-multi-slider br-weekly-slot.disable .handle {\n  cursor: not-allowed;\n}\nbr-multi-slider br-weekly-slot .handle.top:hover,\nbr-multi-slider br-weekly-slot .handle.bottom:hover,\nbr-multi-slider br-weekly-slot .handle.left:hover,\nbr-multi-slider br-weekly-slot .handle.right:hover {\n  background-color: #000;\n  opacity: 0.3;\n}\nbr-multi-slider br-weekly-slot .handle.left {\n  float: left;\n}\nbr-multi-slider br-weekly-slot .handle.right {\n  float: right;\n}\nbr-multi-slider br-weekly-slot.active {\n  font-weight: bolder;\n  z-index: 10;\n}\nrr-multislider-grid {\n  font-size: 0;\n  display: block;\n  width: 100%;\n  height: 100%;\n}\nrr-multislider-grid .repeat {\n  display: inline-block;\n  height: 100%;\n}\nrr-multislider-grid .repeat:nth-child(even) > br-daily-grid .interval {\n  background-color: #f6f6f6;\n}\n.vertical br-weekly-slot,\n.vertical br-ghost-slot {\n  width: 90%;\n  left: 5%;\n}\n", ""]);
+exports.push([module.i, "rr-weekly-scheduler {\n  background: #fff;\n  border-left: 1px solid #ddd;\n  border-right: 1px solid #ddd;\n  border-top: 1px solid #ddd;\n  color: #1c1c1c;\n  display: block;\n  margin-bottom: 10px;\n  /* The dark class will be applied by a client on the outside of this component */\n}\nrr-weekly-scheduler rr-multi-slider .slot.active {\n  box-shadow: 0px 0px 2px 2px #1c1c1c;\n}\nrr-weekly-scheduler rr-multi-slider .slot.nullEnd {\n  background: linear-gradient(to right, currentColor, rgba(255, 255, 255, 0.5));\n}\nrr-weekly-scheduler rr-multi-slider .slot span {\n  color: #fff;\n  display: block;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\nrr-weekly-scheduler .labels {\n  border-right: 1px solid #ddd;\n}\nrr-weekly-scheduler .striped > div:nth-child(even) {\n  background-color: #f6f6f6;\n}\nrr-weekly-scheduler .srow {\n  border-bottom: 1px solid #ddd;\n}\nrr-weekly-scheduler .timestamps div {\n  border-width: 2px;\n}\nrr-weekly-scheduler .timestamps div:hover {\n  background-color: #f6f6f6;\n}\nrr-weekly-scheduler .buttons div {\n  display: inline-block;\n}\n.dark rr-weekly-scheduler {\n  background: #1c1c1c;\n  border-left: 1px solid #777;\n  border-right: 1px solid #777;\n  border-top: 1px solid #777;\n  color: #fff;\n}\n.dark rr-weekly-scheduler rr-multi-slider .slot.active {\n  box-shadow: 0px 0px 2px 2px #fff;\n}\n.dark rr-weekly-scheduler rr-multi-slider .slot.nullEnd {\n  background: linear-gradient(to right, currentColor, rgba(28, 28, 28, 0.5));\n}\n.dark rr-weekly-scheduler rr-multi-slider .slot span {\n  color: #fff;\n  display: block;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.dark rr-weekly-scheduler .labels {\n  border-right: 1px solid #777;\n}\n.dark rr-weekly-scheduler .striped > div:nth-child(even) {\n  background-color: #333;\n}\n.dark rr-weekly-scheduler .srow {\n  border-bottom: 1px solid #777;\n}\n.dark rr-weekly-scheduler .timestamps div {\n  border-width: 2px;\n}\n.dark rr-weekly-scheduler .timestamps div:hover {\n  background-color: #333;\n}\nrr-weekly-scheduler .flex-column {\n  flex-direction: column;\n}\nrr-weekly-scheduler .flex-row {\n  flex-direction: row;\n}\nrr-weekly-scheduler .fullWidth {\n  width: 100%;\n}\nrr-weekly-scheduler .labels {\n  display: block;\n  float: left;\n  text-align: center;\n}\nrr-weekly-scheduler .labels .dummy {\n  height: 15px;\n}\nrr-weekly-scheduler .labels .srow {\n  padding: 0 5px;\n}\nrr-weekly-scheduler rr-schedule-area-container {\n  display: block;\n  overflow-x: auto;\n  /** Practical effect of \"start zoomed if the screen is below this width\" */\n}\nrr-weekly-scheduler rr-schedule-area-container .schedule-area {\n  min-width: 600px;\n}\nrr-weekly-scheduler rr-schedule-area-container .vertical-multi-slider-area {\n  position: relative;\n}\nrr-weekly-scheduler rr-schedule-area-container .vertical-multi-slider-area .calendar-overlay {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 1;\n}\nrr-weekly-scheduler rr-schedule-area-container .vertical-multi-slider-area .calendar-overlay .calendar {\n  height: 100%;\n}\nrr-weekly-scheduler .srow {\n  position: relative;\n  height: 28px;\n  line-height: 28px;\n}\nrr-weekly-scheduler .srow.buttons {\n  height: auto;\n}\nrr-weekly-scheduler .srow.explanations {\n  padding-left: 5px;\n}\nrr-weekly-scheduler .srow.explanations.violation {\n  color: red;\n}\nrr-weekly-scheduler .calendar {\n  display: table;\n  table-layout: fixed;\n  position: relative;\n  width: 100%;\n}\nrr-weekly-scheduler .timestamps {\n  display: table;\n  font-size: 0.6em;\n  font-weight: bold;\n  line-height: 15px;\n  height: 15px;\n  table-layout: fixed;\n  text-transform: uppercase;\n  width: 100%;\n}\nrr-weekly-scheduler .timestamps div {\n  overflow: hidden;\n  padding-left: 2px;\n  text-overflow: clip;\n}\nrr-weekly-scheduler .timestamps div:hover {\n  cursor: pointer;\n}\nrr-hour-grid div,\nrr-hourly-grid div,\nrr-day-grid div,\nrr-daily-grid div {\n  box-sizing: border-box;\n  display: table-cell;\n}\nrr-hour-grid .interval,\nrr-hourly-grid .interval,\nrr-day-grid .interval,\nrr-daily-grid .interval {\n  display: block;\n  float: left;\n}\nrr-hour-grid,\nrr-hourly-grid,\nrr-day-grid {\n  display: table-row;\n}\nrr-hour-grid div,\nrr-hourly-grid div {\n  height: 100%;\n}\nrr-day-grid div,\nrr-daily-grid div {\n  width: 100%;\n}\nrr-daily-grid {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\nrr-daily-grid .grid-item {\n  display: block;\n  height: 29px;\n}\nrr-multi-slider {\n  cursor: crosshair;\n  height: 100%;\n  top: 0;\n  position: absolute;\n  width: 100%;\n}\nrr-multi-slider .ghost-wrapper {\n  width: 100%;\n  height: 100%;\n}\nrr-multi-slider .slot {\n  font-family: monospace;\n  font-size: x-small;\n  position: absolute;\n  top: 5px;\n  bottom: 5px;\n  border-radius: 3px;\n  text-align: center;\n  white-space: nowrap;\n  line-height: 18px;\n}\nrr-multi-slider .slot.nullEnd {\n  text-align: left;\n}\nrr-multi-slider .slot .slotWrapper {\n  display: flex;\n  height: 100%;\n}\nrr-multi-slider .slot .slotWrapper .middle {\n  cursor: all-scroll;\n  display: inline-block;\n  overflow: hidden;\n  padding: 0 4px;\n}\nrr-multi-slider rr-ghost-slot {\n  background: #5ab56a;\n  color: #5ab56a;\n  opacity: 0.6;\n  cursor: pointer;\n  user-select: none;\n}\nrr-multi-slider rr-ghost-slot span {\n  color: #fff;\n}\nrr-multi-slider rr-time-range {\n  display: block;\n  width: 100%;\n}\nrr-multi-slider rr-weekly-slot {\n  /**\n     * We want to set the COLOR on any item we want to have a custom background color for.\n     * This is because the gradient backgrounds for allowNulls rely on currentColor.\n     * The text color within is set using a more specific selector\n     */\n  background: #2e81e1;\n  color: #2e81e1;\n  user-select: none;\n}\nrr-multi-slider rr-weekly-slot.disable {\n  cursor: not-allowed;\n  color: #666;\n  background: #c0c0c0;\n}\nrr-multi-slider rr-weekly-slot.pending {\n  background-color: #c81919;\n}\nrr-multi-slider rr-weekly-slot .handle {\n  display: inline-block;\n  flex-grow: 1;\n}\nrr-multi-slider rr-weekly-slot .handle.left,\nrr-multi-slider rr-weekly-slot .handle.right {\n  cursor: e-resize;\n  min-width: 4px;\n  height: 100%;\n}\nrr-multi-slider rr-weekly-slot .handle.top,\nrr-multi-slider rr-weekly-slot .handle.bottom {\n  display: block;\n  cursor: n-resize;\n  min-height: 4px;\n  width: 100%;\n}\nrr-multi-slider rr-weekly-slot.disable .handle {\n  cursor: not-allowed;\n}\nrr-multi-slider rr-weekly-slot .handle.top:hover,\nrr-multi-slider rr-weekly-slot .handle.bottom:hover,\nrr-multi-slider rr-weekly-slot .handle.left:hover,\nrr-multi-slider rr-weekly-slot .handle.right:hover {\n  background-color: #000;\n  opacity: 0.3;\n}\nrr-multi-slider rr-weekly-slot .handle.left {\n  float: left;\n}\nrr-multi-slider rr-weekly-slot .handle.right {\n  float: right;\n}\nrr-multi-slider rr-weekly-slot.active {\n  font-weight: bolder;\n  z-index: 10;\n}\nrr-multislider-grid {\n  font-size: 0;\n  display: block;\n  width: 100%;\n  height: 100%;\n}\nrr-multislider-grid .repeat {\n  display: inline-block;\n  height: 100%;\n}\nrr-multislider-grid .repeat:nth-child(even) > rr-daily-grid .interval {\n  background-color: #f6f6f6;\n}\n.vertical rr-weekly-slot,\n.vertical rr-ghost-slot {\n  width: 90%;\n  left: 5%;\n}\n", ""]);
 
 
 /***/ }),
@@ -37034,7 +37034,7 @@ var AdapterService = /** @class */ (function () {
         }
         return result;
     };
-    AdapterService.$name = 'brWeeklySchedulerAdapterService';
+    AdapterService.$name = 'rrWeeklySchedulerAdapterService';
     AdapterService.$inject = [
         GroupService_1.GroupService.$name,
         WeeklySchedulerItemFactory_1.WeeklySchedulerItemFactory.$name
@@ -37129,7 +37129,7 @@ var module_48 = __webpack_require__(/*! ../weekly-scheduler-range/module */ "./s
 var module_49 = __webpack_require__(/*! ../weekly-slot/module */ "./src/ng-weekly-scheduler/weekly-slot/module.ts");
 var module_50 = __webpack_require__(/*! ../value-normalization/module */ "./src/ng-weekly-scheduler/value-normalization/module.ts");
 var module_51 = __webpack_require__(/*! ../zoom/module */ "./src/ng-weekly-scheduler/zoom/module.ts");
-exports.default = angular.module('br.weeklyScheduler.app', [
+exports.default = angular.module('rr.weeklyScheduler.app', [
     module_1.default,
     module_2.default,
     module_3.default,
@@ -37249,7 +37249,7 @@ var ConfigurationService = /** @class */ (function () {
             }
         };
     };
-    ConfigurationService.$name = 'brWeeklySchedulerConfigurationService';
+    ConfigurationService.$name = 'rrWeeklySchedulerConfigurationService';
     ConfigurationService.$inject = [
         TimeConstantsService_1.TimeConstantsService.$name
     ];
@@ -37307,7 +37307,7 @@ var ConflictingOptionsService = /** @class */ (function () {
         }
         return '';
     };
-    ConflictingOptionsService.$name = 'brWeeklySchedulerConflictingOptionsService';
+    ConflictingOptionsService.$name = 'rrWeeklySchedulerConflictingOptionsService';
     return ConflictingOptionsService;
 }());
 exports.ConflictingOptionsService = ConflictingOptionsService;
@@ -37354,7 +37354,7 @@ var DailyGridDirective = /** @class */ (function () {
         this.gridGeneratorService = gridGeneratorService;
         this.intevalGenerationService = intevalGenerationService;
         this.restrict = 'E';
-        this.require = '^brWeeklyScheduler';
+        this.require = '^rrWeeklyScheduler';
         this.link = function (scope, element, attrs, schedulerCtrl) {
             if (schedulerCtrl.config) {
                 _this.config = schedulerCtrl.config;
@@ -37374,7 +37374,7 @@ var DailyGridDirective = /** @class */ (function () {
         directive.$inject = [GridGeneratorService_1.GridGeneratorService.$name, IntervalGenerationService_1.IntervalGenerationService.$name];
         return directive;
     };
-    DailyGridDirective.$name = 'brDailyGrid';
+    DailyGridDirective.$name = 'rrDailyGrid';
     return DailyGridDirective;
 }());
 exports.DailyGridDirective = DailyGridDirective;
@@ -37426,7 +37426,7 @@ var DayGridDirective = /** @class */ (function () {
         this.gridGeneratorService = gridGeneratorService;
         this.timeConstants = timeConstants;
         this.restrict = 'E';
-        this.require = '^brWeeklyScheduler';
+        this.require = '^rrWeeklyScheduler';
         this.link = function (scope, element, attrs, schedulerCtrl) {
             if (schedulerCtrl.config) {
                 _this.tickCount = _this.timeConstants.DAYS_IN_WEEK;
@@ -37437,7 +37437,7 @@ var DayGridDirective = /** @class */ (function () {
     DayGridDirective.prototype.handleClickEvent = function (child, hourCount, idx, scope) {
         child.bind('click', function () {
             scope.$apply(function () {
-                scope.$emit("brWeeklyScheduler.clickOnACell" /* CLICK_ON_A_CELL */, {
+                scope.$emit("rrWeeklyScheduler.clickOnACell" /* CLICK_ON_A_CELL */, {
                     nbElements: hourCount,
                     idx: idx
                 });
@@ -37464,7 +37464,7 @@ var DayGridDirective = /** @class */ (function () {
         directive.$inject = [DayMap_1.DayMap.$name, GridGeneratorService_1.GridGeneratorService.$name, TimeConstantsService_1.TimeConstantsService.$name];
         return directive;
     };
-    DayGridDirective.$name = 'brDayGrid';
+    DayGridDirective.$name = 'rrDayGrid';
     return DayGridDirective;
 }());
 exports.DayGridDirective = DayGridDirective;
@@ -37662,6 +37662,9 @@ exports.default = angular
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var EndAdjusterService_1 = __webpack_require__(/*! ../end-adjuster/EndAdjusterService */ "./src/ng-weekly-scheduler/end-adjuster/EndAdjusterService.ts");
+var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
+var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
 /** @internal */
 var DragService = /** @class */ (function () {
     function DragService(endAdjusterService, nullEndWidth, rangeFactory) {
@@ -37679,11 +37682,11 @@ var DragService = /** @class */ (function () {
             value: schedule.value
         });
     };
-    DragService.$name = 'brWeeklySchedulerDragService';
+    DragService.$name = 'rrWeeklySchedulerDragService';
     DragService.$inject = [
-        'brWeeklySchedulerEndAdjusterService',
-        'brWeeklySchedulerNullEndWidth',
-        'brWeeklySchedulerRangeFactory'
+        EndAdjusterService_1.EndAdjusterService.$name,
+        NullEndWidth_1.NullEndWidth.$name,
+        WeeklySchedulerRangeFactory_1.WeeklySchedulerRangeFactory.$name
     ];
     return DragService;
 }());
@@ -37835,7 +37838,7 @@ var EndAdjusterService = /** @class */ (function () {
         }
         return end;
     };
-    EndAdjusterService.$name = 'brWeeklySchedulerEndAdjusterService';
+    EndAdjusterService.$name = 'rrWeeklySchedulerEndAdjusterService';
     return EndAdjusterService;
 }());
 exports.EndAdjusterService = EndAdjusterService;
@@ -37980,7 +37983,7 @@ var FillEmptyWithDefaultService = /** @class */ (function () {
     FillEmptyWithDefaultService.prototype.shouldFillNullEnd = function (schedule, config) {
         return schedule.end === null && config.nullEnds && config.fillNullEnds;
     };
-    FillEmptyWithDefaultService.$name = 'brWeeklySchedulerFillEmptyWithDefaultService';
+    FillEmptyWithDefaultService.$name = 'rrWeeklySchedulerFillEmptyWithDefaultService';
     FillEmptyWithDefaultService.$inject = [
         EndAdjusterService_1.EndAdjusterService.$name,
         WeeklySchedulerRangeFactory_1.WeeklySchedulerRangeFactory.$name
@@ -38029,7 +38032,7 @@ var FullCalendarDirective = /** @class */ (function () {
         var _this = this;
         this.validator = validator;
         this.link = function (scope, element, attrs, ngModelCtrl) {
-            if (attrs.brFullCalendar) {
+            if (attrs.rrFullCalendar) {
                 ngModelCtrl.$validators[_this.validator.error] = function (modelValue) {
                     return _this.validator.validate(modelValue.schedules, modelValue.config);
                 };
@@ -38044,7 +38047,7 @@ var FullCalendarDirective = /** @class */ (function () {
         directive.$inject = [FullCalendarValidatorService_1.FullCalendarValidatorService.$name];
         return directive;
     };
-    FullCalendarDirective.$name = 'brFullCalendar';
+    FullCalendarDirective.$name = 'rrFullCalendar';
     return FullCalendarDirective;
 }());
 exports.FullCalendarDirective = FullCalendarDirective;
@@ -38098,7 +38101,7 @@ var GhostSlotController = /** @class */ (function () {
     function GhostSlotController($element) {
         this.$element = $element;
     }
-    GhostSlotController.$name = 'brGhostSlotController';
+    GhostSlotController.$name = 'rrGhostSlotController';
     GhostSlotController.$controllerAs = 'ghostSlotCtrl';
     GhostSlotController.$inject = [
         '$element'
@@ -38112,12 +38115,12 @@ var GhostSlotComponent = /** @class */ (function () {
         this.controller = GhostSlotController.$name;
         this.controllerAs = GhostSlotController.$controllerAs;
         this.require = {
-            multiSliderCtrl: '^brMultiSlider'
+            multiSliderCtrl: '^rrMultiSlider'
         };
         this.template = __webpack_require__(/*! ./ghost-slot.html */ "./src/ng-weekly-scheduler/ghost-slot/ghost-slot.html");
         this.transclude = true;
     }
-    GhostSlotComponent.$name = 'brGhostSlot';
+    GhostSlotComponent.$name = 'rrGhostSlot';
     return GhostSlotComponent;
 }());
 exports.GhostSlotComponent = GhostSlotComponent;
@@ -38287,7 +38290,7 @@ var GroupService = /** @class */ (function () {
         }, seed);
         return result;
     };
-    GroupService.$name = 'brWeeklySchedulerGroupService';
+    GroupService.$name = 'rrWeeklySchedulerGroupService';
     return GroupService;
 }());
 exports.GroupService = GroupService;
@@ -38392,7 +38395,7 @@ var HandleDirective = /** @class */ (function () {
         directive.$inject = ['$document', HandleProviderFactory_1.HandleProviderFactory.$name];
         return directive;
     };
-    HandleDirective.$name = 'brHandle';
+    HandleDirective.$name = 'rrHandle';
     return HandleDirective;
 }());
 exports.HandleDirective = HandleDirective;
@@ -38555,7 +38558,7 @@ var HourGridDirective = /** @class */ (function () {
         this.gridGeneratorService = gridGeneratorService;
         this.hourTextService = hourTextService;
         this.restrict = 'E';
-        this.require = '^brWeeklyScheduler';
+        this.require = '^rrWeeklyScheduler';
         this.link = function (scope, element, attrs, schedulerCtrl) {
             if (schedulerCtrl.config) {
                 _this.tickCount = schedulerCtrl.config.hourCount;
@@ -38566,7 +38569,7 @@ var HourGridDirective = /** @class */ (function () {
     HourGridDirective.prototype.handleClickEvent = function (child, hourCount, idx, scope) {
         child.bind('click', function () {
             scope.$apply(function () {
-                scope.$emit("brWeeklyScheduler.clickOnACell" /* CLICK_ON_A_CELL */, {
+                scope.$emit("rrWeeklyScheduler.clickOnACell" /* CLICK_ON_A_CELL */, {
                     nbElements: hourCount,
                     idx: idx
                 });
@@ -38595,7 +38598,7 @@ var HourGridDirective = /** @class */ (function () {
         ];
         return directive;
     };
-    HourGridDirective.$name = 'brHourGrid';
+    HourGridDirective.$name = 'rrHourGrid';
     return HourGridDirective;
 }());
 exports.HourGridDirective = HourGridDirective;
@@ -38688,7 +38691,7 @@ var HourlyGridDirective = /** @class */ (function () {
         this.gridGeneratorService = gridGeneratorService;
         this.intervalGenerationService = intervalGenerationService;
         this.restrict = 'E';
-        this.require = '^brWeeklyScheduler';
+        this.require = '^rrWeeklyScheduler';
         this.link = function (scope, element, attrs, schedulerCtrl) {
             if (schedulerCtrl.config) {
                 _this.config = schedulerCtrl.config;
@@ -38712,7 +38715,7 @@ var HourlyGridDirective = /** @class */ (function () {
         ];
         return directive;
     };
-    HourlyGridDirective.$name = 'brHourlyGrid';
+    HourlyGridDirective.$name = 'rrHourlyGrid';
     return HourlyGridDirective;
 }());
 exports.HourlyGridDirective = HourlyGridDirective;
@@ -38920,7 +38923,7 @@ var LastGhostDayService = /** @class */ (function () {
         }
         return renderedGhostIndices;
     };
-    LastGhostDayService.$name = 'brWeeklySchedulerLastGhostDayService';
+    LastGhostDayService.$name = 'rrWeeklySchedulerLastGhostDayService';
     return LastGhostDayService;
 }());
 exports.LastGhostDayService = LastGhostDayService;
@@ -38965,7 +38968,7 @@ var MaxTimeSlotDirective = /** @class */ (function () {
         var _this = this;
         this.validator = validator;
         this.link = function (scope, element, attrs, ngModelCtrl) {
-            if (attrs.brMaxTimeSlot) {
+            if (attrs.rrMaxTimeSlot) {
                 ngModelCtrl.$validators[_this.validator.error] = function (modelValue) {
                     return _this.validator.validate(modelValue.schedules, modelValue.config);
                 };
@@ -38980,7 +38983,7 @@ var MaxTimeSlotDirective = /** @class */ (function () {
         directive.$inject = [MaxTimeSlotValidatorService_1.MaxTimeSlotValidatorService.$name];
         return directive;
     };
-    MaxTimeSlotDirective.$name = 'brMaxTimeSlot';
+    MaxTimeSlotDirective.$name = 'rrMaxTimeSlot';
     return MaxTimeSlotDirective;
 }());
 exports.MaxTimeSlotDirective = MaxTimeSlotDirective;
@@ -39025,7 +39028,7 @@ var MinimumSeparationDirective = /** @class */ (function () {
         var _this = this;
         this.validator = validator;
         this.link = function (scope, element, attrs, ngModelCtrl) {
-            if (attrs.brMinimumSeparation) {
+            if (attrs.rrMinimumSeparation) {
                 ngModelCtrl.$validators[_this.validator.error] = function (modelValue) {
                     return _this.validator.validate(modelValue.schedules, modelValue.config);
                 };
@@ -39040,7 +39043,7 @@ var MinimumSeparationDirective = /** @class */ (function () {
         directive.$inject = [MinimumSeparationValidatorService_1.MinimumSeparationValidatorService.$name];
         return directive;
     };
-    MinimumSeparationDirective.$name = 'brMinimumSeparation';
+    MinimumSeparationDirective.$name = 'rrMinimumSeparation';
     return MinimumSeparationDirective;
 }());
 exports.MinimumSeparationDirective = MinimumSeparationDirective;
@@ -39108,7 +39111,7 @@ var MissingDaysService = /** @class */ (function () {
         });
         return angular.copy(result).sort(function (a, b) { return a.day - b.day; });
     };
-    MissingDaysService.$name = 'brWeeklySchedulerMissingDaysService';
+    MissingDaysService.$name = 'rrWeeklySchedulerMissingDaysService';
     MissingDaysService.$inject = [
         DayMap_1.DayMap.$name,
         WeeklySchedulerItemFactory_1.WeeklySchedulerItemFactory.$name
@@ -39157,7 +39160,7 @@ var MonoScheduleDirective = /** @class */ (function () {
         var _this = this;
         this.validator = validator;
         this.link = function (scope, element, attrs, ngModelCtrl) {
-            if (attrs.brMonoSchedule) {
+            if (attrs.rrMonoSchedule) {
                 ngModelCtrl.$validators[_this.validator.error] = function (modelValue) {
                     return _this.validator.validate(modelValue.schedules, modelValue.config);
                 };
@@ -39172,7 +39175,7 @@ var MonoScheduleDirective = /** @class */ (function () {
         directive.$inject = [MonoScheduleValidatorService_1.MonoScheduleValidatorService.$name];
         return directive;
     };
-    MonoScheduleDirective.$name = 'brMonoSchedule';
+    MonoScheduleDirective.$name = 'rrMonoSchedule';
     return MonoScheduleDirective;
 }());
 exports.MonoScheduleDirective = MonoScheduleDirective;
@@ -39288,7 +39291,7 @@ var MouseTrackerService = /** @class */ (function () {
     MouseTrackerService.prototype.setMousePosition = function (event) {
         this.mousePosition = { x: event.pageX, y: event.pageY };
     };
-    MouseTrackerService.$name = 'brWeeklySchedulerMouseTrackerService';
+    MouseTrackerService.$name = 'rrWeeklySchedulerMouseTrackerService';
     MouseTrackerService.$inject = ['$document'];
     return MouseTrackerService;
 }());
@@ -39361,9 +39364,9 @@ var MultisliderGridComponent = /** @class */ (function () {
         this.controllerAs = 'multiSliderGridCtrl';
         this.restrict = 'E';
         this.require = {
-            schedulerCtrl: '^brWeeklyScheduler'
+            schedulerCtrl: '^rrWeeklyScheduler'
         };
-        this.template = "\n        <div class=\"repeat\" ng-repeat=\"item in multiSliderGridCtrl.items\" ng-style=\"{ \n            'display': 'inline-block',\n            'width': multiSliderGridCtrl.width \n        }\">\n            <br-daily-grid></br-daily-grid>\n            <br-multi-slider config=\"multiSliderGridCtrl.config\"\n                             br-full-calendar=\"{{ multiSliderGridCtrl.config.fullCalendar }}\"\n                             br-max-time-slot=\"{{ multiSliderGridCtrl.config.maxTimeSlot }}\"\n                             br-minimum-separation=\"{{ multiSliderGridCtrl.config.minimumSeparation }}\"\n                             br-mono-schedule=\"{{ multiSliderGridCtrl.config.monoSchedule }}\"\n                             br-null-end=\"{{ multiSliderGridCtrl.config.nullEnds }}\"\n                             br-schedule-count=\"{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}\"\n                             br-overlap\n                             br-revalidate\n                             drag-schedule=\"multiSliderGridCtrl.schedulerCtrl.dragSchedule\"\n                             ghost-values=\"multiSliderGridCtrl.schedulerCtrl.ghostValues\"\n                             ng-model=\"item\"\n                             ng-model-options=\"{allowInvalid: true}\"\n                             set-ghost-values=\"multiSliderGridCtrl.schedulerCtrl.setGhostValues(ghostValues)\"\n                             class=\"vertical\"\n                             ng-style=\"{ 'width': multiSliderGridCtrl.width }\"\n            ></br-multi-slider>\n        </div>\n    ";
+        this.template = "\n        <div class=\"repeat\" ng-repeat=\"item in multiSliderGridCtrl.items\" ng-style=\"{ \n            'display': 'inline-block',\n            'width': multiSliderGridCtrl.width \n        }\">\n            <rr-daily-grid></rr-daily-grid>\n            <rr-multi-slider config=\"multiSliderGridCtrl.config\"\n                             rr-full-calendar=\"{{ multiSliderGridCtrl.config.fullCalendar }}\"\n                             rr-max-time-slot=\"{{ multiSliderGridCtrl.config.maxTimeSlot }}\"\n                             rr-minimum-separation=\"{{ multiSliderGridCtrl.config.minimumSeparation }}\"\n                             rr-mono-schedule=\"{{ multiSliderGridCtrl.config.monoSchedule }}\"\n                             rr-null-end=\"{{ multiSliderGridCtrl.config.nullEnds }}\"\n                             rr-schedule-count=\"{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}\"\n                             rr-overlap\n                             rr-revalidate\n                             drag-schedule=\"multiSliderGridCtrl.schedulerCtrl.dragSchedule\"\n                             ghost-values=\"multiSliderGridCtrl.schedulerCtrl.ghostValues\"\n                             ng-model=\"item\"\n                             ng-model-options=\"{allowInvalid: true}\"\n                             set-ghost-values=\"multiSliderGridCtrl.schedulerCtrl.setGhostValues(ghostValues)\"\n                             class=\"vertical\"\n                             ng-style=\"{ 'width': multiSliderGridCtrl.width }\"\n            ></rr-multi-slider>\n        </div>\n    ";
     }
     MultisliderGridComponent.$name = 'rrMultisliderGrid';
     return MultisliderGridComponent;
@@ -39412,7 +39415,7 @@ exports.default = angular.module('rr.weeklyScheduler.multiSlider', [])
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ghost-wrapper\" config=\"multiSliderCtrl.config\" br-handle ondragstart=\"multiSliderCtrl.onGhostWrapperMouseDown()\" ondragstop=\"multiSliderCtrl.onGhostWrapperMouseUp()\" ondrag=\"multiSliderCtrl.onGhostWrapperMouseMove()\">\r\n    <br-ghost-slot class=\"slot\"\r\n                   ng-if=\"multiSliderCtrl.item.canRenderGhost()\"\r\n                   ng-class=\"{\r\n                      active: multiSliderCtrl.item.$renderGhost,\r\n                      nullEnd: multiSliderCtrl.config.nullEnds\r\n                   }\"\r\n                   ng-style=\"multiSliderCtrl.getSlotStyle(multiSliderCtrl.ghostValues)\">\r\n        <div class=\"slotWrapper\">\r\n            <div class=\"middle fullWidth\">\r\n                <span ng-if=\"!multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | brWeeklySchedulerTimeOfDay }}</span>\r\n                <span ng-if=\"multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} until</span>\r\n            </div>\r\n        </div>\r\n    </br-ghost-slot>\r\n\r\n    <br-weekly-slot class=\"slot {{ schedule.$class }}\"\r\n                config=\"multiSliderCtrl.config\"\r\n                get-delta=\"multiSliderCtrl.pixelToVal(pixel)\"\r\n                drag-schedule=\"multiSliderCtrl.dragSchedule\" \r\n                item=\"multiSliderCtrl.item\"\r\n                ng-class=\"{\r\n                    active: schedule.$isActive,\r\n                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),\r\n                    nullEnd: schedule.end === null,\r\n                    pending: schedule.$isEditing\r\n                }\"\r\n                ng-repeat=\"schedule in multiSliderCtrl.item.schedules\"\r\n                ng-model=\"schedule\"\r\n                ng-style=\"multiSliderCtrl.getSlotStyle(schedule)\"\r\n                edit-schedule=\"multiSliderCtrl.editSchedule(schedule)\"\r\n    ></br-weekly-slot>\r\n</div>";
+module.exports = "<div class=\"ghost-wrapper\" config=\"multiSliderCtrl.config\" rr-handle ondragstart=\"multiSliderCtrl.onGhostWrapperMouseDown()\" ondragstop=\"multiSliderCtrl.onGhostWrapperMouseUp()\" ondrag=\"multiSliderCtrl.onGhostWrapperMouseMove()\">\r\n    <rr-ghost-slot class=\"slot\"\r\n                   ng-if=\"multiSliderCtrl.item.canRenderGhost()\"\r\n                   ng-class=\"{\r\n                      active: multiSliderCtrl.item.$renderGhost,\r\n                      nullEnd: multiSliderCtrl.config.nullEnds\r\n                   }\"\r\n                   ng-style=\"multiSliderCtrl.getSlotStyle(multiSliderCtrl.ghostValues)\">\r\n        <div class=\"slotWrapper\">\r\n            <div class=\"middle fullWidth\">\r\n                <span ng-if=\"!multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | rrWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | rrWeeklySchedulerTimeOfDay }}</span>\r\n                <span ng-if=\"multiSliderCtrl.config.nullEnds\">{{ multiSliderCtrl.ghostValues.start | rrWeeklySchedulerTimeOfDay }} until</span>\r\n            </div>\r\n        </div>\r\n    </rr-ghost-slot>\r\n\r\n    <rr-weekly-slot class=\"slot {{ schedule.$class }}\"\r\n                config=\"multiSliderCtrl.config\"\r\n                get-delta=\"multiSliderCtrl.pixelToVal(pixel)\"\r\n                drag-schedule=\"multiSliderCtrl.dragSchedule\" \r\n                item=\"multiSliderCtrl.item\"\r\n                ng-class=\"{\r\n                    active: schedule.$isActive,\r\n                    disable: !multiSliderCtrl.item.canEditSchedule(schedule),\r\n                    nullEnd: schedule.end === null,\r\n                    pending: schedule.$isEditing\r\n                }\"\r\n                ng-repeat=\"schedule in multiSliderCtrl.item.schedules\"\r\n                ng-model=\"schedule\"\r\n                ng-style=\"multiSliderCtrl.getSlotStyle(schedule)\"\r\n                edit-schedule=\"multiSliderCtrl.editSchedule(schedule)\"\r\n    ></rr-weekly-slot>\r\n</div>";
 
 /***/ }),
 
@@ -39460,24 +39463,24 @@ var MultiSliderController = /** @class */ (function () {
         this.$element.on('mouseup', function () {
             _this.onMouseUp();
         });
-        this.$scope.$on("brWeeklyScheduler.commitGhost" /* COMMIT_GHOST */, function (event, ghostSchedule) {
+        this.$scope.$on("rrWeeklyScheduler.commitGhost" /* COMMIT_GHOST */, function (event, ghostSchedule) {
             if (_this.item.$renderGhost) {
                 _this.commitGhost(ghostSchedule);
             }
         });
-        this.$scope.$on("brWeeklyScheduler.removeGhost" /* REMOVE_GHOST */, function (event, day) {
+        this.$scope.$on("rrWeeklyScheduler.removeGhost" /* REMOVE_GHOST */, function (event, day) {
             if (!_this.item.$isGhostOrigin && _this.item.day === day) {
                 _this.removeGhost();
             }
         });
-        this.$scope.$on("brWeeklyScheduler.removeAllGhosts" /* REMOVE_ALL_GHOSTS */, function () {
+        this.$scope.$on("rrWeeklyScheduler.removeAllGhosts" /* REMOVE_ALL_GHOSTS */, function () {
             _this.removeGhost();
         });
     };
     MultiSliderController.prototype.onMouseEnter = function () {
         // If the cursor is moving BACK into an item that ALREADY has a ghost rendered, we'll want to remove the ghost from the item that was left
         if (this.item.$renderGhost) {
-            this.$scope.$emit("brWeeklyScheduler.removeLastGhost" /* REMOVE_LAST_GHOST */);
+            this.$scope.$emit("rrWeeklyScheduler.removeLastGhost" /* REMOVE_LAST_GHOST */);
         }
         if (this.dragSchedule) {
             this.addDragSchedule();
@@ -39591,9 +39594,9 @@ var MultiSliderController = /** @class */ (function () {
         var _this = this;
         var ghostSchedule = this.getScheduleForAdd(this.ghostValues.start, this.ghostValues.end);
         this.openEditorForAdd(ghostSchedule).then(function (editedGhostSchedule) {
-            _this.$scope.$emit("brWeeklyScheduler.ghostDragEnded" /* GHOST_DRAG_ENDED */, editedGhostSchedule);
+            _this.$scope.$emit("rrWeeklyScheduler.ghostDragEnded" /* GHOST_DRAG_ENDED */, editedGhostSchedule);
         }).catch(function () {
-            _this.$scope.$emit("brWeeklyScheduler.cancelGhost" /* CANCEL_GHOST */);
+            _this.$scope.$emit("rrWeeklyScheduler.cancelGhost" /* CANCEL_GHOST */);
         });
     };
     MultiSliderController.prototype.createGhost = function () {
@@ -39666,7 +39669,7 @@ var MultiSliderController = /** @class */ (function () {
         this.item.$renderGhost = false;
         this.setGhostValues(null);
     };
-    MultiSliderController.$name = 'brMultiSliderController';
+    MultiSliderController.$name = 'rrMultiSliderController';
     MultiSliderController.$controllerAs = 'multiSliderCtrl';
     MultiSliderController.$inject = [
         '$element',
@@ -39700,7 +39703,7 @@ var MultiSliderComponent = /** @class */ (function () {
         };
         this.template = __webpack_require__(/*! ./multislider.html */ "./src/ng-weekly-scheduler/multislider/multislider.html");
     }
-    MultiSliderComponent.$name = 'brMultiSlider';
+    MultiSliderComponent.$name = 'rrMultiSlider';
     return MultiSliderComponent;
 }());
 exports.MultiSliderComponent = MultiSliderComponent;
@@ -39738,7 +39741,7 @@ var NullEndDirective = /** @class */ (function () {
         directive.$inject = [NullEndValidatorService_1.NullEndScheduleValidatorService.$name];
         return directive;
     };
-    NullEndDirective.$name = 'brNullEnd';
+    NullEndDirective.$name = 'rrNullEnd';
     return NullEndDirective;
 }());
 exports.NullEndDirective = NullEndDirective;
@@ -39796,7 +39799,7 @@ var OverlapDirective = /** @class */ (function () {
         directive.$inject = [OverlapValidatorService_1.OverlapValidatorService.$name];
         return directive;
     };
-    OverlapDirective.$name = 'brOverlap';
+    OverlapDirective.$name = 'rrOverlap';
     return OverlapDirective;
 }());
 exports.OverlapDirective = OverlapDirective;
@@ -39845,7 +39848,7 @@ var OverlapService = /** @class */ (function () {
         }
         return 0 /* NoOverlap */;
     };
-    OverlapService.$name = 'brWeeklySchedulerOverlapService';
+    OverlapService.$name = 'rrWeeklySchedulerOverlapService';
     OverlapService.$inject = [
         EndAdjusterService_1.EndAdjusterService.$name
     ];
@@ -40131,7 +40134,7 @@ var PurgeDefaultService = /** @class */ (function () {
         }
         return schedules;
     };
-    PurgeDefaultService.$name = 'brWeeklySchedulerPurgeDefaultService';
+    PurgeDefaultService.$name = 'rrWeeklySchedulerPurgeDefaultService';
     return PurgeDefaultService;
 }());
 exports.PurgeDefaultService = PurgeDefaultService;
@@ -40192,13 +40195,13 @@ var ResizeServiceProvider = /** @class */ (function () {
                 $window.addEventListener('resize', function () {
                     // addEventListener exists outside of angular so we have to $apply the change
                     $rootScope.$apply(function () {
-                        $rootScope.$broadcast("brWeeklyScheduler.resized" /* RESIZED */);
+                        $rootScope.$broadcast("rrWeeklyScheduler.resized" /* RESIZED */);
                     });
                 });
                 if (_this.customResizeEvents) {
                     _this.customResizeEvents.forEach(function (event) {
                         $rootScope.$on(event, function () {
-                            $rootScope.$broadcast("brWeeklyScheduler.resized" /* RESIZED */);
+                            $rootScope.$broadcast("rrWeeklyScheduler.resized" /* RESIZED */);
                         });
                     });
                 }
@@ -40206,7 +40209,7 @@ var ResizeServiceProvider = /** @class */ (function () {
             }
         };
     };
-    ResizeServiceProvider.$name = 'br.weeklyScheduler.resizeService';
+    ResizeServiceProvider.$name = 'rr.weeklyScheduler.resizeService';
     return ResizeServiceProvider;
 }());
 exports.ResizeServiceProvider = ResizeServiceProvider;
@@ -40254,7 +40257,7 @@ var RestrictionExplanationsController = /** @class */ (function () {
     RestrictionExplanationsController.prototype.$onInit = function () {
         var config = this.schedulerCtrl.config;
         if (config.maxTimeSlot) {
-            var maxTimeSlot = this.$filter('brWeeklySchedulerSecondsAsText')(config.maxTimeSlot);
+            var maxTimeSlot = this.$filter('rrWeeklySchedulerSecondsAsText')(config.maxTimeSlot);
             this.explanations["maxTimeSlot" /* MaxTimeSlot */] = config.restrictionExplanations.maxTimeSlot(maxTimeSlot);
         }
         if (config.fullCalendar) {
@@ -40270,12 +40273,12 @@ var RestrictionExplanationsController = /** @class */ (function () {
             this.explanations["scheduleCount" /* ScheduleCount */] = config.restrictionExplanations.scheduleCount(config.scheduleCountOptions);
         }
         if (config.minimumSeparation) {
-            var minimumSeparation = this.$filter('brWeeklySchedulerSecondsAsText')(config.minimumSeparation);
+            var minimumSeparation = this.$filter('rrWeeklySchedulerSecondsAsText')(config.minimumSeparation);
             this.explanations["minimumSeparation" /* MinimumSeparation */] = config.restrictionExplanations.minimumSeparation(minimumSeparation);
         }
     };
     RestrictionExplanationsController.$controllerAs = 'restrictionExplanationsCtrl';
-    RestrictionExplanationsController.$name = 'brWeeklySchedulerRestrictionExplanationsController';
+    RestrictionExplanationsController.$name = 'rrWeeklySchedulerRestrictionExplanationsController';
     RestrictionExplanationsController.$inject = ['$filter'];
     return RestrictionExplanationsController;
 }());
@@ -40286,11 +40289,11 @@ var RestrictionExplanationsComponent = /** @class */ (function () {
         this.controller = RestrictionExplanationsController.$name;
         this.controllerAs = RestrictionExplanationsController.$controllerAs;
         this.require = {
-            schedulerCtrl: '^brWeeklyScheduler'
+            schedulerCtrl: '^rrWeeklyScheduler'
         };
         this.template = "\n        <div class=\"srow explanations\" ng-class=\"{ violation: restrictionExplanationsCtrl.schedulerCtrl.formController.$error[key] }\" ng-repeat=\"(key, explanation) in restrictionExplanationsCtrl.explanations\">\n            {{ explanation }}\n        </div>\n    ";
     }
-    RestrictionExplanationsComponent.$name = 'brRestrictionExplanations';
+    RestrictionExplanationsComponent.$name = 'rrRestrictionExplanations';
     return RestrictionExplanationsComponent;
 }());
 exports.RestrictionExplanationsComponent = RestrictionExplanationsComponent;
@@ -40348,7 +40351,7 @@ var RevalidateDirective = /** @class */ (function () {
         };
         return directive;
     };
-    RevalidateDirective.$name = 'brRevalidate';
+    RevalidateDirective.$name = 'rrRevalidate';
     return RevalidateDirective;
 }());
 exports.RevalidateDirective = RevalidateDirective;
@@ -40433,17 +40436,17 @@ var ScheduleAreaContainerController = /** @class */ (function () {
         var element = this.$element[0]; // grab plain js, not jqlite
         this.scrollService.hijackScroll(element, 20);
         this.zoomService.resetZoom(element);
-        this.$scope.$on("brWeeklyScheduler.clickOnACell" /* CLICK_ON_A_CELL */, function (e, data) {
+        this.$scope.$on("rrWeeklyScheduler.clickOnACell" /* CLICK_ON_A_CELL */, function (e, data) {
             _this.zoomService.zoomInACell(element, e, data);
         });
-        this.$scope.$on("brWeeklyScheduler.resetZoom" /* RESET_ZOOM */, function (e) {
+        this.$scope.$on("rrWeeklyScheduler.resetZoom" /* RESET_ZOOM */, function (e) {
             _this.zoomService.resetZoom(element);
         });
-        this.$scope.$on("brWeeklyScheduler.zoomIn" /* ZOOM_IN */, function (e) {
+        this.$scope.$on("rrWeeklyScheduler.zoomIn" /* ZOOM_IN */, function (e) {
             _this.zoomService.zoomIn(element);
         });
     };
-    ScheduleAreaContainerController.$name = 'brWeeklySchedulerScheduleAreaContainerController';
+    ScheduleAreaContainerController.$name = 'rrWeeklySchedulerScheduleAreaContainerController';
     ScheduleAreaContainerController.$inject = [
         '$element',
         '$scope',
@@ -40460,7 +40463,7 @@ var ScheduleAreaContainerComponent = /** @class */ (function () {
         this.transclude = true;
         this.template = __webpack_require__(/*! ./schedule-area-container.html */ "./src/ng-weekly-scheduler/schedule-area-container/schedule-area-container.html");
     }
-    ScheduleAreaContainerComponent.$name = 'brScheduleAreaContainer';
+    ScheduleAreaContainerComponent.$name = 'rrScheduleAreaContainer';
     return ScheduleAreaContainerComponent;
 }());
 exports.ScheduleAreaContainerComponent = ScheduleAreaContainerComponent;
@@ -40485,7 +40488,7 @@ var ScheduleCountDirective = /** @class */ (function () {
         var _this = this;
         this.validator = validator;
         this.link = function (scope, element, attrs, ngModelCtrl) {
-            if (attrs.brScheduleCount) {
+            if (attrs.rrScheduleCount) {
                 ngModelCtrl.$validators[_this.validator.error] = function (modelValue) {
                     return _this.validator.validate(modelValue.schedules, modelValue.config);
                 };
@@ -40500,7 +40503,7 @@ var ScheduleCountDirective = /** @class */ (function () {
         directive.$inject = [ScheduleCountValidatorService_1.ScheduleCountValidatorService.$name];
         return directive;
     };
-    ScheduleCountDirective.$name = 'brScheduleCount';
+    ScheduleCountDirective.$name = 'rrScheduleCount';
     return ScheduleCountDirective;
 }());
 exports.ScheduleCountDirective = ScheduleCountDirective;
@@ -40590,7 +40593,7 @@ var FullCalendarValidatorService = /** @class */ (function () {
     FullCalendarValidatorService.prototype.validateEndAtMaxValue = function (end, config) {
         return (end || config.maxValue) === config.maxValue;
     };
-    FullCalendarValidatorService.$name = 'brWeeklySchedulerFullCalendarValidatorService';
+    FullCalendarValidatorService.$name = 'rrWeeklySchedulerFullCalendarValidatorService';
     return FullCalendarValidatorService;
 }());
 exports.FullCalendarValidatorService = FullCalendarValidatorService;
@@ -40629,7 +40632,7 @@ var MaxTimeSlotValidatorService = /** @class */ (function () {
         }
         return !schedules.some(function (s) { return s.value !== config.defaultValue && _this.endAdjusterService.adjustEndForView(config, s.end) - s.start > maxTimeSlot; });
     };
-    MaxTimeSlotValidatorService.$name = 'brWeeklySchedulerMaxTimeSlotValidatorService';
+    MaxTimeSlotValidatorService.$name = 'rrWeeklySchedulerMaxTimeSlotValidatorService';
     MaxTimeSlotValidatorService.$inject = [EndAdjusterService_1.EndAdjusterService.$name];
     return MaxTimeSlotValidatorService;
 }());
@@ -40678,7 +40681,7 @@ var MinimumSeparationValidatorService = /** @class */ (function () {
         }
         return true;
     };
-    MinimumSeparationValidatorService.$name = 'brWeeklySchedulerMinimumSeparationValidatorService';
+    MinimumSeparationValidatorService.$name = 'rrWeeklySchedulerMinimumSeparationValidatorService';
     return MinimumSeparationValidatorService;
 }());
 exports.MinimumSeparationValidatorService = MinimumSeparationValidatorService;
@@ -40724,7 +40727,7 @@ var MonoScheduleValidatorService = /** @class */ (function () {
         // only allowed empty or 1 schedule per item
         return !schedulesToValidate.length || schedulesToValidate.length === 1;
     };
-    MonoScheduleValidatorService.$name = 'brWeeklySchedulerMonoScheduleValidatorService';
+    MonoScheduleValidatorService.$name = 'rrWeeklySchedulerMonoScheduleValidatorService';
     return MonoScheduleValidatorService;
 }());
 exports.MonoScheduleValidatorService = MonoScheduleValidatorService;
@@ -40761,7 +40764,7 @@ var NullEndScheduleValidatorService = /** @class */ (function () {
             return schedules.every(function (schedule) { return schedule.end !== null; });
         }
     };
-    NullEndScheduleValidatorService.$name = 'brWeeklySchedulerNullEndValidatorService';
+    NullEndScheduleValidatorService.$name = 'rrWeeklySchedulerNullEndValidatorService';
     return NullEndScheduleValidatorService;
 }());
 exports.NullEndScheduleValidatorService = NullEndScheduleValidatorService;
@@ -40807,7 +40810,7 @@ var OverlapValidatorService = /** @class */ (function () {
         }
         return result;
     };
-    OverlapValidatorService.$name = 'brWeeklySchedulerOverlapValidatorService';
+    OverlapValidatorService.$name = 'rrWeeklySchedulerOverlapValidatorService';
     OverlapValidatorService.$inject = [
         OverlapService_1.OverlapService.$name
     ];
@@ -40856,7 +40859,7 @@ var ScheduleCountValidatorService = /** @class */ (function () {
     ScheduleCountValidatorService.prototype.validateMaxCount = function (schedules, config) {
         return schedules.length <= config.scheduleCountOptions.count;
     };
-    ScheduleCountValidatorService.$name = 'brWeeklySchedulerScheduleCountValidatorService';
+    ScheduleCountValidatorService.$name = 'rrWeeklySchedulerScheduleCountValidatorService';
     return ScheduleCountValidatorService;
 }());
 exports.ScheduleCountValidatorService = ScheduleCountValidatorService;
@@ -40931,7 +40934,7 @@ var ScrollService = /** @class */ (function () {
             return false;
         });
     };
-    ScrollService.$name = 'brWeeklySchedulerScrollService';
+    ScrollService.$name = 'rrWeeklySchedulerScrollService';
     ScrollService.$inject = [
         ZoomService_1.ZoomService.$name
     ];
@@ -41179,9 +41182,9 @@ var TimeRangeComponent = /** @class */ (function () {
         };
         this.controller = TimeRangeController.$name;
         this.controllerAs = TimeRangeController.$controllerAs;
-        this.template = "\n        <span ng-if=\"timeRangeCtrl.hasStart && timeRangeCtrl.hasEnd\">{{ timeRangeCtrl.schedule.start | brWeeklySchedulerTimeOfDay }}-{{ timeRangeCtrl.schedule.end | brWeeklySchedulerTimeOfDay }}</span>\n        <span ng-if=\"timeRangeCtrl.hasStart && !timeRangeCtrl.hasEnd\">{{ timeRangeCtrl.schedule.start | brWeeklySchedulerTimeOfDay }} until</span>\n    ";
+        this.template = "\n        <span ng-if=\"timeRangeCtrl.hasStart && timeRangeCtrl.hasEnd\">{{ timeRangeCtrl.schedule.start | rrWeeklySchedulerTimeOfDay }}-{{ timeRangeCtrl.schedule.end | rrWeeklySchedulerTimeOfDay }}</span>\n        <span ng-if=\"timeRangeCtrl.hasStart && !timeRangeCtrl.hasEnd\">{{ timeRangeCtrl.schedule.start | rrWeeklySchedulerTimeOfDay }} until</span>\n    ";
     }
-    TimeRangeComponent.$name = 'brTimeRange';
+    TimeRangeComponent.$name = 'rrTimeRange';
     return TimeRangeComponent;
 }());
 exports.TimeRangeComponent = TimeRangeComponent;
@@ -41194,7 +41197,7 @@ var TimeRangeController = /** @class */ (function () {
         this.hasEnd = angular.isDefined(this.schedule.end) && this.schedule.end !== null;
     };
     TimeRangeController.$controllerAs = 'timeRangeCtrl';
-    TimeRangeController.$name = 'brTimeRangeController';
+    TimeRangeController.$name = 'rrTimeRangeController';
     return TimeRangeController;
 }());
 exports.TimeRangeController = TimeRangeController;
@@ -41282,7 +41285,7 @@ var SecondsAsTextFilter = /** @class */ (function () {
         }
         return result;
     };
-    SecondsAsTextFilter.$name = 'brWeeklySchedulerSecondsAsText';
+    SecondsAsTextFilter.$name = 'rrWeeklySchedulerSecondsAsText';
     return SecondsAsTextFilter;
 }());
 exports.SecondsAsTextFilter = SecondsAsTextFilter;
@@ -41353,7 +41356,7 @@ var TimeConstantsService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    TimeConstantsService.$name = 'brWeeklySchedulerTimeConstantsService';
+    TimeConstantsService.$name = 'rrWeeklySchedulerTimeConstantsService';
     return TimeConstantsService;
 }());
 exports.TimeConstantsService = TimeConstantsService;
@@ -41400,7 +41403,7 @@ var TimeOfDayFilter = /** @class */ (function () {
         factoryFunction.$inject = [TimeConstantsService_1.TimeConstantsService.$name];
         return factoryFunction;
     };
-    TimeOfDayFilter.$name = 'brWeeklySchedulerTimeOfDay';
+    TimeOfDayFilter.$name = 'rrWeeklySchedulerTimeOfDay';
     return TimeOfDayFilter;
 }());
 exports.TimeOfDayFilter = TimeOfDayFilter;
@@ -41474,7 +41477,7 @@ var TouchService = /** @class */ (function () {
         }
         return null;
     };
-    TouchService.$name = 'brWeeklySchedulerTouchService';
+    TouchService.$name = 'rrWeeklySchedulerTouchService';
     return TouchService;
 }());
 exports.TouchService = TouchService;
@@ -41525,7 +41528,7 @@ var ValueNormalizationService = /** @class */ (function () {
         }
         return value;
     };
-    ValueNormalizationService.$name = 'brWeeklySchedulerValueNormalizationService';
+    ValueNormalizationService.$name = 'rrWeeklySchedulerValueNormalizationService';
     return ValueNormalizationService;
 }());
 exports.ValueNormalizationService = ValueNormalizationService;
@@ -41568,7 +41571,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DayMap = /** @class */ (function () {
     function DayMap() {
     }
-    DayMap.$name = 'brWeeklySchedulerDayMap';
+    DayMap.$name = 'rrWeeklySchedulerDayMap';
     DayMap.value = (_a = {},
         _a[0 /* Monday */] = 'Mon',
         _a[1 /* Tuesday */] = 'Tue',
@@ -41600,7 +41603,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var NullEndWidth = /** @class */ (function () {
     function NullEndWidth() {
     }
-    NullEndWidth.$name = 'brWeeklySchedulerNullEndWidth';
+    NullEndWidth.$name = 'rrWeeklySchedulerNullEndWidth';
     NullEndWidth.value = 7200;
     return NullEndWidth;
 }());
@@ -41889,7 +41892,7 @@ var WeeklySchedulerItemFactory = /** @class */ (function () {
         result = angular.extend(builder, { label: this.dayMap[day] });
         return new WeeklySchedulerItem_1.WeeklySchedulerItem(config, result, this.fillEmptyWithDefaultService, this.overlapService, this.purgeDefaultService, this.rangeFactory);
     };
-    WeeklySchedulerItemFactory.$name = 'brWeeklySchedulerItemFactory';
+    WeeklySchedulerItemFactory.$name = 'rrWeeklySchedulerItemFactory';
     WeeklySchedulerItemFactory.$inject = [
         DayMap_1.DayMap.$name,
         FillEmptyWithDefaultService_1.FillEmptyWithDefaultService.$name,
@@ -42024,7 +42027,7 @@ var WeeklySchedulerRangeFactory = /** @class */ (function () {
     WeeklySchedulerRangeFactory.prototype.createRange = function (config, schedule) {
         return new WeeklySchedulerRange_1.WeeklySchedulerRange(config, schedule, this.endAdjusterService);
     };
-    WeeklySchedulerRangeFactory.$name = 'brWeeklySchedulerRangeFactory';
+    WeeklySchedulerRangeFactory.$name = 'rrWeeklySchedulerRangeFactory';
     WeeklySchedulerRangeFactory.$inject = [
         EndAdjusterService_1.EndAdjusterService.$name
     ];
@@ -42083,7 +42086,7 @@ exports.default = angular
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'horizontal'\">\r\n  <rr-label-column items=\"schedulerCtrl.items\" get-text=\"schedulerCtrl.getDayText(item)\"></rr-label-column>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-hour-grid></br-hour-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <br-hourly-grid></br-hourly-grid>\r\n        <br-multi-slider config=\"schedulerCtrl.config\"\r\n                        br-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        br-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        br-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        br-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        br-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        br-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        br-overlap\r\n                        br-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></br-multi-slider>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'vertical'\">\r\n  <rr-label-column items=\"schedulerCtrl.verticalTicks\" get-text=\"schedulerCtrl.getHourText(item)\"></rr-label-column>\r\n\r\n  <br-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <br-day-grid></br-day-grid>\r\n      </div>\r\n\r\n      <div class=\"vertical-multi-slider-area\">\r\n        <div class=\"calendar-overlay\">\r\n          <div class=\"calendar\">\r\n            <rr-multislider-grid config=\"schedulerCtrl.config\" items=\"schedulerCtrl.items\"></rr-multislider-grid>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item.index\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </br-schedule-area-container>\r\n\r\n  <br-restriction-explanations></br-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
+module.exports = "<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'horizontal'\">\r\n  <rr-label-column items=\"schedulerCtrl.items\" get-text=\"schedulerCtrl.getDayText(item)\"></rr-label-column>\r\n\r\n  <rr-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <rr-hour-grid></rr-hour-grid>\r\n      </div>\r\n\r\n      <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.items track by item.day\">\r\n        <rr-hourly-grid></rr-hourly-grid>\r\n        <rr-multi-slider config=\"schedulerCtrl.config\"\r\n                        rr-full-calendar=\"{{ schedulerCtrl.config.fullCalendar }}\"\r\n                        rr-max-time-slot=\"{{ schedulerCtrl.config.maxTimeSlot }}\"\r\n                        rr-minimum-separation=\"{{ schedulerCtrl.config.minimumSeparation }}\"\r\n                        rr-mono-schedule=\"{{ schedulerCtrl.config.monoSchedule }}\"\r\n                        rr-null-end=\"{{ schedulerCtrl.config.nullEnds }}\"\r\n                        rr-schedule-count=\"{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}\"\r\n                        rr-overlap\r\n                        rr-revalidate\r\n                        drag-schedule=\"schedulerCtrl.dragSchedule\"\r\n                        ghost-values=\"schedulerCtrl.ghostValues\"\r\n                        ng-model=\"item\"\r\n                        ng-model-options=\"{allowInvalid: true}\"\r\n                        set-ghost-values=\"schedulerCtrl.setGhostValues(ghostValues)\"\r\n        ></rr-multi-slider>\r\n      </div>\r\n    </div>\r\n  </rr-schedule-area-container>\r\n\r\n  <rr-restriction-explanations></rr-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div ng-if=\"!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'vertical'\">\r\n  <rr-label-column items=\"schedulerCtrl.verticalTicks\" get-text=\"schedulerCtrl.getHourText(item)\"></rr-label-column>\r\n\r\n  <rr-schedule-area-container>\r\n    <div class=\"schedule-area\">\r\n\r\n      <div class=\"srow timestamps\">\r\n        <rr-day-grid></rr-day-grid>\r\n      </div>\r\n\r\n      <div class=\"vertical-multi-slider-area\">\r\n        <div class=\"calendar-overlay\">\r\n          <div class=\"calendar\">\r\n            <rr-multislider-grid config=\"schedulerCtrl.config\" items=\"schedulerCtrl.items\"></rr-multislider-grid>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"srow calendar schedule-animate\" ng-repeat=\"item in schedulerCtrl.verticalTicks track by item.index\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </rr-schedule-area-container>\r\n\r\n  <rr-restriction-explanations></rr-restriction-explanations>\r\n\r\n  <div class=\"srow buttons\">\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rollback()\" ng-disabled=\"!schedulerCtrl.formController.$dirty\">Reset</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.save()\" ng-disabled=\"!schedulerCtrl.formController.$dirty || !schedulerCtrl.formController.$valid\" ng-if=\"schedulerCtrl.config.saveScheduler\">Save</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.resetZoom()\">Zoom Out</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.zoomIn()\">Zoom In</button>\r\n    <button ng-class=\"schedulerCtrl.config.buttonClasses\" type=\"button\" ng-click=\"schedulerCtrl.rotate()\">Rotate</button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"srow\" ng-if=\"schedulerCtrl.invalidMessage\">\r\n  {{ schedulerCtrl.invalidMessage }}\r\n</div>";
 
 /***/ }),
 
@@ -42134,21 +42137,21 @@ var WeeklySchedulerController = /** @class */ (function () {
     };
     WeeklySchedulerController.prototype.$postLink = function () {
         var _this = this;
-        this.$scope.$on("brWeeklyScheduler.slotDragged" /* SLOT_DRAGGED */, function (event, schedule) {
+        this.$scope.$on("rrWeeklyScheduler.slotDragged" /* SLOT_DRAGGED */, function (event, schedule) {
             _this.dragSchedule = schedule;
         });
-        this.$scope.$on("brWeeklyScheduler.dragEnded" /* DRAG_ENDED */, function () {
+        this.$scope.$on("rrWeeklyScheduler.dragEnded" /* DRAG_ENDED */, function () {
             _this.dragSchedule = null;
         });
-        this.$scope.$on("brWeeklyScheduler.ghostDragEnded" /* GHOST_DRAG_ENDED */, function (event, ghostSchedule) {
-            _this.$scope.$broadcast("brWeeklyScheduler.commitGhost" /* COMMIT_GHOST */, ghostSchedule);
+        this.$scope.$on("rrWeeklyScheduler.ghostDragEnded" /* GHOST_DRAG_ENDED */, function (event, ghostSchedule) {
+            _this.$scope.$broadcast("rrWeeklyScheduler.commitGhost" /* COMMIT_GHOST */, ghostSchedule);
         });
-        this.$scope.$on("brWeeklyScheduler.removeLastGhost" /* REMOVE_LAST_GHOST */, function () {
+        this.$scope.$on("rrWeeklyScheduler.removeLastGhost" /* REMOVE_LAST_GHOST */, function () {
             var lastGhostDay = _this.lastGhostDayService.getLastGhostDay(_this.items);
-            _this.$scope.$broadcast("brWeeklyScheduler.removeGhost" /* REMOVE_GHOST */, lastGhostDay);
+            _this.$scope.$broadcast("rrWeeklyScheduler.removeGhost" /* REMOVE_GHOST */, lastGhostDay);
         });
-        this.$scope.$on("brWeeklyScheduler.cancelGhost" /* CANCEL_GHOST */, function () {
-            _this.$scope.$broadcast("brWeeklyScheduler.removeAllGhosts" /* REMOVE_ALL_GHOSTS */);
+        this.$scope.$on("rrWeeklyScheduler.cancelGhost" /* CANCEL_GHOST */, function () {
+            _this.$scope.$broadcast("rrWeeklyScheduler.removeAllGhosts" /* REMOVE_ALL_GHOSTS */);
         });
         this.$timeout(function () {
             _this.invalidMessage = _this.getInvalidMessage();
@@ -42210,10 +42213,10 @@ var WeeklySchedulerController = /** @class */ (function () {
         this.ghostValues = ghostValues;
     };
     WeeklySchedulerController.prototype.resetZoom = function () {
-        this.$scope.$broadcast("brWeeklyScheduler.resetZoom" /* RESET_ZOOM */);
+        this.$scope.$broadcast("rrWeeklyScheduler.resetZoom" /* RESET_ZOOM */);
     };
     WeeklySchedulerController.prototype.zoomIn = function () {
-        this.$scope.$broadcast("brWeeklyScheduler.zoomIn" /* ZOOM_IN */);
+        this.$scope.$broadcast("rrWeeklyScheduler.zoomIn" /* ZOOM_IN */);
     };
     WeeklySchedulerController.prototype.rollback = function () {
         this.buildItems(this._originalItems);
@@ -42255,7 +42258,7 @@ var WeeklySchedulerController = /** @class */ (function () {
         });
     };
     WeeklySchedulerController.$controllerAs = 'schedulerCtrl';
-    WeeklySchedulerController.$name = 'brWeeklySchedulerController';
+    WeeklySchedulerController.$name = 'rrWeeklySchedulerController';
     WeeklySchedulerController.$inject = [
         '$element',
         '$scope',
@@ -42285,7 +42288,7 @@ var WeeklySchedulerComponent = /** @class */ (function () {
         };
         this.template = __webpack_require__(/*! ./weekly-scheduler.html */ "./src/ng-weekly-scheduler/weekly-scheduler/weekly-scheduler.html");
     }
-    WeeklySchedulerComponent.$name = 'brWeeklyScheduler';
+    WeeklySchedulerComponent.$name = 'rrWeeklyScheduler';
     return WeeklySchedulerComponent;
 }());
 exports.WeeklySchedulerComponent = WeeklySchedulerComponent;
@@ -42322,7 +42325,7 @@ exports.default = angular
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"slotWrapper\" ng-class=\"weeklySlotCtrl.slotWrapperClass\" title=\"{{weeklySlotCtrl.schedule.start | brWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | brWeeklySchedulerTimeOfDay}}\">\r\n  <div class=\"handle\" config=\"weeklySlotCtrl.config\" ng-class=\"weeklySlotCtrl.startHandleClass\" ondrag=\"weeklySlotCtrl.resizeStart(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n  <div class=\"middle\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.drag(delta)\" ondragstart=\"weeklySlotCtrl.startDrag()\" ondragstop=\"weeklySlotCtrl.endDrag()\" br-handle immediate=\"weeklySlotCtrl.hasDragSchedule\">\r\n    <br-time-range schedule=\"weeklySlotCtrl.schedule\"></br-time-range>\r\n  </div>\r\n  <div class=\"handle\" config=\"weeklySlotCtrl.config\" ng-class=\"weeklySlotCtrl.endHandleClass\" ondrag=\"weeklySlotCtrl.resizeEnd(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" br-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n</div>";
+module.exports = "<div class=\"slotWrapper\" ng-class=\"weeklySlotCtrl.slotWrapperClass\" title=\"{{weeklySlotCtrl.schedule.start | rrWeeklySchedulerTimeOfDay}} - {{weeklySlotCtrl.schedule.end | rrWeeklySchedulerTimeOfDay}}\">\r\n  <div class=\"handle\" config=\"weeklySlotCtrl.config\" ng-class=\"weeklySlotCtrl.startHandleClass\" ondrag=\"weeklySlotCtrl.resizeStart(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" rr-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n  <div class=\"middle\" config=\"weeklySlotCtrl.config\" ondrag=\"weeklySlotCtrl.drag(delta)\" ondragstart=\"weeklySlotCtrl.startDrag()\" ondragstop=\"weeklySlotCtrl.endDrag()\" rr-handle immediate=\"weeklySlotCtrl.hasDragSchedule\">\r\n    <rr-time-range schedule=\"weeklySlotCtrl.schedule\"></rr-time-range>\r\n  </div>\r\n  <div class=\"handle\" config=\"weeklySlotCtrl.config\" ng-class=\"weeklySlotCtrl.endHandleClass\" ondrag=\"weeklySlotCtrl.resizeEnd(delta)\" ondragstart=\"weeklySlotCtrl.startResize()\" ondragstop=\"weeklySlotCtrl.endResize()\" rr-handle ng-if=\"!weeklySlotCtrl.config.nullEnds\"></div>\r\n</div>";
 
 /***/ }),
 
@@ -42381,7 +42384,7 @@ var WeeklySlotController = /** @class */ (function () {
     };
     WeeklySlotController.prototype.endDrag = function () {
         // If the schedule was moved to another item, the $scope hierarchy will have been broken, so we need to broadcast this to the whole app
-        this.$rootScope.$broadcast("brWeeklyScheduler.dragEnded" /* DRAG_ENDED */);
+        this.$rootScope.$broadcast("rrWeeklyScheduler.dragEnded" /* DRAG_ENDED */);
         // Was the schedule moved to another item??
         if (!this.item.hasSchedule(this.schedule)) {
             return;
@@ -42427,7 +42430,7 @@ var WeeklySlotController = /** @class */ (function () {
         if (!this.item.canEditSchedule(this.schedule)) {
             return;
         }
-        this.$scope.$emit("brWeeklyScheduler.slotDragged" /* SLOT_DRAGGED */, this.schedule);
+        this.$scope.$emit("rrWeeklyScheduler.slotDragged" /* SLOT_DRAGGED */, this.schedule);
         this.schedule.$isActive = true;
         this.valuesOnDragStart = this.getDragStartValues();
     };
@@ -42468,7 +42471,7 @@ var WeeklySlotComponent = /** @class */ (function () {
         };
         this.template = __webpack_require__(/*! ./weekly-slot.html */ "./src/ng-weekly-scheduler/weekly-slot/weekly-slot.html");
     }
-    WeeklySlotComponent.$name = 'brWeeklySlot';
+    WeeklySlotComponent.$name = 'rrWeeklySlot';
     return WeeklySlotComponent;
 }());
 exports.WeeklySlotComponent = WeeklySlotComponent;
@@ -42493,10 +42496,10 @@ var ZoomService = /** @class */ (function () {
         this.selector = '.schedule-area';
     }
     ZoomService.prototype.broadcastZoomedInEvent = function () {
-        this.$rootScope.$broadcast("brWeeklyScheduler.zoomedIn" /* ZOOMED_IN */);
+        this.$rootScope.$broadcast("rrWeeklyScheduler.zoomedIn" /* ZOOMED_IN */);
     };
     ZoomService.prototype.broadcastZoomedOutEvent = function () {
-        this.$rootScope.$broadcast("brWeeklyScheduler.zoomedOut" /* ZOOMED_OUT */);
+        this.$rootScope.$broadcast("rrWeeklyScheduler.zoomedOut" /* ZOOMED_OUT */);
     };
     ZoomService.prototype.getCurrentZoomWidth = function (element) {
         return parseInt(element.querySelector(this.selector).style.width, 10);
@@ -42547,7 +42550,7 @@ var ZoomService = /** @class */ (function () {
             this.broadcastZoomedOutEvent();
         }
     };
-    ZoomService.$name = 'brWeeklySchedulerZoomService';
+    ZoomService.$name = 'rrWeeklySchedulerZoomService';
     ZoomService.$inject = ['$rootScope'];
     return ZoomService;
 }());

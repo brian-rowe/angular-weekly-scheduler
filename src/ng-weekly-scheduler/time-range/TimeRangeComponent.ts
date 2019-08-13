@@ -3,7 +3,7 @@ import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedule
 
 /** @internal */
 export class TimeRangeComponent implements angular.IComponentOptions {
-    static $name = 'brTimeRange';
+    static $name = 'rrTimeRange';
 
     bindings = {
         schedule: '<'
@@ -13,15 +13,15 @@ export class TimeRangeComponent implements angular.IComponentOptions {
     controllerAs = TimeRangeController.$controllerAs;
 
     template = `
-        <span ng-if="timeRangeCtrl.hasStart && timeRangeCtrl.hasEnd">{{ timeRangeCtrl.schedule.start | brWeeklySchedulerTimeOfDay }}-{{ timeRangeCtrl.schedule.end | brWeeklySchedulerTimeOfDay }}</span>
-        <span ng-if="timeRangeCtrl.hasStart && !timeRangeCtrl.hasEnd">{{ timeRangeCtrl.schedule.start | brWeeklySchedulerTimeOfDay }} until</span>
+        <span ng-if="timeRangeCtrl.hasStart && timeRangeCtrl.hasEnd">{{ timeRangeCtrl.schedule.start | rrWeeklySchedulerTimeOfDay }}-{{ timeRangeCtrl.schedule.end | rrWeeklySchedulerTimeOfDay }}</span>
+        <span ng-if="timeRangeCtrl.hasStart && !timeRangeCtrl.hasEnd">{{ timeRangeCtrl.schedule.start | rrWeeklySchedulerTimeOfDay }} until</span>
     `
 }
 
 /** @internal */
 export class TimeRangeController implements angular.IComponentController {
     static $controllerAs = 'timeRangeCtrl';
-    static $name = 'brTimeRangeController';
+    static $name = 'rrTimeRangeController';
 
     private hasStart: boolean;
     private hasEnd: boolean;

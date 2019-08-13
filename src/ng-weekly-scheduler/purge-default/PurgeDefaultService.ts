@@ -4,7 +4,7 @@ import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerR
 /** When using the 'fillEmptyWithDefault' option, this service will be used to delete the default schedules for correct display on the calendar */
 /** @internal */
 export class PurgeDefaultService {
-    static $name = 'brWeeklySchedulerPurgeDefaultService';
+    static $name = 'rrWeeklySchedulerPurgeDefaultService';
 
     purge(schedules: WeeklySchedulerRange<any>[], config: IWeeklySchedulerConfig<any>): WeeklySchedulerRange<any>[] {
         let lastIndex = schedules.length - 1;

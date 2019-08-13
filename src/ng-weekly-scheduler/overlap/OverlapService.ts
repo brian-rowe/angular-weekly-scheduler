@@ -5,7 +5,7 @@ import { OverlapState } from '../weekly-scheduler-config/OverlapStates';
 
 /** @internal */
 export class OverlapService {
-    static $name = 'brWeeklySchedulerOverlapService';
+    static $name = 'rrWeeklySchedulerOverlapService';
 
     static $inject = [
         EndAdjusterService.$name

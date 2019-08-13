@@ -4,7 +4,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 
 /** @internal */
 export class MaxTimeSlotDirective implements angular.IDirective {
-    static $name = 'brMaxTimeSlot';
+    static $name = 'rrMaxTimeSlot';
 
     constructor(
         private validator: MaxTimeSlotValidatorService
@@ -12,7 +12,7 @@ export class MaxTimeSlotDirective implements angular.IDirective {
     }
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
-        if (attrs.brMaxTimeSlot) {
+        if (attrs.rrMaxTimeSlot) {
             ngModelCtrl.$validators[this.validator.error] = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };

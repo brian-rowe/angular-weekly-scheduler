@@ -1,5 +1,5 @@
-<div class="ghost-wrapper" config="multiSliderCtrl.config" br-handle ondragstart="multiSliderCtrl.onGhostWrapperMouseDown()" ondragstop="multiSliderCtrl.onGhostWrapperMouseUp()" ondrag="multiSliderCtrl.onGhostWrapperMouseMove()">
-    <br-ghost-slot class="slot"
+<div class="ghost-wrapper" config="multiSliderCtrl.config" rr-handle ondragstart="multiSliderCtrl.onGhostWrapperMouseDown()" ondragstop="multiSliderCtrl.onGhostWrapperMouseUp()" ondrag="multiSliderCtrl.onGhostWrapperMouseMove()">
+    <rr-ghost-slot class="slot"
                    ng-if="multiSliderCtrl.item.canRenderGhost()"
                    ng-class="{
                       active: multiSliderCtrl.item.$renderGhost,
@@ -8,13 +8,13 @@
                    ng-style="multiSliderCtrl.getSlotStyle(multiSliderCtrl.ghostValues)">
         <div class="slotWrapper">
             <div class="middle fullWidth">
-                <span ng-if="!multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | brWeeklySchedulerTimeOfDay }}</span>
-                <span ng-if="multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | brWeeklySchedulerTimeOfDay }} until</span>
+                <span ng-if="!multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | rrWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | rrWeeklySchedulerTimeOfDay }}</span>
+                <span ng-if="multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | rrWeeklySchedulerTimeOfDay }} until</span>
             </div>
         </div>
-    </br-ghost-slot>
+    </rr-ghost-slot>
 
-    <br-weekly-slot class="slot {{ schedule.$class }}"
+    <rr-weekly-slot class="slot {{ schedule.$class }}"
                 config="multiSliderCtrl.config"
                 get-delta="multiSliderCtrl.pixelToVal(pixel)"
                 drag-schedule="multiSliderCtrl.dragSchedule" 
@@ -29,5 +29,5 @@
                 ng-model="schedule"
                 ng-style="multiSliderCtrl.getSlotStyle(schedule)"
                 edit-schedule="multiSliderCtrl.editSchedule(schedule)"
-    ></br-weekly-slot>
+    ></rr-weekly-slot>
 </div>

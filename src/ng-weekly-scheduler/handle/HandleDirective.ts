@@ -4,7 +4,7 @@ import { HandleProviderFactory } from './HandleProviderFactory';
 
 /** @internal */
 export class HandleDirective implements angular.IDirective {
-  static $name = 'brHandle';
+  static $name = 'rrHandle';
   restrict = 'A';
 
   scope = {

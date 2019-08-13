@@ -2,7 +2,7 @@ import { TimeConstantsService } from './TimeConstantsService';
 
 /** @internal */
 export class TimeOfDayFilter {
-    static $name = 'brWeeklySchedulerTimeOfDay';
+    static $name = 'rrWeeklySchedulerTimeOfDay';
 
     public static Factory() {
         let factoryFunction = (timeConstants: TimeConstantsService) => {

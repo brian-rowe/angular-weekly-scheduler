@@ -4,7 +4,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 
 /** @internal */
 export class MinimumSeparationDirective implements angular.IDirective {
-    static $name = 'brMinimumSeparation';
+    static $name = 'rrMinimumSeparation';
 
     constructor(
         private validator: MinimumSeparationValidatorService
@@ -12,7 +12,7 @@ export class MinimumSeparationDirective implements angular.IDirective {
     }
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
-        if (attrs.brMinimumSeparation) {
+        if (attrs.rrMinimumSeparation) {
             ngModelCtrl.$validators[this.validator.error] = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };

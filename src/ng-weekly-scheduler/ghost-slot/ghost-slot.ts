@@ -2,7 +2,7 @@ import { MultiSliderController } from '../multislider/multislider';
 
 /** @internal */
 export class GhostSlotController implements angular.IComponentController {
-    static $name = 'brGhostSlotController';
+    static $name = 'rrGhostSlotController';
     static $controllerAs = 'ghostSlotCtrl';
 
     static $inject = [
@@ -19,13 +19,13 @@ export class GhostSlotController implements angular.IComponentController {
 
 /** @internal */
 export class GhostSlotComponent implements angular.IComponentOptions {
-    static $name = 'brGhostSlot';
+    static $name = 'rrGhostSlot';
 
     controller = GhostSlotController.$name;
     controllerAs = GhostSlotController.$controllerAs;
 
     require = {
-        multiSliderCtrl: '^brMultiSlider'
+        multiSliderCtrl: '^rrMultiSlider'
     };
 
     template = require('./ghost-slot.html');

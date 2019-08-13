@@ -4,7 +4,7 @@ import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedule
 
 /** @internal */
 export class ScheduleAreaContainerController implements angular.IComponentController {
-    static $name = 'brWeeklySchedulerScheduleAreaContainerController';
+    static $name = 'rrWeeklySchedulerScheduleAreaContainerController';
 
     static $inject = [
         '$element',
@@ -44,7 +44,7 @@ export class ScheduleAreaContainerController implements angular.IComponentContro
 
 /** @internal */
 export class ScheduleAreaContainerComponent implements angular.IComponentOptions {
-    static $name = 'brScheduleAreaContainer';
+    static $name = 'rrScheduleAreaContainer';
 
     controller = ScheduleAreaContainerController.$name;
     transclude = true;

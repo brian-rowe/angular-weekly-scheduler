@@ -9,10 +9,10 @@ export class LastGhostDayServiceTests {
             var $itemFactory: WeeklySchedulerItemFactory;
             var $service: LastGhostDayService;
 
-            beforeEach(inject(function (_$q_, _brWeeklySchedulerItemFactory_, _brWeeklySchedulerLastGhostDayService_) {
+            beforeEach(inject(function (_$q_, _rrWeeklySchedulerItemFactory_, _rrWeeklySchedulerLastGhostDayService_) {
                 $q = _$q_;
-                $itemFactory = _brWeeklySchedulerItemFactory_;
-                $service = _brWeeklySchedulerLastGhostDayService_;
+                $itemFactory = _rrWeeklySchedulerItemFactory_;
+                $service = _rrWeeklySchedulerLastGhostDayService_;
             }));
 
             describe('getLastGhostDay', function () {

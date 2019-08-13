@@ -28,7 +28,7 @@
   border-top: @border;
   color: @textColor;
 
-  br-multi-slider {
+  rr-multi-slider {
     .slot {
       &.active {
         box-shadow: 0px 0px 2px 2px @textColor;
@@ -70,7 +70,7 @@
   }
 }
 
-br-weekly-scheduler {
+rr-weekly-scheduler {
   .applyTheme(@backgroundColor, @borderColor, @stripeColor, @darkBackgroundColor);
   display: block;
   margin-bottom: 10px;
@@ -112,7 +112,7 @@ br-weekly-scheduler {
     }
   }
   
-  br-schedule-area-container {
+  rr-schedule-area-container {
     display: block;
     overflow-x: auto;
 
@@ -184,10 +184,10 @@ br-weekly-scheduler {
   }
 }
 
-br-hour-grid,
-br-hourly-grid,
-br-day-grid,
-br-daily-grid {
+rr-hour-grid,
+rr-hourly-grid,
+rr-day-grid,
+rr-daily-grid {
   div {
     box-sizing: border-box;
     display: table-cell;
@@ -199,27 +199,27 @@ br-daily-grid {
   }
 }
 
-br-hour-grid, 
-br-hourly-grid,
-br-day-grid {
+rr-hour-grid, 
+rr-hourly-grid,
+rr-day-grid {
   display: table-row;
 }
 
-br-hour-grid,
-br-hourly-grid {
+rr-hour-grid,
+rr-hourly-grid {
   div {
     height: 100%;
   }
 }
 
-br-day-grid,
-br-daily-grid {
+rr-day-grid,
+rr-daily-grid {
   div {
     width: 100%;
   }
 }
 
-br-daily-grid {
+rr-daily-grid {
   display: block;
   width: 100%;
   height: 100%;
@@ -230,7 +230,7 @@ br-daily-grid {
   }
 }
 
-br-multi-slider {
+rr-multi-slider {
   @topOffset: @offset;
   @bottomOffset: @offset;
   
@@ -275,7 +275,7 @@ br-multi-slider {
     }
   }
 
-  br-ghost-slot {
+  rr-ghost-slot {
     @bg: #5ab56a;
 
     background: @bg;
@@ -289,12 +289,12 @@ br-multi-slider {
     }
   }
 
-  br-time-range {
+  rr-time-range {
     display: block;
     width: 100%;
   }
 
-  br-weekly-slot {
+  rr-weekly-slot {
     /**
      * We want to set the COLOR on any item we want to have a custom background color for.
      * This is because the gradient backgrounds for allowNulls rely on currentColor.
@@ -374,14 +374,14 @@ rr-multislider-grid {
     height: 100%;
   }
   
-  .repeat:nth-child(even) > br-daily-grid .interval {
+  .repeat:nth-child(even) > rr-daily-grid .interval {
     background-color: @stripeColor;
   }
 }
 
 .vertical {
-  br-weekly-slot,
-  br-ghost-slot {
+  rr-weekly-slot,
+  rr-ghost-slot {
     width: 90%;
     left: 5%;
   }

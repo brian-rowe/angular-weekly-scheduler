@@ -157,7 +157,7 @@ export class WeeklySlotController implements angular.IComponentController {
 
 /** @internal */
 export class WeeklySlotComponent implements angular.IComponentOptions {
-  static $name = 'brWeeklySlot';
+  static $name = 'rrWeeklySlot';
   
   bindings = {
     config: '<',

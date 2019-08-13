@@ -5,7 +5,7 @@ import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class FullCalendarValidatorService implements ValidatorService {
-    static $name = 'brWeeklySchedulerFullCalendarValidatorService';
+    static $name = 'rrWeeklySchedulerFullCalendarValidatorService';
 
     get error() {
         return ValidationError.FullCalendar;

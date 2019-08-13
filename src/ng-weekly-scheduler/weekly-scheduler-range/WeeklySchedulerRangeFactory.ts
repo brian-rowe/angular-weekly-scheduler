@@ -5,7 +5,7 @@ import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerR
 
 /** @internal */
 export class WeeklySchedulerRangeFactory {
-    static $name = 'brWeeklySchedulerRangeFactory';
+    static $name = 'rrWeeklySchedulerRangeFactory';
 
     static $inject = [
         EndAdjusterService.$name

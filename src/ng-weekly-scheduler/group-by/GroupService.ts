@@ -8,7 +8,7 @@ import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedule
 
 /** @internal */
 export class GroupService {
-    static $name = 'brWeeklySchedulerGroupService';
+    static $name = 'rrWeeklySchedulerGroupService';
 
     groupSchedules(schedules: IWeeklySchedulerRange<any>[]): { [key: number]: IWeeklySchedulerRange<any>[] } {
         let seed: { [key: number]: IWeeklySchedulerRange<any>[] } = {};

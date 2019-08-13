@@ -7,8 +7,8 @@ export class OverlapServiceTests {
         describe('overlap service', () => {
             var $service: OverlapService;
 
-            beforeEach(inject(function (_brWeeklySchedulerOverlapService_) {
-                $service = _brWeeklySchedulerOverlapService_;
+            beforeEach(inject(function (_rrWeeklySchedulerOverlapService_) {
+                $service = _rrWeeklySchedulerOverlapService_;
             }));
 
             describe('getOverlapState', () => {

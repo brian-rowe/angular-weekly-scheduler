@@ -7,8 +7,8 @@ export class MonoScheduleValidatorServiceTests {
             let $q: angular.IQService;
             let $service: MonoScheduleValidatorService;
 
-            beforeEach(inject(function (_$q_, _brWeeklySchedulerMonoScheduleValidatorService_) {
-                $service = _brWeeklySchedulerMonoScheduleValidatorService_;
+            beforeEach(inject(function (_$q_, _rrWeeklySchedulerMonoScheduleValidatorService_) {
+                $service = _rrWeeklySchedulerMonoScheduleValidatorService_;
             }));
 
             describe('should validate', () => {

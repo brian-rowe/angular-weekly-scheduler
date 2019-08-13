@@ -10,9 +10,9 @@ export class FillEmptyWithDefaultServiceTests {
             var $itemFactory: WeeklySchedulerItemFactory;
             var $service: FillEmptyWithDefaultService;
 
-            beforeEach(inject(function (_brWeeklySchedulerItemFactory_, _brWeeklySchedulerFillEmptyWithDefaultService_) {
-                $itemFactory = _brWeeklySchedulerItemFactory_;
-                $service = _brWeeklySchedulerFillEmptyWithDefaultService_;
+            beforeEach(inject(function (_rrWeeklySchedulerItemFactory_, _rrWeeklySchedulerFillEmptyWithDefaultService_) {
+                $itemFactory = _rrWeeklySchedulerItemFactory_;
+                $service = _rrWeeklySchedulerFillEmptyWithDefaultService_;
             }));
 
             describe('fill', () => {

@@ -4,7 +4,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 
 /** @internal */
 export class FullCalendarDirective implements angular.IDirective {
-    static $name = 'brFullCalendar';
+    static $name = 'rrFullCalendar';
 
     constructor(
         private validator: FullCalendarValidatorService
@@ -12,7 +12,7 @@ export class FullCalendarDirective implements angular.IDirective {
     }
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
-        if (attrs.brFullCalendar) {
+        if (attrs.rrFullCalendar) {
             ngModelCtrl.$validators[this.validator.error] = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };

@@ -6,10 +6,10 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 
 /** @internal */
 export class DailyGridDirective implements angular.IDirective {
-    static $name = 'brDailyGrid';
+    static $name = 'rrDailyGrid';
 
     restrict = 'E';
-    require = '^brWeeklyScheduler';
+    require = '^rrWeeklyScheduler';
 
     private config: IWeeklySchedulerConfig<any>;
     private tickCount: number;

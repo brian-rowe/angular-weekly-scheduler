@@ -3,8 +3,8 @@ export class SecondsAsTextFilterTests {
         describe('seconds as text filter', function () {
             var $filter;
 
-            beforeEach(inject(function (_brWeeklySchedulerSecondsAsTextFilter_) {
-                $filter = _brWeeklySchedulerSecondsAsTextFilter_;
+            beforeEach(inject(function (_rrWeeklySchedulerSecondsAsTextFilter_) {
+                $filter = _rrWeeklySchedulerSecondsAsTextFilter_;
             }));
 
             function testDisplay(value) {

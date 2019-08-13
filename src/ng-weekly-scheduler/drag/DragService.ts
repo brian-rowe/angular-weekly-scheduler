@@ -2,15 +2,16 @@ import { EndAdjusterService } from '../end-adjuster/EndAdjusterService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
+import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 
 /** @internal */
 export class DragService {
-    static $name = 'brWeeklySchedulerDragService';
+    static $name = 'rrWeeklySchedulerDragService';
 
     static $inject = [
-        'brWeeklySchedulerEndAdjusterService',
-        'brWeeklySchedulerNullEndWidth',
-        'brWeeklySchedulerRangeFactory'
+        EndAdjusterService.$name,
+        NullEndWidth.$name,
+        WeeklySchedulerRangeFactory.$name
     ];
 
     private constructor(

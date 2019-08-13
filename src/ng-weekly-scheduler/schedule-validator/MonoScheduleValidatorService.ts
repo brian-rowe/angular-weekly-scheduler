@@ -6,7 +6,7 @@ import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class MonoScheduleValidatorService implements ValidatorService {
-    static $name = 'brWeeklySchedulerMonoScheduleValidatorService';
+    static $name = 'rrWeeklySchedulerMonoScheduleValidatorService';
 
     get error() {
         return ValidationError.MonoSchedule;

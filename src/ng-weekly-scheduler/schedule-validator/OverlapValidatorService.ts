@@ -8,7 +8,7 @@ import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class OverlapValidatorService implements ValidatorService {
-    static $name = 'brWeeklySchedulerOverlapValidatorService';
+    static $name = 'rrWeeklySchedulerOverlapValidatorService';
 
     static $inject = [
         OverlapService.$name

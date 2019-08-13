@@ -5,7 +5,7 @@ import { WeeklySchedulerItemFactory } from '../weekly-scheduler-item/WeeklySched
 
 /** @internal */
 export class AdapterService {
-    static $name = 'brWeeklySchedulerAdapterService';
+    static $name = 'rrWeeklySchedulerAdapterService';
 
     static $inject = [
       GroupService.$name,

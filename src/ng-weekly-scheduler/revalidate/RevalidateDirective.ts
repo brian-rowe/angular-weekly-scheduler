@@ -4,7 +4,7 @@
 
 /** @internal */
 export class RevalidateDirective implements angular.IDirective {
-    static $name = 'brRevalidate';
+    static $name = 'rrRevalidate';
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
         scope.$watch(attrs.ngModel, () => {

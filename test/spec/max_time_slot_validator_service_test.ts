@@ -7,8 +7,8 @@ export class MaxTimeSlotValidatorServiceTests {
             var $q: angular.IQService;
             var $service: MaxTimeSlotValidatorService;
 
-            beforeEach(inject(function (_brWeeklySchedulerMaxTimeSlotValidatorService_) {
-                $service = _brWeeklySchedulerMaxTimeSlotValidatorService_;
+            beforeEach(inject(function (_rrWeeklySchedulerMaxTimeSlotValidatorService_) {
+                $service = _rrWeeklySchedulerMaxTimeSlotValidatorService_;
             }));
 
             describe('should validate', function () {

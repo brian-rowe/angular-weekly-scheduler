@@ -9,10 +9,10 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 
 /** @internal */
 export class HourlyGridDirective implements angular.IDirective {
-    static $name = 'brHourlyGrid';
+    static $name = 'rrHourlyGrid';
 
     restrict = 'E';
-    require = '^brWeeklyScheduler';
+    require = '^rrWeeklyScheduler';
 
     private config: IWeeklySchedulerConfig<any>;
     private tickCount: number;

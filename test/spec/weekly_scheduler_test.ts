@@ -33,9 +33,9 @@ export class WeeklySchedulerTests {
                 ($scope as any).adapter = angular.copy(adapter);
                 ($scope as any).options = angular.copy(options);
 
-                $element = $compile('<br-weekly-scheduler adapter="adapter" ng-form="test" options="options"></br-weekly-scheduler>')($scope);
+                $element = $compile('<rr-weekly-scheduler adapter="adapter" ng-form="test" options="options"></rr-weekly-scheduler>')($scope);
                 element = $element[0];
-                $controller = _$componentController_('brWeeklyScheduler', { $element: $element, $scope: $scope }, { adapter: angular.copy(adapter), options: angular.copy(options) });
+                $controller = _$componentController_('rrWeeklyScheduler', { $element: $element, $scope: $scope }, { adapter: angular.copy(adapter), options: angular.copy(options) });
                 $controller.$onInit();
                 $controller.$postLink();
                 $scope.$digest();

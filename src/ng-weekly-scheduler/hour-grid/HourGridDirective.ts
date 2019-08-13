@@ -9,10 +9,10 @@ import { HourTextService } from '../hour-text/HourTextService';
 
 /** @internal */
 export class HourGridDirective implements angular.IDirective {
-    static $name = 'brHourGrid';
+    static $name = 'rrHourGrid';
 
     restrict = 'E';
-    require = '^brWeeklyScheduler';
+    require = '^rrWeeklyScheduler';
 
     private tickCount: number;
 

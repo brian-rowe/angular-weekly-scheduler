@@ -12,10 +12,10 @@ import { TimeConstantsService } from '../time/TimeConstantsService';
 
 /** @internal */
 export class DayGridDirective implements angular.IDirective {
-    static $name = 'brDayGrid';
+    static $name = 'rrDayGrid';
 
     restrict = 'E';
-    require = '^brWeeklyScheduler';
+    require = '^rrWeeklyScheduler';
 
     private tickCount: number;
 

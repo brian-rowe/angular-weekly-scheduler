@@ -2,7 +2,7 @@ import { IPoint } from '../point/IPoint';
 
 /** @internal */
 export class MouseTrackerService {
-    static $name = 'brWeeklySchedulerMouseTrackerService';
+    static $name = 'rrWeeklySchedulerMouseTrackerService';
 
     static $inject = ['$document'];
 

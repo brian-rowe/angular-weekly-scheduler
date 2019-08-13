@@ -5,8 +5,8 @@ export class OverlapValidatorServiceTests {
         describe('overlap validator service', function () {
             var $service: OverlapValidatorService;
 
-            beforeEach(inject(function (_brWeeklySchedulerOverlapValidatorService_) {
-                $service = _brWeeklySchedulerOverlapValidatorService_;
+            beforeEach(inject(function (_rrWeeklySchedulerOverlapValidatorService_) {
+                $service = _rrWeeklySchedulerOverlapValidatorService_;
             }));
 
             var testConfig = {

@@ -14,7 +14,7 @@ import { MousePositionService } from '../mouse-position/MousePositionService';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
-  static $name = 'brMultiSliderController';
+  static $name = 'rrMultiSliderController';
   static $controllerAs = 'multiSliderCtrl';
 
   static $inject = [
@@ -327,7 +327,7 @@ export class MultiSliderController implements angular.IComponentController {
 
 /** @internal */
 export class MultiSliderComponent implements angular.IComponentOptions {
-  static $name = 'brMultiSlider';
+  static $name = 'rrMultiSlider';
 
   bindings = {
     config: '<',

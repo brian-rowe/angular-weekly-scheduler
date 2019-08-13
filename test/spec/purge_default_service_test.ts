@@ -8,9 +8,9 @@ export class PurgeDefaultServiceTests {
             var $itemFactory: WeeklySchedulerItemFactory;
             var $service: PurgeDefaultService;
 
-            beforeEach(inject(function (_brWeeklySchedulerItemFactory_, _brWeeklySchedulerPurgeDefaultService_) {
-                $itemFactory = _brWeeklySchedulerItemFactory_;
-                $service = _brWeeklySchedulerPurgeDefaultService_;
+            beforeEach(inject(function (_rrWeeklySchedulerItemFactory_, _rrWeeklySchedulerPurgeDefaultService_) {
+                $itemFactory = _rrWeeklySchedulerItemFactory_;
+                $service = _rrWeeklySchedulerPurgeDefaultService_;
             }));
 
             describe('purge', () => {

@@ -1,35 +1,35 @@
 <div ng-if="!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'horizontal'">
   <rr-label-column items="schedulerCtrl.items" get-text="schedulerCtrl.getDayText(item)"></rr-label-column>
 
-  <br-schedule-area-container>
+  <rr-schedule-area-container>
     <div class="schedule-area">
 
       <div class="srow timestamps">
-        <br-hour-grid></br-hour-grid>
+        <rr-hour-grid></rr-hour-grid>
       </div>
 
       <div class="srow calendar schedule-animate" ng-repeat="item in schedulerCtrl.items track by item.day">
-        <br-hourly-grid></br-hourly-grid>
-        <br-multi-slider config="schedulerCtrl.config"
-                        br-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
-                        br-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
-                        br-minimum-separation="{{ schedulerCtrl.config.minimumSeparation }}"
-                        br-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
-                        br-null-end="{{ schedulerCtrl.config.nullEnds }}"
-                        br-schedule-count="{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}"
-                        br-overlap
-                        br-revalidate
+        <rr-hourly-grid></rr-hourly-grid>
+        <rr-multi-slider config="schedulerCtrl.config"
+                        rr-full-calendar="{{ schedulerCtrl.config.fullCalendar }}"
+                        rr-max-time-slot="{{ schedulerCtrl.config.maxTimeSlot }}"
+                        rr-minimum-separation="{{ schedulerCtrl.config.minimumSeparation }}"
+                        rr-mono-schedule="{{ schedulerCtrl.config.monoSchedule }}"
+                        rr-null-end="{{ schedulerCtrl.config.nullEnds }}"
+                        rr-schedule-count="{{ schedulerCtrl.config.scheduleCountOptions && schedulerCtrl.config.scheduleCountOptions.count }}"
+                        rr-overlap
+                        rr-revalidate
                         drag-schedule="schedulerCtrl.dragSchedule"
                         ghost-values="schedulerCtrl.ghostValues"
                         ng-model="item"
                         ng-model-options="{allowInvalid: true}"
                         set-ghost-values="schedulerCtrl.setGhostValues(ghostValues)"
-        ></br-multi-slider>
+        ></rr-multi-slider>
       </div>
     </div>
-  </br-schedule-area-container>
+  </rr-schedule-area-container>
 
-  <br-restriction-explanations></br-restriction-explanations>
+  <rr-restriction-explanations></rr-restriction-explanations>
 
   <div class="srow buttons">
     <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.rollback()" ng-disabled="!schedulerCtrl.formController.$dirty">Reset</button>
@@ -43,11 +43,11 @@
 <div ng-if="!schedulerCtrl.invalidMessage && schedulerCtrl.config.orientation === 'vertical'">
   <rr-label-column items="schedulerCtrl.verticalTicks" get-text="schedulerCtrl.getHourText(item)"></rr-label-column>
 
-  <br-schedule-area-container>
+  <rr-schedule-area-container>
     <div class="schedule-area">
 
       <div class="srow timestamps">
-        <br-day-grid></br-day-grid>
+        <rr-day-grid></rr-day-grid>
       </div>
 
       <div class="vertical-multi-slider-area">
@@ -61,9 +61,9 @@
         </div>
       </div>
     </div>
-  </br-schedule-area-container>
+  </rr-schedule-area-container>
 
-  <br-restriction-explanations></br-restriction-explanations>
+  <rr-restriction-explanations></rr-restriction-explanations>
 
   <div class="srow buttons">
     <button ng-class="schedulerCtrl.config.buttonClasses" type="button" ng-click="schedulerCtrl.rollback()" ng-disabled="!schedulerCtrl.formController.$dirty">Reset</button>

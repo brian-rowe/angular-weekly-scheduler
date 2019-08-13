@@ -7,8 +7,8 @@ export class ScheduleCountValidatorServiceTests {
             let $q: angular.IQService;
             let $service: ScheduleCountValidatorService;
 
-            beforeEach(inject(function (_$q_, _brWeeklySchedulerScheduleCountValidatorService_) {
-                $service = _brWeeklySchedulerScheduleCountValidatorService_;
+            beforeEach(inject(function (_$q_, _rrWeeklySchedulerScheduleCountValidatorService_) {
+                $service = _rrWeeklySchedulerScheduleCountValidatorService_;
             }));
 
             describe('should validate', () => {

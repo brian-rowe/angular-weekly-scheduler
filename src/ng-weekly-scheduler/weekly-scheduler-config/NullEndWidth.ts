@@ -1,6 +1,6 @@
 /** @internal */
 export class NullEndWidth {
-    static $name = 'brWeeklySchedulerNullEndWidth';
+    static $name = 'rrWeeklySchedulerNullEndWidth';
 
     static value = 7200; 
 }

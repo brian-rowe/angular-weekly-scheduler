@@ -2,7 +2,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 
 /** @internal */
 export class LastGhostDayService {
-    static $name = 'brWeeklySchedulerLastGhostDayService';
+    static $name = 'rrWeeklySchedulerLastGhostDayService';
 
     /**
      * When dragging ghosts across multiple days, if the user moves the mouse pointer out of one extreme and back into the last slot that rendered a ghost,

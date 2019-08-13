@@ -3,8 +3,8 @@ export class TimeOfDayFilterTests {
         describe('time of day filter', function () {
             var timeOfDayFilter;
 
-            beforeEach(inject(function (_brWeeklySchedulerTimeOfDayFilter_) {
-                timeOfDayFilter = _brWeeklySchedulerTimeOfDayFilter_;
+            beforeEach(inject(function (_rrWeeklySchedulerTimeOfDayFilter_) {
+                timeOfDayFilter = _rrWeeklySchedulerTimeOfDayFilter_;
             }));
 
             function testDisplay(value) {

@@ -3,7 +3,7 @@ import { IWeeklySchedulerOptions } from '../weekly-scheduler-config/IWeeklySched
 
 /** @internal */
 export class ConflictingOptionsService {
-    static $name = 'brWeeklySchedulerConflictingOptionsService';
+    static $name = 'rrWeeklySchedulerConflictingOptionsService';
 
     public getConflictingOptions(options: IWeeklySchedulerOptions<any>) {
         if (options.nullEnds && options.scheduleCountOptions && options.scheduleCountOptions.count > 1) {

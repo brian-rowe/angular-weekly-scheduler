@@ -4,7 +4,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 
 /** @internal */
 export class MonoScheduleDirective implements angular.IDirective {
-    static $name = 'brMonoSchedule';
+    static $name = 'rrMonoSchedule';
 
     constructor(
         private validator: MonoScheduleValidatorService
@@ -12,7 +12,7 @@ export class MonoScheduleDirective implements angular.IDirective {
     }
 
     link = (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes, ngModelCtrl: angular.INgModelController) => {
-        if (attrs.brMonoSchedule) {
+        if (attrs.rrMonoSchedule) {
             ngModelCtrl.$validators[this.validator.error] = (modelValue: WeeklySchedulerItem<any>) => {
                 return this.validator.validate(modelValue.schedules, modelValue.config);
             };

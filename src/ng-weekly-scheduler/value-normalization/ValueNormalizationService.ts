@@ -1,6 +1,6 @@
 /** @internal */
 export class ValueNormalizationService {
-    static $name = 'brWeeklySchedulerValueNormalizationService';
+    static $name = 'rrWeeklySchedulerValueNormalizationService';
 
     public normalizeValue(value: number, min: number, max: number) {
         if (value < min) {

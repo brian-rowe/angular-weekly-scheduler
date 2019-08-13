@@ -2,7 +2,7 @@ import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedule
 
 /** @internal */
 export class ZoomService {
-    static $name = 'brWeeklySchedulerZoomService';
+    static $name = 'rrWeeklySchedulerZoomService';
 
     static $inject = ['$rootScope'];
 

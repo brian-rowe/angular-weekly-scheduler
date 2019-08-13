@@ -5,7 +5,7 @@ import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class ScheduleCountValidatorService implements ValidatorService {
-    static $name = 'brWeeklySchedulerScheduleCountValidatorService';
+    static $name = 'rrWeeklySchedulerScheduleCountValidatorService';
 
     get error() {
         return ValidationError.ScheduleCount;

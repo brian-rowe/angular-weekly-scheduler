@@ -6,7 +6,7 @@ import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class NullEndScheduleValidatorService implements ValidatorService {
-    static $name = 'brWeeklySchedulerNullEndValidatorService';
+    static $name = 'rrWeeklySchedulerNullEndValidatorService';
 
     get error() {
         return ValidationError.NullEnd;

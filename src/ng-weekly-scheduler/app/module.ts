@@ -53,7 +53,7 @@ import WeeklySlotModule from '../weekly-slot/module';
 import ValueNormalizationModule from '../value-normalization/module';
 import ZoomModule from '../zoom/module';
 
-export default angular.module('br.weeklyScheduler.app', [
+export default angular.module('rr.weeklyScheduler.app', [
     AdapterModule,
     ConfigurationModule,
     ConflictingOptionsModule,

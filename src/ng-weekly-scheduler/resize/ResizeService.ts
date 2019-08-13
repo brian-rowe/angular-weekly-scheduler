@@ -5,7 +5,7 @@ import { IResizeService } from './IResizeService';
 
 /** @internal */
 export class ResizeServiceProvider implements IResizeServiceProvider {
-    public static $name = 'br.weeklyScheduler.resizeService';
+    public static $name = 'rr.weeklyScheduler.resizeService';
 
     constructor() {
         this.$get.$inject = [

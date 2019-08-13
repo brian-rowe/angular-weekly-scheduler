@@ -7,8 +7,8 @@ export class MinimumSeparationValidatorServiceTests {
             var $q: angular.IQService;
             var $service: MinimumSeparationValidatorService;
 
-            beforeEach(inject(function (_brWeeklySchedulerMinimumSeparationValidatorService_) {
-                $service = _brWeeklySchedulerMinimumSeparationValidatorService_;
+            beforeEach(inject(function (_rrWeeklySchedulerMinimumSeparationValidatorService_) {
+                $service = _rrWeeklySchedulerMinimumSeparationValidatorService_;
             }));
 
             describe('should validate', function () {

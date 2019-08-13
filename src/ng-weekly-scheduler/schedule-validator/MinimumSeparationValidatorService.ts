@@ -5,7 +5,7 @@ import { ValidationError } from '../weekly-scheduler-config/ValidationErrors';
 
 /** @internal */
 export class MinimumSeparationValidatorService implements ValidatorService {
-    static $name = 'brWeeklySchedulerMinimumSeparationValidatorService';
+    static $name = 'rrWeeklySchedulerMinimumSeparationValidatorService';
 
     get error() {
         return ValidationError.MinimumSeparation;

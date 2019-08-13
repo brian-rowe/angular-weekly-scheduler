@@ -17,7 +17,7 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
     restrict = 'E';
 
     require = {
-        schedulerCtrl: '^brWeeklyScheduler'
+        schedulerCtrl: '^rrWeeklyScheduler'
     }
 
     template = `
@@ -25,16 +25,16 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
             'display': 'inline-block',
             'width': multiSliderGridCtrl.width 
         }">
-            <br-daily-grid></br-daily-grid>
-            <br-multi-slider config="multiSliderGridCtrl.config"
-                             br-full-calendar="{{ multiSliderGridCtrl.config.fullCalendar }}"
-                             br-max-time-slot="{{ multiSliderGridCtrl.config.maxTimeSlot }}"
-                             br-minimum-separation="{{ multiSliderGridCtrl.config.minimumSeparation }}"
-                             br-mono-schedule="{{ multiSliderGridCtrl.config.monoSchedule }}"
-                             br-null-end="{{ multiSliderGridCtrl.config.nullEnds }}"
-                             br-schedule-count="{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}"
-                             br-overlap
-                             br-revalidate
+            <rr-daily-grid></rr-daily-grid>
+            <rr-multi-slider config="multiSliderGridCtrl.config"
+                             rr-full-calendar="{{ multiSliderGridCtrl.config.fullCalendar }}"
+                             rr-max-time-slot="{{ multiSliderGridCtrl.config.maxTimeSlot }}"
+                             rr-minimum-separation="{{ multiSliderGridCtrl.config.minimumSeparation }}"
+                             rr-mono-schedule="{{ multiSliderGridCtrl.config.monoSchedule }}"
+                             rr-null-end="{{ multiSliderGridCtrl.config.nullEnds }}"
+                             rr-schedule-count="{{ multiSliderGridCtrl.config.scheduleCountOptions && multiSliderGridCtrl.config.scheduleCountOptions.count }}"
+                             rr-overlap
+                             rr-revalidate
                              drag-schedule="multiSliderGridCtrl.schedulerCtrl.dragSchedule"
                              ghost-values="multiSliderGridCtrl.schedulerCtrl.ghostValues"
                              ng-model="item"
@@ -42,7 +42,7 @@ export class MultisliderGridComponent implements angular.IComponentOptions {
                              set-ghost-values="multiSliderGridCtrl.schedulerCtrl.setGhostValues(ghostValues)"
                              class="vertical"
                              ng-style="{ 'width': multiSliderGridCtrl.width }"
-            ></br-multi-slider>
+            ></rr-multi-slider>
         </div>
     `;
 }

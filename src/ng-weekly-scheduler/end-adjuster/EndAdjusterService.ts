@@ -2,7 +2,7 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 
 /** @internal */
 export class EndAdjusterService {
-    static $name = 'brWeeklySchedulerEndAdjusterService';
+    static $name = 'rrWeeklySchedulerEndAdjusterService';
 
     public adjustEndForModel(config: IWeeklySchedulerConfig<any>, end: number) {
         if (end === config.maxValue) {
