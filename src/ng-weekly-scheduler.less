@@ -47,6 +47,12 @@
     }
   }
 
+  rr-multislider-grid {
+    .repeat:nth-child(even) > rr-daily-grid .interval {
+      background-color: @stripeColor;
+    }
+  }
+
   .labels {
     border-right: @border;
   }
@@ -372,10 +378,6 @@ rr-multislider-grid {
   .repeat {
     display: inline-block;
     height: 100%;
-  }
-  
-  .repeat:nth-child(even) > rr-daily-grid .interval {
-    background-color: @stripeColor;
   }
 }
 
