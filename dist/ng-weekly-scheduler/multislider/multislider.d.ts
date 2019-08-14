@@ -46,13 +46,13 @@ export declare class MultiSliderController implements angular.IComponentControll
     /** Expand ghost while dragging in it */
     adjustGhost(): void;
     /** Move ghost around while not dragging */
-    positionGhost(): void;
-    onGhostWrapperMouseDown(): void;
+    positionGhost(event?: Event): void;
+    onGhostWrapperMouseDown(event: Event): void;
     onGhostWrapperMouseMove(): void;
     onGhostWrapperMouseUp(): void;
-    private createGhost();
+    private createGhost(event?);
     private commitGhost(ghostSchedule);
-    private getValAtMousePosition();
+    private getValAtMousePosition(event?);
     /**
      * Perform an external action to bring up an editor for a schedule
      */

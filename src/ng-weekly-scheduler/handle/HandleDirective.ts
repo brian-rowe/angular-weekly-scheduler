@@ -35,7 +35,7 @@ export class HandleDirective implements angular.IDirective {
       // Prevent multiple handlers from being fired if they are nested (only the one you directly interacted with should fire)
       event.stopPropagation();
 
-      startDrag();
+      startDrag(event);
     }
 
     function fakeMousedown() {
@@ -62,12 +62,14 @@ export class HandleDirective implements angular.IDirective {
       }
     }
 
-    function startDrag() {
+    function startDrag(event = null) {
       $document.on(mousemoveEvent, mousemove);
       $document.on(mouseupEvent, mouseup);
 
       if (angular.isFunction(scope.ondragstart)) {
-        scope.$applyAsync(scope.ondragstart());
+        scope.$applyAsync(scope.ondragstart({
+          event: event
+        }));
       }
     }
 

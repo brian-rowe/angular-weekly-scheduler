@@ -203,8 +203,8 @@ export class MultiSliderController implements angular.IComponentController {
   }
   
   /** Move ghost around while not dragging */
-  public positionGhost() {
-    let val = this.getValAtMousePosition();
+  public positionGhost(event: Event = null) {
+    let val = this.getValAtMousePosition(event);
 
     this.startingGhostValues = {
       start: val,
@@ -216,13 +216,13 @@ export class MultiSliderController implements angular.IComponentController {
     });
   }
 
-  public onGhostWrapperMouseDown() {
+  public onGhostWrapperMouseDown(event: Event) {
     if (!this.item.editable) {
       return;
     }
 
     this.item.$isGhostOrigin = true;
-    this.createGhost();
+    this.createGhost(event);
   }
 
   public onGhostWrapperMouseMove() {
@@ -247,9 +247,9 @@ export class MultiSliderController implements angular.IComponentController {
     });
   }
 
-  private createGhost() {
+  private createGhost(event: Event = null) {
     this.item.$renderGhost = true;
-    this.positionGhost();
+    this.positionGhost(event);
   }
 
   private commitGhost(ghostSchedule: WeeklySchedulerRange<any>) {
@@ -262,8 +262,8 @@ export class MultiSliderController implements angular.IComponentController {
     this.removeGhost();
   }
 
-  private getValAtMousePosition() {
-    let point = this.mouseTrackerService.getMousePosition();
+  private getValAtMousePosition(event = null) {
+    let point = event ? { x: event.pageX, y: event.pageY } : this.mouseTrackerService.getMousePosition();
     let mousePosition = this.mousePositionService.getMousePosition(this.config, this.$element, point);
 
     return this.pixelToVal(mousePosition); 
