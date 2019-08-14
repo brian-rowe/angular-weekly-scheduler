@@ -1,10 +1,10 @@
 import { IHandleProvider } from './IHandleProvider';
-import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
+import { CursorTrackerService } from '../cursor-tracker/CursorTrackerService';
 import { TouchService } from '../touch/TouchService';
 export declare class VerticalHandleProvider implements IHandleProvider {
-    private mouseTrackerService;
+    private cursorTrackerService;
     private touchService;
-    constructor(mouseTrackerService: MouseTrackerService, touchService: TouchService);
+    constructor(cursorTrackerService: CursorTrackerService, touchService: TouchService);
     getCursorPosition(): number;
     getPositionFromEvent(event: any): any;
     getStartHandleClass(): string;

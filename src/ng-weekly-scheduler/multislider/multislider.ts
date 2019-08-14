@@ -4,7 +4,7 @@ import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedule
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
-import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
+import { CursorTrackerService } from '../cursor-tracker/CursorTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
@@ -24,7 +24,7 @@ export class MultiSliderController implements angular.IComponentController {
     '$q',
     '$scope',
     CursorPositionService.$name,
-    MouseTrackerService.$name,
+    CursorTrackerService.$name,
     NullEndWidth.$name,
     PixelToValService.$name,
     SlotStyleFactory.$name,
@@ -38,7 +38,7 @@ export class MultiSliderController implements angular.IComponentController {
     private $q: angular.IQService,
     private $scope: angular.IScope,
     private cursorPosition: CursorPositionService,
-    private mouseTrackerService: MouseTrackerService,
+    private cursorTrackerService: CursorTrackerService,
     private nullEndWidth: number,
     private pixelToValService: PixelToValService,
     private slotStyleFactory: SlotStyleFactory,
@@ -275,7 +275,7 @@ export class MultiSliderController implements angular.IComponentController {
         point = this.touchService.getPoint(event);
       }
     } else {
-      point = this.mouseTrackerService.getMousePosition();
+      point = this.cursorTrackerService.getCursorPosition();
     }
 
     let cursorPosition = this.cursorPosition.getCursorPosition(this.config, this.$element, point);

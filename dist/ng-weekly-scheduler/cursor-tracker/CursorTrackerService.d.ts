@@ -1,12 +1,12 @@
 import { IPoint } from '../point/IPoint';
 /** @internal */
-export declare class MouseTrackerService {
+export declare class CursorTrackerService {
     private $document;
     static $name: string;
     static $inject: string[];
     private constructor();
-    private mousePosition;
+    private cursorPosition;
     initialize(): void;
-    getMousePosition(): IPoint;
-    private setMousePosition(event);
+    getCursorPosition(): IPoint;
+    private setCursorPosition(event);
 }

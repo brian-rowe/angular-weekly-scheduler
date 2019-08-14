@@ -5,7 +5,7 @@ export class LastGhostDayService {
     static $name = 'rrWeeklySchedulerLastGhostDayService';
 
     /**
-     * When dragging ghosts across multiple days, if the user moves the mouse pointer out of one extreme and back into the last slot that rendered a ghost,
+     * When dragging ghosts across multiple days, if the user moves the cursor out of one extreme and back into the last slot that rendered a ghost,
      * We should remove the ghost from that extreme. This will help grab the correct day
      */
     public getLastGhostDay(items: WeeklySchedulerItem<any>[]) {

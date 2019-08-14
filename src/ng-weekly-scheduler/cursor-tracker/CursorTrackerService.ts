@@ -1,8 +1,8 @@
 import { IPoint } from '../point/IPoint';
 
 /** @internal */
-export class MouseTrackerService {
-    static $name = 'rrWeeklySchedulerMouseTrackerService';
+export class CursorTrackerService {
+    static $name = 'rrWeeklySchedulerCursorTrackerService';
 
     static $inject = ['$document'];
 
@@ -11,22 +11,22 @@ export class MouseTrackerService {
     ) {
     }
 
-    private mousePosition: IPoint;
+    private cursorPosition: IPoint;
 
     public initialize() {
         const eventName = 'mousemove touchmove';
 
-        let event = this.setMousePosition.bind(this);
+        let event = this.setCursorPosition.bind(this);
 
         this.$document.unbind(eventName, event);
         this.$document.on(eventName, event);
     }
 
-    public getMousePosition() {
-        return this.mousePosition;
+    public getCursorPosition() {
+        return this.cursorPosition;
     }
 
-    private setMousePosition(event) {
-        this.mousePosition = { x: event.pageX, y: event.pageY };
+    private setCursorPosition(event) {
+        this.cursorPosition = { x: event.pageX, y: event.pageY };
     }
 }

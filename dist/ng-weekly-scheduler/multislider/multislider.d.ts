@@ -2,7 +2,7 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
-import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
+import { CursorTrackerService } from '../cursor-tracker/CursorTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 import { PixelToValService } from '../pixel-to-val/PixelToValService';
@@ -14,7 +14,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     private $q;
     private $scope;
     private cursorPosition;
-    private mouseTrackerService;
+    private cursorTrackerService;
     private nullEndWidth;
     private pixelToValService;
     private slotStyleFactory;
@@ -24,7 +24,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     static $name: string;
     static $controllerAs: string;
     static $inject: string[];
-    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, cursorPosition: CursorPositionService, mouseTrackerService: MouseTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, touchService: TouchService, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
+    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, cursorPosition: CursorPositionService, cursorTrackerService: CursorTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, touchService: TouchService, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
     private dragSchedule;
     private pendingSchedule;
     private startingGhostValues;

@@ -1,4 +1,4 @@
-import { MouseTrackerService } from '../mouse-tracker/MouseTrackerService';
+import { CursorTrackerService } from '../cursor-tracker/CursorTrackerService';
 import { TouchService } from '../touch/TouchService';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { HorizontalHandleProvider } from './HorizontalHandleProvider';
@@ -8,21 +8,21 @@ export class HandleProviderFactory {
     static $name = 'rrWeeklySchedulerHandleProviderFactory';
 
     static $inject = [
-        MouseTrackerService.$name,
+        CursorTrackerService.$name,
         TouchService.$name
     ];
 
     constructor(
-        private mouseTrackerService: MouseTrackerService,
+        private cursorTrackerService: CursorTrackerService,
         private touchService: TouchService
     ) {
     }
 
     public getHandleProvider(config: IWeeklySchedulerConfig<any>) {
         if (config.orientation === 'horizontal') {
-            return new HorizontalHandleProvider(this.mouseTrackerService, this.touchService);
+            return new HorizontalHandleProvider(this.cursorTrackerService, this.touchService);
         } else {
-            return new VerticalHandleProvider(this.mouseTrackerService, this.touchService);
+            return new VerticalHandleProvider(this.cursorTrackerService, this.touchService);
         }
     };
 }
