@@ -4,14 +4,14 @@ import { ElementOffsetProviderFactory } from '../element-offset/ElementOffsetPro
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { PointProviderFactory } from '../point/PointProviderFactory';
 /**
- * Gets mouse position relative to the calendar element.
+ * Gets cursor position relative to the calendar element.
  * (as opposed to mouse-tracker, which gets the mouse position relative to the document)
  */
-export declare class MousePositionService {
+export declare class CursorPositionService {
     private elementOffsetProviderFactory;
     private pointProviderFactory;
     static $name: string;
     static $inject: string[];
     constructor(elementOffsetProviderFactory: ElementOffsetProviderFactory, pointProviderFactory: PointProviderFactory);
-    getMousePosition(config: IWeeklySchedulerConfig<any>, $element: angular.IAugmentedJQuery, point: IPoint): number;
+    getCursorPosition(config: IWeeklySchedulerConfig<any>, $element: angular.IAugmentedJQuery, point: IPoint): number;
 }

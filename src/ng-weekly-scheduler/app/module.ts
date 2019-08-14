@@ -4,6 +4,7 @@ import '../../ng-weekly-scheduler.less';
 import AdapterModule from '../adapter/module';
 import ConfigurationModule from '../configuration/module';
 import ConflictingOptionsModule from '../conflicting-options/module';
+import CursorPositionModule from '../cursor-position/module';
 import DailyGridModule from '../daily-grid/module';
 import DayGridModule from '../day-grid/module';
 import DragModule from '../drag/module';
@@ -25,7 +26,6 @@ import MaxTimeSlotModule from '../max-time-slot/module';
 import MinimumSeparationModule from '../minimum-separation/module';
 import MissingDaysModule from '../missing-days/module';
 import MonoScheduleModule from '../mono-schedule/module';
-import MousePositionModule from '../mouse-position/module';
 import MouseTrackerModule from '../mouse-tracker/module';
 import MultiSliderGridModule from '../multislider-grid/module';
 import MultiSliderModule from '../multislider/module';
@@ -57,6 +57,7 @@ export default angular.module('rr.weeklyScheduler.app', [
     AdapterModule,
     ConfigurationModule,
     ConflictingOptionsModule,
+    CursorPositionModule,
     DailyGridModule,
     DayGridModule,
     DragModule,
@@ -77,7 +78,6 @@ export default angular.module('rr.weeklyScheduler.app', [
     MaxTimeSlotModule,
     MinimumSeparationModule,
     MonoScheduleModule,
-    MousePositionModule,
     MouseTrackerModule,
     MissingDaysModule,
     MultiSliderGridModule,
