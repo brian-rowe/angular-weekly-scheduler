@@ -39541,6 +39541,9 @@ var MultiSliderController = /** @class */ (function () {
         if (!schedule.start && !schedule.end) {
             return {};
         }
+        if (schedule.start && !schedule.end) {
+            return {};
+        }
         return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
     };
     MultiSliderController.prototype.openEditorForAdd = function (schedule) {
@@ -39552,8 +39555,9 @@ var MultiSliderController = /** @class */ (function () {
         }
     };
     /** Expand ghost while dragging in it */
-    MultiSliderController.prototype.adjustGhost = function () {
-        var mouseValue = this.getValAtMousePosition();
+    MultiSliderController.prototype.adjustGhost = function (event) {
+        if (event === void 0) { event = null; }
+        var mouseValue = this.getValAtMousePosition(event);
         var existingStartValue = this.startingGhostValues.start;
         var updatedStartValue;
         var updatedEndValue;
@@ -39592,14 +39596,14 @@ var MultiSliderController = /** @class */ (function () {
         this.item.$isGhostOrigin = true;
         this.createGhost(event);
     };
-    MultiSliderController.prototype.onGhostWrapperMouseMove = function () {
+    MultiSliderController.prototype.onGhostWrapperMouseMove = function (event) {
         // nullEnds calendars don't need to do anything because the size of the slot doesn't really matter
         if (this.config.nullEnds) {
-            this.positionGhost();
+            this.positionGhost(event);
             return;
         }
         if (this.item.$renderGhost) {
-            this.adjustGhost();
+            this.adjustGhost(event);
         }
     };
     MultiSliderController.prototype.onGhostWrapperMouseUp = function () {

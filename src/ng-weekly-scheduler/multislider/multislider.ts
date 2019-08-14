@@ -167,6 +167,10 @@ export class MultiSliderController implements angular.IComponentController {
       return {};
     }
 
+    if (schedule.start && !schedule.end) {
+      return {};
+    }
+
     return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
   }
 
@@ -179,8 +183,8 @@ export class MultiSliderController implements angular.IComponentController {
   }
 
   /** Expand ghost while dragging in it */
-  public adjustGhost() {
-    let mouseValue: number = this.getValAtMousePosition();
+  public adjustGhost(event: Event = null) {
+    let mouseValue: number = this.getValAtMousePosition(event);
 
     let existingStartValue: number = this.startingGhostValues.start;
 
@@ -228,15 +232,15 @@ export class MultiSliderController implements angular.IComponentController {
     this.createGhost(event);
   }
 
-  public onGhostWrapperMouseMove() {
+  public onGhostWrapperMouseMove(event) {
     // nullEnds calendars don't need to do anything because the size of the slot doesn't really matter
     if (this.config.nullEnds) {
-      this.positionGhost();
+      this.positionGhost(event);
       return;
     }
 
     if (this.item.$renderGhost) {
-      this.adjustGhost();
+      this.adjustGhost(event);
     }
   }
 
