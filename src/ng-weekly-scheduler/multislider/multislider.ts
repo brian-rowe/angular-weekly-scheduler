@@ -156,10 +156,14 @@ export class MultiSliderController implements angular.IComponentController {
   }
 
   private getGhostSlotStyle() {
-    return this.getSlotStyle(this.ghostValues as IWeeklySchedulerRange<any>);
+    return this.getSlotStyle(this.ghostValues);
   }
 
   private getSlotStyle(schedule: IRange) {
+    if (!schedule.start && !schedule.end) {
+      return {};
+    }
+
     return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
   }
 
