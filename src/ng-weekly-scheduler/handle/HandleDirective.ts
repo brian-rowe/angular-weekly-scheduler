@@ -49,7 +49,7 @@ export class HandleDirective implements angular.IDirective {
       var delta = current - position;
 
       if (angular.isFunction(scope.ondrag)) {
-        scope.$apply(scope.ondrag({ delta: delta }));
+        scope.$apply(scope.ondrag({ delta: delta, event: event }));
       }
     }
 

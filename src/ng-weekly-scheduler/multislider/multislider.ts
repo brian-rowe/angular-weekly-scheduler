@@ -12,6 +12,7 @@ import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 import { PixelToValService } from '../pixel-to-val/PixelToValService';
 import { MousePositionService } from '../mouse-position/MousePositionService';
 import { IRange } from '../range/IRange';
+import { TouchService } from '../touch/TouchService';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
@@ -27,6 +28,7 @@ export class MultiSliderController implements angular.IComponentController {
     NullEndWidth.$name,
     PixelToValService.$name,
     SlotStyleFactory.$name,
+    TouchService.$name,
     WeeklySchedulerRangeFactory.$name,
     ValueNormalizationService.$name
   ];
@@ -40,6 +42,7 @@ export class MultiSliderController implements angular.IComponentController {
     private nullEndWidth: number,
     private pixelToValService: PixelToValService,
     private slotStyleFactory: SlotStyleFactory,
+    private touchService: TouchService,
     private rangeFactory: WeeklySchedulerRangeFactory,
     private valueNormalizationService: ValueNormalizationService
   ) {
@@ -263,7 +266,18 @@ export class MultiSliderController implements angular.IComponentController {
   }
 
   private getValAtMousePosition(event = null) {
-    let point = event ? { x: event.pageX, y: event.pageY } : this.mouseTrackerService.getMousePosition();
+    let point;
+
+    if (event) {
+      if (event.pageX && event.pageY) {
+        point = { x: event.pageX, y: event.pageY }
+      } else {
+        point = this.touchService.getPoint(event);
+      }
+    } else {
+      point = this.mouseTrackerService.getMousePosition();
+    }
+
     let mousePosition = this.mousePositionService.getMousePosition(this.config, this.$element, point);
 
     return this.pixelToVal(mousePosition); 

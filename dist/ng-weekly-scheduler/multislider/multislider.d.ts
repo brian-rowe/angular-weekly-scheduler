@@ -7,6 +7,7 @@ import { ValueNormalizationService } from '../value-normalization/ValueNormaliza
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 import { PixelToValService } from '../pixel-to-val/PixelToValService';
 import { MousePositionService } from '../mouse-position/MousePositionService';
+import { TouchService } from '../touch/TouchService';
 /** @internal */
 export declare class MultiSliderController implements angular.IComponentController {
     private $element;
@@ -17,12 +18,13 @@ export declare class MultiSliderController implements angular.IComponentControll
     private nullEndWidth;
     private pixelToValService;
     private slotStyleFactory;
+    private touchService;
     private rangeFactory;
     private valueNormalizationService;
     static $name: string;
     static $controllerAs: string;
     static $inject: string[];
-    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, mousePositionService: MousePositionService, mouseTrackerService: MouseTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
+    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, mousePositionService: MousePositionService, mouseTrackerService: MouseTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, touchService: TouchService, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
     private dragSchedule;
     private pendingSchedule;
     private startingGhostValues;

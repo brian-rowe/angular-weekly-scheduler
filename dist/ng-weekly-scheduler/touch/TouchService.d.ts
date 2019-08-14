@@ -1,7 +1,9 @@
+import { IPoint } from '../point/IPoint';
 /** @internal */
 export declare class TouchService {
     static $name: string;
-    getTouches(event: any): any;
+    private getTouches(event);
+    getPoint(event: any): IPoint;
     getPageX(event: any): number;
     getPageY(event: any): number;
 }

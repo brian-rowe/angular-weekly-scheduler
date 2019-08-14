@@ -1,8 +1,10 @@
+import { IPoint } from '../point/IPoint';
+
 /** @internal */
 export class TouchService {
     static $name = 'rrWeeklySchedulerTouchService';
 
-    public getTouches(event: any): any { // todo
+    private getTouches(event: any): any { // todo
         if (event.originalEvent) {
             if (event.originalEvent.touches && event.originalEvent.touches.length) {
                 return event.originalEvent.touches;
@@ -17,7 +19,14 @@ export class TouchService {
 
         return event.touches;
     }
-    
+
+    public getPoint(event: any): IPoint {
+       return {
+            x: this.getPageX(event),
+            y: this.getPageY(event)
+        };
+    }
+
     public getPageX(event: any): number {
         let touches = this.getTouches(event);
 
