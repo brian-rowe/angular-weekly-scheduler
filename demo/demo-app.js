@@ -39541,9 +39541,6 @@ var MultiSliderController = /** @class */ (function () {
         if (!schedule.start && !schedule.end) {
             return {};
         }
-        if (schedule.start && !schedule.end) {
-            return {};
-        }
         return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
     };
     MultiSliderController.prototype.openEditorForAdd = function (schedule) {

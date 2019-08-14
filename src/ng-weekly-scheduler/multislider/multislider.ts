@@ -167,10 +167,6 @@ export class MultiSliderController implements angular.IComponentController {
       return {};
     }
 
-    if (schedule.start && !schedule.end) {
-      return {};
-    }
-
     return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
   }
 
