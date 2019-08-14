@@ -1,5 +1,6 @@
 import { Days } from '../weekly-scheduler-config/Days';
-export interface IWeeklySchedulerRange<T> {
+import { IRange } from '../range/IRange';
+export interface IWeeklySchedulerRange<T> extends IRange {
     /** A css class to apply */
     $class?: string;
     /** This will indicate whether the item is currently considered active to the UI */
@@ -10,8 +11,6 @@ export interface IWeeklySchedulerRange<T> {
     $isEditing?: boolean;
     /** Not strictly necessary but makes things a whooole lot easier */
     day: Days;
-    start: number;
-    end: number;
     value: T;
     editable?: boolean;
 }

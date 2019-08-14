@@ -11,6 +11,7 @@ import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerIte
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { HourTextService } from '../hour-text/HourTextService';
+import { IRange } from '../range/IRange';
 
 /** @internal */
 export class WeeklySchedulerController implements angular.IController {
@@ -50,7 +51,7 @@ export class WeeklySchedulerController implements angular.IController {
 
   private dragSchedule: WeeklySchedulerRange<any>;
 
-  private ghostValues: { start: number, end: number };
+  private ghostValues: IRange;
 
   /** this is required to be part of a form for dirty/valid checks */
   public formController: angular.IFormController;
@@ -176,7 +177,7 @@ export class WeeklySchedulerController implements angular.IController {
     return items;
   }
 
-  private setGhostValues(ghostValues: { start: number, end: number }) {
+  private setGhostValues(ghostValues: IRange) {
     this.ghostValues = ghostValues;
   }
 

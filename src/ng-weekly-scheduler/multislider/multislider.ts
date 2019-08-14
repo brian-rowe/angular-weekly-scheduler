@@ -11,6 +11,7 @@ import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 import { PixelToValService } from '../pixel-to-val/PixelToValService';
 import { MousePositionService } from '../mouse-position/MousePositionService';
+import { IRange } from '../range/IRange';
 
 /** @internal */
 export class MultiSliderController implements angular.IComponentController {
@@ -48,9 +49,9 @@ export class MultiSliderController implements angular.IComponentController {
   private dragSchedule: WeeklySchedulerRange<any>;
   private pendingSchedule: WeeklySchedulerRange<any>;
 
-  private startingGhostValues: { start: number, end: number };
-  private readonly ghostValues: { start: number, end: number };
-  private setGhostValues: (options: { ghostValues: { start: number, end: number } }) => void;
+  private startingGhostValues: IRange;
+  private readonly ghostValues: IRange;
+  private setGhostValues: (options: { ghostValues: IRange }) => void;
 
   private ngModelCtrl: angular.INgModelController;
   

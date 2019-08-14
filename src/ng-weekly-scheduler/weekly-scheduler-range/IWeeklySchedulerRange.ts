@@ -1,6 +1,7 @@
 import { Days } from '../weekly-scheduler-config/Days';
+import { IRange } from '../range/IRange';
 
-export interface IWeeklySchedulerRange<T> {
+export interface IWeeklySchedulerRange<T> extends IRange {
     /** A css class to apply */
     $class?: string;
 
@@ -15,9 +16,6 @@ export interface IWeeklySchedulerRange<T> {
 
     /** Not strictly necessary but makes things a whooole lot easier */
     day: Days;
-
-    start: number;
-    end: number;
 
     value: T;
 
