@@ -40,6 +40,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     private removeDragSchedule();
     private commitDragSchedule();
     private getScheduleForAdd(start, end);
+    private getGhostSlotStyle();
     private getSlotStyle(schedule);
     private openEditorForAdd(schedule);
     /** Expand ghost while dragging in it */

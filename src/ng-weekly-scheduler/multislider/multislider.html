@@ -5,7 +5,7 @@
                       active: multiSliderCtrl.item.$renderGhost,
                       nullEnd: multiSliderCtrl.config.nullEnds
                    }"
-                   ng-style="multiSliderCtrl.getSlotStyle(multiSliderCtrl.ghostValues)">
+                   ng-style="multiSliderCtrl.getGhostSlotStyle()">
         <div class="slotWrapper">
             <div class="middle fullWidth">
                 <span ng-if="!multiSliderCtrl.config.nullEnds">{{ multiSliderCtrl.ghostValues.start | rrWeeklySchedulerTimeOfDay }} - {{ multiSliderCtrl.ghostValues.end | rrWeeklySchedulerTimeOfDay }}</span>
