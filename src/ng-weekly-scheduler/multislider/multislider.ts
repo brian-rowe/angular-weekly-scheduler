@@ -137,9 +137,9 @@ export class MultiSliderController implements angular.IComponentController {
     this.pendingSchedule = null;
   }
 
-  private getScheduleForAdd(start: number, end: number) {
-    start = this.valueNormalizationService.normalizeValue(start, 0, end);
-    end = this.valueNormalizationService.normalizeValue(end, start, this.config.maxValue);
+  private getScheduleForAdd(range: IRange) {
+    let start = this.valueNormalizationService.normalizeValue(range.start, 0, range.end);
+    let end = this.valueNormalizationService.normalizeValue(range.end, start, this.config.maxValue);
 
     if (this.config.nullEnds) {
       end = null;
@@ -159,7 +159,7 @@ export class MultiSliderController implements angular.IComponentController {
     return this.getSlotStyle(this.ghostValues as IWeeklySchedulerRange<any>);
   }
 
-  private getSlotStyle(schedule: IWeeklySchedulerRange<any>) {
+  private getSlotStyle(schedule: IRange) {
     return this.slotStyleFactory.getSlotStyle(this.config, this.$element).getCss(schedule);
   }
 
@@ -234,7 +234,7 @@ export class MultiSliderController implements angular.IComponentController {
   }
 
   public onGhostWrapperMouseUp() {
-    let ghostSchedule = this.getScheduleForAdd(this.ghostValues.start, this.ghostValues.end);
+    let ghostSchedule = this.getScheduleForAdd(this.ghostValues);
 
     this.openEditorForAdd(ghostSchedule).then(editedGhostSchedule => {
       this.$scope.$emit(WeeklySchedulerEvents.GHOST_DRAG_ENDED, editedGhostSchedule);

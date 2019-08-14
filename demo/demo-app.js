@@ -39515,9 +39515,9 @@ var MultiSliderController = /** @class */ (function () {
         this.item.mergeSchedule(this.pendingSchedule);
         this.pendingSchedule = null;
     };
-    MultiSliderController.prototype.getScheduleForAdd = function (start, end) {
-        start = this.valueNormalizationService.normalizeValue(start, 0, end);
-        end = this.valueNormalizationService.normalizeValue(end, start, this.config.maxValue);
+    MultiSliderController.prototype.getScheduleForAdd = function (range) {
+        var start = this.valueNormalizationService.normalizeValue(range.start, 0, range.end);
+        var end = this.valueNormalizationService.normalizeValue(range.end, start, this.config.maxValue);
         if (this.config.nullEnds) {
             end = null;
         }
@@ -39595,7 +39595,7 @@ var MultiSliderController = /** @class */ (function () {
     };
     MultiSliderController.prototype.onGhostWrapperMouseUp = function () {
         var _this = this;
-        var ghostSchedule = this.getScheduleForAdd(this.ghostValues.start, this.ghostValues.end);
+        var ghostSchedule = this.getScheduleForAdd(this.ghostValues);
         this.openEditorForAdd(ghostSchedule).then(function (editedGhostSchedule) {
             _this.$scope.$emit("rrWeeklyScheduler.ghostDragEnded" /* GHOST_DRAG_ENDED */, editedGhostSchedule);
         }).catch(function () {

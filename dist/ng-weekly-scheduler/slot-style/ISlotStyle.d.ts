@@ -1,4 +1,4 @@
-import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
+import { IRange } from '../range/IRange';
 export interface ISlotStyle {
-    getCss(schedule: IWeeklySchedulerRange<any>): any;
+    getCss(schedule: IRange): any;
 }

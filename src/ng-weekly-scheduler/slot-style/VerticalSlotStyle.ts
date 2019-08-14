@@ -1,7 +1,7 @@
-import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedulerRange';
 import { ISlotStyle } from './ISlotStyle';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { SlotStyleService } from './SlotStyleService';
+import { IRange } from '../range/IRange';
 
 export class VerticalSlotStyle implements ISlotStyle {
     private element: Element;
@@ -14,7 +14,7 @@ export class VerticalSlotStyle implements ISlotStyle {
         this.element = this.$element[0];
     }
 
-    getCss(schedule: IWeeklySchedulerRange<any>) {
+    getCss(schedule: IRange) {
         return {
             top: this.getSlotTop(schedule.start),
             bottom: this.getSlotBottom(schedule.start, schedule.end)
