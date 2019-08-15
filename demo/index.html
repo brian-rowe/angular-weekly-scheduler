@@ -7,13 +7,6 @@
 
   <body class="container-fluid">
     <div class="row" ng-controller="DemoController as demo" ng-form="testWrapper">
-      <div>
-        <code>$scope.model</code>
-        <pre ng-bind="model | json" style="max-height: 200px; overflow-y: auto"></pre>
-      </div>
-
-      <!-- <button ng-click="saveAll()" ng-disabled="!testWrapper.$dirty || !testWrapper.$valid">Save</button> -->
-
       <rr-weekly-scheduler adapter="adapter" ng-form="test" options="model.options"></rr-weekly-scheduler>
       <code>Valid: {{ test.$valid }}</code>
 
