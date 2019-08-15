@@ -4,7 +4,6 @@ import { IWeeklySchedulerRange } from '../weekly-scheduler-range/IWeeklySchedule
 import { WeeklySchedulerItem } from '../weekly-scheduler-item/WeeklySchedulerItem';
 import { WeeklySchedulerRange } from '../weekly-scheduler-range/WeeklySchedulerRange';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
-import { CursorTrackerService } from '../cursor-tracker/CursorTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { WeeklySchedulerEvents } from '../weekly-scheduler-config/WeeklySchedulerEvents';
 import { NullEndWidth } from '../weekly-scheduler-config/NullEndWidth';
@@ -24,7 +23,6 @@ export class MultiSliderController implements angular.IComponentController {
     '$q',
     '$scope',
     CursorPositionService.$name,
-    CursorTrackerService.$name,
     NullEndWidth.$name,
     PixelToValService.$name,
     SlotStyleFactory.$name,
@@ -38,7 +36,6 @@ export class MultiSliderController implements angular.IComponentController {
     private $q: angular.IQService,
     private $scope: angular.IScope,
     private cursorPosition: CursorPositionService,
-    private cursorTrackerService: CursorTrackerService,
     private nullEndWidth: number,
     private pixelToValService: PixelToValService,
     private slotStyleFactory: SlotStyleFactory,
@@ -179,7 +176,7 @@ export class MultiSliderController implements angular.IComponentController {
   }
 
   /** Expand ghost while dragging in it */
-  public adjustGhost(event: Event = null) {
+  public adjustGhost(event: Event) {
     let mouseValue: number = this.getValAtMousePosition(event);
 
     let existingStartValue: number = this.startingGhostValues.start;
@@ -206,7 +203,7 @@ export class MultiSliderController implements angular.IComponentController {
   }
   
   /** Move ghost around while not dragging */
-  public positionGhost(event: Event = null) {
+  public positionGhost(event: Event) {
     let val = this.getValAtMousePosition(event);
 
     this.startingGhostValues = {
@@ -265,15 +262,8 @@ export class MultiSliderController implements angular.IComponentController {
     this.removeGhost();
   }
 
-  private getValAtMousePosition(event = null) {
-    let point;
-
-    if (event) {
-      point = this.touchService.getPoint(event);
-    } else {
-      point = this.cursorTrackerService.getCursorPosition();
-    }
-
+  private getValAtMousePosition(event) {
+    let point = this.touchService.getPoint(event);
     let cursorPosition = this.cursorPosition.getCursorPosition(this.config, this.$element, point);
 
     return this.pixelToVal(cursorPosition); 

@@ -2,7 +2,6 @@
 import * as angular from 'angular';
 import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedulerConfig';
 import { WeeklySchedulerRangeFactory } from '../weekly-scheduler-range/WeeklySchedulerRangeFactory';
-import { CursorTrackerService } from '../cursor-tracker/CursorTrackerService';
 import { ValueNormalizationService } from '../value-normalization/ValueNormalizationService';
 import { SlotStyleFactory } from '../slot-style/SlotStyleFactory';
 import { PixelToValService } from '../pixel-to-val/PixelToValService';
@@ -14,7 +13,6 @@ export declare class MultiSliderController implements angular.IComponentControll
     private $q;
     private $scope;
     private cursorPosition;
-    private cursorTrackerService;
     private nullEndWidth;
     private pixelToValService;
     private slotStyleFactory;
@@ -24,7 +22,7 @@ export declare class MultiSliderController implements angular.IComponentControll
     static $name: string;
     static $controllerAs: string;
     static $inject: string[];
-    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, cursorPosition: CursorPositionService, cursorTrackerService: CursorTrackerService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, touchService: TouchService, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
+    constructor($element: angular.IAugmentedJQuery, $q: angular.IQService, $scope: angular.IScope, cursorPosition: CursorPositionService, nullEndWidth: number, pixelToValService: PixelToValService, slotStyleFactory: SlotStyleFactory, touchService: TouchService, rangeFactory: WeeklySchedulerRangeFactory, valueNormalizationService: ValueNormalizationService);
     private dragSchedule;
     private pendingSchedule;
     private startingGhostValues;
@@ -46,15 +44,15 @@ export declare class MultiSliderController implements angular.IComponentControll
     private getSlotStyle(schedule);
     private openEditorForAdd(schedule);
     /** Expand ghost while dragging in it */
-    adjustGhost(event?: Event): void;
+    adjustGhost(event: Event): void;
     /** Move ghost around while not dragging */
-    positionGhost(event?: Event): void;
+    positionGhost(event: Event): void;
     onGhostWrapperMouseDown(event: Event): void;
     onGhostWrapperMouseMove(event: any): void;
     onGhostWrapperMouseUp(): void;
     private createGhost(event?);
     private commitGhost(ghostSchedule);
-    private getValAtMousePosition(event?);
+    private getValAtMousePosition(event);
     /**
      * Perform an external action to bring up an editor for a schedule
      */

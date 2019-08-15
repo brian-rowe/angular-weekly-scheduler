@@ -39434,7 +39434,6 @@ module.exports = "<div class=\"ghost-wrapper\" config=\"multiSliderCtrl.config\"
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var WeeklySchedulerRangeFactory_1 = __webpack_require__(/*! ../weekly-scheduler-range/WeeklySchedulerRangeFactory */ "./src/ng-weekly-scheduler/weekly-scheduler-range/WeeklySchedulerRangeFactory.ts");
-var CursorTrackerService_1 = __webpack_require__(/*! ../cursor-tracker/CursorTrackerService */ "./src/ng-weekly-scheduler/cursor-tracker/CursorTrackerService.ts");
 var ValueNormalizationService_1 = __webpack_require__(/*! ../value-normalization/ValueNormalizationService */ "./src/ng-weekly-scheduler/value-normalization/ValueNormalizationService.ts");
 var NullEndWidth_1 = __webpack_require__(/*! ../weekly-scheduler-config/NullEndWidth */ "./src/ng-weekly-scheduler/weekly-scheduler-config/NullEndWidth.ts");
 var SlotStyleFactory_1 = __webpack_require__(/*! ../slot-style/SlotStyleFactory */ "./src/ng-weekly-scheduler/slot-style/SlotStyleFactory.ts");
@@ -39443,12 +39442,11 @@ var TouchService_1 = __webpack_require__(/*! ../touch/TouchService */ "./src/ng-
 var CursorPositionService_1 = __webpack_require__(/*! ../cursor-position/CursorPositionService */ "./src/ng-weekly-scheduler/cursor-position/CursorPositionService.ts");
 /** @internal */
 var MultiSliderController = /** @class */ (function () {
-    function MultiSliderController($element, $q, $scope, cursorPosition, cursorTrackerService, nullEndWidth, pixelToValService, slotStyleFactory, touchService, rangeFactory, valueNormalizationService) {
+    function MultiSliderController($element, $q, $scope, cursorPosition, nullEndWidth, pixelToValService, slotStyleFactory, touchService, rangeFactory, valueNormalizationService) {
         this.$element = $element;
         this.$q = $q;
         this.$scope = $scope;
         this.cursorPosition = cursorPosition;
-        this.cursorTrackerService = cursorTrackerService;
         this.nullEndWidth = nullEndWidth;
         this.pixelToValService = pixelToValService;
         this.slotStyleFactory = slotStyleFactory;
@@ -39553,7 +39551,6 @@ var MultiSliderController = /** @class */ (function () {
     };
     /** Expand ghost while dragging in it */
     MultiSliderController.prototype.adjustGhost = function (event) {
-        if (event === void 0) { event = null; }
         var mouseValue = this.getValAtMousePosition(event);
         var existingStartValue = this.startingGhostValues.start;
         var updatedStartValue;
@@ -39576,7 +39573,6 @@ var MultiSliderController = /** @class */ (function () {
     };
     /** Move ghost around while not dragging */
     MultiSliderController.prototype.positionGhost = function (event) {
-        if (event === void 0) { event = null; }
         var val = this.getValAtMousePosition(event);
         this.startingGhostValues = {
             start: val,
@@ -39626,14 +39622,7 @@ var MultiSliderController = /** @class */ (function () {
         this.removeGhost();
     };
     MultiSliderController.prototype.getValAtMousePosition = function (event) {
-        if (event === void 0) { event = null; }
-        var point;
-        if (event) {
-            point = this.touchService.getPoint(event);
-        }
-        else {
-            point = this.cursorTrackerService.getCursorPosition();
-        }
+        var point = this.touchService.getPoint(event);
         var cursorPosition = this.cursorPosition.getCursorPosition(this.config, this.$element, point);
         return this.pixelToVal(cursorPosition);
     };
@@ -39697,7 +39686,6 @@ var MultiSliderController = /** @class */ (function () {
         '$q',
         '$scope',
         CursorPositionService_1.CursorPositionService.$name,
-        CursorTrackerService_1.CursorTrackerService.$name,
         NullEndWidth_1.NullEndWidth.$name,
         PixelToValService_1.PixelToValService.$name,
         SlotStyleFactory_1.SlotStyleFactory.$name,
