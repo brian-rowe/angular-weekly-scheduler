@@ -1,5 +1,4 @@
 import * as angular from 'angular';
-import { VerticalHandleProvider } from './VerticalHandleProvider';
 import { HandleProviderFactory } from './HandleProviderFactory';
 
 /** @internal */
