@@ -14,7 +14,7 @@ export class VerticalHandleProvider implements IHandleProvider {
     }
 
     getPositionFromEvent(event) {
-        return event.pageY || this.touchService.getPageY(event);
+        return this.touchService.getPageY(event);
     }
 
     getStartHandleClass() {

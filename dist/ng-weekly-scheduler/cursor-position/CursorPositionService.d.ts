@@ -5,7 +5,7 @@ import { IWeeklySchedulerConfig } from '../weekly-scheduler-config/IWeeklySchedu
 import { PointProviderFactory } from '../point/PointProviderFactory';
 /**
  * Gets cursor position relative to the calendar element.
- * (as opposed to mouse-tracker, which gets the mouse position relative to the document)
+ * (as opposed to cursor-tracker, which gets the cursor position relative to the document)
  */
 export declare class CursorPositionService {
     private elementOffsetProviderFactory;

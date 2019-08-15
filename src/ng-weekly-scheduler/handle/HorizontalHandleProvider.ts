@@ -14,7 +14,7 @@ export class HorizontalHandleProvider implements IHandleProvider {
     }
 
     getPositionFromEvent(event) {
-        return event.pageX || this.touchService.getPageX(event);
+        return this.touchService.getPageX(event);
     }
 
     getStartHandleClass() {

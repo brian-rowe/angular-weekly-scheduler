@@ -28,6 +28,10 @@ export class TouchService {
     }
 
     public getPageX(event: any): number {
+        if (event.pageX) {
+            return event.pageX;
+        }
+
         let touches = this.getTouches(event);
 
         if (touches && touches.length && touches[0]) {
@@ -38,6 +42,10 @@ export class TouchService {
     }
     
     public getPageY(event: any): number {
+        if (event.pageY) {
+            return event.pageY;
+        }
+
         let touches = this.getTouches(event);
 
         if (touches && touches.length && touches[0]) {

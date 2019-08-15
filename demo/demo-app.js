@@ -37349,7 +37349,7 @@ var ElementOffsetProviderFactory_1 = __webpack_require__(/*! ../element-offset/E
 var PointProviderFactory_1 = __webpack_require__(/*! ../point/PointProviderFactory */ "./src/ng-weekly-scheduler/point/PointProviderFactory.ts");
 /**
  * Gets cursor position relative to the calendar element.
- * (as opposed to mouse-tracker, which gets the mouse position relative to the document)
+ * (as opposed to cursor-tracker, which gets the cursor position relative to the document)
  */
 var CursorPositionService = /** @class */ (function () {
     function CursorPositionService(elementOffsetProviderFactory, pointProviderFactory) {
@@ -37389,7 +37389,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 var CursorPositionService_1 = __webpack_require__(/*! ./CursorPositionService */ "./src/ng-weekly-scheduler/cursor-position/CursorPositionService.ts");
 exports.default = angular
-    .module('rr.weeklyScheduler.mousePosition', [])
+    .module('rr.weeklyScheduler.cursorPosition', [])
     .service(CursorPositionService_1.CursorPositionService.$name, CursorPositionService_1.CursorPositionService)
     .name;
 
@@ -38585,7 +38585,7 @@ var HorizontalHandleProvider = /** @class */ (function () {
         return this.cursorTrackerService.getCursorPosition().x;
     };
     HorizontalHandleProvider.prototype.getPositionFromEvent = function (event) {
-        return event.pageX || this.touchService.getPageX(event);
+        return this.touchService.getPageX(event);
     };
     HorizontalHandleProvider.prototype.getStartHandleClass = function () {
         return 'left';
@@ -38622,7 +38622,7 @@ var VerticalHandleProvider = /** @class */ (function () {
         return this.cursorTrackerService.getCursorPosition().y;
     };
     VerticalHandleProvider.prototype.getPositionFromEvent = function (event) {
-        return event.pageY || this.touchService.getPageY(event);
+        return this.touchService.getPageY(event);
     };
     VerticalHandleProvider.prototype.getStartHandleClass = function () {
         return 'top';
@@ -39009,7 +39009,7 @@ var LastGhostDayService = /** @class */ (function () {
     function LastGhostDayService() {
     }
     /**
-     * When dragging ghosts across multiple days, if the user moves the mouse pointer out of one extreme and back into the last slot that rendered a ghost,
+     * When dragging ghosts across multiple days, if the user moves the cursor out of one extreme and back into the last slot that rendered a ghost,
      * We should remove the ghost from that extreme. This will help grab the correct day
      */
     LastGhostDayService.prototype.getLastGhostDay = function (items) {
@@ -39629,12 +39629,7 @@ var MultiSliderController = /** @class */ (function () {
         if (event === void 0) { event = null; }
         var point;
         if (event) {
-            if (event.pageX && event.pageY) {
-                point = { x: event.pageX, y: event.pageY };
-            }
-            else {
-                point = this.touchService.getPoint(event);
-            }
+            point = this.touchService.getPoint(event);
         }
         else {
             point = this.cursorTrackerService.getCursorPosition();
@@ -41497,6 +41492,9 @@ var TouchService = /** @class */ (function () {
         };
     };
     TouchService.prototype.getPageX = function (event) {
+        if (event.pageX) {
+            return event.pageX;
+        }
         var touches = this.getTouches(event);
         if (touches && touches.length && touches[0]) {
             return touches[0].pageX;
@@ -41504,6 +41502,9 @@ var TouchService = /** @class */ (function () {
         return null;
     };
     TouchService.prototype.getPageY = function (event) {
+        if (event.pageY) {
+            return event.pageY;
+        }
         var touches = this.getTouches(event);
         if (touches && touches.length && touches[0]) {
             return touches[0].pageY;

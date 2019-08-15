@@ -6,7 +6,7 @@ export declare class VerticalHandleProvider implements IHandleProvider {
     private touchService;
     constructor(cursorTrackerService: CursorTrackerService, touchService: TouchService);
     getCursorPosition(): number;
-    getPositionFromEvent(event: any): any;
+    getPositionFromEvent(event: any): number;
     getStartHandleClass(): string;
     getEndHandleClass(): string;
     getSlotWrapperClass(): string;

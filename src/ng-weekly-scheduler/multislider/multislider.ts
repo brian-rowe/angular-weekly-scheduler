@@ -269,11 +269,7 @@ export class MultiSliderController implements angular.IComponentController {
     let point;
 
     if (event) {
-      if (event.pageX && event.pageY) {
-        point = { x: event.pageX, y: event.pageY }
-      } else {
-        point = this.touchService.getPoint(event);
-      }
+      point = this.touchService.getPoint(event);
     } else {
       point = this.cursorTrackerService.getCursorPosition();
     }
